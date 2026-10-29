@@ -1,0 +1,49 @@
+[client_lighting]
+	#Maximum visual flashlight range in blocks.
+	# Default: 22.0
+	# Range: 4.0 ~ 64.0
+	lightRange = 22.0
+	#Main beam half-angle in degrees.
+	# Default: 30.0
+	# Range: 4.0 ~ 70.0
+	lightHalfAngle = 30.0
+	#Overall projected surface light strength.
+	# Default: 1.18
+	# Range: 0.05 ~ 2.0
+	lightIntensity = 1.18
+	#Soft near-player spill radius. Keep modest to avoid a torch aura.
+	# Default: 5.4
+	# Range: 0.0 ~ 16.0
+	closeSpillRadius = 5.4
+	#Soft near-player spill strength.
+	# Default: 0.5
+	# Range: 0.0 ~ 1.0
+	closeSpillIntensity = 0.5
+	#Main beam distance falloff. Lower keeps long range brighter.
+	# Default: 0.72
+	# Range: 0.1 ~ 4.0
+	falloffPower = 0.72
+	#Dim wider spill cone half-angle in degrees.
+	# Default: 50.0
+	# Range: 4.0 ~ 89.0
+	beamPathSpillHalfAngle = 50.0
+	#How far the wider spill reaches compared with main range.
+	# Default: 0.72
+	# Range: 0.05 ~ 1.0
+	beamPathSpillRangeScale = 0.72
+	#Dim wider spill strength around the beam path.
+	# Default: 0.36
+	# Range: 0.0 ~ 1.0
+	beamPathSpillIntensity = 0.36
+	#Wider spill distance falloff. Higher fades faster.
+	# Default: 1.45
+	# Range: 0.1 ~ 4.0
+	beamPathSpillFalloffPower = 1.45
+	#Small extra fill for upward-facing ground within the wider spill.
+	# Default: 0.12
+	# Range: 0.0 ~ 0.5
+	groundFillBias = 0.12
+	#Maximum warm fullbright overlay alpha for entities inside the beam.
+	# Default: 0.65
+	# Range: 0.0 ~ 0.75
+	entityGlowMaxAlpha = 0.65

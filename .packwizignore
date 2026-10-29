@@ -1,0 +1,14 @@
+# Caches, logs et fichiers propres a chaque PC : jamais envoyes aux joueurs
+*.log
+*.bak
+config/fancymenu/user_variables.db
+config/sodium-fingerprint.json
+config/voicechat/username-cache.json
+config/jei/server/world/
+kubejs/exported/
+kubejs/logs/
+kubejs/probe/
+
+# Fichiers du depot GitHub, pas du jeu
+README.md
+.gitattributes

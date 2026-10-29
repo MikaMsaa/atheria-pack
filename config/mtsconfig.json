@@ -1,0 +1,532 @@
+{
+  "general": {
+    "generateOverrideConfigs": {
+      "value": false,
+      "comment": "If true, then crafting and damage override config files, as well as language template files, will be dumped into the config folder at boot.  WARNING: this will overwrite your existing override config files!  Language files must be put into packs to function and will NOT overwrite anything."
+    },
+    "opSignEditingOnly": {
+      "value": false,
+      "comment": "If true, only OPs will be able to edit signs on servers.  Does not affect client worlds."
+    },
+    "opPickupVehiclesOnly": {
+      "value": false,
+      "comment": "If true, only OPs will be able to pick up vehicles with wrenches.  Does not affect client worlds."
+    },
+    "creativePickupVehiclesOnly": {
+      "value": false,
+      "comment": "If true, vehicles can only be picked up in creative mode."
+    },
+    "keyRequiredToStartVehicles": {
+      "value": false,
+      "comment": "If true, vehicles can only be started if the player has the key in their hand."
+    },
+    "noclipVehicles": {
+      "value": false,
+      "comment": "If true, vehicles will not be able to collide with blocks.  This also prevents them from moving if they do not have wheels on them, as otherwise they would phase through the ground into the void."
+    },
+    "chunkloadVehicles": {
+      "value": true,
+      "comment": "If true, vehicles will be chunkloaded when on roads/tracks.  This allows them to travel into unloaded chunks."
+    },
+    "doLegacyLightCompats": {
+      "value": true,
+      "comment": "If true, legacy compatibility code will be performed on all models to make their lights work with newer versions.  This code will significantly slow down boot times due to needing to parse all models on boot, however, packs may not have functional lights without it.  Choose wisely if you want speed or features."
+    },
+    "useHSV": {
+      "value": false,
+      "comment": "If enabled, the MTS dev mode will export color values as HSV instead of hex."
+    },
+    "allPlanesWithNav": {
+      "value": false,
+      "comment": "If true, all planes will have the ability to use beacons for navigation.  This is false to allow pack authors to define new/old planes that have this capability, but can be turned on if you don't care about realism."
+    },
+    "giveManualsOnJoin": {
+      "value": true,
+      "comment": "If true, then whenever a new player joins a world, they will be given a copy of the mod manuals, including a part scanner."
+    },
+    "performModCompatFunctions": {
+      "value": true,
+      "comment": "If true, mod compatibility functions will be executed.  Should be true unless you're configuring a modpack and know and have addressed the various incompatibilities."
+    },
+    "forceRenderLastSolid": {
+      "value": false,
+      "comment": "If enabled, MTS will do rendering on the world-last Forge event.  This is not normally something you want, but can be used if some mods make things invisible.  Replaymod being one such example."
+    },
+    "devMode": {
+      "value": false,
+      "comment": "If enabled, MTS will allow access to the dev mode GUI while sitting in vehicles.  The GUI allows editing JSONs in-game without the need to restart."
+    },
+    "roadMaxLength": {
+      "value": 32,
+      "comment": "How long a single segment of road can be, in blocks.  While you can have longer segements, be aware they have more collision boxes and will generate more lag when broken or interacted with, and may not render if outside the chunk they are in.  Must be a whole number."
+    },
+    "aircraftSpeedFactor": {
+      "value": 0.35,
+      "comment": "Factor to apply to aircraft movement.  1 is the realistic value, but this makes vehicles move too fast for Minecraft. Adjust with caution."
+    },
+    "carSpeedFactor": {
+      "value": 0.35,
+      "comment": "Factor to apply to car movement.  1 is the realistic value, but this makes vehicles move too fast for Minecraft. Adjust with caution."
+    },
+    "fuelUsageFactor": {
+      "value": 1.0,
+      "comment": "Factor times which engines use fuel.  Change this if you think engines use fuel too fast or slow.  Setting it to 0 will disable fuel and allow engines to run without it."
+    },
+    "engineHoursFactor": {
+      "value": 1.0,
+      "comment": "Factor times which engines hours accumulate.  Change this if you want to adjust how fast engines wear out."
+    },
+    "climbSpeed": {
+      "value": 0.125,
+      "comment": "How far a vehicle will 'climb' blocks every tick when the wheels go into the ground.  Higher values make vehicles climb blocks quicker at the cost of smooth movement."
+    },
+    "gravityFactor": {
+      "value": 1.0,
+      "comment": "Factor for gravitational forces applied to vehicles.  Can be adjusted if you think cars are too 'floaty'.  Does not affect aircraft."
+    },
+    "maxFlightHeight": {
+      "value": 0.0,
+      "comment": "How high planes can fly.  Setting this to 0 (default) will allow planes to fly as high as their natural physics allows.  Useful if you want to cap vertical height for some reason."
+    },
+    "engineSpeedTempFactor": {
+      "value": 1.0,
+      "comment": "Factor for how RPM affects engine temp.  Higher values will make engines heat up quicker at higher RPMs."
+    },
+    "engineBiomeTempFactor": {
+      "value": 1.0,
+      "comment": "Factor for how biome temp affects engine temp.  Higher values will make engines heat up quicker in hotter biomes."
+    },
+    "rfToElectricityFactor": {
+      "value": 0.02,
+      "comment": "Factor for converting RF to internal electicity for vehicles.  Default value is 1/100, but can be adjusted."
+    },
+    "vehicleDeathDespawnTime": {
+      "value": 0.0,
+      "comment": "Time (in seconds) between when vehicles reach 0 health and they de-spawn.  Normally 0, which means they never de-spawn."
+    },
+    "seaLevel": {
+      "value": 63,
+      "comment": "The Y-Level that will be used to base altitude off of. Will also be factored in for engine performance calculations. Change only if you know what you're doing/ why this matters to engines/flying."
+    },
+    "defaultVehicleRepairMaterials": {
+      "value": [],
+      "comment": "List of items that can be used to repair vehicles by default, if no repair recipe is set in the vehicle's JSON."
+    },
+    "defaultPartRepairMaterials": {
+      "value": [],
+      "comment": "List of items that can be used to repair part by default, if no repair recipe is set in the part's JSON."
+    },
+    "engineDimensionBlacklist": {
+      "value": [],
+      "comment": "Blacklist of dimension names where engines will be prevented from being started.  Can be used to disable vehicles in specific dimensions.  Think Galacticraft, where you don't want folks flying planes on the moon."
+    },
+    "engineDimensionWhitelist": {
+      "value": [],
+      "comment": "Whitelist of dimension names where engines will only be alowed to work.  Overrides the blacklist if this exists."
+    },
+    "packVehicleScales": {
+      "value": {
+        "mtsofficialpack": 1.0,
+        "mts": 1.0
+      },
+      "comment": "Scale of all vehicles for this pack.  You probably won't want to change this, but if you do want the vehicles to be smaller for some reason, you can."
+    },
+    "packSpeedFactors": {
+      "value": {
+        "mtsofficialpack": 1.0,
+        "mts": 1.0
+      },
+      "comment": "A mapping of pack-speciifc speed factors.  These values will only apply to the vehicles in the pack modified.  This allows for speeding up packs with slower vehicles, or slowing down packs with fast vehicles for a more even play experience.  Note that this applies on top of the global speed factor.  So if that is set to 0.30, and a pack is set to 0.5, then the total speed factor will be 0.15"
+    },
+    "itemWeights": {
+      "comment1": "The following section is used for calculating item weights.  Any item that contains the text bits will have its weight multiplied by the following factor.",
+      "comment2": "This mass factors into vehicle performance, with particular emphasis on vehicle payloads.  Some defaults are presented here, but you can add/remove to your liking.",
+      "comment3": "Note that the part of the name searched is the item's registry name, NOT the in-game display name.  This is similar to what is in the /give command.",
+      "weights": {
+        "gold": 4.0,
+        "diamond": 4.0,
+        "ore": 2.5,
+        "cardboard_package": 5.0,
+        "iron": 4.0,
+        "coal": 2.0,
+        "stone": 1.5
+      }
+    },
+    "joinedPlayers": {
+      "value": [
+        "0b262bcf-271c-4b5f-b9a7-1d3805f9fd83"
+      ],
+      "comment": "Listing of players that have joined this world.  Players will be given the manual on their first join."
+    }
+  },
+  "damage": {
+    "bulletBlockBreaking": {
+      "value": true,
+      "comment": "Whether or not bullets/bombs can break blocks when they hit them.  This will also disable explosive block breakage (though not explosions themselves) and prevent incendiary bullets from setting blocks on fire."
+    },
+    "bulletExplosions": {
+      "value": true,
+      "comment": "Whether or not bullets/bombs will blow up.  This does not disable block breakage, but it will pretty much nerf all block mass-destruction weapons."
+    },
+    "vehicleBlockBreaking": {
+      "value": true,
+      "comment": "Whether or not vehicles can break blocks when they run into them or blow up.  If false, vehicles will simply stop when they hit blocks."
+    },
+    "vehicleDestruction": {
+      "value": true,
+      "comment": "Whether or not vehicles can be destroyed by ramming into blocks at high speeds.  Set this to false if you don't like loosing vehicles to badly-placed walls."
+    },
+    "vehicleExplosions": {
+      "value": true,
+      "comment": "Whether or not vehicles explode when crashed or shot down.  If this is false, vehicles will simply poof when they crash."
+    },
+    "creativePlayerDamage": {
+      "value": false,
+      "comment": "If true, damage from vehicles and guns will be applied to creative players.  Not sure why you'd want this, but it's here."
+    },
+    "wheelBreakage": {
+      "value": true,
+      "comment": "Whether or not wheels can be broken (go flat)."
+    },
+    "wheelDamageIgnoreVelocity": {
+      "value": false,
+      "comment": "Whether or not velocity is ignored when calculating wheel damage."
+    },
+    "allowExternalDamage": {
+      "value": true,
+      "comment": "Whether or not non-IV things can damage vehicles.  This is normally false, as external damage is a hassle for most people, but can be true if you want other mod's guns to be able to attack vehicles in addition to IV's."
+    },
+    "propellerDamageFactor": {
+      "value": 1.0,
+      "comment": "Factor for damage caused by a propeller."
+    },
+    "jetDamageFactor": {
+      "value": 1.0,
+      "comment": "Factor for damage caused by a jet engine."
+    },
+    "wheelDamageFactor": {
+      "value": 1.0,
+      "comment": "Factor for damage caused by wheels on vehicles."
+    },
+    "crashDamageFactor": {
+      "value": 1.0,
+      "comment": "Factor for damage caused by crashes."
+    },
+    "bulletDamageFactor": {
+      "value": 1.0,
+      "comment": "Factor for damage caused by bullets on vehicles."
+    },
+    "wheelDamageMinimumVelocity": {
+      "value": 0.2,
+      "comment": "Minimum velocity (blocks/second) which vehicles must be going to damage entities with their wheels."
+    },
+    "packBulletDamageFactors": {
+      "value": {
+        "mtsofficialpack": 1.0,
+        "mts": 1.0
+      },
+      "comment": "A mapping of pack-speciifc bullet damage factors.  These values will apply to all bullets in a pack when they hit something, be it a vehicle or entity."
+    }
+  },
+  "fuel": {
+    "comment1": "The following section is used for fuel configs for engines.  Each entry here is a single fuel type for engines.",
+    "comment2": "Inside each entry exist values for the potency of the fluids that can be considered to be that fuel type.",
+    "comment3": "You can make engines take different types of fluids for their fuels by editing these values.  See the in-game handbook for more information.",
+    "comment4": "If you are having troubles getting the name for a particular fluid, run the game with the mods you want and check the 'lastLoadedFluids' list.  This contains all the fluids that were present during the last run of the game.",
+    "comment5": "The first entry in the list is the registered fluid name, while the second entry will be the displayed name.  Only use the first name, as the second name changes based on game language settings.",
+    "fuels": {
+      "diesel": {
+        "creosote": 0.7,
+        "diesel": 1.0,
+        "lava": 1.0,
+        "oil": 0.5,
+        "biodiesel": 0.8
+      },
+      "furnace": {
+        "lava": 1.0
+      },
+      "brewing_stand": {
+        "lava": 1.0
+      },
+      "avgas": {
+        "lava": 1.0,
+        "gasoline": 1.0
+      },
+      "gasoline": {
+        "lava": 1.0,
+        "gasoline": 1.0,
+        "ethanol": 0.85
+      }
+    },
+    "lastLoadedFluids": {
+      "bile_flowing": "fluid_type.unregistered_sadface",
+      "cream_frosting": "block.createfood.cream_frosting_block",
+      "potato_cream_soup": "block.createfood.potato_cream_soup_block",
+      "flowing_gelatin_mix": "block.createfood.gelatin_mix_block",
+      "egg": "block.createfood.egg_block",
+      "leather_soup": "block.createfood.leather_soup_block",
+      "chocolate_fudge": "block.createfood.chocolate_fudge_block",
+      "apple_custard": "block.createfood.apple_custard_block",
+      "flowing_apple_cream_frosting": "block.createfood.apple_cream_frosting_block",
+      "tea": "fluid.create.tea",
+      "glow_berry_cream_frosting": "block.createfood.glow_berry_cream_frosting_block",
+      "magenta_gelatin_mix": "block.createfood.magenta_gelatin_mix_block",
+      "custard": "block.createfood.custard_block",
+      "flowing_chocolate_fudge": "block.createfood.chocolate_fudge_block",
+      "chorus_fruit_juice": "block.createfood.chorus_fruit_juice_block",
+      "flowing_fish_chowder": "block.createfood.fish_chowder_block",
+      "milk": "Milk",
+      "flowing_chorus_fruit_custard": "block.createfood.chorus_fruit_custard_block",
+      "flowing_tea": "fluid.create.tea",
+      "bile": "fluid_type.unregistered_sadface",
+      "cyan_gelatin_mix": "block.createfood.cyan_gelatin_mix_block",
+      "flowing_lava": "Lava",
+      "blackstrap_molasses": "block.createfood.blackstrap_molasses_block",
+      "flowing_blue_gelatin_mix": "block.createfood.blue_gelatin_mix_block",
+      "flowing_slime": "block.createfood.slime_block",
+      "ube_cake_batter": "block.createfood.ube_cake_batter_block",
+      "flowing_apple_custard": "block.createfood.apple_custard_block",
+      "fish_chowder": "block.createfood.fish_chowder_block",
+      "glow_berry_jam": "block.createfood.glow_berry_jam_block",
+      "flowing_kelp_soup": "block.createfood.kelp_soup_block",
+      "flowing_hot_chocolate": "block.createfood.hot_chocolate_block",
+      "flowing_pork_stew": "block.createfood.pork_stew_block",
+      "flowing_glow_berry_juice": "block.createfood.glow_berry_juice_block",
+      "butterscotch": "block.createfood.butterscotch_block",
+      "chocolate_custard": "block.createfood.chocolate_custard_block",
+      "chorus_fruit_milkshake": "block.createfood.chorus_fruit_milkshake_block",
+      "flowing_berry_ice_cream": "block.createfood.berry_ice_cream_block",
+      "hot_dark_chocolate": "block.createfood.hot_dark_chocolate_block",
+      "apple_cream_frosting": "block.createfood.apple_cream_frosting_block",
+      "flowing_cream_pie_filling": "block.createfood.cream_pie_filling_block",
+      "flowing_meringue": "block.createfood.meringue_block",
+      "slime": "block.createfood.slime_block",
+      "flowing_cane_syrup": "block.createfood.cane_syrup_block",
+      "flowing_chocolate_milk": "block.createfood.chocolate_milk_block",
+      "black_gelatin_mix": "block.createfood.black_gelatin_mix_block",
+      "flowing_nuka_cola_fluid": "fluid_type.create_fallout.nuka_cola_fluid",
+      "flowing_egg": "block.createfood.egg_block",
+      "blue_gelatin_mix": "block.createfood.blue_gelatin_mix_block",
+      "glow_berry_ice_cream": "block.createfood.glow_berry_ice_cream_block",
+      "flowing_butterscotch": "block.createfood.butterscotch_block",
+      "flowing_cacao_butter": "block.createfood.cacao_butter_block",
+      "flowing_berry_milkshake": "block.createfood.berry_milkshake_block",
+      "chorus_fruit_ice_cream": "block.createfood.chorus_fruit_ice_cream_block",
+      "fruit_smoothie": "block.createfood.fruit_smoothie_block",
+      "flowing_berry_jam": "block.createfood.berry_jam_block",
+      "flowing_chorus_fruit_pie_filling": "block.createfood.chorus_fruit_pie_filling_block",
+      "meringue": "block.createfood.meringue_block",
+      "sugar_cane_juice": "block.createfood.sugar_cane_juice_block",
+      "sour_cream": "block.createfood.sour_cream_block",
+      "egg_whites": "block.createfood.egg_whites_block",
+      "lime_gelatin_mix": "block.createfood.lime_gelatin_mix_block",
+      "flowing_sour_cream": "block.createfood.sour_cream_block",
+      "toffee": "block.createfood.toffee_block",
+      "white_chocolate_fudge": "block.createfood.white_chocolate_fudge_block",
+      "gelatin_mix": "block.createfood.gelatin_mix_block",
+      "flowing_leather_soup": "block.createfood.leather_soup_block",
+      "flowing_cyan_gelatin_mix": "block.createfood.cyan_gelatin_mix_block",
+      "glow_berry_milkshake": "block.createfood.glow_berry_milkshake_block",
+      "squid_ink": "block.createfood.squid_ink_block",
+      "flowing_molasses": "block.createfood.molasses_block",
+      "flowing_apple_pie_filling": "block.createfood.apple_pie_filling_block",
+      "flowing_lime_gelatin_mix": "block.createfood.lime_gelatin_mix_block",
+      "flowing_pumpkin_custard": "block.createfood.pumpkin_custard_block",
+      "white_chocolate": "block.createfood.white_chocolate_block",
+      "glow_berry_pie_filling": "block.createfood.glow_berry_pie_filling_block",
+      "flowing_sugar_cane_juice": "block.createfood.sugar_cane_juice_block",
+      "flowing_chocolate": "fluid.create.chocolate",
+      "berry_jam": "block.createfood.berry_jam_block",
+      "flowing_tomato_cream_soup": "block.createfood.tomato_cream_soup_block",
+      "apple_milkshake": "block.createfood.apple_milkshake_block",
+      "apple_ice_cream": "block.createfood.apple_ice_cream_block",
+      "apple_jam": "block.createfood.apple_jam_block",
+      "condensed_milk": "block.createfood.condensed_milk_block",
+      "chorus_fruit_cream_frosting": "block.createfood.chorus_fruit_cream_frosting_block",
+      "flowing_mutton_stew": "block.createfood.mutton_stew_block",
+      "apple_juice": "block.createfood.apple_juice_block",
+      "flowing_brown_gelatin_mix": "block.createfood.brown_gelatin_mix_block",
+      "empty": "Air",
+      "butterscotch_fudge": "block.createfood.butterscotch_fudge_block",
+      "flowing_chorus_fruit_juice": "block.createfood.chorus_fruit_juice_block",
+      "white_chocolate_ganache": "block.createfood.white_chocolate_ganache_block",
+      "gray_gelatin_mix": "block.createfood.gray_gelatin_mix_block",
+      "bread_pudding": "block.createfood.bread_pudding_block",
+      "flowing_hot_white_chocolate": "block.createfood.hot_white_chocolate_block",
+      "brown_gelatin_mix": "block.createfood.brown_gelatin_mix_block",
+      "caramel": "block.createfood.caramel_block",
+      "shakshuka": "block.createfood.shakshuka_block",
+      "cane_syrup": "block.createfood.cane_syrup_block",
+      "molasses": "block.createfood.molasses_block",
+      "coffee_toffee_fudge": "block.createfood.coffee_toffee_fudge_block",
+      "flowing_bread_pudding": "block.createfood.bread_pudding_block",
+      "chorus_fruit_jam": "block.createfood.chorus_fruit_jam_block",
+      "cream_cheese": "block.createfood.cream_cheese_block",
+      "flowing_pumpkin_pie_filling": "block.createfood.pumpkin_pie_filling_block",
+      "flowing_melon_ice_cream": "block.createfood.melon_ice_cream_block",
+      "pumpkin_puree": "block.createfood.pumpkin_puree_block",
+      "flowing_gray_gelatin_mix": "block.createfood.gray_gelatin_mix_block",
+      "flowing_green_gelatin_mix": "block.createfood.green_gelatin_mix_block",
+      "flowing_melon_milkshake": "block.createfood.melon_milkshake_block",
+      "berry_juice": "block.createfood.berry_juice_block",
+      "tomato_cream_soup": "block.createfood.tomato_cream_soup_block",
+      "flowing_white_chocolate_fudge": "block.createfood.white_chocolate_fudge_block",
+      "flowing_cream_frosting": "block.createfood.cream_frosting_block",
+      "chocolate_ice_cream": "block.createfood.chocolate_ice_cream_block",
+      "flowing_ube_cake_batter": "block.createfood.ube_cake_batter_block",
+      "flowing_honey": "fluid.create.honey",
+      "flowing_white_chocolate": "block.createfood.white_chocolate_block",
+      "yellow_gelatin_mix": "block.createfood.yellow_gelatin_mix_block",
+      "glow_berry_juice": "block.createfood.glow_berry_juice_block",
+      "flowing_milkshake": "block.createfood.milkshake_block",
+      "green_gelatin_mix": "block.createfood.green_gelatin_mix_block",
+      "orange_gelatin_mix": "block.createfood.orange_gelatin_mix_block",
+      "flowing_ice_cream": "block.createfood.ice_cream_block",
+      "flowing_cake_batter": "block.createfood.cake_batter_block",
+      "caramel_fudge": "block.createfood.caramel_fudge_block",
+      "flowing_light_gray_gelatin_mix": "block.createfood.light_gray_gelatin_mix_block",
+      "liquid_cheese": "block.createfood.liquid_cheese_block",
+      "flowing_squid_ink": "block.createfood.squid_ink_block",
+      "flowing_orange_gelatin_mix": "block.createfood.orange_gelatin_mix_block",
+      "chocolate_milkshake": "block.createfood.chocolate_milkshake_block",
+      "lava": "Lava",
+      "honey": "fluid.create.honey",
+      "flowing_apple_jam": "block.createfood.apple_jam_block",
+      "berry_cream_frosting": "block.createfood.berry_cream_frosting_block",
+      "flowing_liquid_cheese": "block.createfood.liquid_cheese_block",
+      "melon_cream_frosting": "block.createfood.melon_cream_frosting_block",
+      "potion": "Uncraftable Potion",
+      "toffee_fudge": "block.createfood.toffee_fudge_block",
+      "xp_flowing": "fluid_type.sophisticatedcore.experience",
+      "flowing_panna_cotta": "block.createfood.panna_cotta_block",
+      "red_gelatin_mix": "block.createfood.red_gelatin_mix_block",
+      "flowing_shakshuka": "block.createfood.shakshuka_block",
+      "flowing_skim_milk": "block.createfood.skim_milk_block",
+      "flowing_pumpkin_puree": "block.createfood.pumpkin_puree_block",
+      "flowing_apple_juice": "block.createfood.apple_juice_block",
+      "flowing_caramel_fudge": "block.createfood.caramel_fudge_block",
+      "flowing_rice_pudding": "block.createfood.rice_pudding_block",
+      "flowing_yellow_gelatin_mix": "block.createfood.yellow_gelatin_mix_block",
+      "mutton_stew": "block.createfood.mutton_stew_block",
+      "flowing_dark_chocolate": "block.createfood.dark_chocolate_block",
+      "purple_gelatin_mix": "block.createfood.purple_gelatin_mix_block",
+      "yogurt": "block.createfood.yogurt_block",
+      "flowing_butterscotch_fudge": "block.createfood.butterscotch_fudge_block",
+      "ube_cream_frosting": "block.createfood.ube_cream_frosting_block",
+      "flowing_cacao_mass": "block.createfood.cacao_mass_block",
+      "panna_cotta": "block.createfood.panna_cotta_block",
+      "chocolate_ganache": "block.createfood.chocolate_ganache_block",
+      "ice_cream": "block.createfood.ice_cream_block",
+      "flowing_condensed_milk": "block.createfood.condensed_milk_block",
+      "flowing_dark_chocolate_fudge": "block.createfood.dark_chocolate_fudge_block",
+      "flowing_potato_cream_soup": "block.createfood.potato_cream_soup_block",
+      "kelp_soup": "block.createfood.kelp_soup_block",
+      "berry_custard": "block.createfood.berry_custard_block",
+      "pork_stew": "block.createfood.pork_stew_block",
+      "flowing_black_gelatin_mix": "block.createfood.black_gelatin_mix_block",
+      "flowing_yogurt": "block.createfood.yogurt_block",
+      "flowing_magenta_gelatin_mix": "block.createfood.magenta_gelatin_mix_block",
+      "flowing_egg_whites": "block.createfood.egg_whites_block",
+      "flowing_chorus_fruit_ice_cream": "block.createfood.chorus_fruit_ice_cream_block",
+      "flowing_berry_custard": "block.createfood.berry_custard_block",
+      "flowing_glow_berry_cream_frosting": "block.createfood.glow_berry_cream_frosting_block",
+      "waffle_batter": "block.createfood.waffle_batter_block",
+      "alfredo_sauce": "block.createfood.alfredo_sauce_block",
+      "melon_jam": "block.createfood.melon_jam_block",
+      "flowing_chocolate_cream_frosting": "block.createfood.chocolate_cream_frosting_block",
+      "heavy_cream": "block.createfood.heavy_cream_block",
+      "flowing_heavy_cream": "block.createfood.heavy_cream_block",
+      "cake_batter": "block.createfood.cake_batter_block",
+      "chocolate": "fluid.create.chocolate",
+      "flowing_berry_juice": "block.createfood.berry_juice_block",
+      "flowing_chorus_fruit_milkshake": "block.createfood.chorus_fruit_milkshake_block",
+      "apple_pie_filling": "block.createfood.apple_pie_filling_block",
+      "vegetable_oil": "block.createfood.vegetable_oil_block",
+      "melon_milkshake": "block.createfood.melon_milkshake_block",
+      "skim_milk": "block.createfood.skim_milk_block",
+      "flowing_dark_chocolate_ganache": "block.createfood.dark_chocolate_ganache_block",
+      "cheesecake_filling": "block.createfood.cheesecake_filling_block",
+      "flowing_chocolate_custard": "block.createfood.chocolate_custard_block",
+      "flowing_chorus_fruit_jam": "block.createfood.chorus_fruit_jam_block",
+      "xp_still": "fluid_type.sophisticatedcore.experience",
+      "cream_pie_filling": "block.createfood.cream_pie_filling_block",
+      "flowing_coffee_toffee": "block.createfood.coffee_toffee_block",
+      "flowing_hot_dark_chocolate": "block.createfood.hot_dark_chocolate_block",
+      "light_gray_gelatin_mix": "block.createfood.light_gray_gelatin_mix_block",
+      "flowing_vegetable_oil": "block.createfood.vegetable_oil_block",
+      "vinegar": "block.createfood.vinegar_block",
+      "milkshake": "block.createfood.milkshake_block",
+      "flowing_alfredo_sauce": "block.createfood.alfredo_sauce_block",
+      "flowing_melon_jam": "block.createfood.melon_jam_block",
+      "flowing_red_gelatin_mix": "block.createfood.red_gelatin_mix_block",
+      "flowing_light_blue_gelatin_mix": "block.createfood.light_blue_gelatin_mix_block",
+      "pumpkin_pie_filling": "block.createfood.pumpkin_pie_filling_block",
+      "flowing_blackstrap_molasses": "block.createfood.blackstrap_molasses_block",
+      "flowing_mushroom_cream_soup": "block.createfood.mushroom_cream_soup_block",
+      "cacao_mass": "block.createfood.cacao_mass_block",
+      "flowing_caramel": "block.createfood.caramel_block",
+      "mushroom_cream_soup": "block.createfood.mushroom_cream_soup_block",
+      "flowing_coffee_toffee_fudge": "block.createfood.coffee_toffee_fudge_block",
+      "flowing_pink_gelatin_mix": "block.createfood.pink_gelatin_mix_block",
+      "pumpkin_custard": "block.createfood.pumpkin_custard_block",
+      "dark_chocolate": "block.createfood.dark_chocolate_block",
+      "flowing_glow_berry_ice_cream": "block.createfood.glow_berry_ice_cream_block",
+      "pink_gelatin_mix": "block.createfood.pink_gelatin_mix_block",
+      "flowing_ube_cream_frosting": "block.createfood.ube_cream_frosting_block",
+      "berry_pie_filling": "block.createfood.berry_pie_filling_block",
+      "flowing_glow_berry_milkshake": "block.createfood.glow_berry_milkshake_block",
+      "flowing_chocolate_cake_batter": "block.createfood.chocolate_cake_batter_block",
+      "flowing_chocolate_ice_cream": "block.createfood.chocolate_ice_cream_block",
+      "flowing_berry_pie_filling": "block.createfood.berry_pie_filling_block",
+      "flowing_chorus_fruit_cream_frosting": "block.createfood.chorus_fruit_cream_frosting_block",
+      "chocolate_milk": "block.createfood.chocolate_milk_block",
+      "cacao_butter": "block.createfood.cacao_butter_block",
+      "flowing_fruit_smoothie": "block.createfood.fruit_smoothie_block",
+      "water": "Water",
+      "flowing_apple_ice_cream": "block.createfood.apple_ice_cream_block",
+      "dark_chocolate_fudge": "block.createfood.dark_chocolate_fudge_block",
+      "flowing_water": "Water",
+      "flowing_melon_custard": "block.createfood.melon_custard_block",
+      "flowing_purple_gelatin_mix": "block.createfood.purple_gelatin_mix_block",
+      "flowing_apple_milkshake": "block.createfood.apple_milkshake_block",
+      "coffee_toffee": "block.createfood.coffee_toffee_block",
+      "flowing_cream_cheese": "block.createfood.cream_cheese_block",
+      "muffin_batter": "block.createfood.muffin_batter_block",
+      "chorus_fruit_pie_filling": "block.createfood.chorus_fruit_pie_filling_block",
+      "chocolate_cake_batter": "block.createfood.chocolate_cake_batter_block",
+      "flowing_glow_berry_jam": "block.createfood.glow_berry_jam_block",
+      "flowing_potion": "Uncraftable Potion",
+      "melon_ice_cream": "block.createfood.melon_ice_cream_block",
+      "flowing_waffle_batter": "block.createfood.waffle_batter_block",
+      "flowing_custard": "block.createfood.custard_block",
+      "light_blue_gelatin_mix": "block.createfood.light_blue_gelatin_mix_block",
+      "flowing_toffee_fudge": "block.createfood.toffee_fudge_block",
+      "flowing_toffee": "block.createfood.toffee_block",
+      "flowing_taco_sauce": "block.createfood.taco_sauce_block",
+      "hot_white_chocolate": "block.createfood.hot_white_chocolate_block",
+      "flowing_white_chocolate_ganache": "block.createfood.white_chocolate_ganache_block",
+      "lumisene": "block.supplementaries.lumisene",
+      "flowing_glow_berry_pie_filling": "block.createfood.glow_berry_pie_filling_block",
+      "flowing_cheesecake_filling": "block.createfood.cheesecake_filling_block",
+      "nuka_cola_fluid": "fluid_type.create_fallout.nuka_cola_fluid",
+      "taco_sauce": "block.createfood.taco_sauce_block",
+      "flowing_berry_cream_frosting": "block.createfood.berry_cream_frosting_block",
+      "flowing_milk": "Milk",
+      "flowing_chocolate_ganache": "block.createfood.chocolate_ganache_block",
+      "chorus_fruit_custard": "block.createfood.chorus_fruit_custard_block",
+      "flowing_melon_cream_frosting": "block.createfood.melon_cream_frosting_block",
+      "rice_pudding": "block.createfood.rice_pudding_block",
+      "berry_ice_cream": "block.createfood.berry_ice_cream_block",
+      "flowing_chocolate_milkshake": "block.createfood.chocolate_milkshake_block",
+      "berry_milkshake": "block.createfood.berry_milkshake_block",
+      "flowing_gravy": "block.createfood.gravy_block",
+      "hot_chocolate": "block.createfood.hot_chocolate_block",
+      "flowing_muffin_batter": "block.createfood.muffin_batter_block",
+      "melon_custard": "block.createfood.melon_custard_block",
+      "gravy": "block.createfood.gravy_block",
+      "chocolate_cream_frosting": "block.createfood.chocolate_cream_frosting_block",
+      "dark_chocolate_ganache": "block.createfood.dark_chocolate_ganache_block",
+      "flowing_vinegar": "block.createfood.vinegar_block"
+    }
+  }
+}

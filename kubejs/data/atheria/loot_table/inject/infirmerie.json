@@ -1,0 +1,30 @@
+{
+    "type":  "minecraft:chest",
+    "pools":  [
+                  {
+                      "rolls":  2,
+                      "entries":  [
+                                      {
+                                          "type":  "minecraft:loot_table",
+                                          "value":  "atheria:inject/soins"
+                                      }
+                                  ]
+                  },
+                  {
+                      "rolls":  1,
+                      "conditions":  [
+                                         {
+                                             "condition":  "minecraft:random_chance",
+                                             "chance":  0.05
+                                         }
+                                     ],
+                      "entries":  [
+                                      {
+                                          "type":  "minecraft:item",
+                                          "name":  "firstaid:defibrillator",
+                                          "weight":  1
+                                      }
+                                  ]
+                  }
+              ]
+}

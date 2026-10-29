@@ -1,0 +1,56 @@
+{
+    "type":  "minecraft:chest",
+    "pools":  [
+                  {
+                      "rolls":  1,
+                      "conditions":  [
+                                         {
+                                             "condition":  "minecraft:location_check",
+                                             "predicate":  {
+                                                               "structures":  "spore:military_camp"
+                                                           }
+                                         }
+                                     ],
+                      "entries":  [
+                                      {
+                                          "type":  "minecraft:loot_table",
+                                          "value":  "atheria:inject/militaire"
+                                      }
+                                  ]
+                  },
+                  {
+                      "rolls":  1,
+                      "conditions":  [
+                                         {
+                                             "condition":  "minecraft:location_check",
+                                             "predicate":  {
+                                                               "structures":  "spore:prison"
+                                                           }
+                                         }
+                                     ],
+                      "entries":  [
+                                      {
+                                          "type":  "minecraft:loot_table",
+                                          "value":  "atheria:inject/police"
+                                      }
+                                  ]
+                  },
+                  {
+                      "rolls":  1,
+                      "conditions":  [
+                                         {
+                                             "condition":  "minecraft:location_check",
+                                             "predicate":  {
+                                                               "structures":  "spore:hospital"
+                                                           }
+                                         }
+                                     ],
+                      "entries":  [
+                                      {
+                                          "type":  "minecraft:loot_table",
+                                          "value":  "atheria:inject/hopital"
+                                      }
+                                  ]
+                  }
+              ]
+}

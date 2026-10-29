@@ -1,0 +1,60 @@
+[weapons]
+	#Damage of a single M16 round.
+	# Default: 7.0
+	# Range: 0.0 ~ 100.0
+	m16_damage = 7.0
+	#Maximum hitscan range of the M16, in blocks.
+	# Default: 90
+	# Range: 8 ~ 256
+	m16_range = 90
+	#Rounds per magazine.
+	# Default: 30
+	# Range: 1 ~ 200
+	m16_magazine_size = 30
+	#Ticks between shots. 2 ticks is roughly 600 RPM.
+	# Default: 2
+	# Range: 1 ~ 40
+	m16_fire_delay = 2
+	#Reload duration in ticks.
+	# Default: 48
+	# Range: 5 ~ 200
+	m16_reload_ticks = 48
+
+[surveillance]
+	#Maximum distance between a monitor and a camera it can display.
+	# Default: 128
+	# Range: 16 ~ 256
+	camera_link_range = 128
+	#How far a camera can spot an intruder.
+	# Default: 20
+	# Range: 4 ~ 64
+	camera_detection_range = 20
+	#Ticks between detection sweeps of a single camera. Higher is cheaper.
+	# Default: 20
+	# Range: 5 ~ 200
+	camera_scan_interval = 20
+
+[alarms]
+	#How long an alarm stays up after the last confirmed sighting.
+	# Default: 1800
+	# Range: 100 ~ 24000
+	alarm_duration_ticks = 1800
+	#Distance at which a siren stops being audible.
+	# Default: 80
+	# Range: 16 ~ 256
+	alarm_hearing_range = 80
+
+[electric_fence]
+	# Default: 4.0
+	# Range: 0.0 ~ 100.0
+	fence_damage = 4.0
+	# Default: 8.0
+	# Range: 0.0 ~ 100.0
+	reinforced_fence_damage = 8.0
+
+[worldgen]
+	#Spawn the garrison when a bunker generates.
+	spawn_guards = true
+	# Default: 2
+	# Range: 0 ~ 8
+	max_guards_per_room = 2

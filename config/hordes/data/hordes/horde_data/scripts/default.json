@@ -1,0 +1,102 @@
+[
+    {
+        "function": "hordes:set_spawntable",
+        "value": [
+            "hordes:default"
+        ],
+        "conditions": []
+    },
+    {
+        "function": "hordes:multiple",
+        "value": [
+            {
+                "function": "hordes:set_spawntable",
+                "value": [
+                    "hordes:drowned"
+                ],
+                "conditions": []
+            },
+            {
+                "function": "hordes:set_spawn_type",
+                "value": "prefer_water",
+                "conditions": []
+            }
+        ],
+        "conditions": [
+            {
+                "name": "hordes:biome",
+                "value": "#minecraft:is_ocean"
+            },
+            {
+                "name": "hordes:not",
+                "value": {
+                    "name": "hordes:biome",
+                    "value": [
+                        "minecraft:frozen_ocean",
+                        "minecraft:deep_frozen_ocean"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "function": "hordes:set_spawn_amount",
+        "value": 15,
+        "conditions": [
+            {
+                "name": "hordes:day",
+                "value": 13
+            }
+        ]
+    },
+    {
+        "function": "hordes:set_spawn_amount",
+        "value": 20,
+        "conditions": [
+            {
+                "name": "hordes:day",
+                "value": 20
+            }
+        ]
+    },
+    {
+        "function": "hordes:set_spawn_amount",
+        "value": 25,
+        "conditions": [
+            {
+                "name": "hordes:day",
+                "value": 27
+            }
+        ]
+    },
+    {
+        "function": "hordes:set_start_message",
+        "value": "Des hurlements montent au loin... Une horde arrive. Barricadez-vous !",
+        "conditions": []
+    },
+    {
+        "function": "hordes:set_end_message",
+        "value": "Le silence retombe. La horde s'est dispersée... pour cette nuit.",
+        "conditions": []
+    },
+    {
+        "function": "hordes:add_reward_command",
+        "value": "give @s firstaid:bandage 2",
+        "conditions": []
+    },
+    {
+        "function": "hordes:add_reward_command",
+        "value": "give @s firstaid:plaster 3",
+        "conditions": []
+    },
+    {
+        "function": "hordes:add_reward_command",
+        "value": "give @s tacz:ammo[custom_data={AmmoId:\"tacz:9mm\"}] 20",
+        "conditions": []
+    },
+    {
+        "function": "hordes:add_reward_command",
+        "value": "give @s minecraft:bread 4",
+        "conditions": []
+    }
+]

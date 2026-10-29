@@ -1,0 +1,18 @@
+#Walkie-talkie signal range in blocks
+# Default: 500
+# Range: 10 ~ 10000
+range = 500
+#Signal range multiplier when player is below y=30
+# Default: 0.3
+# Range: 0.0 ~ 1.0
+undergroundRangeMultiplier = 0.3
+#Battery drain per minute of active transmitting (0-100)
+# Default: 1
+# Range: 0 ~ 100
+batteryDrainRate = 1
+#Maximum distance in blocks to hear an active stream
+# Default: 50
+# Range: 1 ~ 500
+streamRange = 50
+#Enable verbose walkie-talkie debug logs
+debugLogs = false
