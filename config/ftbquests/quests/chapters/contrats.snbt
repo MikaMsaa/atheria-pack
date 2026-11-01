@@ -1,0 +1,793 @@
+{
+	id: "42E6EB64D82BDFA9"
+	group: "72E3B8495ACABA9D"
+	order_index: 0
+	filename: "contrats"
+	default_quest_shape: "rsquare"
+	icon: {
+		id: "minecraft:writable_book"
+		count: 1
+	}
+	quests: [
+		{
+			id: "7E03AF848893C5CB"
+			x: 0.0d
+			y: 0.0d
+			dependencies: ["198383BA4980A89C"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "2594848B4742AFCD"
+					type: "kill"
+					entity: "spore:inf_human"
+					entityTypeTag: "atheria:infectes"
+					value: 10
+				}
+			]
+			rewards: [
+				{
+					id: "500C5FD60F16CEC8"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 4
+				}
+			]
+		}
+		{
+			id: "5464959C921AFD8B"
+			x: 1.5d
+			y: 0.0d
+			dependencies: ["198383BA4980A89C"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "3C7C717D32CDE99D"
+					type: "item"
+					item: "minecraft:stone"
+					count: 32
+					consume_items: true
+				}
+				{
+					id: "10D327BA12410ED8"
+					type: "item"
+					item: "minecraft:iron_ingot"
+					count: 8
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "384DD9127AC257CA"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 5
+				}
+			]
+		}
+		{
+			id: "169246CA2C850BAE"
+			x: 3.0d
+			y: 0.0d
+			dependencies: ["198383BA4980A89C"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "1E3E9F6FB0D63A9D"
+					type: "item"
+					item: "atheria:bandana_coupeur"
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "3457FFBBF3F00407"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 8
+				}
+				{
+					id: "0F3D633FBA361163"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 4
+				}
+			]
+		}
+		{
+			id: "2F9854FF576B63EF"
+			x: 4.5d
+			y: 0.0d
+			dependencies: ["198383BA4980A89C"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "4DE850DB6FCE2363"
+					type: "gamestage"
+					stage: "rep_paf_2"
+				}
+				{
+					id: "315F5F0B574A8743"
+					type: "kill"
+					entity: "spore:inf_human"
+					entityTypeTag: "atheria:infectes_forts"
+					value: 1
+				}
+			]
+			rewards: [
+				{
+					id: "767E9AB880217661"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 12
+				}
+				{
+					id: "163077BDE54FF4EF"
+					type: "item"
+					item: "atheria:filtre"
+				}
+			]
+		}
+		{
+			id: "74B8662F10F50A49"
+			x: 6.0d
+			y: 0.0d
+			dependencies: ["198383BA4980A89C"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "23C22495B881D045"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+				{
+					id: "07783A47EBECA4ED"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 6
+				}
+				{
+					id: "7C8561EE6CAA4F84"
+					type: "command"
+					command: "/scoreboard players add {p} aura_paf 1"
+					permission_level: 2
+					silent: true
+					feedback_message: "+1 aura PAF"
+				}
+			]
+		}
+		{
+			id: "6BB048A372BCD13B"
+			x: 0.0d
+			y: 1.5d
+			dependencies: ["198383BA4980A89C"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "0DC2B3BA06F8FFA2"
+					type: "item"
+					item: "atheria:colis"
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "1EDB757A214925C2"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 6
+				}
+			]
+		}
+		{
+			id: "08AB34A4680249EB"
+			x: 1.5d
+			y: 1.5d
+			dependencies: ["198383BA4980A89C"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "6D2D658FEAD397B8"
+					type: "item"
+					item: "atheria:laissez_passer_paf"
+					count: 3
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "080328D334B75CD9"
+					type: "item"
+					item: "atheria:carte_galeries"
+				}
+			]
+		}
+		{
+			id: "5931FF58C4E9FC34"
+			x: 3.0d
+			y: 1.5d
+			dependencies: ["198383BA4980A89C"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "7A8D5DDB20927C58"
+					type: "gamestage"
+					stage: "rep_passeurs_2"
+				}
+				{
+					id: "0E274C026E89169C"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+				{
+					id: "083FF8BB4C7A30F7"
+					type: "item"
+					item: "atheria:trousse_soins"
+				}
+				{
+					id: "23D5530209EE45A3"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 10
+				}
+			]
+		}
+		{
+			id: "02FD53E179F59CF8"
+			x: 4.5d
+			y: 1.5d
+			dependencies: ["198383BA4980A89C"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "551033D378555D46"
+					type: "structure"
+					structure: "#atheria:mines"
+				}
+			]
+			rewards: [
+				{
+					id: "63A519A354FA84C0"
+					type: "item"
+					item: "atheria:filtre"
+					count: 2
+				}
+				{
+					id: "5C2984372A165E19"
+					type: "command"
+					command: "/scoreboard players add {p} aura_passeurs 1"
+					permission_level: 2
+					silent: true
+					feedback_message: "+1 aura Passeurs"
+				}
+			]
+		}
+		{
+			id: "6528AA8A23B323FD"
+			x: 0.0d
+			y: 3.0d
+			dependencies: ["198383BA4980A89C"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "51EF2FE932E7C4FF"
+					type: "item"
+					item: "firstaid:painkillers"
+					count: 3
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "3CAA7C6CF46D66A1"
+					type: "item"
+					item: "atheria:trousse_soins"
+				}
+			]
+		}
+		{
+			id: "3C40C31AB1E80AC4"
+			x: 1.5d
+			y: 3.0d
+			dependencies: ["198383BA4980A89C"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "6A8F32ED325BD1B8"
+					type: "item"
+					item: "atheria:echantillon_spore"
+					count: 3
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "5A73CD76EA488356"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 6
+				}
+			]
+		}
+		{
+			id: "3B1225CAB934ED7F"
+			x: 3.0d
+			y: 3.0d
+			dependencies: ["198383BA4980A89C"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "174DD297F11879EE"
+					type: "item"
+					item: "minecraft:red_banner"
+					count: 3
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "695CA239F97551A6"
+					type: "item"
+					item: {
+						id: "tacz:attachment"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AttachmentId:"tacz:sight_t1"}
+						}
+					}
+				}
+				{
+					id: "0438439D8E20A2BC"
+					type: "command"
+					command: "/scoreboard players add {p} aura_goblini 2"
+					permission_level: 2
+					silent: true
+					feedback_message: "+2 aura Goblini"
+				}
+			]
+		}
+		{
+			id: "2FAA785EC522BB9F"
+			x: 4.5d
+			y: 3.0d
+			dependencies: ["198383BA4980A89C"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "3D00646A3C87089A"
+					type: "item"
+					item: "atheria:echantillon_spore"
+					count: 5
+					consume_items: true
+				}
+				{
+					id: "51697EE6538DFC16"
+					type: "item"
+					item: "atheria:kit_analyse"
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "440D0512E67CF9B9"
+					type: "item"
+					item: "atheria:filtre"
+				}
+				{
+					id: "5C40385AAB938801"
+					type: "command"
+					command: "/scoreboard players add {p} aura_goblini 1"
+					permission_level: 2
+					silent: true
+					feedback_message: "+1 aura Goblini"
+				}
+			]
+		}
+		{
+			id: "72FB21199FC13CF3"
+			x: 0.0d
+			y: 4.5d
+			dependencies: ["198383BA4980A89C"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "07AD4896BB5D94F9"
+					type: "item"
+					item: "minecraft:potato"
+					count: 32
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "2940758AE19A111E"
+					type: "item"
+					item: "atheria:ration_luxe"
+				}
+				{
+					id: "090B98C4A37FACB6"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 3
+				}
+			]
+		}
+		{
+			id: "33839575D172772F"
+			x: 1.5d
+			y: 4.5d
+			dependencies: ["198383BA4980A89C"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "06029AB1AF949EA5"
+					type: "item"
+					item: "minecraft:oak_log"
+					count: 64
+					consume_items: true
+				}
+				{
+					id: "79DB75B6BAAF5634"
+					type: "item"
+					item: "minecraft:iron_ingot"
+					count: 32
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "2F589E2AB113E493"
+					type: "item"
+					item: "comforts:hammock_white"
+				}
+				{
+					id: "1314543101557F5B"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 4
+				}
+			]
+		}
+		{
+			id: "1F5823566C34A9AC"
+			x: 3.0d
+			y: 4.5d
+			dependencies: ["198383BA4980A89C"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "6D02D1FE11FDAA2B"
+					type: "structure"
+					structure: "#atheria:exploration"
+				}
+			]
+			rewards: [
+				{
+					id: "447C98A8EDD6F935"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 8
+				}
+				{
+					id: "6D70CD5D998219CE"
+					type: "item"
+					item: "firstaid:plaster"
+					count: 2
+				}
+				{
+					id: "5D559550AAC43B6D"
+					type: "item"
+					item: "atheria:filtre"
+				}
+				{
+					id: "50F20928FD292431"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 8
+				}
+			]
+		}
+		{
+			id: "530D756B2A42811C"
+			x: 4.5d
+			y: 4.5d
+			dependencies: ["198383BA4980A89C"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "411156B0A96AEA0A"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+				{
+					id: "059ACD8A786AAC92"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 10
+				}
+			]
+		}
+		{
+			id: "4C75AB13420AF448"
+			x: 0.0d
+			y: 6.0d
+			dependencies: ["198383BA4980A89C"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "0F5AA82E484347DD"
+					type: "item"
+					item: "minecraft:cod"
+					count: 16
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "1431A8E4C346564F"
+					type: "item"
+					item: "atheria:filet"
+				}
+			]
+		}
+		{
+			id: "4B521FC68BCA97BA"
+			x: 1.5d
+			y: 6.0d
+			dependencies: ["198383BA4980A89C"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "116749F387E6D11A"
+					type: "item"
+					item: "atheria:bidon_essence"
+					count: 2
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "29F8BF35E2267F3D"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 4
+				}
+				{
+					id: "290122D8C60B0A99"
+					type: "command"
+					command: "/tag {p} add traversee_sud"
+					permission_level: 2
+					silent: true
+					feedback_message: "Traversée gratuite vers Petite-Terre"
+				}
+			]
+		}
+		{
+			id: "0135CFCB1695CDDC"
+			x: 3.0d
+			y: 6.0d
+			dependencies: ["198383BA4980A89C"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "206EEB28A0B82258"
+					type: "biome"
+					biome: "minecraft:beach"
+				}
+				{
+					id: "4FB88A90AAECA7EB"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+				{
+					id: "69F7E407B499B308"
+					type: "item"
+					item: "minecraft:map"
+				}
+				{
+					id: "74984FBF3BC23EB7"
+					type: "command"
+					command: "/scoreboard players add {p} aura_sud 1"
+					permission_level: 2
+					silent: true
+					feedback_message: "+1 aura Pêcheurs du Sud"
+				}
+			]
+		}
+		{
+			id: "71F7504161C7E82A"
+			x: 0.0d
+			y: 7.5d
+			dependencies: ["198383BA4980A89C"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "08E8D62C1EBE8F41"
+					type: "item"
+					item: "minecraft:brown_mushroom"
+					count: 16
+					consume_items: true
+				}
+				{
+					id: "7ADB9E7DD6235C2C"
+					type: "item"
+					item: "atheria:echantillon_spore"
+					count: 4
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "37E31E9A751BAF7C"
+					type: "item"
+					item: "atheria:decoction_fundi"
+				}
+			]
+		}
+		{
+			id: "1B7BCCB2A515AC8B"
+			x: 1.5d
+			y: 7.5d
+			dependencies: ["198383BA4980A89C"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "278C7E17079F26FA"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+				{
+					id: "4899791B935D1E73"
+					type: "item"
+					item: "atheria:cendre_grise"
+					count: 2
+				}
+			]
+		}
+		{
+			id: "235D32D61E99382B"
+			x: 3.0d
+			y: 7.5d
+			dependencies: ["198383BA4980A89C"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "254C2E1B19F4B04E"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+				{
+					id: "204EEA850D78F9E0"
+					type: "item"
+					item: "atheria:filtre"
+					count: 2
+				}
+				{
+					id: "37F262873072280F"
+					type: "command"
+					command: "/scoreboard players add {p} aura_enfants 1"
+					permission_level: 2
+					silent: true
+					feedback_message: "+1 aura Enfants du Choléra"
+				}
+			]
+		}
+		{
+			id: "4A9335DE02D8FCED"
+			x: 6.0d
+			y: 4.5d
+			dependencies: ["2909F01C0F07507F"]
+			tasks: [
+				{
+					id: "6FC4F81F9F2C5C2C"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+				{
+					id: "1EA8DCFCD927EBB6"
+					type: "item"
+					item: "atheria:bon_caf"
+				}
+				{
+					id: "0C556440C30CA6B6"
+					type: "command"
+					command: "/tag {p} add titre_j_ai_essaye"
+					permission_level: 2
+					silent: true
+					feedback_message: "Titre « J'ai essayé »"
+				}
+			]
+		}
+		{
+			id: "1B34A82D1B682F22"
+			x: 7.5d
+			y: 4.5d
+			dependencies: ["2909F01C0F07507F"]
+			tasks: [
+				{
+					id: "466081549187D82A"
+					type: "kill"
+					entity: "spore:inf_human"
+					entityTypeTag: "atheria:infectes"
+					value: 5
+				}
+			]
+			rewards: [
+				{
+					id: "6E3CFB16C2425843"
+					type: "item"
+					item: "trydeas_meleez:katana"
+				}
+				{
+					id: "5059F67CE6098F46"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 3
+				}
+				{
+					id: "1A6C17D355DDA9F2"
+					type: "command"
+					command: "/tag {p} add titre_protagoniste"
+					permission_level: 2
+					silent: true
+					feedback_message: "Titre « Protagoniste (autoproclamé) »"
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+	images: [ ]
+}

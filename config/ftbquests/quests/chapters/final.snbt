@@ -1,0 +1,317 @@
+{
+	id: "517F3E985BD3B294"
+	group: "655C988475622574"
+	order_index: 6
+	filename: "final"
+	default_quest_shape: "circle"
+	icon: {
+		id: "atheria:brassard_camp"
+		count: 1
+	}
+	quests: [
+		{
+			id: "4B7CD6BD8DBD12A9"
+			x: 0.0d
+			y: 0.0d
+			shape: "hexagon"
+			size: 1.5d
+			dependencies: ["6BCD1A8EB604DCF6"]
+			max_completable_dependents: 1
+			tasks: [
+				{
+					id: "315A9B4E59B51FEB"
+					type: "gamestage"
+					stage: "acte_5"
+				}
+			]
+			rewards: [ ]
+		}
+		{
+			id: "245F66FF2440AA69"
+			x: 2.0d
+			y: -2.25d
+			dependencies: ["4B7CD6BD8DBD12A9"]
+			tasks: [
+				{
+					id: "0460C8C1E997914C"
+					type: "gamestage"
+					stage: "camp_ok_remede"
+				}
+				{
+					id: "449FFFB4173F1BB7"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+				{
+					id: "04B8365361F3C05E"
+					type: "item"
+					item: "atheria:brassard_camp"
+				}
+				{
+					id: "395C9B80D934705F"
+					type: "item"
+					item: "atheria:trousse_soins"
+					count: 2
+				}
+				{
+					id: "47D98DB8ECE627C2"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 24
+				}
+				{
+					id: "0B60E8D21D346FAD"
+					type: "command"
+					command: "/tag {p} add camp_final_remede"
+					permission_level: 2
+					silent: true
+					feedback_message: "Camp : Le remède maintenant (Goblini)"
+				}
+			]
+		}
+		{
+			id: "3F28E6DC0392B4E8"
+			x: 2.0d
+			y: -0.75d
+			dependencies: ["4B7CD6BD8DBD12A9"]
+			tasks: [
+				{
+					id: "47B363450DC0966D"
+					type: "gamestage"
+					stage: "camp_ok_graine"
+				}
+				{
+					id: "459C3B2D112FD215"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+				{
+					id: "1AE80D7ADE27FC5C"
+					type: "item"
+					item: "atheria:brassard_camp"
+				}
+				{
+					id: "60BB8274006D0BCB"
+					type: "item"
+					item: "atheria:trousse_soins"
+					count: 2
+				}
+				{
+					id: "2770059960ED12BD"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 24
+				}
+				{
+					id: "7F8EE0384FD63F3E"
+					type: "command"
+					command: "/tag {p} add camp_final_graine"
+					permission_level: 2
+					silent: true
+					feedback_message: "Camp : La graine (Coconi / Enfants)"
+				}
+			]
+		}
+		{
+			id: "31347BC822048BBB"
+			x: 2.0d
+			y: 0.75d
+			dependencies: ["4B7CD6BD8DBD12A9"]
+			tasks: [
+				{
+					id: "72FE365B30B76D65"
+					type: "gamestage"
+					stage: "camp_ok_ordre"
+				}
+				{
+					id: "498B6FF6C793E766"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+				{
+					id: "09799C3F53BB1655"
+					type: "item"
+					item: "atheria:brassard_camp"
+				}
+				{
+					id: "5280A9EB61E0CA17"
+					type: "item"
+					item: "atheria:trousse_soins"
+					count: 2
+				}
+				{
+					id: "71E2487FEF41068D"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 24
+				}
+				{
+					id: "027802BD3BB24866"
+					type: "command"
+					command: "/tag {p} add camp_final_ordre"
+					permission_level: 2
+					silent: true
+					feedback_message: "Camp : L'ordre (PAF)"
+				}
+			]
+		}
+		{
+			id: "547954D5039113D5"
+			x: 2.0d
+			y: 2.25d
+			dependencies: ["4B7CD6BD8DBD12A9"]
+			tasks: [
+				{
+					id: "02A8DB913BA8C4D0"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+				{
+					id: "5A7E3CF94172976D"
+					type: "item"
+					item: "atheria:brassard_camp"
+				}
+				{
+					id: "473333D954C3ADAC"
+					type: "item"
+					item: "atheria:trousse_soins"
+					count: 2
+				}
+				{
+					id: "7572DE48F485E19B"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 24
+				}
+				{
+					id: "70DA4C6191986B89"
+					type: "command"
+					command: "/tag {p} add camp_final_mer"
+					permission_level: 2
+					silent: true
+					feedback_message: "Camp : La mer (Pêcheurs / solitaires)"
+				}
+			]
+		}
+		{
+			id: "08A6475AF12F1C4E"
+			x: 4.0d
+			y: 0.0d
+			dependencies: ["245F66FF2440AA69", "3F28E6DC0392B4E8", "31347BC822048BBB", "547954D5039113D5"]
+			dependency_requirement: "one_completed"
+			tasks: [
+				{
+					id: "1EF0DE14B7AA87BE"
+					type: "item"
+					item: "minecraft:oak_planks"
+					count: 64
+					consume_items: true
+				}
+				{
+					id: "040FFF70FA275EBD"
+					type: "item"
+					item: "minecraft:iron_ingot"
+					count: 16
+					consume_items: true
+				}
+				{
+					id: "38C35BFADB6FA9F4"
+					type: "item"
+					item: "minecraft:iron_bars"
+					count: 16
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "4BFF86BAD18925CE"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 15
+				}
+				{
+					id: "2D7B59A5B2B4D6AD"
+					type: "item"
+					item: "atheria:trousse_soins"
+				}
+				{
+					id: "250D01238F3D707C"
+					type: "item"
+					item: "firstaid:morphine"
+				}
+				{
+					id: "75E6CF594454215B"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 16
+				}
+			]
+		}
+		{
+			id: "3116CC0BE2DA1218"
+			x: 6.0d
+			y: 0.0d
+			shape: "gear"
+			size: 1.75d
+			dependencies: ["08A6475AF12F1C4E"]
+			tasks: [
+				{
+					id: "3A4C88F0613E085B"
+					type: "gamestage"
+					stage: "final_termine"
+				}
+			]
+			rewards: [
+				{
+					id: "34F4E9E6EA0F00E6"
+					type: "item"
+					item: "atheria:livre_epilogue"
+				}
+				{
+					id: "52E92FAAE184A50D"
+					type: "command"
+					command: "/tag {p} add titre_survivant_s1"
+					permission_level: 2
+					silent: true
+					feedback_message: "Titre « Survivant d'Atheria - saison 1 »"
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+	images: [ ]
+}

@@ -1,0 +1,520 @@
+{
+	id: "1851E1615BC00364"
+	group: "655C988475622574"
+	order_index: 1
+	filename: "ch1"
+	default_quest_shape: "circle"
+	icon: {
+		id: "minecraft:iron_bars"
+		count: 1
+	}
+	quests: [
+		{
+			id: "1B0324F1DEFCFC25"
+			x: 0.0d
+			y: 0.0d
+			shape: "gear"
+			size: 1.5d
+			dependencies: ["198383BA4980A89C"]
+			tasks: [
+				{
+					id: "032E61BDFDBAC4D4"
+					type: "gamestage"
+					stage: "q_ch1_checkpoint"
+				}
+			]
+			rewards: [
+				{
+					id: "41868A6A4185C20F"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 2
+				}
+			]
+		}
+		{
+			id: "0B4512FBF20C6FD8"
+			x: 2.0d
+			y: 0.0d
+			dependencies: ["1B0324F1DEFCFC25"]
+			tasks: [
+				{
+					id: "4A28468F61AE8E1A"
+					type: "item"
+					item: "atheria:fiche_quarantaine"
+				}
+				{
+					id: "0BB55B6AD7EEDD27"
+					type: "gamestage"
+					stage: "q_ch1_saouda"
+				}
+			]
+			rewards: [
+				{
+					id: "141FA118ABBB4FD0"
+					type: "item"
+					item: "atheria:ration"
+				}
+			]
+		}
+		{
+			id: "2ED5CAB404CB326D"
+			x: 4.0d
+			y: -1.5d
+			dependencies: ["0B4512FBF20C6FD8"]
+			tasks: [
+				{
+					id: "6C56F88FD36BB6E0"
+					type: "item"
+					item: "atheria:fiche_quarantaine"
+					consume_items: true
+				}
+				{
+					id: "3A35C4153427B870"
+					type: "item"
+					item: "atheria:photo_identite"
+					consume_items: true
+				}
+				{
+					id: "6CEE822F8AD4AAFD"
+					type: "item"
+					item: "atheria:justificatif"
+					consume_items: true
+				}
+				{
+					id: "3B92E81B4BE9CA3C"
+					type: "item"
+					item: "atheria:rib"
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "4D0CCEA469DD2B0F"
+					type: "item"
+					item: "atheria:carte_caf"
+				}
+				{
+					id: "7F791033D3CA854E"
+					type: "command"
+					command: "/tag {p} add titre_dossier_complet"
+					permission_level: 2
+					silent: true
+					feedback_message: "Titre « Dossier complet - créature mythique »"
+				}
+			]
+		}
+		{
+			id: "5C69C7C8BACB3868"
+			x: 4.0d
+			y: 1.5d
+			dependencies: ["0B4512FBF20C6FD8"]
+			tasks: [
+				{
+					id: "41383B960CCA80BA"
+					type: "gamestage"
+					stage: "q_ch1_eniy"
+				}
+			]
+			rewards: [ ]
+		}
+		{
+			id: "06C4167A8B705FE2"
+			x: 4.0d
+			y: 0.0d
+			dependencies: ["0B4512FBF20C6FD8"]
+			tasks: [
+				{
+					id: "4CE8E3681D350841"
+					type: "item"
+					item: "minecraft:stone_bricks"
+					count: 32
+					consume_items: true
+				}
+				{
+					id: "56CE3FBAA65D3AB7"
+					type: "item"
+					item: "minecraft:iron_ingot"
+					count: 16
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "2DEE4156451831BA"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 8
+				}
+				{
+					id: "2037EAD947272035"
+					type: "command"
+					command: "/scoreboard players add {p} aura_paf 1"
+					permission_level: 2
+					silent: true
+					feedback_message: "+1 aura PAF"
+				}
+			]
+		}
+		{
+			id: "48311CE445AC1AFC"
+			x: 6.0d
+			y: -0.75d
+			dependencies: ["06C4167A8B705FE2"]
+			tasks: [
+				{
+					id: "3775DDFF09E6A747"
+					type: "kill"
+					entity: "spore:inf_human"
+					entityTypeTag: "atheria:infectes"
+					value: 8
+				}
+				{
+					id: "50DABC5A7E222863"
+					type: "item"
+					item: "atheria:plaque_identite"
+					count: 3
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "6D29BE8996EC456A"
+					type: "item"
+					item: {
+						id: "tacz:modern_kinetic_gun"
+						count: 1
+						components: {
+							"minecraft:custom_data": {GunId:"tacz:glock_17",GunFireMode:"SEMI"}
+						}
+					}
+				}
+				{
+					id: "57559947315975B6"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 12
+				}
+			]
+		}
+		{
+			id: "157159353B183695"
+			x: 6.0d
+			y: 0.75d
+			dependencies: ["06C4167A8B705FE2"]
+			tasks: [
+				{
+					id: "469C69C0AC22367C"
+					type: "item"
+					item: "atheria:archive_02"
+				}
+			]
+			rewards: [
+				{
+					id: "119D9371E2B4452E"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 3
+				}
+				{
+					id: "6B600A090739AD13"
+					type: "item"
+					item: "firstaid:bandage"
+					count: 2
+				}
+				{
+					id: "23E28C53DE863796"
+					type: "item"
+					item: "minecraft:bread"
+					count: 3
+				}
+			]
+		}
+		{
+			id: "452E341A6D89534B"
+			x: 8.0d
+			y: 0.0d
+			dependencies: ["157159353B183695"]
+			tasks: [
+				{
+					id: "6AD1F68AA0691A22"
+					type: "gamestage"
+					stage: "q_ch1_kamel"
+				}
+			]
+			rewards: [ ]
+		}
+		{
+			id: "14946FF15EA452ED"
+			x: 10.0d
+			y: -1.5d
+			dependencies: ["452E341A6D89534B"]
+			tasks: [
+				{
+					id: "31F9C96D127AC985"
+					type: "item"
+					item: "atheria:caisse_medocs"
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "651CBCA10F880CAE"
+					type: "item"
+					item: "firstaid:morphine"
+					count: 2
+				}
+				{
+					id: "5A2CAD5E219BD191"
+					type: "item"
+					item: "atheria:trousse_soins"
+				}
+				{
+					id: "4003059DD72B73E1"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 6
+				}
+				{
+					id: "726CBC2707308466"
+					type: "command"
+					command: "/scoreboard players add {p} aura_passeurs 1"
+					permission_level: 2
+					silent: true
+					feedback_message: "+1 aura Passeurs"
+				}
+			]
+		}
+		{
+			id: "268A32CB5BC72FD1"
+			x: 10.0d
+			y: 1.5d
+			dependencies: ["452E341A6D89534B"]
+			tasks: [
+				{
+					id: "5A5CE122226DEC3E"
+					type: "item"
+					item: "atheria:archive_04"
+				}
+				{
+					id: "085A7CF28245273A"
+					type: "item"
+					item: "atheria:archive_05"
+				}
+				{
+					id: "1845AEABEFFAC34D"
+					type: "item"
+					item: "atheria:archive_06"
+				}
+			]
+			rewards: [
+				{
+					id: "0EBCEABD9AD7FACF"
+					type: "item"
+					item: {
+						id: "tacz:attachment"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AttachmentId:"tacz:muzzle_silencer_knight_qd"}
+						}
+					}
+				}
+				{
+					id: "12EB270856EF3887"
+					type: "item"
+					item: "minecraft:crossbow"
+				}
+			]
+		}
+		{
+			id: "39FBED3BC64098C7"
+			x: 12.0d
+			y: 0.0d
+			shape: "diamond"
+			size: 1.25d
+			dependencies: ["14946FF15EA452ED", "268A32CB5BC72FD1"]
+			max_completable_dependents: 1
+			tasks: [
+				{
+					id: "038DE88A95AF29BB"
+					type: "gamestage"
+					stage: "q_ch1_kayssi"
+				}
+			]
+			rewards: [ ]
+		}
+		{
+			id: "75904C602107C24C"
+			x: 14.0d
+			y: -1.5d
+			dependencies: ["39FBED3BC64098C7"]
+			tasks: [
+				{
+					id: "0EC6937C2372F6C4"
+					type: "item"
+					item: "atheria:cle_galeries"
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "7359E9AF72444A72"
+					type: "command"
+					command: "/scoreboard players add {p} aura_paf 2"
+					permission_level: 2
+					silent: true
+					feedback_message: "+2 aura PAF"
+				}
+				{
+					id: "7C7EC3D8FABCD859"
+					type: "item"
+					item: "atheria:carte_citoyen"
+				}
+				{
+					id: "485D43A316C9CECF"
+					type: "item"
+					item: {
+						id: "tacz:modern_kinetic_gun"
+						count: 1
+						components: {
+							"minecraft:custom_data": {GunId:"tacz:m870",GunFireMode:"SEMI"}
+						}
+					}
+				}
+				{
+					id: "283D7032DE16B57D"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:12g"}
+						}
+					}
+					count: 6
+				}
+				{
+					id: "34D92C298A9D51D3"
+					type: "command"
+					command: "/tag {p} add choix_ch1_paf"
+					permission_level: 2
+					silent: true
+					feedback_message: "Choix : PAF"
+				}
+			]
+		}
+		{
+			id: "241F0E35768EBFE6"
+			x: 14.0d
+			y: 1.5d
+			dependencies: ["39FBED3BC64098C7"]
+			tasks: [
+				{
+					id: "733D21DB13693196"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+				{
+					id: "71658CA0E0EE1520"
+					type: "command"
+					command: "/scoreboard players add {p} aura_passeurs 2"
+					permission_level: 2
+					silent: true
+					feedback_message: "+2 aura Passeurs"
+				}
+				{
+					id: "402A772725F37D2D"
+					type: "item"
+					item: "atheria:carte_galeries"
+				}
+				{
+					id: "2E8E0557C744C026"
+					type: "item"
+					item: {
+						id: "tacz:modern_kinetic_gun"
+						count: 1
+						components: {
+							"minecraft:custom_data": {GunId:"tacz:rhino357",GunFireMode:"SEMI"}
+						}
+					}
+				}
+				{
+					id: "1F60FB157D195EFB"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:357mag"}
+						}
+					}
+					count: 8
+				}
+				{
+					id: "53DC282AE1084642"
+					type: "command"
+					command: "/tag {p} add choix_ch1_passeurs"
+					permission_level: 2
+					silent: true
+					feedback_message: "Choix : Passeurs"
+				}
+			]
+		}
+		{
+			id: "442B76F23894199F"
+			x: 16.0d
+			y: 0.0d
+			shape: "gear"
+			size: 1.5d
+			dependencies: ["75904C602107C24C", "241F0E35768EBFE6"]
+			dependency_requirement: "one_completed"
+			tasks: [
+				{
+					id: "3DBBF2FE57930FC9"
+					type: "kill"
+					entity: "spore:inf_human"
+					entityTypeTag: "atheria:infectes"
+					value: 15
+				}
+			]
+			rewards: [
+				{
+					id: "791CE9C28D863940"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 15
+				}
+				{
+					id: "4E4F555BB83B364C"
+					type: "item"
+					item: "spore:gas_mask"
+				}
+				{
+					id: "7BADB2BA12185E3B"
+					type: "command"
+					command: "/execute if entity {p}[tag=choix_ch1_paf] run tag {p} add titre_citoyen_modele"
+					permission_level: 2
+					silent: true
+					feedback_message: "Titre « Citoyen modèle » (PAF)"
+				}
+				{
+					id: "48EB3DE7662284C1"
+					type: "command"
+					command: "/execute if entity {p}[tag=choix_ch1_passeurs] run tag {p} add titre_pas_les_codes"
+					permission_level: 2
+					silent: true
+					feedback_message: "Titre « Il n'a pas les codes » (Passeurs)"
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+	images: [ ]
+}

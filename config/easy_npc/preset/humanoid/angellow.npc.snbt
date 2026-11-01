@@ -1,0 +1,126 @@
+{
+	PresetMetadata: {
+		author: "Atheria",
+		category: "Atheria",
+		description: "PNJ de la campagne Atheria : Angellow.",
+		entityTypeId: "easy_npc:humanoid",
+		name: "Angellow",
+		variantType: "STEVE",
+		version: "1.0.0"
+	},
+	data: {
+		ActionData: {
+			ActionEventSet: {
+				ON_INTERACTION: [
+					{
+						Type: "OPEN_DEFAULT_DIALOG"
+					}
+				]
+			}
+		},
+		CustomName: '{"text": "Angellow", "color": "#E8C66A"}',
+		DialogData: {
+			DialogDataSet: [
+				{
+					Buttons: [
+						{
+							Actions: [
+								{
+									Cmd: "/tag @initiator add angellow_respect",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "angellow_respect",
+									Type: "OPEN_NAMED_DIALOG"
+								}
+							],
+							Label: "angellow_b0",
+							Name: "Faire le geste « 67 » avant lui"
+						},
+						{
+							Actions: [
+								{
+									Cmd: "/tag @initiator add angellow_vu",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Type: "CLOSE_DIALOG"
+								}
+							],
+							Label: "angellow_b1",
+							Name: "Soupirer"
+						}
+					],
+					Conditions: [
+						{
+							Name: "q_ch2_zaid",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "angellow",
+					Name: "angellow",
+					Priority: 20,
+					Texts: [
+						{
+							Text: "Six... seven ! (Il fait le geste. Encore. Et encore.)"
+						}
+					]
+				},
+				{
+					Label: "angellow_respect",
+					Name: "angellow_respect",
+					Priority: -1,
+					Texts: [
+						{
+							Text: "(Il reste silencieux pour la première fois. Puis, à voix basse :) Respect."
+						}
+					]
+				},
+				{
+					Conditions: [
+						{
+							Name: "angellow_respect",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "angellow_fait",
+					Name: "angellow_fait",
+					Priority: 21,
+					Texts: [
+						{
+							Text: "(Il te salue d'un « 67 » discret, entre initiés.)"
+						}
+					]
+				},
+				{
+					Label: "repos",
+					Name: "Repos",
+					Priority: 1,
+					Texts: [
+						{
+							Text: "Six... seven."
+						}
+					]
+				}
+			],
+			Type: "STANDARD"
+		},
+		EasyNPCVersion: 3,
+		Invulnerable: 1b,
+		ObjectiveData: {
+			ObjectiveDataSet: [
+				{
+					Type: "LOOK_AT_PLAYER"
+				},
+				{
+					Type: "LOOK_AT_RESET"
+				}
+			]
+		},
+		PersistenceRequired: 1b,
+		VariantType: "STEVE",
+		id: "easy_npc:humanoid"
+	}
+}

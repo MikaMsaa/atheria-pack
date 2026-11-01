@@ -1,0 +1,202 @@
+{
+	PresetMetadata: {
+		author: "Atheria",
+		category: "Atheria",
+		description: "PNJ de la campagne Atheria : Le Fundi Flat.",
+		entityTypeId: "easy_npc:humanoid",
+		name: "Le Fundi Flat",
+		variantType: "STEVE",
+		version: "1.0.0"
+	},
+	data: {
+		ActionData: {
+			ActionEventSet: {
+				ON_INTERACTION: [
+					{
+						Type: "OPEN_DEFAULT_DIALOG"
+					}
+				]
+			}
+		},
+		CustomName: '{"text": "Le Fundi Flat", "color": "#E8C66A"}',
+		DialogData: {
+			DialogDataSet: [
+				{
+					Buttons: [
+						{
+							Actions: [
+								{
+									Cmd: "/tag @initiator add q_ch4_fundi",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "fundi_sauver",
+									Type: "OPEN_NAMED_DIALOG"
+								}
+							],
+							Label: "fundi_b0",
+							Name: "Pour la sauver"
+						},
+						{
+							Actions: [
+								{
+									Cmd: "/tag @initiator add q_ch4_fundi",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "fundi_remede",
+									Type: "OPEN_NAMED_DIALOG"
+								}
+							],
+							Label: "fundi_b1",
+							Name: "Pour un remède"
+						},
+						{
+							Actions: [
+								{
+									Cmd: "/tag @initiator add q_ch4_fundi",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/tag @initiator add confiance_fundi",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/scoreboard players add @initiator aura_enfants 1",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "fundi_sais_pas",
+									Type: "OPEN_NAMED_DIALOG"
+								}
+							],
+							Label: "fundi_b2",
+							Name: "Je ne sais pas"
+						},
+						{
+							Actions: [
+								{
+									Cmd: "/tag @initiator add q_ch4_fundi",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/tag @initiator add fundi_hostile",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "fundi_ratio",
+									Type: "OPEN_NAMED_DIALOG"
+								}
+							],
+							Label: "fundi_b3",
+							Name: "Ratio."
+						}
+					],
+					Conditions: [
+						{
+							Name: "chapitre_4",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "fundi",
+					Name: "fundi",
+					Priority: 20,
+					Texts: [
+						{
+							Text: "Tu viens chercher l'Enfant. Tout le monde vient chercher l'Enfant. Les Goblini veulent un remède. La PAF veut une frontière. Et toi ?"
+						}
+					]
+				},
+				{
+					Label: "fundi_sauver",
+					Name: "fundi_sauver",
+					Priority: -1,
+					Texts: [
+						{
+							Text: "La sauver de quoi ? De nous, surtout."
+						}
+					]
+				},
+				{
+					Label: "fundi_remede",
+					Name: "fundi_remede",
+					Priority: -1,
+					Texts: [
+						{
+							Text: "Il te manque une phrase dans ton calcul. Elle s'appelle Hajar."
+						}
+					]
+				},
+				{
+					Label: "fundi_sais_pas",
+					Name: "fundi_sais_pas",
+					Priority: -1,
+					Texts: [
+						{
+							Text: "(Il t'observe longtemps.) Enfin quelqu'un qui ne confond pas la certitude et le courage. Elle veut te parler."
+						}
+					]
+				},
+				{
+					Label: "fundi_ratio",
+					Name: "fundi_ratio",
+					Priority: -1,
+					Texts: [
+						{
+							Text: "Ratio. (Il se lève.) Si tu veux un ennemi, tu trouveras toujours quelqu'un pour jouer le rôle. Passe l'épreuve du souffle, ou affronte mes gardes."
+						}
+					]
+				},
+				{
+					Conditions: [
+						{
+							Name: "q_ch4_fundi",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "fundi_apres",
+					Name: "fundi_apres",
+					Priority: 21,
+					Texts: [
+						{
+							Text: "Les Comocos respirent avec nous. Toi, tu respires trop fort. Apprends."
+						}
+					]
+				},
+				{
+					Label: "repos",
+					Name: "Repos",
+					Priority: 1,
+					Texts: [
+						{
+							Text: "(Il murmure une prière que tu ne comprends pas.)"
+						}
+					]
+				}
+			],
+			Type: "STANDARD"
+		},
+		EasyNPCVersion: 3,
+		Invulnerable: 1b,
+		ObjectiveData: {
+			ObjectiveDataSet: [
+				{
+					Type: "LOOK_AT_PLAYER"
+				},
+				{
+					Type: "LOOK_AT_RESET"
+				}
+			]
+		},
+		PersistenceRequired: 1b,
+		VariantType: "STEVE",
+		id: "easy_npc:humanoid"
+	}
+}

@@ -18,4 +18,8 @@ ServerEvents.recipes(event => {
     M: 'minecraft:moss_block',
     C: 'minecraft:compass'
   })
+
+  // Create Deco : la recette « pancarte colorée + colorant blanc → pancarte » est écrite dans l'ancien format
+  // et ne se charge pas en 1.21.1. On la recrée avec le même identifiant.
+  event.shapeless('create:placard', ['#createdeco:placards', 'minecraft:white_dye']).id('createdeco:placard')
 })

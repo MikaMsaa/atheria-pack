@@ -1,0 +1,650 @@
+{
+	id: "16EFEE45918D91D4"
+	group: "6044CFD50CE210E2"
+	order_index: 1
+	filename: "exploration"
+	default_quest_shape: "rsquare"
+	icon: {
+		id: "naturescompass:naturescompass"
+		count: 1
+	}
+	quests: [
+		{
+			id: "15E6984299E6B50E"
+			x: 0.0d
+			y: 0.0d
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			tasks: [
+				{
+					id: "68EC3719197DD0CB"
+					type: "structure"
+					structure: "#atheria:maisons"
+				}
+			]
+			rewards: [
+				{
+					id: "250F612E017764F1"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 3
+				}
+				{
+					id: "59DFD9CDC22A0638"
+					type: "item"
+					item: "firstaid:bandage"
+					count: 2
+				}
+				{
+					id: "0037D53CB125DE20"
+					type: "item"
+					item: "minecraft:bread"
+					count: 3
+				}
+			]
+		}
+		{
+			id: "1DF3376279A363F9"
+			x: 1.5d
+			y: 0.0d
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			tasks: [
+				{
+					id: "7403A5F0D491780B"
+					type: "structure"
+					structure: "#atheria:fermes"
+				}
+			]
+			rewards: [
+				{
+					id: "39CEB1136C7184BE"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 3
+				}
+				{
+					id: "11A89BC8F28F9155"
+					type: "item"
+					item: "firstaid:bandage"
+					count: 2
+				}
+				{
+					id: "1BA3F30C5C3669E9"
+					type: "item"
+					item: "minecraft:bread"
+					count: 3
+				}
+			]
+		}
+		{
+			id: "6C9D815FEFE5DE90"
+			x: 3.0d
+			y: 0.0d
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			tasks: [
+				{
+					id: "1C84647F702AF3D8"
+					type: "structure"
+					structure: "#atheria:camps"
+				}
+			]
+			rewards: [
+				{
+					id: "1235CC4058E400FD"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 3
+				}
+				{
+					id: "043FA9EBD5E0CCD2"
+					type: "item"
+					item: "firstaid:bandage"
+					count: 2
+				}
+				{
+					id: "3440DA92E5589623"
+					type: "item"
+					item: "minecraft:bread"
+					count: 3
+				}
+			]
+		}
+		{
+			id: "391774F74BF3BA2A"
+			x: 4.5d
+			y: 0.0d
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			tasks: [
+				{
+					id: "464A5787DD0D3027"
+					type: "structure"
+					structure: "#atheria:manoirs"
+				}
+			]
+			rewards: [
+				{
+					id: "78760765591D991D"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 8
+				}
+				{
+					id: "5693C7DFD7ED9521"
+					type: "item"
+					item: "firstaid:plaster"
+					count: 2
+				}
+				{
+					id: "3575D33C8EBA610D"
+					type: "item"
+					item: "atheria:filtre"
+				}
+				{
+					id: "2801A7402278900D"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 8
+				}
+			]
+		}
+		{
+			id: "1E5888F76B1BA361"
+			x: 6.0d
+			y: 0.0d
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			tasks: [
+				{
+					id: "7D75FE87AB142981"
+					type: "structure"
+					structure: "#atheria:tours"
+				}
+			]
+			rewards: [
+				{
+					id: "04ABC7B5D20F4091"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 3
+				}
+				{
+					id: "3BF3680710784D97"
+					type: "item"
+					item: "firstaid:bandage"
+					count: 2
+				}
+				{
+					id: "4A84B1533100D570"
+					type: "item"
+					item: "minecraft:bread"
+					count: 3
+				}
+			]
+		}
+		{
+			id: "4C5B1B867E7BF894"
+			x: 7.5d
+			y: 0.0d
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			tasks: [
+				{
+					id: "5553186C095FABCE"
+					type: "structure"
+					structure: "create_fallout:broadcast_station"
+				}
+			]
+			rewards: [
+				{
+					id: "3F78F973493ECD6E"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 8
+				}
+				{
+					id: "73BF536EC9646433"
+					type: "item"
+					item: "firstaid:plaster"
+					count: 2
+				}
+				{
+					id: "6814716BBA5AD18B"
+					type: "item"
+					item: "atheria:filtre"
+				}
+				{
+					id: "143473F8138412F8"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 8
+				}
+			]
+		}
+		{
+			id: "242F578D56F42B08"
+			x: 0.0d
+			y: 1.5d
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			tasks: [
+				{
+					id: "0893C255486D6D9A"
+					type: "structure"
+					structure: "create_fallout:red_rocket_station"
+				}
+			]
+			rewards: [
+				{
+					id: "111E08ECE7AEF791"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 3
+				}
+				{
+					id: "52F1F8E2EBDB61B1"
+					type: "item"
+					item: "firstaid:bandage"
+					count: 2
+				}
+				{
+					id: "4227550E1B6E9599"
+					type: "item"
+					item: "minecraft:bread"
+					count: 3
+				}
+			]
+		}
+		{
+			id: "71AC4839B277C483"
+			x: 1.5d
+			y: 1.5d
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			tasks: [
+				{
+					id: "7C59A0CDCD699B6A"
+					type: "structure"
+					structure: "#atheria:mines"
+				}
+			]
+			rewards: [
+				{
+					id: "5F130B722A79D745"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 3
+				}
+				{
+					id: "5F2ED5FABDE2117C"
+					type: "item"
+					item: "firstaid:bandage"
+					count: 2
+				}
+				{
+					id: "6E84E9370C24DB3B"
+					type: "item"
+					item: "minecraft:bread"
+					count: 3
+				}
+			]
+		}
+		{
+			id: "796D148B04C4368D"
+			x: 3.0d
+			y: 1.5d
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			tasks: [
+				{
+					id: "0D6CA5CC49D4E816"
+					type: "structure"
+					structure: "#atheria:donjons"
+				}
+			]
+			rewards: [
+				{
+					id: "0FB4CC138A6A05DE"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 8
+				}
+				{
+					id: "613EB666DC0FAB1D"
+					type: "item"
+					item: "firstaid:plaster"
+					count: 2
+				}
+				{
+					id: "103F121CA4A8BE5F"
+					type: "item"
+					item: "atheria:filtre"
+				}
+				{
+					id: "67D1C7BAEF08D4FF"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 8
+				}
+			]
+		}
+		{
+			id: "5C27917D199D48D3"
+			x: 4.5d
+			y: 1.5d
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			tasks: [
+				{
+					id: "7D46D1821031DAB5"
+					type: "structure"
+					structure: "betterstrongholds:stronghold"
+				}
+			]
+			rewards: [
+				{
+					id: "5B6778A41ED3B599"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 15
+				}
+				{
+					id: "6D4E5C540219F958"
+					type: "item"
+					item: "atheria:trousse_soins"
+				}
+				{
+					id: "2E112E94C551CAC8"
+					type: "item"
+					item: "firstaid:morphine"
+				}
+				{
+					id: "0FAB57941F39C747"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 16
+				}
+			]
+		}
+		{
+			id: "59641266811C7052"
+			x: 6.0d
+			y: 1.5d
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			tasks: [
+				{
+					id: "6837D18DCBE0E776"
+					type: "structure"
+					structure: "#atheria:bunkers"
+				}
+			]
+			rewards: [
+				{
+					id: "6B5B556F02203311"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 8
+				}
+				{
+					id: "2F13E03FAC73C350"
+					type: "item"
+					item: "firstaid:plaster"
+					count: 2
+				}
+				{
+					id: "2D22E719BD4E452C"
+					type: "item"
+					item: "atheria:filtre"
+				}
+				{
+					id: "5E4CFA0DB3890734"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 8
+				}
+			]
+		}
+		{
+			id: "5861A5A08968DC7A"
+			x: 7.5d
+			y: 1.5d
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			tasks: [
+				{
+					id: "592B0AB985DFD15E"
+					type: "structure"
+					structure: "#atheria:repurposed"
+				}
+			]
+			rewards: [
+				{
+					id: "28165A76FD24C6EB"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 3
+				}
+				{
+					id: "713C1515904D9837"
+					type: "item"
+					item: "firstaid:bandage"
+					count: 2
+				}
+				{
+					id: "2B8288A5F27376AA"
+					type: "item"
+					item: "minecraft:bread"
+					count: 3
+				}
+			]
+		}
+		{
+			id: "7DF772725295457D"
+			x: 0.0d
+			y: 3.0d
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			tasks: [
+				{
+					id: "5FC9D059B1896EDC"
+					type: "biome"
+					biome: "terralith:volcanic_peaks"
+				}
+				{
+					id: "5262E4F530E1946C"
+					type: "biome"
+					biome: "terralith:moonlight_grove"
+				}
+				{
+					id: "3CFC4F82D187711D"
+					type: "biome"
+					biome: "terralith:yellowstone"
+				}
+			]
+			rewards: [
+				{
+					id: "543996412A9ACB51"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 8
+				}
+				{
+					id: "3D651CAAAA5809D2"
+					type: "item"
+					item: "firstaid:plaster"
+					count: 2
+				}
+				{
+					id: "0AC1DBC6D97EA964"
+					type: "item"
+					item: "atheria:filtre"
+				}
+				{
+					id: "34ED83ED9994AF5F"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 8
+				}
+			]
+		}
+		{
+			id: "4C21CC3F93C2A292"
+			x: 10.0d
+			y: 0.0d
+			shape: "gear"
+			size: 1.25d
+			dependencies: [
+				"15E6984299E6B50E"
+				"1DF3376279A363F9"
+				"6C9D815FEFE5DE90"
+				"391774F74BF3BA2A"
+				"1E5888F76B1BA361"
+				"4C5B1B867E7BF894"
+				"242F578D56F42B08"
+				"71AC4839B277C483"
+				"796D148B04C4368D"
+				"5C27917D199D48D3"
+				"59641266811C7052"
+				"5861A5A08968DC7A"
+				"7DF772725295457D"
+			]
+			min_required_dependencies: 4
+			hide_dependent_lines: true
+			tasks: [
+				{
+					id: "405BEE50EC6E62B8"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+				{
+					id: "717835F69C5F733A"
+					type: "item"
+					item: "naturescompass:naturescompass"
+				}
+			]
+		}
+		{
+			id: "3BBB6988343BCC0C"
+			x: 10.0d
+			y: 1.5d
+			shape: "gear"
+			size: 1.25d
+			dependencies: [
+				"15E6984299E6B50E"
+				"1DF3376279A363F9"
+				"6C9D815FEFE5DE90"
+				"391774F74BF3BA2A"
+				"1E5888F76B1BA361"
+				"4C5B1B867E7BF894"
+				"242F578D56F42B08"
+				"71AC4839B277C483"
+				"796D148B04C4368D"
+				"5C27917D199D48D3"
+				"59641266811C7052"
+				"5861A5A08968DC7A"
+				"7DF772725295457D"
+			]
+			min_required_dependencies: 8
+			hide_dependent_lines: true
+			tasks: [
+				{
+					id: "5218E97DC9D5B1BF"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+				{
+					id: "073FC57420B53BF5"
+					type: "item"
+					item: "explorerscompass:explorerscompass"
+				}
+			]
+		}
+		{
+			id: "09EC281C705CD203"
+			x: 10.0d
+			y: 3.0d
+			shape: "gear"
+			size: 1.25d
+			dependencies: [
+				"15E6984299E6B50E"
+				"1DF3376279A363F9"
+				"6C9D815FEFE5DE90"
+				"391774F74BF3BA2A"
+				"1E5888F76B1BA361"
+				"4C5B1B867E7BF894"
+				"242F578D56F42B08"
+				"71AC4839B277C483"
+				"796D148B04C4368D"
+				"5C27917D199D48D3"
+				"59641266811C7052"
+				"5861A5A08968DC7A"
+				"7DF772725295457D"
+			]
+			hide_dependent_lines: true
+			tasks: [
+				{
+					id: "1B21A662BE0EF821"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+				{
+					id: "6470DE8F27BEA1C9"
+					type: "item"
+					item: "atheria:cle_taxi"
+				}
+				{
+					id: "058E000354F764E3"
+					type: "command"
+					command: "/tag {p} add titre_cartographe"
+					permission_level: 2
+					silent: true
+					feedback_message: "Titre « Cartographe »"
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+	images: [ ]
+}

@@ -1,0 +1,162 @@
+{
+	PresetMetadata: {
+		author: "Atheria",
+		category: "Atheria",
+		description: "PNJ de la campagne Atheria : Eniy.",
+		entityTypeId: "easy_npc:humanoid",
+		name: "Eniy",
+		variantType: "STEVE",
+		version: "1.0.0"
+	},
+	data: {
+		ActionData: {
+			ActionEventSet: {
+				ON_INTERACTION: [
+					{
+						Type: "OPEN_DEFAULT_DIALOG"
+					}
+				]
+			}
+		},
+		CustomName: '{"text": "Eniy", "color": "#E8C66A"}',
+		DialogData: {
+			DialogDataSet: [
+				{
+					Buttons: [
+						{
+							Actions: [
+								{
+									Cmd: "/tag @initiator add q_ch1_eniy",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/give @initiator atheria:jeton_eniy 1",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/playsound minecraft:entity.experience_orb.pickup master @initiator ~ ~ ~ 0.6 1.2",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Type: "CLOSE_DIALOG"
+								}
+							],
+							Label: "b_q_ch1_eniy",
+							Name: "Prendre son jeton"
+						}
+					],
+					Conditions: [
+						{
+							Name: "q_ch1_checkpoint",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch1_eniy",
+					Name: "q_ch1_eniy",
+					Priority: 10,
+					Texts: [
+						{
+							Text: "Avant la catastrophe, je faisais du dropshipping. Aujourd'hui je vends de l'information, du carburant, des médicaments et un chocolat tellement cher que même les zombies ne peuvent pas se le payer. Mon business model est devenu résistant au marché."
+						}
+					]
+				},
+				{
+					Conditions: [
+						{
+							Name: "q_ch1_eniy",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch1_eniy_fait",
+					Name: "q_ch1_eniy (fait)",
+					Priority: 11,
+					Texts: [
+						{
+							Text: "Tu as ce qu'il te faut. Avance."
+						}
+					]
+				},
+				{
+					Buttons: [
+						{
+							Actions: [
+								{
+									Cmd: "/give @initiator atheria:colis 1",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Type: "CLOSE_DIALOG"
+								}
+							],
+							Label: "eniy_colis_b0",
+							Name: "Prendre un colis à livrer à Coconi"
+						},
+						{
+							Actions: [
+								{
+									Cmd: "/execute if items entity @initiator container.* #atheria:puffs run give @initiator atheria:bon_caf 30",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/tellraw @initiator {\"text\":\"Eniy rachète les Puffs 30 bons pièce : dépose-la dans son coffre de boutique, l'équipe gère l'échange.\",\"color\":\"gray\"}",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Type: "CLOSE_DIALOG"
+								}
+							],
+							Label: "eniy_colis_b1",
+							Name: "Vendre une Puff (30 bons)"
+						}
+					],
+					Conditions: [
+						{
+							Name: "q_ch1_eniy",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "eniy_colis",
+					Name: "eniy_colis",
+					Priority: 30,
+					Texts: [
+						{
+							Text: "Bienvenue dans l'expérience premium. Livraison, formation, chocolat. Tu prends quoi ?"
+						}
+					]
+				},
+				{
+					Label: "repos",
+					Name: "Repos",
+					Priority: 1,
+					Texts: [
+						{
+							Text: "Le marché est fermé pour inventaire. Reviens quand tu seras solvable."
+						}
+					]
+				}
+			],
+			Type: "STANDARD"
+		},
+		EasyNPCVersion: 3,
+		Invulnerable: 1b,
+		ObjectiveData: {
+			ObjectiveDataSet: [
+				{
+					Type: "LOOK_AT_PLAYER"
+				},
+				{
+					Type: "LOOK_AT_RESET"
+				}
+			]
+		},
+		PersistenceRequired: 1b,
+		VariantType: "STEVE",
+		id: "easy_npc:humanoid"
+	}
+}

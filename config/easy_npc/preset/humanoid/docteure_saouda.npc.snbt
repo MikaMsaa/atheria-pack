@@ -1,0 +1,111 @@
+{
+	PresetMetadata: {
+		author: "Atheria",
+		category: "Atheria",
+		description: "PNJ de la campagne Atheria : Docteure Saouda.",
+		entityTypeId: "easy_npc:humanoid",
+		name: "Docteure Saouda",
+		variantType: "STEVE",
+		version: "1.0.0"
+	},
+	data: {
+		ActionData: {
+			ActionEventSet: {
+				ON_INTERACTION: [
+					{
+						Type: "OPEN_DEFAULT_DIALOG"
+					}
+				]
+			}
+		},
+		CustomName: '{"text": "Docteure Saouda", "color": "#E8C66A"}',
+		DialogData: {
+			DialogDataSet: [
+				{
+					Buttons: [
+						{
+							Actions: [
+								{
+									Cmd: "/tag @initiator add q_ch1_saouda",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/give @initiator atheria:laissez_passer_paf 1",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/playsound minecraft:entity.experience_orb.pickup master @initiator ~ ~ ~ 0.6 1.2",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Type: "CLOSE_DIALOG"
+								}
+							],
+							Label: "b_q_ch1_saouda",
+							Name: "Faire signer la fiche"
+						}
+					],
+					Conditions: [
+						{
+							Name: "q_ch1_checkpoint",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch1_saouda",
+					Name: "q_ch1_saouda",
+					Priority: 10,
+					Texts: [
+						{
+							Text: "Ouvre la bouche. Regarde la lumière. Respire normalement. Non, pas comme ça : tu respires comme quelqu'un qui cache quelque chose.\\n\\n(Sans humour.) Tu peux entrer. N'oublie pas que la quarantaine protège aussi les gens derrière la porte."
+						}
+					]
+				},
+				{
+					Conditions: [
+						{
+							Name: "q_ch1_saouda",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch1_saouda_fait",
+					Name: "q_ch1_saouda (fait)",
+					Priority: 11,
+					Texts: [
+						{
+							Text: "Tu as ce qu'il te faut. Avance."
+						}
+					]
+				},
+				{
+					Label: "repos",
+					Name: "Repos",
+					Priority: 1,
+					Texts: [
+						{
+							Text: "Respire normalement. Non, normalement."
+						}
+					]
+				}
+			],
+			Type: "STANDARD"
+		},
+		EasyNPCVersion: 3,
+		Invulnerable: 1b,
+		ObjectiveData: {
+			ObjectiveDataSet: [
+				{
+					Type: "LOOK_AT_PLAYER"
+				},
+				{
+					Type: "LOOK_AT_RESET"
+				}
+			]
+		},
+		PersistenceRequired: 1b,
+		VariantType: "STEVE",
+		id: "easy_npc:humanoid"
+	}
+}

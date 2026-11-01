@@ -1,0 +1,293 @@
+{
+	id: "522B8EA208476ED8"
+	group: "655C988475622574"
+	order_index: 0
+	filename: "prologue"
+	default_quest_shape: "circle"
+	icon: {
+		id: "atheria:carnet_survivant"
+		count: 1
+	}
+	quests: [
+		{
+			id: "247825A47E0F3F2C"
+			x: 0.0d
+			y: 0.0d
+			shape: "gear"
+			size: 1.5d
+			tasks: [
+				{
+					id: "10C6C8F358D4DBED"
+					type: "item"
+					item: "atheria:carnet_survivant"
+				}
+			]
+			rewards: [
+				{
+					id: "2EC94AFC26A1D87C"
+					type: "item"
+					item: "firstaid:bandage"
+					count: 2
+				}
+				{
+					id: "00F01ADCCD9C5672"
+					type: "item"
+					item: "minecraft:bread"
+				}
+				{
+					id: "3B1B5E6BCE067ED6"
+					type: "item"
+					item: "atheria:archive_01"
+				}
+			]
+		}
+		{
+			id: "2E40F2422797DDBE"
+			x: 2.0d
+			y: -1.5d
+			dependencies: ["247825A47E0F3F2C"]
+			tasks: [
+				{
+					id: "1FB4A052240D2FC2"
+					type: "item"
+					item: "minecraft:potion"
+					count: 3
+				}
+			]
+			rewards: [
+				{
+					id: "125DA9A511DDE277"
+					type: "item"
+					item: "thirstcanteen:leather_canteen"
+				}
+			]
+		}
+		{
+			id: "0EA9C618A7CB9758"
+			x: 2.0d
+			y: 0.0d
+			dependencies: ["247825A47E0F3F2C"]
+			tasks: [
+				{
+					id: "08CB33B0D4D96E36"
+					type: "gamestage"
+					stage: "pose_porte"
+				}
+			]
+			rewards: [
+				{
+					id: "3A6D65BD1438E1B6"
+					type: "item"
+					item: "comforts:sleeping_bag_brown"
+				}
+				{
+					id: "3F4CCF30C301BD62"
+					type: "item"
+					item: "minecraft:oak_planks"
+					count: 8
+				}
+			]
+		}
+		{
+			id: "69990AA63A53D3F2"
+			x: 2.0d
+			y: 1.5d
+			dependencies: ["247825A47E0F3F2C"]
+			tasks: [
+				{
+					id: "28050F65DD9D79A5"
+					type: "item"
+					item: "minecraft:mushroom_stew"
+				}
+				{
+					id: "52FC9A046189CC04"
+					type: "item"
+					item: "minecraft:white_wool"
+				}
+				{
+					id: "42D153DB894CEEE1"
+					type: "item"
+					item: "minecraft:potion"
+				}
+			]
+			rewards: [
+				{
+					id: "7D64F6E5B2597337"
+					type: "item"
+					item: "trydeas_meleez:crowbar"
+				}
+			]
+		}
+		{
+			id: "6C83BA6C0C656BF4"
+			x: 4.0d
+			y: 0.0d
+			dependencies: ["0EA9C618A7CB9758", "69990AA63A53D3F2"]
+			tasks: [
+				{
+					id: "2F6604960D36653B"
+					type: "kill"
+					entity: "spore:inf_human"
+					entityTypeTag: "atheria:infectes"
+					value: 1
+				}
+			]
+			rewards: [
+				{
+					id: "3F13D42D729EE3AF"
+					type: "item"
+					item: "firstaid:plaster"
+				}
+				{
+					id: "3A71E71CFF84ABF7"
+					type: "item"
+					item: "firstaid:bandage"
+				}
+			]
+		}
+		{
+			id: "00BEB935AFC183BA"
+			x: 6.0d
+			y: -1.5d
+			dependencies: ["6C83BA6C0C656BF4"]
+			tasks: [
+				{
+					id: "1ED6A65B527940D0"
+					type: "item"
+					item: "firstaid:bandage"
+				}
+			]
+			rewards: [
+				{
+					id: "4DB335A292FEB9E1"
+					type: "item"
+					item: "firstaid:morphine"
+				}
+			]
+		}
+		{
+			id: "1D2842C6CEC37265"
+			x: 6.0d
+			y: 0.0d
+			dependencies: ["6C83BA6C0C656BF4"]
+			tasks: [
+				{
+					id: "594296D127D9E94A"
+					type: "item"
+					item: "atheria:antifongique"
+				}
+			]
+			rewards: [
+				{
+					id: "0D7ADC12634A8929"
+					type: "item"
+					item: "atheria:antifongique"
+				}
+			]
+		}
+		{
+			id: "60B69F76D22595C1"
+			x: 6.0d
+			y: 1.5d
+			dependencies: ["6C83BA6C0C656BF4"]
+			tasks: [
+				{
+					id: "4474C33FFA54F55E"
+					type: "item"
+					item: "atheria:masque_artisanal"
+				}
+				{
+					id: "66662B780815AAB2"
+					type: "item"
+					item: "atheria:filtre"
+					count: 2
+				}
+			]
+			rewards: [
+				{
+					id: "208D83A7C6071BEB"
+					type: "item"
+					item: "atheria:filtre"
+				}
+			]
+		}
+		{
+			id: "1FDFF9385E09C2A1"
+			x: 8.0d
+			y: 0.0d
+			dependencies: ["00BEB935AFC183BA", "1D2842C6CEC37265", "60B69F76D22595C1"]
+			tasks: [
+				{
+					id: "1C9B40EC134D3AED"
+					type: "stat"
+					stat: "minecraft:time_since_death"
+					value: 72000
+				}
+			]
+			rewards: [
+				{
+					id: "14AE8CC889CE60FA"
+					type: "item"
+					item: "flashlight:flashlight"
+				}
+				{
+					id: "028C6D8D89D491A3"
+					type: "item"
+					item: "flashlight:battery"
+					count: 2
+				}
+				{
+					id: "2FFECE325515D74C"
+					type: "item"
+					item: "sophisticatedbackpacks:backpack"
+				}
+			]
+		}
+		{
+			id: "198383BA4980A89C"
+			x: 10.0d
+			y: 0.0d
+			shape: "gear"
+			size: 1.5d
+			dependencies: ["1FDFF9385E09C2A1"]
+			tasks: [
+				{
+					id: "464FBCB777FBD433"
+					type: "item"
+					item: "atheria:radio_portative"
+				}
+				{
+					id: "06717FF14A7E9A65"
+					type: "gamestage"
+					stage: "radio_voix"
+				}
+			]
+			rewards: [
+				{
+					id: "02BEAD53D1EC3B1C"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 5
+				}
+				{
+					id: "5E226F82BC76F22D"
+					type: "command"
+					command: "/tag {p} add titre_presque_perso"
+					permission_level: 2
+					silent: true
+					feedback_message: "Titre « Presque un personnage »"
+				}
+				{
+					id: "2EDDB603404E53FF"
+					type: "command"
+					command: "/tag {p} add chapitre_1"
+					permission_level: 2
+					silent: true
+					feedback_message: "Chapitre 1 débloqué"
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+	images: [ ]
+}

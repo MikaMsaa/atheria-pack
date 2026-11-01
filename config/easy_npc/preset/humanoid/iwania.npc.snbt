@@ -1,0 +1,117 @@
+{
+	PresetMetadata: {
+		author: "Atheria",
+		category: "Atheria",
+		description: "PNJ de la campagne Atheria : Iwania.",
+		entityTypeId: "easy_npc:humanoid",
+		name: "Iwania",
+		variantType: "STEVE",
+		version: "1.0.0"
+	},
+	data: {
+		ActionData: {
+			ActionEventSet: {
+				ON_INTERACTION: [
+					{
+						Type: "OPEN_DEFAULT_DIALOG"
+					}
+				]
+			}
+		},
+		CustomName: '{"text": "Iwania", "color": "#E8C66A"}',
+		DialogData: {
+			DialogDataSet: [
+				{
+					Buttons: [
+						{
+							Actions: [
+								{
+									Cmd: "/tag @initiator add q_ch2_iwania",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/clear @initiator atheria:photo_famille 1",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/playsound minecraft:entity.experience_orb.pickup master @initiator ~ ~ ~ 0.6 1.2",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Type: "CLOSE_DIALOG"
+								}
+							],
+							Conditions: [
+								{
+									Name: "atheria:photo_famille",
+									Type: "HAS_ITEM_IN_INVENTORY"
+								}
+							],
+							Label: "b_q_ch2_iwania",
+							Name: "Lui rendre la photo"
+						}
+					],
+					Conditions: [
+						{
+							Name: "q_ch2_zaid",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch2_iwania",
+					Name: "q_ch2_iwania",
+					Priority: 10,
+					Texts: [
+						{
+							Text: "C'est mon mari. Il est parti chercher des médicaments il y a onze ans. Tu l'as vu ?\\n\\n(Elle voit la réponse sur ton visage avant que tu parles.) D'accord. Merci de l'avoir rapportée."
+						}
+					]
+				},
+				{
+					Conditions: [
+						{
+							Name: "q_ch2_iwania",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch2_iwania_fait",
+					Name: "q_ch2_iwania (fait)",
+					Priority: 11,
+					Texts: [
+						{
+							Text: "Tu as ce qu'il te faut. Avance."
+						}
+					]
+				},
+				{
+					Label: "repos",
+					Name: "Repos",
+					Priority: 1,
+					Texts: [
+						{
+							Text: "(Elle regarde la route, comme tous les soirs.)"
+						}
+					]
+				}
+			],
+			Type: "STANDARD"
+		},
+		EasyNPCVersion: 3,
+		Invulnerable: 1b,
+		ObjectiveData: {
+			ObjectiveDataSet: [
+				{
+					Type: "LOOK_AT_PLAYER"
+				},
+				{
+					Type: "LOOK_AT_RESET"
+				}
+			]
+		},
+		PersistenceRequired: 1b,
+		VariantType: "STEVE",
+		id: "easy_npc:humanoid"
+	}
+}

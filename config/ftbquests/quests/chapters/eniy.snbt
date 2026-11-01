@@ -1,0 +1,149 @@
+{
+	id: "5377F7B4B315DAA4"
+	group: "72E3B8495ACABA9D"
+	order_index: 1
+	filename: "eniy"
+	default_quest_shape: "rsquare"
+	icon: {
+		id: "atheria:chocolat_dubai"
+		count: 1
+	}
+	quests: [
+		{
+			id: "737E75F75E7449B8"
+			x: 0.0d
+			y: 0.0d
+			dependencies: ["5C69C7C8BACB3868"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "47F8DA4330230395"
+					type: "item"
+					item: "atheria:colis"
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "258B48E8F9430637"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 15
+				}
+			]
+		}
+		{
+			id: "509F756A2596B3EC"
+			x: 1.5d
+			y: 0.0d
+			dependencies: ["5C69C7C8BACB3868"]
+			can_repeat: true
+			repeat_cooldown: 86400
+			tasks: [
+				{
+					id: "16A165A2459B8693"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+				{
+					id: "13423616E465E0B4"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 3
+				}
+				{
+					id: "19EB9E7B9D3EB0CF"
+					type: "item"
+					item: "firstaid:bandage"
+					count: 2
+				}
+				{
+					id: "492E4C79DF66DFCF"
+					type: "item"
+					item: "minecraft:bread"
+					count: 3
+				}
+			]
+		}
+		{
+			id: "1DCE6688692A4CA1"
+			x: 3.0d
+			y: 0.0d
+			dependencies: ["5C69C7C8BACB3868"]
+			tasks: [
+				{
+					id: "7F4D8F0848982EE8"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 50
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "763D0E369A0A74D5"
+					type: "item"
+					item: "atheria:formation_eniy"
+				}
+				{
+					id: "095E650EB75557DF"
+					type: "command"
+					command: "/tag {p} add titre_victime_eniy"
+					permission_level: 2
+					silent: true
+					feedback_message: "Titre « Victime d'Eniy »"
+				}
+			]
+		}
+		{
+			id: "34BC9253A676741C"
+			x: 4.5d
+			y: 0.0d
+			dependencies: ["5C69C7C8BACB3868"]
+			tasks: [
+				{
+					id: "48D999AC42E2714C"
+					type: "item"
+					item: "create_fallout:nuka_cola"
+					consume_items: true
+				}
+				{
+					id: "3C48D74539FFBBD5"
+					type: "item"
+					item: "create_fallout:stimpack"
+					consume_items: true
+				}
+				{
+					id: "33CD2B55E139BBDB"
+					type: "item"
+					item: "firstaid:adrenaline_injector"
+					consume_items: true
+				}
+				{
+					id: "03CAEF8A4936B868"
+					type: "item"
+					item: "minecraft:diamond"
+					consume_items: true
+				}
+				{
+					id: "4A3E0BA27810262F"
+					type: "item"
+					item: "minecraft:golden_apple"
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "32430590976DFBCF"
+					type: "item"
+					item: "atheria:chocolat_dubai"
+					count: 2
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+	images: [ ]
+}

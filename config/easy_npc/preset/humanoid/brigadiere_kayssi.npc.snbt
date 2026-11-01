@@ -1,0 +1,252 @@
+{
+	PresetMetadata: {
+		author: "Atheria",
+		category: "Atheria",
+		description: "PNJ de la campagne Atheria : Brigadière Kayssi.",
+		entityTypeId: "easy_npc:humanoid",
+		name: "Brigadière Kayssi",
+		variantType: "STEVE",
+		version: "1.0.0"
+	},
+	data: {
+		ActionData: {
+			ActionEventSet: {
+				ON_INTERACTION: [
+					{
+						Type: "OPEN_DEFAULT_DIALOG"
+					}
+				]
+			}
+		},
+		CustomName: '{"text": "Brigadière Kayssi", "color": "#E8C66A"}',
+		DialogData: {
+			DialogDataSet: [
+				{
+					Buttons: [
+						{
+							Actions: [
+								{
+									Cmd: "/tag @initiator add q_ch1_kayssi",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/playsound minecraft:entity.experience_orb.pickup master @initiator ~ ~ ~ 0.6 1.2",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Type: "CLOSE_DIALOG"
+								}
+							],
+							Label: "b_q_ch1_kayssi",
+							Name: "Je vais réfléchir"
+						}
+					],
+					Conditions: [
+						{
+							Name: "q_ch1_kamel",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch1_kayssi",
+					Name: "q_ch1_kayssi",
+					Priority: 10,
+					Texts: [
+						{
+							Text: "Le Commandant sait que tu aides Kamel. Il t'offre une place officielle. Ration, logement, vraie arme. Tu nous donnes la clé, tu rentres dans le système."
+						}
+					]
+				},
+				{
+					Conditions: [
+						{
+							Name: "q_ch1_kayssi",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch1_kayssi_fait",
+					Name: "q_ch1_kayssi (fait)",
+					Priority: 11,
+					Texts: [
+						{
+							Text: "Tu as ce qu'il te faut. Avance."
+						}
+					]
+				},
+				{
+					Buttons: [
+						{
+							Actions: [
+								{
+									Cmd: "kayssi_rayade",
+									Type: "OPEN_NAMED_DIALOG"
+								}
+							],
+							Label: "kayssi_bandes_b0",
+							Name: "Tu savais pour Rayade ?"
+						},
+						{
+							Actions: [
+								{
+									Cmd: "/tag @initiator add q_ch5_kayssi",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/tag @initiator add kayssi_alliee",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/tellraw @initiator {\"text\":\"Kayssi combattra Pax au final.\",\"color\":\"gold\"}",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "kayssi_allie",
+									Type: "OPEN_NAMED_DIALOG"
+								}
+							],
+							Conditions: [
+								{
+									Name: "atheria:archive_33",
+									Type: "HAS_ITEM_IN_INVENTORY"
+								}
+							],
+							Label: "kayssi_bandes_b1",
+							Name: "Montrer le journal de Pax"
+						},
+						{
+							Actions: [
+								{
+									Cmd: "/clear @initiator atheria:cassette_salto 1",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/tag @initiator add q_ch5_kayssi",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/tag @initiator add cassettes_rendues",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/scoreboard players add @initiator aura_paf 2",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/scoreboard players add #pax_puissance atheria 1",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "kayssi_merci",
+									Type: "OPEN_NAMED_DIALOG"
+								}
+							],
+							Conditions: [
+								{
+									Name: "atheria:cassette_salto",
+									Type: "HAS_ITEM_IN_INVENTORY"
+								}
+							],
+							Label: "kayssi_bandes_b2",
+							Name: "Remettre les cassettes"
+						}
+					],
+					Conditions: [
+						{
+							Name: "acte_4",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "kayssi_bandes",
+					Name: "kayssi_bandes",
+					Priority: 40,
+					Texts: [
+						{
+							Text: "Donne-moi les bandes. Je n'ai pas envie de tirer."
+						}
+					]
+				},
+				{
+					Label: "kayssi_rayade",
+					Name: "kayssi_rayade",
+					Priority: -1,
+					Texts: [
+						{
+							Text: "Je savais qu'il y avait des noms. Pas lesquels. J'ai signé des ordres sans poser toutes les questions. Je vais devoir vivre avec ça."
+						}
+					]
+				},
+				{
+					Label: "kayssi_allie",
+					Name: "kayssi_allie",
+					Priority: -1,
+					Texts: [
+						{
+							Text: "(Elle lit longtemps.) ...Il a choisi pour nous tous, depuis le début. Au CHM, je serai en face de lui."
+						}
+					]
+				},
+				{
+					Label: "kayssi_merci",
+					Name: "kayssi_merci",
+					Priority: -1,
+					Texts: [
+						{
+							Text: "Merci. Le Commandant saura que tu as été raisonnable. (Elle ne te regarde pas en disant ça.)"
+						}
+					]
+				},
+				{
+					Conditions: [
+						{
+							Name: "q_ch5_kayssi",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "kayssi_apres",
+					Name: "kayssi_apres",
+					Priority: 41,
+					Texts: [
+						{
+							Text: "On se reverra au CHM. Essaie d'être du bon côté du mur, cette fois."
+						}
+					]
+				},
+				{
+					Label: "repos",
+					Name: "Repos",
+					Priority: 1,
+					Texts: [
+						{
+							Text: "Circule. Le Commandant n'aime pas les attroupements."
+						}
+					]
+				}
+			],
+			Type: "STANDARD"
+		},
+		EasyNPCVersion: 3,
+		Invulnerable: 1b,
+		ObjectiveData: {
+			ObjectiveDataSet: [
+				{
+					Type: "LOOK_AT_PLAYER"
+				},
+				{
+					Type: "LOOK_AT_RESET"
+				}
+			]
+		},
+		PersistenceRequired: 1b,
+		VariantType: "STEVE",
+		id: "easy_npc:humanoid"
+	}
+}

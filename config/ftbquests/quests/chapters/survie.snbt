@@ -1,0 +1,511 @@
+{
+	id: "052E3C99E1C4C1AC"
+	group: "6044CFD50CE210E2"
+	order_index: 0
+	filename: "survie"
+	default_quest_shape: "rsquare"
+	icon: {
+		id: "minecraft:campfire"
+		count: 1
+	}
+	quests: [
+		{
+			id: "0E108B5991254185"
+			x: 0.0d
+			y: 0.0d
+			dependencies: ["1FDFF9385E09C2A1"]
+			tasks: [
+				{
+					id: "586E13A118565286"
+					type: "gamestage"
+					stage: "pose_lit"
+				}
+				{
+					id: "7025F97E7CCD368B"
+					type: "gamestage"
+					stage: "pose_coffre"
+				}
+				{
+					id: "758A9BD4D7ED1C12"
+					type: "gamestage"
+					stage: "pose_feu"
+				}
+				{
+					id: "31A3244CCA6A8521"
+					type: "gamestage"
+					stage: "pose_porte"
+				}
+			]
+			rewards: [
+				{
+					id: "0E5CB289851749DF"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 3
+				}
+				{
+					id: "7E12D54A3CE2A68F"
+					type: "item"
+					item: "firstaid:bandage"
+					count: 2
+				}
+				{
+					id: "34FEF6812878B599"
+					type: "item"
+					item: "minecraft:bread"
+					count: 3
+				}
+			]
+		}
+		{
+			id: "19367FE6D047EFDD"
+			x: 1.75d
+			y: 0.0d
+			dependencies: ["0E108B5991254185"]
+			tasks: [
+				{
+					id: "21B48AC1B7ADC736"
+					type: "item"
+					item: "farmersdelight:cabbage"
+				}
+				{
+					id: "4767AEFC16A5A2A5"
+					type: "item"
+					item: "farmersdelight:tomato"
+				}
+				{
+					id: "5AFD908A5BCFA798"
+					type: "item"
+					item: "farmersdelight:onion"
+				}
+				{
+					id: "1A119BF426C93792"
+					type: "item"
+					item: "farmersdelight:rice"
+				}
+			]
+			rewards: [
+				{
+					id: "6EDAD2DFA1320C8B"
+					type: "item"
+					item: "farmersdelight:cabbage_seeds"
+					count: 8
+				}
+				{
+					id: "5D2EBF0C1E2DB42C"
+					type: "item"
+					item: "farmersdelight:tomato_seeds"
+					count: 8
+				}
+			]
+		}
+		{
+			id: "23D4C51774CD6BA5"
+			x: 3.5d
+			y: 0.0d
+			dependencies: ["0E108B5991254185"]
+			tasks: [
+				{
+					id: "36906127319395FC"
+					type: "item"
+					item: "farmersdelight:vegetable_soup"
+				}
+				{
+					id: "01962974770C8498"
+					type: "item"
+					item: "farmersdelight:beef_stew"
+				}
+				{
+					id: "1842607D10366B20"
+					type: "item"
+					item: "farmersdelight:fried_egg"
+				}
+				{
+					id: "6E72BED37E09CE4D"
+					type: "item"
+					item: "farmersdelight:mixed_salad"
+				}
+				{
+					id: "19FA9515C1C0185C"
+					type: "item"
+					item: "farmersdelight:pasta_with_meatballs"
+				}
+			]
+			rewards: [
+				{
+					id: "5332F35D34347889"
+					type: "item"
+					item: "farmersdelight:cooking_pot"
+				}
+				{
+					id: "23D7BDF90CF657F7"
+					type: "item"
+					item: "farmersdelight:skillet"
+				}
+				{
+					id: "4448B78B4F53B674"
+					type: "command"
+					command: "/tag {p} add titre_valide_chef"
+					permission_level: 2
+					silent: true
+					feedback_message: "Titre « Validé par le chef »"
+				}
+			]
+		}
+		{
+			id: "0630CA63586DD5E1"
+			x: 5.25d
+			y: 0.0d
+			dependencies: ["0E108B5991254185"]
+			tasks: [
+				{
+					id: "136ED6038055EC17"
+					type: "item"
+					item: "minecraft:bread"
+					count: 64
+				}
+			]
+			rewards: [
+				{
+					id: "7FB0188DC1C641BE"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 8
+				}
+				{
+					id: "457622C72C4AF5AD"
+					type: "item"
+					item: "firstaid:plaster"
+					count: 2
+				}
+				{
+					id: "6E9CA11002A111E2"
+					type: "item"
+					item: "atheria:filtre"
+				}
+				{
+					id: "253BDDD0E8C7935B"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 8
+				}
+			]
+		}
+		{
+			id: "339316617DDAF3D7"
+			x: 7.0d
+			y: 0.0d
+			dependencies: ["0E108B5991254185"]
+			tasks: [
+				{
+					id: "237592DECA16DA3E"
+					type: "item"
+					item: "minecraft:iron_bars"
+					count: 16
+				}
+				{
+					id: "216F83889284B059"
+					type: "item"
+					item: "minecraft:iron_door"
+					count: 2
+				}
+				{
+					id: "228D665BA621E889"
+					type: "gamestage"
+					stage: "pose_porte"
+				}
+			]
+			rewards: [
+				{
+					id: "5B3710A846F66BCF"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 8
+				}
+				{
+					id: "58D361BC166EAF67"
+					type: "item"
+					item: "firstaid:plaster"
+					count: 2
+				}
+				{
+					id: "2C8981F500909759"
+					type: "item"
+					item: "atheria:filtre"
+				}
+				{
+					id: "10045505F7AF9634"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 8
+				}
+			]
+		}
+		{
+			id: "6051BBB3FB6957A0"
+			x: 0.0d
+			y: 1.75d
+			dependencies: ["0E108B5991254185"]
+			tasks: [
+				{
+					id: "2BE4B63DE740A27D"
+					type: "item"
+					item: "create:water_wheel"
+				}
+			]
+			rewards: [
+				{
+					id: "1767C10AC177E51C"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 15
+				}
+				{
+					id: "49EC47AA5D271AB9"
+					type: "item"
+					item: "atheria:trousse_soins"
+				}
+				{
+					id: "2BFD0C97585D8D38"
+					type: "item"
+					item: "firstaid:morphine"
+				}
+				{
+					id: "68328052C9F73846"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 16
+				}
+			]
+		}
+		{
+			id: "3427E47E98687ADE"
+			x: 1.75d
+			y: 1.75d
+			dependencies: ["0E108B5991254185"]
+			tasks: [
+				{
+					id: "06864F179CE1669C"
+					type: "item"
+					item: "create:mechanical_pump"
+				}
+				{
+					id: "6661902FC8D07A1B"
+					type: "item"
+					item: "create:fluid_pipe"
+					count: 16
+				}
+				{
+					id: "667F3B92089FC938"
+					type: "item"
+					item: "create:fluid_tank"
+					count: 2
+				}
+			]
+			rewards: [
+				{
+					id: "23911FE159392C7C"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 15
+				}
+				{
+					id: "4202906D9A7CD99E"
+					type: "item"
+					item: "atheria:trousse_soins"
+				}
+				{
+					id: "39C6AD9BFAA8FC8E"
+					type: "item"
+					item: "firstaid:morphine"
+				}
+				{
+					id: "13452CB5D17ADA40"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 16
+				}
+			]
+		}
+		{
+			id: "75CFCAE56D72C96C"
+			x: 3.5d
+			y: 1.75d
+			dependencies: ["0E108B5991254185"]
+			tasks: [
+				{
+					id: "2DE8955C132B5623"
+					type: "item"
+					item: "tacz:gun_smith_table"
+				}
+				{
+					id: "142D5CFACA06C291"
+					type: "item"
+					item: "tacz:ammo"
+					count: 32
+				}
+			]
+			rewards: [
+				{
+					id: "0E592EE2E012EA17"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 15
+				}
+				{
+					id: "1CD451E33A865D05"
+					type: "item"
+					item: "atheria:trousse_soins"
+				}
+				{
+					id: "617C8A3313AB982F"
+					type: "item"
+					item: "firstaid:morphine"
+				}
+				{
+					id: "41C276D83D11F7D0"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 16
+				}
+			]
+		}
+		{
+			id: "12D722B612574D8B"
+			x: 5.25d
+			y: 1.75d
+			dependencies: ["0E108B5991254185"]
+			tasks: [
+				{
+					id: "1B2AE5490560266B"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+				{
+					id: "2BDC18439907EE68"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 15
+				}
+				{
+					id: "387182E45B02FBC5"
+					type: "item"
+					item: "atheria:trousse_soins"
+				}
+				{
+					id: "47EC4C62570A8CF2"
+					type: "item"
+					item: "firstaid:morphine"
+				}
+				{
+					id: "47681CA451973472"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 16
+				}
+			]
+		}
+		{
+			id: "06CBFE16B7D92AFD"
+			x: 7.0d
+			y: 1.75d
+			dependencies: ["0E108B5991254185"]
+			tasks: [
+				{
+					id: "3E8644AC49543D9F"
+					type: "item"
+					item: "walkietalkie:walkie_talkie"
+				}
+				{
+					id: "1629AFF113C74CE7"
+					type: "item"
+					item: "minecraft:lightning_rod"
+					count: 4
+				}
+			]
+			rewards: [
+				{
+					id: "5E8BC234A538EEC0"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 15
+				}
+				{
+					id: "15CE9D0599EE4E9D"
+					type: "item"
+					item: "atheria:trousse_soins"
+				}
+				{
+					id: "3F46479F4B8F1359"
+					type: "item"
+					item: "firstaid:morphine"
+				}
+				{
+					id: "255BC652974C14BF"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 16
+				}
+				{
+					id: "137DCEAE821129E4"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 10
+				}
+				{
+					id: "6F76467BAF07369F"
+					type: "command"
+					command: "/tag {p} add titre_podcasteur"
+					permission_level: 2
+					silent: true
+					feedback_message: "Titre « Podcasteur de l'apocalypse »"
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+	images: [ ]
+}

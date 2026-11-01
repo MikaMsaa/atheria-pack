@@ -1,0 +1,122 @@
+{
+	PresetMetadata: {
+		author: "Atheria",
+		category: "Atheria",
+		description: "PNJ de la campagne Atheria : Hajar.",
+		entityTypeId: "easy_npc:humanoid",
+		name: "Hajar",
+		variantType: "STEVE",
+		version: "1.0.0"
+	},
+	data: {
+		ActionData: {
+			ActionEventSet: {
+				ON_INTERACTION: [
+					{
+						Type: "OPEN_DEFAULT_DIALOG"
+					}
+				]
+			}
+		},
+		CustomName: '{"text": "Hajar", "color": "#E8C66A"}',
+		DialogData: {
+			DialogDataSet: [
+				{
+					Buttons: [
+						{
+							Actions: [
+								{
+									Cmd: "/tag @initiator add q_ch4_hajar",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/give @initiator atheria:carnet_hajar 1",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/clear @initiator atheria:carnet_survivant 1",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/playsound minecraft:entity.experience_orb.pickup master @initiator ~ ~ ~ 0.6 1.2",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Type: "CLOSE_DIALOG"
+								}
+							],
+							Conditions: [
+								{
+									Name: "atheria:carnet_survivant",
+									Type: "HAS_ITEM_IN_INVENTORY"
+								}
+							],
+							Label: "b_q_ch4_hajar",
+							Name: "Lui tendre le carnet"
+						}
+					],
+					Conditions: [
+						{
+							Name: "chapitre_4",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch4_hajar",
+					Name: "q_ch4_hajar",
+					Priority: 10,
+					Texts: [
+						{
+							Text: "Tu as un carnet. Je peux dessiner dedans ?\\n\\n— Qui es-tu ?\\n\\nLe neuf. Avant, j'avais un autre nom. Ils l'ont écrit sur une étiquette. Je l'ai mangée.\\n\\n— Tu as peur ?\\n\\nPas des Comocos. Eux ne me demandent rien. Les vivants, oui."
+						}
+					]
+				},
+				{
+					Conditions: [
+						{
+							Name: "q_ch4_hajar",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch4_hajar_fait",
+					Name: "q_ch4_hajar (fait)",
+					Priority: 11,
+					Texts: [
+						{
+							Text: "Tu as ce qu'il te faut. Avance."
+						}
+					]
+				},
+				{
+					Label: "repos",
+					Name: "Repos",
+					Priority: 1,
+					Texts: [
+						{
+							Text: "(Elle dessine. Elle ne lève pas les yeux.)"
+						}
+					]
+				}
+			],
+			Type: "STANDARD"
+		},
+		EasyNPCVersion: 3,
+		Invulnerable: 1b,
+		ObjectiveData: {
+			ObjectiveDataSet: [
+				{
+					Type: "LOOK_AT_PLAYER"
+				},
+				{
+					Type: "LOOK_AT_RESET"
+				}
+			]
+		},
+		PersistenceRequired: 1b,
+		VariantType: "STEVE",
+		id: "easy_npc:humanoid"
+	}
+}
