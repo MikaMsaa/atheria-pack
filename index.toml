@@ -1,6 +1,11 @@
 hash-format = "sha256"
 
 [[files]]
+file = "config/DistantHorizons.toml"
+hash = "722f30442dc754b64e8be277eb06d57b570eaf28afeb69b64499a63582dc18a6"
+preserve = true
+
+[[files]]
 file = "config/MouseTweaks.cfg"
 hash = "4069ce1a439d8c37453c1b1e9f2037e0942674c7e48723a39b37eab245792ad4"
 
@@ -429,12 +434,64 @@ file = "config/explorerscompass-common.toml"
 hash = "4067e50c6833df6619e511f2bc09630f16fa22e61cf250a8abbf3354afbe14f0"
 
 [[files]]
+file = "config/fancymenu/assets/atheria_fond_menu.png"
+hash = "baaf444a55af09eb2b263cf50251b47d7e4cf8de0280aa642d6a525ff45e172a"
+
+[[files]]
+file = "config/fancymenu/assets/atheria_icone_16.png"
+hash = "48464e9becdc6289f5c1dfcc65cdc1d115144ceb899d497aa6b623017185578f"
+
+[[files]]
+file = "config/fancymenu/assets/atheria_icone_32.png"
+hash = "490cc37d628ea60d3f711581b34a98d1d1726445329066ae134afb3310d39d27"
+
+[[files]]
+file = "config/fancymenu/assets/atheria_logo.png"
+hash = "69634e071ed314aa4648d14ef604eaa09d77f14d71eb4fedeaaed834320ed50f"
+
+[[files]]
+file = "config/fancymenu/assets/atheria_menu_multi.png"
+hash = "b3c93074e6970b98db3c758c405323a4d849199bf9d74fd68b3cd9ddc9ca545e"
+
+[[files]]
+file = "config/fancymenu/assets/atheria_menu_multi_survol.png"
+hash = "b19bfb78fd826b6a9861375555ee1a1e1d224d1e80037149ec0476c77c2c04d9"
+
+[[files]]
+file = "config/fancymenu/assets/atheria_menu_options.png"
+hash = "bf2895f48a8ed78dc5bfe17c9db09cbc629223756739f862ed80c3bcb83f7085"
+
+[[files]]
+file = "config/fancymenu/assets/atheria_menu_options_survol.png"
+hash = "2a72638bde738c03add8d3b0d9679715e7a4a32bfc90df3b2999aa46f10d64fd"
+
+[[files]]
+file = "config/fancymenu/assets/atheria_menu_quitter.png"
+hash = "3c1b1efae9b3f56afb1488c2d58fb978bd8306f686f450c80ff07255d705696a"
+
+[[files]]
+file = "config/fancymenu/assets/atheria_menu_quitter_survol.png"
+hash = "d1f9583260ff81c108a18ac36869f2d39b7e7360103c1d36cef2496e493e4f55"
+
+[[files]]
+file = "config/fancymenu/assets/atheria_menu_solo.png"
+hash = "118651894f557008b6585f9a5a99e9a05c005be795edf815c4c01a1afd39bb2e"
+
+[[files]]
+file = "config/fancymenu/assets/atheria_menu_solo_survol.png"
+hash = "2f9f4b1a5280eec10e4ee79685b4f9ffd3cda06ee125e1b334929e7711b3603c"
+
+[[files]]
 file = "config/fancymenu/custom_gui_screens.txt"
 hash = "ff492043eaf454c46e949d5eef32ece90cc5a19feb50a161dd29a43b5732c880"
 
 [[files]]
 file = "config/fancymenu/customizablemenus.txt"
-hash = "a83e520716f7d5fa43025d5991acd6e2160fc43ba604bd4c258b9f5c0812830f"
+hash = "ae1922ff3e34481bfeb856e8b0be55c51168ba9a7bb404f38aca4ee8d6f5bbce"
+
+[[files]]
+file = "config/fancymenu/customization/title_screen_layout.txt"
+hash = "4da72710a651cc984cd49eeba74b597354c192a1a01ac1fc2b46dd10315cfb1f"
 
 [[files]]
 file = "config/fancymenu/legacy_checklist.txt"
@@ -442,7 +499,7 @@ hash = "9a25d3dc708e43eabafce5479a13c02dae15bc7f673afb2745b8b2ba48a97dc0"
 
 [[files]]
 file = "config/fancymenu/options.txt"
-hash = "6df834ff0756d1d57f5ff20abcc8d5e716f7736fe38f83f390d5b4f539b407ab"
+hash = "30997ff85f761541c85689c426b82848da4c9d1a2840fa822d3e3a2539042f69"
 
 [[files]]
 file = "config/fancymenu/ui_themes/cherry_blossom.json"
@@ -498,7 +555,7 @@ hash = "1356f9d52b2dcb2afa5a593e53c286d9c1c3778a6f8b1cf761953b185b7dce78"
 
 [[files]]
 file = "config/firstaid-client.toml"
-hash = "c57dad484127ae12c351e900db9c913e9966c55356e90e585e2b4f8931e3aebb"
+hash = "2cf09add77c3e927ba8d9f2893e70515318c53529ca11e1fb3811d9540734f83"
 
 [[files]]
 file = "config/firstaid-common.toml"
@@ -785,6 +842,18 @@ file = "config/immediatelyfast.json"
 hash = "a6c9d147a51c9e432c5c74c00285cfc5ba8b6fa4a0c6686051a7168b158d0d7a"
 
 [[files]]
+file = "config/improvedmobs/client.toml"
+hash = "750d73495881ce0bd532d086c8778161f70efb9e379edb44127cef64036ec7ff"
+
+[[files]]
+file = "config/improvedmobs/common.toml"
+hash = "0a51e536934c45b7610d43a47ff910fdcc23c97452f6584b0db67fa2696ffd87"
+
+[[files]]
+file = "config/improvedmobs/equipment.json"
+hash = "b8bf2ea2bdee2547a442a3025a6c5b38065b99cd0db01fbeed6fee44ef9641f4"
+
+[[files]]
 file = "config/infnexus-common.toml"
 hash = "c97cd48ded528c8379c6fb720902567841cd63db949d0c85a3b6ed8f01d88477"
 
@@ -794,7 +863,7 @@ hash = "ca413dea02cce69c69dccdc525fb0ec013236876eff2d142772c68db3d772d3a"
 
 [[files]]
 file = "config/inventoryprofilesnext/inventoryprofiles.json"
-hash = "a44027e5b5bf7106a7657a84978cbdb46b0d55ac9db0cf77636d4670c4ebfdc3"
+hash = "f10c63890d90c1a09070da5c32174d8c19e1cf5aff0631ce741b40ff1639d1d0"
 
 [[files]]
 file = "config/iris-excluded.json"
@@ -1377,12 +1446,29 @@ file = "defaultconfigs/openpartiesandclaims-default-player-config.toml"
 hash = "6342359f7734999d406354ff1a74c80bb2468e2ed3630016155133bccbadc0be"
 
 [[files]]
+file = "essential/config.toml"
+hash = "eb2a5e6eb5f06d5c85c8ff446ad9767c2257f14382e6ad92293fe33d1cb44886"
+preserve = true
+
+[[files]]
+file = "icon.png"
+hash = "2b4cba94163746682ffad8accbf1d924bc00b55281624ae8ef2f2e1995d90cb0"
+
+[[files]]
 file = "kubejs/README.txt"
 hash = "989f3737ae4621b8ff6730bce4cbeeee756921e7e510e0c281c8a350501d98af"
 
 [[files]]
 file = "kubejs/client_scripts/atheria_infobulles.js"
 hash = "c15c76af573053652f87344a0c13274061b931edd58b30a9c68f717464b37390"
+
+[[files]]
+file = "kubejs/client_scripts/atheria_menu.js"
+hash = "991990e4d8ffdc58846b9472db7a56aafb2c485bafb126c6e3cadff85f4d4131"
+
+[[files]]
+file = "kubejs/client_scripts/atheria_touches.js"
+hash = "4bb5beac3c83bfa89c8f46dc7799e0c247ddcdffdc56543f250015cbdeadb368"
 
 [[files]]
 file = "kubejs/client_scripts/main.js"
@@ -1593,6 +1679,10 @@ file = "kubejs/server_scripts/atheria_recettes.js"
 hash = "89aa75ec45af277b55298d5dcad526dd8374c991802076c60af980a43dfcc14d"
 
 [[files]]
+file = "kubejs/server_scripts/atheria_spores.js"
+hash = "584801cbc62f4b112edc11f48bbe1c57db326af28d27ec55a47cdd550d193b68"
+
+[[files]]
 file = "kubejs/startup_scripts/atheria_archives_textes.js"
 hash = "30d4cab5a764475351ff4d79e697f081032c049e0997ee8b91acec25756aea83"
 
@@ -1640,6 +1730,10 @@ hash = "3434f9ec77694349b7b83e79ef179be25c8eeae83049a75d154098edb5a19889"
 metafile = true
 
 [[files]]
+file = "mods/atheria-maj.jar"
+hash = "f37718e0a435bd8a1a39849173e7f687a63f735cd97ebfa90a4a2b724f8e2d57"
+
+[[files]]
 file = "mods/atlas-lib.pw.toml"
 hash = "57d314558add15212267a2a73439def174a8d8179e3cbd6abf8926f23fbca2e5"
 metafile = true
@@ -1680,8 +1774,8 @@ hash = "24c6c3fe917ffbcef04e788dec3e003d0ed03433bc00f9cf4f23fe9b85636aa7"
 metafile = true
 
 [[files]]
-file = "mods/chunky.pw.toml"
-hash = "68cc51e721e993a8b7a2cbaf45369933b22b07a9c82327ab14757ee10684aa81"
+file = "mods/cinematic-zoom.pw.toml"
+hash = "fbc6a2a8e4c8f47ba30cf986eb52f9b06f567ff628bd1b09e6f55b248061459c"
 metafile = true
 
 [[files]]
@@ -1707,6 +1801,11 @@ metafile = true
 [[files]]
 file = "mods/corgilib.pw.toml"
 hash = "9ae835550d113663b527b6ba934dd7d758d8e0a93c68bb44d84eb1ef1be69159"
+metafile = true
+
+[[files]]
+file = "mods/coroutil.pw.toml"
+hash = "d901f874a1e09747b8d0d072c38c426eceead1f29c8ba36680f8f0082996b152"
 metafile = true
 
 [[files]]
@@ -1747,6 +1846,11 @@ metafile = true
 [[files]]
 file = "mods/data-anchor.pw.toml"
 hash = "64bdeecf2b2217fc22d5237a6bcc3b5f54a4352233040aaa0dbec4e8216f6536"
+metafile = true
+
+[[files]]
+file = "mods/distanthorizons.pw.toml"
+hash = "0c20fea3407ed0db85b4b171f1820a24987f2659946fadd30bae044205041b09"
 metafile = true
 
 [[files]]
@@ -1812,6 +1916,11 @@ metafile = true
 [[files]]
 file = "mods/entitytexturefeatures.pw.toml"
 hash = "37ae0fc372cc387710fb7cb525f79a405e88f9e88786f83c1e0834e127997d35"
+metafile = true
+
+[[files]]
+file = "mods/essential.pw.toml"
+hash = "b8704efc4521c57265565573b51b98e5128b0270e2494592edd64960a1919078"
 metafile = true
 
 [[files]]
@@ -1926,7 +2035,7 @@ metafile = true
 
 [[files]]
 file = "mods/improved-mobs.pw.toml"
-hash = "9584f7089b37574c1d8f3d70eb3a5628a6057cfdcf3ae71fffcbb8fb80c8c262"
+hash = "d5ae502f1f70b8fb8c495cc007b11d7585f5914bd3ef55af55cab1b8559bcfe2"
 metafile = true
 
 [[files]]
@@ -2135,6 +2244,11 @@ hash = "c0b066684294c33972d562e0cb08ea17b2d31bcf86cd1d6c63b8e968f0eac7a2"
 metafile = true
 
 [[files]]
+file = "mods/resourcify.pw.toml"
+hash = "72b75c125aee339e96885264e722420b5741f5bedac10ca3fba210d71a3a3af4"
+metafile = true
+
+[[files]]
 file = "mods/rhino.pw.toml"
 hash = "e55ca32b338a0e0540f4fec5170675d860566255ae0f45692a00cb4ebf2eb535"
 metafile = true
@@ -2230,6 +2344,11 @@ hash = "3c4da8a221086153d491104bba4fd8796dac92d5c3e0b2dc111a6c5d53b65484"
 metafile = true
 
 [[files]]
+file = "mods/studious-keybinds.pw.toml"
+hash = "f557c416202cf0d1116fe4f45762d6fac32c0a1c16dee92f14b9d66ec1796edb"
+metafile = true
+
+[[files]]
 file = "mods/subtle-effects.pw.toml"
 hash = "8fa75a87e3b90e25fb8a298c2250144607ff3b2d2052d0246f660719ea709195"
 metafile = true
@@ -2251,7 +2370,7 @@ metafile = true
 
 [[files]]
 file = "mods/tenshilib.pw.toml"
-hash = "44cc24dffd7820b303738a4e009001efb9c4e326d0569dab74717b697c289201"
+hash = "8a78c4d50191dd24096c788ea20f1ebec472a02bad3967578e4d0532e0e729d1"
 metafile = true
 
 [[files]]
@@ -2310,6 +2429,11 @@ hash = "50e173aa71f85519e2c742b62b09817df21940771f6875ec7965850a869ab405"
 metafile = true
 
 [[files]]
+file = "mods/what-are-they-up-to.pw.toml"
+hash = "9ce52d07c0c3d146a2a44f8bc187138ce7a5558a4e3ab540c86234702b6de274"
+metafile = true
+
+[[files]]
 file = "mods/worldedit.pw.toml"
 hash = "de999f6cc4c2f344e324b4f331fa9767844c31463c6e8066fcd67b613338ab8c"
 metafile = true
@@ -2361,7 +2485,7 @@ metafile = true
 
 [[files]]
 file = "options.txt"
-hash = "f92a01eceba5f868b52861f22bb747c68f5f4d9f6252a53564d5564b2c588b21"
+hash = "5d7a2f8c590a3320c69a6ac0f481d5b55168b3d1e68aa1c9919297f273acdc47"
 preserve = true
 
 [[files]]

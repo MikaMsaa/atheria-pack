@@ -25,11 +25,11 @@ S:custom_game_intro_skip_text = '';
 
 ##[window]
 
-B:show_custom_window_icon = 'false';
+B:show_custom_window_icon = 'true';
 S:custom_window_icon_macos = '';
-S:custom_window_icon_32 = '';
-S:custom_window_title = '';
-S:custom_window_icon_16 = '';
+S:custom_window_icon_32 = 'config/fancymenu/assets/atheria_icone_32.png';
+S:custom_window_title = 'Atheria Zombie Edition';
+S:custom_window_icon_16 = 'config/fancymenu/assets/atheria_icone_16.png';
 
 
 ##[global_customizations]

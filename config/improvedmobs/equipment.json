@@ -1,0 +1,1595 @@
+{
+  "version": 2,
+  "__comment": [
+    "Mobs will be able to equip items declared here",
+    "Value is the item. It also accepts item components. The default config has an example with a harming potion",
+    "Weight is the weight of an item. Higher weight means that the item is more likely to get choosen",
+    "Quality is a modifier applied to the weight. The final weight used is weight + quality * current difficulty"
+  ],
+  "MAINHAND": [
+    {
+      "value": "minecraft:crossbow",
+      "weight": 743.0,
+      "quality": 2.3784492015838623
+    },
+    {
+      "value": "minecraft:diamond_axe",
+      "weight": 622.0,
+      "quality": 2.5234663486480713
+    },
+    {
+      "value": "minecraft:diamond_sword",
+      "weight": 622.0,
+      "quality": 2.5230748653411865
+    },
+    {
+      "value": "minecraft:enchanted_book",
+      "weight": 874.0,
+      "quality": 2.2531449794769287
+    },
+    {
+      "value": "minecraft:fishing_rod",
+      "weight": 1640.0,
+      "quality": 1.8265984058380127
+    },
+    {
+      "value": "minecraft:golden_axe",
+      "weight": 1516.0,
+      "quality": 1.8751089572906494
+    },
+    {
+      "value": "minecraft:golden_sword",
+      "weight": 1518.0,
+      "quality": 1.8744251728057861
+    },
+    {
+      "value": "minecraft:iron_axe",
+      "weight": 1173.0,
+      "quality": 2.0427405834198
+    },
+    {
+      "value": "minecraft:iron_sword",
+      "weight": 1174.0,
+      "quality": 2.0419085025787354
+    },
+    {
+      "value": "minecraft:lava_bucket",
+      "weight": 1080.0,
+      "quality": 2.099463701248169
+    },
+    {
+      "value": "minecraft:netherite_axe",
+      "weight": 524.0,
+      "quality": 2.672145366668701
+    },
+    {
+      "value": "minecraft:netherite_sword",
+      "weight": 524.0,
+      "quality": 2.6717464923858643
+    },
+    {
+      "value": "minecraft:stone_axe",
+      "weight": 1958.0,
+      "quality": 1.7219034433364868
+    },
+    {
+      "value": "minecraft:stone_sword",
+      "weight": 1963.0,
+      "quality": 1.7204612493515015
+    },
+    {
+      "value": "minecraft:trident",
+      "weight": 1266.0,
+      "quality": 1.9912418127059937
+    },
+    {
+      "value": "minecraft:wooden_axe",
+      "weight": 1709.0,
+      "quality": 1.8018815517425537
+    },
+    {
+      "value": "minecraft:wooden_sword",
+      "weight": 1711.0,
+      "quality": 1.8011411428451538
+    },
+    {
+      "value": "create:cardboard_sword",
+      "weight": 396.0,
+      "quality": 2.9323763847351074
+    },
+    {
+      "value": "spore:infected_crossbow",
+      "weight": 798.0,
+      "quality": 2.3224828243255615
+    },
+    {
+      "value": "spore:reaver",
+      "weight": 1480.0,
+      "quality": 1.890385389328003
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:ump45",
+            "GunFireMode": "AUTO",
+            "GunCurrentAmmoCount": 25,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 114.0,
+      "quality": 4.442158222198486
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:m700",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 5,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 127.0,
+      "quality": 4.281260967254639
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:m107",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 10,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 114.0,
+      "quality": 4.43125057220459
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:m16a4",
+            "GunFireMode": "BURST",
+            "GunCurrentAmmoCount": 30,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 108.0,
+      "quality": 4.5101637840271
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:fn_evolys",
+            "GunFireMode": "AUTO",
+            "GunCurrentAmmoCount": 75,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 83.0,
+      "quality": 4.926937580108643
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:deagle",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 7,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 153.0,
+      "quality": 4.0239176750183105
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:hk416d",
+            "GunFireMode": "AUTO",
+            "GunCurrentAmmoCount": 30,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 106.0,
+      "quality": 4.54902982711792
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:rpg7",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 1,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 140.0,
+      "quality": 4.139705657958984
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:hk_mp5a5",
+            "GunFireMode": "AUTO",
+            "GunCurrentAmmoCount": 30,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 108.0,
+      "quality": 4.518355846405029
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:glock_17",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 17,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 136.0,
+      "quality": 4.186451435089111
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:db_short",
+            "GunFireMode": "BURST",
+            "GunCurrentAmmoCount": 2,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 68.0,
+      "quality": 5.25784969329834
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:aug",
+            "GunFireMode": "AUTO",
+            "GunCurrentAmmoCount": 30,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 110.0,
+      "quality": 4.490106582641602
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:aa12",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 8,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 82.0,
+      "quality": 4.954283237457275
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:m870",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 5,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 81.0,
+      "quality": 4.977107524871826
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:taurus500",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 5,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 165.0,
+      "quality": 3.9260435104370117
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:deagle_golden",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 9,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 147.0,
+      "quality": 4.073383331298828
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:springfield1873",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 1,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 138.0,
+      "quality": 4.15941858291626
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:taurus943",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 8,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 157.0,
+      "quality": 3.990694761276245
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:fn_fal",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 20,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 127.0,
+      "quality": 4.282500743865967
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:m4a1",
+            "GunFireMode": "AUTO",
+            "GunCurrentAmmoCount": 30,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 108.0,
+      "quality": 4.515864849090576
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:rhino357",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 6,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 160.0,
+      "quality": 3.9646778106689453
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:ak47",
+            "GunFireMode": "AUTO",
+            "GunCurrentAmmoCount": 30,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 112.0,
+      "quality": 4.46103048324585
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:m95",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 5,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 124.0,
+      "quality": 4.315695762634277
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:ai_awp",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 5,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 126.0,
+      "quality": 4.28880500793457
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:m1911",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 7,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 151.0,
+      "quality": 4.041787624359131
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:m16a1",
+            "GunFireMode": "AUTO",
+            "GunCurrentAmmoCount": 20,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 115.0,
+      "quality": 4.42708158493042
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:hk_g3",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 20,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 127.0,
+      "quality": 4.282288551330566
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:g36k",
+            "GunFireMode": "AUTO",
+            "GunCurrentAmmoCount": 30,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 109.0,
+      "quality": 4.5082550048828125
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:m320",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 1,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 141.0,
+      "quality": 4.136977195739746
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:m249",
+            "GunFireMode": "AUTO",
+            "GunCurrentAmmoCount": 75,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 83.0,
+      "quality": 4.926374435424805
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:spas_12",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 5,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 50.0,
+      "quality": 5.819240093231201
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:type_81",
+            "GunFireMode": "AUTO",
+            "GunCurrentAmmoCount": 30,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 112.0,
+      "quality": 4.4691290855407715
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:cz75",
+            "GunFireMode": "AUTO",
+            "GunCurrentAmmoCount": 16,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 120.0,
+      "quality": 4.363729476928711
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:uzi",
+            "GunFireMode": "AUTO",
+            "GunCurrentAmmoCount": 20,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 118.0,
+      "quality": 4.385813236236572
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:spr15hb",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 15,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 133.0,
+      "quality": 4.217321872711182
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:vector45",
+            "GunFireMode": "AUTO",
+            "GunCurrentAmmoCount": 20,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 106.0,
+      "quality": 4.539736747741699
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:lonetrail",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 1,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 185.0,
+      "quality": 3.779266834259033
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:rpk",
+            "GunFireMode": "AUTO",
+            "GunCurrentAmmoCount": 40,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 92.0,
+      "quality": 4.758364200592041
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:db_long",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 2,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 89.0,
+      "quality": 4.8114542961120605
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:mk14",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 10,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 138.0,
+      "quality": 4.159628868103027
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:p320",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 12,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 139.0,
+      "quality": 4.149181842803955
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:qbz_191",
+            "GunFireMode": "AUTO",
+            "GunCurrentAmmoCount": 30,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 109.0,
+      "quality": 4.500580310821533
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:scar_l",
+            "GunFireMode": "AUTO",
+            "GunCurrentAmmoCount": 30,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 111.0,
+      "quality": 4.474292755126953
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:minigun",
+            "GunFireMode": "AUTO",
+            "GunCurrentAmmoCount": 30,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 89.0,
+      "quality": 4.812996864318848
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:scar_h",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 20,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 121.0,
+      "quality": 4.349793434143066
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:hk_mk23",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 12,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 156.0,
+      "quality": 3.9959487915039062
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:m1014",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 6,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 81.0,
+      "quality": 4.977840900421143
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:b93r",
+            "GunFireMode": "BURST",
+            "GunCurrentAmmoCount": 20,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 120.0,
+      "quality": 4.35739278793335
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:qbz_95",
+            "GunFireMode": "AUTO",
+            "GunCurrentAmmoCount": 30,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 111.0,
+      "quality": 4.476958274841309
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:p90",
+            "GunFireMode": "AUTO",
+            "GunCurrentAmmoCount": 50,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 100.0,
+      "quality": 4.626993656158447
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:timeless50",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 8,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 151.0,
+      "quality": 4.040007591247559
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:kar98",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 4,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 127.0,
+      "quality": 4.282930850982666
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:m9a4",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 17,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 136.0,
+      "quality": 4.186451435089111
+    },
+    {
+      "value": {
+        "id": "tacz:modern_kinetic_gun",
+        "components": {
+          "minecraft:custom_data": {
+            "GunId": "tacz:sks_tactical",
+            "GunFireMode": "SEMI",
+            "GunCurrentAmmoCount": 10,
+            "HasBulletInBarrel": 1
+          }
+        }
+      },
+      "weight": 132.0,
+      "quality": 4.227094650268555
+    },
+    {
+      "value": "trydeas_meleez:acacia_spear",
+      "weight": 2355.0,
+      "quality": 1.6191219091415405
+    },
+    {
+      "value": "trydeas_meleez:acacia_spear_with_stone",
+      "weight": 1374.0,
+      "quality": 1.9377264976501465
+    },
+    {
+      "value": "trydeas_meleez:alloy_steel_bat",
+      "weight": 853.0,
+      "quality": 2.2710304260253906
+    },
+    {
+      "value": "trydeas_meleez:bamboo_spear",
+      "weight": 2355.0,
+      "quality": 1.6191219091415405
+    },
+    {
+      "value": "trydeas_meleez:bamboo_spear_with_stone",
+      "weight": 1374.0,
+      "quality": 1.9377264976501465
+    },
+    {
+      "value": "trydeas_meleez:baseball_bat",
+      "weight": 1421.0,
+      "quality": 1.9160593748092651
+    },
+    {
+      "value": "trydeas_meleez:birch_spear",
+      "weight": 2355.0,
+      "quality": 1.6191219091415405
+    },
+    {
+      "value": "trydeas_meleez:birch_spear_with_stone",
+      "weight": 1374.0,
+      "quality": 1.9377264976501465
+    },
+    {
+      "value": "trydeas_meleez:bone_dagger",
+      "weight": 1726.0,
+      "quality": 1.7958979606628418
+    },
+    {
+      "value": "trydeas_meleez:bow_saw",
+      "weight": 1013.0,
+      "quality": 2.145019769668579
+    },
+    {
+      "value": "trydeas_meleez:butcher_knife",
+      "weight": 1042.0,
+      "quality": 2.124990701675415
+    },
+    {
+      "value": "trydeas_meleez:cherry_spear",
+      "weight": 2355.0,
+      "quality": 1.6191219091415405
+    },
+    {
+      "value": "trydeas_meleez:cherry_spear_with_stone",
+      "weight": 1374.0,
+      "quality": 1.9377264976501465
+    },
+    {
+      "value": "trydeas_meleez:crowbar",
+      "weight": 1102.0,
+      "quality": 2.0854921340942383
+    },
+    {
+      "value": "trydeas_meleez:dark_oak_spear",
+      "weight": 2355.0,
+      "quality": 1.6191219091415405
+    },
+    {
+      "value": "trydeas_meleez:dark_oak_spear_with_stone",
+      "weight": 1374.0,
+      "quality": 1.9377264976501465
+    },
+    {
+      "value": "trydeas_meleez:f_type_wrench",
+      "weight": 775.0,
+      "quality": 2.3450422286987305
+    },
+    {
+      "value": "trydeas_meleez:farm_fork",
+      "weight": 1293.0,
+      "quality": 1.9770911931991577
+    },
+    {
+      "value": "trydeas_meleez:firefighter_axe",
+      "weight": 788.0,
+      "quality": 2.3321986198425293
+    },
+    {
+      "value": "trydeas_meleez:first_blood",
+      "weight": 791.0,
+      "quality": 2.329535961151123
+    },
+    {
+      "value": "trydeas_meleez:first_blood_2",
+      "weight": 791.0,
+      "quality": 2.329535961151123
+    },
+    {
+      "value": "trydeas_meleez:golf_club",
+      "weight": 1407.0,
+      "quality": 1.9223798513412476
+    },
+    {
+      "value": "trydeas_meleez:hammer",
+      "weight": 1195.0,
+      "quality": 2.0298047065734863
+    },
+    {
+      "value": "trydeas_meleez:handsaw",
+      "weight": 884.0,
+      "quality": 2.2444372177124023
+    },
+    {
+      "value": "trydeas_meleez:hockey_stick",
+      "weight": 1602.0,
+      "quality": 1.8412346839904785
+    },
+    {
+      "value": "trydeas_meleez:hooligan_tool",
+      "weight": 1095.0,
+      "quality": 2.0898025035858154
+    },
+    {
+      "value": "trydeas_meleez:improvised_halberd",
+      "weight": 990.0,
+      "quality": 2.1610989570617676
+    },
+    {
+      "value": "trydeas_meleez:jungle_spear",
+      "weight": 2355.0,
+      "quality": 1.6191219091415405
+    },
+    {
+      "value": "trydeas_meleez:jungle_spear_with_stone",
+      "weight": 1374.0,
+      "quality": 1.9377264976501465
+    },
+    {
+      "value": "trydeas_meleez:ka-bar",
+      "weight": 891.0,
+      "quality": 2.2387607097625732
+    },
+    {
+      "value": "trydeas_meleez:katana",
+      "weight": 610.0,
+      "quality": 2.539431571960449
+    },
+    {
+      "value": "trydeas_meleez:kitchen_fork",
+      "weight": 1233.0,
+      "quality": 2.0086467266082764
+    },
+    {
+      "value": "trydeas_meleez:knife",
+      "weight": 1284.0,
+      "quality": 1.981826901435852
+    },
+    {
+      "value": "trydeas_meleez:kukri",
+      "weight": 664.0,
+      "quality": 2.4689269065856934
+    },
+    {
+      "value": "trydeas_meleez:long_metal_pipe",
+      "weight": 852.0,
+      "quality": 2.271824598312378
+    },
+    {
+      "value": "trydeas_meleez:longsword",
+      "weight": 721.0,
+      "quality": 2.40229868888855
+    },
+    {
+      "value": "trydeas_meleez:lumberjack_axe",
+      "weight": 1028.0,
+      "quality": 2.134585380554199
+    },
+    {
+      "value": "trydeas_meleez:machete",
+      "weight": 758.0,
+      "quality": 2.361988067626953
+    },
+    {
+      "value": "trydeas_meleez:macuahuitl",
+      "weight": 895.0,
+      "quality": 2.2348361015319824
+    },
+    {
+      "value": "trydeas_meleez:mangrove_spear",
+      "weight": 2355.0,
+      "quality": 1.6191219091415405
+    },
+    {
+      "value": "trydeas_meleez:mangrove_spear_with_stone",
+      "weight": 1374.0,
+      "quality": 1.9377264976501465
+    },
+    {
+      "value": "trydeas_meleez:metal_pipe",
+      "weight": 1327.0,
+      "quality": 1.9603018760681152
+    },
+    {
+      "value": "trydeas_meleez:oak_spear",
+      "weight": 2355.0,
+      "quality": 1.6191219091415405
+    },
+    {
+      "value": "trydeas_meleez:oak_spear_with_stone",
+      "weight": 1374.0,
+      "quality": 1.9377264976501465
+    },
+    {
+      "value": "trydeas_meleez:plank",
+      "weight": 1381.0,
+      "quality": 1.9343369007110596
+    },
+    {
+      "value": "trydeas_meleez:plank_with_nails",
+      "weight": 1613.0,
+      "quality": 1.836834192276001
+    },
+    {
+      "value": "trydeas_meleez:rolling_pin",
+      "weight": 1489.0,
+      "quality": 1.8863738775253296
+    },
+    {
+      "value": "trydeas_meleez:saw",
+      "weight": 1176.0,
+      "quality": 2.0410497188568115
+    },
+    {
+      "value": "trydeas_meleez:scythe",
+      "weight": 1175.0,
+      "quality": 2.041248321533203
+    },
+    {
+      "value": "trydeas_meleez:short_axe",
+      "weight": 871.0,
+      "quality": 2.255535840988159
+    },
+    {
+      "value": "trydeas_meleez:sledge_hammer",
+      "weight": 570.0,
+      "quality": 2.5979623794555664
+    },
+    {
+      "value": "trydeas_meleez:spike_baseball_bat",
+      "weight": 1209.0,
+      "quality": 2.0222530364990234
+    },
+    {
+      "value": "trydeas_meleez:spiked_mace",
+      "weight": 777.0,
+      "quality": 2.3430440425872803
+    },
+    {
+      "value": "trydeas_meleez:spruce_spear",
+      "weight": 2355.0,
+      "quality": 1.6191219091415405
+    },
+    {
+      "value": "trydeas_meleez:spruce_spear_with_stone",
+      "weight": 1374.0,
+      "quality": 1.9377264976501465
+    },
+    {
+      "value": "trydeas_meleez:stop_sign",
+      "weight": 878.0,
+      "quality": 2.2492518424987793
+    },
+    {
+      "value": "trydeas_meleez:stop_sign_head",
+      "weight": 1081.0,
+      "quality": 2.0986859798431396
+    },
+    {
+      "value": "trydeas_meleez:table_knife",
+      "weight": 1517.0,
+      "quality": 1.8749027252197266
+    },
+    {
+      "value": "trydeas_meleez:tactical_kama",
+      "weight": 896.0,
+      "quality": 2.23400616645813
+    },
+    {
+      "value": "trydeas_meleez:tomahawk",
+      "weight": 810.0,
+      "quality": 2.310506820678711
+    },
+    {
+      "value": "trydeas_meleez:wrench",
+      "weight": 851.0,
+      "quality": 2.2733476161956787
+    }
+  ],
+  "OFFHAND": [
+    {
+      "value": "minecraft:bow",
+      "weight": 280.0,
+      "quality": 3.290846586227417
+    },
+    {
+      "value": "minecraft:ender_pearl",
+      "weight": 249.0,
+      "quality": 3.4219555854797363
+    },
+    {
+      "value": "minecraft:flint_and_steel",
+      "weight": 314.0,
+      "quality": 3.166661024093628
+    },
+    {
+      "value": {
+        "id": "minecraft:lingering_potion",
+        "components": {
+          "minecraft:potion_contents": {
+            "potion": "minecraft:harming"
+          }
+        }
+      },
+      "weight": 265.0,
+      "quality": 3.3509604930877686
+    },
+    {
+      "value": "minecraft:shield",
+      "weight": 288.0,
+      "quality": 3.261826753616333
+    },
+    {
+      "value": "minecraft:snowball",
+      "weight": 430.0,
+      "quality": 2.852998733520508
+    },
+    {
+      "value": {
+        "id": "minecraft:splash_potion",
+        "components": {
+          "minecraft:potion_contents": {
+            "potion": "minecraft:harming"
+          }
+        }
+      },
+      "weight": 265.0,
+      "quality": 3.3509604930877686
+    },
+    {
+      "value": "minecraft:tnt",
+      "weight": 139.0,
+      "quality": 4.15199613571167
+    },
+    {
+      "value": "minecraft:wind_charge",
+      "weight": 222.0,
+      "quality": 3.5533087253570557
+    },
+    {
+      "value": "spore:infected_bow",
+      "weight": 264.0,
+      "quality": 3.355025291442871
+    },
+    {
+      "value": "spore:shield",
+      "weight": 373.0,
+      "quality": 2.992276430130005
+    },
+    {
+      "value": "supplementaries:bomb",
+      "weight": 105.0,
+      "quality": 4.559698581695557
+    },
+    {
+      "value": "supplementaries:bomb_blue",
+      "weight": 84.0,
+      "quality": 4.902812480926514
+    }
+  ],
+  "FEET": [
+    {
+      "value": "minecraft:chainmail_boots",
+      "weight": 566.0,
+      "quality": 2.6033682823181152
+    },
+    {
+      "value": "minecraft:diamond_boots",
+      "weight": 192.0,
+      "quality": 3.7328267097473145
+    },
+    {
+      "value": "minecraft:golden_boots",
+      "weight": 636.0,
+      "quality": 2.50480318069458
+    },
+    {
+      "value": "minecraft:iron_boots",
+      "weight": 470.0,
+      "quality": 2.7706329822540283
+    },
+    {
+      "value": "minecraft:leather_boots",
+      "weight": 855.0,
+      "quality": 2.269615411758423
+    },
+    {
+      "value": "minecraft:netherite_boots",
+      "weight": 134.0,
+      "quality": 4.205281734466553
+    },
+    {
+      "value": "create:cardboard_boots",
+      "weight": 1105.0,
+      "quality": 2.083310127258301
+    },
+    {
+      "value": "create:copper_diving_boots",
+      "weight": 784.0,
+      "quality": 2.3359861373901367
+    },
+    {
+      "value": "create:netherite_diving_boots",
+      "weight": 134.0,
+      "quality": 4.205281734466553
+    },
+    {
+      "value": "spore:inf_boots",
+      "weight": 121.0,
+      "quality": 4.353055953979492
+    },
+    {
+      "value": "spore:inf_up_boots",
+      "weight": 80.0,
+      "quality": 4.988813877105713
+    },
+    {
+      "value": "spore:living_boots",
+      "weight": 356.0,
+      "quality": 3.0379064083099365
+    },
+    {
+      "value": "spore:plated_boots",
+      "weight": 204.0,
+      "quality": 3.6544954776763916
+    }
+  ],
+  "LEGS": [
+    {
+      "value": "minecraft:chainmail_leggings",
+      "weight": 414.0,
+      "quality": 2.890389919281006
+    },
+    {
+      "value": "minecraft:diamond_leggings",
+      "weight": 184.0,
+      "quality": 3.786785840988159
+    },
+    {
+      "value": "minecraft:golden_leggings",
+      "weight": 545.0,
+      "quality": 2.6361663341522217
+    },
+    {
+      "value": "minecraft:iron_leggings",
+      "weight": 339.0,
+      "quality": 3.087395429611206
+    },
+    {
+      "value": "minecraft:leather_leggings",
+      "weight": 843.0,
+      "quality": 2.2802062034606934
+    },
+    {
+      "value": "minecraft:netherite_leggings",
+      "weight": 130.0,
+      "quality": 4.2460479736328125
+    },
+    {
+      "value": "create:cardboard_leggings",
+      "weight": 1196.0,
+      "quality": 2.0291643142700195
+    },
+    {
+      "value": "spore:inf_pants",
+      "weight": 103.0,
+      "quality": 4.587804794311523
+    },
+    {
+      "value": "spore:inf_up_pants",
+      "weight": 79.0,
+      "quality": 5.01784086227417
+    },
+    {
+      "value": "spore:living_pants",
+      "weight": 280.0,
+      "quality": 3.29264497756958
+    },
+    {
+      "value": "spore:plated_pants",
+      "weight": 197.0,
+      "quality": 3.699657440185547
+    }
+  ],
+  "CHEST": [
+    {
+      "value": "minecraft:chainmail_chestplate",
+      "weight": 554.0,
+      "quality": 2.6231625080108643
+    },
+    {
+      "value": "minecraft:diamond_chestplate",
+      "weight": 216.0,
+      "quality": 3.5873680114746094
+    },
+    {
+      "value": "minecraft:elytra",
+      "weight": 1360.0,
+      "quality": 1.944161295890808
+    },
+    {
+      "value": "minecraft:golden_chestplate",
+      "weight": 528.0,
+      "quality": 2.663980722427368
+    },
+    {
+      "value": "minecraft:iron_chestplate",
+      "weight": 455.0,
+      "quality": 2.8006198406219482
+    },
+    {
+      "value": "minecraft:leather_chestplate",
+      "weight": 1021.0,
+      "quality": 2.1393332481384277
+    },
+    {
+      "value": "minecraft:netherite_chestplate",
+      "weight": 148.0,
+      "quality": 4.070220470428467
+    },
+    {
+      "value": "create:cardboard_chestplate",
+      "weight": 2248.0,
+      "quality": 1.6444430351257324
+    },
+    {
+      "value": "create:copper_backtank",
+      "weight": 275.0,
+      "quality": 3.311984062194824
+    },
+    {
+      "value": "create:netherite_backtank",
+      "weight": 119.0,
+      "quality": 4.373668193817139
+    },
+    {
+      "value": "spore:inf_chest",
+      "weight": 139.0,
+      "quality": 4.152498722076416
+    },
+    {
+      "value": "spore:inf_up_chest",
+      "weight": 92.0,
+      "quality": 4.771834373474121
+    },
+    {
+      "value": "spore:living_chest",
+      "weight": 391.0,
+      "quality": 2.9456419944763184
+    },
+    {
+      "value": "spore:plated_chest",
+      "weight": 233.0,
+      "quality": 3.4962527751922607
+    },
+    {
+      "value": "spore:r_elytron",
+      "weight": 426.0,
+      "quality": 2.861240863800049
+    }
+  ],
+  "HEAD": [
+    {
+      "value": "minecraft:chainmail_helmet",
+      "weight": 305.0,
+      "quality": 3.1971330642700195
+    },
+    {
+      "value": "minecraft:diamond_helmet",
+      "weight": 142.0,
+      "quality": 4.123486518859863
+    },
+    {
+      "value": "minecraft:golden_helmet",
+      "weight": 321.0,
+      "quality": 3.1461479663848877
+    },
+    {
+      "value": "minecraft:iron_helmet",
+      "weight": 311.0,
+      "quality": 3.1776440143585205
+    },
+    {
+      "value": "minecraft:leather_helmet",
+      "weight": 675.0,
+      "quality": 2.4549081325531006
+    },
+    {
+      "value": "minecraft:netherite_helmet",
+      "weight": 118.0,
+      "quality": 4.390105247497559
+    },
+    {
+      "value": "minecraft:shulker_shell",
+      "weight": 500.0,
+      "quality": 2.7144176959991455
+    },
+    {
+      "value": "minecraft:turtle_helmet",
+      "weight": 278.0,
+      "quality": 3.2977280616760254
+    },
+    {
+      "value": "create:cardboard_helmet",
+      "weight": 761.0,
+      "quality": 2.35971736907959
+    },
+    {
+      "value": "create:copper_diving_helmet",
+      "weight": 326.0,
+      "quality": 3.1292243003845215
+    },
+    {
+      "value": "create:goggles",
+      "weight": 0.0,
+      "quality": 0.0
+    },
+    {
+      "value": "create:netherite_diving_helmet",
+      "weight": 118.0,
+      "quality": 4.390105247497559
+    },
+    {
+      "value": "spore:gas_mask",
+      "weight": 0.0,
+      "quality": 0.0
+    },
+    {
+      "value": "spore:inf_helmet",
+      "weight": 96.0,
+      "quality": 4.69584846496582
+    },
+    {
+      "value": "spore:inf_up_helmet",
+      "weight": 83.0,
+      "quality": 4.922745704650879
+    },
+    {
+      "value": "spore:living_helmet",
+      "weight": 255.0,
+      "quality": 3.396944284439087
+    },
+    {
+      "value": "spore:plated_helmet",
+      "weight": 101.0,
+      "quality": 4.620671272277832
+    }
+  ]
+}
