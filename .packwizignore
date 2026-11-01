@@ -1,6 +1,9 @@
 # Caches, logs et fichiers propres a chaque PC : jamais envoyes aux joueurs
 *.log
 *.bak
+# Outils de mise a jour : sur GitHub pour la commande de pre-lancement, hors de l'index
+atheria-maj.bat
+packwiz-installer-bootstrap.jar
 config/fancymenu/user_variables.db
 config/sodium-fingerprint.json
 config/voicechat/username-cache.json
@@ -8,9 +11,10 @@ config/jei/server/world/
 kubejs/exported/
 kubejs/logs/
 kubejs/probe/
-config/inventoryprofilesnext/*/villager-trading-config-v2.json
-config/inventoryprofilesnext/*/prev-villager-trading-config-v2.json
+config/inventoryprofilesnext/Atheria Villes/
+config/inventoryprofilesnext/Test Atheria/
 
 # Fichiers du depot GitHub, pas du jeu
 README.md
 .gitattributes
+.gitignore
