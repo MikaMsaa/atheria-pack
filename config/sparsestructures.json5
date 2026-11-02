@@ -16,25 +16,46 @@
 
   // this is a list of custom spread factors
   "customSpreadFactors": [
-    // example of the mansion being doubled in rarity (the mod's default)
-    {
-      "structure": "minecraft:mansion",
-      "factor": 2
-    },
-    // add the structures you want to modify in the format:
-    // (don't forget to remove "//", and use dots for decimal numbers)
-    //
-    // {
-    //     "structure": "namespace:structure_name",
-    //     "factor": number
-    // },
-    //
-    // where "structure" is a structure_set or the name of a structure
-    // /!\ if you put the name of a structure, all structures in its set will be modified
-    // (example: "minecraft:village_plains" will modify all structures in the "villages" set)
-    // see https://minecraft.wiki/w/Tutorials/Custom_structures#Structure_Set for more info
-    //
-    // tip: you can dump all structure sets in a file by running the custom command /dumpstructuresets
-    // tip: the same spread factors rules apply here (set to 0 to disable said structure)
+    { "structure": "minecraft:villages", "factor": 0.4 },
+    { "structure": "repurposed_structures:villages_overworld", "factor": 0.5 },
+    { "structure": "explorify:taverns", "factor": 0 },
+    { "structure": "structory_towers:ultra_rare_towers", "factor": 0 },
+    { "structure": "minecraft:nether_fossils", "factor": 0 },
+    { "structure": "minecraft:ruined_portals", "factor": 0 },
+    { "structure": "minecraft:ancient_cities", "factor": 0 },
+    { "structure": "minecraft:trial_chambers", "factor": 0 },
+    { "structure": "minecraft:ocean_monuments", "factor": 0 },
+    { "structure": "minecraft:desert_pyramids", "factor": 0 },
+    { "structure": "minecraft:jungle_temples", "factor": 0 },
+    { "structure": "minecraft:swamp_huts", "factor": 0 },
+    { "structure": "minecraft:woodland_mansions", "factor": 0 },
+    { "structure": "mowziesmobs:monasteries", "factor": 0 },
+    { "structure": "mowziesmobs:wrought_chambers", "factor": 0 },
+    { "structure": "mowziesmobs:umvuthana_groves", "factor": 0 },
+    { "structure": "friendsandfoes:citadel", "factor": 0 },
+    { "structure": "friendsandfoes:iceologer_cabin", "factor": 0 },
+    { "structure": "friendsandfoes:illusioner_shack", "factor": 0 },
+    { "structure": "friendsandfoes:illusioner_training_grounds", "factor": 0 },
+    { "structure": "explorify:black_spirals", "factor": 0 },
+    { "structure": "explorify:mausoleums", "factor": 0 },
+    { "structure": "explorify:dark_forest_settlements", "factor": 0 },
+    { "structure": "explorify:badlands_pyramids", "factor": 0 },
+    { "structure": "explorify:desert_shrines", "factor": 0 },
+    { "structure": "terralith:mage", "factor": 0 },
+    { "structure": "terralith:rare_dungeon", "factor": 0 },
+    { "structure": "terralith:underground_dungeon", "factor": 0 },
+    { "structure": "repurposed_structures:ancient_cities_overworld", "factor": 0 },
+    { "structure": "repurposed_structures:bastions_overworld", "factor": 0 },
+    { "structure": "repurposed_structures:cities_overworld", "factor": 0 },
+    { "structure": "repurposed_structures:fortresses_overworld", "factor": 0 },
+    { "structure": "repurposed_structures:mineshafts_ocean", "factor": 0 },
+    { "structure": "repurposed_structures:monuments_overworld", "factor": 0 },
+    { "structure": "repurposed_structures:outposts_ocean", "factor": 0 },
+    { "structure": "repurposed_structures:pyramids_overworld", "factor": 0 },
+    { "structure": "repurposed_structures:pyramids_mushroom", "factor": 0 },
+    { "structure": "repurposed_structures:temples_overworld", "factor": 0 },
+    { "structure": "repurposed_structures:witch_huts_overworld", "factor": 0 },
+    { "structure": "repurposed_structures:villages_mushroom", "factor": 0 },
+    { "structure": "supplementaries:galleons", "factor": 0 },
   ]
 }

@@ -1,19 +1,42 @@
 {
     "type":  "neoforge:add_spawns",
     "biomes":  [
+                   "minecraft:forest",
+                   "minecraft:flower_forest",
+                   "minecraft:birch_forest",
+                   "minecraft:old_growth_birch_forest",
+                   "minecraft:dark_forest",
+                   "terralith:forested_highlands",
+                   "terralith:lavender_forest",
+                   "terralith:sakura_grove",
+                   "terralith:temperate_highlands",
+                   "biomesoplenty:woodland",
+                   "biomesoplenty:old_growth_woodland",
+                   "biomesoplenty:maple_woods",
+                   "biomesoplenty:seasonal_forest",
+                   "biomesoplenty:orchard",
+                   "biomesoplenty:aspen_glade",
+                   "biomesoplenty:mediterranean_forest",
+                   "biomesoplenty:jacaranda_glade",
                    "minecraft:jungle",
                    "minecraft:bamboo_jungle",
                    "minecraft:sparse_jungle",
-                   "minecraft:forest",
-                   "minecraft:dark_forest",
-                   "minecraft:birch_forest"
+                   "terralith:amethyst_rainforest",
+                   "terralith:jungle_mountains",
+                   "terralith:rocky_jungle",
+                   "terralith:tropical_jungle",
+                   "terralith:cloud_forest",
+                   "biomesoplenty:rainforest",
+                   "biomesoplenty:rocky_rainforest",
+                   "biomesoplenty:tropics",
+                   "biomesoplenty:overgrown_greens"
                ],
     "spawners":  [
                      {
                          "type":  "jurassicreborn:megatherium",
-                         "weight":  1,
+                         "weight":  5,
                          "minCount":  1,
-                         "maxCount":  2
+                         "maxCount":  1
                      }
                  ]
 }

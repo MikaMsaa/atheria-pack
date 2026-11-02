@@ -23,7 +23,7 @@
 	#The offset on the y axis
 	# Default: 1
 	# Range: -32768 ~ 32767
-	yOffset = 54
+	yOffset = 2
 	#Determines the transparency of the overlay. 200 = Maximum transparency, 0 = Fully opaque
 	# Default: 50
 	# Range: 0 ~ 200
@@ -32,7 +32,7 @@
 	#If set to -1, the HUD is always visible
 	# Default: -1
 	# Range: -1 ~ 600
-	visibleDurationTicks = -1
+	visibleDurationTicks = 100
 	#If set to true, the overlay will flash for a short moment if the health changed. Only affects PLAYER_MODEL overlay
 	flash = true
 	#If true, hides status indicator lines under the player-model HUD. Default true.
@@ -44,7 +44,7 @@
 	#Tinnitus duration as a percentage of the original clip (1-400). Values above 100 loop the clip.
 	# Default: 75
 	# Range: 1 ~ 400
-	tinnitusDurationPercent = 75
+	tinnitusDurationPercent = 50
 	#Set to true to enable the debuff sounds. Only matters when debuffs are enabled
 	enableSoundSystem = true
 	#Disables the funny easter eggs on certain events if false

@@ -190,6 +190,16 @@ LootJS.lootTables(event => {
   Object.keys(INJECTIONS).filter(existe).forEach(id => {
     const table = event.getLootTable(id)
     INJECTIONS[id].forEach(ajout => table.createPool(pool => pool.addEntry(LootEntry.reference(ajout))))
+    // Lieux militaires : gilets, casques, masques et explosifs
+    if (INJECTIONS[id].some(ajout => /militaire|armurerie|depot_munitions|police/.test(ajout))) {
+      table.createPool(pool => pool.addEntry(LootEntry.reference('atheria:inject/equipement_militaire')))
+      table.createPool(pool => pool.addEntry(LootEntry.reference('atheria:inject/explosifs')))
+    }
+  })
+
+  // Le Nether et l'End sont fermés : leurs objets se trouvent dans les coffres de l'Overworld
+  debut.concat(civil).filter((id, i, liste) => liste.indexOf(id) == i).forEach(id => {
+    event.getLootTable(id).createPool(pool => pool.addEntry(LootEntry.reference('atheria:inject/raretes')))
   })
 })
 

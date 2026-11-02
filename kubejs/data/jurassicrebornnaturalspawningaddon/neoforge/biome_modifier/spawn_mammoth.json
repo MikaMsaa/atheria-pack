@@ -3,17 +3,24 @@
     "biomes":  [
                    "minecraft:snowy_plains",
                    "minecraft:ice_spikes",
-                   "minecraft:taiga",
                    "minecraft:snowy_taiga",
-                   "minecraft:old_growth_pine_taiga",
-                   "minecraft:windswept_hills",
-                   "minecraft:jagged_peaks",
-                   "minecraft:stony_peaks"
+                   "minecraft:grove",
+                   "terralith:wintry_forest",
+                   "terralith:wintry_lowlands",
+                   "terralith:snowy_shield",
+                   "terralith:snowy_maple_forest",
+                   "terralith:siberian_grove",
+                   "biomesoplenty:tundra",
+                   "biomesoplenty:muskeg",
+                   "biomesoplenty:snowy_coniferous_forest",
+                   "biomesoplenty:snowy_fir_clearing",
+                   "biomesoplenty:snowy_maple_woods",
+                   "biomesoplenty:cold_desert"
                ],
     "spawners":  [
                      {
                          "type":  "jurassicreborn:mammoth",
-                         "weight":  1,
+                         "weight":  8,
                          "minCount":  1,
                          "maxCount":  2
                      }

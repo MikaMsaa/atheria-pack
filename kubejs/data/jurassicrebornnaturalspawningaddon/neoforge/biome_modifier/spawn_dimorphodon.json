@@ -2,18 +2,26 @@
     "type":  "neoforge:add_spawns",
     "biomes":  [
                    "minecraft:windswept_hills",
-                   "minecraft:jagged_peaks",
+                   "minecraft:windswept_gravelly_hills",
                    "minecraft:stony_peaks",
-                   "minecraft:beach",
                    "minecraft:stony_shore",
-                   "minecraft:forest",
-                   "minecraft:dark_forest",
-                   "minecraft:birch_forest"
+                   "terralith:rocky_mountains",
+                   "terralith:granite_cliffs",
+                   "terralith:white_cliffs",
+                   "terralith:basalt_cliffs",
+                   "terralith:yosemite_cliffs",
+                   "terralith:haze_mountain",
+                   "terralith:highlands",
+                   "terralith:alpine_highlands",
+                   "terralith:emerald_peaks",
+                   "terralith:scarlet_mountains",
+                   "biomesoplenty:highland",
+                   "biomesoplenty:crag"
                ],
     "spawners":  [
                      {
                          "type":  "jurassicreborn:dimorphodon",
-                         "weight":  1,
+                         "weight":  8,
                          "minCount":  1,
                          "maxCount":  2
                      }

@@ -2,7 +2,7 @@ hash-format = "sha256"
 
 [[files]]
 file = "config/DistantHorizons.toml"
-hash = "53ba8fdba3c3f840c06ac0293cceab9a0709ebcac382d67a797fd90c590d9e70"
+hash = "72146d7ae4571a92c83badc3bcb8e7b6758a794ba34d16e07674301f998eef40"
 preserve = true
 
 [[files]]
@@ -84,6 +84,10 @@ hash = "729f40d0d917ea34a3af67d81d42a534314a8f9b9030a59146d13e4f796270f8"
 [[files]]
 file = "config/betterstrongholds/neoforge-1_21/rareblocks.json"
 hash = "89a9e8ca3be505dbf6d91ee5d287f79ba5c93699a074da4bcf3b7ad9303c5f9d"
+
+[[files]]
+file = "config/biomesoplenty/biome_toggles.json"
+hash = "45832f0758c5251f86fcf6b2a676fd96f0b991f53ea4860b9fc070047df349a2"
 
 [[files]]
 file = "config/bunkers-common.toml"
@@ -563,7 +567,7 @@ hash = "1356f9d52b2dcb2afa5a593e53c286d9c1c3778a6f8b1cf761953b185b7dce78"
 
 [[files]]
 file = "config/firstaid-client.toml"
-hash = "efdceefedd5b51968aeb5efaa9cb085d11f1f050efced5a5071cc42990a47fc1"
+hash = "1a8afb953799885ade50912eb0af3bc9723db0601ffe0b0f7843dfe8b3e913f1"
 
 [[files]]
 file = "config/firstaid-common.toml"
@@ -571,7 +575,7 @@ hash = "e2253d1cfa99c75760c214d6d7fc0e0649fcf79e6015cc6f8ffe5dcf3a28f590"
 
 [[files]]
 file = "config/firstaid-server.toml"
-hash = "ae1c80e3f92310b11ddbf3e31aa07099a8a4d4bbda0c9d4dfc00791c2eb110c7"
+hash = "5c61144b55cdd9414bfa68c595ec6199e09e592fa952fee187bbe6637914d1f9"
 
 [[files]]
 file = "config/firstperson.json"
@@ -639,7 +643,7 @@ hash = "46bc900570b56d7887184da34987a378b3d35630292daf3a110cac8efba77450"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/exploration.snbt"
-hash = "af4bd6776782ef22ad2ab7d62df6a67282190344bbaa4f208d8216988f722c98"
+hash = "4b28c53f22ca0c1720fceefe8de29f10b5270a98af9c2ca2167b6651c4600e7a"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/final.snbt"
@@ -663,7 +667,7 @@ hash = "81986c9dc19130f80762c977c2c1ea9ec4265bc00f3669358df58aa0d197de0d"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us.snbt"
-hash = "a9a7d952fe5fea5017dc0e599ff18e2737dd4c0549e0a83b36105a43181a7ffe"
+hash = "8713da234212511e5adce01996eed9178d9a589f0501f68b4cd701dc7f2343e7"
 
 [[files]]
 file = "config/ftbquests/quests/lang/fr_fr.snbt"
@@ -879,7 +883,7 @@ hash = "4d3264b58c502afaeca3f44e8d2db0843c54b8ba957afd21a2d450fe10dafefb"
 
 [[files]]
 file = "config/iris.properties"
-hash = "d1acf2ec7423872f3b8a8bf8e66efb738a781d31fe589b39268b087297484537"
+hash = "b1f1c0ff05b439658477d4369973af93be9643313ff817f65bffffeb56e9acab"
 preserve = true
 
 [[files]]
@@ -1092,7 +1096,7 @@ hash = "0acb3a4954db8f800f9458d8dbc8d98f5f91b808406858b87ad011c9c96dfa17"
 
 [[files]]
 file = "config/mtsconfigclient.json"
-hash = "24d8e996854169a0c0cfb69c7d27d31c638dc1e5de3a7db8e8d422cf93ad7d9c"
+hash = "57e550354347ebbc184354a2ee45f3352cf299995516d6dedf42d942d8168389"
 
 [[files]]
 file = "config/naturescompass-client.toml"
@@ -1174,6 +1178,10 @@ preserve = true
 [[files]]
 file = "config/simple_burnout_torch-common.toml"
 hash = "29d58254719dfd14c72e8fe246914fe50cd2505f369d8872e14d8c8d4e7be5a4"
+
+[[files]]
+file = "config/simpleblood.json"
+hash = "707df2660df6c1cb2c674e7af00b2853c66d1885baf69a9ec9e4fd1c5f0ec033"
 
 [[files]]
 file = "config/skinlayers.json"
@@ -1262,7 +1270,7 @@ hash = "f8f1818ba5c8887bd01973839f9a413c1232cc1a1c4be7e5c72250ff2af042e7"
 
 [[files]]
 file = "config/sparsestructures.json5"
-hash = "576821836b1496a00d907178c2b7dda57574230be136936aba7c1b4d04cc1045"
+hash = "3a8547497d7e613998597e3ea4d64feedcfbc1196222c7a8a8df2e8e149c9b47"
 
 [[files]]
 file = "config/spoiled-client.toml"
@@ -1488,107 +1496,211 @@ hash = "2210fac1fd2db0c0aacb3e9d5497943445a86297343acad4ee21364b5ef9710f"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/archives_large.png"
-hash = "fc08e17403a8d6a9a2f9ea5c05d26486d831d93f8f18afbaf55c192d97590513"
+hash = "1d338d1d373576853d57182a8d1b9bd9e42aaab8b520400e006285b7c166a930"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/archives_large.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/archives_tableau.png"
-hash = "4ac77c7230edfb92eb33344cbe2dbe57ec8bf064145857dc21ac2443b7949d05"
+hash = "ebacfa1ccb4392cae3fbed86604b683c874693e9edda7e6b5af4a7e00bdb5f2f"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/archives_tableau.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/carte_ile.png"
-hash = "d3130c91fc7a77bbcb37d8a20e8066270fff1b738ab8b9ac4794d98364d71c51"
+hash = "766c6722e0506741156be0993a82fc90d41d998735cfb2dfd513fc04c2fa66bf"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/carte_ile.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/carte_large.png"
-hash = "0530169f6dd27261d27ba3993a9a87993e7a2da987fddf978555648e8b9627e0"
+hash = "49d1a8cb90a470bca4ea9da289411c04b8cd0e35399bcdbd685868e338bc3cff"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/carte_large.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/ch1_formulaire.png"
-hash = "d8099f76863e37d141906113518665d587a0dda81d411ff2e6491627b1a5cdf7"
+hash = "a1ec40971fb746bd008f71832839b10c775968e70c6b2d0e5d236d4b7ec9cbe6"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/ch1_formulaire.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/ch1_large.png"
-hash = "bd187096312223fe14fa84bbb32b95bec0fe2479b317392b42bec5fd20d7ff91"
+hash = "b22d699640a681a927a15692811188b59b16b7040565d7ed754d1350ebe0fad3"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/ch1_large.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/ch3_labo.png"
-hash = "a6639760faa770b7522b514bf6eb918b28f1dbf6f74802856ae2e28f789d2c01"
+hash = "316074d62d653b6664121b4a571940e8e99e2a1fba029385d091de628aafaf74"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/ch3_labo.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/ch3_large.png"
-hash = "1b2ec8b6ff8b8a3a0f1182569ff9d0023678dc7df3abded21f563bb37209021b"
+hash = "a3fb8a91e8d589cbaa34ab487bfbcbd63d27ba9e0910c8f455c71357c1bc1437"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/ch3_large.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/ch4_large.png"
-hash = "ea9b2cdb4c56c3889a3683a1864e59bed913b2981e4bf2867710e7da95fd8d9b"
+hash = "5397dab2615b65aefb22890365fcbfb1424991e4de652daed0f572fa39a670be"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/ch4_large.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/ch4_metro.png"
-hash = "5ebf3c5baae8837280f4456aebbcdc24d740c27391b93d1a16ae2e57c0cae9ff"
+hash = "b690a9b4f6a9ea7b731536cc47c88183818ab645aac9089a3235f3f41be79508"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/ch4_metro.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/ch5_carte.png"
-hash = "906ced53fee763c56d7a7ebd1856bf2714ad5f2f57818a3e991a265223e31dd2"
+hash = "cc5662ca53373797ac0fe655abb876d45cd245b3bb66eaafd8df7cc963dbb54b"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/ch5_carte.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/ch5_large.png"
-hash = "ccb156a276adaa1214f0bd2542bcc21d8afb2bed84b0a61e552865ea800a46c3"
+hash = "af01482f666a8a80d9e7425c4a2e2354a14df4520742272fe2eef2970c24ddce"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/ch5_large.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/contrats_large.png"
-hash = "816ec165e6a66b2910af9e2d07d9a38303eaab4738d7327d82d021793c36cf9e"
+hash = "4207771570a9725644dc34d1fc6d21fa33a5be8c8ec2d4923bdb468809948cd5"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/contrats_large.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/contrats_tableau.png"
-hash = "8489ea2d54d74ea4df82bc5bb4ff536abfff132eb94e1b853a2bde93d326158a"
+hash = "6335ff10120de41e855c5afe1d4ff5fc494046d4339d8dc5f6cadcabf50ab9d8"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/contrats_tableau.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/eniy_diapo.png"
-hash = "d01ae8309b1560899c4b1e5484d8f4bf46becee688a95fca92872fa733e3dc18"
+hash = "2dd87ea8194f51101d437bc77c4da69e604ce31374c139735f4d8f8462be9fa8"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/eniy_diapo.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/eniy_large.png"
-hash = "973e4131a1567862fa2fadb3e81adced5db1861b5bf44b2ea87bf6a230551cd7"
+hash = "ab20cbc1d8463d681cfbbae2449d29b45a2ecf1fec526cbbda7a9994e5cbde1d"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/eniy_large.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/final_large.png"
-hash = "777a6b40a88a3b33ae9c8e244af4681b63604dec222f7a602d2d38581cc7b5f4"
+hash = "9850172429c60449c8ffa95f35108a72bad5ee741ace9fd93e69c089667bde34"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/final_large.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/final_moniteur.png"
-hash = "14287c3fb23dcff14087ec08d33e23561f23164fa352fd630c8aacfb9a3c7116"
+hash = "6ae3671957c0998a134c53da23af28b70c772a801703d350d6480d9b2d28e32d"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/final_moniteur.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/prologue_carnet.png"
-hash = "a8098621898e9a2edc9a5cfa9ff47642230751878339e8a068eb11781fc8ce6f"
+hash = "17f5b1271e52eea75c429553435df55f77d559d7e17bfc61282bd7bc8660e0ea"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/prologue_carnet.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/prologue_large.png"
-hash = "d122526d53d6133ab23d4b5b14d7f6677e24bdf41e8c2d67dfc6106d583d1018"
+hash = "04d0036a0be7d74e97ea20092e47ec90cfaf0192df35a0ff11a92cab4b3d8974"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/prologue_large.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/puffs_large.png"
-hash = "6daa51022d05dcce1dbfec365381be4f640f12012f95bce145df7e6d4ea59840"
+hash = "25cd14b661a23129ea4aec86d397be072dded19b11dc2301d789600ce0ffc0d6"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/puffs_large.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/puffs_vitrine.png"
-hash = "dcf6b26721a31acde0b779c51df3fe0c3350bbfdb5168b17ae85769c359850d3"
+hash = "2feda03e057fe5b9a9606a21e5cbf0acb076df1ecb4d42c426a406f8257174a3"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/puffs_vitrine.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/route_fond.png"
-hash = "fe6802bfb754625bec730ae2284d35d23ebcd958f48efc1d6cd693b9897d8245"
+hash = "c741f6e3b052fbd844e26e6eefecefc919caa089b86d4618bd5de8857264e6da"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/route_fond.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/route_large.png"
-hash = "b5f076ec6a3d91cbae0515d6c91c736220dd321b1f6cb7c025388b726374fda8"
+hash = "3bf9d7b4f13a01c5771916047476b9eb7a39666b48ae88e37603110056915500"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/route_large.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/survie_large.png"
-hash = "685fe636f01bb27468797e7fe54656804ea903f41338ea7be15222bb4d1968e0"
+hash = "61b96d72894fcfebb2b413df15b78b1b3feefa9adc79932f662aded6f82df22e"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/survie_large.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/quetes/survie_plan.png"
-hash = "b76296e3413e61bc06edbf2295eb27eb50c931a1f45fd5dd9e69fe6679b0ea85"
+hash = "ce70cced161abf61a954f88523a2bbe6eecd4587ef2840004305ed181173df2d"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/quetes/survie_plan.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/ftbquests/ftb_quests_theme.txt"
@@ -1596,27 +1708,55 @@ hash = "3e117baddb8ed77cc91f98a5115fff6679fa960ee3875337d7fbca06461c4dbf"
 
 [[files]]
 file = "kubejs/assets/ftbquests/textures/shapes/atheria_epingle/background.png"
-hash = "eb8286d253e3a97423ccd4059a896f578cc88182f3797fc29a02b8b5bfcd4bd5"
+hash = "aa260b86aa1d9056135266fb8b9c701f7b6ca41a406c0a3ccfee6148e2bdc8cd"
+
+[[files]]
+file = "kubejs/assets/ftbquests/textures/shapes/atheria_epingle/background.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/ftbquests/textures/shapes/atheria_epingle/outline.png"
-hash = "1f237072897f6cd5542b98c599b40b0415727f28eb5d3a849f4f8bfdf39221f0"
+hash = "31f2fe60818b26f7a51614a72137afbbf7b8179a4823b1c0bd54e3f5d67b6f2c"
+
+[[files]]
+file = "kubejs/assets/ftbquests/textures/shapes/atheria_epingle/outline.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/ftbquests/textures/shapes/atheria_epingle/shape.png"
-hash = "26dd29e7c1c77ae95597720ddbfc592e61aa0711a03800bad4ed613bc8fcad58"
+hash = "c7da64beacb9bfa44f4a726f0d883d96df922d9d5bf26e3c7b6fb4a898aaf541"
+
+[[files]]
+file = "kubejs/assets/ftbquests/textures/shapes/atheria_epingle/shape.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/ftbquests/textures/shapes/atheria_fiche/background.png"
-hash = "f7c84bfe9618948fed9b8f39d81d7406629bf750f45e0721e414c2970330664c"
+hash = "e43d528162e765f5279c587f520783de935c61edb58c106b0ad6b86eea98cf96"
+
+[[files]]
+file = "kubejs/assets/ftbquests/textures/shapes/atheria_fiche/background.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/ftbquests/textures/shapes/atheria_fiche/outline.png"
-hash = "91af95012c806d7b14a1ef228db05f5eb50955c08698fad6d9067d12d0701ba8"
+hash = "56f14901c13c56fcaa0fffc3d7346664d6b444fbe778823f49ad8604a56e31ad"
+
+[[files]]
+file = "kubejs/assets/ftbquests/textures/shapes/atheria_fiche/outline.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
 
 [[files]]
 file = "kubejs/assets/ftbquests/textures/shapes/atheria_fiche/shape.png"
-hash = "2d0fb9f90766e85ae8eeebe51c9fc0f77428f384c926e04971ec26d59d53b87b"
+hash = "612937b67f1ac7669a1d8a0a503642563bfe3b136631e300509fc8ace14d8c03"
+
+[[files]]
+file = "kubejs/assets/ftbquests/textures/shapes/atheria_fiche/shape.png.mcmeta"
+hash = "bdbbf7400771a8c80815e7e2496b7083b2ed6de642bfb36962e8576262f2df36"
+
+[[files]]
+file = "kubejs/assets/minecraft/sounds.json"
+hash = "56a3992183a0a1ce03d1d38af0f48d83705ebb368896763b025a2777aaa5ee86"
 
 [[files]]
 file = "kubejs/assets/minecraft/textures/gui/footer_separator.png"
@@ -1728,7 +1868,11 @@ hash = "c15c76af573053652f87344a0c13274061b931edd58b30a9c68f717464b37390"
 
 [[files]]
 file = "kubejs/client_scripts/atheria_menu.js"
-hash = "34cb89d442e340378c2966d84426747ba3217a989ecfde58e4c3b9cc88b50c83"
+hash = "484992061bfe2c11ee5e4d17f05cc3b7665a1f748edae66a841f243347a69977"
+
+[[files]]
+file = "kubejs/client_scripts/atheria_reglages.js"
+hash = "5780bead387fb3f50948c63995c738db62ae72bb7eb7e0e5bbd274a1434977eb"
 
 [[files]]
 file = "kubejs/client_scripts/atheria_touches.js"
@@ -1775,6 +1919,14 @@ file = "kubejs/data/atheria/loot_table/inject/depot_munitions.json"
 hash = "3b47694eddfff6d63356908f27f270a7a860fa01d5c2fbef60b2489939b64582"
 
 [[files]]
+file = "kubejs/data/atheria/loot_table/inject/equipement_militaire.json"
+hash = "35740f35bbba7bac32c3b3edd6a4de51ad7ad6c395b184e92c5d4557e81893b3"
+
+[[files]]
+file = "kubejs/data/atheria/loot_table/inject/explosifs.json"
+hash = "867427670bd3b482307b5b166add8b639a22232e26eae25066a42863bdddb2e6"
+
+[[files]]
 file = "kubejs/data/atheria/loot_table/inject/fournitures.json"
 hash = "b81826d68c9dab1d1e724c720c4ac09cd8b180e34c68e67df9ff4007292e130f"
 
@@ -1807,6 +1959,10 @@ file = "kubejs/data/atheria/loot_table/inject/police.json"
 hash = "527f5a887e7a4bd08f9f9d13b57eb9c5446406b07d4a715b7219cb5c29117545"
 
 [[files]]
+file = "kubejs/data/atheria/loot_table/inject/raretes.json"
+hash = "c7e1ee1b98db9f610357f3a350d1cbb148531569b41d21b2936a860724285ad6"
+
+[[files]]
 file = "kubejs/data/atheria/loot_table/inject/soins.json"
 hash = "0b91f010d97fea90e641300073aa6506274898937be133ab15534fad03502d26"
 
@@ -1821,6 +1977,18 @@ hash = "c624cd992c05ca3889e191002c5f58a74bc4692e7605e67fe7b952ef12df10dd"
 [[files]]
 file = "kubejs/data/atheria/loot_table/inject/tresor_militaire.json"
 hash = "6214217dd420df63c6bfaa123098fbc667acc4263004cd2538ef42449830e900"
+
+[[files]]
+file = "kubejs/data/atheria/neoforge/biome_modifier/animaux_ferme.json"
+hash = "e0cb343afb65e0b955d7a0f74fdce2e3c8ac8265f098aa4165bea9d3a593cef3"
+
+[[files]]
+file = "kubejs/data/atheria/neoforge/biome_modifier/animaux_neutres.json"
+hash = "00ae20aba0992cf1591ad6a6fd923d265b3b42646a88a91c51cf1f198bc883ad"
+
+[[files]]
+file = "kubejs/data/atheria/neoforge/biome_modifier/animaux_plaines.json"
+hash = "898d7eb8708f38b7fccc02d77ae5cb4384504f9f2cebcc377c699aad8ceed3be"
 
 [[files]]
 file = "kubejs/data/atheria/tags/entity_type/infectes.json"
@@ -1848,11 +2016,11 @@ hash = "bf6d8215c112a59c438087efc119f8c09be6facc418aaa5ed170f394893a64cb"
 
 [[files]]
 file = "kubejs/data/atheria/tags/worldgen/structure/donjons.json"
-hash = "fe7981457688106dcca795e857a5002480812ccd1ef8ada5210e6d02186bdb1f"
+hash = "bd76ea10983ef44edce9f717a94205fc64911a1b5b86dadc7344ff2ed3a4f95a"
 
 [[files]]
 file = "kubejs/data/atheria/tags/worldgen/structure/exploration.json"
-hash = "b858544df9ee4aef6be74e0cf12d472d01975c16085f1b13f77efdfa4ede3321"
+hash = "3ceab8e2eb3555d0d58f8749b3d918b664f310b7c54188a71a4460c6963fbf72"
 
 [[files]]
 file = "kubejs/data/atheria/tags/worldgen/structure/fermes.json"
@@ -1872,11 +2040,11 @@ hash = "6dbcde1164eff2d39106a2995bec02420d39000b437918452f9c873541a05253"
 
 [[files]]
 file = "kubejs/data/atheria/tags/worldgen/structure/repurposed.json"
-hash = "4b76d44747ac6bbe58840a8255942a9ca1fd7e86eb8362ec78f6600d5d04289c"
+hash = "171450a05774bc0fc0c23e2dfa876d48e3a9f9f7ba49d09e5123d88263b7a2b8"
 
 [[files]]
 file = "kubejs/data/atheria/tags/worldgen/structure/tours.json"
-hash = "1b06d5f74c8bae16212306f97483fa3902548863399c436528e1492424e74e39"
+hash = "c8ad21943928fd7db01597b282d051ca4ac7674e9023ac0ef00202a0d63620c3"
 
 [[files]]
 file = "kubejs/data/create_fallout/tags/worldgen/biome/has_structure/broadcast_station.json"
@@ -1936,7 +2104,7 @@ hash = "fffbc24b7bfde60c001f054eff23c79608fcfdcb431f05c24208528758c014fa"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_ankylosaurus.json"
-hash = "a1fc06d5ebe3d4ca5591b76a563fe00a3bb103df69229913425a4bbeeada0dcb"
+hash = "fd5c27c1e0b7a2ebe7a22873291202ad4c2e3c1e9bcd8baf15d8e63b07b772b6"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_apatosaurus.json"
@@ -1952,15 +2120,15 @@ hash = "fffbc24b7bfde60c001f054eff23c79608fcfdcb431f05c24208528758c014fa"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_baryonyx.json"
-hash = "29062ac3965031674d8b907d2092a4dfe865020b0fe75ca1cb7d35602e7d5a2e"
+hash = "b5cc542491ed8c86fc835019f08c7035b022602a7ef13108d2f15aff3cdb185a"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_beelzebufo.json"
-hash = "70f436008f1aef066c80246f8c77ac66dd730544d99a1f473737ea6072c2e7fe"
+hash = "255228375eaf1bdc604a6a47c1d2e9b601a6011afb8bb27d0a0c44519d1f8e77"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_brachiosaurus.json"
-hash = "53db18efccaca674a3a73a7070f6aa673c7aa16dbd769bbd6f18e7462c0f0b38"
+hash = "d8862cc0bb6478dfffa80a562eee097db727ba3ccb1b4aa3996c38e6663bd8e2"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_calymene.json"
@@ -1980,7 +2148,7 @@ hash = "fffbc24b7bfde60c001f054eff23c79608fcfdcb431f05c24208528758c014fa"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_carnotaurus.json"
-hash = "ae6744adea10cbeb13fc027c78a9f924299bf2346d441813d58d909c0a70c627"
+hash = "4107c2eb1ff4a98dc3ffe774e0b8971d9dede1bed431870de9401c0902eefb87"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_cearadactylus.json"
@@ -2000,7 +2168,7 @@ hash = "fffbc24b7bfde60c001f054eff23c79608fcfdcb431f05c24208528758c014fa"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_coelacanth.json"
-hash = "548a64e12dac6713d1c6c9782dfa33a87027da51c8b29566a3b1dd0c3d92a597"
+hash = "014a2322802feeb5fc658d27c3219b4fcc24738cfe5529ef1de441b8a45ca6ef"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_coelurus.json"
@@ -2028,7 +2196,7 @@ hash = "fffbc24b7bfde60c001f054eff23c79608fcfdcb431f05c24208528758c014fa"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_dilophosaurus.json"
-hash = "35f04ef89a351e9feadf3adcd2d21fb9c5091f6cabae6eaec1542384bf8b6bed"
+hash = "a76b40073178c95a9b1056cd1a49ea038388bb0162bcd803ad5e92c405e0d5c5"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_dimetrodon.json"
@@ -2036,7 +2204,7 @@ hash = "fffbc24b7bfde60c001f054eff23c79608fcfdcb431f05c24208528758c014fa"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_dimorphodon.json"
-hash = "02bb3afc28cb8bd0027b6f1248cc8417a220a6861b425c4cc905b4dc0f4e6cbc"
+hash = "e0e1d8ebd0af0b111be0950c0c94018beed5bd3d9431314c3862ebacb8c72518"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_diplocaulus.json"
@@ -2048,7 +2216,7 @@ hash = "fffbc24b7bfde60c001f054eff23c79608fcfdcb431f05c24208528758c014fa"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_dodo.json"
-hash = "241daea1fd5bc052c36a2c284082aa6558415580586fa70353af8dcfaa6121fe"
+hash = "d8277a42e87c4a10770d965d07c4e700d955ce0367f1d2011003fd2f669deaec"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_dreadnoughtus.json"
@@ -2056,7 +2224,7 @@ hash = "fffbc24b7bfde60c001f054eff23c79608fcfdcb431f05c24208528758c014fa"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_dunkleosteus.json"
-hash = "446c3fc98c9ccc453e53fa6e54e54757f8af666a8dd33424593ebebe5cc15aed"
+hash = "815820aab14198c53091243dc5ea3ebaa91a965d48695ab9d2438340f69c9254"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_edmontosaurus.json"
@@ -2072,7 +2240,7 @@ hash = "fffbc24b7bfde60c001f054eff23c79608fcfdcb431f05c24208528758c014fa"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_gallimimus.json"
-hash = "17f0103afd2fc3e50dd58ea4dbb810b325671aee8d8391da75cd57a61605dd61"
+hash = "c55f947268706a7b75e7234e475c2cb09b8ec4965e6f3e06dea1b854b4950f93"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_giganotosaurus.json"
@@ -2140,7 +2308,7 @@ hash = "fffbc24b7bfde60c001f054eff23c79608fcfdcb431f05c24208528758c014fa"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_mammoth.json"
-hash = "0608dc57b3d78a623a0d3f8d8b5552d71dad6a9d9c5db72eba077a61b995f746"
+hash = "69571a0c91939f0a0236f68f15a685c1f7353c58bfaa04b1d3c753f552c87bc2"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_mawsonia.json"
@@ -2156,7 +2324,7 @@ hash = "fffbc24b7bfde60c001f054eff23c79608fcfdcb431f05c24208528758c014fa"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_megatherium.json"
-hash = "3f3e082d2066d9be60599f034eaa5a16eb4ffce3ba76af7853f6e3e5a33de9d9"
+hash = "7b022c964b5445ca02bd7ae536a20cbe7cfc2a32129dcc358d0e692d7268eee6"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_metriacanthosaurus.json"
@@ -2176,7 +2344,7 @@ hash = "fffbc24b7bfde60c001f054eff23c79608fcfdcb431f05c24208528758c014fa"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_mosasaurus.json"
-hash = "3f33988e80bc17905daac99c8bf2a9c9e1fc6e4f25054da9ad599a8fbd44853b"
+hash = "890118d7cff59a400d263e43050a8d90d070c9a8c61ccafc123bd10180214321"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_mussaurus.json"
@@ -2216,7 +2384,7 @@ hash = "fffbc24b7bfde60c001f054eff23c79608fcfdcb431f05c24208528758c014fa"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_parasaurolophus.json"
-hash = "ce415bf5f65cca7aa1a6048abab444e6b75c113e3b34b809769952a44c58b0f2"
+hash = "95a3b5ce07647d92fdf12d073f412e6c0d7a8e06102aa6f612271feb228d04a5"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_patagotitan.json"
@@ -2236,11 +2404,11 @@ hash = "fffbc24b7bfde60c001f054eff23c79608fcfdcb431f05c24208528758c014fa"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_protoceratops.json"
-hash = "e8bbf3a3c9b4e73116cc505064e6257df60ab1bc25962182261ab748564876bc"
+hash = "423a1d0231c0562019d4ad1ba0079039b90bea584c72de856e770b3891cedeff"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_pteranodon.json"
-hash = "5d7ec2d77ae015ddec05513e35b37c0fdb1a2f09b6e9cf7f6a3aac5f10d526cf"
+hash = "d054761d5b8e4aaeeb776493932972a1d0cf6b7e79852147a1ac7b2f1721020f"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_quetzalcoatlus.json"
@@ -2264,7 +2432,7 @@ hash = "fffbc24b7bfde60c001f054eff23c79608fcfdcb431f05c24208528758c014fa"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_smilodon.json"
-hash = "de91a902ef30e37efe1bf87bda2415b616bae01f55e9f45236fda79d3f1ee4b2"
+hash = "ac2e316c1e13c4c4c437531fdc1e6a6c4835cd7e6dcdbe56e677890d7460f4c1"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_spinoraptor.json"
@@ -2276,7 +2444,7 @@ hash = "fffbc24b7bfde60c001f054eff23c79608fcfdcb431f05c24208528758c014fa"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_stegosaurus.json"
-hash = "592c3d22f106be042c27e2c7ee0586ff78b0457bac82138e7a2c62025f5e9505"
+hash = "aa9cd7cf6aa04fccc89f32a889903ab1138849d91751a27b08f5348db2b4fa06"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_styracosaurus.json"
@@ -2292,7 +2460,7 @@ hash = "fffbc24b7bfde60c001f054eff23c79608fcfdcb431f05c24208528758c014fa"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_titanis.json"
-hash = "1d65e040b74dd568f8a5cc04f1733df8ee73a955820cb9f9ebd99c6337eee25f"
+hash = "9f1d0e089747dba29f72509902abfd8b5f3cd6e197c3c9377e079f08293f9938"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_titanites.json"
@@ -2300,7 +2468,7 @@ hash = "fffbc24b7bfde60c001f054eff23c79608fcfdcb431f05c24208528758c014fa"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_triceratops.json"
-hash = "83af156870d32c33f0ffb3355e3a7b77dff18851241eabe2a3a273e8e2b32025"
+hash = "5b44f9f78e8a7c4ce0da5e17e6978158ddf0ef3aa9417271be45eebd357bc74b"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_troodon.json"
@@ -2316,7 +2484,7 @@ hash = "fffbc24b7bfde60c001f054eff23c79608fcfdcb431f05c24208528758c014fa"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_tyrannosaurus.json"
-hash = "4268c8495d859e90d8a22a5eef0c0ccbfe74a8a96e97d7cf6258a7723595c988"
+hash = "9ba6e2bc6ba9f33cefb858a89b68f2ab65c2936d679b8cf5663a852e041e053c"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_vectipelta.json"
@@ -2324,7 +2492,7 @@ hash = "fffbc24b7bfde60c001f054eff23c79608fcfdcb431f05c24208528758c014fa"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_velociraptor.json"
-hash = "9675ba7faa8eb5693cead6be1859dba46d15214b93512393620430eb3a6fcdbc"
+hash = "fd01a72270c13a97e254c7d52bdc8406294743743a0d32114acc48090ae02dca"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_velociraptor_blue.json"
@@ -2347,6 +2515,10 @@ file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/s
 hash = "fffbc24b7bfde60c001f054eff23c79608fcfdcb431f05c24208528758c014fa"
 
 [[files]]
+file = "kubejs/data/lrtactical/recipe/throwable/molotov.json"
+hash = "5f8a6b6e382c61664a1bfd282efa710acdb97e5a921deebadec991bf62884a07"
+
+[[files]]
 file = "kubejs/data/minecraft/loot_table/blocks/andesite.json"
 hash = "9f963f583662d4c77ab8c2f5d396d31155cc1f8260cc0945ad8f0b460b69da53"
 
@@ -2359,16 +2531,60 @@ file = "kubejs/data/minecraft/loot_table/blocks/iron_ore.json"
 hash = "f031d663be7686a5418d4877073bc1237a32b313920182d6d89ea4a07123911d"
 
 [[files]]
+file = "kubejs/data/minecraft/tags/block/animals_spawnable_on.json"
+hash = "65104098d8ff67d8265859ce74ccc5cf788b2cce0e9c06118f6b04f3b5b6468f"
+
+[[files]]
 file = "kubejs/data/minecraft/tags/function/load.json"
 hash = "2f07cc500ca381bfe5f51c9d532f1e67a7c5b127a96ff7ed4b90b266b382cf3c"
+
+[[files]]
+file = "kubejs/data/minecraft/tags/worldgen/biome/has_structure/stronghold.json"
+hash = "cb4b75e96bb517c7ca2d495a62b255a83d1dfd03435f4ce82cee0929ff2fe83b"
+
+[[files]]
+file = "kubejs/data/minecraft/tags/worldgen/biome/has_structure/village_desert.json"
+hash = "e63e37911c75e07fdecbb10109a3cc09388a53751f4f1975fcfb97e74b40f8e8"
+
+[[files]]
+file = "kubejs/data/minecraft/tags/worldgen/biome/has_structure/village_plains.json"
+hash = "dc60af557613b106788cac2fe3dbf2969b7358b1597b269e157c549fbdc6cf1f"
+
+[[files]]
+file = "kubejs/data/minecraft/tags/worldgen/biome/has_structure/village_savanna.json"
+hash = "39ff0808cad49900e3ccd63022498a7a35b6718346ab01ca24c0cbd01d65cf22"
+
+[[files]]
+file = "kubejs/data/minecraft/tags/worldgen/biome/has_structure/village_snowy.json"
+hash = "0b0919a05f2e2bc0c74c954d3399d55d42bfe47c8aadb59c631c657d0618a8c9"
+
+[[files]]
+file = "kubejs/data/minecraft/tags/worldgen/biome/has_structure/village_taiga.json"
+hash = "185d61c9a1d868aeeeee3c4ad1344b6a9041284fbc23564e2bb4e368a8f39118"
+
+[[files]]
+file = "kubejs/data/minecraft/worldgen/multi_noise_biome_source_parameter_list/overworld.json"
+hash = "ea5e04c92e51d4d6ab2500ed4d9ee3ffed788c2e4e9c8cb72fe1f4bd04f76426"
+
+[[files]]
+file = "kubejs/data/structory_towers/worldgen/structure_set/rare_towers.json"
+hash = "c1997e62bc71f240e48dab42fe1c297e48d972228c4d70d1aa2c21ec24156bc5"
+
+[[files]]
+file = "kubejs/data/structory_towers/worldgen/structure_set/towers.json"
+hash = "c429bda92608ba77df49a5e7bc6da93e21cdb350745174dae17ff9481151b201"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_apparition.js"
 hash = "acf7468e74caa121f6eba37eff65d19d329ef833bb2f42503263e8c260e3e641"
 
 [[files]]
+file = "kubejs/server_scripts/atheria_bruit.js"
+hash = "320e2ca3cc403a9c26335341958044a33349536c0b2e87d85a8dbc9733f329a1"
+
+[[files]]
 file = "kubejs/server_scripts/atheria_butin.js"
-hash = "ea0814e95e9e8a5b1c99011b086a8f1a990796793a8c25bd7f0b38a2ac5b93a3"
+hash = "4bb89ef9d213e15bda9a319622b02514bcb0985ba43b638981043147bce97686"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_campagne.js"
@@ -2379,8 +2595,16 @@ file = "kubejs/server_scripts/atheria_coffres.js"
 hash = "0f3a292dd28be3eeb29baf03603d937649aec575f99e5384bb0f1724aadbabbd"
 
 [[files]]
+file = "kubejs/server_scripts/atheria_dimensions.js"
+hash = "41e0ed2ba250359992c1494622f86e341a4d48fe6a91af5e0550b8d81dcf29d7"
+
+[[files]]
 file = "kubejs/server_scripts/atheria_lunes.js"
 hash = "f1958438f1508d2f24495e1d255f12c2fdce109524dd8a547a9a4bd514406e2b"
+
+[[files]]
+file = "kubejs/server_scripts/atheria_overworld.js"
+hash = "19ad6e4e3287ec460d99d3304c2a8521c3ff343675cd1c1ed5d0179342c7384f"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_recettes.js"
@@ -2442,9 +2666,8 @@ file = "mods/atheria-maj.jar"
 hash = "f37718e0a435bd8a1a39849173e7f687a63f735cd97ebfa90a4a2b724f8e2d57"
 
 [[files]]
-file = "mods/ati-structures-fabricforge.pw.toml"
-hash = "489f70d4d99d9746b3fe825560175a809e6aa016422a4140bc31fac9b2101bfc"
-metafile = true
+file = "mods/atheria-monde.jar"
+hash = "021558bd176dfd81b21d8bae8caff7088da7a58e52cd8104b5e2b42d2d9282dc"
 
 [[files]]
 file = "mods/atlas-lib.pw.toml"
@@ -2464,6 +2687,16 @@ metafile = true
 [[files]]
 file = "mods/better-combat.pw.toml"
 hash = "438170e7e704a1b8ed67bf0521dc5d77cdeeaabf6f729dba9f8dfdad75330acf"
+metafile = true
+
+[[files]]
+file = "mods/better-village.pw.toml"
+hash = "e86098eaa2e7d9ae6602787711615a5c6ec7ecddd3dc36acbd36c2532ee95757"
+metafile = true
+
+[[files]]
+file = "mods/betterf3.pw.toml"
+hash = "c9aca350959a8936b054c7164fb55d789ab1e0d38cff2af48b78f70af2bc0c6d"
 metafile = true
 
 [[files]]
@@ -2509,6 +2742,11 @@ metafile = true
 [[files]]
 file = "mods/clumps.pw.toml"
 hash = "c7f15ebcab95f04c71940715f09ced4caad2775a91ef34389431f91bc1c7be71"
+metafile = true
+
+[[files]]
+file = "mods/combat-roll.pw.toml"
+hash = "9bb81c87fca7a6429a10e18ad8665fb9accd758f53737f1a5543787be8308e51"
 metafile = true
 
 [[files]]
@@ -2562,6 +2800,11 @@ hash = "1438d9872c78eb499463ae9d3c104514b7034e90059be054b8b4f2b19b11486d"
 metafile = true
 
 [[files]]
+file = "mods/cristel-lib.pw.toml"
+hash = "08a334ae5565e122d26b819cba16ce784776a10fe100ab2b22de72a5a2bac653"
+metafile = true
+
+[[files]]
 file = "mods/critters-and-companions.pw.toml"
 hash = "b065a8cb99a887abb2c434b84e3fa84f1e62cf500b1b9f50c86a4b48e4bdcc4f"
 metafile = true
@@ -2577,6 +2820,11 @@ hash = "64bdeecf2b2217fc22d5237a6bcc3b5f54a4352233040aaa0dbec4e8216f6536"
 metafile = true
 
 [[files]]
+file = "mods/distant-thunders.pw.toml"
+hash = "c4f8d0e902db9829218ce8367705350418d8a5a35a9feeaf443612a9e0b5d3ee"
+metafile = true
+
+[[files]]
 file = "mods/distanthorizons.pw.toml"
 hash = "0c20fea3407ed0db85b4b171f1820a24987f2659946fadd30bae044205041b09"
 metafile = true
@@ -2584,11 +2832,6 @@ metafile = true
 [[files]]
 file = "mods/drippy-loading-screen.pw.toml"
 hash = "d89b50af502aab4416e07fa8f92433a18fac11285fe1c39ebccea610dbfdd1e7"
-metafile = true
-
-[[files]]
-file = "mods/dungeons-and-taverns.pw.toml"
-hash = "b9244dca740d333c22f3425991fdd2fd40d3ae12384079a40a6fb7d4bca18a18"
 metafile = true
 
 [[files]]
@@ -2672,6 +2915,11 @@ hash = "6adce6422e74091638dbd7872270ee58d9a22dc18340580f809cc50c739e0d4f"
 metafile = true
 
 [[files]]
+file = "mods/explosive-enhancement-neoforge.pw.toml"
+hash = "adaf48f66a09d2ee6176b134a065c70733aaaaf19bc75eb32c8c76973a63de59"
+metafile = true
+
+[[files]]
 file = "mods/fancymenu.pw.toml"
 hash = "88afe523b3bc1fed6bd53b6608f0450e9891c8fe25e786a9893243064f8c7e7f"
 metafile = true
@@ -2699,11 +2947,6 @@ metafile = true
 [[files]]
 file = "mods/first-person-model.pw.toml"
 hash = "c9f1d5f4883252ca57b26c2fd4264a12f3b407be21097bbfefacdcb9fa9d7e4a"
-metafile = true
-
-[[files]]
-file = "mods/friends-and-foes-forge.pw.toml"
-hash = "dd747d8f87a5cbff501a4c59f5ac06faec2cc03c416cbff5dc3b920157552dc0"
 metafile = true
 
 [[files]]
@@ -2798,7 +3041,7 @@ metafile = true
 
 [[files]]
 file = "mods/jade.pw.toml"
-hash = "4de3e4a1a49e332c1ad313283e0403c4273b628d634c17a9ff0c9da3d6b67f9a"
+hash = "e2366c04ffcdef93c3a78a4a0f8dbb77481d3ec240476cb1886c218addfd97da"
 metafile = true
 
 [[files]]
@@ -2837,6 +3080,11 @@ hash = "ebf0dae777cc19c354a662dc8144009dff7269b2d05624b4591fcb7de56fc14e"
 metafile = true
 
 [[files]]
+file = "mods/landmines.pw.toml"
+hash = "c23aa3cf9aad63a2c8f5cfffa2917dd1de8e5b91e69c2db0822a0d824a9bf0a4"
+metafile = true
+
+[[files]]
 file = "mods/leaves-be-gone.pw.toml"
 hash = "32551cd3db88210863565b772ee47679cbf1eeff163fb93b9ef84a79fa069496"
 metafile = true
@@ -2844,6 +3092,11 @@ metafile = true
 [[files]]
 file = "mods/libipn.pw.toml"
 hash = "0d2a00252d64ed7d2d9b19994f7accb780304be61f3903d36e810714b414c6cb"
+metafile = true
+
+[[files]]
+file = "mods/library-ferret.pw.toml"
+hash = "599c8c37e60b9f1fbfb29d10eb9ede3d174b72287b9fbe407e90b6417a27a441"
 metafile = true
 
 [[files]]
@@ -2864,6 +3117,11 @@ metafile = true
 [[files]]
 file = "mods/lootr.pw.toml"
 hash = "0d3683a8c533e1fb67bf0b1668089a322fc5f594f9610d441657378ab4f64383"
+metafile = true
+
+[[files]]
+file = "mods/lr-tactical-1.21.1.pw.toml"
+hash = "120e2eb3b22ef57647d3320d7aa4564aeff5449c89fe64f0ef4901ed2d8fd58d"
 metafile = true
 
 [[files]]
@@ -2902,18 +3160,13 @@ hash = "8691a6080607f512d7adbbc1c17911ba83db273a5b5f113711fd8408b8d6a9df"
 metafile = true
 
 [[files]]
+file = "mods/military-armors.pw.toml"
+hash = "aa6b075465dbbe6be0aeea85987332d255c1dcf0d7d332896a4e056a9e337fac"
+metafile = true
+
+[[files]]
 file = "mods/modernfix.pw.toml"
 hash = "ef65836e005bd42a0f40df30a94eba1ad7ee5ed3194b11eafbeadc64edb44252"
-metafile = true
-
-[[files]]
-file = "mods/moogs-structure-lib.pw.toml"
-hash = "0856f0ead9a5035c74709a848b475e93de9f46bb65cca153bbed7371c3b9b074"
-metafile = true
-
-[[files]]
-file = "mods/moogs-voyager-structures.pw.toml"
-hash = "48f5f92618ff0a13d6c9bd4b848eb8dc53b1dc476217c75c78e450113fe59030"
 metafile = true
 
 [[files]]
@@ -2929,11 +3182,6 @@ metafile = true
 [[files]]
 file = "mods/mouse-tweaks.pw.toml"
 hash = "6bc414cc0f2d4c078fe83f384d786343f701f371d657c5279b5b0df1595804bd"
-metafile = true
-
-[[files]]
-file = "mods/mowzies-mobs.pw.toml"
-hash = "02aa4dcb8fa24cffcd2182c66683c2a476a95abf53002373f953a49737a587e3"
 metafile = true
 
 [[files]]
@@ -2962,6 +3210,11 @@ hash = "299ed58980f5c02afbaabcc52d5e573e8b8ab0c2c30fd688d6d7e86e7ac6bf6d"
 metafile = true
 
 [[files]]
+file = "mods/parcool.pw.toml"
+hash = "831bfc67569a89295623eeb57a2c1eafc2ba008feab12c65f293c3414baa7692"
+metafile = true
+
+[[files]]
 file = "mods/particle-rain.pw.toml"
 hash = "bb3302ebfd619afbda63f5365628856d4680c0a3fe86bfbdf1135d2a48acb190"
 metafile = true
@@ -2984,6 +3237,11 @@ metafile = true
 [[files]]
 file = "mods/placebo.pw.toml"
 hash = "d94791108548d174758d587440c656f1a56884083fa3151bf90b515126482435"
+metafile = true
+
+[[files]]
+file = "mods/player-animation-library.pw.toml"
+hash = "b58d160c5d2f7405e8e334f574c79138dcfcf80144d6e2b591d2c4748118553d"
 metafile = true
 
 [[files]]
@@ -3122,6 +3380,16 @@ hash = "8fa75a87e3b90e25fb8a298c2250144607ff3b2d2052d0246f660719ea709195"
 metafile = true
 
 [[files]]
+file = "mods/supermartijn642s-config-lib.pw.toml"
+hash = "62bd7012826fdcccf17a089055be67f87fb7335c88e73efc52bc9e51a1bf3188"
+metafile = true
+
+[[files]]
+file = "mods/supermartijn642s-core-lib.pw.toml"
+hash = "5e8133fa52350f0b4a468c0db32aef9ab0abfdc88765c9a2baac4f9422e13493"
+metafile = true
+
+[[files]]
 file = "mods/supplementaries.pw.toml"
 hash = "c7e7206384e1d5ab7caecc643dda50dae1886312e0aeca5aaef8852bb6b11b4e"
 metafile = true
@@ -3129,6 +3397,11 @@ metafile = true
 [[files]]
 file = "mods/tacz-1.21.1.pw.toml"
 hash = "71944dea59c3df21fd71d4ea2d75d3e34ab159c2c39f047269e14b203416afb5"
+metafile = true
+
+[[files]]
+file = "mods/tacz-tactical-breaching.pw.toml"
+hash = "476face060ea425811f28a7a9e8db8ecf8ed56b47277ee76c26c1e9bf6c85af9"
 metafile = true
 
 [[files]]
@@ -3172,6 +3445,11 @@ hash = "7186d80f0afd569ac8ec64d0f78382fe03b092de01d72f722f79b77c1cad4412"
 metafile = true
 
 [[files]]
+file = "mods/towns-and-towers.pw.toml"
+hash = "a9afe82b3d1b4975dd9f8b3272898450aeb29365678b3779059977301f88c101"
+metafile = true
+
+[[files]]
 file = "mods/true-darkness-biomes.pw.toml"
 hash = "45a47531d9a4ce40092aaf22284ef4aa04e3049561c9b82bdf6fbbb790bcc0e9"
 metafile = true
@@ -3202,8 +3480,8 @@ hash = "9ce52d07c0c3d146a2a44f8bc187138ce7a5558a4e3ab540c86234702b6de274"
 metafile = true
 
 [[files]]
-file = "mods/when-dungeons-arise.pw.toml"
-hash = "485906ff55a5d6ad06070abb80663d6adadc3e4b32f8b52240d8596e7aaef9fa"
+file = "mods/windy.pw.toml"
+hash = "487e2b84df68ee58c6ed681a709454dc518af310c143565e496d796c9300769b"
 metafile = true
 
 [[files]]
@@ -3232,43 +3510,8 @@ hash = "dde31f05114c72cb2f58e522417487730b872e456f77fdd02c032c9235791f6c"
 metafile = true
 
 [[files]]
-file = "mods/yungs-better-desert-temples.pw.toml"
-hash = "c2cb28859e7bcc0eb4ce59c5792f90fa5f8ab8865f5867ba26a5a345ec60b498"
-metafile = true
-
-[[files]]
-file = "mods/yungs-better-dungeons.pw.toml"
-hash = "1496ffa30020676979e65921b91e583a2fdc77e50001e2ed55f99edf1a0ae880"
-metafile = true
-
-[[files]]
-file = "mods/yungs-better-jungle-temples.pw.toml"
-hash = "c2dc09f214e7c1cecca6cf434776c2616f6d36bd27c06a6b39f985da0453a4f5"
-metafile = true
-
-[[files]]
 file = "mods/yungs-better-mineshafts.pw.toml"
 hash = "e839608ebc974e9e7819adc7bf29132ea86fc41b46af540fe0fa39b2007b2439"
-metafile = true
-
-[[files]]
-file = "mods/yungs-better-nether-fortresses.pw.toml"
-hash = "50c1731148d91a4ef05cfc47f759ca8fb3dad254e15ce4ecc5732d6fbfa68637"
-metafile = true
-
-[[files]]
-file = "mods/yungs-better-ocean-monuments.pw.toml"
-hash = "a2d7176026abf4a68a663b375811a603c508f36062cc7fb5b45416e1462682a8"
-metafile = true
-
-[[files]]
-file = "mods/yungs-better-strongholds.pw.toml"
-hash = "03084966c05070b5c4b17cd89234f3c0d813940a2d76b405a6699deac10a0ab8"
-metafile = true
-
-[[files]]
-file = "mods/yungs-better-witch-huts.pw.toml"
-hash = "9854b699d5a067c46ac99b1dedeeb529bff3fc18dd079e29b438c4cbf9725f68"
 metafile = true
 
 [[files]]
@@ -3283,8 +3526,13 @@ metafile = true
 
 [[files]]
 file = "options.txt"
-hash = "5d7a2f8c590a3320c69a6ac0f481d5b55168b3d1e68aa1c9919297f273acdc47"
+hash = "ebb9cd3ce600aa2c017380e9f8cf4cee8b71efbb8542544b4cfb8683900e6f6f"
 preserve = true
+
+[[files]]
+file = "resourcepacks/fa-player-extension.pw.toml"
+hash = "6f2029757a4fa06a1dea36f2a3d8c724f49f6bd5c5a388d4b788f5ab717f0d9a"
+metafile = true
 
 [[files]]
 file = "resourcepacks/fresh-animations.pw.toml"
@@ -3360,11 +3608,10 @@ file = "schematics/tombe_tahir.nbt"
 hash = "33350a7fc3c4560ee42de2f4f7abee09e55d1c36ee6df7a896636f8bfae19468"
 
 [[files]]
-file = "shaderpacks/complementary-reimagined.pw.toml"
-hash = "75d1d2488a0c332a9a58af7e57f980a1b006c02b3a1c580fbd50443088e4eab0"
-metafile = true
+file = "shaderpacks/ComplementaryUnbound_r5.9.3.zip.txt"
+hash = "db3aa482cfe577fe569b88f0ba0bd5b3add30cfb81c9f699254a45bd86e26970"
 
 [[files]]
-file = "shaderpacks/hysteria-shaders.pw.toml"
-hash = "ad9999844c5f06419268c4283f56e7e0dd9ce5a8c0df5e22ea6125018273ccb5"
+file = "shaderpacks/complementary-unbound.pw.toml"
+hash = "d28a3f3e991a4d65cda9d18b37bc3672bc87f3e04aeeaf47b59d7e63581e3c3f"
 metafile = true

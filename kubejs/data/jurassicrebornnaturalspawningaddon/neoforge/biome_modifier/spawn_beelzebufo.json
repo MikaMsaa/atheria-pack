@@ -3,14 +3,18 @@
     "biomes":  [
                    "minecraft:swamp",
                    "minecraft:mangrove_swamp",
-                   "minecraft:river"
+                   "terralith:orchid_swamp",
+                   "biomesoplenty:bayou",
+                   "biomesoplenty:bog",
+                   "biomesoplenty:marsh",
+                   "biomesoplenty:wetland"
                ],
     "spawners":  [
                      {
                          "type":  "jurassicreborn:beelzebufo",
-                         "weight":  1,
+                         "weight":  6,
                          "minCount":  1,
-                         "maxCount":  2
+                         "maxCount":  1
                      }
                  ]
 }

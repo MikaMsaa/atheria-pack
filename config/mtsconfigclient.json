@@ -1,11 +1,11 @@
 {
   "renderingSettings": {
     "renderHUD_1P": {
-      "value": true,
+      "value": false,
       "comment": "If false, the HUD in vehicles will not render in 1st-person mode."
     },
     "renderHUD_3P": {
-      "value": true,
+      "value": false,
       "comment": "If false, the HUD in vehicles will not render in 3rd-person mode."
     },
     "fullHUD_1P": {
@@ -127,11 +127,11 @@
       "comment": "Dead zone for joystick axis.  This is NOT joystick specific."
     },
     "soundVolume": {
-      "value": 1.0,
+      "value": 0.7,
       "comment": "Volume for all sounds in the mod.  This is used instead of the game's master volume."
     },
     "radioVolume": {
-      "value": 1.0,
+      "value": 0.6,
       "comment": "Volume for radios in the mod.  This is used instead of the game's master volume."
     }
   },

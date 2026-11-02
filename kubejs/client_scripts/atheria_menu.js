@@ -1,15 +1,16 @@
 // Atheria - menu principal épuré : FancyMenu ne peut pas masquer ces boutons, on les retire ici.
 var ATHERIA_BOUTONS_RETIRES = /SpriteIconButton|supplementaries\..*ConfigButton|OpenCreateMenuButton/
 var ATHERIA_ECRAN_TITRE = /\.TitleScreen@/
+var ATHERIA_ECRAN_PAUSE = /\.PauseScreen@/
 var ATHERIA_FOND = 'atheria:textures/gui/fond_menu.png'
 var ATHERIA_VOILE = -1728053248 // noir à 60 %
 
 // APPARENCE : ouvre la garde-robe Essential (skins et cosmétiques), placée entre MULTIJOUEUR et OPTIONS
-function atheriaAjouterApparence(event, ecran) {
+function atheriaAjouterApparence(event, ecran, x, y) {
   var ImageButton = Java.loadClass('net.minecraft.client.gui.components.ImageButton')
   var WidgetSprites = Java.loadClass('net.minecraft.client.gui.components.WidgetSprites')
   var images = new WidgetSprites('atheria:menu_apparence', 'atheria:menu_apparence_survol')
-  event.addListener(new ImageButton(44, Math.floor(ecran.height / 2) + 10, 120, 16, images, b => {
+  event.addListener(new ImageButton(x, y, 120, 16, images, b => {
     Client.setScreen(new (Java.loadClass('gg.essential.gui.wardrobe.Wardrobe'))())
   }))
 }
@@ -18,13 +19,18 @@ function atheriaAjouterApparence(event, ecran) {
 NativeEvents.onEvent('LOWEST', 'net.neoforged.neoforge.client.event.ScreenEvent$Init$Post', event => {
   try {
     // KubeJS interdit getClass() : le nom de la classe se lit dans le texte de l'objet
+    if (ATHERIA_ECRAN_PAUSE.test('' + event.getScreen())) {
+      // En partie : centre, sous le dernier bouton du menu
+      atheriaAjouterApparence(event, event.getScreen(), Math.floor(event.getScreen().width / 2) - 37, Math.floor(event.getScreen().height / 4) + 150)
+      return
+    }
     if (!ATHERIA_ECRAN_TITRE.test('' + event.getScreen())) return
     var retires = []
     event.getListenersList().forEach(w => {
       if (ATHERIA_BOUTONS_RETIRES.test('' + w)) retires.push(w)
     })
     retires.forEach(w => event.removeListener(w))
-    atheriaAjouterApparence(event, event.getScreen())
+    atheriaAjouterApparence(event, event.getScreen(), 44, Math.floor(event.getScreen().height / 2) + 10)
   } catch (e) {
     console.error('[Atheria menu] ' + e)
   }

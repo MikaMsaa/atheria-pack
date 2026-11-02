@@ -113,11 +113,11 @@
 		#The time it takes for a single heal to trigger. Total time this item is active = this * totalHeals
 		# Default: 18
 		# Range: 1 ~ 32767
-		secondsPerHeal = 18
+		secondsPerHeal = 9
 		#The time it takes in the GUI to apply the item in milliseconds
 		# Default: 3000
 		# Range: 0 ~ 16000
-		applyTime = 3000
+		applyTime = 2000
 
 	["Internal Healing".plaster]
 		#The total heals this item does when applied. 1 heal = half a heart
@@ -127,11 +127,11 @@
 		#The time it takes for a single heal to trigger. Total time this item is active = this * totalHeals
 		# Default: 22
 		# Range: 1 ~ 32767
-		secondsPerHeal = 22
+		secondsPerHeal = 11
 		#The time it takes in the GUI to apply the item in milliseconds
 		# Default: 3000
 		# Range: 0 ~ 16000
-		applyTime = 3000
+		applyTime = 2000
 
 ["External Healing"]
 	#Allow vanilla's natural regeneration. Requires "allowOtherHealingItems" to be true
@@ -142,11 +142,11 @@
 	#Specifies how much percent of the max health should be restored when sleeping
 	# Default: 0.07
 	# Range: 0.0 ~ 1.0
-	sleepHealPercentage = 0.07
+	sleepHealPercentage = 0.15
 	#The value external regen will be multiplied with. Has no effect if "allowOtherHealingItems" is disabled
 	# Default: 0.75
 	# Range: 0.0 ~ 20.0
-	otherRegenMultiplier = 0.75
+	otherRegenMultiplier = 1.0
 	#The value vanilla's natural regeneration will be multiplied with. Has no effect if "allowNaturalRegeneration" is disabled
 	# Default: 0.5
 	# Range: 0.0 ~ 20.0
@@ -195,13 +195,13 @@
 	# Range: 1 ~ 5
 	mildPainLevel = 1
 	#Enable red screen vignette overlay when in pain
-	enablePainVignette = true
+	enablePainVignette = false
 	#Enable radial pain blur / weak adrenaline warp post-processing
-	enablePainBlur = true
+	enablePainBlur = false
 	#Enable FOV compression (tunnel vision) when in pain
-	enablePainFovCompression = true
+	enablePainFovCompression = false
 	#Enable severe pain audio effects (tinnitus sound)
-	enablePainAudioEffects = true
+	enablePainAudioEffects = false
 	#Persistent toggle for /firstaid adrenaline (dynamic vs mild)
 	lowSuppressionEnabled = false
 	#Persistent toggle for projectile near-miss adrenaline
@@ -272,7 +272,7 @@
 	#Exact painkiller activation delay in seconds
 	# Default: 30.0
 	# Range: 0.0 ~ 3600.0
-	painkillerActivationDelaySeconds = 30.0
+	painkillerActivationDelaySeconds = 15.0
 	#Use duration of morphine in ticks (20 ticks = 1 second)
 	# Default: 40
 	# Range: 1 ~ 72000
