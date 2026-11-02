@@ -16,14 +16,14 @@
     "generateSpawners": false,
     "generateLoot": true,
     "generateLighting": false,
-    "chestWithoutLootChance": 0.35,
-    "buildingWithoutLootChance": 0.3,
+    "chestWithoutLootChance": 0.1,
+    "buildingWithoutLootChance": 0.1,
     "railwaysEnabled": true
   },
   "cities": {
-    "cityChance": 0.02,
+    "cityChance": 0.003,
     "cityMinRadius": 60,
-    "cityMaxRadius": 160
+    "cityMaxRadius": 120
   },
   "explosions": {
     "explosionChance": 0.004,

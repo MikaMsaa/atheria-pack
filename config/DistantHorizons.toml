@@ -116,7 +116,7 @@ _version = 5
 	[common.multiThreading]
 		#
 		# How many threads should be used by Distant Horizons?
-		numberOfThreads = 4
+		numberOfThreads = 2
 		#
 		# A value between 1.0 and 0.0 that represents the percentage 
 		# of time each thread can run before going idle. 
@@ -130,7 +130,7 @@ _version = 5
 		# 
 		# You probably don't need to change this unless you are also 
 		# running C2ME and are seeing thread starvation in either C2ME or DH.
-		threadPriority = 5
+		threadPriority = 1
 
 	[common.logging]
 		#

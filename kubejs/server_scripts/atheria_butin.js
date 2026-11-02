@@ -126,7 +126,15 @@ const MOTIFS_DEBUT = [
   /^betterdungeons:/,
   /^explorify:/,
   /^structory_towers:/,
-  /^terralith:/
+  /^terralith:/,
+  /^dungeons_arise:/,
+  /^mvs:/,
+  /^ati_structures:/,
+  /^nova_structures:/,
+  /^betterdeserttemples:/,
+  /^betterjungletemples:/,
+  /^betteroceanmonuments:/,
+  /^betterwitchhuts:/
 ]
 const MOTIFS_FIN_DE_JEU = /nether|end|crimson|warped|basalt|soul|bastion|ancient_cit|stronghold/
 
@@ -171,6 +179,12 @@ LootJS.lootTables(event => {
 
   civil.forEach(id => {
     event.getLootTable(id).createPool(pool => pool.addEntry(LootEntry.reference('atheria:inject/soins_rares')))
+  })
+
+  // Retour des testeurs : pas assez à trouver en fouillant (nourriture, matériaux, outils, sans arme).
+  // Dans les villes, la plupart des coffres utilisent des tables de donjon, de village ou de structures moddées : on les couvre toutes.
+  debut.concat(civil).filter((id, i, liste) => liste.indexOf(id) == i).forEach(id => {
+    event.getLootTable(id).createPool(pool => pool.addEntry(LootEntry.reference('atheria:inject/fournitures')))
   })
 
   Object.keys(INJECTIONS).filter(existe).forEach(id => {

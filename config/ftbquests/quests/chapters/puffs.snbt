@@ -1,168 +1,158 @@
 {
-	id: "68D78A784B9FA332"
-	group: "72E3B8495ACABA9D"
-	order_index: 2
-	filename: "puffs"
+	default_hide_dependency_lines: true
 	default_quest_shape: "rsquare"
+	filename: "puffs"
+	group: "72E3B8495ACABA9D"
 	icon: {
 		id: "atheria:puff_10"
-		count: 1
 	}
+	id: "68D78A784B9FA332"
+	images: [
+		{
+			height: 7.0d
+			id: "0E832D0A2E5D87E3"
+			image: "atheria:textures/quetes/puffs_vitrine.png"
+			order: -10
+			rotation: 0.0d
+			width: 12.4d
+			x: 4.4d
+			y: 0.5d
+		}
+		{
+			height: 35.0d
+			id: "697319A89A5E1613"
+			image: "atheria:textures/quetes/puffs_large.png"
+			order: -20
+			rotation: 0.0d
+			width: 56.4d
+			x: 4.4d
+			y: 0.5d
+		}
+	]
+	order_index: 2
+	quest_links: [ ]
 	quests: [
 		{
+			hide_dependent_lines: true
 			id: "5B1853DB36F60F0C"
+			invisible: true
+			tasks: [{
+				id: "6188E435B06A7031"
+				item: { count: 1, id: "atheria:puff_1" }
+				type: "item"
+			}]
 			x: 0.0d
 			y: 0.0d
-			invisible: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "6188E435B06A7031"
-					type: "item"
-					item: "atheria:puff_1"
-				}
-			]
-			rewards: [ ]
 		}
 		{
+			hide_dependent_lines: true
 			id: "7CD495CE46AFBE8D"
+			invisible: true
+			tasks: [{
+				id: "4CCE08C55DCA5E2E"
+				item: { count: 1, id: "atheria:puff_2" }
+				type: "item"
+			}]
 			x: 1.5d
 			y: 0.0d
-			invisible: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "4CCE08C55DCA5E2E"
-					type: "item"
-					item: "atheria:puff_2"
-				}
-			]
-			rewards: [ ]
 		}
 		{
+			hide_dependent_lines: true
 			id: "71F3DE1EE2037B22"
+			invisible: true
+			tasks: [{
+				id: "7DFD55BD92C816D2"
+				item: { count: 1, id: "atheria:puff_3" }
+				type: "item"
+			}]
 			x: 3.0d
 			y: 0.0d
-			invisible: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "7DFD55BD92C816D2"
-					type: "item"
-					item: "atheria:puff_3"
-				}
-			]
-			rewards: [ ]
 		}
 		{
+			hide_dependent_lines: true
 			id: "344BA7403B553594"
+			invisible: true
+			tasks: [{
+				id: "6734ED8567FF268A"
+				item: { count: 1, id: "atheria:puff_4" }
+				type: "item"
+			}]
 			x: 4.5d
 			y: 0.0d
-			invisible: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "6734ED8567FF268A"
-					type: "item"
-					item: "atheria:puff_4"
-				}
-			]
-			rewards: [ ]
 		}
 		{
+			hide_dependent_lines: true
 			id: "68C96B87DA7CA0E3"
+			invisible: true
+			tasks: [{
+				id: "001DA06241E42BD5"
+				item: { count: 1, id: "atheria:puff_5" }
+				type: "item"
+			}]
 			x: 6.0d
 			y: 0.0d
-			invisible: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "001DA06241E42BD5"
-					type: "item"
-					item: "atheria:puff_5"
-				}
-			]
-			rewards: [ ]
 		}
 		{
+			hide_dependent_lines: true
 			id: "6191AD96537B5B22"
+			invisible: true
+			tasks: [{
+				id: "077E76665D12CE08"
+				item: { count: 1, id: "atheria:puff_6" }
+				type: "item"
+			}]
 			x: 0.0d
-			y: 1.5d
-			invisible: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "077E76665D12CE08"
-					type: "item"
-					item: "atheria:puff_6"
-				}
-			]
-			rewards: [ ]
+			y: 1.8d
 		}
 		{
+			hide_dependent_lines: true
 			id: "643D309195EC71F5"
+			invisible: true
+			tasks: [{
+				id: "3190DE3590B2CA1D"
+				item: { count: 1, id: "atheria:puff_7" }
+				type: "item"
+			}]
 			x: 1.5d
-			y: 1.5d
-			invisible: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "3190DE3590B2CA1D"
-					type: "item"
-					item: "atheria:puff_7"
-				}
-			]
-			rewards: [ ]
+			y: 1.8d
 		}
 		{
+			hide_dependent_lines: true
 			id: "76828A8A42FCB2DE"
+			invisible: true
+			tasks: [{
+				id: "58E330CC7A92CA9D"
+				item: { count: 1, id: "atheria:puff_8" }
+				type: "item"
+			}]
 			x: 3.0d
-			y: 1.5d
-			invisible: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "58E330CC7A92CA9D"
-					type: "item"
-					item: "atheria:puff_8"
-				}
-			]
-			rewards: [ ]
+			y: 1.8d
 		}
 		{
+			hide_dependent_lines: true
 			id: "473DBB12B0700E0F"
+			invisible: true
+			tasks: [{
+				id: "2CC6EC9346A2BA7A"
+				item: { count: 1, id: "atheria:puff_9" }
+				type: "item"
+			}]
 			x: 4.5d
-			y: 1.5d
-			invisible: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "2CC6EC9346A2BA7A"
-					type: "item"
-					item: "atheria:puff_9"
-				}
-			]
-			rewards: [ ]
+			y: 1.8d
 		}
 		{
+			hide_dependent_lines: true
 			id: "6C1686074EA127BC"
-			x: 6.0d
-			y: 1.5d
 			invisible: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "15BF2CAD0CB3EEAA"
-					type: "item"
-					item: "atheria:puff_10"
-				}
-			]
-			rewards: [ ]
+			tasks: [{
+				id: "15BF2CAD0CB3EEAA"
+				item: { count: 1, id: "atheria:puff_10" }
+				type: "item"
+			}]
+			x: 6.0d
+			y: 1.8d
 		}
 		{
-			id: "381A78573A7CB8D7"
-			x: 8.0d
-			y: -1.0d
 			dependencies: [
 				"5B1853DB36F60F0C"
 				"7CD495CE46AFBE8D"
@@ -177,27 +167,28 @@
 			]
 			dependency_requirement: "one_completed"
 			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "1D5594D7A070349E"
-					type: "checkmark"
-				}
-			]
-			rewards: [
-				{
-					id: "0DF4398B94B6D082"
-					type: "command"
-					command: "/tag {p} add titre_collectionneur"
-					permission_level: 2
-					silent: true
-					feedback_message: "Titre « Collectionneur »"
-				}
-			]
+			icon: {
+				id: "atheria:puff_1"
+			}
+			id: "381A78573A7CB8D7"
+			rewards: [{
+				command: "/tag {p} add titre_collectionneur"
+				feedback_message: "Titre « Collectionneur »"
+				id: "0DF4398B94B6D082"
+				permission_level: 2
+				silent: true
+				type: "command"
+			}]
+			shape: "rsquare"
+			size: 1.0d
+			tasks: [{
+				id: "1D5594D7A070349E"
+				type: "checkmark"
+			}]
+			x: 9.0d
+			y: -0.4d
 		}
 		{
-			id: "4F4D0FCC196D01B4"
-			x: 8.0d
-			y: 0.5d
 			dependencies: [
 				"5B1853DB36F60F0C"
 				"7CD495CE46AFBE8D"
@@ -210,59 +201,63 @@
 				"473DBB12B0700E0F"
 				"6C1686074EA127BC"
 			]
-			min_required_dependencies: 5
 			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "56109C23567EA979"
-					type: "checkmark"
+			icon: {
+				id: "atheria:puff_5"
+			}
+			id: "4F4D0FCC196D01B4"
+			min_required_dependencies: 5
+			rewards: [{
+				id: "1CA3523AC36E8C99"
+				item: {
+					count: 1
+					id: "atheria:chocolat_dubai"
 				}
-			]
-			rewards: [
-				{
-					id: "1CA3523AC36E8C99"
-					type: "item"
-					item: "atheria:chocolat_dubai"
-				}
-			]
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 1.0d
+			tasks: [{
+				id: "56109C23567EA979"
+				type: "checkmark"
+			}]
+			x: 9.0d
+			y: 0.9d
 		}
 		{
+			dependencies: [
+				"5B1853DB36F60F0C"
+				"7CD495CE46AFBE8D"
+				"71F3DE1EE2037B22"
+				"344BA7403B553594"
+				"68C96B87DA7CA0E3"
+				"6191AD96537B5B22"
+				"643D309195EC71F5"
+				"76828A8A42FCB2DE"
+				"473DBB12B0700E0F"
+				"6C1686074EA127BC"
+			]
+			hide_dependent_lines: true
+			icon: {
+				id: "atheria:puff_10"
+			}
 			id: "2BA5D82C7C0DC1C4"
-			x: 8.0d
-			y: 2.0d
+			rewards: [{
+				command: "/tag {p} add titre_boss_de_fin"
+				feedback_message: "Titre « Vrai boss de fin »"
+				id: "0BA33E910A44F59C"
+				permission_level: 2
+				silent: true
+				type: "command"
+			}]
 			shape: "gear"
 			size: 1.5d
-			dependencies: [
-				"5B1853DB36F60F0C"
-				"7CD495CE46AFBE8D"
-				"71F3DE1EE2037B22"
-				"344BA7403B553594"
-				"68C96B87DA7CA0E3"
-				"6191AD96537B5B22"
-				"643D309195EC71F5"
-				"76828A8A42FCB2DE"
-				"473DBB12B0700E0F"
-				"6C1686074EA127BC"
-			]
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "5DD2967C63E99B71"
-					type: "checkmark"
-				}
-			]
-			rewards: [
-				{
-					id: "0BA33E910A44F59C"
-					type: "command"
-					command: "/tag {p} add titre_boss_de_fin"
-					permission_level: 2
-					silent: true
-					feedback_message: "Titre « Vrai boss de fin »"
-				}
-			]
+			tasks: [{
+				id: "5DD2967C63E99B71"
+				type: "checkmark"
+			}]
+			x: 9.0d
+			y: 2.4d
 		}
 	]
-	quest_links: [ ]
-	images: [ ]
 }

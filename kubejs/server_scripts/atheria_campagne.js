@@ -15,11 +15,104 @@ function atheriaNuit(level) {
   return t >= 13000 && t < 23000
 }
 
-function atheriaLire(player, id) {
+// Lecture du carnet et des archives : ouvre un vrai livre (écran de livre vanilla) au lieu d'écrire dans le tchat.
+// Astuce : on fait croire au client que l'objet en main est un livre écrit (paquet d'emplacement), on ouvre le livre,
+// puis on lui renvoie l'objet réel. Rien ne change côté serveur. En cas d'échec, repli sur le tchat.
+var ATHERIA_J = null
+function atheriaClasses() {
+  // chargées à la première lecture seulement : si une classe est refusée, le reste du script continue de marcher
+  if (!ATHERIA_J) ATHERIA_J = {
+    WrittenBook: Java.loadClass('net.minecraft.world.item.component.WrittenBookContent'),
+    Filterable: Java.loadClass('net.minecraft.server.network.Filterable'),
+    DataComponents: Java.loadClass('net.minecraft.core.component.DataComponents'),
+    SetSlot: Java.loadClass('net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket'),
+    OpenBook: Java.loadClass('net.minecraft.network.protocol.game.ClientboundOpenBookPacket'),
+    ItemStack: Java.loadClass('net.minecraft.world.item.ItemStack'),
+    Items: Java.loadClass('net.minecraft.world.item.Items'),
+    ArrayList: Java.loadClass('java.util.ArrayList'),
+    Component: Java.loadClass('net.minecraft.network.chat.Component'),
+    Fmt: Java.loadClass('net.minecraft.ChatFormatting')
+  }
+  return ATHERIA_J
+}
+
+// largeur approximative des caractères de la police Minecraft (page de livre : 114 px, 14 lignes)
+function atheriaLargeur(ch) {
+  if ('il.,;:!|\''.indexOf(ch) >= 0) return 2
+  if ('It[]'.indexOf(ch) >= 0) return 4
+  if (ch === ' ' || ch === 'f' || ch === 'k' || ch === '«' || ch === '»') return ch === ' ' ? 4 : 5
+  return 6
+}
+
+function atheriaCouper(texte, largeurMax, gras) {
+  var lignes = [], cur = '', w = 0
+  String(texte).split(' ').forEach(mot => {
+    var mw = 0
+    for (var i = 0; i < mot.length; i++) mw += atheriaLargeur(mot.charAt(i)) + (gras ? 1 : 0)
+    if (cur.length && w + 4 + mw > largeurMax) { lignes.push(cur); cur = mot; w = mw }
+    else if (cur.length) { cur = cur + ' ' + mot; w += 4 + mw }
+    else { cur = mot; w = mw }
+  })
+  if (cur.length) lignes.push(cur)
+  return lignes
+}
+
+function atheriaPages(J, titre, paragraphes) {
+  // « Archive 07 - Le titre » : petit en-tête gris + titre en gras rouge
+  var m = /^(Archive \d+)\s*-\s*(.+)$/.exec(titre)
+  var entete = m ? m[1].toUpperCase() : null
+  var t = m ? m[2] : titre
+  var tl = atheriaCouper(t, 110, true)
+  var lignes = []
+  paragraphes.forEach((p, ip) => {
+    if (ip > 0) lignes.push('')
+    atheriaCouper(p, 112, false).forEach(l => lignes.push(l))
+  })
+  var pages = [], page = [], max = 14 - tl.length - 1 - (entete ? 1 : 0)
+  lignes.forEach(l => {
+    if (page.length >= max) { pages.push(page); page = []; max = 14 }
+    if (page.length === 0 && l === '') return
+    page.push(l)
+  })
+  if (page.length) pages.push(page)
+  var out = new J.ArrayList()
+  pages.forEach((pg, i) => {
+    var c = J.Component.literal('')
+    if (i === 0) {
+      if (entete) c.append(J.Component.literal(entete + '\n').withStyle(J.Fmt.DARK_GRAY))
+      c.append(J.Component.literal(tl.join('\n')).withStyle(J.Fmt.DARK_RED).withStyle(J.Fmt.BOLD))
+      c.append(J.Component.literal('\n\n'))
+    }
+    c.append(J.Component.literal(pg.join('\n')).withStyle(J.Fmt.BLACK))
+    out.add(J.Filterable.passThrough(c))
+  })
+  if (out.size() > 100) out = new J.ArrayList(out.subList(0, 100))
+  return out
+}
+
+function atheriaLivre(player, hand, titre, paragraphes) {
+  var J = atheriaClasses()
+  var livre = new J.ItemStack(J.Items.WRITTEN_BOOK)
+  livre.set(J.DataComponents.WRITTEN_BOOK_CONTENT, new J.WrittenBook(J.Filterable.passThrough(titre.substring(0, Math.min(32, titre.length))), 'Atheria', 0, atheriaPages(J, titre, paragraphes), true))
+  var slot = String(hand) === 'MAIN_HAND' ? player.getInventory().selected : 40
+  var reel = player.getItemInHand(hand).copy()
+  player.connection.send(new J.SetSlot(-2, 0, slot, livre))
+  player.connection.send(new J.OpenBook(hand))
+  player.connection.send(new J.SetSlot(-2, 0, slot, reel))
+  atheriaCmd(player.server, `playsound minecraft:item.book.page_turn player ${player.username} ~ ~ ~ 1 1`)
+}
+
+function atheriaLire(player, id, hand) {
   var txt = global.ATHERIA_TEXTES ? global.ATHERIA_TEXTES[id] : null
   if (!txt) return false
-  player.tell(Text.gold('— ' + txt.titre + ' —'))
-  txt.lignes.forEach(l => player.tell(Text.gray(l.replace(/&[0-9a-fklmnor]/g, ''))))
+  var lignes = txt.lignes.map(l => String(l).replace(/&[0-9a-fklmnor]/g, ''))
+  try {
+    atheriaLivre(player, hand, String(txt.titre), lignes)
+  } catch (e) {
+    console.warn('Atheria : livre impossible, repli sur le tchat (' + e + ')')
+    player.tell(Text.gold('— ' + txt.titre + ' —'))
+    lignes.forEach(l => player.tell(Text.gray(l)))
+  }
   return true
 }
 
@@ -28,10 +121,10 @@ PlayerEvents.loggedIn(event => {
   var player = event.player
   if (player.persistentData.getBoolean('atheria_kit')) return
   player.persistentData.putBoolean('atheria_kit', true)
+  // le reste du kit de départ est la récompense de la première quête du prologue
   player.give('atheria:carnet_survivant')
-  player.give('trydeas_meleez:knife')
   player.give('ftbquests:book')
-  player.tell(Text.gray('Tu te réveilles dans une case en tôle. Un couteau, un carnet signé « R. ». Clic droit sur le carnet pour le lire.'))
+  player.tell(Text.gray('Tu te réveilles dans une case en tôle. Un carnet signé « R. ». Clic droit sur le carnet pour le lire, puis ouvre ton livre de quêtes.'))
 })
 
 // ---------- objets utilisables ----------
@@ -42,7 +135,7 @@ ItemEvents.rightClicked(event => {
   var name = player.username
 
   if (id.startsWith('atheria:archive_') || id === 'atheria:carnet_survivant') {
-    if (atheriaLire(player, id)) event.cancel()
+    if (atheriaLire(player, id, event.hand)) event.cancel()
     return
   }
 

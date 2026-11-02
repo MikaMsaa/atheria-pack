@@ -3,23 +3,23 @@ version = 1
 biomeColorRain = true
 
 [biomes]
-mushroomSporeDensity = 0.5
+mushroomSporeDensity = 0.0
 mushroomSporeBiomes = [
     "minecraft:mushroom_fields"
 ]
-pollenDensity = 0.75
+pollenDensity = 0.0
 pollenBiomes = [
     "minecraft:flower_forest",
     "minecraft:sunflower_plains"
 ]
-sculkDustDensity = 0.25
+sculkDustDensity = 0.0
 sculkDustBiomes = [
     "minecraft:deep_dark"
 ]
 
 [geysers]
 useUpdatedSmoke = false
-flameGeyserSpawnChance = 5
+flameGeyserSpawnChance = 0
 flameGeyserSpawnableBlocks = [
     "minecraft:netherrack",
     "minecraft:blackstone",
@@ -28,7 +28,7 @@ flameGeyserSpawnableBlocks = [
 flameGeyserSoundVolume = 0.5
 flameGeyserActiveTime = 300
 flameGeyserInactiveTime = 500
-smokeGeyserSpawnChance = 5
+smokeGeyserSpawnChance = 0
 smokeGeyserSpawnableBlocks = [
     "minecraft:netherrack",
     "minecraft:blackstone",
@@ -37,7 +37,7 @@ smokeGeyserSpawnableBlocks = [
 smokeGeyserSoundVolume = 0.2
 smokeGeyserActiveTime = 300
 smokeGeyserInactiveTime = 500
-bubbleGeyserSpawnChance = 5
+bubbleGeyserSpawnChance = 0
 bubbleGeyserSpawnableBlocks = [
     "minecraft:sand",
     "minecraft:red_sand",

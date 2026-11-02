@@ -1,504 +1,590 @@
 {
-	id: "6A0FFFBDABB1858F"
-	group: "655C988475622574"
-	order_index: 4
-	filename: "ch4"
+	default_hide_dependency_lines: false
 	default_quest_shape: "circle"
+	filename: "ch4"
+	group: "655C988475622574"
 	icon: {
 		id: "atheria:carnet_hajar"
-		count: 1
 	}
+	id: "6A0FFFBDABB1858F"
+	images: [
+		{
+			height: 9.7d
+			id: "284283F178ABFBEF"
+			image: "atheria:textures/quetes/ch4_metro.png"
+			order: -10
+			rotation: 0.0d
+			width: 19.6d
+			x: 8.0d
+			y: -0.4d
+		}
+		{
+			height: 37.7d
+			id: "68C2D8D398A11DAF"
+			image: "atheria:textures/quetes/ch4_large.png"
+			order: -20
+			rotation: 0.0d
+			width: 63.6d
+			x: 8.0d
+			y: -0.4d
+		}
+	]
+	order_index: 4
+	quest_links: [ ]
 	quests: [
 		{
-			id: "5AFEC1D96C7E93F3"
-			x: 0.0d
-			y: 0.0d
 			dependencies: ["7EF891538C7A0155"]
+			id: "5AFEC1D96C7E93F3"
+			rewards: [
+				{
+					count: 3
+					id: "65724CFD1CCBBA74"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "60C8494A3E0F8A5E"
+					item: {
+						count: 1
+						id: "firstaid:bandage"
+					}
+					type: "item"
+				}
+				{
+					count: 3
+					id: "06A1406ED4C3A9E2"
+					item: {
+						count: 1
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "0C8456F29F940A75"
+					item: {
+						count: 1
+						id: "atheria:filtre"
+					}
+					type: "item"
+				}
+			]
 			tasks: [
 				{
 					id: "4006CF728FD2FE68"
+					item: { count: 1, id: "spore:gas_mask" }
 					type: "item"
-					item: "spore:gas_mask"
 				}
 				{
+					count: 6L
 					id: "238381ABB513458C"
+					item: { count: 1, id: "atheria:filtre" }
 					type: "item"
-					item: "atheria:filtre"
-					count: 6
 				}
 				{
 					id: "78355AF28D864F09"
+					item: { count: 1, id: "flashlight:flashlight" }
 					type: "item"
-					item: "flashlight:flashlight"
 				}
 				{
+					count: 16L
 					id: "53570E9E00CFC5CD"
+					item: { count: 1, id: "atheria:fusee_eclairante" }
 					type: "item"
-					item: "atheria:fusee_eclairante"
-					count: 16
 				}
 				{
+					count: 16L
 					id: "4C96A074CF82280B"
+					item: { count: 1, id: "supplementaries:rope" }
 					type: "item"
-					item: "supplementaries:rope"
-					count: 16
 				}
 			]
-			rewards: [
-				{
-					id: "65724CFD1CCBBA74"
-					type: "item"
-					item: "atheria:bon_caf"
-					count: 3
-				}
-				{
-					id: "60C8494A3E0F8A5E"
-					type: "item"
-					item: "firstaid:bandage"
-					count: 2
-				}
-				{
-					id: "06A1406ED4C3A9E2"
-					type: "item"
-					item: "minecraft:bread"
-					count: 3
-				}
-				{
-					id: "0C8456F29F940A75"
-					type: "item"
-					item: "atheria:filtre"
-					count: 2
-				}
-			]
+			x: 0.0d
+			y: 0.0d
 		}
 		{
+			dependencies: ["5AFEC1D96C7E93F3"]
 			id: "53D24D03300C9A8F"
+			rewards: [
+				{
+					count: 3
+					id: "2EE3E26F75705631"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "1AB31678BA381F04"
+					item: {
+						count: 1
+						id: "firstaid:bandage"
+					}
+					type: "item"
+				}
+				{
+					count: 3
+					id: "3231029DD95C6D30"
+					item: {
+						count: 1
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "36D090C6153ADB2E"
+				item: { count: 1, id: "atheria:archive_20" }
+				type: "item"
+			}]
 			x: 2.0d
 			y: 0.0d
-			dependencies: ["5AFEC1D96C7E93F3"]
-			tasks: [
-				{
-					id: "36D090C6153ADB2E"
-					type: "item"
-					item: "atheria:archive_20"
-				}
-			]
-			rewards: [
-				{
-					id: "2EE3E26F75705631"
-					type: "item"
-					item: "atheria:bon_caf"
-					count: 3
-				}
-				{
-					id: "1AB31678BA381F04"
-					type: "item"
-					item: "firstaid:bandage"
-					count: 2
-				}
-				{
-					id: "3231029DD95C6D30"
-					type: "item"
-					item: "minecraft:bread"
-					count: 3
-				}
-			]
 		}
 		{
-			id: "3A9B2F03982A532A"
-			x: 4.0d
-			y: 0.0d
 			dependencies: ["53D24D03300C9A8F"]
-			tasks: [
-				{
-					id: "433473CFCC17DD49"
-					type: "item"
-					item: "atheria:plaque_station"
-					count: 3
-					consume_items: true
-				}
-			]
+			id: "3A9B2F03982A532A"
 			rewards: [
 				{
-					id: "277C30BF33F95616"
-					type: "item"
-					item: "atheria:bon_caf"
 					count: 8
+					id: "277C30BF33F95616"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
 				}
 				{
-					id: "1635047A11668042"
-					type: "item"
-					item: "firstaid:plaster"
 					count: 2
+					id: "1635047A11668042"
+					item: {
+						count: 1
+						id: "firstaid:plaster"
+					}
+					type: "item"
 				}
 				{
 					id: "04D5C041F2CEB6F1"
-					type: "item"
-					item: "atheria:filtre"
-				}
-				{
-					id: "001F997E54449F59"
-					type: "item"
 					item: {
-						id: "tacz:ammo"
 						count: 1
-						components: {
-							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
-						}
+						id: "atheria:filtre"
 					}
-					count: 8
+					type: "item"
 				}
 				{
-					id: "14F2FA1E2CE2E91E"
-					type: "command"
+					count: 8
+					id: "001F997E54449F59"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:9mm"
+							}
+							"minecraft:max_stack_size": 60
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+				{
 					command: "/tag {p} add titre_sigma_galeries"
+					feedback_message: "Titre « Sigma des galeries »"
+					id: "14F2FA1E2CE2E91E"
 					permission_level: 2
 					silent: true
-					feedback_message: "Titre « Sigma des galeries »"
+					type: "command"
 				}
 			]
+			tasks: [{
+				consume_items: true
+				count: 3L
+				id: "433473CFCC17DD49"
+				item: { count: 1, id: "atheria:plaque_station" }
+				type: "item"
+			}]
+			x: 4.0d
+			y: 0.0d
 		}
 		{
+			dependencies: ["3A9B2F03982A532A"]
 			id: "7B7250D709503272"
+			rewards: [{
+				count: 3
+				id: "54552E616983A99B"
+				item: {
+					count: 1
+					id: "atheria:cendre_grise"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "4C0E9B179C0CF630"
+				item: { count: 1, id: "atheria:archive_21" }
+				type: "item"
+			}]
 			x: 6.0d
 			y: -1.0d
-			dependencies: ["3A9B2F03982A532A"]
-			tasks: [
-				{
-					id: "4C0E9B179C0CF630"
-					type: "item"
-					item: "atheria:archive_21"
-				}
-			]
-			rewards: [
-				{
-					id: "54552E616983A99B"
-					type: "item"
-					item: "atheria:cendre_grise"
-					count: 3
-				}
-			]
 		}
 		{
+			dependencies: ["7B7250D709503272"]
+			icon: {
+				id: "atheria:decoction_fundi"
+			}
 			id: "36375EC332F2867E"
+			tasks: [{
+				id: "31117BBA9B87E9F5"
+				stage: "q_ch4_fundi"
+				type: "gamestage"
+			}]
 			x: 8.0d
 			y: -1.0d
-			dependencies: ["7B7250D709503272"]
-			tasks: [
-				{
-					id: "31117BBA9B87E9F5"
-					type: "gamestage"
-					stage: "q_ch4_fundi"
-				}
-			]
-			rewards: [ ]
 		}
 		{
-			id: "6D412DF7F17040DB"
-			x: 10.0d
-			y: -2.0d
 			dependencies: ["36375EC332F2867E"]
+			id: "6D412DF7F17040DB"
+			rewards: [{
+				command: "/scoreboard players add {p} aura_enfants 1"
+				feedback_message: "+1 aura Enfants du Choléra"
+				id: "6A7ECD16119B8A23"
+				permission_level: 2
+				silent: true
+				type: "command"
+			}]
 			tasks: [
 				{
-					id: "08BB3E436FAD7C19"
-					type: "item"
-					item: "atheria:decoction_fundi"
 					consume_items: true
+					id: "08BB3E436FAD7C19"
+					item: { count: 1, id: "atheria:decoction_fundi" }
+					type: "item"
 				}
 				{
 					id: "4B002E49FBF1D50A"
 					type: "checkmark"
 				}
 			]
-			rewards: [
-				{
-					id: "6A7ECD16119B8A23"
-					type: "command"
-					command: "/scoreboard players add {p} aura_enfants 1"
-					permission_level: 2
-					silent: true
-					feedback_message: "+1 aura Enfants du Choléra"
-				}
-			]
+			x: 10.0d
+			y: -2.0d
 		}
 		{
-			id: "285F52D5CAB0AF0B"
-			x: 10.0d
-			y: 0.0d
 			dependencies: ["36375EC332F2867E"]
+			id: "285F52D5CAB0AF0B"
 			tasks: [
 				{
-					id: "46DD647011220E1E"
-					type: "item"
-					item: "atheria:carnet_survivant"
 					consume_items: true
+					id: "46DD647011220E1E"
+					item: { count: 1, id: "atheria:carnet_survivant" }
+					type: "item"
 				}
 				{
 					id: "69B6DDF4166A1400"
-					type: "gamestage"
 					stage: "q_ch4_hajar"
+					type: "gamestage"
 				}
 			]
-			rewards: [ ]
+			x: 10.0d
+			y: 0.0d
 		}
 		{
-			id: "0365BFF187CC6303"
-			x: 12.0d
-			y: 0.0d
 			dependencies: ["285F52D5CAB0AF0B"]
-			tasks: [
-				{
-					id: "2A9091C73ECDC72B"
-					type: "item"
-					item: "atheria:carnet_hajar"
-				}
-				{
-					id: "495287597CD29FEA"
-					type: "item"
-					item: "atheria:dossier_symbiose"
-				}
-			]
+			id: "0365BFF187CC6303"
 			rewards: [
 				{
 					id: "7F36EDE0290B1D96"
+					item: {
+						count: 1
+						id: "atheria:archive_22"
+					}
 					type: "item"
-					item: "atheria:archive_22"
 				}
 				{
 					id: "424B668F8C85082E"
+					item: {
+						count: 1
+						id: "explorerscompass:explorerscompass"
+					}
 					type: "item"
-					item: "explorerscompass:explorerscompass"
 				}
 			]
-		}
-		{
-			id: "3F2732E6F1341840"
-			x: 14.0d
-			y: 0.0d
-			shape: "diamond"
-			size: 1.25d
-			dependencies: ["0365BFF187CC6303"]
-			max_completable_dependents: 1
 			tasks: [
 				{
-					id: "65B5C14D9B34B24D"
-					type: "checkmark"
+					id: "2A9091C73ECDC72B"
+					item: { count: 1, id: "atheria:carnet_hajar" }
+					type: "item"
+				}
+				{
+					id: "495287597CD29FEA"
+					item: { count: 1, id: "atheria:dossier_symbiose" }
+					type: "item"
 				}
 			]
+			x: 12.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0365BFF187CC6303"]
+			icon: {
+				id: "atheria:carnet_hajar"
+			}
+			id: "3F2732E6F1341840"
+			max_completable_dependents: 1
 			rewards: [
 				{
-					id: "71CBF7D912CEAF09"
-					type: "item"
-					item: "atheria:bon_caf"
 					count: 15
+					id: "71CBF7D912CEAF09"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
 				}
 				{
 					id: "501325EF9400773C"
+					item: {
+						count: 1
+						id: "atheria:trousse_soins"
+					}
 					type: "item"
-					item: "atheria:trousse_soins"
 				}
 			]
+			shape: "diamond"
+			size: 1.25d
+			tasks: [{
+				id: "65B5C14D9B34B24D"
+				type: "checkmark"
+			}]
+			x: 14.0d
+			y: 0.0d
 		}
 		{
-			id: "73819ABC084FE688"
-			x: 16.0d
-			y: -2.25d
 			dependencies: ["3F2732E6F1341840"]
-			tasks: [
-				{
-					id: "5D16286DA6DD2DCF"
-					type: "checkmark"
-				}
-			]
+			icon: {
+				id: "atheria:boitier_ecoute"
+			}
+			id: "73819ABC084FE688"
 			rewards: [
 				{
-					id: "645D0BDCCB791B1A"
-					type: "command"
 					command: "/scoreboard players add {p} aura_goblini 3"
+					feedback_message: "+3 aura Goblini"
+					id: "645D0BDCCB791B1A"
 					permission_level: 2
 					silent: true
-					feedback_message: "+3 aura Goblini"
+					type: "command"
 				}
 				{
 					id: "12D3D24337003038"
-					type: "item"
 					item: {
+						components: {
+							"minecraft:custom_data": {
+								GunFireMode: "AUTO"
+								GunId: "tacz:m4a1"
+							}
+						}
+						count: 1
 						id: "tacz:modern_kinetic_gun"
-						count: 1
-						components: {
-							"minecraft:custom_data": {GunId:"tacz:m4a1",GunFireMode:"AUTO"}
-						}
 					}
-				}
-				{
-					id: "11E0F60BF8B13D24"
 					type: "item"
-					item: {
-						id: "tacz:ammo"
-						count: 1
-						components: {
-							"minecraft:custom_data": {AmmoId:"tacz:556x45"}
-						}
-					}
+				}
+				{
 					count: 20
+					id: "11E0F60BF8B13D24"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:556x45"
+							}
+							"minecraft:max_stack_size": 60
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
 				}
 				{
-					id: "18663F8ED568ECDC"
-					type: "command"
 					command: "/tag {p} add choix_hajar_goblini"
+					feedback_message: "Choix : Goblini"
+					id: "18663F8ED568ECDC"
 					permission_level: 2
 					silent: true
-					feedback_message: "Choix : Goblini"
+					type: "command"
 				}
 				{
-					id: "2A3F65B86D5D1E57"
-					type: "command"
 					command: "/tag {p} add titre_main_verte"
+					feedback_message: "Titre « Blouse rouge »"
+					id: "2A3F65B86D5D1E57"
 					permission_level: 2
 					silent: true
-					feedback_message: "Titre « Blouse rouge »"
+					type: "command"
 				}
 			]
+			tasks: [{
+				id: "5D16286DA6DD2DCF"
+				type: "checkmark"
+			}]
+			x: 16.0d
+			y: -2.25d
 		}
 		{
+			dependencies: ["3F2732E6F1341840"]
+			icon: {
+				id: "atheria:echantillon_spore"
+			}
 			id: "43DD52F72F246C26"
+			rewards: [
+				{
+					command: "/scoreboard players add {p} aura_enfants 2"
+					feedback_message: "+2 aura Enfants du Choléra"
+					id: "0EB9F6CDFF15798E"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+				{
+					count: 8
+					id: "4A9C559C80A79CFE"
+					item: {
+						count: 1
+						id: "atheria:cendre_grise"
+					}
+					type: "item"
+				}
+				{
+					count: 3
+					id: "776E588816CB0CAA"
+					item: {
+						count: 1
+						id: "atheria:decoction_fundi"
+					}
+					type: "item"
+				}
+				{
+					command: "/tag {p} add choix_hajar_enfants"
+					feedback_message: "Choix : Enfants"
+					id: "78D8558F60A2B6BC"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+				{
+					command: "/tag {p} add titre_visage_gris"
+					feedback_message: "Titre « Visage gris »"
+					id: "1AAEF87E2A1E962A"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
+			tasks: [{
+				id: "7F8F162AE60FEFB3"
+				type: "checkmark"
+			}]
 			x: 16.0d
 			y: -0.75d
-			dependencies: ["3F2732E6F1341840"]
-			tasks: [
-				{
-					id: "7F8F162AE60FEFB3"
-					type: "checkmark"
-				}
-			]
-			rewards: [
-				{
-					id: "0EB9F6CDFF15798E"
-					type: "command"
-					command: "/scoreboard players add {p} aura_enfants 2"
-					permission_level: 2
-					silent: true
-					feedback_message: "+2 aura Enfants du Choléra"
-				}
-				{
-					id: "4A9C559C80A79CFE"
-					type: "item"
-					item: "atheria:cendre_grise"
-					count: 8
-				}
-				{
-					id: "776E588816CB0CAA"
-					type: "item"
-					item: "atheria:decoction_fundi"
-					count: 3
-				}
-				{
-					id: "78D8558F60A2B6BC"
-					type: "command"
-					command: "/tag {p} add choix_hajar_enfants"
-					permission_level: 2
-					silent: true
-					feedback_message: "Choix : Enfants"
-				}
-				{
-					id: "1AAEF87E2A1E962A"
-					type: "command"
-					command: "/tag {p} add titre_visage_gris"
-					permission_level: 2
-					silent: true
-					feedback_message: "Titre « Visage gris »"
-				}
-			]
 		}
 		{
-			id: "706A4445534DC455"
-			x: 16.0d
-			y: 0.75d
 			dependencies: ["3F2732E6F1341840"]
-			tasks: [
-				{
-					id: "768694F0706B5C83"
-					type: "checkmark"
-				}
-			]
+			icon: {
+				id: "atheria:carte_citoyen"
+			}
+			id: "706A4445534DC455"
 			rewards: [
 				{
-					id: "74E4CC9DC985F21D"
-					type: "command"
 					command: "/scoreboard players add {p} aura_paf 3"
+					feedback_message: "+3 aura PAF"
+					id: "74E4CC9DC985F21D"
 					permission_level: 2
 					silent: true
-					feedback_message: "+3 aura PAF"
+					type: "command"
 				}
 				{
 					id: "43A4EA86E53943BD"
+					item: {
+						count: 1
+						id: "minecraft:iron_chestplate"
+					}
 					type: "item"
-					item: "minecraft:iron_chestplate"
 				}
 				{
 					id: "52DFEB8249A2FCCD"
+					item: {
+						count: 1
+						id: "atheria:carte_citoyen"
+					}
 					type: "item"
-					item: "atheria:carte_citoyen"
 				}
 				{
-					id: "0A30AAFB081CE523"
-					type: "command"
 					command: "/tag {p} add choix_hajar_paf"
+					feedback_message: "Choix : PAF"
+					id: "0A30AAFB081CE523"
 					permission_level: 2
 					silent: true
-					feedback_message: "Choix : PAF"
+					type: "command"
 				}
 				{
-					id: "677976DA51D715A4"
-					type: "command"
 					command: "/tag {p} add titre_officier"
+					feedback_message: "Titre « Officier »"
+					id: "677976DA51D715A4"
 					permission_level: 2
 					silent: true
-					feedback_message: "Titre « Officier »"
+					type: "command"
 				}
 			]
+			tasks: [{
+				id: "768694F0706B5C83"
+				type: "checkmark"
+			}]
+			x: 16.0d
+			y: 0.75d
 		}
 		{
-			id: "681401614C468910"
-			x: 16.0d
-			y: 2.25d
 			dependencies: ["3F2732E6F1341840"]
+			icon: {
+				id: "atheria:dessin_hajar"
+			}
+			id: "681401614C468910"
+			rewards: [
+				{
+					id: "3EA3967F4905485A"
+					item: {
+						count: 1
+						id: "atheria:dessin_hajar"
+					}
+					type: "item"
+				}
+				{
+					command: "/tag {p} add choix_hajar_fuite"
+					feedback_message: "Choix : la laisser partir"
+					id: "720CDDF9F757511F"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+				{
+					command: "/tag {p} add titre_porte_ouverte"
+					feedback_message: "Titre « Porte ouverte »"
+					id: "2B41B77D9B423476"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
 			tasks: [
 				{
 					id: "19586D90C58FDEFC"
-					type: "gamestage"
 					stage: "confiance_fundi"
+					type: "gamestage"
 				}
 				{
 					id: "1EBB593BD6290378"
 					type: "checkmark"
 				}
 			]
-			rewards: [
-				{
-					id: "3EA3967F4905485A"
-					type: "item"
-					item: "atheria:dessin_hajar"
-				}
-				{
-					id: "720CDDF9F757511F"
-					type: "command"
-					command: "/tag {p} add choix_hajar_fuite"
-					permission_level: 2
-					silent: true
-					feedback_message: "Choix : la laisser partir"
-				}
-				{
-					id: "2B41B77D9B423476"
-					type: "command"
-					command: "/tag {p} add titre_porte_ouverte"
-					permission_level: 2
-					silent: true
-					feedback_message: "Titre « Porte ouverte »"
-				}
-			]
+			x: 16.0d
+			y: 2.25d
 		}
 	]
-	quest_links: [ ]
-	images: [ ]
 }

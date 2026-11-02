@@ -1,6 +1,18 @@
 // Atheria - menu principal épuré : FancyMenu ne peut pas masquer ces boutons, on les retire ici.
 var ATHERIA_BOUTONS_RETIRES = /SpriteIconButton|supplementaries\..*ConfigButton|OpenCreateMenuButton/
 var ATHERIA_ECRAN_TITRE = /\.TitleScreen@/
+var ATHERIA_FOND = 'atheria:textures/gui/fond_menu.png'
+var ATHERIA_VOILE = -1728053248 // noir à 60 %
+
+// APPARENCE : ouvre la garde-robe Essential (skins et cosmétiques), placée entre MULTIJOUEUR et OPTIONS
+function atheriaAjouterApparence(event, ecran) {
+  var ImageButton = Java.loadClass('net.minecraft.client.gui.components.ImageButton')
+  var WidgetSprites = Java.loadClass('net.minecraft.client.gui.components.WidgetSprites')
+  var images = new WidgetSprites('atheria:menu_apparence', 'atheria:menu_apparence_survol')
+  event.addListener(new ImageButton(44, Math.floor(ecran.height / 2) + 10, 120, 16, images, b => {
+    Client.setScreen(new (Java.loadClass('gg.essential.gui.wardrobe.Wardrobe'))())
+  }))
+}
 
 // Priorité la plus basse : Create ajoute son bouton pendant ce même événement
 NativeEvents.onEvent('LOWEST', 'net.neoforged.neoforge.client.event.ScreenEvent$Init$Post', event => {
@@ -12,6 +24,7 @@ NativeEvents.onEvent('LOWEST', 'net.neoforged.neoforge.client.event.ScreenEvent$
       if (ATHERIA_BOUTONS_RETIRES.test('' + w)) retires.push(w)
     })
     retires.forEach(w => event.removeListener(w))
+    atheriaAjouterApparence(event, event.getScreen())
   } catch (e) {
     console.error('[Atheria menu] ' + e)
   }
@@ -29,6 +42,25 @@ NativeEvents.onEvent('net.neoforged.neoforge.client.event.ClientTickEvent$Post',
       }
     })
   } catch (e) {
+    console.error('[Atheria menu] ' + e)
+  }
+})
+
+// Tous les menus hors partie (options, multijoueur...) reprennent le fond de l'accueil, assombri pour la lecture.
+// L'accueil a son propre fond dans FancyMenu, et les menus en partie gardent le jeu visible derrière.
+var atheriaFondErreur = false
+NativeEvents.onEvent('net.neoforged.neoforge.client.event.ScreenEvent$BackgroundRendered', event => {
+  if (atheriaFondErreur || Client.level) return
+  var ecran = event.getScreen()
+  if (ATHERIA_ECRAN_TITRE.test('' + ecran)) return
+  try {
+    var g = event.getGuiGraphics()
+    var l = ecran.width
+    var h = ecran.height
+    g['blit(net.minecraft.resources.ResourceLocation,int,int,float,float,int,int,int,int)'](ATHERIA_FOND, 0, 0, 0.0, 0.0, l, h, l, h)
+    g.fill(0, 0, l, h, ATHERIA_VOILE)
+  } catch (e) {
+    atheriaFondErreur = true
     console.error('[Atheria menu] ' + e)
   }
 })

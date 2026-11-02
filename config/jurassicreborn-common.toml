@@ -1,0 +1,73 @@
+#General configuration for Jurassic Reborn
+[general]
+	#Determines if dinosaurs should become carcasses instead of dying instantly.
+	allowCarcass = true
+	#ENABLE ONLY IF NATURAL SPWANING ADDON IS INSTALLED!
+	naturalspawningaddon = true
+	#Enable tilting animations for vehicles such as cars.
+	enableVehicleTilting = true
+	#If true, carnivores will only attack when hungry.
+	attackOnlyWhenHungry = false
+	#Minimum actual BlockState destroy-speed hardness considered secure for LOW containment.
+	# Default: 1.5
+	# Range: 0.0 ~ 100.0
+	lowContainmentHardness = 1.5
+	#Minimum actual BlockState destroy-speed hardness considered secure for MEDIUM containment.
+	# Default: 3.0
+	# Range: 0.0 ~ 100.0
+	mediumContainmentHardness = 3.0
+	#Minimum actual BlockState destroy-speed hardness considered secure for HIGH containment.
+	# Default: 5.0
+	# Range: 0.0 ~ 100.0
+	highContainmentHardness = 5.0
+	#Enable natural spawning for crabs.
+	spawnCrabs = true
+	#Enable natural spawning for sharks.
+	spawnSharks = true
+	#Enable natural spawning for goats.
+	spawnGoats = true
+	#Entities that cages should refuse to capture.
+	#Use fully qualified entity IDs, e.g. minecraft:pig
+	entityBlacklist = []
+
+#DinoPedia health tracking configuration
+[dinopedia]
+	#If true, carcasses carrying at least one tracking implant do not decay automatically over time.
+	#Carcasses can still be deliberately harvested, eaten, removed with commands, or deleted when allowCarcass is false.
+	#Keeping very large numbers of carcasses permanently can increase entity count, so this is disabled by default.
+	trackedDinosaurCarcassDespawnDisabled = false
+
+#Fossil world generation configuration
+[worldgen]
+
+	[worldgen.fossils]
+		#Master switch for all Jurassic Reborn fossil world generation.
+		#This affects newly generated chunks immediately; existing blocks are not removed automatically.
+		generateFossils = true
+		#Global fossil spawn multiplier. 0 disables fossils, 0.5 halves them, and 2 doubles them.
+		#Values above 1 create additional placement attempts and are capped at 8 after overrides.
+		# Default: 1.0
+		# Range: 0.0 ~ 8.0
+		globalFossilSpawnRate = 1.0
+		#Optional per-fossil multipliers in the form 'namespace:block_id=multiplier'.
+		#These multiply the global rate. Use 0 to disable one fossil.
+		#Examples: 'jurassicreborn:tyrannosaurus_fossil=0', 'jurassicreborn:flora_fossil=0.5'.
+		#Use 'jurassicreborn:nest_fossil' for fossil nests.
+		fossilSpawnRateOverrides = []
+		#Opt-in: apply the current fossil settings once to already-generated Overworld chunks as they load.
+		#Restart the world/server, or unload and reload chunks, after enabling this option.
+		#Processed chunks store the version below so they are not processed repeatedly.
+		retroGenerateFossils = false
+		#DANGEROUS: remove Jurassic Reborn fossil ore blocks before retro-generation rerolls a chunk.
+		#This cannot distinguish naturally generated fossils from fossils placed by players.
+		#Keep false to preserve existing fossils and only add new placements.
+		replaceExistingFossilOres = false
+		#One-time retrofit version. Increment this only when you intentionally want old chunks processed again.
+		# Default: 1
+		# Range: > 1
+		fossilRetroGenerationVersion = 1
+		#Maximum existing chunks processed per server tick while retrofit is enabled.
+		#Keep this low on servers to limit generation spikes.
+		# Default: 1
+		# Range: 1 ~ 8
+		fossilRetroChunksPerTick = 1

@@ -1,988 +1,970 @@
 {
-	id: "09DA72A002E01511"
-	group: "72E3B8495ACABA9D"
-	order_index: 3
+	default_hide_dependency_lines: true
+	default_quest_shape: "atheria_fiche"
 	filename: "archives"
-	default_quest_shape: "rsquare"
+	group: "72E3B8495ACABA9D"
 	icon: {
 		id: "atheria:archive_01"
-		count: 1
 	}
+	id: "09DA72A002E01511"
+	images: [
+		{
+			height: 12.8d
+			id: "5F92CDA2EA18B62C"
+			image: "atheria:textures/quetes/archives_tableau.png"
+			order: -10
+			rotation: 0.0d
+			width: 19.0d
+			x: 8.1d
+			y: 4.0d
+		}
+		{
+			height: 40.8d
+			id: "576796D15BC46BAE"
+			image: "atheria:textures/quetes/archives_large.png"
+			order: -20
+			rotation: 0.0d
+			width: 63.0d
+			x: 8.1d
+			y: 4.0d
+		}
+	]
+	order_index: 3
+	quest_links: [ ]
 	quests: [
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "602E8BAFCAB107B3"
-			x: 0.0d
-			y: 0.0d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "4A463DE9E78CD64C"
-					type: "item"
-					item: "atheria:archive_01"
+			rewards: [{
+				id: "31FE3F5344A4537C"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "31FE3F5344A4537C"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "4A463DE9E78CD64C"
+				item: { count: 1, id: "atheria:archive_01" }
+				type: "item"
+			}]
+			x: 0.11d
+			y: 0.07d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "4BD29BAEFC2E1A77"
-			x: 1.25d
-			y: 0.0d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "29DF908940E3AC2F"
-					type: "item"
-					item: "atheria:archive_02"
+			rewards: [{
+				id: "1BBD08C650C6DCFD"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "1BBD08C650C6DCFD"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "29DF908940E3AC2F"
+				item: { count: 1, id: "atheria:archive_02" }
+				type: "item"
+			}]
+			x: 5.32d
+			y: 0.08d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "0DD275CCA0C2A5FB"
-			x: 2.5d
-			y: 0.0d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "210FF1544C5FA30A"
-					type: "item"
-					item: "atheria:archive_03"
+			rewards: [{
+				id: "0328F53B473D4D20"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "0328F53B473D4D20"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "210FF1544C5FA30A"
+				item: { count: 1, id: "atheria:archive_03" }
+				type: "item"
+			}]
+			x: 1.51d
+			y: -0.05d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "4E99820201538464"
-			x: 3.75d
-			y: 0.0d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "0012D45A97E59B5C"
-					type: "item"
-					item: "atheria:archive_04"
+			rewards: [{
+				id: "2665921A1ED0E394"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "2665921A1ED0E394"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "0012D45A97E59B5C"
+				item: { count: 1, id: "atheria:archive_04" }
+				type: "item"
+			}]
+			x: 6.76d
+			y: 0.03d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "2C63BE21DE3C4EC1"
-			x: 5.0d
-			y: 0.0d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "51B6492710371055"
-					type: "item"
-					item: "atheria:archive_05"
+			rewards: [{
+				id: "06326761271B2408"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "06326761271B2408"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "51B6492710371055"
+				item: { count: 1, id: "atheria:archive_05" }
+				type: "item"
+			}]
+			x: 2.86d
+			y: 0.04d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "6C77FA875AAD2D14"
-			x: 6.25d
-			y: 0.0d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "72FA49254B03D0EF"
-					type: "item"
-					item: "atheria:archive_06"
+			rewards: [{
+				id: "72A7EBC94F418EB6"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "72A7EBC94F418EB6"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "72FA49254B03D0EF"
+				item: { count: 1, id: "atheria:archive_06" }
+				type: "item"
+			}]
+			x: 8.26d
+			y: 0.03d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "0F1256CA4DD11191"
-			x: 7.5d
-			y: 0.0d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "060D22D55EF2E661"
-					type: "item"
-					item: "atheria:archive_07"
+			rewards: [{
+				id: "2856B7720A853EDF"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "2856B7720A853EDF"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "060D22D55EF2E661"
+				item: { count: 1, id: "atheria:archive_07" }
+				type: "item"
+			}]
+			x: 10.81d
+			y: -0.05d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "79240C4D0EC9EE19"
-			x: 8.75d
-			y: 0.0d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "140273842558CD12"
-					type: "item"
-					item: "atheria:archive_08"
+			rewards: [{
+				id: "058427876D4D45DD"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "058427876D4D45DD"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "140273842558CD12"
+				item: { count: 1, id: "atheria:archive_08" }
+				type: "item"
+			}]
+			x: 12.17d
+			y: 0.01d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "61C5F9A93896C38C"
-			x: 0.0d
-			y: 1.25d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "49D5E6C6CA2951B3"
-					type: "item"
-					item: "atheria:archive_09"
+			rewards: [{
+				id: "737D75109C5133E2"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "737D75109C5133E2"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "49D5E6C6CA2951B3"
+				item: { count: 1, id: "atheria:archive_09" }
+				type: "item"
+			}]
+			x: 0.04d
+			y: 5.66d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "5CDCF545ECB75A8A"
-			x: 1.25d
-			y: 1.25d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "60DE353886740BA3"
-					type: "item"
-					item: "atheria:archive_10"
+			rewards: [{
+				id: "6295203B53849F52"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "6295203B53849F52"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "60DE353886740BA3"
+				item: { count: 1, id: "atheria:archive_10" }
+				type: "item"
+			}]
+			x: 13.6d
+			y: 0.02d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "0FC4217D14465D15"
-			x: 2.5d
-			y: 1.25d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "6DE73BA510E429EE"
-					type: "item"
-					item: "atheria:archive_11"
+			rewards: [{
+				id: "4D434ADDB49D897C"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "4D434ADDB49D897C"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "6DE73BA510E429EE"
+				item: { count: 1, id: "atheria:archive_11" }
+				type: "item"
+			}]
+			x: 10.87d
+			y: 1.52d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "3B2C3FDEEFC04838"
-			x: 3.75d
-			y: 1.25d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "3CBA4BECE7D219F1"
-					type: "item"
-					item: "atheria:archive_12"
+			rewards: [{
+				id: "05C8D3B3A1C7791A"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "05C8D3B3A1C7791A"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "3CBA4BECE7D219F1"
+				item: { count: 1, id: "atheria:archive_12" }
+				type: "item"
+			}]
+			x: 12.19d
+			y: 1.43d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "2E396B6198B66565"
-			x: 5.0d
-			y: 1.25d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "7AB47547FD5F9C81"
-					type: "item"
-					item: "atheria:archive_13"
+			rewards: [{
+				id: "71D9DD0F4373FAB7"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "71D9DD0F4373FAB7"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "7AB47547FD5F9C81"
+				item: { count: 1, id: "atheria:archive_13" }
+				type: "item"
+			}]
+			x: 1.46d
+			y: 5.63d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "1E699DC74EFFEA04"
-			x: 6.25d
-			y: 1.25d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "7D2C527556351432"
-					type: "item"
-					item: "atheria:archive_14"
+			rewards: [{
+				id: "0FB45EFBAE47DEDE"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "0FB45EFBAE47DEDE"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "7D2C527556351432"
+				item: { count: 1, id: "atheria:archive_14" }
+				type: "item"
+			}]
+			x: 5.31d
+			y: 5.53d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "7EEF84872C80F6D6"
-			x: 7.5d
-			y: 1.25d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "0B8431AD9E83A175"
-					type: "item"
-					item: "atheria:archive_15"
+			rewards: [{
+				id: "0E346F4ADD49F4B8"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "0E346F4ADD49F4B8"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "0B8431AD9E83A175"
+				item: { count: 1, id: "atheria:archive_15" }
+				type: "item"
+			}]
+			x: 6.88d
+			y: 5.52d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "3CC7B13F2C8004ED"
-			x: 8.75d
-			y: 1.25d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "25FF76B56D7260C7"
-					type: "item"
-					item: "atheria:archive_16"
+			rewards: [{
+				id: "34948EE9D73108F3"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "34948EE9D73108F3"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "25FF76B56D7260C7"
+				item: { count: 1, id: "atheria:archive_16" }
+				type: "item"
+			}]
+			x: 8.22d
+			y: 5.5d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "64651F8F2D64D6B7"
-			x: 0.0d
-			y: 2.5d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "5CCD501AD66B7605"
-					type: "item"
-					item: "atheria:archive_17"
+			rewards: [{
+				id: "495A71491CAAAA5A"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "495A71491CAAAA5A"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "5CCD501AD66B7605"
+				item: { count: 1, id: "atheria:archive_17" }
+				type: "item"
+			}]
+			x: 5.48d
+			y: 7.0d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "048FF3B3742CBDBD"
-			x: 1.25d
-			y: 2.5d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "46C6FA08D660D7D1"
-					type: "item"
-					item: "atheria:archive_18"
+			rewards: [{
+				id: "016157CC9AA87670"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "016157CC9AA87670"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "46C6FA08D660D7D1"
+				item: { count: 1, id: "atheria:archive_18" }
+				type: "item"
+			}]
+			x: 6.75d
+			y: 7.07d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "0E3B87332BBB4C67"
-			x: 2.5d
-			y: 2.5d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "19CC4F6E2D590845"
-					type: "item"
-					item: "atheria:archive_19"
+			rewards: [{
+				id: "1FDAF3B5A8126584"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "1FDAF3B5A8126584"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "19CC4F6E2D590845"
+				item: { count: 1, id: "atheria:archive_19" }
+				type: "item"
+			}]
+			x: 8.35d
+			y: 7.08d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "02D32734EEFD50EF"
-			x: 3.75d
-			y: 2.5d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "143EFAF943EDE5EE"
-					type: "item"
-					item: "atheria:archive_20"
+			rewards: [{
+				id: "68C6C8A059FBBFC3"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "68C6C8A059FBBFC3"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "143EFAF943EDE5EE"
+				item: { count: 1, id: "atheria:archive_20" }
+				type: "item"
+			}]
+			x: 10.89d
+			y: 5.68d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "4B8B9547AECA750C"
-			x: 5.0d
-			y: 2.5d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "3A135BE2990FFC46"
-					type: "item"
-					item: "atheria:archive_21"
+			rewards: [{
+				id: "2552A4D7CAD013FB"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "2552A4D7CAD013FB"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "3A135BE2990FFC46"
+				item: { count: 1, id: "atheria:archive_21" }
+				type: "item"
+			}]
+			x: 12.33d
+			y: 5.6d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "67CF088BBB3DC5CF"
-			x: 6.25d
-			y: 2.5d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "31849BFFDA7CAE82"
-					type: "item"
-					item: "atheria:archive_22"
+			rewards: [{
+				id: "72355163FD60ECB1"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "72355163FD60ECB1"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "31849BFFDA7CAE82"
+				item: { count: 1, id: "atheria:archive_22" }
+				type: "item"
+			}]
+			x: 13.71d
+			y: 5.65d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "69F326320D184DC8"
-			x: 7.5d
-			y: 2.5d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "023D2CB8226E236E"
-					type: "item"
-					item: "atheria:archive_23"
+			rewards: [{
+				id: "20C82BF46EE78CE5"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "20C82BF46EE78CE5"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "023D2CB8226E236E"
+				item: { count: 1, id: "atheria:archive_23" }
+				type: "item"
+			}]
+			x: 0.07d
+			y: 1.35d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "1A8B1DE29A6C39C7"
-			x: 8.75d
-			y: 2.5d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "27B1C57338293564"
-					type: "item"
-					item: "atheria:archive_24"
+			rewards: [{
+				id: "2C1B2F79F37DFD65"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "2C1B2F79F37DFD65"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "27B1C57338293564"
+				item: { count: 1, id: "atheria:archive_24" }
+				type: "item"
+			}]
+			x: 3.0d
+			y: 5.7d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "6220615BB7F8E359"
-			x: 0.0d
-			y: 3.75d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "46BD9CB9FF88B47F"
-					type: "item"
-					item: "atheria:archive_25"
+			rewards: [{
+				id: "1FFD4C287F05F58A"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "1FFD4C287F05F58A"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "46BD9CB9FF88B47F"
+				item: { count: 1, id: "atheria:archive_25" }
+				type: "item"
+			}]
+			x: -0.08d
+			y: 7.05d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "6EE9233B7CC5790F"
-			x: 1.25d
-			y: 3.75d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "031F1E8F94BF521E"
-					type: "item"
-					item: "atheria:archive_26"
+			rewards: [{
+				id: "47BC7C9F57A80C8F"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "47BC7C9F57A80C8F"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "031F1E8F94BF521E"
+				item: { count: 1, id: "atheria:archive_26" }
+				type: "item"
+			}]
+			x: 1.34d
+			y: 7.03d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "7C043FE99E6253D3"
-			x: 2.5d
-			y: 3.75d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "5BB97E047DB2EEE5"
-					type: "item"
-					item: "atheria:archive_27"
+			rewards: [{
+				id: "50194610BB5ED117"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "50194610BB5ED117"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "5BB97E047DB2EEE5"
+				item: { count: 1, id: "atheria:archive_27" }
+				type: "item"
+			}]
+			x: 10.82d
+			y: 6.96d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "079AE7015147093F"
-			x: 3.75d
-			y: 3.75d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "15DB608E1705ADD2"
-					type: "item"
-					item: "atheria:archive_28"
+			rewards: [{
+				id: "1A8CAC4BAC0DD2AB"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "1A8CAC4BAC0DD2AB"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "15DB608E1705ADD2"
+				item: { count: 1, id: "atheria:archive_28" }
+				type: "item"
+			}]
+			x: 12.35d
+			y: 6.99d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "3BE4FB79B10090AA"
-			x: 5.0d
-			y: 3.75d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "1123C448EE92C2E4"
-					type: "item"
-					item: "atheria:archive_29"
+			rewards: [{
+				id: "47949A55F40518FC"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "47949A55F40518FC"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "1123C448EE92C2E4"
+				item: { count: 1, id: "atheria:archive_29" }
+				type: "item"
+			}]
+			x: 13.8d
+			y: 1.42d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "2FD2BF8C2F889EDD"
-			x: 6.25d
-			y: 3.75d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "4D3A122DD88C6C14"
-					type: "item"
-					item: "atheria:archive_30"
+			rewards: [{
+				id: "1326FEBB89B46A42"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "1326FEBB89B46A42"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "4D3A122DD88C6C14"
+				item: { count: 1, id: "atheria:archive_30" }
+				type: "item"
+			}]
+			x: 5.41d
+			y: 8.51d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "22D0C682AE699DAF"
-			x: 7.5d
-			y: 3.75d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "3EFB5EC8C9B255DB"
-					type: "item"
-					item: "atheria:archive_31"
+			rewards: [{
+				id: "2A66C57A69A21250"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "2A66C57A69A21250"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "3EFB5EC8C9B255DB"
+				item: { count: 1, id: "atheria:archive_31" }
+				type: "item"
+			}]
+			x: 6.9d
+			y: 8.46d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "7EFF490590203412"
-			x: 8.75d
-			y: 3.75d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "37556C7CF1FCBFA9"
-					type: "item"
-					item: "atheria:archive_32"
+			rewards: [{
+				id: "218BA1F0A00D7185"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "218BA1F0A00D7185"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "37556C7CF1FCBFA9"
+				item: { count: 1, id: "atheria:archive_32" }
+				type: "item"
+			}]
+			x: 8.38d
+			y: 8.54d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "18A8F21E7D6F4736"
-			x: 0.0d
-			y: 5.0d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "62E447650159FB68"
-					type: "item"
-					item: "atheria:archive_33"
+			rewards: [{
+				id: "5B07ADB7B04B75E6"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "5B07ADB7B04B75E6"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "62E447650159FB68"
+				item: { count: 1, id: "atheria:archive_33" }
+				type: "item"
+			}]
+			x: 5.49d
+			y: 1.47d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "03281E612BD413C9"
-			x: 1.25d
-			y: 5.0d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "5FC6D8B5E8C0853D"
-					type: "item"
-					item: "atheria:archive_34"
+			rewards: [{
+				id: "3143F7EEEC1FCC8A"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "3143F7EEEC1FCC8A"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "5FC6D8B5E8C0853D"
+				item: { count: 1, id: "atheria:archive_34" }
+				type: "item"
+			}]
+			x: 6.82d
+			y: 1.41d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "3C3674D8DDD41DC8"
-			x: 2.5d
-			y: 5.0d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "4ACA328976676595"
-					type: "item"
-					item: "atheria:archive_35"
+			rewards: [{
+				id: "04C0F0A07D0A7B18"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "04C0F0A07D0A7B18"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "4ACA328976676595"
+				item: { count: 1, id: "atheria:archive_35" }
+				type: "item"
+			}]
+			x: 10.92d
+			y: 2.84d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "74661AB8211C0EA2"
-			x: 3.75d
-			y: 5.0d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "361FB8CF6F452C27"
-					type: "item"
-					item: "atheria:archive_36"
+			rewards: [{
+				id: "122A1662C2FDDB3C"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "122A1662C2FDDB3C"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "361FB8CF6F452C27"
+				item: { count: 1, id: "atheria:archive_36" }
+				type: "item"
+			}]
+			x: 13.7d
+			y: 7.04d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "3D6776DBE34446B3"
-			x: 5.0d
-			y: 5.0d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "436DE53360E9030D"
-					type: "item"
-					item: "atheria:archive_37"
+			rewards: [{
+				id: "04446285C557C4CC"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "04446285C557C4CC"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "436DE53360E9030D"
+				item: { count: 1, id: "atheria:archive_37" }
+				type: "item"
+			}]
+			x: 8.33d
+			y: 1.48d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "4DFCF794C2C5C341"
-			x: 6.25d
-			y: 5.0d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "6A833E400415A427"
-					type: "item"
-					item: "atheria:archive_38"
+			rewards: [{
+				id: "28C4909768246D68"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "28C4909768246D68"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "6A833E400415A427"
+				item: { count: 1, id: "atheria:archive_38" }
+				type: "item"
+			}]
+			x: 12.33d
+			y: 2.81d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "4C3105643ABC5DA3"
-			x: 7.5d
-			y: 5.0d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "71A64AC047D9F90A"
-					type: "item"
-					item: "atheria:archive_39"
+			rewards: [{
+				id: "6A57987DCEF53926"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "6A57987DCEF53926"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "71A64AC047D9F90A"
+				item: { count: 1, id: "atheria:archive_39" }
+				type: "item"
+			}]
+			x: 5.38d
+			y: 2.89d
 		}
 		{
+			hide_dependent_lines: true
+			hide_text_until_complete: true
 			id: "7E38436C3E1B1539"
-			x: 8.75d
-			y: 5.0d
-			hide_text_until_complete: true
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "41F878A23EEE7E1D"
-					type: "item"
-					item: "atheria:archive_40"
+			rewards: [{
+				id: "6ECDAD2936CE9054"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
 				}
-			]
-			rewards: [
-				{
-					id: "6ECDAD2936CE9054"
-					type: "item"
-					item: "atheria:bon_caf"
-				}
-			]
+				type: "item"
+			}]
+			tasks: [{
+				id: "41F878A23EEE7E1D"
+				item: { count: 1, id: "atheria:archive_40" }
+				type: "item"
+			}]
+			x: 10.7d
+			y: 8.52d
 		}
 		{
+			dependencies: [
+				"602E8BAFCAB107B3"
+				"4BD29BAEFC2E1A77"
+				"0DD275CCA0C2A5FB"
+				"4E99820201538464"
+				"2C63BE21DE3C4EC1"
+				"6C77FA875AAD2D14"
+				"0F1256CA4DD11191"
+				"79240C4D0EC9EE19"
+				"61C5F9A93896C38C"
+				"5CDCF545ECB75A8A"
+				"0FC4217D14465D15"
+				"3B2C3FDEEFC04838"
+				"2E396B6198B66565"
+				"1E699DC74EFFEA04"
+				"7EEF84872C80F6D6"
+				"3CC7B13F2C8004ED"
+				"64651F8F2D64D6B7"
+				"048FF3B3742CBDBD"
+				"0E3B87332BBB4C67"
+				"02D32734EEFD50EF"
+				"4B8B9547AECA750C"
+				"67CF088BBB3DC5CF"
+				"69F326320D184DC8"
+				"1A8B1DE29A6C39C7"
+				"6220615BB7F8E359"
+				"6EE9233B7CC5790F"
+				"7C043FE99E6253D3"
+				"079AE7015147093F"
+				"3BE4FB79B10090AA"
+				"2FD2BF8C2F889EDD"
+				"22D0C682AE699DAF"
+				"7EFF490590203412"
+				"18A8F21E7D6F4736"
+				"03281E612BD413C9"
+				"3C3674D8DDD41DC8"
+				"74661AB8211C0EA2"
+				"3D6776DBE34446B3"
+				"4DFCF794C2C5C341"
+				"4C3105643ABC5DA3"
+				"7E38436C3E1B1539"
+			]
+			hide_dependent_lines: true
+			icon: {
+				id: "minecraft:book"
+			}
 			id: "21C649E1838F4A16"
-			x: 11.0d
-			y: 0.0d
-			shape: "rsquare"
-			size: 1.25d
-			dependencies: [
-				"602E8BAFCAB107B3"
-				"4BD29BAEFC2E1A77"
-				"0DD275CCA0C2A5FB"
-				"4E99820201538464"
-				"2C63BE21DE3C4EC1"
-				"6C77FA875AAD2D14"
-				"0F1256CA4DD11191"
-				"79240C4D0EC9EE19"
-				"61C5F9A93896C38C"
-				"5CDCF545ECB75A8A"
-				"0FC4217D14465D15"
-				"3B2C3FDEEFC04838"
-				"2E396B6198B66565"
-				"1E699DC74EFFEA04"
-				"7EEF84872C80F6D6"
-				"3CC7B13F2C8004ED"
-				"64651F8F2D64D6B7"
-				"048FF3B3742CBDBD"
-				"0E3B87332BBB4C67"
-				"02D32734EEFD50EF"
-				"4B8B9547AECA750C"
-				"67CF088BBB3DC5CF"
-				"69F326320D184DC8"
-				"1A8B1DE29A6C39C7"
-				"6220615BB7F8E359"
-				"6EE9233B7CC5790F"
-				"7C043FE99E6253D3"
-				"079AE7015147093F"
-				"3BE4FB79B10090AA"
-				"2FD2BF8C2F889EDD"
-				"22D0C682AE699DAF"
-				"7EFF490590203412"
-				"18A8F21E7D6F4736"
-				"03281E612BD413C9"
-				"3C3674D8DDD41DC8"
-				"74661AB8211C0EA2"
-				"3D6776DBE34446B3"
-				"4DFCF794C2C5C341"
-				"4C3105643ABC5DA3"
-				"7E38436C3E1B1539"
-			]
 			min_required_dependencies: 10
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "6369B30426565F78"
-					type: "checkmark"
+			rewards: [{
+				id: "4A535ADCB80F6CB4"
+				item: {
+					count: 1
+					id: "sophisticatedbackpacks:iron_backpack"
 				}
-			]
-			rewards: [
-				{
-					id: "4A535ADCB80F6CB4"
-					type: "item"
-					item: "sophisticatedbackpacks:iron_backpack"
-				}
-			]
+				type: "item"
+			}]
+			shape: "atheria_fiche"
+			size: 1.3d
+			tasks: [{
+				id: "6369B30426565F78"
+				type: "checkmark"
+			}]
+			x: 16.1d
+			y: 0.5d
 		}
 		{
+			dependencies: [
+				"602E8BAFCAB107B3"
+				"4BD29BAEFC2E1A77"
+				"0DD275CCA0C2A5FB"
+				"4E99820201538464"
+				"2C63BE21DE3C4EC1"
+				"6C77FA875AAD2D14"
+				"0F1256CA4DD11191"
+				"79240C4D0EC9EE19"
+				"61C5F9A93896C38C"
+				"5CDCF545ECB75A8A"
+				"0FC4217D14465D15"
+				"3B2C3FDEEFC04838"
+				"2E396B6198B66565"
+				"1E699DC74EFFEA04"
+				"7EEF84872C80F6D6"
+				"3CC7B13F2C8004ED"
+				"64651F8F2D64D6B7"
+				"048FF3B3742CBDBD"
+				"0E3B87332BBB4C67"
+				"02D32734EEFD50EF"
+				"4B8B9547AECA750C"
+				"67CF088BBB3DC5CF"
+				"69F326320D184DC8"
+				"1A8B1DE29A6C39C7"
+				"6220615BB7F8E359"
+				"6EE9233B7CC5790F"
+				"7C043FE99E6253D3"
+				"079AE7015147093F"
+				"3BE4FB79B10090AA"
+				"2FD2BF8C2F889EDD"
+				"22D0C682AE699DAF"
+				"7EFF490590203412"
+				"18A8F21E7D6F4736"
+				"03281E612BD413C9"
+				"3C3674D8DDD41DC8"
+				"74661AB8211C0EA2"
+				"3D6776DBE34446B3"
+				"4DFCF794C2C5C341"
+				"4C3105643ABC5DA3"
+				"7E38436C3E1B1539"
+			]
+			hide_dependent_lines: true
+			icon: {
+				id: "minecraft:writable_book"
+			}
 			id: "649CDF4FC34E8D8B"
-			x: 11.0d
-			y: 1.5d
-			shape: "rsquare"
-			size: 1.25d
-			dependencies: [
-				"602E8BAFCAB107B3"
-				"4BD29BAEFC2E1A77"
-				"0DD275CCA0C2A5FB"
-				"4E99820201538464"
-				"2C63BE21DE3C4EC1"
-				"6C77FA875AAD2D14"
-				"0F1256CA4DD11191"
-				"79240C4D0EC9EE19"
-				"61C5F9A93896C38C"
-				"5CDCF545ECB75A8A"
-				"0FC4217D14465D15"
-				"3B2C3FDEEFC04838"
-				"2E396B6198B66565"
-				"1E699DC74EFFEA04"
-				"7EEF84872C80F6D6"
-				"3CC7B13F2C8004ED"
-				"64651F8F2D64D6B7"
-				"048FF3B3742CBDBD"
-				"0E3B87332BBB4C67"
-				"02D32734EEFD50EF"
-				"4B8B9547AECA750C"
-				"67CF088BBB3DC5CF"
-				"69F326320D184DC8"
-				"1A8B1DE29A6C39C7"
-				"6220615BB7F8E359"
-				"6EE9233B7CC5790F"
-				"7C043FE99E6253D3"
-				"079AE7015147093F"
-				"3BE4FB79B10090AA"
-				"2FD2BF8C2F889EDD"
-				"22D0C682AE699DAF"
-				"7EFF490590203412"
-				"18A8F21E7D6F4736"
-				"03281E612BD413C9"
-				"3C3674D8DDD41DC8"
-				"74661AB8211C0EA2"
-				"3D6776DBE34446B3"
-				"4DFCF794C2C5C341"
-				"4C3105643ABC5DA3"
-				"7E38436C3E1B1539"
-			]
 			min_required_dependencies: 20
-			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "51CDF88D7D1AB02C"
-					type: "checkmark"
+			rewards: [{
+				id: "1D2B8F02C309C0AC"
+				item: {
+					count: 1
+					id: "explorerscompass:explorerscompass"
 				}
-			]
-			rewards: [
-				{
-					id: "1D2B8F02C309C0AC"
-					type: "item"
-					item: "explorerscompass:explorerscompass"
-				}
-			]
+				type: "item"
+			}]
+			shape: "atheria_fiche"
+			size: 1.3d
+			tasks: [{
+				id: "51CDF88D7D1AB02C"
+				type: "checkmark"
+			}]
+			x: 16.1d
+			y: 2.7d
 		}
 		{
-			id: "6A67E27AF214767A"
-			x: 11.0d
-			y: 3.0d
-			shape: "rsquare"
-			size: 1.25d
 			dependencies: [
 				"602E8BAFCAB107B3"
 				"4BD29BAEFC2E1A77"
@@ -1025,58 +1007,67 @@
 				"4C3105643ABC5DA3"
 				"7E38436C3E1B1539"
 			]
-			min_required_dependencies: 30
 			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "249F65FF2C1800D9"
-					type: "checkmark"
-				}
-			]
+			icon: {
+				id: "minecraft:written_book"
+			}
+			id: "6A67E27AF214767A"
+			min_required_dependencies: 30
 			rewards: [
 				{
 					id: "2642CBC16EA926D6"
-					type: "item"
 					item: {
-						id: "tacz:modern_kinetic_gun"
-						count: 1
 						components: {
-							"minecraft:custom_data": {GunId:"tacz:springfield1873",GunFireMode:"SEMI"}
-							"minecraft:custom_name": '{"text":"Le Journaliste","color":"gold","italic":false}'
+							"minecraft:custom_data": {
+								GunFireMode: "SEMI"
+								GunId: "tacz:springfield1873"
+							}
+							"minecraft:custom_name": "{\"color\":\"gold\",\"italic\":false,\"text\":\"Le Journaliste\"}"
 						}
+						count: 1
+						id: "tacz:modern_kinetic_gun"
 					}
+					type: "item"
 				}
 				{
-					id: "1FDEF5F25985BA33"
-					type: "item"
-					item: {
-						id: "tacz:ammo"
-						count: 1
-						components: {
-							"minecraft:custom_data": {AmmoId:"tacz:45_70"}
-						}
-					}
 					count: 20
+					id: "1FDEF5F25985BA33"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:45_70"
+							}
+							"minecraft:max_stack_size": 48
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
 				}
 				{
 					id: "5CCD2D42A58DEE0F"
-					type: "item"
 					item: {
-						id: "tacz:attachment"
-						count: 1
 						components: {
-							"minecraft:custom_data": {AttachmentId:"tacz:scope_1873_6x"}
+							"minecraft:custom_data": {
+								AttachmentId: "tacz:scope_1873_6x"
+							}
 						}
+						count: 1
+						id: "tacz:attachment"
 					}
+					type: "item"
 				}
 			]
+			shape: "atheria_fiche"
+			size: 1.3d
+			tasks: [{
+				id: "249F65FF2C1800D9"
+				type: "checkmark"
+			}]
+			x: 16.1d
+			y: 4.9d
 		}
 		{
-			id: "1E61B49C80CEAA90"
-			x: 11.0d
-			y: 4.5d
-			shape: "gear"
-			size: 1.25d
 			dependencies: [
 				"602E8BAFCAB107B3"
 				"4BD29BAEFC2E1A77"
@@ -1120,24 +1111,26 @@
 				"7E38436C3E1B1539"
 			]
 			hide_dependent_lines: true
-			tasks: [
-				{
-					id: "41746BB66029D813"
-					type: "checkmark"
-				}
-			]
-			rewards: [
-				{
-					id: "5DA3BBA56EDF55D3"
-					type: "command"
-					command: "/tag {p} add titre_historien"
-					permission_level: 2
-					silent: true
-					feedback_message: "Titre « Historien d'Atheria »"
-				}
-			]
+			icon: {
+				id: "minecraft:lectern"
+			}
+			id: "1E61B49C80CEAA90"
+			rewards: [{
+				command: "/tag {p} add titre_historien"
+				feedback_message: "Titre « Historien d'Atheria »"
+				id: "5DA3BBA56EDF55D3"
+				permission_level: 2
+				silent: true
+				type: "command"
+			}]
+			shape: "atheria_fiche"
+			size: 1.6d
+			tasks: [{
+				id: "41746BB66029D813"
+				type: "checkmark"
+			}]
+			x: 16.1d
+			y: 7.1000000000000005d
 		}
 	]
-	quest_links: [ ]
-	images: [ ]
 }
