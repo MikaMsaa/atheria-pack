@@ -35,15 +35,15 @@
 		#Third person camera x-offset.
 		# Default: -0.75
 		# Range: -1.7976931348623157E308 ~ 1.7976931348623157E308
-		offset_x = -0.75
+		offset_x = -0.85
 		#Third person camera y-offset.
 		# Default: 0.0
 		# Range: -1.7976931348623157E308 ~ 1.7976931348623157E308
-		offset_y = 0.0
+		offset_y = 0.1
 		#Third person camera z-offset.
 		# Default: 4.0
 		# Range: -1.7976931348623157E308 ~ 1.7976931348623157E308
-		offset_z = 4.0
+		offset_z = 2.3
 		#Whether to dynamically adjust camera offsets depending on space constraints.
 		dynamic_offsets = true
 		#Size of the offset adjustment per step.
@@ -101,7 +101,7 @@
 				#x-offset multiplier for when the player is a passenger.
 				# Default: 1.0
 				# Range: -1.7976931348623157E308 ~ 1.7976931348623157E308
-				multiplier_offset_x = 1.0
+				multiplier_offset_x = 0.0
 				#y-offset multiplier for when the player is a passenger.
 				# Default: 1.0
 				# Range: -1.7976931348623157E308 ~ 1.7976931348623157E308
@@ -123,13 +123,13 @@
 				#z-offset multiplier for when the player is sprinting.
 				# Default: 1.0
 				# Range: -1.7976931348623157E308 ~ 1.7976931348623157E308
-				multiplier_offset_z = 1.0
+				multiplier_offset_z = 1.2
 
 			[camera.offset.multiplier.aiming]
 				#x-offset multiplier for when the player is aiming.
 				# Default: 1.0
 				# Range: -1.7976931348623157E308 ~ 1.7976931348623157E308
-				multiplier_offset_x = 1.0
+				multiplier_offset_x = 0.85
 				#y-offset multiplier for when the player is aiming.
 				# Default: 1.0
 				# Range: -1.7976931348623157E308 ~ 1.7976931348623157E308
@@ -137,7 +137,7 @@
 				#z-offset multiplier for when the player is aiming.
 				# Default: 1.0
 				# Range: -1.7976931348623157E308 ~ 1.7976931348623157E308
-				multiplier_offset_z = 1.0
+				multiplier_offset_z = 0.55
 
 			[camera.offset.multiplier.fall_flying]
 				#x-offset multiplier for when using Elytra.
@@ -179,7 +179,7 @@
 				#z-offset modifier for when the player is a passenger.
 				# Default: 0.0
 				# Range: -1.7976931348623157E308 ~ 1.7976931348623157E308
-				modifier_offset_z = 0.0
+				modifier_offset_z = 1.7
 
 			[camera.offset.modifiers.sprint]
 				#x-offset modifier for when the player is sprinting.

@@ -1,26 +1,33 @@
 {
-  "configVersion": 2,
-  "enabledByDefault": true,
-  "xOffset": 0,
-  "sneakXOffset": 0,
-  "sitXOffset": 0,
-  "renderStuckFeatures": true,
-  "vanillaHandsMode": "OFF",
-  "dynamicMode": true,
-  "vanillaHandsSkipSwimming": true,
-  "autoVanillaHands": [
-    "tacz:modern_kinetic_gun",
-    "create:potato_cannon",
-    "create:handheld_worldshaper",
-    "twilightforest:filled_ore_map",
-    "map_atlases:atlas",
-    "twilightforest:filled_magic_map",
-    "twilightforest:filled_maze_map",
-    "antiqueatlas:antique_atlas",
-    "create:extendo_grip"
-  ],
-  "autoToggleModItems": [
-    "exposure:camera"
-  ],
-  "hiddenLayers": []
+    "configVersion":  2,
+    "enabledByDefault":  true,
+    "xOffset":  0,
+    "sneakXOffset":  0,
+    "sitXOffset":  0,
+    "renderStuckFeatures":  false,
+    "vanillaHandsMode":  "OFF",
+    "dynamicMode":  false,
+    "vanillaHandsSkipSwimming":  true,
+    "autoVanillaHands":  [
+                             "tacz:modern_kinetic_gun",
+                             "create:potato_cannon",
+                             "create:handheld_worldshaper",
+                             "twilightforest:filled_ore_map",
+                             "map_atlases:atlas",
+                             "twilightforest:filled_magic_map",
+                             "twilightforest:filled_maze_map",
+                             "antiqueatlas:antique_atlas",
+                             "create:extendo_grip",
+                             "minecraft:bow",
+                             "minecraft:crossbow",
+                             "minecraft:trident",
+                             "minecraft:spyglass",
+                             "minecraft:filled_map"
+                         ],
+    "autoToggleModItems":  [
+                               "exposure:camera"
+                           ],
+    "hiddenLayers":  [
+
+                     ]
 }

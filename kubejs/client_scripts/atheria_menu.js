@@ -21,7 +21,7 @@ NativeEvents.onEvent('LOWEST', 'net.neoforged.neoforge.client.event.ScreenEvent$
     // KubeJS interdit getClass() : le nom de la classe se lit dans le texte de l'objet
     if (ATHERIA_ECRAN_PAUSE.test('' + event.getScreen())) {
       // En partie : centre, sous le dernier bouton du menu
-      atheriaAjouterApparence(event, event.getScreen(), Math.floor(event.getScreen().width / 2) - 37, Math.floor(event.getScreen().height / 4) + 150)
+      atheriaAjouterApparence(event, event.getScreen(), Math.floor(event.getScreen().width / 2) - 31, Math.floor(event.getScreen().height / 4) + 150)
       return
     }
     if (!ATHERIA_ECRAN_TITRE.test('' + event.getScreen())) return

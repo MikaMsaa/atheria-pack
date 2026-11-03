@@ -95,7 +95,7 @@
       "comment": "Set to true if you are using a physical shifter controller for shifting gears.  Required since IV doesn't know this automatically since a shifter in neutral won't press any buttons."
     },
     "heliAutoLevel": {
-      "value": false,
+      "value": true,
       "comment": "If true, helicopters will automatically return to level flight when you let off the control stick.  However, this will prevent them from doing loops.  The realistic value for this config is false, but the one that's more player-freindly is true."
     },
     "mouseYoke": {
@@ -183,11 +183,11 @@
         "isMouseButton": false
       },
       "aircraft.yaw_r": {
-        "keyCode": 76,
+        "keyCode": 262,
         "isMouseButton": false
       },
       "aircraft.yaw_l": {
-        "keyCode": 74,
+        "keyCode": 263,
         "isMouseButton": false
       },
       "aircraft.pitch_u": {
@@ -207,15 +207,15 @@
         "isMouseButton": false
       },
       "aircraft.throttle_u": {
-        "keyCode": 73,
+        "keyCode": 265,
         "isMouseButton": false
       },
       "aircraft.throttle_d": {
-        "keyCode": 75,
+        "keyCode": 264,
         "isMouseButton": false
       },
       "aircraft.flaps_u": {
-        "keyCode": 89,
+        "keyCode": 79,
         "isMouseButton": false
       },
       "aircraft.flaps_d": {
@@ -223,11 +223,11 @@
         "isMouseButton": false
       },
       "aircraft.mouseyoke": {
-        "keyCode": 67,
+        "keyCode": 333,
         "isMouseButton": false
       },
       "aircraft.brake": {
-        "keyCode": 66,
+        "keyCode": 71,
         "isMouseButton": false
       },
       "aircraft.park": {
@@ -307,7 +307,7 @@
         "isMouseButton": false
       },
       "car.horn": {
-        "keyCode": 67,
+        "keyCode": 72,
         "isMouseButton": false
       },
       "car.radio": {
