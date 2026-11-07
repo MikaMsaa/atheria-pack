@@ -1,0 +1,178 @@
+{
+	PresetMetadata: {
+		author: "Atheria",
+		category: "Atheria",
+		description: "PNJ de la campagne Atheria : Terminal du labo 7.",
+		entityTypeId: "easy_npc:humanoid",
+		name: "Terminal du labo 7",
+		variantType: "STEVE",
+		version: "1.0.0"
+	},
+	data: {
+		ActionData: {
+			ActionEventSet: {
+				ON_INTERACTION: [
+					{
+						Type: "OPEN_DEFAULT_DIALOG"
+					}
+				]
+			}
+		},
+		CustomName: '{"text": "Terminal du labo 7", "color": "#E8C66A"}',
+		DialogData: {
+			DialogDataSet: [
+				{
+					Buttons: [
+						{
+							Actions: [
+								{
+									Cmd: "/summon spore:inf_human ~2 ~ ~",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/summon spore:inf_human ~-2 ~ ~",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/playsound minecraft:block.note_block.bass master @initiator ~ ~ ~ 1 0.5",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Msg: {
+										T: 4b,
+										Texts: ["CODE ERRONÉ. Alarme déclenchée."]
+									},
+									Type: "MESSAGE"
+								},
+								{
+									Type: "CLOSE_DIALOG"
+								}
+							],
+							Label: "b_wrong0",
+							Name: "7-4-0-1"
+						},
+						{
+							Actions: [
+								{
+									Cmd: "/tag @initiator add q_ch3_terminal",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/give @initiator atheria:dossier_symbiose 1",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/give @initiator atheria:archive_14 1",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/playsound minecraft:entity.experience_orb.pickup master @initiator ~ ~ ~ 0.6 1.2",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Type: "CLOSE_DIALOG"
+								}
+							],
+							Label: "b_q_ch3_terminal",
+							Name: "1-0-4-7"
+						},
+						{
+							Actions: [
+								{
+									Cmd: "/summon spore:inf_human ~2 ~ ~",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/summon spore:inf_human ~-2 ~ ~",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/playsound minecraft:block.note_block.bass master @initiator ~ ~ ~ 1 0.5",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Msg: {
+										T: 4b,
+										Texts: ["CODE ERRONÉ. Alarme déclenchée."]
+									},
+									Type: "MESSAGE"
+								},
+								{
+									Type: "CLOSE_DIALOG"
+								}
+							],
+							Label: "b_wrong1",
+							Name: "1-9-8-4"
+						}
+					],
+					Conditions: [
+						{
+							Name: "acte_3",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch3_terminal",
+					Name: "q_ch3_terminal",
+					Priority: 10,
+					Texts: [
+						{
+							Text: "SOMACO - LABORATOIRE 7\\nAccès restreint. Entrez le code d'accès."
+						}
+					]
+				},
+				{
+					Conditions: [
+						{
+							Name: "q_ch3_terminal",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch3_terminal_fait",
+					Name: "q_ch3_terminal (fait)",
+					Priority: 11,
+					Texts: [
+						{
+							Text: "Tu as ce qu'il te faut. Avance."
+						}
+					]
+				},
+				{
+					Label: "repos",
+					Name: "Repos",
+					Priority: 1,
+					Texts: [
+						{
+							Text: "SOMACO - LABORATOIRE 7. Écran noir. Aucune alimentation."
+						}
+					]
+				}
+			],
+			Type: "STANDARD"
+		},
+		EasyNPCVersion: 3,
+		Invulnerable: 1b,
+		ObjectiveData: {
+			ObjectiveDataSet: [
+				{
+					Type: "LOOK_AT_PLAYER"
+				},
+				{
+					Type: "LOOK_AT_RESET"
+				}
+			]
+		},
+		PersistenceRequired: 1b,
+		VariantType: "STEVE",
+		id: "easy_npc:humanoid"
+	}
+}

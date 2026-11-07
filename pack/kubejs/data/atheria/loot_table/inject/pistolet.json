@@ -1,0 +1,88 @@
+{
+    "type":  "minecraft:chest",
+    "pools":  [
+                  {
+                      "rolls":  1,
+                      "entries":  [
+                                      {
+                                          "type":  "minecraft:item",
+                                          "name":  "tacz:modern_kinetic_gun",
+                                          "weight":  5,
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_components",
+                                                                "components":  {
+                                                                                   "minecraft:custom_data":  "{GunId:\"tacz:glock_17\",GunFireMode:\"SEMI\"}"
+                                                                               }
+                                                            }
+                                                        ]
+                                      },
+                                      {
+                                          "type":  "minecraft:item",
+                                          "name":  "tacz:modern_kinetic_gun",
+                                          "weight":  4,
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_components",
+                                                                "components":  {
+                                                                                   "minecraft:custom_data":  "{GunId:\"tacz:m9a4\",GunFireMode:\"SEMI\"}"
+                                                                               }
+                                                            }
+                                                        ]
+                                      },
+                                      {
+                                          "type":  "minecraft:item",
+                                          "name":  "tacz:modern_kinetic_gun",
+                                          "weight":  4,
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_components",
+                                                                "components":  {
+                                                                                   "minecraft:custom_data":  "{GunId:\"tacz:m1911\",GunFireMode:\"SEMI\"}"
+                                                                               }
+                                                            }
+                                                        ]
+                                      },
+                                      {
+                                          "type":  "minecraft:item",
+                                          "name":  "tacz:modern_kinetic_gun",
+                                          "weight":  3,
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_components",
+                                                                "components":  {
+                                                                                   "minecraft:custom_data":  "{GunId:\"tacz:p320\",GunFireMode:\"SEMI\"}"
+                                                                               }
+                                                            }
+                                                        ]
+                                      },
+                                      {
+                                          "type":  "minecraft:item",
+                                          "name":  "tacz:modern_kinetic_gun",
+                                          "weight":  2,
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_components",
+                                                                "components":  {
+                                                                                   "minecraft:custom_data":  "{GunId:\"tacz:hk_mk23\",GunFireMode:\"SEMI\"}"
+                                                                               }
+                                                            }
+                                                        ]
+                                      },
+                                      {
+                                          "type":  "minecraft:item",
+                                          "name":  "tacz:modern_kinetic_gun",
+                                          "weight":  1,
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_components",
+                                                                "components":  {
+                                                                                   "minecraft:custom_data":  "{GunId:\"tacz:cz75\",GunFireMode:\"AUTO\"}"
+                                                                               }
+                                                            }
+                                                        ]
+                                      }
+                                  ]
+                  }
+              ]
+}

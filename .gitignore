@@ -1,0 +1,42 @@
+# Sauvegarde Atheria : on ignore tout, puis on autorise ce qui sert a reconstruire.
+/*
+!/.gitignore
+!/sauvegarder.bat
+!/LISEZ-MOI.md
+!/liste-des-mods.csv
+!/telecharger-mods.ps1
+!/Telecharger les mods.bat
+!/pack/
+!/outils/
+!/docs/
+!/schematics/
+!/client/
+!/serveur/
+
+# Binaires regenerables / trop lourds
+*.jar
+!/pack/packwiz-installer-bootstrap.jar
+*.exe
+*.zip
+*.mrpack
+*.log
+/outils/**/build/
+/outils/**/out/
+
+# Docs : seulement le texte (les captures .png font 776 Mo)
+/docs/**/*.png
+
+# Client : seulement les reglages
+/client/mods/
+/client/mods-desactives/
+/client/resourcepacks/
+/client/shaderpacks/
+
+# Serveur : seulement la configuration (pas le monde, libs, logs)
+/serveur/*
+!/serveur/config/
+!/serveur/defaultconfigs/
+!/serveur/kubejs/
+!/serveur/server.properties
+!/serveur/run.bat
+!/serveur/user_jvm_args.txt

@@ -1,0 +1,61 @@
+// ### THE MOD REQUIRES A RESTART OF THE GAME TO APPLY CHANGES ###
+{
+  // this is the main spread factor (default is 2)
+  //
+  // tips: a spread factor can be a decimal number (such as 1.5)
+  //       a spread factor of 1 means all structure's placements are not modified (useful if you want to use only custom spread factors)
+  //       a spread factor above 1 means all structures are rarer
+  //       a spread factor below 1 means all structures are more common
+  //       a spread factor of 0 disables all structures entirely
+  "spreadFactor": 1.1,
+
+  // Some structure mods/datapacks do not specify a custom salt or use the same salt for all their structures, which might cause structure overlap.
+  // Enabling this is supposed to reduce this phenomenon, as all structure sets will have their own salt, hashed from their id.
+  // If unsure, leave this enabled.
+  "idBasedSalt": true,
+
+  // this is a list of custom spread factors
+  "customSpreadFactors": [
+    { "structure": "minecraft:villages", "factor": 0.4 },
+    { "structure": "repurposed_structures:villages_overworld", "factor": 0.5 },
+    { "structure": "explorify:taverns", "factor": 0 },
+    { "structure": "structory_towers:ultra_rare_towers", "factor": 0 },
+    { "structure": "minecraft:nether_fossils", "factor": 0 },
+    { "structure": "minecraft:ruined_portals", "factor": 0 },
+    { "structure": "minecraft:ancient_cities", "factor": 0 },
+    { "structure": "minecraft:trial_chambers", "factor": 0 },
+    { "structure": "minecraft:ocean_monuments", "factor": 0 },
+    { "structure": "minecraft:desert_pyramids", "factor": 0 },
+    { "structure": "minecraft:jungle_temples", "factor": 0 },
+    { "structure": "minecraft:swamp_huts", "factor": 0 },
+    { "structure": "minecraft:woodland_mansions", "factor": 0 },
+    { "structure": "mowziesmobs:monasteries", "factor": 0 },
+    { "structure": "mowziesmobs:wrought_chambers", "factor": 0 },
+    { "structure": "mowziesmobs:umvuthana_groves", "factor": 0 },
+    { "structure": "friendsandfoes:citadel", "factor": 0 },
+    { "structure": "friendsandfoes:iceologer_cabin", "factor": 0 },
+    { "structure": "friendsandfoes:illusioner_shack", "factor": 0 },
+    { "structure": "friendsandfoes:illusioner_training_grounds", "factor": 0 },
+    { "structure": "explorify:black_spirals", "factor": 0 },
+    { "structure": "explorify:mausoleums", "factor": 0 },
+    { "structure": "explorify:dark_forest_settlements", "factor": 0 },
+    { "structure": "explorify:badlands_pyramids", "factor": 0 },
+    { "structure": "explorify:desert_shrines", "factor": 0 },
+    { "structure": "terralith:mage", "factor": 0 },
+    { "structure": "terralith:rare_dungeon", "factor": 0 },
+    { "structure": "terralith:underground_dungeon", "factor": 0 },
+    { "structure": "repurposed_structures:ancient_cities_overworld", "factor": 0 },
+    { "structure": "repurposed_structures:bastions_overworld", "factor": 0 },
+    { "structure": "repurposed_structures:cities_overworld", "factor": 0 },
+    { "structure": "repurposed_structures:fortresses_overworld", "factor": 0 },
+    { "structure": "repurposed_structures:mineshafts_ocean", "factor": 0 },
+    { "structure": "repurposed_structures:monuments_overworld", "factor": 0 },
+    { "structure": "repurposed_structures:outposts_ocean", "factor": 0 },
+    { "structure": "repurposed_structures:pyramids_overworld", "factor": 0 },
+    { "structure": "repurposed_structures:pyramids_mushroom", "factor": 0 },
+    { "structure": "repurposed_structures:temples_overworld", "factor": 0 },
+    { "structure": "repurposed_structures:witch_huts_overworld", "factor": 0 },
+    { "structure": "repurposed_structures:villages_mushroom", "factor": 0 },
+    { "structure": "supplementaries:galleons", "factor": 0 },
+  ]
+}

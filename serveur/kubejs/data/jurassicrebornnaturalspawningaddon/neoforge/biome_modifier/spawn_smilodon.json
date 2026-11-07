@@ -1,0 +1,40 @@
+{
+    "type":  "neoforge:add_spawns",
+    "biomes":  [
+                   "minecraft:taiga",
+                   "minecraft:old_growth_pine_taiga",
+                   "minecraft:old_growth_spruce_taiga",
+                   "terralith:siberian_taiga",
+                   "terralith:birch_taiga",
+                   "terralith:shield",
+                   "terralith:alpine_grove",
+                   "terralith:cold_shrubland",
+                   "biomesoplenty:coniferous_forest",
+                   "biomesoplenty:fir_clearing",
+                   "biomesoplenty:redwood_forest",
+                   "biomesoplenty:moor",
+                   "minecraft:snowy_plains",
+                   "minecraft:ice_spikes",
+                   "minecraft:snowy_taiga",
+                   "minecraft:grove",
+                   "terralith:wintry_forest",
+                   "terralith:wintry_lowlands",
+                   "terralith:snowy_shield",
+                   "terralith:snowy_maple_forest",
+                   "terralith:siberian_grove",
+                   "biomesoplenty:tundra",
+                   "biomesoplenty:muskeg",
+                   "biomesoplenty:snowy_coniferous_forest",
+                   "biomesoplenty:snowy_fir_clearing",
+                   "biomesoplenty:snowy_maple_woods",
+                   "biomesoplenty:cold_desert"
+               ],
+    "spawners":  [
+                     {
+                         "type":  "jurassicreborn:smilodon",
+                         "weight":  4,
+                         "minCount":  1,
+                         "maxCount":  1
+                     }
+                 ]
+}

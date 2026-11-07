@@ -1,0 +1,139 @@
+{
+    "xsize":  16,
+    "zsize":  16,
+    "palette":  {
+                    "palette":  [
+                                    {
+                                        "block":  "minecraft:green_terracotta",
+                                        "char":  "M"
+                                    },
+                                    {
+                                        "block":  "minecraft:iron_bars",
+                                        "char":  "K"
+                                    },
+                                    {
+                                        "block":  "minecraft:green_bed[facing=north,part=head]",
+                                        "char":  "E"
+                                    },
+                                    {
+                                        "block":  "minecraft:green_bed[facing=north,part=foot]",
+                                        "char":  "F"
+                                    },
+                                    {
+                                        "char":  "c",
+                                        "block":  "minecraft:chest[facing=north]",
+                                        "loot":  "atheria_militaire"
+                                    }
+                                ]
+                },
+    "slices":  [
+                   [
+                       "################",
+                       "################",
+                       "################",
+                       "################",
+                       "################",
+                       "################",
+                       "################",
+                       "################",
+                       "################",
+                       "#######l########",
+                       "################",
+                       "################",
+                       "################",
+                       "################",
+                       "################",
+                       "################"
+                   ],
+                   [
+                       "MMMMMMM  MMMMMMM",
+                       "M E  E    E  E M",
+                       "M F  F    F  F M",
+                       "M              M",
+                       "M              M",
+                       "M              M",
+                       "M              M",
+                       "  c            M",
+                       "               M",
+                       "M      l       M",
+                       "M     ###      M",
+                       "M              M",
+                       "M              M",
+                       "M F  F    F  F M",
+                       "M E  E    E  E M",
+                       "MMMMMMMMMMMMMMMM"
+                   ],
+                   [
+                       "MKKMKKM  MKKMKKM",
+                       "K              K",
+                       "K              K",
+                       "M              M",
+                       "K              K",
+                       "K              K",
+                       "M              M",
+                       "               K",
+                       "               K",
+                       "M      l       M",
+                       "K     ###      K",
+                       "K              K",
+                       "M              M",
+                       "K              K",
+                       "K              K",
+                       "MKKMKKMKKMKKMKKM"
+                   ],
+                   [
+                       "MKKMKKM  MKKMKKM",
+                       "K              K",
+                       "K              K",
+                       "M              M",
+                       "K              K",
+                       "K              K",
+                       "M              M",
+                       "               K",
+                       "               K",
+                       "M      l       M",
+                       "K     ###      K",
+                       "K              K",
+                       "M              M",
+                       "K              K",
+                       "K              K",
+                       "MKKMKKMKKMKKMKKM"
+                   ],
+                   [
+                       "MMMMMMMMMMMMMMMM",
+                       "M              M",
+                       "M              M",
+                       "M              M",
+                       "M              M",
+                       "M              M",
+                       "M              M",
+                       "M              M",
+                       "M              M",
+                       "M      l       M",
+                       "M     ###      M",
+                       "M              M",
+                       "M              M",
+                       "M              M",
+                       "M              M",
+                       "MMMMMMMMMMMMMMMM"
+                   ],
+                   [
+                       "################",
+                       "################",
+                       "################",
+                       "################",
+                       "################",
+                       "################",
+                       "################",
+                       "################",
+                       "################",
+                       "#######l########",
+                       "################",
+                       "################",
+                       "################",
+                       "################",
+                       "################",
+                       "################"
+                   ]
+               ]
+}

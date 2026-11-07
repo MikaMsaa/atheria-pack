@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": { "type": "minecraft:uniform", "min": 2, "max": 5 },
+      "entries": [
+        { "type": "minecraft:item", "name": "atheria:ration", "weight": 6 },
+        { "type": "minecraft:item", "name": "minecraft:bread", "weight": 8, "functions": [ { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 4 } } ] },
+        { "type": "minecraft:item", "name": "minecraft:cooked_beef", "weight": 5, "functions": [ { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 3 } } ] },
+        { "type": "minecraft:item", "name": "minecraft:iron_ingot", "weight": 6, "functions": [ { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 4 } } ] },
+        { "type": "minecraft:item", "name": "minecraft:coal", "weight": 6, "functions": [ { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 2, "max": 6 } } ] },
+        { "type": "minecraft:item", "name": "minecraft:string", "weight": 5, "functions": [ { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 2, "max": 6 } } ] },
+        { "type": "minecraft:item", "name": "minecraft:leather", "weight": 4, "functions": [ { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 3 } } ] },
+        { "type": "minecraft:item", "name": "minecraft:iron_pickaxe", "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:iron_axe", "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:shears", "weight": 2 },
+        { "type": "minecraft:item", "name": "atheria:filtre", "weight": 3 },
+        { "type": "minecraft:item", "name": "atheria:bidon_essence", "weight": 3 },
+        { "type": "minecraft:item", "name": "firstaid:bandage", "weight": 4 },
+        { "type": "minecraft:item", "name": "firstaid:plaster", "weight": 5, "functions": [ { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 3 } } ] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+    "type":  "neoforge:add_spawns",
+    "biomes":  [
+                   "minecraft:plains",
+                   "minecraft:sunflower_plains",
+                   "minecraft:meadow",
+                   "terralith:valley_clearing",
+                   "terralith:shield_clearing",
+                   "terralith:blooming_plateau",
+                   "terralith:blooming_valley",
+                   "terralith:lush_valley",
+                   "terralith:lavender_valley",
+                   "terralith:sakura_valley",
+                   "biomesoplenty:grassland",
+                   "biomesoplenty:prairie",
+                   "biomesoplenty:pasture",
+                   "biomesoplenty:field",
+                   "biomesoplenty:forested_field",
+                   "biomesoplenty:lavender_field",
+                   "biomesoplenty:floodplain",
+                   "minecraft:forest",
+                   "minecraft:flower_forest",
+                   "minecraft:birch_forest",
+                   "minecraft:old_growth_birch_forest",
+                   "minecraft:dark_forest",
+                   "terralith:forested_highlands",
+                   "terralith:lavender_forest",
+                   "terralith:sakura_grove",
+                   "terralith:temperate_highlands",
+                   "biomesoplenty:woodland",
+                   "biomesoplenty:old_growth_woodland",
+                   "biomesoplenty:maple_woods",
+                   "biomesoplenty:seasonal_forest",
+                   "biomesoplenty:orchard",
+                   "biomesoplenty:aspen_glade",
+                   "biomesoplenty:mediterranean_forest",
+                   "biomesoplenty:jacaranda_glade"
+               ],
+    "spawners":  [
+                     {
+                         "type":  "jurassicreborn:parasaurolophus",
+                         "weight":  10,
+                         "minCount":  1,
+                         "maxCount":  3
+                     }
+                 ]
+}

@@ -1,0 +1,106 @@
+{
+	PresetMetadata: {
+		author: "Atheria",
+		category: "Atheria",
+		description: "PNJ de la campagne Atheria : Zaid.",
+		entityTypeId: "easy_npc:humanoid",
+		name: "Zaid",
+		variantType: "STEVE",
+		version: "1.0.0"
+	},
+	data: {
+		ActionData: {
+			ActionEventSet: {
+				ON_INTERACTION: [
+					{
+						Type: "OPEN_DEFAULT_DIALOG"
+					}
+				]
+			}
+		},
+		CustomName: '{"text": "Zaid", "color": "#E8C66A"}',
+		DialogData: {
+			DialogDataSet: [
+				{
+					Buttons: [
+						{
+							Actions: [
+								{
+									Cmd: "/tag @initiator add q_ch2_zaid",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/playsound minecraft:entity.experience_orb.pickup master @initiator ~ ~ ~ 0.6 1.2",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Type: "CLOSE_DIALOG"
+								}
+							],
+							Label: "b_q_ch2_zaid",
+							Name: "Parler de Kamel"
+						}
+					],
+					Conditions: [
+						{
+							Name: "q_ch2_morsure",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch2_zaid",
+					Name: "q_ch2_zaid",
+					Priority: 10,
+					Texts: [
+						{
+							Text: "Ici, on ne te demande pas qui tu étais. On te demande ce que tu sais réparer, cultiver ou protéger.\\n\\n— Kamel...\\n\\nLe vieux fou me devait une bouteille depuis quinze ans. ...Il ne viendra pas, hein ? (Elle regarde la grange.) Tu peux dormir là."
+						}
+					]
+				},
+				{
+					Conditions: [
+						{
+							Name: "q_ch2_zaid",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch2_zaid_fait",
+					Name: "q_ch2_zaid (fait)",
+					Priority: 11,
+					Texts: [
+						{
+							Text: "Tu as ce qu'il te faut. Avance."
+						}
+					]
+				},
+				{
+					Label: "repos",
+					Name: "Repos",
+					Priority: 1,
+					Texts: [
+						{
+							Text: "Ici, on te demande ce que tu sais réparer, cultiver ou protéger."
+						}
+					]
+				}
+			],
+			Type: "STANDARD"
+		},
+		EasyNPCVersion: 3,
+		Invulnerable: 1b,
+		ObjectiveData: {
+			ObjectiveDataSet: [
+				{
+					Type: "LOOK_AT_PLAYER"
+				},
+				{
+					Type: "LOOK_AT_RESET"
+				}
+			]
+		},
+		PersistenceRequired: 1b,
+		VariantType: "STEVE",
+		id: "easy_npc:humanoid"
+	}
+}

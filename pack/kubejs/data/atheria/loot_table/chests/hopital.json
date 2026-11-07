@@ -1,0 +1,119 @@
+{
+    "pools":  [
+                  {
+                      "entries":  [
+                                      {
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  1,
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  3
+                                                                          }
+                                                            }
+                                                        ],
+                                          "weight":  10,
+                                          "name":  "firstaid:bandage",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  1,
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  4
+                                                                          }
+                                                            }
+                                                        ],
+                                          "weight":  10,
+                                          "name":  "firstaid:plaster",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "weight":  4,
+                                          "name":  "firstaid:morphine",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "weight":  5,
+                                          "name":  "atheria:antifongique",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  1,
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  2
+                                                                          }
+                                                            }
+                                                        ],
+                                          "weight":  5,
+                                          "name":  "atheria:filtre",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "weight":  1,
+                                          "name":  "spore:respirator",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  1,
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  4
+                                                                          }
+                                                            }
+                                                        ],
+                                          "weight":  6,
+                                          "name":  "minecraft:paper",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  1,
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  3
+                                                                          }
+                                                            }
+                                                        ],
+                                          "weight":  6,
+                                          "name":  "minecraft:glass_bottle",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  1,
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  3
+                                                                          }
+                                                            }
+                                                        ],
+                                          "weight":  4,
+                                          "name":  "minecraft:white_wool",
+                                          "type":  "minecraft:item"
+                                      }
+                                  ],
+                      "rolls":  {
+                                    "min":  3,
+                                    "type":  "minecraft:uniform",
+                                    "max":  6
+                                }
+                  }
+              ],
+    "type":  "minecraft:chest"
+}

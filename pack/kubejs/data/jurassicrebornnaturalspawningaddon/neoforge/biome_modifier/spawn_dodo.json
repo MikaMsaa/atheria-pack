@@ -1,0 +1,25 @@
+{
+    "type":  "neoforge:add_spawns",
+    "biomes":  [
+                   "minecraft:jungle",
+                   "minecraft:bamboo_jungle",
+                   "minecraft:sparse_jungle",
+                   "terralith:amethyst_rainforest",
+                   "terralith:jungle_mountains",
+                   "terralith:rocky_jungle",
+                   "terralith:tropical_jungle",
+                   "terralith:cloud_forest",
+                   "biomesoplenty:rainforest",
+                   "biomesoplenty:rocky_rainforest",
+                   "biomesoplenty:tropics",
+                   "biomesoplenty:overgrown_greens"
+               ],
+    "spawners":  [
+                     {
+                         "type":  "jurassicreborn:dodo",
+                         "weight":  10,
+                         "minCount":  1,
+                         "maxCount":  3
+                     }
+                 ]
+}

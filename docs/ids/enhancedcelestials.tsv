@@ -1,0 +1,13 @@
+type	id	en	fr
+lunar_event	enhancedcelestials2defaultlunarevents:blood_moon	Blood Moon	Lune de Sang
+lunar_event	enhancedcelestials2defaultlunarevents:super_blood_moon	Super Blood Moon	Super Lune de Sang
+lunar_event	enhancedcelestials2defaultlunarevents:blue_moon	Blue Moon	Lune Bleue
+lunar_event	enhancedcelestials2defaultlunarevents:super_blue_moon	Super Blue Moon	Super Lune Bleue
+lunar_event	enhancedcelestials2defaultlunarevents:harvest_moon	Harvest Moon	Lune de Récolte
+lunar_event	enhancedcelestials2defaultlunarevents:super_harvest_moon	Super Harvest Moon	Super Lune de Récolte
+lunar_event	enhancedcelestials2defaultlunarevents:super_moon	Super Moon	
+lunar_event	enhancedcelestials2core:default	(nuit normale)	(nuit normale)
+lunar_event_tag	#enhancedcelestials2defaultlunarevents:blood_moon	blood_moon + super_blood_moon	
+lunar_event_tag	#enhancedcelestials2defaultlunarevents:moon	blood_moon, blue_moon, harvest_moon (+ #enhancedcelestials2core:moon = default)	
+item_tag	#enhancedcelestials2defaultlunarevents:harvest_moon_crops	cultures bonus de la lune de récolte	
+sound	enhancedcelestials2defaultlunarevents:blood_moon	Blood moon soundtrack	

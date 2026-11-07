@@ -1,0 +1,239 @@
+// Atheria Zombie Edition : rééquilibrage du butin (LootJS)
+// Les objets ajoutés sont décrits dans kubejs/data/atheria/loot_table/inject/*.json (tables vanilla).
+// Correspondance structure -> table et contenu détaillé : docs/butin.md
+
+// Coffres de début : moins de diamants, enchantements plafonnés, pas d'objets trop forts
+const BUTIN_DEBUT = [
+  'minecraft:chests/simple_dungeon',
+  'minecraft:chests/abandoned_mineshaft',
+  'minecraft:chests/desert_pyramid',
+  'minecraft:chests/jungle_temple',
+  'minecraft:chests/buried_treasure',
+  'minecraft:chests/shipwreck_treasure',
+  'minecraft:chests/shipwreck_supply',
+  'minecraft:chests/ruined_portal',
+  'minecraft:chests/pillager_outpost',
+  'minecraft:chests/underwater_ruin_big',
+  'minecraft:chests/underwater_ruin_small',
+  'minecraft:chests/igloo_chest',
+  'minecraft:chests/spawn_bonus_chest',
+  'minecraft:chests/woodland_mansion',
+  'minecraft:chests/village/village_toolsmith',
+  'minecraft:chests/village/village_weaponsmith',
+  'lostcities:chests/lostcitychest',
+  'lostcities:chests/raildungeonchest',
+  'structory:harvest/graveyard',
+  'structory:harvest/graveyard2',
+  'structory:harvest/manor2/loot',
+  'structory:harvest/manor2/treasure',
+  'structory:harvest/old_manor/treasure',
+  'structory:library/high',
+  'structory:library/junk',
+  'structory:library/low',
+  'structory:outcast/boat/loot',
+  'structory:outcast/generic/bandit',
+  'structory:outcast/generic/miner',
+  'structory:outcast/mine/loot',
+  'structory:outcast/ruin/ruin',
+  'structory:ruin/ruin',
+  'structory:ruin/swamp/loot',
+  'structory:ruin/taiga/illager_high',
+  'structory:ruin/taiga/illager_treasure',
+  'structory:ruin/taiga/loot',
+  'underground_bunkers:chests/underground_bunker/underground_bunker_normal',
+  'underground_bunkers:chests/underground_bunker/underground_bunker_supply'
+]
+
+const OBJETS_RETIRES_DEBUT = [
+  'minecraft:enchanted_golden_apple',
+  'minecraft:diamond_sword',
+  'minecraft:diamond_pickaxe',
+  'minecraft:diamond_axe',
+  'minecraft:diamond_shovel',
+  'minecraft:diamond_hoe',
+  'minecraft:diamond_helmet',
+  'minecraft:diamond_chestplate',
+  'minecraft:diamond_leggings',
+  'minecraft:diamond_boots',
+  'minecraft:diamond_horse_armor',
+  'tacz:modern_kinetic_gun',
+  'tacz:ammo'
+]
+
+// Coffres civils : de rares fournitures médicales
+const BUTIN_CIVIL = [
+  'minecraft:chests/village/village_armorer',
+  'minecraft:chests/village/village_butcher',
+  'minecraft:chests/village/village_cartographer',
+  'minecraft:chests/village/village_desert_house',
+  'minecraft:chests/village/village_fisher',
+  'minecraft:chests/village/village_fletcher',
+  'minecraft:chests/village/village_mason',
+  'minecraft:chests/village/village_plains_house',
+  'minecraft:chests/village/village_savanna_house',
+  'minecraft:chests/village/village_shepherd',
+  'minecraft:chests/village/village_snowy_house',
+  'minecraft:chests/village/village_taiga_house',
+  'minecraft:chests/village/village_tannery',
+  'minecraft:chests/village/village_temple',
+  'minecraft:chests/village/village_toolsmith',
+  'minecraft:chests/village/village_weaponsmith',
+  'lostcities:chests/lostcitychest',
+  'postapocalypse_structures:chests/food',
+  'postapocalypse_structures:chests/trash',
+  'create_fallout:chests/fallout',
+  'structory:outcast/settlement',
+  'structory:outcast/low',
+  'structory:harvest/old_manor/common',
+  'structory:mood/badlands',
+  'structory:mood/cave',
+  'structory:mood/desert',
+  'structory:mood/farmer',
+  'structory:mood/fisherman',
+  'structory:mood/grassy',
+  'structory:mood/jungle',
+  'structory:mood/mangrove',
+  'structory:mood/miner',
+  'structory:mood/mushroom',
+  'structory:mood/ocean',
+  'structory:mood/snowy',
+  'structory:mood/taiga'
+]
+
+// Structures militaires, police et médicales : table d'origine -> tables atheria ajoutées
+const INJECTIONS = {
+  'bunkers:chests/armory': ['atheria:inject/armurerie'],
+  'bunkers:chests/ammo_storage': ['atheria:inject/depot_munitions'],
+  'bunkers:chests/military_storage': ['atheria:inject/militaire'],
+  'bunkers:chests/barracks': ['atheria:inject/militaire', 'atheria:inject/soins_rares'],
+  'bunkers:chests/vault': ['atheria:inject/tresor_militaire'],
+  'bunkers:chests/infirmary': ['atheria:inject/infirmerie'],
+  'underground_bunkers:chests/underground_bunker/underground_bunker_normal': ['atheria:inject/militaire'],
+  'underground_bunkers:chests/underground_bunker/underground_bunker_supply': ['atheria:inject/depot_munitions', 'atheria:inject/hopital'],
+  'underground_bunkers:chests/underground_bunker/underground_bunker_treasure': ['atheria:inject/tresor_militaire'],
+  // Spore : le bonus dépend de la structure (camp militaire, prison, hôpital), voir spore_structures.json
+  'spore:chests/equipment_chest': ['atheria:inject/spore_structures'],
+  'spore:chests/food_chest': ['atheria:inject/spore_structures'],
+  'spore:chests/document_chest': ['atheria:inject/spore_structures'],
+  'minecraft:chests/simple_dungeon': ['atheria:inject/spore_structures']
+}
+
+// Mods de structures présents seulement sur le serveur (Repurposed Structures, YUNG's, Terralith,
+// Structory: Towers, Explorify) : trop de tables pour une liste, on les prend par motif d'identifiant.
+// Nether, End, forteresses et cités antiques restent intacts (fin de progression).
+const MOTIFS_DEBUT = [
+  /^repurposed_structures:(chests|trapped_chests)\//,
+  /^betterdungeons:/,
+  /^explorify:/,
+  /^structory_towers:/,
+  /^terralith:/,
+  /^dungeons_arise:/,
+  /^mvs:/,
+  /^ati_structures:/,
+  /^nova_structures:/,
+  /^betterdeserttemples:/,
+  /^betterjungletemples:/,
+  /^betteroceanmonuments:/,
+  /^betterwitchhuts:/
+]
+const MOTIFS_FIN_DE_JEU = /nether|end|crimson|warped|basalt|soul|bastion|ancient_cit|stronghold/
+
+const MOTIFS_CIVIL = [
+  /^repurposed_structures:chests\/villages\/.*_house$/,
+  /^terralith:village\/(desert|fortified)\/(generic|generic_low|attic|food|tavern_downstairs|tavern_upstairs)$/,
+  /^explorify:chest\/(dark_forest_settlement|supply_cache)$/
+]
+
+LootJS.lootTables(event => {
+  const existe = id => {
+    if (event.hasLootTable(id)) return true
+    console.warn(`[Atheria butin] table absente : ${id}`)
+    return false
+  }
+
+  const toutesLesTables = []
+  event.getLootTableIds().forEach(rl => toutesLesTables.push(String(rl)))
+  const selonMotifs = motifs => toutesLesTables.filter(id => motifs.some(m => m.test(id)) && !MOTIFS_FIN_DE_JEU.test(id))
+
+  const debut = BUTIN_DEBUT.filter(existe)
+  selonMotifs(MOTIFS_DEBUT).forEach(id => { if (debut.indexOf(id) < 0) debut.push(id) })
+  const civil = BUTIN_CIVIL.filter(existe).concat(selonMotifs(MOTIFS_CIVIL))
+  console.info(`[Atheria butin] ${debut.length} tables de début rééquilibrées, ${civil.length} tables civiles avec soins rares`)
+
+  debut.forEach(id => {
+    const table = event.getLootTable(id)
+    OBJETS_RETIRES_DEBUT.forEach(objet => table.removeItem(objet))
+    table.modifyItemEntry(entree => {
+      if (entree.test('minecraft:diamond')) {
+        entree.setWeight(Math.max(1, Math.floor(entree.getWeight() / 4)))
+        entree.setCount([1, 2])
+      }
+      // Enchantements plafonnés : niveaux 5 à 15 au lieu de 20-30 ou d'un niveau maximal au hasard
+      const fonctions = entree.getFunctions()
+      const avaitNiveaux = fonctions.remove('minecraft:enchant_with_levels')
+      const avaitHasard = fonctions.remove('minecraft:enchant_randomly')
+      if (avaitNiveaux || avaitHasard) entree.enchantWithLevels([5, 15])
+      return entree
+    })
+  })
+
+  civil.forEach(id => {
+    event.getLootTable(id).createPool(pool => pool.addEntry(LootEntry.reference('atheria:inject/soins_rares')))
+  })
+
+  // Retour des testeurs : pas assez à trouver en fouillant (nourriture, matériaux, outils, sans arme).
+  // Dans les villes, la plupart des coffres utilisent des tables de donjon, de village ou de structures moddées : on les couvre toutes.
+  debut.concat(civil).filter((id, i, liste) => liste.indexOf(id) == i).forEach(id => {
+    event.getLootTable(id).createPool(pool => pool.addEntry(LootEntry.reference('atheria:inject/fournitures')))
+  })
+
+  Object.keys(INJECTIONS).filter(existe).forEach(id => {
+    const table = event.getLootTable(id)
+    INJECTIONS[id].forEach(ajout => table.createPool(pool => pool.addEntry(LootEntry.reference(ajout))))
+    // Lieux militaires : gilets, casques, masques et explosifs
+    if (INJECTIONS[id].some(ajout => /militaire|armurerie|depot_munitions|police/.test(ajout))) {
+      table.createPool(pool => pool.addEntry(LootEntry.reference('atheria:inject/equipement_militaire')))
+      table.createPool(pool => pool.addEntry(LootEntry.reference('atheria:inject/explosifs')))
+    }
+  })
+
+  // Le Nether et l'End sont fermés : leurs objets se trouvent dans les coffres de l'Overworld
+  debut.concat(civil).filter((id, i, liste) => liste.indexOf(id) == i).forEach(id => {
+    event.getLootTable(id).createPool(pool => pool.addEntry(LootEntry.reference('atheria:inject/raretes')))
+  })
+})
+
+LootJS.modifiers(event => {
+  // TaCZ ajoute un pistolet et des munitions au coffre bonus de départ : retiré
+  event.removeGlobalModifiers('tacz:loot_table_injector')
+
+  // Butin de campagne (bons CAF, pièces du dossier, archives) : probabilités par coffre généré (Lootr : par joueur)
+  event.addTableModifier(LootType.CHEST).randomChance(0.25).addLoot('2x atheria:bon_caf')
+  event.addTableModifier(LootType.CHEST).randomChance(0.04).addLoot('atheria:photo_identite')
+  event.addTableModifier(LootType.CHEST).randomChance(0.04).addLoot('atheria:justificatif')
+  event.addTableModifier(LootType.CHEST).randomChance(0.04).addLoot('atheria:rib')
+  event.addTableModifier(LootType.CHEST).randomChance(0.015).addLoot('atheria:laissez_passer_paf')
+  event.addTableModifier(LootType.CHEST).randomChance(0.06).addLoot('atheria:bidon_essence')
+  event.addTableModifier(LootType.CHEST).randomChance(0.03).addLoot('atheria:batterie')
+  event.addTableModifier(LootType.CHEST).randomChance(0.03).addLoot('atheria:bandana_coupeur')
+  event.addTableModifier(LootType.CHEST).randomChance(0.08).addLoot('atheria:ration')
+  event.addTableModifier(LootType.CHEST).randomChance(0.02).addLoot('atheria:pass_culture_expire')
+  event.addTableModifier(LootType.CHEST).randomChance(0.06).addLoot('atheria:filtre')
+  event.addTableModifier(LootType.CHEST).randomChance(0.03).addLoot('atheria:antifongique')
+  event.addTableModifier(LootType.CHEST).randomChance(0.004).addLoot('atheria:archive_07')
+  event.addTableModifier(LootType.CHEST).randomChance(0.004).addLoot('atheria:archive_08')
+  event.addTableModifier(LootType.CHEST).randomChance(0.004).addLoot('atheria:archive_10')
+  event.addTableModifier(LootType.CHEST).randomChance(0.004).addLoot('atheria:archive_11')
+  event.addTableModifier(LootType.CHEST).randomChance(0.004).addLoot('atheria:archive_23')
+  event.addTableModifier(LootType.CHEST).randomChance(0.004).addLoot('atheria:archive_24')
+  event.addTableModifier(LootType.CHEST).randomChance(0.004).addLoot('atheria:archive_25')
+  event.addTableModifier(LootType.CHEST).randomChance(0.004).addLoot('atheria:archive_26')
+  event.addTableModifier(LootType.CHEST).randomChance(0.004).addLoot('atheria:archive_27')
+  event.addTableModifier(LootType.CHEST).randomChance(0.004).addLoot('atheria:archive_28')
+  event.addTableModifier(LootType.CHEST).randomChance(0.004).addLoot('atheria:archive_33')
+  event.addTableModifier(LootType.CHEST).randomChance(0.004).addLoot('atheria:archive_34')
+  event.addTableModifier(LootType.CHEST).randomChance(0.004).addLoot('atheria:archive_35')
+  event.addTableModifier(LootType.CHEST).randomChance(0.004).addLoot('atheria:archive_36')
+  event.addEntityModifier('#atheria:infectes').killedByPlayer().randomChance(0.12).addLoot('atheria:echantillon_spore')
+  event.addEntityModifier('#atheria:infectes').killedByPlayer().randomChance(0.05).addLoot('atheria:bon_caf')
+})

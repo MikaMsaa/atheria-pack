@@ -1,0 +1,684 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "hexagon"
+	filename: "ch3"
+	group: "655C988475622574"
+	icon: {
+		id: "atheria:brassard_rouge"
+	}
+	id: "3D9521852B05216C"
+	images: [
+		{
+			height: 8.3d
+			id: "1164432D4720BF6F"
+			image: "atheria:textures/quetes/ch3_labo.png"
+			order: -10
+			rotation: 0.0d
+			width: 17.6d
+			x: 5.0d
+			y: -0.65d
+		}
+		{
+			height: 36.3d
+			id: "5E04208A14C66D43"
+			image: "atheria:textures/quetes/ch3_large.png"
+			order: -20
+			rotation: 0.0d
+			width: 61.6d
+			x: 5.0d
+			y: -0.65d
+		}
+	]
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["787E9EDF134DE7C1"]
+			icon: {
+				id: "minecraft:bell"
+			}
+			id: "5B0ECAC042DCC8D8"
+			shape: "hexagon"
+			tasks: [{
+				id: "5B6F367808440A0C"
+				stage: "acte_3"
+				type: "gamestage"
+			}]
+			x: -2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5B0ECAC042DCC8D8"]
+			id: "6F78FABA9ECBE203"
+			rewards: [
+				{
+					id: "675CFC9F0E7BAF1A"
+					item: {
+						count: 1
+						id: "atheria:plan_relais"
+					}
+					type: "item"
+				}
+				{
+					id: "7DE74268E3D8D267"
+					item: {
+						count: 1
+						id: "atheria:boitier_ecoute"
+					}
+					type: "item"
+				}
+				{
+					command: "/scoreboard players add {p} aura_goblini 1"
+					feedback_message: "+1 aura Goblini"
+					id: "2A99424D32B831D5"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
+			tasks: [
+				{
+					consume_items: true
+					id: "146186753C69AA8A"
+					item: { count: 1, id: "firstaid:plaster" }
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "14AA3F2D5EEC2DE2"
+					item: { count: 1, id: "atheria:trousse_soins" }
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "5537A99BA72616ED"
+					item: { count: 1, id: "atheria:antifongique" }
+					type: "item"
+				}
+			]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["6F78FABA9ECBE203"]
+			icon: {
+				id: "atheria:radio_portative"
+			}
+			id: "0C4829D5F10E0658"
+			rewards: [
+				{
+					count: 3
+					id: "34A8AEA4A9F422AE"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "361FFD6DF90C7366"
+					item: {
+						count: 1
+						id: "firstaid:bandage"
+					}
+					type: "item"
+				}
+				{
+					count: 3
+					id: "062A3D37BAC4BFED"
+					item: {
+						count: 1
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+				{
+					id: "4478832FA7937281"
+					item: {
+						count: 1
+						id: "atheria:archive_12"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "6F21A926A59CD307"
+				stage: "radio_3_points"
+				type: "gamestage"
+			}]
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0C4829D5F10E0658"]
+			icon: {
+				id: "minecraft:spyglass"
+			}
+			id: "51424CD0921ECEA0"
+			rewards: [
+				{
+					count: 8
+					id: "44E235C7CCA9E096"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "5A534B03FDED2B19"
+					item: {
+						count: 1
+						id: "firstaid:plaster"
+					}
+					type: "item"
+				}
+				{
+					id: "7DF8115B88F87B4F"
+					item: {
+						count: 1
+						id: "atheria:filtre"
+					}
+					type: "item"
+				}
+				{
+					count: 8
+					id: "58638D8CED6A2F0B"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:9mm"
+							}
+							"minecraft:max_stack_size": 60
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+				{
+					command: "/tag {p} add titre_kaizen"
+					feedback_message: "Titre « Kaizen »"
+					id: "6456B02A7E31EE21"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
+			tasks: [
+				{
+					id: "742E6B567C39CEBE"
+					structure: "#atheria:tours"
+					type: "structure"
+				}
+				{
+					id: "12513C8854D79388"
+					stage: "boitier_installe"
+					type: "gamestage"
+				}
+			]
+			x: 4.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["0C4829D5F10E0658"]
+			icon: {
+				id: "minecraft:iron_pickaxe"
+			}
+			id: "1BED2FF43B0A15BB"
+			rewards: [
+				{
+					count: 8
+					id: "79B293BB1B4FD0CA"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "7F5EB731BBB67791"
+					item: {
+						count: 1
+						id: "firstaid:plaster"
+					}
+					type: "item"
+				}
+				{
+					id: "7DB54DF4CB75DC97"
+					item: {
+						count: 1
+						id: "atheria:filtre"
+					}
+					type: "item"
+				}
+				{
+					count: 8
+					id: "18B3858A20EC16B7"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:9mm"
+							}
+							"minecraft:max_stack_size": 60
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "0F4D91ADF821461A"
+					item: {
+						count: 1
+						id: "atheria:filtre"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "56458C01695EE994"
+					structure: "#atheria:mines"
+					type: "structure"
+				}
+				{
+					id: "541EC5A9F88AC188"
+					item: { count: 1, id: "atheria:fusible_somaco" }
+					type: "item"
+				}
+			]
+			x: 4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0C4829D5F10E0658"]
+			icon: {
+				id: "minecraft:iron_door"
+			}
+			id: "71C022316E8788CC"
+			rewards: [
+				{
+					id: "37A397A3FB40DB89"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								GunFireMode: "SEMI"
+								GunId: "tacz:sks_tactical"
+							}
+						}
+						count: 1
+						id: "tacz:modern_kinetic_gun"
+					}
+					type: "item"
+				}
+				{
+					count: 12
+					id: "3BFA2FA011F3A073"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:762x39"
+							}
+							"minecraft:max_stack_size": 60
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+				{
+					id: "6E8D9C83034239E6"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AttachmentId: "tacz:scope_retro_2x"
+							}
+						}
+						count: 1
+						id: "tacz:attachment"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "5187751F1A618264"
+					structure: "#atheria:bunkers"
+					type: "structure"
+				}
+				{
+					id: "7DFBDB720001C8D6"
+					item: { count: 1, id: "atheria:journal_operateur" }
+					type: "item"
+				}
+			]
+			x: 4.0d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"51424CD0921ECEA0"
+				"1BED2FF43B0A15BB"
+				"71C022316E8788CC"
+			]
+			icon: {
+				id: "atheria:dossier_symbiose"
+			}
+			id: "493426E2E8FDAC97"
+			rewards: [
+				{
+					count: 8
+					id: "605D9FB751CB4144"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "1BE2EF67957DD1F1"
+					item: {
+						count: 1
+						id: "firstaid:plaster"
+					}
+					type: "item"
+				}
+				{
+					id: "33F1F304C29EE869"
+					item: {
+						count: 1
+						id: "atheria:filtre"
+					}
+					type: "item"
+				}
+				{
+					count: 8
+					id: "12BEE9A24EF786CC"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:9mm"
+							}
+							"minecraft:max_stack_size": 60
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "039DF0FE2663756F"
+				stage: "q_ch3_terminal"
+				type: "gamestage"
+			}]
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["493426E2E8FDAC97"]
+			id: "674E0A996E1DEC11"
+			rewards: [
+				{
+					count: 8
+					id: "7199CC94EE8669F1"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "28EEC1027CA3D00A"
+					item: {
+						count: 1
+						id: "firstaid:plaster"
+					}
+					type: "item"
+				}
+				{
+					id: "46421A3BBE9643D8"
+					item: {
+						count: 1
+						id: "atheria:filtre"
+					}
+					type: "item"
+				}
+				{
+					count: 8
+					id: "4294500029F07E47"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:9mm"
+							}
+							"minecraft:max_stack_size": 60
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					count: 5L
+					id: "67C06AD5009FD9B4"
+					item: { count: 1, id: "atheria:echantillon_spore" }
+					type: "item"
+				}
+				{
+					id: "08DE830BCB3C496E"
+					item: { count: 1, id: "atheria:kit_analyse" }
+					type: "item"
+				}
+			]
+			x: 8.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["493426E2E8FDAC97"]
+			icon: {
+				id: "minecraft:lantern"
+			}
+			id: "7C08E676813C9413"
+			rewards: [{
+				command: "/scoreboard players add {p} aura_goblini 2"
+				feedback_message: "+2 aura Goblini"
+				id: "6A142A7788D7FAC3"
+				permission_level: 2
+				silent: true
+				type: "command"
+			}]
+			tasks: [{
+				id: "7BF041A921AC5BA7"
+				stage: "q_ch3_skip"
+				type: "gamestage"
+			}]
+			x: 8.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["7C08E676813C9413"]
+			id: "74E97CF7DD469DB3"
+			rewards: [
+				{
+					count: 15
+					id: "3DC37AACAB174861"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					id: "0AF9900151C874EE"
+					item: {
+						count: 1
+						id: "atheria:trousse_soins"
+					}
+					type: "item"
+				}
+				{
+					id: "049E6B968853A27C"
+					item: {
+						count: 1
+						id: "firstaid:morphine"
+					}
+					type: "item"
+				}
+				{
+					count: 16
+					id: "5C243CB1DC0F729A"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:9mm"
+							}
+							"minecraft:max_stack_size": 60
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: true
+				count: 2L
+				id: "0BCCD30CB3BC7DEC"
+				item: { count: 1, id: "firstaid:morphine" }
+				type: "item"
+			}]
+			x: 10.0d
+			y: 1.0d
+		}
+		{
+			dependencies: [
+				"674E0A996E1DEC11"
+				"74E97CF7DD469DB3"
+			]
+			id: "7EF891538C7A0155"
+			rewards: [
+				{
+					id: "18305BE37785BC31"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AttachmentId: "tacz:scope_acog_ta31"
+							}
+						}
+						count: 1
+						id: "tacz:attachment"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "71B8442DA5890A47"
+					item: {
+						count: 1
+						id: "atheria:trousse_soins"
+					}
+					type: "item"
+				}
+				{
+					count: 15
+					id: "57AF8580145BCE1A"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					command: "/tag {p} add titre_goblin"
+					feedback_message: "Titre « Goblin »"
+					id: "62E960AFB9AF76C3"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+				{
+					command: "/tag {p} add chapitre_4"
+					feedback_message: "Chapitre 4 débloqué"
+					id: "3E4312E081663980"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
+			shape: "gear"
+			size: 1.5d
+			tasks: [
+				{
+					id: "5990632078F233A9"
+					item: { count: 1, id: "atheria:dossier_symbiose" }
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "5113AE3B6A41E7B5"
+					item: { count: 1, id: "atheria:journal_operateur" }
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "573C6A4BE879999F"
+					item: { count: 1, id: "atheria:kit_analyse" }
+					type: "item"
+				}
+			]
+			x: 12.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["493426E2E8FDAC97"]
+			icon: {
+				id: "atheria:journal_operateur"
+			}
+			id: "3347E7767A4459B5"
+			optional: true
+			rewards: [
+				{
+					command: "/scoreboard players add {p} aura_paf 3"
+					feedback_message: "+3 aura PAF"
+					id: "1D9529951B378369"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+				{
+					command: "/tag {p} add traitre_goblini"
+					feedback_message: "Skipoutchou s'en souviendra"
+					id: "57412F2CA632A124"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
+			tasks: [
+				{
+					id: "684893F5CBE2E852"
+					stage: "choix_ch1_paf"
+					type: "gamestage"
+				}
+				{
+					consume_items: true
+					id: "55B69A9C9E337EE9"
+					item: { count: 1, id: "atheria:journal_operateur" }
+					type: "item"
+				}
+			]
+			x: 10.0d
+			y: -2.0d
+		}
+	]
+}

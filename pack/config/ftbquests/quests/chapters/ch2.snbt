@@ -1,0 +1,750 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "circle"
+	filename: "ch2"
+	group: "655C988475622574"
+	icon: {
+		id: "atheria:cle_taxi"
+	}
+	id: "74D81718B49D6FD1"
+	images: [
+		{
+			height: 7.2d
+			id: "22CBEDBE3FC17F3D"
+			image: "atheria:textures/quetes/route_fond.png"
+			order: -10
+			rotation: 0.0d
+			width: 22.8d
+			x: 8.0d
+			y: 0.0d
+		}
+		{
+			height: 35.2d
+			id: "66B4E92E80432816"
+			image: "atheria:textures/quetes/route_large.png"
+			order: -20
+			rotation: 0.0d
+			width: 66.8d
+			x: 8.0d
+			y: 0.0d
+		}
+	]
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["442B76F23894199F"]
+			icon: {
+				id: "minecraft:bell"
+			}
+			id: "5DEC794FEF4D5D59"
+			shape: "hexagon"
+			tasks: [{
+				id: "4D1880AD8BFC8ACC"
+				stage: "acte_2"
+				type: "gamestage"
+			}]
+			x: -2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5DEC794FEF4D5D59"]
+			icon: {
+				id: "atheria:cle_cellule"
+			}
+			id: "5EE4AF7A9B368826"
+			rewards: [
+				{
+					id: "4A541110C60EDF4B"
+					item: {
+						count: 1
+						id: "atheria:ration"
+					}
+					type: "item"
+				}
+				{
+					count: 4
+					id: "3071F62B2CA0DD26"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "5D095EA9794C2F59"
+				stage: "q_ch2_kamel"
+				type: "gamestage"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5EE4AF7A9B368826"]
+			id: "6FAA6F14DCE6D3BD"
+			rewards: [
+				{
+					id: "7862F7D8021A6248"
+					item: {
+						count: 1
+						id: "atheria:cle_taxi"
+					}
+					type: "item"
+				}
+				{
+					id: "52BF9A8D7C576FC9"
+					item: {
+						count: 1
+						id: "atheria:bidon_essence"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: true
+					id: "03B326E2255AD908"
+					item: { count: 1, id: "atheria:batterie" }
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "78D368E916DC522D"
+					item: { count: 1, id: "atheria:bidon_essence" }
+					type: "item"
+				}
+			]
+			x: 2.0d
+			y: -1.25d
+		}
+		{
+			dependencies: ["5EE4AF7A9B368826"]
+			icon: {
+				id: "atheria:bidon_essence"
+			}
+			id: "7C42030B69105FC6"
+			rewards: [
+				{
+					count: 3
+					id: "147C9C189BF4DF60"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "0315EF4F732EC00F"
+					item: {
+						count: 1
+						id: "firstaid:bandage"
+					}
+					type: "item"
+				}
+				{
+					count: 3
+					id: "2301DFCFB249DAC7"
+					item: {
+						count: 1
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+				{
+					id: "050E4AE1AB42B632"
+					item: {
+						count: 1
+						id: "create_fallout:nuka_cola"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "7E6A92B0E930C82A"
+					structure: "create_fallout:red_rocket_station"
+					type: "structure"
+				}
+				{
+					consume_items: true
+					count: 2L
+					id: "46923B619D82D81E"
+					item: { count: 1, id: "atheria:bidon_essence" }
+					type: "item"
+				}
+			]
+			x: 2.0d
+			y: 1.25d
+		}
+		{
+			dependencies: ["6FAA6F14DCE6D3BD"]
+			id: "4B23934C2C40F8A5"
+			rewards: [
+				{
+					count: 3
+					id: "1E850FCEDCC91405"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "3E8F093978D10CC1"
+					item: {
+						count: 1
+						id: "firstaid:bandage"
+					}
+					type: "item"
+				}
+				{
+					count: 3
+					id: "51A19D6CD2E5441D"
+					item: {
+						count: 1
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "61BA1E1BBD1634F3"
+				item: { count: 1, id: "atheria:photo_famille" }
+				type: "item"
+			}]
+			x: 4.0d
+			y: -1.25d
+		}
+		{
+			dependencies: ["7C42030B69105FC6"]
+			icon: {
+				id: "atheria:bandana_coupeur"
+			}
+			id: "5A1F31911D79EF4B"
+			max_completable_dependents: 1
+			shape: "hexagon"
+			size: 1.25d
+			tasks: [{
+				id: "342787FC139F81DA"
+				stage: "q_ch2_peage"
+				type: "gamestage"
+			}]
+			x: 4.0d
+			y: 1.25d
+		}
+		{
+			dependencies: ["5A1F31911D79EF4B"]
+			icon: {
+				components: {
+					"minecraft:custom_data": {
+						AmmoId: "tacz:9mm"
+					}
+					"minecraft:max_stack_size": 60
+				}
+				id: "tacz:ammo"
+			}
+			id: "67F798064B271A21"
+			rewards: [{
+				command: "/tag {p} add peage_paye"
+				feedback_message: "Passage libre"
+				id: "07635E36767E7B1F"
+				permission_level: 2
+				silent: true
+				type: "command"
+			}]
+			tasks: [{
+				consume_items: true
+				count: 24L
+				id: "71C0BA8F953AA964"
+				item: { count: 1, id: "tacz:ammo" }
+				type: "item"
+			}]
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5A1F31911D79EF4B"]
+			icon: {
+				id: "atheria:lettre_vinicius"
+			}
+			id: "1FA2D01AB6A2EDA6"
+			rewards: [
+				{
+					id: "7A2F9A0A366F9CC7"
+					item: {
+						count: 1
+						id: "minecraft:crossbow"
+					}
+					type: "item"
+				}
+				{
+					id: "3C8EC27E448C15D1"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								GunFireMode: "SEMI"
+								GunId: "tacz:db_short"
+							}
+						}
+						count: 1
+						id: "tacz:modern_kinetic_gun"
+					}
+					type: "item"
+				}
+				{
+					count: 10
+					id: "2F3FCD616B24EDB1"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:12g"
+							}
+							"minecraft:max_stack_size": 36
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+				{
+					command: "/tag {p} add titre_ballon_or"
+					feedback_message: "Titre « Ballon d'Or »"
+					id: "3522111E5109DDEF"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
+			tasks: [
+				{
+					custom_name: "Vinicius"
+					entity: "easy_npc:humanoid"
+					id: "5011F469A179F8B3"
+					type: "kill"
+					value: 1L
+				}
+				{
+					id: "1D0AC4F1F0F6D8CD"
+					type: "checkmark"
+				}
+			]
+			x: 6.0d
+			y: 1.25d
+		}
+		{
+			dependencies: ["5A1F31911D79EF4B"]
+			id: "66F4C56ED102C5EF"
+			rewards: [
+				{
+					count: 8
+					id: "3BA9DA2736741ABB"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "27E1585A3FC6A1D2"
+					item: {
+						count: 1
+						id: "firstaid:plaster"
+					}
+					type: "item"
+				}
+				{
+					id: "4B85E147BB42E02A"
+					item: {
+						count: 1
+						id: "atheria:filtre"
+					}
+					type: "item"
+				}
+				{
+					count: 8
+					id: "2CD5F016DC92B2B6"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:9mm"
+							}
+							"minecraft:max_stack_size": 60
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "66180B114660FB45"
+					item: { count: 1, id: "atheria:archive_09" }
+					type: "item"
+				}
+				{
+					entity: "spore:inf_human"
+					entityTypeTag: "atheria:infectes"
+					id: "7F3C2CDB825301A9"
+					type: "kill"
+					value: 10L
+				}
+			]
+			x: 6.0d
+			y: 2.5d
+		}
+		{
+			dependencies: [
+				"4B23934C2C40F8A5"
+				"67F798064B271A21"
+				"1FA2D01AB6A2EDA6"
+				"66F4C56ED102C5EF"
+			]
+			dependency_requirement: "one_completed"
+			icon: {
+				id: "minecraft:campfire"
+			}
+			id: "3E45848D24FB189D"
+			rewards: [
+				{
+					count: 8
+					id: "467B77AA5C239E71"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "0029536D8F1D4906"
+					item: {
+						count: 1
+						id: "firstaid:plaster"
+					}
+					type: "item"
+				}
+				{
+					id: "23FDF2B65F9E85FD"
+					item: {
+						count: 1
+						id: "atheria:filtre"
+					}
+					type: "item"
+				}
+				{
+					count: 8
+					id: "3C5BF4B4517B7C46"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:9mm"
+							}
+							"minecraft:max_stack_size": 60
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "0F326C50D0E2AF7F"
+					stage: "pose_lit"
+					type: "gamestage"
+				}
+				{
+					entity: "spore:inf_human"
+					entityTypeTag: "atheria:infectes"
+					id: "778EC97F75C128B3"
+					type: "kill"
+					value: 12L
+				}
+				{
+					id: "0BB2A6F1CF2774F1"
+					stage: "q_ch2_feu"
+					type: "gamestage"
+				}
+			]
+			x: 8.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3E45848D24FB189D"]
+			icon: {
+				id: "atheria:radio_portative"
+			}
+			id: "6F26794CE1DF2F33"
+			rewards: [
+				{
+					count: 8
+					id: "434D23D0666E581D"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "52936DD7D5240BE1"
+					item: {
+						count: 1
+						id: "firstaid:plaster"
+					}
+					type: "item"
+				}
+				{
+					id: "5513C2938B4164CE"
+					item: {
+						count: 1
+						id: "atheria:filtre"
+					}
+					type: "item"
+				}
+				{
+					count: 8
+					id: "0AFCF85216D64E7B"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:9mm"
+							}
+							"minecraft:max_stack_size": 60
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "6A91E4C2C4CF261A"
+					structure: "create_fallout:broadcast_station"
+					type: "structure"
+				}
+				{
+					id: "28026FE646BBE4AE"
+					item: { count: 1, id: "atheria:carnet_rayade_fin" }
+					type: "item"
+				}
+			]
+			x: 10.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["6F26794CE1DF2F33"]
+			icon: {
+				id: "minecraft:oak_sign"
+			}
+			id: "64B1FD805D59CE63"
+			rewards: [{
+				command: "/tag {p} add titre_fossoyeur"
+				feedback_message: "Titre « Fossoyeur »"
+				id: "70FADD3F9DF2DD47"
+				permission_level: 2
+				silent: true
+				type: "command"
+			}]
+			tasks: [{
+				id: "158C0B8603B37D79"
+				stage: "pose_panneau"
+				type: "gamestage"
+			}]
+			x: 12.0d
+			y: -1.25d
+		}
+		{
+			dependencies: ["6F26794CE1DF2F33"]
+			icon: {
+				id: "atheria:montre_kamel"
+			}
+			id: "7D1746460F94FFA8"
+			tasks: [{
+				id: "7625DEF41D26DAE9"
+				stage: "q_ch2_morsure"
+				type: "gamestage"
+			}]
+			x: 12.0d
+			y: 1.25d
+		}
+		{
+			dependencies: ["7D1746460F94FFA8"]
+			id: "6D2175E423E205B2"
+			optional: true
+			rewards: [{
+				id: "1B347FEDD28253CA"
+				item: {
+					count: 1
+					id: "atheria:montre_kamel"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				consume_items: true
+				id: "1ACCD454FE56AC5A"
+				item: { count: 1, id: "atheria:antifongique" }
+				type: "item"
+			}]
+			x: 14.0d
+			y: 2.5d
+		}
+		{
+			dependencies: [
+				"64B1FD805D59CE63"
+				"7D1746460F94FFA8"
+			]
+			icon: {
+				id: "minecraft:hay_block"
+			}
+			id: "2909F01C0F07507F"
+			rewards: [
+				{
+					command: "/scoreboard players add {p} aura_coconi 1"
+					feedback_message: "+1 aura Coconi"
+					id: "4DC13BB3EF6228C2"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+				{
+					id: "2F635234A98028FD"
+					item: {
+						count: 1
+						id: "minecraft:white_bed"
+					}
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			size: 1.25d
+			tasks: [{
+				id: "1B7E679968857396"
+				stage: "q_ch2_zaid"
+				type: "gamestage"
+			}]
+			x: 14.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["2909F01C0F07507F"]
+			icon: {
+				id: "atheria:photo_famille"
+			}
+			id: "5A8B4FD3F0FF2C27"
+			invisible: true
+			rewards: [{
+				id: "340D2F815092902D"
+				item: {
+					count: 1
+					id: "sophisticatedbackpacks:iron_backpack"
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "391288143D0F7D23"
+				stage: "q_ch2_iwania"
+				type: "gamestage"
+			}]
+			x: 16.0d
+			y: -1.25d
+		}
+		{
+			dependencies: ["2909F01C0F07507F"]
+			icon: {
+				id: "minecraft:totem_of_undying"
+			}
+			id: "0721B568A986E09C"
+			invisible: true
+			rewards: [{
+				command: "/tag {p} add titre_aura_1000"
+				feedback_message: "Titre « Aura +1000 »"
+				id: "064C220C91FCA84A"
+				permission_level: 2
+				silent: true
+				type: "command"
+			}]
+			tasks: [{
+				id: "24CE822465F0D2D7"
+				stage: "angellow_respect"
+				type: "gamestage"
+			}]
+			x: 16.0d
+			y: 1.25d
+		}
+		{
+			dependencies: ["2909F01C0F07507F"]
+			id: "787E9EDF134DE7C1"
+			rewards: [
+				{
+					command: "/scoreboard players add {p} aura_coconi 2"
+					feedback_message: "+2 aura Coconi"
+					id: "2F3C92647729C2D6"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+				{
+					count: 20
+					id: "1266E76A4291E5B2"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:9mm"
+							}
+							"minecraft:max_stack_size": 60
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+				{
+					command: "/tag {p} add titre_main_character"
+					feedback_message: "Titre « Main character »"
+					id: "378176FC4488079F"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
+			shape: "gear"
+			size: 1.5d
+			tasks: [
+				{
+					consume_items: true
+					count: 64L
+					id: "17DE22F4BA2343E1"
+					item: { count: 1, id: "minecraft:oak_log" }
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 32L
+					id: "7E931D5970641802"
+					item: { count: 1, id: "minecraft:iron_ingot" }
+					type: "item"
+				}
+				{
+					consume_items: true
+					count: 16L
+					id: "7DFE96E7F555959F"
+					item: { count: 1, id: "minecraft:gunpowder" }
+					type: "item"
+				}
+				{
+					id: "7C0964C9574E9CE0"
+					type: "checkmark"
+				}
+			]
+			x: 18.0d
+			y: 0.0d
+		}
+	]
+}

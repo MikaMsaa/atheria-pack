@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "fr.atheria.monde.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": ["GenerationStructuresMixin"],
+  "client": [
+    "ProfilRelanceMixin",
+    "SonsDinosauresMixin",
+    "JadeCibleMixin",
+    "MainsDoublesMixin",
+    "MainsFiguresMixin",
+    "PoseFigurantMixin",
+    "LumiereFigurantMixin","FigureSanteMixin", "SonSoinMixin", "CoucheArmureSporeMixin", "RenduJoueurMixin", "FondChargementMixin", "PonderIndexMixin", "PonderTexteMixin", "RetourGuideMixin", "ListeJoueursMixin", "PorteChangeeMixin", "PorteCacheeMixin"],
+  "injectors": { "defaultRequire": 1 }
+}

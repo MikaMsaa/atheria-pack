@@ -1,0 +1,829 @@
+{
+	default_hide_dependency_lines: true
+	default_quest_shape: "atheria_epingle"
+	filename: "exploration"
+	group: "6044CFD50CE210E2"
+	icon: {
+		id: "naturescompass:naturescompass"
+	}
+	id: "16EFEE45918D91D4"
+	images: [
+		{
+			height: 11.0d
+			id: "26A9030FC2B85FF4"
+			image: "atheria:textures/quetes/carte_ile.png"
+			order: -10
+			rotation: 0.0d
+			width: 16.8d
+			x: 7.1d
+			y: 4.2d
+		}
+		{
+			height: 39.0d
+			id: "6338C2330025E764"
+			image: "atheria:textures/quetes/carte_large.png"
+			order: -20
+			rotation: 0.0d
+			width: 60.8d
+			x: 7.1d
+			y: 4.2d
+		}
+	]
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			icon: {
+				id: "minecraft:oak_door"
+			}
+			id: "15E6984299E6B50E"
+			rewards: [
+				{
+					count: 3
+					id: "250F612E017764F1"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "59DFD9CDC22A0638"
+					item: {
+						count: 1
+						id: "firstaid:bandage"
+					}
+					type: "item"
+				}
+				{
+					count: 3
+					id: "0037D53CB125DE20"
+					item: {
+						count: 1
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "68EC3719197DD0CB"
+				structure: "#atheria:maisons"
+				type: "structure"
+			}]
+			x: 3.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			icon: {
+				id: "minecraft:hay_block"
+			}
+			id: "1DF3376279A363F9"
+			rewards: [
+				{
+					count: 3
+					id: "39CEB1136C7184BE"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "11A89BC8F28F9155"
+					item: {
+						count: 1
+						id: "firstaid:bandage"
+					}
+					type: "item"
+				}
+				{
+					count: 3
+					id: "1BA3F30C5C3669E9"
+					item: {
+						count: 1
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "7403A5F0D491780B"
+				structure: "#atheria:fermes"
+				type: "structure"
+			}]
+			x: 6.0d
+			y: 6.2d
+		}
+		{
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			icon: {
+				id: "minecraft:campfire"
+			}
+			id: "6C9D815FEFE5DE90"
+			rewards: [
+				{
+					count: 3
+					id: "1235CC4058E400FD"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "043FA9EBD5E0CCD2"
+					item: {
+						count: 1
+						id: "firstaid:bandage"
+					}
+					type: "item"
+				}
+				{
+					count: 3
+					id: "3440DA92E5589623"
+					item: {
+						count: 1
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "1C84647F702AF3D8"
+				structure: "#atheria:camps"
+				type: "structure"
+			}]
+			x: 4.0d
+			y: 7.0d
+		}
+		{
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			icon: {
+				id: "minecraft:dark_oak_door"
+			}
+			id: "391774F74BF3BA2A"
+			rewards: [
+				{
+					count: 8
+					id: "78760765591D991D"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "5693C7DFD7ED9521"
+					item: {
+						count: 1
+						id: "firstaid:plaster"
+					}
+					type: "item"
+				}
+				{
+					id: "3575D33C8EBA610D"
+					item: {
+						count: 1
+						id: "atheria:filtre"
+					}
+					type: "item"
+				}
+				{
+					count: 8
+					id: "2801A7402278900D"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:9mm"
+							}
+							"minecraft:max_stack_size": 60
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "464A5787DD0D3027"
+				structure: "#atheria:manoirs"
+				type: "structure"
+			}]
+			x: 7.6d
+			y: 7.2d
+		}
+		{
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			icon: {
+				id: "minecraft:spyglass"
+			}
+			id: "1E5888F76B1BA361"
+			rewards: [
+				{
+					count: 3
+					id: "04ABC7B5D20F4091"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "3BF3680710784D97"
+					item: {
+						count: 1
+						id: "firstaid:bandage"
+					}
+					type: "item"
+				}
+				{
+					count: 3
+					id: "4A84B1533100D570"
+					item: {
+						count: 1
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "7D75FE87AB142981"
+				structure: "#atheria:tours"
+				type: "structure"
+			}]
+			x: 8.0d
+			y: 1.6d
+		}
+		{
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			icon: {
+				id: "atheria:radio_portative"
+			}
+			id: "4C5B1B867E7BF894"
+			rewards: [
+				{
+					count: 8
+					id: "3F78F973493ECD6E"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "73BF536EC9646433"
+					item: {
+						count: 1
+						id: "firstaid:plaster"
+					}
+					type: "item"
+				}
+				{
+					id: "6814716BBA5AD18B"
+					item: {
+						count: 1
+						id: "atheria:filtre"
+					}
+					type: "item"
+				}
+				{
+					count: 8
+					id: "143473F8138412F8"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:9mm"
+							}
+							"minecraft:max_stack_size": 60
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "5553186C095FABCE"
+				structure: "create_fallout:broadcast_station"
+				type: "structure"
+			}]
+			x: 9.6d
+			y: 1.3d
+		}
+		{
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			icon: {
+				id: "atheria:bidon_essence"
+			}
+			id: "242F578D56F42B08"
+			rewards: [
+				{
+					count: 3
+					id: "111E08ECE7AEF791"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "52F1F8E2EBDB61B1"
+					item: {
+						count: 1
+						id: "firstaid:bandage"
+					}
+					type: "item"
+				}
+				{
+					count: 3
+					id: "4227550E1B6E9599"
+					item: {
+						count: 1
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "0893C255486D6D9A"
+				structure: "create_fallout:red_rocket_station"
+				type: "structure"
+			}]
+			x: 5.6d
+			y: 3.4d
+		}
+		{
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			icon: {
+				id: "minecraft:iron_pickaxe"
+			}
+			id: "71AC4839B277C483"
+			rewards: [
+				{
+					count: 3
+					id: "5F130B722A79D745"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "5F2ED5FABDE2117C"
+					item: {
+						count: 1
+						id: "firstaid:bandage"
+					}
+					type: "item"
+				}
+				{
+					count: 3
+					id: "6E84E9370C24DB3B"
+					item: {
+						count: 1
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "7C59A0CDCD699B6A"
+				structure: "#atheria:mines"
+				type: "structure"
+			}]
+			x: 10.2d
+			y: 3.6d
+		}
+		{
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			icon: {
+				id: "minecraft:spawner"
+			}
+			id: "796D148B04C4368D"
+			rewards: [
+				{
+					count: 8
+					id: "0FB4CC138A6A05DE"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "613EB666DC0FAB1D"
+					item: {
+						count: 1
+						id: "firstaid:plaster"
+					}
+					type: "item"
+				}
+				{
+					id: "103F121CA4A8BE5F"
+					item: {
+						count: 1
+						id: "atheria:filtre"
+					}
+					type: "item"
+				}
+				{
+					count: 8
+					id: "67D1C7BAEF08D4FF"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:9mm"
+							}
+							"minecraft:max_stack_size": 60
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "0D6CA5CC49D4E816"
+				structure: "#atheria:donjons"
+				type: "structure"
+			}]
+			x: 11.6d
+			y: 4.6d
+		}
+		{
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			icon: {
+				id: "spore:gas_mask"
+			}
+			id: "5C27917D199D48D3"
+			rewards: [
+				{
+					count: 15
+					id: "5B6778A41ED3B599"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					id: "6D4E5C540219F958"
+					item: {
+						count: 1
+						id: "atheria:trousse_soins"
+					}
+					type: "item"
+				}
+				{
+					id: "2E112E94C551CAC8"
+					item: {
+						count: 1
+						id: "firstaid:morphine"
+					}
+					type: "item"
+				}
+				{
+					count: 16
+					id: "0FAB57941F39C747"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:9mm"
+							}
+							"minecraft:max_stack_size": 60
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "7D46D1821031DAB5"
+				structure: "spore:military_camp"
+				type: "structure"
+			}]
+			x: 10.6d
+			y: 5.8d
+		}
+		{
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			icon: {
+				id: "minecraft:iron_door"
+			}
+			id: "59641266811C7052"
+			rewards: [
+				{
+					count: 8
+					id: "6B5B556F02203311"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "2F13E03FAC73C350"
+					item: {
+						count: 1
+						id: "firstaid:plaster"
+					}
+					type: "item"
+				}
+				{
+					id: "2D22E719BD4E452C"
+					item: {
+						count: 1
+						id: "atheria:filtre"
+					}
+					type: "item"
+				}
+				{
+					count: 8
+					id: "5E4CFA0DB3890734"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:9mm"
+							}
+							"minecraft:max_stack_size": 60
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "6837D18DCBE0E776"
+				structure: "#atheria:bunkers"
+				type: "structure"
+			}]
+			x: 1.6d
+			y: 5.2d
+		}
+		{
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			icon: {
+				id: "minecraft:bell"
+			}
+			id: "5861A5A08968DC7A"
+			rewards: [
+				{
+					count: 3
+					id: "28165A76FD24C6EB"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "713C1515904D9837"
+					item: {
+						count: 1
+						id: "firstaid:bandage"
+					}
+					type: "item"
+				}
+				{
+					count: 3
+					id: "2B8288A5F27376AA"
+					item: {
+						count: 1
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				id: "592B0AB985DFD15E"
+				structure: "#atheria:repurposed"
+				type: "structure"
+			}]
+			x: 7.4d
+			y: 4.6d
+		}
+		{
+			dependencies: ["1FDFF9385E09C2A1"]
+			hide_dependent_lines: true
+			icon: {
+				id: "minecraft:fern"
+			}
+			id: "7DF772725295457D"
+			rewards: [
+				{
+					count: 8
+					id: "543996412A9ACB51"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "3D651CAAAA5809D2"
+					item: {
+						count: 1
+						id: "firstaid:plaster"
+					}
+					type: "item"
+				}
+				{
+					id: "0AC1DBC6D97EA964"
+					item: {
+						count: 1
+						id: "atheria:filtre"
+					}
+					type: "item"
+				}
+				{
+					count: 8
+					id: "34ED83ED9994AF5F"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:9mm"
+							}
+							"minecraft:max_stack_size": 60
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					biome: "terralith:volcanic_peaks"
+					id: "5FC9D059B1896EDC"
+					type: "biome"
+				}
+				{
+					biome: "terralith:moonlight_grove"
+					id: "5262E4F530E1946C"
+					type: "biome"
+				}
+				{
+					biome: "terralith:yellowstone"
+					id: "3CFC4F82D187711D"
+					type: "biome"
+				}
+			]
+			x: 11.0d
+			y: 2.6d
+		}
+		{
+			dependencies: [
+				"15E6984299E6B50E"
+				"1DF3376279A363F9"
+				"6C9D815FEFE5DE90"
+				"391774F74BF3BA2A"
+				"1E5888F76B1BA361"
+				"4C5B1B867E7BF894"
+				"242F578D56F42B08"
+				"71AC4839B277C483"
+				"796D148B04C4368D"
+				"5C27917D199D48D3"
+				"59641266811C7052"
+				"5861A5A08968DC7A"
+				"7DF772725295457D"
+			]
+			hide_dependent_lines: true
+			icon: {
+				id: "naturescompass:naturescompass"
+			}
+			id: "4C21CC3F93C2A292"
+			min_required_dependencies: 4
+			rewards: [{
+				id: "717835F69C5F733A"
+				item: {
+					count: 1
+					id: "naturescompass:naturescompass"
+				}
+				type: "item"
+			}]
+			shape: "octagon"
+			size: 1.15d
+			tasks: [{
+				id: "405BEE50EC6E62B8"
+				type: "checkmark"
+			}]
+			x: 14.3d
+			y: 3.3d
+		}
+		{
+			dependencies: [
+				"15E6984299E6B50E"
+				"1DF3376279A363F9"
+				"6C9D815FEFE5DE90"
+				"391774F74BF3BA2A"
+				"1E5888F76B1BA361"
+				"4C5B1B867E7BF894"
+				"242F578D56F42B08"
+				"71AC4839B277C483"
+				"796D148B04C4368D"
+				"5C27917D199D48D3"
+				"59641266811C7052"
+				"5861A5A08968DC7A"
+				"7DF772725295457D"
+			]
+			hide_dependent_lines: true
+			icon: {
+				id: "explorerscompass:explorerscompass"
+			}
+			id: "3BBB6988343BCC0C"
+			min_required_dependencies: 8
+			rewards: [{
+				id: "073FC57420B53BF5"
+				item: {
+					count: 1
+					id: "explorerscompass:explorerscompass"
+				}
+				type: "item"
+			}]
+			shape: "octagon"
+			size: 1.15d
+			tasks: [{
+				id: "5218E97DC9D5B1BF"
+				type: "checkmark"
+			}]
+			x: 14.3d
+			y: 5.0d
+		}
+		{
+			dependencies: [
+				"15E6984299E6B50E"
+				"1DF3376279A363F9"
+				"6C9D815FEFE5DE90"
+				"391774F74BF3BA2A"
+				"1E5888F76B1BA361"
+				"4C5B1B867E7BF894"
+				"242F578D56F42B08"
+				"71AC4839B277C483"
+				"796D148B04C4368D"
+				"5C27917D199D48D3"
+				"59641266811C7052"
+				"5861A5A08968DC7A"
+				"7DF772725295457D"
+			]
+			hide_dependent_lines: true
+			icon: {
+				id: "minecraft:filled_map"
+			}
+			id: "09EC281C705CD203"
+			rewards: [
+				{
+					id: "6470DE8F27BEA1C9"
+					item: {
+						count: 1
+						id: "atheria:cle_taxi"
+					}
+					type: "item"
+				}
+				{
+					command: "/tag {p} add titre_cartographe"
+					feedback_message: "Titre « Cartographe »"
+					id: "058E000354F764E3"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
+			shape: "octagon"
+			size: 1.15d
+			tasks: [{
+				id: "1B21A662BE0EF821"
+				type: "checkmark"
+			}]
+			x: 14.3d
+			y: 6.699999999999999d
+		}
+	]
+}

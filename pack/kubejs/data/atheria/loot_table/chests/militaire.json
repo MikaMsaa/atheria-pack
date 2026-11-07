@@ -1,0 +1,114 @@
+{
+    "pools":  [
+                  {
+                      "entries":  [
+                                      {
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  1,
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  2
+                                                                          }
+                                                            }
+                                                        ],
+                                          "weight":  8,
+                                          "name":  "atheria:ration",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  1,
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  2
+                                                                          }
+                                                            }
+                                                        ],
+                                          "weight":  6,
+                                          "name":  "atheria:filtre",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "weight":  2,
+                                          "name":  "spore:gas_mask",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "weight":  5,
+                                          "name":  "atheria:carte_routiere",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "weight":  5,
+                                          "name":  "atheria:bidon_essence",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "weight":  3,
+                                          "name":  "atheria:batterie",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  1,
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  4
+                                                                          }
+                                                            }
+                                                        ],
+                                          "weight":  8,
+                                          "name":  "minecraft:iron_ingot",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  1,
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  4
+                                                                          }
+                                                            }
+                                                        ],
+                                          "weight":  8,
+                                          "name":  "minecraft:gunpowder",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "weight":  3,
+                                          "name":  "trapperpelts:beartrapitem",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  1,
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  4
+                                                                          }
+                                                            }
+                                                        ],
+                                          "weight":  6,
+                                          "name":  "minecraft:copper_ingot",
+                                          "type":  "minecraft:item"
+                                      }
+                                  ],
+                      "rolls":  {
+                                    "min":  3,
+                                    "type":  "minecraft:uniform",
+                                    "max":  6
+                                }
+                  }
+              ],
+    "type":  "minecraft:chest"
+}

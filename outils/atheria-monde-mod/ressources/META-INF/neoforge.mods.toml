@@ -1,0 +1,26 @@
+modLoader = "lowcodefml"
+loaderVersion = "[1,)"
+license = "All rights reserved"
+
+[[mods]]
+modId = "atheria_monde"
+version = "1.0.0"
+displayName = "Atheria Monde"
+description = "Ajustements propres a Atheria : structures loin des villes, figure de sante reduite."
+
+[[mixins]]
+config = "atheria_monde.mixins.json"
+
+[[dependencies.atheria_monde]]
+modId = "lostcities"
+type = "required"
+versionRange = "[0,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.atheria_monde]]
+modId = "firstaid"
+type = "required"
+versionRange = "[0,)"
+ordering = "NONE"
+side = "BOTH"

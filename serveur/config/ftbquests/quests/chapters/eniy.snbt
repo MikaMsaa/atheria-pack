@@ -1,0 +1,189 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "rsquare"
+	filename: "eniy"
+	group: "72E3B8495ACABA9D"
+	icon: {
+		id: "atheria:chocolat_dubai"
+	}
+	id: "5377F7B4B315DAA4"
+	images: [
+		{
+			height: 7.4d
+			id: "5195AF7554FEAD03"
+			image: "atheria:textures/quetes/eniy_diapo.png"
+			order: -10
+			rotation: 0.0d
+			width: 10.3d
+			x: 3.15d
+			y: -0.5d
+		}
+		{
+			height: 35.4d
+			id: "0F0A768715144F6B"
+			image: "atheria:textures/quetes/eniy_large.png"
+			order: -20
+			rotation: 0.0d
+			width: 54.3d
+			x: 3.15d
+			y: -0.5d
+		}
+	]
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			can_repeat: true
+			dependencies: ["5C69C7C8BACB3868"]
+			id: "737E75F75E7449B8"
+			repeat_cooldown: 86400
+			rewards: [{
+				count: 15
+				id: "258B48E8F9430637"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
+				}
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 1.15d
+			tasks: [{
+				consume_items: true
+				id: "47F8DA4330230395"
+				item: { count: 1, id: "atheria:colis" }
+				type: "item"
+			}]
+			x: 0.0d
+			y: 1.2d
+		}
+		{
+			can_repeat: true
+			dependencies: ["5C69C7C8BACB3868"]
+			icon: {
+				id: "atheria:archive_06"
+			}
+			id: "509F756A2596B3EC"
+			repeat_cooldown: 86400
+			rewards: [
+				{
+					count: 3
+					id: "13423616E465E0B4"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "19EB9E7B9D3EB0CF"
+					item: {
+						count: 1
+						id: "firstaid:bandage"
+					}
+					type: "item"
+				}
+				{
+					count: 3
+					id: "492E4C79DF66DFCF"
+					item: {
+						count: 1
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			size: 1.15d
+			tasks: [{
+				id: "16A165A2459B8693"
+				type: "checkmark"
+			}]
+			x: 1.9d
+			y: 0.4d
+		}
+		{
+			dependencies: ["5C69C7C8BACB3868"]
+			id: "1DCE6688692A4CA1"
+			rewards: [
+				{
+					id: "763D0E369A0A74D5"
+					item: {
+						count: 1
+						id: "atheria:formation_eniy"
+					}
+					type: "item"
+				}
+				{
+					command: "/tag {p} add titre_victime_eniy"
+					feedback_message: "Titre « Victime d'Eniy »"
+					id: "095E650EB75557DF"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
+			shape: "rsquare"
+			size: 1.15d
+			tasks: [{
+				consume_items: true
+				count: 50L
+				id: "7F4D8F0848982EE8"
+				item: { count: 1, id: "atheria:bon_caf" }
+				type: "item"
+			}]
+			x: 3.8d
+			y: -0.4d
+		}
+		{
+			dependencies: ["5C69C7C8BACB3868"]
+			id: "34BC9253A676741C"
+			rewards: [{
+				count: 2
+				id: "32430590976DFBCF"
+				item: {
+					count: 1
+					id: "atheria:chocolat_dubai"
+				}
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 1.15d
+			tasks: [
+				{
+					consume_items: true
+					id: "48D999AC42E2714C"
+					item: { count: 1, id: "create_fallout:nuka_cola" }
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "3C48D74539FFBBD5"
+					item: { count: 1, id: "create_fallout:stimpack" }
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "33CD2B55E139BBDB"
+					item: { count: 1, id: "firstaid:adrenaline_injector" }
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "03CAEF8A4936B868"
+					item: { count: 1, id: "minecraft:diamond" }
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "4A3E0BA27810262F"
+					item: { count: 1, id: "minecraft:golden_apple" }
+					type: "item"
+				}
+			]
+			x: 5.7d
+			y: -1.2d
+		}
+	]
+}

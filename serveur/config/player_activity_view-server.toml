@@ -1,0 +1,39 @@
+#Disable new dynamic gui system and use old simple visual
+dynamicGuiUseOldSimpleGUIVisual = false
+#Delay in ticks before sending a new GUI image
+# Default: 10
+# Range: 0 ~ 100
+dynamicGuiTickSendRateOfGUIUpdates = 10
+#Only sends initial GUI image, no constant updates
+dynamicGuiDontSendConstantGUIUpdates = true
+#Blur level (0-2) to prevent aliasing artifacts
+# Default: 1
+# Range: 0 ~ 2
+dynamicGuiBlurLevel = 1
+#Corner rounding in pixels of the soft mask around the mirrored screen. Set to -1 to disable.
+#Values above a quarter of the panel's short side are capped in the shader, so a large
+#value cannot degenerate the shape into an oval.
+# Default: 16.0
+# Range: -1.0 ~ 512.0
+dynamicGuiSizeRadiusInPixelsToShow = 16.0
+#Show clients entire screen instead of circle crop
+dynamicGuiShowClientsEntireScreen = false
+#Disables background rendering for most guis
+dynamicGuiDisableBackgroundRendering = true
+#Show items being transferred between player and container
+showItemsBeingTransferredBetweenPlayerAndContainer = true
+#How close another player has to be to see GUI info
+# Default: 10
+# Range: 1 ~ 100
+distanceRequiredToShowGUIInfo = 10
+showIdleStatesInPlayerList = true
+showIdleStatesInPlayerAboveHead = true
+showPlayerAnimations = true
+showPlayerAnimation_Typing = true
+showPlayerAnimation_Idle = true
+showPlayerAnimation_Gui = true
+showPlayerActiveNonChatGui = true
+showPlayerActiveChatGui = true
+screenTypingVisible = true
+playScreenOpenSounds = true
+playMouseClickSounds = true

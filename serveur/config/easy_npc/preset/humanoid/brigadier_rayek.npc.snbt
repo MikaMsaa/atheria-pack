@@ -1,0 +1,111 @@
+{
+	PresetMetadata: {
+		author: "Atheria",
+		category: "Atheria",
+		description: "PNJ de la campagne Atheria : Brigadier Rayek.",
+		entityTypeId: "easy_npc:humanoid",
+		name: "Brigadier Rayek",
+		variantType: "STEVE",
+		version: "1.0.0"
+	},
+	data: {
+		ActionData: {
+			ActionEventSet: {
+				ON_INTERACTION: [
+					{
+						Type: "OPEN_DEFAULT_DIALOG"
+					}
+				]
+			}
+		},
+		CustomName: '{"text": "Brigadier Rayek", "color": "#E8C66A"}',
+		DialogData: {
+			DialogDataSet: [
+				{
+					Buttons: [
+						{
+							Actions: [
+								{
+									Cmd: "/tag @initiator add q_ch1_checkpoint",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/give @initiator atheria:fiche_quarantaine 1",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/playsound minecraft:entity.experience_orb.pickup master @initiator ~ ~ ~ 0.6 1.2",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Type: "CLOSE_DIALOG"
+								}
+							],
+							Label: "b_q_ch1_checkpoint",
+							Name: "Quel est le test ?"
+						}
+					],
+					Conditions: [
+						{
+							Name: "chapitre_1",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch1_checkpoint",
+					Name: "q_ch1_checkpoint",
+					Priority: 10,
+					Texts: [
+						{
+							Text: "Papiers.\\n\\n— J'en ai pas.\\n\\nTrès bien. On a donc identifié le problème. Scanner, quarantaine, fiche, tampon. Si tu es contaminé, le protocole est plus court."
+						}
+					]
+				},
+				{
+					Conditions: [
+						{
+							Name: "q_ch1_checkpoint",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch1_checkpoint_fait",
+					Name: "q_ch1_checkpoint (fait)",
+					Priority: 11,
+					Texts: [
+						{
+							Text: "Tu as ce qu'il te faut. Avance."
+						}
+					]
+				},
+				{
+					Label: "repos",
+					Name: "Repos",
+					Priority: 1,
+					Texts: [
+						{
+							Text: "Le guichet est fermé. Le guichet est toujours fermé."
+						}
+					]
+				}
+			],
+			Type: "STANDARD"
+		},
+		EasyNPCVersion: 3,
+		Invulnerable: 1b,
+		ObjectiveData: {
+			ObjectiveDataSet: [
+				{
+					Type: "LOOK_AT_PLAYER"
+				},
+				{
+					Type: "LOOK_AT_RESET"
+				}
+			]
+		},
+		PersistenceRequired: 1b,
+		VariantType: "STEVE",
+		id: "easy_npc:humanoid"
+	}
+}

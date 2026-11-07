@@ -1,0 +1,107 @@
+{
+    "xsize":  16,
+    "zsize":  16,
+    "palette":  {
+                    "palette":  [
+                                    {
+                                        "block":  "minecraft:coarse_dirt",
+                                        "char":  "d"
+                                    },
+                                    {
+                                        "block":  "minecraft:gravel",
+                                        "char":  "g"
+                                    },
+                                    {
+                                        "block":  "minecraft:light_gray_wool",
+                                        "char":  "W"
+                                    },
+                                    {
+                                        "block":  "minecraft:campfire[lit=false]",
+                                        "char":  "f"
+                                    },
+                                    {
+                                        "block":  "minecraft:barrel[facing=up]",
+                                        "char":  "b"
+                                    },
+                                    {
+                                        "char":  "c",
+                                        "block":  "minecraft:chest[facing=north]",
+                                        "loot":  "atheria_refugies"
+                                    }
+                                ]
+                },
+    "slices":  [
+                   [
+                       "dddddddddddddddd",
+                       "dddddddddddddddd",
+                       "dddddddddddddddd",
+                       "dddddddddddddddd",
+                       "dddddddddddddddd",
+                       "dddddddddddddddd",
+                       "ddddddggggdddddd",
+                       "ddddddggggdddddd",
+                       "ddddddggggdddddd",
+                       "ddddddggggdddddd",
+                       "dddddddddddddddd",
+                       "dddddddddddddddd",
+                       "dddddddddddddddd",
+                       "dddddddddddddddd",
+                       "dddddddddddddddd",
+                       "dddddddddddddddd"
+                   ],
+                   [
+                       "                ",
+                       " WWWWW    WWWWW ",
+                       " Wc  W    Wc  W ",
+                       " W   W    W   W ",
+                       " W   W    W   W ",
+                       " WW WW    WW WW ",
+                       "                ",
+                       "       f        ",
+                       "     b          ",
+                       "                ",
+                       " WWWWW    WWWWW ",
+                       " W c W    W   W ",
+                       " W   W    W b W ",
+                       " W   W    W   W ",
+                       " WW WW    WW WW ",
+                       "                "
+                   ],
+                   [
+                       "                ",
+                       " WWWWW    WWWWW ",
+                       " W   W    W   W ",
+                       " W   W    W   W ",
+                       " W   W    W   W ",
+                       " WW WW    WW WW ",
+                       "                ",
+                       "                ",
+                       "                ",
+                       "                ",
+                       " WWWWW    WWWWW ",
+                       " W   W    W   W ",
+                       " W   W    W   W ",
+                       " W   W    W   W ",
+                       " WW WW    WW WW ",
+                       "                "
+                   ],
+                   [
+                       "                ",
+                       " WWWWW    WWWWW ",
+                       " WWWWW    WWWWW ",
+                       " WWWWW    WWWWW ",
+                       " WWWWW    WWWWW ",
+                       " WWWWW    WWWWW ",
+                       "                ",
+                       "                ",
+                       "                ",
+                       "                ",
+                       " WWWWW    WWWWW ",
+                       " WWWWW    WWWWW ",
+                       " WWWWW    WWWWW ",
+                       " WWWWW    WWWWW ",
+                       " WWWWW    WWWWW ",
+                       "                "
+                   ]
+               ]
+}

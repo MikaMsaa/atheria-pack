@@ -1,0 +1,46 @@
+{
+    "type":  "neoforge:add_spawns",
+    "biomes":  {
+                   "type":  "neoforge:any",
+                   "values":  [
+                                  "#minecraft:is_forest",
+                                  "#c:is_plains",
+                                  "#minecraft:is_taiga",
+                                  "#minecraft:is_savanna",
+                                  "#c:is_swamp",
+                                  "#minecraft:is_jungle"
+                              ]
+               },
+    "spawners":  [
+                     {
+                         "type":  "minecraft:cow",
+                         "weight":  10,
+                         "minCount":  2,
+                         "maxCount":  4
+                     },
+                     {
+                         "type":  "minecraft:sheep",
+                         "weight":  10,
+                         "minCount":  2,
+                         "maxCount":  4
+                     },
+                     {
+                         "type":  "minecraft:pig",
+                         "weight":  10,
+                         "minCount":  2,
+                         "maxCount":  4
+                     },
+                     {
+                         "type":  "minecraft:chicken",
+                         "weight":  10,
+                         "minCount":  2,
+                         "maxCount":  4
+                     },
+                     {
+                         "type":  "minecraft:rabbit",
+                         "weight":  6,
+                         "minCount":  2,
+                         "maxCount":  3
+                     }
+                 ]
+}

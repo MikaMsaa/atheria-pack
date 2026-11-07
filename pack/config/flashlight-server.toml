@@ -1,0 +1,29 @@
+[gameplay]
+	#Maximum flashlight battery charge.
+	# Default: 3000
+	# Range: 1 ~ 100000
+	maxCharge = 3000
+	#Ticks between charge drain while the flashlight is on. Higher means longer battery life.
+	# Default: 4
+	# Range: 1 ~ 200
+	drainIntervalTicks = 4
+
+[server_lighting]
+	#Places temporary invisible light blocks from the server so other players see the flashlight affect nearby blocks.
+	serverVisibleLights = true
+	#Maximum server-side block light range in blocks. Keep lower than the visual beam for performance.
+	# Default: 15
+	# Range: 4 ~ 32
+	serverLightRange = 15
+	#Distance in blocks between temporary lights along the beam. Higher is cheaper, lower is smoother.
+	# Default: 3
+	# Range: 1 ~ 8
+	serverLightSpacing = 3
+	#Ticks between server light updates. Higher is cheaper, lower follows player aim more closely.
+	# Default: 4
+	# Range: 1 ~ 40
+	serverLightRefreshTicks = 4
+	#Brightness of each temporary flashlight light block.
+	# Default: 14
+	# Range: 1 ~ 15
+	serverLightLevel = 14

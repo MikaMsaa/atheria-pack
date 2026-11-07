@@ -1,0 +1,20 @@
+{
+    "filler":  "#",
+    "rubble":  "}",
+    "minfloors":  1,
+    "maxfloors":  3,
+    "parts":  [
+                  {
+                      "top":  false,
+                      "part":  "ath_maison_rdc"
+                  },
+                  {
+                      "top":  false,
+                      "part":  "ath_maison_etage"
+                  },
+                  {
+                      "top":  true,
+                      "part":  "ath_toit_pente"
+                  }
+              ]
+}

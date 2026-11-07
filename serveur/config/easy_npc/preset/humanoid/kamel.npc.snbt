@@ -1,0 +1,280 @@
+{
+	PresetMetadata: {
+		author: "Atheria",
+		category: "Atheria",
+		description: "PNJ de la campagne Atheria : Kamel.",
+		entityTypeId: "easy_npc:humanoid",
+		name: "Kamel",
+		variantType: "STEVE",
+		version: "1.0.0"
+	},
+	data: {
+		ActionData: {
+			ActionEventSet: {
+				ON_INTERACTION: [
+					{
+						Type: "OPEN_DEFAULT_DIALOG"
+					}
+				]
+			}
+		},
+		CustomName: '{"text": "Kamel", "color": "#E8C66A"}',
+		DialogData: {
+			DialogDataSet: [
+				{
+					Buttons: [
+						{
+							Actions: [
+								{
+									Cmd: "/tag @initiator add q_ch1_kamel",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/give @initiator atheria:cle_galeries 1",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/give @initiator flashlight:flashlight 1",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/playsound minecraft:entity.experience_orb.pickup master @initiator ~ ~ ~ 0.6 1.2",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Type: "CLOSE_DIALOG"
+								}
+							],
+							Label: "b_q_ch1_kamel",
+							Name: "Montrer le carnet"
+						}
+					],
+					Conditions: [
+						{
+							Name: "q_ch1_checkpoint",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch1_kamel",
+					Name: "q_ch1_kamel",
+					Priority: 10,
+					Texts: [
+						{
+							Text: "Baisse pas les yeux. Ici, c'est pas un concert. ...Attends. Ce carnet. Cette écriture. C'est celle de mon frère.\\n\\n— La PAF dit qu'il a été exécuté.\\n\\nLa PAF dit ce qui l'arrange. Rayade est parti vers le Bénara chercher l'origine de la voix. Il n'est jamais revenu. Alors qui ont-ils mis sur le quai ?"
+						}
+					]
+				},
+				{
+					Conditions: [
+						{
+							Name: "q_ch1_kamel",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch1_kamel_fait",
+					Name: "q_ch1_kamel (fait)",
+					Priority: 11,
+					Texts: [
+						{
+							Text: "Tu as ce qu'il te faut. Avance."
+						}
+					]
+				},
+				{
+					Buttons: [
+						{
+							Actions: [
+								{
+									Cmd: "/tag @initiator add q_ch2_kamel",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/playsound minecraft:entity.experience_orb.pickup master @initiator ~ ~ ~ 0.6 1.2",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Type: "CLOSE_DIALOG"
+								}
+							],
+							Label: "b_q_ch2_kamel",
+							Name: "On y va"
+						}
+					],
+					Conditions: [
+						{
+							Name: "acte_2",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch2_kamel",
+					Name: "q_ch2_kamel",
+					Priority: 12,
+					Texts: [
+						{
+							Text: "Tu m'as vendu et tu viens me chercher. Je ne sais pas si tu es un salaud ou si tu as un sens de l'orientation catastrophique. On verra sur la route."
+						}
+					]
+				},
+				{
+					Conditions: [
+						{
+							Name: "q_ch2_kamel",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch2_kamel_fait",
+					Name: "q_ch2_kamel (fait)",
+					Priority: 13,
+					Texts: [
+						{
+							Text: "Tu as ce qu'il te faut. Avance."
+						}
+					]
+				},
+				{
+					Buttons: [
+						{
+							Actions: [
+								{
+									Cmd: "/tag @initiator add q_ch2_feu",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/give @initiator atheria:cassette_rnboi 1",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/playsound minecraft:entity.experience_orb.pickup master @initiator ~ ~ ~ 0.6 1.2",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Type: "CLOSE_DIALOG"
+								}
+							],
+							Label: "b_q_ch2_feu",
+							Name: "Écouter"
+						}
+					],
+					Conditions: [
+						{
+							Name: "q_ch2_kamel",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch2_feu",
+					Name: "q_ch2_feu",
+					Priority: 14,
+					Texts: [
+						{
+							Text: "Rayade filmait tout. La barge, les bouchons, les chiens, le ciel. Trois cents abonnés, mais il se comportait comme si le monde attendait sa vidéo. Je lui disais d'arrêter. Il répondait que les gens avaient besoin de voir que quelque chose continuait.\\n\\n(Après un silence.) J'ai gardé sa dernière cassette."
+						}
+					]
+				},
+				{
+					Conditions: [
+						{
+							Name: "q_ch2_feu",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch2_feu_fait",
+					Name: "q_ch2_feu (fait)",
+					Priority: 15,
+					Texts: [
+						{
+							Text: "Tu as ce qu'il te faut. Avance."
+						}
+					]
+				},
+				{
+					Buttons: [
+						{
+							Actions: [
+								{
+									Cmd: "/tag @initiator add q_ch2_morsure",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/playsound minecraft:entity.experience_orb.pickup master @initiator ~ ~ ~ 0.6 1.2",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Type: "CLOSE_DIALOG"
+								}
+							],
+							Label: "b_q_ch2_morsure",
+							Name: "Rester quelques minutes"
+						}
+					],
+					Conditions: [
+						{
+							Name: "q_ch2_feu",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch2_morsure",
+					Name: "q_ch2_morsure",
+					Priority: 16,
+					Texts: [
+						{
+							Text: "Ne fais pas cette tête. Écoute-moi. L'antifongique ne me ramènera pas. Prends le taxi. Va à Coconi. Dis à Zaid que je lui dois encore cette bouteille. Et garde la cassette."
+						}
+					]
+				},
+				{
+					Conditions: [
+						{
+							Name: "q_ch2_morsure",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch2_morsure_fait",
+					Name: "q_ch2_morsure (fait)",
+					Priority: 17,
+					Texts: [
+						{
+							Text: "Tu as ce qu'il te faut. Avance."
+						}
+					]
+				},
+				{
+					Label: "repos",
+					Name: "Repos",
+					Priority: 1,
+					Texts: [
+						{
+							Text: "Baisse pas les yeux. Ici, c'est pas un concert."
+						}
+					]
+				}
+			],
+			Type: "STANDARD"
+		},
+		EasyNPCVersion: 3,
+		Invulnerable: 1b,
+		ObjectiveData: {
+			ObjectiveDataSet: [
+				{
+					Type: "LOOK_AT_PLAYER"
+				},
+				{
+					Type: "LOOK_AT_RESET"
+				}
+			]
+		},
+		PersistenceRequired: 1b,
+		VariantType: "STEVE",
+		id: "easy_npc:humanoid"
+	}
+}

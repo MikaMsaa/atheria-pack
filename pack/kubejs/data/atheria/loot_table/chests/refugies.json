@@ -1,0 +1,124 @@
+{
+    "pools":  [
+                  {
+                      "entries":  [
+                                      {
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  1,
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  2
+                                                                          }
+                                                            }
+                                                        ],
+                                          "weight":  8,
+                                          "name":  "atheria:ration",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "weight":  3,
+                                          "name":  "atheria:antifongique",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  1,
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  3
+                                                                          }
+                                                            }
+                                                        ],
+                                          "weight":  8,
+                                          "name":  "minecraft:paper",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  1,
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  2
+                                                                          }
+                                                            }
+                                                        ],
+                                          "weight":  6,
+                                          "name":  "minecraft:bread",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  1,
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  2
+                                                                          }
+                                                            }
+                                                        ],
+                                          "weight":  5,
+                                          "name":  "minecraft:leather",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  1,
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  3
+                                                                          }
+                                                            }
+                                                        ],
+                                          "weight":  5,
+                                          "name":  "minecraft:string",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "weight":  3,
+                                          "name":  "atheria:carte_routiere",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  1,
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  2
+                                                                          }
+                                                            }
+                                                        ],
+                                          "weight":  6,
+                                          "name":  "firstaid:bandage",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "weight":  3,
+                                          "name":  "atheria:filtre",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "weight":  1,
+                                          "name":  "atheria:photo_famille",
+                                          "type":  "minecraft:item"
+                                      }
+                                  ],
+                      "rolls":  {
+                                    "min":  2,
+                                    "type":  "minecraft:uniform",
+                                    "max":  5
+                                }
+                  }
+              ],
+    "type":  "minecraft:chest"
+}

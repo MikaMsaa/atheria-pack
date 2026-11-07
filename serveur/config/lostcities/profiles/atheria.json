@@ -1,0 +1,37 @@
+{
+    "public":  true,
+    "lostcity":  {
+                     "description":  "Atheria : villes en ruine envahies par la vegetation, 20 ans apres l\u0027effondrement",
+                     "buildingChance":  0.4,
+                     "vineChance":  0.06,
+                     "randomLeafBlockChance":  0.08,
+                     "randomLeafBlockThickness":  2,
+                     "rubbleLayer":  true,
+                     "rubbleDirtScale":  2.0,
+                     "rubbleLeaveScale":  3.0,
+                     "ruinChance":  0.35,
+                     "ruinMinlevelPercent":  0.4,
+                     "ruinMaxlevelPercent":  1.0,
+                     "parkChance":  0.3,
+                     "generateSpawners":  false,
+                     "generateLoot":  true,
+                     "generateLighting":  false,
+                     "chestWithoutLootChance":  0.1,
+                     "buildingWithoutLootChance":  0.1,
+                     "railwaysEnabled":  true,
+                     "worldStyle":  "atheria",
+                     "highwayPlanningCellSize":  64,
+                     "highwayHubSearchRadiusCells":  4,
+                     "highwayMaximumConnectionsPerHub":  3,
+                     "highwayHubMinimumPotential":  0.1
+                 },
+    "cities":  {
+                   "cityChance":  0.00025,
+                   "cityMinRadius":  48,
+                   "cityMaxRadius":  448
+               },
+    "explosions":  {
+                       "explosionChance":  0.004,
+                       "miniExplosionChance":  0.06
+                   }
+}

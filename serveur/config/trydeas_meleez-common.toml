@@ -1,0 +1,4 @@
+[bleeding]
+	#Lista de entidades inmunes al efecto de sangrado.
+	#Usa el ID del mob, por ejemplo: 'minecraft:skeleton'
+	bleed_immune_entities = ["minecraft:skeleton", "minecraft:wither_skeleton", "minecraft:iron_golem", "minecraft:snow_golem", "minecraft:skeleton_horse", "minecraft:wither"]

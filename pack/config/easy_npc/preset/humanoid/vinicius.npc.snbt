@@ -1,0 +1,90 @@
+{
+	PresetMetadata: {
+		author: "Atheria",
+		category: "Atheria",
+		description: "PNJ de la campagne Atheria : Vinicius.",
+		entityTypeId: "easy_npc:humanoid",
+		name: "Vinicius",
+		variantType: "STEVE",
+		version: "1.0.0"
+	},
+	data: {
+		ActionData: {
+			ActionEventSet: {
+				ON_INTERACTION: [
+					{
+						Type: "OPEN_DEFAULT_DIALOG"
+					}
+				]
+			}
+		},
+		CustomName: '{"text": "Vinicius", "color": "#E8C66A"}',
+		DialogData: {
+			DialogDataSet: [
+				{
+					Buttons: [
+						{
+							Actions: [
+								{
+									Cmd: "/give @initiator atheria:lettre_vinicius 1",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "vinicius_lettre",
+									Type: "OPEN_NAMED_DIALOG"
+								}
+							],
+							Label: "vinicius_b0",
+							Name: "Prendre sa lettre de réclamation"
+						}
+					],
+					Label: "vinicius",
+					Name: "vinicius",
+					Priority: 5,
+					Texts: [
+						{
+							Text: "Tu sais qui je suis ? J'aurais dû avoir le Ballon d'Or. Ils me l'ont volé. Même la fin du monde ne m'a pas rendu justice."
+						}
+					]
+				},
+				{
+					Label: "vinicius_lettre",
+					Name: "vinicius_lettre",
+					Priority: -1,
+					Texts: [
+						{
+							Text: "Poste-la. Il doit bien rester une commission quelque part."
+						}
+					]
+				},
+				{
+					Label: "repos",
+					Name: "Repos",
+					Priority: 1,
+					Texts: [
+						{
+							Text: "Ballon d'Or volé. Je ne l'oublierai jamais."
+						}
+					]
+				}
+			],
+			Type: "STANDARD"
+		},
+		EasyNPCVersion: 3,
+		Invulnerable: 0b,
+		ObjectiveData: {
+			ObjectiveDataSet: [
+				{
+					Type: "LOOK_AT_PLAYER"
+				},
+				{
+					Type: "LOOK_AT_RESET"
+				}
+			]
+		},
+		PersistenceRequired: 1b,
+		VariantType: "STEVE",
+		id: "easy_npc:humanoid"
+	}
+}

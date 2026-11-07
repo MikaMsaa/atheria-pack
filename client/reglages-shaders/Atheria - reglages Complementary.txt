@@ -1,0 +1,32 @@
+# Profil shader Atheria Zombie Edition, pour Complementary Reimagined (Iris)
+# Ambiance The Last of Us : couleurs ternes, plus de contraste, brouillard dense, nuits sombres.
+# Installation : copier ce fichier dans le dossier shaderpacks, a cote du .zip du shader,
+# et le renommer exactement comme le zip suivi de .txt
+# (exemple : ComplementaryReimagined_r5.5.zip.txt).
+# Les noms d'options viennent du code source officiel du shader. Si une valeur n'est pas
+# acceptee, Iris la remet par defaut : verifier dans Options du shader > Camera / Atmosphere.
+# Profil de qualite (POTATO a ULTRA) : chaque joueur le choisit selon son PC, ces reglages s'y ajoutent.
+
+# Couleurs (Camera > Tonemap)
+T_SATURATION=0.80
+T_VIBRANCE=0.85
+TM_CONTRAST=1.10
+TM_DARK_DESATURATION=0.50
+
+# Brouillard (Atmosphere > Fog) : visibilite reduite, les villes se devinent au loin
+ATM_FOG_MULT=0.95
+ATM_FOG_DISTANCE=50
+
+# Nuits (Lighting > Light Color) : sombres, la lampe torche devient vitale
+LIGHT_NIGHT_I=0.50
+ATM_NIGHT_I=0.50
+MOON_PHASE_INF_LIGHT=true
+MOON_PHASE_DARK=0.30
+
+# Ciel : pas d'aurores ni d'arc-en-ciel, moins d'etoiles
+AURORA_STYLE_DEFINE=0
+RAINBOWS=0
+NIGHT_STAR_AMOUNT=1
+
+# Pluie : flaques legeres
+RAIN_PUDDLES=1

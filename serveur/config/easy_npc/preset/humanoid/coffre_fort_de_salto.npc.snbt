@@ -1,0 +1,178 @@
+{
+	PresetMetadata: {
+		author: "Atheria",
+		category: "Atheria",
+		description: "PNJ de la campagne Atheria : Coffre-fort de Salto.",
+		entityTypeId: "easy_npc:humanoid",
+		name: "Coffre-fort de Salto",
+		variantType: "STEVE",
+		version: "1.0.0"
+	},
+	data: {
+		ActionData: {
+			ActionEventSet: {
+				ON_INTERACTION: [
+					{
+						Type: "OPEN_DEFAULT_DIALOG"
+					}
+				]
+			}
+		},
+		CustomName: '{"text": "Coffre-fort de Salto", "color": "#E8C66A"}',
+		DialogData: {
+			DialogDataSet: [
+				{
+					Buttons: [
+						{
+							Actions: [
+								{
+									Cmd: "/summon spore:inf_human ~2 ~ ~",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/summon spore:inf_human ~-2 ~ ~",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/playsound minecraft:block.note_block.bass master @initiator ~ ~ ~ 1 0.5",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Msg: {
+										T: 4b,
+										Texts: ["CODE ERRONÉ. Alarme déclenchée."]
+									},
+									Type: "MESSAGE"
+								},
+								{
+									Type: "CLOSE_DIALOG"
+								}
+							],
+							Label: "b_wrong0",
+							Name: "1 - 0 - 47"
+						},
+						{
+							Actions: [
+								{
+									Cmd: "/tag @initiator add q_ch5_coffre",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/give @initiator atheria:cassette_salto 1",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/give @initiator atheria:archive_31 1",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/playsound minecraft:entity.experience_orb.pickup master @initiator ~ ~ ~ 0.6 1.2",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Type: "CLOSE_DIALOG"
+								}
+							],
+							Label: "b_q_ch5_coffre",
+							Name: "0 - 9 - 104"
+						},
+						{
+							Actions: [
+								{
+									Cmd: "/summon spore:inf_human ~2 ~ ~",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/summon spore:inf_human ~-2 ~ ~",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/playsound minecraft:block.note_block.bass master @initiator ~ ~ ~ 1 0.5",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Msg: {
+										T: 4b,
+										Texts: ["CODE ERRONÉ. Alarme déclenchée."]
+									},
+									Type: "MESSAGE"
+								},
+								{
+									Type: "CLOSE_DIALOG"
+								}
+							],
+							Label: "b_wrong1",
+							Name: "9 - 1 - 04"
+						}
+					],
+					Conditions: [
+						{
+							Name: "acte_4",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch5_coffre",
+					Name: "q_ch5_coffre",
+					Priority: 10,
+					Texts: [
+						{
+							Text: "Coffre-fort personnel. Trois molettes. Une étiquette effacée : « date - sujet - fréquence »."
+						}
+					]
+				},
+				{
+					Conditions: [
+						{
+							Name: "q_ch5_coffre",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch5_coffre_fait",
+					Name: "q_ch5_coffre (fait)",
+					Priority: 11,
+					Texts: [
+						{
+							Text: "Tu as ce qu'il te faut. Avance."
+						}
+					]
+				},
+				{
+					Label: "repos",
+					Name: "Repos",
+					Priority: 1,
+					Texts: [
+						{
+							Text: "Un coffre-fort mural. Trois molettes rouillées."
+						}
+					]
+				}
+			],
+			Type: "STANDARD"
+		},
+		EasyNPCVersion: 3,
+		Invulnerable: 1b,
+		ObjectiveData: {
+			ObjectiveDataSet: [
+				{
+					Type: "LOOK_AT_PLAYER"
+				},
+				{
+					Type: "LOOK_AT_RESET"
+				}
+			]
+		},
+		PersistenceRequired: 1b,
+		VariantType: "STEVE",
+		id: "easy_npc:humanoid"
+	}
+}
