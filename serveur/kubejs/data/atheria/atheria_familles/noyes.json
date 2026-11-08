@@ -1,0 +1,13 @@
+{
+  "_aide": "Les Noyés : mer, plages, rivières, mangroves et quais. Ils n'apparaissent que dans l'eau (règle de Spore).",
+  "nom": "Les Noyés",
+  "ou": [
+    { "biomes": ["#minecraft:is_ocean", "#minecraft:is_beach", "#minecraft:is_river", "minecraft:mangrove_swamp"] },
+    { "ville": true, "batiments": "quai" }
+  ],
+  "apparitions": [
+    { "entite": "spore:inf_drowned", "poids": 40, "min": 1, "max": 3 },
+    { "entite": "spore:naiad", "poids": 10, "min": 1, "max": 1 },
+    { "entite": "spore:bloater", "poids": 8, "min": 1, "max": 1 }
+  ]
+}

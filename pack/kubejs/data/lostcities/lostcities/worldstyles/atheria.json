@@ -8,10 +8,10 @@
                  },
     "multisettings":  {
                           "areasize":  10,
-                          "minimum":  1,
-                          "maximum":  5,
+                          "minimum":  6,
+                          "maximum":  16,
                           "correctstylefactor":  0.5,
-                          "attempts":  50
+                          "attempts":  200
                       },
     "scattered":  {
                       "areasize":  8,
@@ -150,26 +150,26 @@
     "citystyles":  [
                        {
                            "citystyle":  "citystyle_standard",
-                           "factor":  0.3
+                           "factor":  0.04
                        },
                        {
                            "citystyle":  "citystyle_atheria_metropole",
-                           "factor":  0.12
+                           "factor":  0.03
                        },
                        {
                            "citystyle":  "citystyle_atheria_banlieue",
-                           "factor":  0.25
+                           "factor":  0.03
                        },
                        {
                            "citystyle":  "citystyle_atheria_bourg",
-                           "factor":  0.2
+                           "factor":  0.03
                        },
                        {
                            "citystyle":  "citystyle_atheria_industrie",
-                           "factor":  0.13
+                           "factor":  0.02
                        },
                        {
-                           "factor":  9,
+                           "factor":  0.3,
                            "citystyle":  "citystyle_desert",
                            "biomes":  {
                                           "if_any":  [
@@ -179,68 +179,174 @@
                                       }
                        },
                        {
-                           "citystyle":  "citystyle_ath_brique",
-                           "factor":  0.12
+                           "citystyle":  "citystyle_ath_beton",
+                           "factor":  0.15
                        },
                        {
-                           "citystyle":  "citystyle_ath_beton",
-                           "factor":  0.12
+                           "citystyle":  "citystyle_ath_brique",
+                           "factor":  0.04
+                       },
+                       {
+                           "citystyle":  "citystyle_ath_haussmann",
+                           "factor":  0.03
                        },
                        {
                            "citystyle":  "citystyle_ath_verre",
-                           "factor":  0.07
+                           "factor":  0.02
                        },
                        {
                            "citystyle":  "citystyle_ath_terracotta",
-                           "factor":  0.06
+                           "factor":  0.02
                        },
                        {
-                           "citystyle":  "citystyle_ath_terracotta",
-                           "factor":  0.8,
+                           "citystyle":  "citystyle_ath_bois",
+                           "factor":  0.03
+                       },
+                       {
+                           "citystyle":  "citystyle_ath_rouille",
+                           "factor":  0.03
+                       },
+                       {
+                           "citystyle":  "citystyle_ath_gothique",
+                           "factor":  0.03
+                       },
+                       {
+                           "citystyle":  "citystyle_ath_moderne",
+                           "factor":  0.03
+                       },
+                       {
+                           "citystyle":  "citystyle_ath_bidonville",
+                           "factor":  0.03
+                       },
+                       {
+                           "citystyle":  "citystyle_ath_garnison",
+                           "factor":  0.03
+                       },
+                       {
+                           "citystyle":  "citystyle_ath_bois",
+                           "factor":  2.4,
                            "biomes":  {
                                           "if_any":  [
-                                                         "#c:is_savanna",
-                                                         "#minecraft:is_badlands"
+                                                         "#minecraft:is_taiga",
+                                                         "#c:is_snowy",
+                                                         "#c:is_icy",
+                                                         "#c:is_coniferous_tree"
                                                      ]
                                       }
                        },
                        {
-                           "citystyle":  "citystyle_ath_bois",
-                           "factor":  0.08
-                       },
-                       {
-                           "citystyle":  "citystyle_ath_bois",
-                           "factor":  0.8,
+                           "citystyle":  "citystyle_ath_terracotta",
+                           "factor":  2.4,
                            "biomes":  {
                                           "if_any":  [
-                                                         "#minecraft:is_taiga",
-                                                         "#c:is_snowy"
+                                                         "#minecraft:is_badlands",
+                                                         "#minecraft:is_savanna",
+                                                         "#c:is_savanna",
+                                                         "#c:is_desert",
+                                                         "#c:is_badlands",
+                                                         "minecraft:desert"
+                                                     ]
+                                      }
+                       },
+                       {
+                           "citystyle":  "citystyle_ath_gothique",
+                           "factor":  3.6,
+                           "biomes":  {
+                                          "if_any":  [
+                                                         "minecraft:dark_forest",
+                                                         "#c:is_spooky",
+                                                         "#c:is_swamp",
+                                                         "minecraft:swamp"
+                                                     ]
+                                      }
+                       },
+                       {
+                           "citystyle":  "citystyle_ath_haussmann",
+                           "factor":  1.2,
+                           "biomes":  {
+                                          "if_any":  [
+                                                         "#c:is_plains",
+                                                         "minecraft:plains",
+                                                         "minecraft:sunflower_plains",
+                                                         "minecraft:meadow",
+                                                         "#minecraft:is_forest",
+                                                         "#c:is_forest"
+                                                     ]
+                                      }
+                       },
+                       {
+                           "citystyle":  "citystyle_ath_brique",
+                           "factor":  1.2,
+                           "biomes":  {
+                                          "if_any":  [
+                                                         "#c:is_plains",
+                                                         "minecraft:plains",
+                                                         "minecraft:sunflower_plains",
+                                                         "minecraft:meadow",
+                                                         "#minecraft:is_forest",
+                                                         "#c:is_forest"
+                                                     ]
+                                      }
+                       },
+                       {
+                           "citystyle":  "citystyle_ath_verre",
+                           "factor":  0.5,
+                           "biomes":  {
+                                          "if_any":  [
+                                                         "#c:is_plains",
+                                                         "minecraft:plains",
+                                                         "minecraft:sunflower_plains",
+                                                         "minecraft:meadow"
+                                                     ]
+                                      }
+                       },
+                       {
+                           "citystyle":  "citystyle_ath_moderne",
+                           "factor":  3.6,
+                           "biomes":  {
+                                          "if_any":  [
+                                                         "#minecraft:is_beach",
+                                                         "#c:is_beach",
+                                                         "#c:is_birch_forest",
+                                                         "minecraft:birch_forest",
+                                                         "minecraft:old_growth_birch_forest"
                                                      ]
                                       }
                        },
                        {
                            "citystyle":  "citystyle_ath_rouille",
-                           "factor":  0.08
-                       },
-                       {
-                           "citystyle":  "citystyle_ath_gothique",
-                           "factor":  0.07
-                       },
-                       {
-                           "citystyle":  "citystyle_ath_moderne",
-                           "factor":  0.08
-                       },
-                       {
-                           "citystyle":  "citystyle_ath_haussmann",
-                           "factor":  0.08
+                           "factor":  2.4,
+                           "biomes":  {
+                                          "if_any":  [
+                                                         "#minecraft:is_river",
+                                                         "#c:is_river",
+                                                         "#minecraft:is_beach",
+                                                         "#c:is_stony_shores"
+                                                     ]
+                                      }
                        },
                        {
                            "citystyle":  "citystyle_ath_bidonville",
-                           "factor":  0.06
+                           "factor":  2.4,
+                           "biomes":  {
+                                          "if_any":  [
+                                                         "#minecraft:is_jungle",
+                                                         "#c:is_jungle",
+                                                         "minecraft:mangrove_swamp"
+                                                     ]
+                                      }
                        },
                        {
                            "citystyle":  "citystyle_ath_garnison",
-                           "factor":  0.05
+                           "factor":  2.4,
+                           "biomes":  {
+                                          "if_any":  [
+                                                         "#minecraft:is_mountain",
+                                                         "#c:is_mountain",
+                                                         "#minecraft:is_hill",
+                                                         "#c:is_hill"
+                                                     ]
+                                      }
                        }
                    ]
 }

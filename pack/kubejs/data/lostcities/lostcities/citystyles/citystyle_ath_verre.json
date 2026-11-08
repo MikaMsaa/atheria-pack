@@ -34,32 +34,44 @@
                                         {
                                             "factor":  3,
                                             "value":  "ath_tour"
-                                        },
-                                        {
-                                            "factor":  0.5,
-                                            "value":  "building3"
-                                        },
-                                        {
-                                            "factor":  0.5,
-                                            "value":  "building4"
                                         }
                                     ],
                       "multibuildings":  [
                                              {
-                                                 "factor":  0.3,
-                                                 "value":  "huge1"
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_tour"
                                              },
                                              {
-                                                 "factor":  0.3,
-                                                 "value":  "huge2"
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_hotel"
                                              },
                                              {
-                                                 "factor":  0.2,
-                                                 "value":  "ath_hopital"
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_galerie"
                                              },
                                              {
-                                                 "factor":  0.2,
-                                                 "value":  "shopping_open"
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_siege"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_metro"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_parvis"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_brasserie"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_clinique"
+                                             },
+                                             {
+                                                 "factor":  0.4,
+                                                 "value":  "ath_v_hp_hopital"
                                              }
                                          ],
                       "bridges":  [

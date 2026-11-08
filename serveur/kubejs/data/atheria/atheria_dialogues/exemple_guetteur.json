@@ -1,0 +1,70 @@
+{
+  "_aide": "Exemple de dialogue. Pour le brancher sur un PNJ : /tag @e[type=easy_npc:humanoid,limit=1,sort=nearest] add dialogue.exemple_guetteur, puis clic droit dessus. Ou par commande : /recit dialogue exemple_guetteur @p. Quêtes FTB : un choix avec \"style\": \"accepter\" et l'action {\"quete\": \"<id>\", \"faire\": \"terminer\"} valide la quête d'acceptation ; \"style\": \"refuser\" pour refuser. Conditions possibles : quete_finie, quete_pas_finie, quete_commencee. L'id 18E3F63CE79A6298 ci-dessous est la 1re quête du chapitre 1, pour la démonstration : à remplacer par une vraie quête d'acceptation. \"camera\": false coupe les plans de caméra.",
+  "pnj": { "nom": "Le guetteur", "son": "minecraft:block.note_block.hat", "hauteur": 0.85 },
+  "debut": "accueil",
+  "noeuds": {
+    "accueil": { "aiguillage": [
+      { "si": { "tag": "guetteur_rencontre" }, "aller": "retour" },
+      { "aller": "premiere" } ] },
+
+    "premiere": {
+      "lignes": [
+        "Doucement. Les mains où je peux les voir.",
+        "... T'as pas l'air mordu. T'as de la chance, ou t'es prudent.",
+        { "nom": "Toi", "texte": "Je cherche un endroit sûr." }
+      ],
+      "actions": [ { "tag": "guetteur_rencontre" } ],
+      "choix": [
+        { "texte": "Tu as du travail pour moi ?", "aller": "mission", "si": { "sans_tag": "contrat_guetteur" } },
+        { "texte": "Tu entends la radio, toi aussi ?", "aller": "radio", "si": { "tag": "radio_voix" } },
+        { "texte": "Il y a de l'eau, par ici ?", "aller": "eau" },
+        { "texte": "Je repasserai.", "fin": true }
+      ]
+    },
+
+    "mission": {
+      "lignes": [
+        "La pharmacie, deux rues plus bas. Personne n'y est retourné depuis la première nuit.",
+        "Ramène ce que tu trouves. Je te dirai où dormir sans te faire mordre."
+      ],
+      "choix": [
+        { "texte": "J'y vais.", "style": "accepter", "aller": "accepte",
+          "actions": [ { "tag": "contrat_guetteur" }, { "quete": "18E3F63CE79A6298", "faire": "terminer" } ] },
+        { "texte": "Pas maintenant.", "style": "refuser", "aller": "refus" }
+      ]
+    },
+
+    "accepte": { "lignes": [ "Bien. Passe par l'arrière, la vitrine est piégée." ], "suite": "fin" },
+    "refus": { "lignes": [ "Comme tu veux. L'offre ne durera pas." ], "suite": "fin" },
+
+    "radio": {
+      "lignes": [
+        "Le Bénara... Tout le monde l'entend, la nuit. Personne n'en revient.",
+        "Si tu y vas quand même, passe par les toits. Les rues sont à eux."
+      ],
+      "actions": [ { "commande": "tag @s add rep_guetteur_1" } ],
+      "suite": "fin"
+    },
+
+    "eau": {
+      "lignes": [
+        "Le ruisseau au nord. Fais-la bouillir, sinon tu le regretteras toute la nuit.",
+        "Tiens. Je n'en ai plus besoin."
+      ],
+      "actions": [ { "commande": "give @s minecraft:glass_bottle 2" } ],
+      "suite": "fin"
+    },
+
+    "retour": {
+      "lignes": [ "Encore toi. Toujours vivant, alors." ],
+      "choix": [
+        { "texte": "La pharmacie, c'est fait.", "aller": "fin", "si": { "tag": "contrat_guetteur", "quete_finie": "18E3F63CE79A6298" } },
+        { "texte": "Tu as du travail pour moi ?", "aller": "mission", "si": { "sans_tag": "contrat_guetteur" } },
+        { "texte": "Parle-moi encore du Bénara.", "aller": "radio", "si": { "tag": "radio_voix" } },
+        { "texte": "Rien. Je passais.", "fin": true }
+      ]
+    },
+
+    "fin": { "lignes": [ "Reste dans l'ombre." ] }
+  }
+}

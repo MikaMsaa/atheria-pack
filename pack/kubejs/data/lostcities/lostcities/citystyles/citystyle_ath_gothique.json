@@ -38,28 +38,52 @@
                                         {
                                             "factor":  1.2,
                                             "value":  "ath_maison"
-                                        },
-                                        {
-                                            "factor":  0.4,
-                                            "value":  "building1"
-                                        },
-                                        {
-                                            "factor":  0.5,
-                                            "value":  "building7"
                                         }
                                     ],
                       "multibuildings":  [
                                              {
-                                                 "factor":  0.25,
-                                                 "value":  "ath_prison"
+                                                 "factor":  1,
+                                                 "value":  "ath_v_gt_cathedrale"
                                              },
                                              {
-                                                 "factor":  0.2,
-                                                 "value":  "center"
+                                                 "factor":  1,
+                                                 "value":  "ath_v_gt_beffroi"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_gt_maisons"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_gt_cimetiere"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_gt_hospice"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_gt_bibliotheque"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_gt_quai"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_gt_jardin"
                                              },
                                              {
                                                  "factor":  0.3,
-                                                 "value":  "library"
+                                                 "value":  "ath_v_pr_cour"
+                                             },
+                                             {
+                                                 "factor":  0.3,
+                                                 "value":  "ath_v_pr_parloir"
+                                             },
+                                             {
+                                                 "factor":  0.5,
+                                                 "value":  "ath_v_pr_prison"
                                              }
                                          ],
                       "bridges":  [

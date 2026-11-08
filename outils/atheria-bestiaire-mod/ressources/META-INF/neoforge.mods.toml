@@ -1,0 +1,16 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "All rights reserved"
+
+[[mods]]
+modId = "atheria_bestiaire"
+version = "1.0.0"
+displayName = "Atheria Bestiaire"
+description = "Familles d'infectés d'Atheria : Chimiks qui chassent au son, Dakouane attirés par la lumière et en groupes, apparitions par lieu, uniques."
+
+[[dependencies.atheria_bestiaire]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1,)"
+ordering = "NONE"
+side = "BOTH"

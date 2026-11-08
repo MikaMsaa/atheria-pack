@@ -36,16 +36,43 @@
                                             "value":  "ath_maison"
                                         },
                                         {
-                                            "factor":  1,
-                                            "value":  "cabin"
-                                        },
-                                        {
                                             "factor":  0.5,
                                             "value":  "ath_marche"
                                         }
                                     ],
                       "multibuildings":  [
-
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_marche"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_cabanes"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_atelier"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_conteneurs"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_cantine"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_ruelle"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_chateau"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_ecole"
+                                             }
                                          ],
                       "bridges":  [
                                       {

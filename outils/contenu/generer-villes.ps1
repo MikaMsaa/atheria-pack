@@ -297,18 +297,32 @@ function Ville($nom, $chance, $min, $max, $caves, $batiments, $multi, $parcs = 0
     $o.selectors.multibuildings = (Choix $multi)
     Ecrire "$lc\citystyles\citystyle_$nom.json" $o
 }
+# Les architectures Atheria n'utilisent plus les batiments generiques de Lost Cities (tours grises au milieu du bourg, etc.)
+# ===== Batiments vitrine : produits par convertir-vitrines.py, lots de 2x2 chunks, hopital, prison et base sur 4x2 =====
+$vitIdx = $null; $fv = "$PSScriptRoot\vitrines\index.json"
+if (Test-Path $fv) { $vitIdx = Get-Content $fv -Raw -Encoding UTF8 | ConvertFrom-Json }
+function Vit($q) { if ($vitIdx -and $vitIdx.$q) { @($vitIdx.$q.PSObject.Properties.Name) } else { @() } }
+function Existe($nom) { if (-not $vitIdx) { return $false }; foreach ($p in $vitIdx.PSObject.Properties) { if ($p.Value.PSObject.Properties.Name -contains $nom) { return $true } }; $false }
+# les anciens grands batiments sont remplaces par leur version vitrine quand elle existe
+$GRANDS = @{ ath_hopital = 'ath_v_hp_hopital'; ath_prison = 'ath_v_pr_prison'; ath_base = 'ath_v_ba_base' }
+function Multi($vitrines, $autres) {
+    $h = [ordered]@{}
+    for ($i = 0; $i -lt $vitrines.Count; $i += 2) { foreach ($n in (Vit $vitrines[$i])) { if (-not $GRANDS.ContainsValue($n)) { $h[$n] = $vitrines[$i + 1] } } }
+    foreach ($k in $autres.Keys) { $n = $k; if ($GRANDS[$k] -and (Existe $GRANDS[$k])) { $n = $GRANDS[$k] }; $h[$n] = $autres[$k] }
+    $h
+}
 $od = [ordered]@{}
-Ville 'ath_brique' 0.45 2 5 1 ([ordered]@{ ath_maison = 2; building1 = 0.5; building5 = 0.4; ath_marche = 0.3; ath_eglise = 0.1; ath_entrepot = 0.2 }) ([ordered]@{ ath_hopital = 0.2; multi1 = 0.2; shopping = 0.2 })
-Ville 'ath_beton' 0.6 4 12 2 ([ordered]@{ ath_barre = 2.5; building2 = 0.6; building6 = 0.4; ath_entrepot = 0.2 }) ([ordered]@{ ath_hopital = 0.3; ath_prison = 0.15; multi2 = 0.3; library = 0.1 })
-Ville 'ath_verre' 0.7 8 22 3 ([ordered]@{ ath_tour = 3; building3 = 0.5; building4 = 0.5 }) ([ordered]@{ huge1 = 0.3; huge2 = 0.3; ath_hopital = 0.2; shopping_open = 0.2 })
-Ville 'ath_terracotta' 0.4 1 3 0 ([ordered]@{ ath_villa = 3; ath_marche = 0.6; ath_maison = 0.5; ath_eglise = 0.12 }) ([ordered]@{ ath_hopital = 0.08 })
-Ville 'ath_bois' 0.25 1 2 0 ([ordered]@{ ath_maison = 3; cabin = 0.6; ath_entrepot = 0.4; ath_eglise = 0.15; ath_marche = 0.3 }) ([ordered]@{ ath_prison = 0.05 })
-Ville 'ath_rouille' 0.55 1 4 1 ([ordered]@{ ath_entrepot = 3; building8 = 0.4; ath_barre = 0.4; ath_marche = 0.2 }) ([ordered]@{ ath_base = 0.25; ath_prison = 0.08 })
-Ville 'ath_gothique' 0.5 3 9 2 ([ordered]@{ ath_eglise = 0.7; ath_maison = 1.2; building1 = 0.4; building7 = 0.5 }) ([ordered]@{ ath_prison = 0.25; center = 0.2; library = 0.3 })
-Ville 'ath_moderne' 0.35 2 5 1 ([ordered]@{ ath_villa = 1.5; ath_tour = 0.3; building2 = 0.4 }) ([ordered]@{ ath_hopital = 0.3; shopping = 0.4; shopping_open = 0.4 })
-Ville 'ath_haussmann' 0.7 5 8 2 ([ordered]@{ ath_maison = 2.5; building4 = 0.6; building1 = 0.6; ath_eglise = 0.08 }) ([ordered]@{ center = 0.4; ath_hopital = 0.2; library = 0.2; shopping = 0.2 })
-Ville 'ath_bidonville' 0.75 1 2 0 ([ordered]@{ ath_maison = 2; cabin = 1; ath_marche = 0.5 }) $od
-Ville 'ath_garnison' 0.4 1 4 2 ([ordered]@{ ath_entrepot = 1.5; ath_barre = 0.6 }) ([ordered]@{ ath_base = 1.2; ath_prison = 0.2 })
+Ville 'ath_brique' 0.45 2 5 1 ([ordered]@{ ath_maison = 2; ath_marche = 0.3; ath_eglise = 0.1; ath_entrepot = 0.2 }) (Multi @('bois', 0.5, 'haussmann', 0.3) ([ordered]@{ ath_hopital = 0.4 }))
+Ville 'ath_beton' 0.6 4 12 2 ([ordered]@{ ath_barre = 2.5; ath_entrepot = 0.2 }) (Multi @('beton', 1) ([ordered]@{ ath_hopital = 0.5; ath_prison = 0.3 }))
+Ville 'ath_verre' 0.7 8 22 3 ([ordered]@{ ath_tour = 3 }) (Multi @('verre', 1) ([ordered]@{ ath_hopital = 0.4 }))
+Ville 'ath_terracotta' 0.4 1 3 0 ([ordered]@{ ath_villa = 3; ath_marche = 0.6; ath_maison = 0.5; ath_eglise = 0.12 }) (Multi @('terracotta', 1) ([ordered]@{ ath_hopital = 0.15 }))
+Ville 'ath_bois' 0.25 1 2 0 ([ordered]@{ ath_maison = 3; ath_entrepot = 0.4; ath_eglise = 0.15; ath_marche = 0.3 }) (Multi @('bois', 1) ([ordered]@{ ath_prison = 0.1 }))
+Ville 'ath_rouille' 0.55 1 4 1 ([ordered]@{ ath_entrepot = 3; ath_barre = 0.4; ath_marche = 0.2 }) (Multi @('rouille', 1, 'base', 0.3) ([ordered]@{ ath_base = 0.5; ath_prison = 0.2 }))
+Ville 'ath_gothique' 0.5 3 9 2 ([ordered]@{ ath_eglise = 0.7; ath_maison = 1.2 }) (Multi @('gothique', 1, 'prison', 0.3) ([ordered]@{ ath_prison = 0.5 }))
+Ville 'ath_moderne' 0.35 2 5 1 ([ordered]@{ ath_villa = 1.5; ath_tour = 0.3 }) (Multi @('moderne', 1, 'hopital', 0.3) ([ordered]@{ ath_hopital = 0.5 }))
+Ville 'ath_haussmann' 0.7 5 8 2 ([ordered]@{ ath_maison = 2.5; ath_eglise = 0.08 }) (Multi @('haussmann', 1, 'hopital', 0.2) ([ordered]@{ ath_hopital = 0.4 }))
+Ville 'ath_bidonville' 0.75 1 2 0 ([ordered]@{ ath_maison = 2; ath_marche = 0.5 }) (Multi @('bidonville', 1) $od)
+Ville 'ath_garnison' 0.4 1 4 2 ([ordered]@{ ath_entrepot = 1.5; ath_barre = 0.6 }) (Multi @('garnison', 1, 'base', 0.5, 'prison', 0.3) ([ordered]@{ ath_base = 1.2; ath_prison = 0.4 }))
 Copy-Item "$lc\palettes\ath_beton.json" "$lc\palettes\ath_garnison.json" -Force
 Copy-Item "$lc\styles\ath_beton.json" "$lc\styles\ath_garnison.json" -Force
 
@@ -323,14 +337,30 @@ $monde.scattered.list = @($monde.scattered.list) + @(
     (Epars 'ath_grange' 22 $false 4 @{ if_any = @('atheria:terres_agricoles') })
 )
 function Style($nom, $f, $biomes = $null) { $o = [ordered]@{ citystyle = "citystyle_$nom"; factor = $f }; if ($biomes) { $o.biomes = @{ if_any = $biomes } }; $o }
+# Architecture par biome (plan des villes) : chaque centre de ville tire son style selon le biome de son centre.
+# Dans son biome, l'architecture du biome pese environ 80 %, le reste vient des poids de fond (voisins logiques, beton en peripherie).
+# Les anciens styles (standard, atheria_*) ne gardent qu'un poids de fond faible.
+$fond = @{ citystyle_standard = 0.04; citystyle_atheria_metropole = 0.03; citystyle_atheria_banlieue = 0.03; citystyle_atheria_bourg = 0.03; citystyle_atheria_industrie = 0.02; citystyle_desert = 0.3 }
+foreach ($s in $monde.citystyles) { if ($fond.ContainsKey($s.citystyle)) { $s.factor = $fond[$s.citystyle] } }
+$PLAINES = @('#c:is_plains', 'minecraft:plains', 'minecraft:sunflower_plains', 'minecraft:meadow')
+$FORETS = @('#minecraft:is_forest', '#c:is_forest')
 $monde.citystyles = @($monde.citystyles) + @(
-    (Style 'ath_brique' 0.12), (Style 'ath_beton' 0.12), (Style 'ath_verre' 0.07), (Style 'ath_terracotta' 0.06),
-    (Style 'ath_terracotta' 0.8 @('#c:is_savanna', '#minecraft:is_badlands')),
-    (Style 'ath_bois' 0.08), (Style 'ath_bois' 0.8 @('#minecraft:is_taiga', '#c:is_snowy')),
-    (Style 'ath_rouille' 0.08), (Style 'ath_gothique' 0.07), (Style 'ath_moderne' 0.08), (Style 'ath_haussmann' 0.08),
-    (Style 'ath_bidonville' 0.06), (Style 'ath_garnison' 0.05)
+    # fond : partout, faible
+    (Style 'ath_beton' 0.15), (Style 'ath_brique' 0.04), (Style 'ath_haussmann' 0.03), (Style 'ath_verre' 0.02), (Style 'ath_terracotta' 0.02),
+    (Style 'ath_bois' 0.03), (Style 'ath_rouille' 0.03), (Style 'ath_gothique' 0.03), (Style 'ath_moderne' 0.03), (Style 'ath_bidonville' 0.03), (Style 'ath_garnison' 0.03),
+    # biomes
+    (Style 'ath_bois' 2.4 @('#minecraft:is_taiga', '#c:is_snowy', '#c:is_icy', '#c:is_coniferous_tree')),
+    (Style 'ath_terracotta' 2.4 @('#minecraft:is_badlands', '#minecraft:is_savanna', '#c:is_savanna', '#c:is_desert', '#c:is_badlands', 'minecraft:desert')),
+    (Style 'ath_gothique' 3.6 @('minecraft:dark_forest', '#c:is_spooky', '#c:is_swamp', 'minecraft:swamp')),
+    (Style 'ath_haussmann' 1.2 ($PLAINES + $FORETS)), (Style 'ath_brique' 1.2 ($PLAINES + $FORETS)), (Style 'ath_verre' 0.5 $PLAINES),
+    (Style 'ath_moderne' 3.6 @('#minecraft:is_beach', '#c:is_beach', '#c:is_birch_forest', 'minecraft:birch_forest', 'minecraft:old_growth_birch_forest')),
+    (Style 'ath_rouille' 2.4 @('#minecraft:is_river', '#c:is_river', '#minecraft:is_beach', '#c:is_stony_shores')),
+    (Style 'ath_bidonville' 2.4 @('#minecraft:is_jungle', '#c:is_jungle', 'minecraft:mangrove_swamp')),
+    (Style 'ath_garnison' 2.4 @('#minecraft:is_mountain', '#c:is_mountain', '#minecraft:is_hill', '#c:is_hill'))
 )
 # Les styles varient d'un quartier a l'autre : a 0,8 il fallait 4 chunks sur 4 du meme style et les grands batiments ne sortaient presque jamais
 $monde.multisettings.correctstylefactor = 0.5
+# Batiments vitrine (2x2 et 4x2 chunks) : plus de grands lots par zone de 10x10 chunks pour qu'ils forment l'essentiel des villes
+$monde.multisettings.minimum = 6; $monde.multisettings.maximum = 16; $monde.multisettings.attempts = 200
 Ecrire "$lc\worldstyles\atheria.json" $monde
 "villes generees : $((Get-ChildItem "$lc\parts").Count) parties, $((Get-ChildItem "$lc\citystyles").Count) architectures"

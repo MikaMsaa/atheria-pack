@@ -37,10 +37,6 @@
                                         },
                                         {
                                             "factor":  0.4,
-                                            "value":  "building8"
-                                        },
-                                        {
-                                            "factor":  0.4,
                                             "value":  "ath_barre"
                                         },
                                         {
@@ -50,12 +46,52 @@
                                     ],
                       "multibuildings":  [
                                              {
-                                                 "factor":  0.25,
-                                                 "value":  "ath_base"
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_usine"
                                              },
                                              {
-                                                 "factor":  0.08,
-                                                 "value":  "ath_prison"
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_entrepot"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_garage"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_corons"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_silos"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_gare"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_centrale"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_cafe"
+                                             },
+                                             {
+                                                 "factor":  0.3,
+                                                 "value":  "ath_v_ba_radar"
+                                             },
+                                             {
+                                                 "factor":  0.3,
+                                                 "value":  "ath_v_ba_depot"
+                                             },
+                                             {
+                                                 "factor":  0.5,
+                                                 "value":  "ath_v_ba_base"
+                                             },
+                                             {
+                                                 "factor":  0.2,
+                                                 "value":  "ath_v_pr_prison"
                                              }
                                          ],
                       "bridges":  [

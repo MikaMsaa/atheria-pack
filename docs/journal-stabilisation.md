@@ -882,3 +882,158 @@ Quartier vitrine complet pour les plaines, forêts et rivières, construit en te
 - Couvert (~37 Mo, ~2000 fichiers) : `pack\` complet, `outils\` (scripts, sources Java, nbt, sans .jar/.exe/.zip), `docs\` texte (.md, .tsv, sans captures .png), `schematics\`, reglages `client\`, config/kubejs/defaultconfigs/server.properties du `serveur\`, scripts racine.
 - Non couvert : mondes et sauvegardes, `instances\` Prism, captures .png des docs (776 Mo), jars de mods (re-telechargeables), .mrpack, logs, `config-backup\`, ffmpeg.
 - Sauvegarde suivante : double-clic sur `sauvegarder.bat` (verifie la branche, commit, push).
+
+## Quartier beton en version finale (07/11)
+
+- Sept batiments neufs plus le grand HLM, construits sous la palette finale (bois de bouleau, volets en fer, rideaux clairs) : tour R+10 a quatre logements par palier avec cage d'escalier centrale et loggias, centre commercial avec mail vitre, mezzanine et superette, parking silo de trois niveaux avec gare routiere, college R+2 avec salles de classe et cour, piscine a moitie vide, eglise en beton avec campanile isole, square avec aire de jeux, city-stade et kiosque.
+- Avenue a quatre voies avec couloir de bus, glissieres au centre, abribus, bus calcine et barricade de sacs.
+- 346 volets et 221 rideaux poses automatiquement.
+- Premier essai sans construction (variable declaree deux fois). Deuxieme essai : toit de l'eglise absent (marche en pierre lisse inexistante, remplacee par la pierre) et volees d'escalier de la tour sans appui. Troisieme essai propre : aucun bloc invalide, il reste quelques herbes et buissons morts tombes.
+- Captures : docs\vitrine-batiments\grands-18-beton-final (29 vues et planche.png).
+## Quartier beton : corrections apres le retour de Mika (07/11)
+
+- Rideaux : ils etaient noues du mauvais cote. Le banc d'essai montre que tied=left va sur la colonne de gauche vue de l'interieur. La regle est corrigee pour tous les quartiers finaux.
+- Paves Macaw : la hauteur des 315 blocs a ete mesuree en jeu. Les *_paving et *_path sont des plaques de 1/16 a poser sur un sol plein ; flagstone et running_bond sont des blocs pleins. Le moteur pose maintenant les plaques au-dessus d'un sol plein, et plus rien ne peut etre pose dessus. Les trottoirs du beton sont en blocs pleins seulement.
+- Paratonnerres : les antennes de facade du HLM sont retirees, celui du toit de la tour est remis sur le local machinerie, le campanile a une dalle pleine. Un controle retire tout paratonnerre sans support.
+- Toiles d'araignee : seulement a l'interieur (plus sous les balcons dehors).
+- Kiosque, toboggan, chariots de la superette, vitres du bus : supports et continuites ajoutes.
+- Dernier essai : aucun bloc invalide, aucun bloc tombe, audit a 0 sur les 14 lots. Captures remplacees dans grands-18-beton-final.
+## Haussmannien, bourg, desert et gothique refaits avec les corrections (07/11)
+
+- Memes corrections que le beton : rideaux noues du bon cote, plaques Macaw posees sur un sol plein, plus aucun tapis sur chaussee et trottoirs.
+- Nouveau controle d'ancrage apres chaque batiment et chaque rue : lanternes et lustres suspendus a un support plein (sinon une chaine et le luminaire un cran plus bas, ou retrait), paratonnerres et end rods sur support, plantes seulement sur un sol adapte, toiles d'araignee jamais isolees.
+- Audit : haussmannien 0 defaut sur 15 lots ; bourg, desert, gothique 0 defaut sur 42 lots sur 43. Le dernier est un vide d'un bloc entre deux marchandises du souk, comble dans le code depuis.
+- Captures remplacees dans grands-16-haussmannien-final et grands-17-bourg-desert-gothique-final.
+## Quartier verre en version finale (08/11)
+
+- Huit batiments neufs sous la palette finale : tour de bureaux R+10 en mur-rideau (hall, plateaux, bureaux, refuge au 6e, direction au sommet, nacelle de laveur), hotel R+7 (chambres, piscine sur le toit, marquise, drapeaux), galerie marchande a verriere (16 boutiques, coursives, escalator a l'arret), siege social a atrium plante, station de metro souterraine (bouche, escalier, quais votes, rame, campement), parvis (fontaine, sculpture, tente de secours, poste de controle), brasserie vitree avec terrasse, clinique R+2 (accueil, consultations, chambres, ambulance).
+- Boulevard avec tram sur voie engazonnee, catenaires et arret.
+- 179 rideaux poses automatiquement, 13 retraits par le controle d'ancrage.
+- Premier rendu : aucun bloc invalide, 15 trous dans la galerie (etageres des cafes), corriges, ainsi que : rails doubles qui formaient des courbes, joues de l'escalator, nervures de la verriere, toiles d'araignee sur deux voitures brulees dehors (retirees), vue en coupe du metro qui montrait l'herbe, trois cadrages.
+- Dernier rendu : aucun bloc invalide, aucun bloc tombe, audit a 0 sur les 17 lots.
+- Captures : docs\vitrine-batiments\grands-19-verre-final (37 vues et planche.png).
+
+## Quartier moderne en version finale (08/11)
+
+Huit batiments (villa avec piscine, residence R+4 avec boulangerie, mediatheque a toit vegetal, trois maisons de ville, concession avec ombriere solaire, parc, gymnase transforme en refuge, maison ecologique) et sept coupes. Audit 0 sur 15 lots, aucun bloc invalide. Corrections apres le premier rendu : gradins du gymnase (bloc inexistant), passages bouches par des meubles dans la residence et les maisons (cuisines ouvertes, garde-corps prolonge), facade rose remplacee par du gres lisse, eclairage moins serre, quatre cadrages repris, voiture deplacee hors champ, et nettoyage du terrain etendu aux lots de coupe (restes de l'ancien quartier verre). Captures et planche : docs/vitrine-batiments/grands-20-moderne-final.
+
+
+## Quartier rouille en version finale (08/11)
+
+Nouveau quartier de friche industrielle, ecrit de zero : usine a sheds avec haute cheminee et pont roulant, entrepot a quais de chargement et rayonnages, garage a fosse et pont elevateur avec casse a voitures empilees et grue a aimant, trois corons mitoyens avec jardins ouvriers, silos a grain avec tour et galerie haute, gare de fret (batiment voyageurs, halles, quai couvert, deux voies, wagons), sous-station electrique (poste de commande, transformateurs, portique, pylone) et cafe ouvrier avec deux logements. Rue industrielle avec voie ferree noyee dans la chaussee. Sept coupes. Audit 0 sur 15 lots, aucun bloc invalide. Corrige en cours de route : conduit de cheminee creux (signale par l'audit), comptoir en andesite refuse par le mod, levier qui tombait, vide sous la remorque, poche dans le wagon, linteaux de portes des corons, et plusieurs cadrages interieurs (deux vues remplacees par les coupes). Captures et planche : docs/vitrine-batiments/grands-21-rouille-final.
+
+## Quartier bidonville en version finale (08/11)
+
+Huit lots d'habitat de survivants le long d'une rue de terre (planches en trottoir, ornières, lampadaires de fortune, épaves) : marché sous bâches avec étals et feu de camp, îlot de cabanes dont une sur pilotis reliée par une passerelle à une cabane d'étage, atelier de récupération (conteneurs, hangar bâché, voiture en démontage, tas de ferraille), conteneurs empilés sur trois niveaux avec coursives et échelles, cantine communautaire (four à pain, marmites, tablées), ruelle de six cabanes, château d'eau sur pilotis avec serre, poulailler et potager collectif, école installée dans un car et dispensaire avec balançoires et bac à sable. Six coupes en plus.
+
+Trois rendus. Défauts trouvés et corrigés : une échelle posée contre une porte de conteneur tombait, le tas de ferraille laissait des creux (refait en tas plein lissé), sol trop bariolé (moins de boue sombre, plus de béton noir dans la rue), caméras du car, du dispensaire, de la coursive, des conteneurs et des coupes replacées. Résultat final : audit 0 sur les 14 lots, 0 bloc invalide, 0 échec. 28 vues livrées dans docs/vitrine-batiments/grands-22-bidonville-final avec planche.png.
+## Quartier garnison en version finale (08/11)
+
+Huit lots d'un camp militaire tenu par des survivants, le long d'une route goudronnée avec marquage, barrières jersey, camions bâchés et un barrage de sacs de sable : caserne R+1 (chambrée à lits superposés, escalier, bureau de commandement, chambres d'officiers, antenne et nid de sacs sur le toit), poste de contrôle (mur d'enceinte barbelé, barrière levante, guérite vitrée, mirador, conteneurs de stockage), armurerie en bunker sous butte de terre (porte blindée, râteliers, caisses, établi), hangar à véhicules sous charpente à deux pans (deux camions, un blindé, atelier), mess (réfectoire, cuisine collective), infirmerie de campagne (trois tentes de soins à croix rouge, tente des réserves, ambulance, groupe électrogène), héliport (aire balisée en H, hélicoptère, tour radio, poste de contrôle) et camp de toile avec stand de tir et parcours d'obstacles. Six coupes en plus.
+
+Deux rendus. Défaut trouvé et corrigé : des creux entre les barils de la tente des réserves (rangée rendue continue). Hangar éclairé par quatre suspensions de plus, cinq caméras replacées. Résultat final : audit 0 sur les 14 lots, 0 bloc invalide, 0 échec. 32 vues livrées dans docs/vitrine-batiments/grands-23-garnison-final avec planche.png (la vue de l'atelier du hangar, trop sombre, est écartée).
+## Hôpital en version finale (08/11)
+
+Bâtiment R+2 de 56 x 22 en béton blanc avec bandeaux de fenêtres bleutées, grande croix rouge en façade, entrée vitrée sous marquise avec ambulance, passage piéton et abri de bus dans la rue. Rez-de-chaussée : hall d'accueil (comptoir, salle d'attente, colonnes), urgences à box vitrés, trois salles de consultation, pharmacie, radiologie avec scanner, bureau et cafétéria. Étages desservis par une vraie cage d'escalier à deux volées : chambres au premier, blocs opératoires, laboratoires et bureaux au second, couloir central éclairé. Toit : héliport balisé en H, groupes de climatisation, citerne et antenne. Derrière la rue : tentes de tri avec douche de décontamination et parking d'ambulances avec guérite. Trois coupes (rez-de-chaussée, premier, second).
+
+Un premier lancement a été perdu : un nom de variable déjà utilisé dans un ancien lot bloquait le script, renommé. Ensuite deux rendus : croix rouge déplacée devant la façade (elle teintait un bureau de l'intérieur). Résultat final : audit 0 sur les 6 lots, 0 bloc invalide, 0 échec. 23 vues livrées dans docs/vitrine-batiments/grands-24-hopital-final avec planche.png (la vue du couloir, qui traversait une cloison, est écartée).
+## Prison en version finale (08/11)
+
+Enceinte de béton couronnée de barreaux avec portail grillagé et quatre miradors vitrés aux angles, avant-cour avec guérite, chevaux de frise et fourgon cellulaire. Bloc cellulaire de 52 x 19 sur deux niveaux autour d'un atrium : 42 cellules à barreaux et porte de fer (lit, lavabo, étagère, lampe), coursives à garde-corps desservies par deux escaliers, accueil avec portique et casiers, poste de contrôle vitré à l'étage, fentes de jour en façade. Derrière la rue : cour de promenade grillagée (terrain de basket, musculation, tables, mirador) et bâtiment du parloir (vitre de séparation, tables des deux côtés) avec laverie. Trois coupes.
+
+Un seul rendu : audit 0 sur les 6 lots, 0 bloc invalide, 0 échec. 19 vues livrées dans docs/vitrine-batiments/grands-25-prison-final avec planche.png (la vue de l'avant-cour, bouchée par le mur, est écartée).
+## Base militaire en version finale (08/11)
+
+Enceinte de gabions en grès avec portail à barrière encadré de deux miradors. QG à deux niveaux : salle des opérations (mur d'écrans, rangée de pupitres, table de cartes), salle radio avec escalier, salle de briefing et quartier des officiers à l'étage, dôme radar, mât et panneaux solaires sur le toit. Dépôt de carburant à trois cuves avec passerelle, conduites et muret de rétention, batterie anti-aérienne dans un cercle de sacs, parc de véhicules (camion, blindé, jeep). Derrière la rue : station radar (tour, antenne en grille, cabine de contrôle, trois paraboles, groupe électrogène) et dépôt logistique (conteneurs empilés, palettes, chariot élévateur, camion). Deux coupes.
+
+Deux rendus, audit 0 sur les 5 lots dès le premier, 0 bloc invalide, 0 échec ; le second a servi à replacer les caméras cachées par un mirador ou l'escalier. 16 vues livrées dans docs/vitrine-batiments/grands-26-base-final avec planche.png (vues du parc de véhicules et de la cabine radar écartées, celle du carburant reprise du premier rendu).
+
+Avec la base, toutes les architectures et les trois grands bâtiments (hôpital, prison, base) sont en version finale. Rien n'est encore intégré au générateur ni poussé sur GitHub : cela attend la validation de Mika.
+## 08/11 — Mod maison atheria-recit (intro + dialogues PNJ)
+- Nouveau mod `outils/atheria-recit-mod` (atheria-recit.jar) : cinématique de première connexion (caméra sur trajets, fondus, titres, cartes d'explication, passable en maintenant Espace) et dialogues PNJ façon Zelda (boîte en bas, texte lettre par lettre, portrait, choix, conditions et actions).
+- Protection pendant cinématique/dialogue : invulnérable (sauf vide et /kill), invisible pour les autres, ignoré des monstres, ne peut pas frapper.
+- Corrigé : joueur qui pouvait rester invisible après l'intro ; la cinématique s'arrête proprement en cas de mort ou de changement de dimension.
+- Bug de son du 08/11 : très probablement causé par les jeux de test lancés avec le son. L'instance de test AtheriaRecit est désormais muette.
+- Testé dans l'instance séparée AtheriaRecit (monde copie). Pas encore installé dans pack/mods ni instances/Atheria : en attente de validation de Mika.
+
+
+## 35. Intégration des bâtiments vitrine dans Lost Cities (08/11/2026, en pause sur demande de Mika)
+
+**Méthode.** Chaque quartier final est reconstruit en jeu, puis relu bloc par bloc (export `[EXP]` dans le journal du jeu). `outils\contenu\convertir-vitrines.py` découpe chaque lot en bâtiments Lost Cities d'un chunk. L'étage 0 reçoit les 6 premières tranches, sol compris, et le toit reçoit tout le reste. Les lots deviennent des multibuildings de 2x2 chunks (4x2 pour l'hôpital, la prison et la base), avec des palettes locales en caractères non ASCII. Réglages : `overrideFloors`, sans portes ni remplissage automatiques, sans caves. Les coffres reçoivent le butin du lieu. Index : `outils\contenu\vitrines\index.json`, lu par `generer-villes.ps1` (fonction `Multi`, poids par architecture, les anciens grands bâtiments sont remplacés par les vitrines).
+
+**Résultat.** 91 bâtiments convertis, 0 échec de construction.
+
+Essai sur ZZ Villes 34 (graine 12345, 221 x 221 chunks) :
+- 21 vitrines de 17 types placées ;
+- blocs alignés au bloc près : sur 24 blocs témoins par bâtiment, 15 bâtiments sur 17 retrouvent au moins 75 % ;
+- les manques viennent des cratères d'explosion de Lost Cities.
+
+**Pièges rencontrés.**
+- Sans `overrideFloors`, le style de ville imposait 3 étages : « Misconfiguration! No part condition matches ».
+- Dans KubeJS, `level.dimension()` n'est pas appelable : utiliser `Level.OVERWORLD`.
+
+**En cours.** Densité relevée (`multisettings` : minimum 6, maximum 16, 200 essais). Elle n'est pas encore mesurée : sur ZZ Villes 35, deux lancements ont été interrompus, une fois par manque de mémoire (deux jeux en même temps) et une fois par une fermeture de la fenêtre.
+
+**Outils.**
+- `run-test.ps1` n'arrête plus que son propre javaw (PID mémorisé).
+- Il coupe le son pendant l'essai et remet la valeur d'origine à la fin.- 08/11 après-midi : intro version B choisie par Mika (42 s : titre, une phrase, trois règles). Légendes sans encadré, centrées en bas ; « Maintenir Espace » seulement après une touche. Intro uniquement à la 1re connexion ; /recit intro ouvert à tous mais refusé en combat, en danger, ou moins d'une minute après le dernier visionnage. Essai en jeu réussi à 13:05.
+- Blocages des essais entre 12:20 et 13:00 : Prism réécrivait le réglage de mémoire de l'instance de test (4 Go au lieu de 8). Le réglage se change seulement Prism fermé.
+- 08/11 : dialogues PNJ revus selon Mika. Caméra champ / contrechamp par-dessus l'épaule (le joueur reste visible, plus d'invisibilité en dialogue, le monde continue). Quêtes FTB acceptées ou refusées depuis le dialogue (choix ✔ / ✖, action "quete", conditions quete_finie / quete_pas_finie / quete_commencee). Portrait du joueur sur fond clair. Membres de l'alliance (Open Parties and Claims) à moins de 12 blocs : même bulle, seul celui qui a parlé au PNJ choisit. Dialogue refusé en plein combat. Essai solo réussi à 13:33 ; le partage entre alliés reste à essayer à deux joueurs.
+
+**Suite (08/11, après le feu vert de Mika).** Mesure sur ZZ Villes 35, avec la densité réglée :
+- 82 vitrines de 34 types sur 221 x 221 chunks, contre 21 avant le réglage ;
+- environ 17 % des chunks bâtis ;
+- contrôle des blocs : 24 bâtiments sur 30 retrouvent au moins 21 de leurs 24 blocs témoins, les autres sont touchés par les cratères d'explosion.
+
+Captures vues du ciel : `docs\vitrine-batiments\integration-villes-35b`. La caméra est maintenant placée au-dessus des toits voisins.
+
+Constat : dans une même ville, les vitrines côtoient encore les bâtiments de base de Lost Cities, ce qui donne des tours grises à côté du bourg en bois.
+
+`run-test.ps1` a deux nouvelles gardes :
+- il ne lance rien si un autre java de plus de 1 Go tourne ;
+- il s'arrête et rapporte si le monde n'est pas rejoint au bout de 7 minutes.
+**ZZ Villes 36 (08/11).** Les bâtiments génériques de Lost Cities (building1 à 8, cabin, center, library, shopping, huge, multi) sont retirés des 11 architectures Atheria. Résultat : 85 vitrines de 34 types. Il reste 1 616 chunks bâtis d'autres bâtiments.
+
+Les tours grises qui apparaissent encore à côté des vitrines viennent des styles non Atheria de la carte (standard, atheria_*, desert), qui se mélangent aux bords des villes : sur cette graine, toute la zone relevée est en ville. Quelques captures ont été prises avant l'affichage complet des chunks.
+
+Captures : `docs\vitrine-batiments\integration-villes-36`.
+
+## 37. Carte des styles par biome (08/11)
+
+Changement dans generer-villes.ps1 : chaque architecture a un poids fort dans ses biomes (tableau du plan des villes). Exemples : bois en taiga et neige, terracotta en desert, savane et badlands, gothique en foret sombre et marais, haussmann, brique et verre en plaines et forets, moderne en plages et bouleaux, rouille en rivieres et cotes, bidonville en jungle et mangrove, garnison en montagnes. Les anciens styles (standard, atheria_*) et le style desert de Lost Cities ne gardent qu'un poids de fond faible. Le beton garde un fond un peu plus fort (peripherie partout).
+
+Test sur ZZ Villes 37 (graine 12345, releve de 221 x 221 chunks, 25 min, sans incident) :
+- 332 batiments vitrine de 57 types (85 sur ZZ Villes 36).
+- Chunks batis : 1390 en vitrine sur 2703, soit 51 % (17 % avant).
+- Anciens styles : 160 chunks batis sur 2703, soit 6 %.
+- Controle des blocs : 26 vues sur 30 a 0 de decalage avec au moins 14 blocs sur 24 ; les plus bas (gare 8, bg_commerces 8, bg_mairie 7, bg_ecole 6) sont des chunks touches par les cratères ou mal charges.
+
+Reste : le melange de quartiers dans une meme ville. Lost Cities tire le style chunk par chunk parmi toutes les villes qui se chevauchent (poids selon la distance au centre, tirage au hasard). Les villes Atheria sont grandes (rayon jusqu'a 448 blocs) et se chevauchent souvent, d'ou des chunks voisins de styles differents. La mesure de voisinage de ce test n'est pas exploitable : elle comptait aussi les chunks hors ville.
+Captures : docs\vitrine-batiments\integration-villes-37 (planche.png). Plusieurs vues sont vides ou flottantes : les chunks n'etaient pas encore affiches.
+
+## 38. Mod maison atheria-bestiaire : familles d'infectés (08/11)
+
+Nouveau mod `outils\atheria-bestiaire-mod` (compilé par `construire.ps1`, comme atheria-recit). Installé seulement dans l'instance de test AtheriaRecit, en attente de validation.
+- Chimiks (tag `atheria:chimiks` = spore:braiomil) : aveugles, ils ne visent que ce qu'ils ont entendu dans les 5 dernières secondes ou ce qui les touche. Portées : marcher 4, courir 14, saut 10, porte 14, coffre 10, bloc cassé 12, tir TACZ 40 (10 avec silencieux), véhicule ou galop 20 à 32, explosion 48. Sans bruit pendant 8 s, ils lâchent et vont voir le dernier endroit entendu. Accroupi ou immobile, on est invisible pour eux.
+- Dakouane (tag `atheria:dakouane` = zombie, zombie villageois, husk) : un zombie né naturellement complète son groupe à 4 à 10 (pas plus de 18 dans 40 blocs, pas deux groupes à moins de 24 blocs en 1 min). La nuit, lampe torche allumée (40 blocs), objet lumineux en main (24) ou endroit éclairé (20) attirent ceux qui n'ont pas de cible.
+- Familles : `kubejs\data\atheria\atheria_familles\*.json` (10 familles), zones par biomes, structures et quartiers ou bâtiments de Lost Cities, ajoutées à la liste normale dans la catégorie de Spore. Le froid protège toujours.
+- Noms : `kubejs\assets\spore\lang` et `kubejs\assets\minecraft\lang` (Chimik, Dakouane, Sirène...) ; nom au-dessus du mob quand on le regarde (20 blocs) et dans Jade.
+- Uniques : `atheria_uniques\*.json` (Mère du Nid = spore:reconstructor qui fait naître des Gonflés, Le Gelé = spore:wendigo, Patient zéro = spore:plagued). `/bestiaire unique <id> [force]`, `/bestiaire uniques`. Un seul exemplaire, barre de vie à 40 blocs.
+- `spore-startup.toml` (pack, serveur, instance de test) : braiomil retiré des rôles Support et Ranged.
+
+Essais en jeu (instance AtheriaRecit, 2 lancements, sans erreur du mod) : Chimik immobile ignoré à 7 blocs ; touché il vise le joueur ; après 12 s de silence il lâche ; il marche vers une explosion à 20 blocs (19,3 → 11,5 en 8 s). Zombie à 31 blocs, torche en main : 18 blocs en 10 s puis il vise. Noms client : Dakouane, Chimik. Le Gelé : 300 PV, persistant, refusé sans « force » après sa mort. Mère du Nid : 2 Gonflés en 1 min.
+Corrigé pendant l'essai : un unique était refusé à son arrivée dans le monde (état enregistré après l'apparition).
+Pas encore vérifié : groupes nés naturellement, apparitions dans les vrais lieux (villes, labos, mer), tirs TACZ.
+
+## 38. Serie 3 Longoni (08/11 soir)
+
+- Rouille serie 3, zone d'activite (lot45, graines 4911-4991) : distillerie, station-service, centrale thermique, dechetterie, caserne de pompiers, depot de bus, barge, centrale a beton, ateliers. Audit : barge posee sur le bitume (coque reduite pour flotter), paratonnerres remplaces, 4 vues recadrees. Captures docs/vitrine-batiments/rouille3-longoni.
+- Bidonville serie 3 (lot46, graines 5011-5091) : kiosques, terrain de foot, radio pirate, boulangerie a four de terre, ravine, maison en parpaings, camp de baches, barricade et mirador, place au manguier. Audit : feuillage jungle teinte en orange par le biome de test, remplace par azalea (aussi pour les bananiers de la serie 2). Captures docs/vitrine-batiments/bidonville3-longoni.
+- Longoni atteint 25 builds par architecture (rouille et bidonville). Rien n'est integre au generateur avant la fin de tous les builds.
+
+
+## 39. Mamoudzou, haussmann serie 2 (08/11 soir)
+
+- Lot47 (graines 2411-2491, QFIN_MH2, vuesMamoudzouH) : mairie, poste, grand hotel, passage couvert, ecole, commissariat, musee, eglise, brasserie. Helpers hm* (facade hmFac, cage hmEsc, planchers, pignons) sur la palette THM_HF et le boulevard hbRue.
+- Audit : boucle sans accolades (erreur Rhino), origine de la rue non fixee avant hbRue, appuis poses au sol, garde-corps de mezzanine non connectes, choeur trop sombre (rosace ajoutee), 3 vues recadrees. Tout verifie en jeu. Captures docs/vitrine-batiments/haussmann2-mamoudzou.
+- Haussmann a 17/25. Reste : serie 3 haussmann (8), puis beton et verre (17 chacun).

@@ -1,0 +1,35 @@
+{
+  "_aide": "Intro jouée une seule fois, à la première connexion. Les joueurs peuvent la revoir avec /recit intro (refusé en combat, en danger, ou moins d'une minute après). Trois temps : l'ambiance (titre), le monde (une phrase), l'essentiel (trois règles). Positions relatives au joueur au début ; les temps 't' sont en secondes. Une légende = une ligne courte (12 mots environ).",
+  "passable": "toujours",
+  "origine": "joueur",
+  "attente": 3,
+  "bandes": true,
+  "debut_noir": true,
+  "plans": [
+    { "duree": 11, "regard": [0, 6, 0], "points": [
+      { "pos": [90, 46, 0] }, { "pos": [78, 45, 45] }, { "pos": [45, 44, 78] }, { "pos": [0, 43, 90] } ] },
+    { "duree": 10, "points": [
+      { "pos": [-30, 22, 70] }, { "pos": [-55, 18, 40] }, { "pos": [-65, 16, 0] } ] },
+    { "duree": 15, "regard": [0, 4, 0], "points": [
+      { "pos": [-45, 22, -10] }, { "pos": [-32, 21, -34] }, { "pos": [-8, 20, -46] }, { "pos": [20, 19, -42] } ] },
+    { "duree": 6, "regard": [0, 1.6, 0], "points": [
+      { "pos": [26, 20, -26] }, { "pos": [10, 8, -10] }, { "pos": [3, 3.5, -3] } ] }
+  ],
+  "evenements": [
+    { "t": 0, "fondu": "ouverture", "duree": 2.5 },
+    { "t": 0, "son": "minecraft:ambient.cave", "volume": 0.6, "hauteur": 0.7 },
+
+    { "t": 2, "titre": "ATHERIA", "sous_titre": "Zombie Edition", "duree": 7.5 },
+
+    { "t": 12, "texte": "Les villes se sont tues. Ceux qui restent se cachent, ou se battent.", "duree": 7.5 },
+
+    { "t": 21.5, "duree": 5, "carte": { "titre": "La soif", "icone": "thirstcanteen:leather_canteen", "lignes": [
+      "L'eau des rivières rend malade : fais-la bouillir." ] } },
+    { "t": 26.5, "duree": 5, "carte": { "titre": "Les blessures", "icone": "firstaid:bandage", "lignes": [
+      "Chaque partie du corps se soigne à part. Garde des bandages." ] } },
+    { "t": 31.5, "duree": 5, "carte": { "titre": "Le bruit", "icone": "minecraft:bell", "lignes": [
+      "Un coup de feu attire les infectés. Le couteau, lui, est silencieux." ] } },
+
+    { "t": 39.5, "fondu": "fermeture", "duree": 2.5 }
+  ]
+}

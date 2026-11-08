@@ -1,0 +1,13 @@
+{
+  "_aide": "Les Cracheurs : marchés, hôpitaux, marais aux spores.",
+  "nom": "Les Cracheurs",
+  "ou": [
+    { "ville": true, "batiments": "marche|halles|souk|hopital|clinique|hospice|infirmerie|hp_tri" },
+    { "biomes": ["atheria:marecage_pollue"] },
+    { "structures": ["spore:hospital"] }
+  ],
+  "apparitions": [
+    { "entite": "spore:spitter", "poids": 25, "min": 1, "max": 2 },
+    { "entite": "spore:mephitic", "poids": 15, "min": 1, "max": 1 }
+  ]
+}

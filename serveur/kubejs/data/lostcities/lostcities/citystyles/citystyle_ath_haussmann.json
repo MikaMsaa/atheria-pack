@@ -36,34 +36,54 @@
                                             "value":  "ath_maison"
                                         },
                                         {
-                                            "factor":  0.6,
-                                            "value":  "building4"
-                                        },
-                                        {
-                                            "factor":  0.6,
-                                            "value":  "building1"
-                                        },
-                                        {
                                             "factor":  0.08,
                                             "value":  "ath_eglise"
                                         }
                                     ],
                       "multibuildings":  [
                                              {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_grand_magasin"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_immeubles"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_gare"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_theatre"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_halles"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_hbm"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_square"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_banque"
+                                             },
+                                             {
+                                                 "factor":  0.2,
+                                                 "value":  "ath_v_hp_tri"
+                                             },
+                                             {
+                                                 "factor":  0.2,
+                                                 "value":  "ath_v_hp_parking"
+                                             },
+                                             {
                                                  "factor":  0.4,
-                                                 "value":  "center"
-                                             },
-                                             {
-                                                 "factor":  0.2,
-                                                 "value":  "ath_hopital"
-                                             },
-                                             {
-                                                 "factor":  0.2,
-                                                 "value":  "library"
-                                             },
-                                             {
-                                                 "factor":  0.2,
-                                                 "value":  "shopping"
+                                                 "value":  "ath_v_hp_hopital"
                                              }
                                          ],
                       "bridges":  [

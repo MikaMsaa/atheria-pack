@@ -36,10 +36,6 @@
                                             "value":  "ath_maison"
                                         },
                                         {
-                                            "factor":  0.6,
-                                            "value":  "cabin"
-                                        },
-                                        {
                                             "factor":  0.4,
                                             "value":  "ath_entrepot"
                                         },
@@ -54,8 +50,40 @@
                                     ],
                       "multibuildings":  [
                                              {
-                                                 "factor":  0.05,
-                                                 "value":  "ath_prison"
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bg_mairie"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bg_eglise"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bg_place"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bg_maisons"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bg_commerces"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bg_ecole"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bg_auberge"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bg_scierie"
+                                             },
+                                             {
+                                                 "factor":  0.1,
+                                                 "value":  "ath_v_pr_prison"
                                              }
                                          ],
                       "bridges":  [

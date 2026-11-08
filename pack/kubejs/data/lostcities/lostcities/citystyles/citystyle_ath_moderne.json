@@ -38,24 +38,52 @@
                                         {
                                             "factor":  0.3,
                                             "value":  "ath_tour"
-                                        },
-                                        {
-                                            "factor":  0.4,
-                                            "value":  "building2"
                                         }
                                     ],
                       "multibuildings":  [
                                              {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_md_villa"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_md_residence"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_md_mediatheque"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_md_maisons"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_md_concession"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_md_parc"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_md_gymnase"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_md_eco"
+                                             },
+                                             {
                                                  "factor":  0.3,
-                                                 "value":  "ath_hopital"
+                                                 "value":  "ath_v_hp_tri"
                                              },
                                              {
-                                                 "factor":  0.4,
-                                                 "value":  "shopping"
+                                                 "factor":  0.3,
+                                                 "value":  "ath_v_hp_parking"
                                              },
                                              {
-                                                 "factor":  0.4,
-                                                 "value":  "shopping_open"
+                                                 "factor":  0.5,
+                                                 "value":  "ath_v_hp_hopital"
                                              }
                                          ],
                       "bridges":  [

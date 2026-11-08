@@ -1,0 +1,14 @@
+{
+  "_aide": "Les Soldats de la ICE : quartiers de garnison, bases, casernes, bunkers militaires et avant-postes.",
+  "nom": "Les Soldats de la ICE",
+  "ou": [
+    { "ville": true, "styles": ["ath_garnison"] },
+    { "ville": true, "batiments": "ath_base|ba_base|ba_depot|ba_radar|caserne|armurerie|heliport|ga_" },
+    { "structures": ["bunkers:military_bunker", "bunkers:underground_bunker", "#atheria:repurposed"] }
+  ],
+  "apparitions": [
+    { "entite": "spore:inf_pillager", "poids": 40, "min": 2, "max": 4 },
+    { "entite": "spore:inf_vindicator", "poids": 25, "min": 1, "max": 2 },
+    { "entite": "spore:knight", "poids": 10, "min": 1, "max": 1 }
+  ]
+}

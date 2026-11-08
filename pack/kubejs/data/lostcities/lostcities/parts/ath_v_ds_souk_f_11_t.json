@@ -1,0 +1,332 @@
+{
+ "xsize": 16,
+ "zsize": 16,
+ "palette": {
+  "palette": [
+   {
+    "char": "À",
+    "block": "minecraft:mud_bricks"
+   },
+   {
+    "char": "Á",
+    "block": "minecraft:sand"
+   },
+   {
+    "char": "Â",
+    "block": "minecraft:packed_mud"
+   },
+   {
+    "char": "Ã",
+    "block": "minecraft:smooth_sandstone"
+   },
+   {
+    "char": "Ä",
+    "block": "minecraft:grass_block[snowy=false]"
+   },
+   {
+    "char": "Å",
+    "block": "minecraft:coarse_dirt"
+   },
+   {
+    "char": "Æ",
+    "block": "minecraft:red_sand"
+   },
+   {
+    "char": "Ç",
+    "block": "minecraft:cut_sandstone"
+   },
+   {
+    "char": "È",
+    "block": "minecraft:cyan_glazed_terracotta[facing=north]"
+   },
+   {
+    "char": "É",
+    "block": "minecraft:orange_carpet"
+   },
+   {
+    "char": "Ê",
+    "block": "minecraft:acacia_log[axis=y]"
+   },
+   {
+    "char": "Ë",
+    "block": "minecraft:acacia_planks"
+   },
+   {
+    "char": "Ì",
+    "block": "minecraft:short_grass"
+   },
+   {
+    "char": "Í",
+    "block": "minecraft:dead_bush"
+   },
+   {
+    "char": "Î",
+    "block": "minecraft:pumpkin"
+   },
+   {
+    "char": "Ï",
+    "block": "supplementaries:sack[open=false,waterlogged=false]"
+   },
+   {
+    "char": "Ð",
+    "block": "minecraft:light_gray_carpet"
+   },
+   {
+    "char": "Ñ",
+    "block": "minecraft:acacia_slab[type=bottom,waterlogged=false]"
+   },
+   {
+    "char": "Ò",
+    "block": "mcwfurnitures:acacia_table[east=true,north=false,south=false,west=false]"
+   },
+   {
+    "char": "Ó",
+    "block": "mcwfurnitures:acacia_table[east=false,north=false,south=false,west=true]"
+   },
+   {
+    "char": "Ô",
+    "block": "minecraft:flower_pot"
+   },
+   {
+    "char": "Õ",
+    "block": "minecraft:jungle_log[axis=y]"
+   },
+   {
+    "char": "Ö",
+    "block": "minecraft:decorated_pot[cracked=false,facing=north,waterlogged=false]"
+   },
+   {
+    "char": "×",
+    "block": "minecraft:sandstone_wall[east=none,north=none,south=none,up=true,waterlogged=false,west=tall]"
+   },
+   {
+    "char": "Ø",
+    "block": "minecraft:smooth_sandstone_slab[type=bottom,waterlogged=false]"
+   },
+   {
+    "char": "Ù",
+    "block": "minecraft:moss_carpet"
+   },
+   {
+    "char": "Ú",
+    "block": "minecraft:acacia_slab[type=top,waterlogged=false]"
+   },
+   {
+    "char": "Û",
+    "block": "minecraft:terracotta"
+   },
+   {
+    "char": "Ü",
+    "block": "minecraft:acacia_trapdoor[facing=west,half=bottom,open=true,powered=false,waterlogged=false]"
+   },
+   {
+    "char": "Ý",
+    "block": "minecraft:white_terracotta"
+   },
+   {
+    "char": "Þ",
+    "block": "minecraft:red_wool"
+   },
+   {
+    "char": "ß",
+    "block": "minecraft:blue_wool"
+   },
+   {
+    "char": "à",
+    "block": "minecraft:red_carpet"
+   },
+   {
+    "char": "á",
+    "block": "minecraft:yellow_wool"
+   },
+   {
+    "char": "â",
+    "block": "supplementaries:awning_white[bottom=false,facing=west,slanted=false,waterlogged=false]"
+   },
+   {
+    "char": "ã",
+    "block": "supplementaries:awning_red[bottom=false,facing=west,slanted=false,waterlogged=false]"
+   },
+   {
+    "char": "ä",
+    "block": "minecraft:cobweb"
+   },
+   {
+    "char": "å",
+    "block": "minecraft:lantern[hanging=true,waterlogged=false]"
+   },
+   {
+    "char": "æ",
+    "block": "minecraft:smooth_sandstone_stairs[facing=east,half=top,shape=straight,waterlogged=false]"
+   },
+   {
+    "char": "ç",
+    "block": "minecraft:stripped_acacia_log[axis=x]"
+   },
+   {
+    "char": "è",
+    "block": "minecraft:stripped_acacia_log[axis=z]"
+   },
+   {
+    "char": "é",
+    "block": "minecraft:white_wool"
+   },
+   {
+    "char": "ê",
+    "block": "minecraft:orange_wool"
+   },
+   {
+    "char": "ë",
+    "block": "minecraft:chain[axis=y,waterlogged=false]"
+   },
+   {
+    "char": "ì",
+    "block": "minecraft:glass_pane[east=true,north=true,south=false,waterlogged=false,west=true]"
+   },
+   {
+    "char": "í",
+    "block": "minecraft:white_glazed_terracotta[facing=south]"
+   },
+   {
+    "char": "î",
+    "block": "minecraft:light_blue_glazed_terracotta[facing=south]"
+   },
+   {
+    "char": "ï",
+    "block": "minecraft:stripped_jungle_log[axis=y]"
+   },
+   {
+    "char": "ð",
+    "block": "minecraft:sandstone_wall[east=none,north=none,south=none,up=true,waterlogged=false,west=none]"
+   }
+  ]
+ },
+ "slices": [
+  [
+   "  Ê   Ê  Û   äÛ ",
+   "         Â å  Û ",
+   "         Û    Â ",
+   "    å    ÂÛÛÛÛÛ ",
+   "         ÛÝÝÝÂÝ ",
+   "         Ý    Ý ",
+   "  Ê   Ê  Ý å  Ý ",
+   "         Ý   äÝ ",
+   "         ÝÝÝÝÝÝ ",
+   "    æÃÃÃ        ",
+   "    æÃÃÃ        ",
+   "    æÃÃÃ        ",
+   "                ",
+   "                ",
+   "        Õ       ",
+   "                "
+  ],
+  [
+   "ççççççç  ÂÂÂÂÂÂ ",
+   "ÞÞèéêêè  ÂÂÂÂÂÂ ",
+   "ÞÞèéêêè  ÂÂÂÂÂÂ ",
+   "ÞÞèéëêè  ÂÂÂÂÂÂ ",
+   "ÞÞèéêêè  ÂÂÂÂÂÂ ",
+   "ÞÞèéêêè  ÂÂÂÂÂÂ ",
+   "ççççççç  ÂÂÂÂÂÂ ",
+   "         ÂÂÂÂÂÂ ",
+   "         ÂÂÂÂÂÂ ",
+   "   æÃÃÃÃ        ",
+   "å  æÃÃÃÃ        ",
+   "   æÃÃìÃ        ",
+   "                ",
+   "                ",
+   "        Õ       ",
+   "                "
+  ],
+  [
+   "         Û    Û ",
+   "         Û    Û ",
+   "         Â    Û ",
+   "         ÛÛÛÛÛÂ ",
+   "         ÝÝÝÝÛÝ ",
+   "         Ý    Û ",
+   "         Ý    Ý ",
+   "         Ý    Ý ",
+   "         ÝÛÛÝÂÝ ",
+   "ÃÃÃÃÃÃÃÃ        ",
+   "ÃÃÃÃÃÃÃÃ        ",
+   "ÃÃÃÃÃÃìÃ        ",
+   "                ",
+   "                ",
+   "        Õ       ",
+   "                "
+  ],
+  [
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "íîíîÃÃÃÃ        ",
+   "ÃÃÃÃÃÃÃÃ        ",
+   "íîíîÃÃÃÃ        ",
+   "                ",
+   "                ",
+   "        ï       ",
+   "                "
+  ],
+  [
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "ÃÃÃÃÃÃÃÃ        ",
+   "ÃÃÃÃÃÃÃÃ        ",
+   "ÃÃÃÃÃÃÃÃ        ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ],
+  [
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "ÇÇÇÇÇÇÇÇ        ",
+   "ÇÇÇÇÇÇÇÇ        ",
+   "ÇÇÇÇÇÇÇÇ        ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ],
+  [
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "ð ð  ð ð        ",
+   "                ",
+   "     ð ð        ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ]
+ ]
+}

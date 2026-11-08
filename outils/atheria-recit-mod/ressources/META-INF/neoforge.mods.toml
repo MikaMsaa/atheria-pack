@@ -1,0 +1,19 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "All rights reserved"
+
+[[mods]]
+modId = "atheria_recit"
+version = "1.0.0"
+displayName = "Atheria Récit"
+description = "Cinématiques et dialogues des PNJ d'Atheria : caméra sur des trajets, textes, fondus, boîte de dialogue avec choix reliés aux quêtes."
+
+[[mixins]]
+config = "atheria_recit.mixins.json"
+
+[[dependencies.atheria_recit]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1,)"
+ordering = "NONE"
+side = "BOTH"

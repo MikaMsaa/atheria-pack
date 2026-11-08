@@ -36,34 +36,50 @@
                                             "value":  "ath_barre"
                                         },
                                         {
-                                            "factor":  0.6,
-                                            "value":  "building2"
-                                        },
-                                        {
-                                            "factor":  0.4,
-                                            "value":  "building6"
-                                        },
-                                        {
                                             "factor":  0.2,
                                             "value":  "ath_entrepot"
                                         }
                                     ],
                       "multibuildings":  [
                                              {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_grand_h_l_m"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_tour"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_centre"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_parking"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_college"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_piscine"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_eglise"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_square"
+                                             },
+                                             {
+                                                 "factor":  0.5,
+                                                 "value":  "ath_v_hp_hopital"
+                                             },
+                                             {
                                                  "factor":  0.3,
-                                                 "value":  "ath_hopital"
-                                             },
-                                             {
-                                                 "factor":  0.15,
-                                                 "value":  "ath_prison"
-                                             },
-                                             {
-                                                 "factor":  0.3,
-                                                 "value":  "multi2"
-                                             },
-                                             {
-                                                 "factor":  0.1,
-                                                 "value":  "library"
+                                                 "value":  "ath_v_pr_prison"
                                              }
                                          ],
                       "bridges":  [
