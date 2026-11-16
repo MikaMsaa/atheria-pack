@@ -1,0 +1,58 @@
+{
+	PresetMetadata: {
+		author: "Atheria",
+		category: "Atheria",
+		description: "Enfants du Choléra (station Bancoul) : Yanis, le Cordier.",
+		entityTypeId: "easy_npc:humanoid",
+		name: "Enfant - Yanis",
+		variantType: "STEVE",
+		version: "1.0.0"
+	},
+	data: {
+		ActionData: {
+			ActionEventSet: {
+				ON_INTERACTION: [
+					{
+						Type: "OPEN_DEFAULT_DIALOG"
+					}
+				]
+			}
+		},
+		CustomName: '{"text": "Yanis", "color": "#B9B6AE"}',
+		DialogData: {
+			DialogDataSet: [
+				{
+					Label: "repos",
+					Name: "Repos",
+					Priority: 1,
+					Texts: [
+						{
+							Text: "Elle fait trente mètres, ma corde. J'ai jamais trouvé le fond d'un puits. Un jour."
+						}
+					]
+				}
+			],
+			Type: "STANDARD"
+		},
+		EasyNPCVersion: 3,
+		Invulnerable: 1b,
+		ObjectiveData: {
+			ObjectiveDataSet: [
+				{
+					Type: "LOOK_AT_PLAYER"
+				},
+				{
+					Type: "LOOK_AT_RESET"
+				}
+			]
+		},
+		PersistenceRequired: 1b,
+		SkinData: {
+			Texture: "atheria:textures/entity/enfants/yanis.png",
+			Type: "RESOURCE_LOCATION"
+		},
+		Tags: ["enfants", "enfant.yanis"],
+		VariantType: "STEVE",
+		id: "easy_npc:humanoid"
+	}
+}

@@ -1,0 +1,46 @@
+{
+ "pnj": {
+  "nom": "Vinicius"
+ },
+ "debut": "debut",
+ "noeuds": {
+  "vinicius": {
+   "lignes": [
+    {
+     "texte": "Tu sais qui je suis ? J'aurais dû avoir le Ballon d'Or. Ils me l'ont volé. Même la fin du monde ne m'a pas rendu justice."
+    }
+   ],
+   "choix": [
+    {
+     "texte": "Prendre sa lettre de réclamation",
+     "actions": [
+      {
+       "commande": "give {joueur} atheria:lettre_vinicius 1"
+      }
+     ],
+     "aller": "vinicius_lettre"
+    }
+   ]
+  },
+  "vinicius_lettre": {
+   "lignes": [
+    {
+     "texte": "Poste-la. Il doit bien rester une commission quelque part."
+    }
+   ]
+  },
+  "repos": {
+   "texte": "Ballon d'Or volé. Je ne l'oublierai jamais."
+  },
+  "debut": {
+   "aiguillage": [
+    {
+     "aller": "vinicius"
+    },
+    {
+     "aller": "repos"
+    }
+   ]
+  }
+ }
+}

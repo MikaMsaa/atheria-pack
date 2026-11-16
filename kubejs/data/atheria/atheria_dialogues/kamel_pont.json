@@ -1,0 +1,71 @@
+{
+ "pnj": {
+  "nom": "Kamel"
+ },
+ "debut": "debut",
+ "noeuds": {
+  "q_ch2_kamel_ok": {
+   "texte": "Reste derrière moi. Et si je tousse, tu ne poses pas de questions."
+  },
+  "q_ch2_kamel_refus": {
+   "texte": "Prépare-toi vite. Sur la route, personne n'attend personne."
+  },
+  "q_ch2_kamel": {
+   "lignes": [
+    {
+     "texte": "Tu m'as prévenu, et tu reviens quand même. Soit t'es loyal, soit t'as rien de mieux à faire. Les galeries sont tombées, alors je dors sous ce pont avec les rats. On verra si la route est plus gentille."
+    }
+   ],
+   "choix": [
+    {
+     "texte": "On y va.",
+     "style": "accepter",
+     "actions": [
+      {
+       "commande": "tag {joueur} add q_ch2_kamel"
+      },
+      {
+       "commande": "playsound minecraft:entity.experience_orb.pickup master {joueur} ~ ~ ~ 0.6 1.2"
+      }
+     ],
+     "aller": "q_ch2_kamel_ok"
+    },
+    {
+     "texte": "Pas encore, je dois me préparer.",
+     "style": "refuser",
+     "aller": "q_ch2_kamel_refus"
+    }
+   ]
+  },
+  "q_ch2_kamel_fait": {
+   "texte": "Tu as ce qu'il te faut. Avance."
+  },
+  "repos": {
+   "texte": "(Kamel surveille la route sous le pont. Il ne te fait pas signe.)"
+  },
+  "debut": {
+   "aiguillage": [
+    {
+     "si": {
+      "tag": [
+       "q_ch2_kamel"
+      ]
+     },
+     "aller": "q_ch2_kamel_fait"
+    },
+    {
+     "si": {
+      "tag": [
+       "acte_2",
+       "choix_ch1_passeurs"
+      ]
+     },
+     "aller": "q_ch2_kamel"
+    },
+    {
+     "aller": "repos"
+    }
+   ]
+  }
+ }
+}

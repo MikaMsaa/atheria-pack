@@ -70,7 +70,7 @@
 					Priority: 10,
 					Texts: [
 						{
-							Text: "Tu as un carnet. Je peux dessiner dedans ?\\n\\n— Qui es-tu ?\\n\\nLe neuf. Avant, j'avais un autre nom. Ils l'ont écrit sur une étiquette. Je l'ai mangée.\\n\\n— Tu as peur ?\\n\\nPas des Comocos. Eux ne me demandent rien. Les vivants, oui."
+							Text: "Tu as un carnet. Je peux dessiner dedans ?\\n\\n— Qui es-tu ?\\n\\nZéro zéro sept. Avant, j'avais un autre nom. Ils l'ont écrit sur une étiquette. Je l'ai mangée.\\n\\n— Tu as peur ?\\n\\nPas des Comocos. Eux ne me demandent rien. Les vivants, oui."
 						}
 					]
 				},
@@ -116,6 +116,7 @@
 			]
 		},
 		PersistenceRequired: 1b,
+		Tags: ["dialogue.hajar"],
 		VariantType: "STEVE",
 		id: "easy_npc:humanoid"
 	}

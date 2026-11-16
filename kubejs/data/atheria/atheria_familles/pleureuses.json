@@ -1,0 +1,9 @@
+{
+  "_aide": "Les Pleureuses : gémissent et soignent les infectés autour d'elles. Marais, zone contaminée et hospices (aucun lieu religieux, règle de Mika du 09/11).",
+  "nom": "Les Pleureuses",
+  "ou": [
+    { "biomes": ["atheria:zone_contaminee", "atheria:marecage_pollue", "#c:is_swamp"] },
+    { "ville": true, "batiments": "hospice" }
+  ],
+  "apparitions": [ { "entite": "spore:inf_witch", "poids": 15, "min": 1, "max": 1 } ]
+}

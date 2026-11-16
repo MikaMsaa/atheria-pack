@@ -3,7 +3,7 @@
 {"id":"depart","titre":"Premiers pas","icone":"minecraft:compass",
 "resume":[
 {"t":"titre","texte":"Survivre à ta première heure"},
-{"t":"p","texte":"Ton corps a des blessures par partie, ta barre de soif compte autant que ta faim, et les coups de feu attirent les infectés. Cherche un abri, de l'eau, puis une arme."},
+{"t":"p","texte":"Ton corps a des blessures par partie, ta barre de soif compte autant que ta faim, et les coups de feu attirent les infectés et les zombies. Cherche un abri, de l'eau, puis une arme."},
 {"t":"touches","lignes":[
 ["@key.inventory","Inventaire"],
 ["@key.sophisticatedbackpacks.open_backpack","Ouvrir ton sac à dos"],
@@ -11,6 +11,7 @@
 ["@gui.xaero_open_map","Carte du monde"],
 ["@key.playerlist","Joueurs connectés (maintenir)"],
 ["F4","Ce guide, à tout moment"]]},
+{"t":"p","texte":"Ta première quête te donne un kit de départ avec, entre autres, un couteau usé, des rations, des bandages, un sac à dos, un sac de couchage et un talkie-walkie pour garder le contact avec ton groupe."},
 {"t":"astuce","texte":"Le carnet et le livre de quêtes reçus au réveil racontent ce qui s'est passé et guident tes objectifs. Ils ne remplacent pas ce guide."}
 ],
 "detail":[
@@ -160,7 +161,8 @@
 {"t":"astuce","texte":"Hologramme rouge : le type est bon, mais la taille non. Essaie une autre roue. Le scanner de pièces montre ce qui est accepté à chaque emplacement."},
 {"t":"recette","item":"mts:mts.partscanner"},
 {"t":"titre","texte":"7. Le carburant"},
-{"t":"p","texte":"Sans carburant, rien ne démarre. Dans Atheria, le moteur à essence et le diesel acceptent la lave : c'est le carburant de base. Ne compte pas sur les bidons trouvés dans les ruines, ils ne remplissent pas un réservoir pour le moment."},
+{"t":"p","texte":"Sans carburant, rien ne démarre. Le moteur à essence et le diesel acceptent la lave, mais elle brûle vite : un plein de lave te mène trois fois moins loin. Le vrai carburant se trouve dans les ruines ou se fabrique."},
+{"t":"p","texte":"Bidon d'essence : tiens-le près du véhicule et fais un clic droit, il se vide dans le réservoir. On ne mélange pas : un réservoir qui contient encore de la lave refuse l'essence. Pour en trouver, fouille les garages et siphonne les épaves (voir le chapitre La route). Avec Create, le bioéthanol et l'huile de graines font aussi tourner un moteur."},
 {"t":"p","texte":"Pompe : pose-la, clic droit avec le seau de lave pour la remplir, puis clic droit main vide : elle se branche seule au véhicule le plus proche."},
 {"t":"recette","item":"mts:mts.fuelpump"},
 {"t":"p","texte":"Jerrycan : à emporter pour les longs trajets. Tu le remplis puis tu le vides dans le réservoir avec un clic droit sur le véhicule."},
@@ -280,7 +282,7 @@
 {"t":"recette","item":"parcool:traceur_gloves"},
 {"t":"recette","item":"parcool:traceur_boots"},
 {"t":"titre","texte":"Grappin"},
-{"t":"figure","icone":"grapple","texte":"Il te tire avec son câble. Il sert à filer à l'horizontale et à te balancer, pas à monter tout droit."},
+{"t":"p","texte":"Il te tire avec son câble. Il sert à filer à l'horizontale et à te balancer, pas à monter tout droit."},
 {"t":"recette","item":"parcool:grappling_hook"},
 {"t":"titre","texte":"Tyrolienne"},
 {"t":"image","tex":"parcool:textures/parcool_guide/zipline.png","l":166,"h":88,"largeur":166},
@@ -330,20 +332,46 @@
 ["@key.tacz.interact.desc","Ouvrir une porte, l'arme en main"],
 ["@key.tacz.refit.desc","Modifier l'arme"]]},
 {"t":"animation","id":"minecraft:crossbow","texte":"Voir l'animation : le bruit attire"},
-{"t":"astuce","texte":"Chaque coup de feu attire les infectés alentour. Un silencieux réduit fortement la portée."}
+{"t":"astuce","texte":"Chaque coup de feu attire les infectés et les zombies alentour. Un silencieux réduit fortement la portée."}
 ],
 "detail":[
 {"t":"animation","id":"minecraft:crossbow","texte":"Voir l'animation"},
 {"t":"titre","texte":"Munitions"},
 {"t":"p","texte":"Une arme ne prend que son calibre : garde les bonnes munitions dans ton inventaire, le rechargement les prend tout seul. Survole l'arme pour voir son calibre et son chargeur."},
 {"t":"titre","texte":"Le bruit"},
-{"t":"p","texte":"Chaque tir attire les infectés alentour, et une explosion encore plus loin. Sans silencieux, un seul tir peut amener du monde : tire peu, et change de place après."},
+{"t":"p","texte":"Chaque tir attire les infectés et les zombies alentour, et une explosion encore plus loin. Sans silencieux, un seul tir peut amener du monde : tire peu, et change de place après."},
 {"t":"titre","texte":"Améliorer son arme"},
 {"t":"p","texte":"Arme en main, W ouvre l'écran de modification : lunette, silencieux, poignée, chargeur. Seuls les accessoires compatibles apparaissent."},
 {"t":"titre","texte":"Fabriquer"},
 {"t":"p","texte":"L'établi d'armurier fabrique armes et munitions à partir de matériaux trouvés dans les ruines. Les plans les plus puissants se trouvent dans les zones les plus dangereuses."},
 {"t":"titre","texte":"Corps à corps"},
 {"t":"p","texte":"X frappe avec l'arme. Pour économiser les balles et le silence, une arme blanche reste souvent le meilleur choix sur un infecté isolé."}
+]},
+
+{"id":"dinosaures","titre":"Dinosaures","icone":"jurassicreborn:field_guide",
+"resume":[
+{"t":"titre","texte":"Ni des montures, ni des peluches"},
+{"t":"p","texte":"Un dinosaure sauvage ne s'apprivoise pas et aucun ne se chevauche. Le seul moyen d'en avoir un à toi : faire éclore son œuf toi-même. Il t'obéit alors, à toi seulement."},
+{"t":"astuce","texte":"Leurs rugissements se repèrent à l'oreille : plus le son est fort, plus la bête est près. Écoute avant de sortir à découvert."}
+],
+"detail":[
+{"t":"titre","texte":"Avoir son dinosaure"},
+{"t":"p","texte":"Pose un œuf éclos sur le sol avec un clic droit. Le dinosaure qui en sort naît bébé et t'appartient : personne d'autre ne peut lui donner d'ordres."},
+{"t":"recette","item":"jurassicreborn:incubator"},
+{"t":"titre","texte":"Donner des ordres"},
+{"t":"p","texte":"Clic droit main vide sur ton dinosaure : un menu propose de le laisser errer, de le faire s'asseoir ou de te suivre. Il te défend quand on t'attaque."},
+{"t":"p","texte":"Accroupi, clic droit sur ton dinosaure adulte : tu ouvres son inventaire. Un bébé est trop jeune pour porter quoi que ce soit."},
+{"t":"titre","texte":"Le nourrir"},
+{"t":"p","texte":"S'il a faim ou soif, clic droit avec un aliment de son régime ou une potion d'eau. Une mangeoire remplie fait le travail à ta place."},
+{"t":"recette","item":"jurassicreborn:feeder"},
+{"t":"astuce","texte":"Tente la même chose avec un dinosaure sauvage et tu prends un risque : un carnivore peut te charger, un herbivore peureux s'enfuit."},
+{"t":"titre","texte":"Les rencontrer sans mourir"},
+{"t":"p","texte":"Le fusil à fléchettes tire des fléchettes tranquillisantes, et la cage sert à transporter une bête. Certains reptiles volants saisissent leur proie et l'emportent : regarde aussi en l'air."},
+{"t":"recette","item":"jurassicreborn:dart_gun"},
+{"t":"recette","item":"jurassicreborn:cage"},
+{"t":"titre","texte":"Recréer une espèce"},
+{"t":"p","texte":"Déterre les fossiles avec un plâtre et un bandage, nettoie-les, extrais l'ADN, puis passe-le dans les machines jusqu'à l'embryon et l'incubateur. L'encyclopédie de terrain décrit chaque espèce."},
+{"t":"recette","item":"jurassicreborn:field_guide"}
 ]},
 
 {"id":"sacs","titre":"Sac à dos","icone":"sophisticatedbackpacks:backpack",
@@ -385,6 +413,56 @@
 {"t":"recette","item":"atheria:masque_artisanal"},
 {"t":"titre","texte":"Filons et casiers"},
 {"t":"p","texte":"En minant du minerai, tu peux tomber sur un filon riche : matière en plus et expérience. Dans la roche, tu peux aussi dégager un vieux casier de mineur oublié là. Ouvre-le, il contient souvent de quoi continuer."}
+]},
+
+{"id":"route","titre":"La route","icone":"atheria:carte_routiere",
+"resume":[
+{"t":"titre","texte":"Rouler coûte cher"},
+{"t":"p","texte":"Un moteur qui tourne s'entend de loin et attire les infectés. Descends avant d'entrer dans une ville. Sur la route, cherche les garages, les épaves et les bidons : le carburant est rare."},
+{"t":"p","texte":"Une carte routière ou la radio (accroupi, clic droit) t'indiquent une ville que tu n'as pas encore repérée."}
+],
+"detail":[
+{"t":"titre","texte":"Le bruit du moteur"},
+{"t":"p","texte":"Tant que tu es au volant moteur allumé, les infectés et les zombies sans cible marchent vers toi dans un rayon d'environ 40 blocs. Descends et finis à pied : à l'arrêt, sans conducteur, ton véhicule ne fait plus de bruit."},
+{"t":"titre","texte":"Siphonner"},
+{"t":"p","texte":"Les voitures abandonnées ont une plaque sombre, le réservoir d'épave. Clic droit dessus avec le kit de siphonnage : sept fois sur dix, tu en tires un bidon. Le tuyau fait du bruit et s'use à la longue. Le kit marche aussi sur un véhicule qui a du carburant, sauf s'il roule à la lave."},
+{"t":"recette","item":"atheria:kit_siphon"},
+{"t":"titre","texte":"Réparer sur place"},
+{"t":"p","texte":"Les pièces détachées se trouvent dans les garages et les coffres. Clic droit près du véhicule abîmé : carrosserie et pièces récupèrent d'un coup."},
+{"t":"titre","texte":"Se repérer"},
+{"t":"p","texte":"La carte routière se trouve dans les coffres. Clic droit : elle donne la direction et la distance d'une ville que tu ne connais pas encore, puis elle part en lambeaux."},
+{"t":"p","texte":"La radio portative fait la même chose quand tu es accroupi, une fois par jour. Debout, la nuit, elle sert toujours à écouter la voix."},
+{"t":"titre","texte":"Ce que tu croises"},
+{"t":"p","texte":"Bouchons de voitures, barrages militaires avec barbelés et chicane, garages, postes militaires, camps de réfugiés, granges, maisons isolées, tours de guet. Fouille-les : chaque lieu a son butin."},
+{"t":"p","texte":"Très rarement, le sol tremble : une harde de grands herbivores barre la route. Ils n'attaquent pas d'eux-mêmes, mais ne les provoque pas. Contourne-les ou attends qu'ils passent."}
+]},
+
+{"id":"monde","titre":"Le monde","icone":"minecraft:filled_map",
+"resume":[
+{"t":"titre","texte":"Des régions à part"},
+{"t":"p","texte":"Forêts calcinées, plaines de cendres, marécages pollués, terres agricoles et zones contaminées. Dans une zone contaminée, l'air empoisonne sans masque et sans filtre."},
+{"t":"p","texte":"Chaque ville a son visage : béton, brique, verre, bois, rouille. Les grands lieux, hôpital, prison, base militaire, valent le détour."}
+],
+"detail":[
+{"t":"titre","texte":"Zone contaminée"},
+{"t":"p","texte":"Sol de mycélium, brume épaisse, végétation fongique et infectés nombreux. L'air empoisonne après quelques secondes. Porte un masque à gaz sur la tête, ou garde un masque artisanal sur toi, et emporte des filtres : un filtre tient environ 4 minutes sur un vrai masque, 1 min 30 sur un masque artisanal. En échange, le sous-sol y est bien plus riche en minerais."},
+{"t":"recette","item":"atheria:filtre"},
+{"t":"titre","texte":"Forêt calcinée"},
+{"t":"p","texte":"Des troncs noirs et des cendres. On voit loin, on y est vu de loin. Ces troncs ne donnent que du charbon de bois : idéal pour les filtres, pas pour construire."},
+{"t":"titre","texte":"Plaine de cendres"},
+{"t":"p","texte":"Plate, grise, sans abri. Parfaite en véhicule, dangereuse à pied."},
+{"t":"titre","texte":"Marécage pollué"},
+{"t":"p","texte":"Eau sombre, vase et arbres morts, dans la brume. Purifie toujours l'eau avant de la boire."},
+{"t":"titre","texte":"Terres agricoles à l'abandon"},
+{"t":"p","texte":"Champs retournés à l'herbe, clôtures, granges et bétail : la région la plus calme pour se nourrir."},
+{"t":"titre","texte":"Les villes"},
+{"t":"p","texte":"Une ville peut être un hameau de bois ou une métropole de verre de plusieurs kilomètres. Vieille brique, barres de béton, villas de terre cuite, quartiers haussmanniens, cités gothiques, port rouillé, bidonville, garnison : chaque style a ses bâtiments propres. Les hôpitaux gardent du matériel de soin, les prisons de quoi survivre, les bases militaires des rations et des filtres."},
+{"t":"titre","texte":"Compétences de survivant"},
+{"t":"p","texte":"Tuer et bricoler te fait progresser. Ouvre l'écran des compétences avec la touche K pour dépenser tes points dans trois voies : bricolage, médecine et tir."},
+{"t":"titre","texte":"Électricité"},
+{"t":"p","texte":"Avec Create et ses ajouts, un alternateur branché sur une machine donne de l'énergie à ta base : il n'y a plus de réseau, à toi de produire. Les recettes sont dans l'index."},
+{"t":"titre","texte":"Pièges et portes"},
+{"t":"p","texte":"Pièges à ours, piques, barbelés et autres se fabriquent pour protéger un camp. Une porte double s'ouvre d'un seul clic, avec une animation."}
 ]},
 
 {"id":"create","titre":"Machines Create","icone":"create:cogwheel",

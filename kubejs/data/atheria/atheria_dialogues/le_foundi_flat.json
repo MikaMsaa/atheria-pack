@@ -1,0 +1,123 @@
+{
+ "pnj": {
+  "nom": "Le Foundi Flat"
+ },
+ "debut": "debut",
+ "noeuds": {
+  "fundi": {
+   "lignes": [
+    {
+     "texte": "Tu viens chercher l'Enfant. Tout le monde vient chercher l'Enfant. Les Goblini veulent un remède. La PAF veut une frontière. Et toi ?"
+    }
+   ],
+   "choix": [
+    {
+     "texte": "Pour la sauver",
+     "actions": [
+      {
+       "commande": "tag {joueur} add q_ch4_fundi"
+      }
+     ],
+     "aller": "fundi_sauver"
+    },
+    {
+     "texte": "Pour un remède",
+     "actions": [
+      {
+       "commande": "tag {joueur} add q_ch4_fundi"
+      }
+     ],
+     "aller": "fundi_remede"
+    },
+    {
+     "texte": "Je ne sais pas",
+     "actions": [
+      {
+       "commande": "tag {joueur} add q_ch4_fundi"
+      },
+      {
+       "commande": "tag {joueur} add confiance_fundi"
+      },
+      {
+       "commande": "scoreboard players add {joueur} aura_enfants 1"
+      }
+     ],
+     "aller": "fundi_sais_pas"
+    },
+    {
+     "texte": "Joyeux Anniversaire.",
+     "actions": [
+      {
+       "commande": "tag {joueur} add q_ch4_fundi"
+      },
+      {
+       "commande": "tag {joueur} add fundi_hostile"
+      }
+     ],
+     "aller": "fundi_ratio"
+    }
+   ]
+  },
+  "fundi_sauver": {
+   "lignes": [
+    {
+     "texte": "La sauver de quoi ? De nous, surtout."
+    }
+   ]
+  },
+  "fundi_remede": {
+   "lignes": [
+    {
+     "texte": "Il te manque une phrase dans ton calcul. Elle s'appelle Hajar."
+    }
+   ]
+  },
+  "fundi_sais_pas": {
+   "lignes": [
+    {
+     "texte": "(Il t'observe longtemps.) Enfin quelqu'un qui ne confond pas la certitude et le courage. Elle veut te parler."
+    }
+   ]
+  },
+  "fundi_ratio": {
+   "lignes": [
+    {
+     "texte": "Joyeux Anniversaire. (Il se lève.) Si tu veux un ennemi, tu trouveras toujours quelqu'un pour jouer le rôle. Passe l'épreuve du souffle, ou affronte mes gardes."
+    }
+   ]
+  },
+  "fundi_apres": {
+   "lignes": [
+    {
+     "texte": "Les Comocos respirent avec nous. Toi, tu respires trop fort. Apprends."
+    }
+   ]
+  },
+  "repos": {
+   "texte": "(Il corrige une copie imaginaire, en marmonnant des dates.)"
+  },
+  "debut": {
+   "aiguillage": [
+    {
+     "si": {
+      "tag": [
+       "q_ch4_fundi"
+      ]
+     },
+     "aller": "fundi_apres"
+    },
+    {
+     "si": {
+      "tag": [
+       "chapitre_4"
+      ]
+     },
+     "aller": "fundi"
+    },
+    {
+     "aller": "repos"
+    }
+   ]
+  }
+ }
+}

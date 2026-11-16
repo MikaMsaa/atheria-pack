@@ -1,0 +1,75 @@
+{
+ "pnj": {
+  "nom": "Émetteur du Bénara"
+ },
+ "debut": "debut",
+ "noeuds": {
+  "emetteur": {
+   "lignes": [
+    {
+     "texte": "ÉMETTEUR DU BÉNARA - 104.0 MHz Une platine à cassettes, un micro, un interrupteur rouge. La boucle de la fausse voix tourne toujours."
+    }
+   ],
+   "choix": [
+    {
+     "texte": "Insérer les cassettes de Salto",
+     "actions": [
+      {
+       "commande": "execute as {joueur} if items entity @s container.* atheria:cassette_salto run tag @s add salto_diffusee_joueur"
+      },
+      {
+       "commande": "execute as {joueur} if items entity @s container.* atheria:cassette_salto run scoreboard players set #salto atheria 1"
+      },
+      {
+       "commande": "execute as {joueur} if items entity @s container.* atheria:cassette_salto run tellraw @a [\"\",{\"text\":\"[104.0 MHz] \",\"color\":\"dark_red\"},{\"text\":\"La boucle s'interrompt. Une autre voix, plus fatiguée, plus vraie : « Ici Samantha Salto. Si vous entendez ceci, la voix que vous suivez depuis vingt ans est un piège... »\",\"color\":\"gray\",\"italic\":true}]"
+      },
+      {
+       "commande": "execute as {joueur} if items entity @s container.* atheria:cassette_salto run playsound minecraft:block.beacon.activate master @a ~ ~ ~ 1 0.6"
+      }
+     ],
+     "aller": "emetteur_ok"
+    }
+   ]
+  },
+  "emetteur_ok": {
+   "lignes": [
+    {
+     "texte": "La vraie voix part sur toute l'île. Tu gardes les cassettes : elles servent encore de preuve."
+    }
+   ]
+  },
+  "emetteur_fait": {
+   "lignes": [
+    {
+     "texte": "La boucle est coupée. Seule la voix de Salto tourne encore."
+    }
+   ]
+  },
+  "repos": {
+   "texte": "La boucle de la fausse voix tourne. « Venez au Bénara... »"
+  },
+  "debut": {
+   "aiguillage": [
+    {
+     "si": {
+      "tag": [
+       "salto_diffusee_joueur"
+      ]
+     },
+     "aller": "emetteur_fait"
+    },
+    {
+     "si": {
+      "tag": [
+       "acte_4"
+      ]
+     },
+     "aller": "emetteur"
+    },
+    {
+     "aller": "repos"
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,124 @@
+{
+    "pools":  [
+                  {
+                      "entries":  [
+                                      {
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  1,
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  3
+                                                                          }
+                                                            }
+                                                        ],
+                                          "weight":  10,
+                                          "name":  "atheria:pieces_vehicule",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "weight":  6,
+                                          "name":  "atheria:bidon_essence",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "weight":  3,
+                                          "name":  "atheria:kit_siphon",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "weight":  4,
+                                          "name":  "atheria:carte_routiere",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  1,
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  4
+                                                                          }
+                                                            }
+                                                        ],
+                                          "weight":  8,
+                                          "name":  "minecraft:iron_ingot",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  1,
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  5
+                                                                          }
+                                                            }
+                                                        ],
+                                          "weight":  8,
+                                          "name":  "minecraft:copper_ingot",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  1,
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  4
+                                                                          }
+                                                            }
+                                                        ],
+                                          "weight":  6,
+                                          "name":  "minecraft:chain",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  1,
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  3
+                                                                          }
+                                                            }
+                                                        ],
+                                          "weight":  5,
+                                          "name":  "create:andesite_alloy",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  1,
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  2
+                                                                          }
+                                                            }
+                                                        ],
+                                          "weight":  4,
+                                          "name":  "create:cogwheel",
+                                          "type":  "minecraft:item"
+                                      },
+                                      {
+                                          "weight":  3,
+                                          "name":  "minecraft:bucket",
+                                          "type":  "minecraft:item"
+                                      }
+                                  ],
+                      "rolls":  {
+                                    "min":  3,
+                                    "type":  "minecraft:uniform",
+                                    "max":  6
+                                }
+                  }
+              ],
+    "type":  "minecraft:chest"
+}

@@ -1,0 +1,76 @@
+{
+ "pnj": {
+  "nom": "Docteure Saouda"
+ },
+ "debut": "debut",
+ "noeuds": {
+  "q_ch1_saouda_ok": {
+   "texte": "Signé. Garde ce laissez-passer sur toi : sans lui, tu n'es qu'un inconnu de plus."
+  },
+  "q_ch1_saouda_refus": {
+   "texte": "Personne ne l'est. La porte reste ouverte. La quarantaine aussi."
+  },
+  "q_ch1_saouda": {
+   "lignes": [
+    {
+     "texte": "Ouvre ta grande bouche, regarde la lumière et respire normalement. Non, pas comme ça : tu respires comme quelqu'un qui cache quelque chose."
+    },
+    {
+     "texte": "(Sans humour.) Tu peux entrer. N'oublie pas que la quarantaine protège aussi les gens derrière la porte."
+    }
+   ],
+   "choix": [
+    {
+     "texte": "Signez-moi cette fiche.",
+     "style": "accepter",
+     "actions": [
+      {
+       "commande": "tag {joueur} add q_ch1_saouda"
+      },
+      {
+       "commande": "give {joueur} atheria:laissez_passer_paf 1"
+      },
+      {
+       "commande": "playsound minecraft:entity.experience_orb.pickup master {joueur} ~ ~ ~ 0.6 1.2"
+      }
+     ],
+     "aller": "q_ch1_saouda_ok"
+    },
+    {
+     "texte": "Je ne suis pas prêt pour la quarantaine.",
+     "style": "refuser",
+     "aller": "q_ch1_saouda_refus"
+    }
+   ]
+  },
+  "q_ch1_saouda_fait": {
+   "texte": "Tu as ce qu'il te faut. Avance."
+  },
+  "repos": {
+   "texte": "Respire normalement. Non, normalement."
+  },
+  "debut": {
+   "aiguillage": [
+    {
+     "si": {
+      "tag": [
+       "q_ch1_saouda"
+      ]
+     },
+     "aller": "q_ch1_saouda_fait"
+    },
+    {
+     "si": {
+      "tag": [
+       "q_ch1_checkpoint"
+      ]
+     },
+     "aller": "q_ch1_saouda"
+    },
+    {
+     "aller": "repos"
+    }
+   ]
+  }
+ }
+}

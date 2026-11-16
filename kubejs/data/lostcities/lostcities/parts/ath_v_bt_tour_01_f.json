@@ -1,0 +1,839 @@
+{
+ "xsize": 16,
+ "zsize": 16,
+ "palette": {
+  "palette": [
+   {
+    "char": "À",
+    "block": "minecraft:grass_block[snowy=false]"
+   },
+   {
+    "char": "Á",
+    "block": "minecraft:gravel"
+   },
+   {
+    "char": "Â",
+    "block": "minecraft:coarse_dirt"
+   },
+   {
+    "char": "Ã",
+    "block": "minecraft:podzol[snowy=false]"
+   },
+   {
+    "char": "Ä",
+    "block": "minecraft:rooted_dirt"
+   },
+   {
+    "char": "Å",
+    "block": "mcwpaths:stone_flagstone[engraved=false]"
+   },
+   {
+    "char": "Æ",
+    "block": "mcwpaths:andesite_flagstone[engraved=false]"
+   },
+   {
+    "char": "Ç",
+    "block": "minecraft:short_grass"
+   },
+   {
+    "char": "È",
+    "block": "minecraft:white_concrete"
+   },
+   {
+    "char": "É",
+    "block": "minecraft:smooth_stone"
+   },
+   {
+    "char": "Ê",
+    "block": "minecraft:polished_diorite"
+   },
+   {
+    "char": "Ë",
+    "block": "minecraft:polished_andesite"
+   },
+   {
+    "char": "Ì",
+    "block": "minecraft:oak_log[axis=y]"
+   },
+   {
+    "char": "Í",
+    "block": "minecraft:light_gray_concrete"
+   },
+   {
+    "char": "Î",
+    "block": "supplementaries:sack[open=false,waterlogged=false]"
+   },
+   {
+    "char": "Ï",
+    "block": "minecraft:light_gray_carpet"
+   },
+   {
+    "char": "Ð",
+    "block": "handcrafted:terracotta_wide_pot"
+   },
+   {
+    "char": "Ñ",
+    "block": "minecraft:glass_pane[east=true,north=false,south=false,waterlogged=false,west=true]"
+   },
+   {
+    "char": "Ò",
+    "block": "minecraft:glass_pane[east=false,north=false,south=false,waterlogged=false,west=true]"
+   },
+   {
+    "char": "Ó",
+    "block": "minecraft:iron_door[facing=south,half=lower,hinge=left,open=true,powered=false]"
+   },
+   {
+    "char": "Ô",
+    "block": "minecraft:iron_trapdoor[facing=south,half=bottom,open=true,powered=false,waterlogged=false]"
+   },
+   {
+    "char": "Õ",
+    "block": "minecraft:cobweb"
+   },
+   {
+    "char": "Ö",
+    "block": "minecraft:iron_door[facing=south,half=upper,hinge=left,open=true,powered=false]"
+   },
+   {
+    "char": "×",
+    "block": "minecraft:azalea_leaves[distance=2,persistent=true,waterlogged=false]"
+   },
+   {
+    "char": "Ø",
+    "block": "minecraft:oak_leaves[distance=2,persistent=true,waterlogged=false]"
+   },
+   {
+    "char": "Ù",
+    "block": "minecraft:oak_leaves[distance=1,persistent=true,waterlogged=false]"
+   },
+   {
+    "char": "Ú",
+    "block": "minecraft:polished_andesite_stairs[facing=west,half=bottom,shape=straight,waterlogged=false]"
+   },
+   {
+    "char": "Û",
+    "block": "minecraft:lantern[hanging=true,waterlogged=false]"
+   },
+   {
+    "char": "Ü",
+    "block": "minecraft:oak_leaves[distance=3,persistent=true,waterlogged=false]"
+   },
+   {
+    "char": "Ý",
+    "block": "minecraft:azalea_leaves[distance=3,persistent=true,waterlogged=false]"
+   },
+   {
+    "char": "Þ",
+    "block": "minecraft:smooth_stone_slab[type=bottom,waterlogged=false]"
+   },
+   {
+    "char": "ß",
+    "block": "minecraft:oak_planks"
+   },
+   {
+    "char": "à",
+    "block": "minecraft:spruce_planks"
+   },
+   {
+    "char": "á",
+    "block": "minecraft:smooth_quartz"
+   },
+   {
+    "char": "â",
+    "block": "minecraft:polished_deepslate"
+   },
+   {
+    "char": "ã",
+    "block": "minecraft:chest[facing=south,type=single,waterlogged=false]",
+    "loot": "chestloot"
+   },
+   {
+    "char": "ä",
+    "block": "mcwfurnitures:stripped_spruce_end_table[east=false,north=false,south=false,west=false]"
+   },
+   {
+    "char": "å",
+    "block": "minecraft:green_carpet"
+   },
+   {
+    "char": "æ",
+    "block": "handcrafted:birch_fancy_bed[color=green,facing=east,occupied=false,part=foot,shape=single]"
+   },
+   {
+    "char": "ç",
+    "block": "handcrafted:birch_fancy_bed[color=green,facing=east,occupied=false,part=head,shape=single]"
+   },
+   {
+    "char": "è",
+    "block": "handcrafted:oak_drawer[facing=east,shape=single,type=1]"
+   },
+   {
+    "char": "é",
+    "block": "minecraft:barrel[facing=up,open=false]"
+   },
+   {
+    "char": "ê",
+    "block": "supplementaries:hourglass[facing=east,light_level=0,waterlogged=false]"
+   },
+   {
+    "char": "ë",
+    "block": "handcrafted:blue_glazed_thin_pot"
+   },
+   {
+    "char": "ì",
+    "block": "minecraft:bookshelf"
+   },
+   {
+    "char": "í",
+    "block": "minecraft:quartz_pillar[axis=y]"
+   },
+   {
+    "char": "î",
+    "block": "minecraft:campfire[facing=south,lit=true,signal_fire=false,waterlogged=false]"
+   },
+   {
+    "char": "ï",
+    "block": "handcrafted:white_glazed_medium_pot"
+   },
+   {
+    "char": "ð",
+    "block": "mcwfurnitures:spruce_counter[facing=south]"
+   },
+   {
+    "char": "ñ",
+    "block": "mcwfurnitures:spruce_kitchen_sink[facing=south,water=false]"
+   },
+   {
+    "char": "ò",
+    "block": "farmersdelight:wooden_basket[enabled=true,facing=up,waterlogged=false]"
+   },
+   {
+    "char": "ó",
+    "block": "mcwfurnitures:dark_oak_chair[facing=east]"
+   },
+   {
+    "char": "ô",
+    "block": "mcwfurnitures:dark_oak_coffee_table[connection=with_leg]"
+   },
+   {
+    "char": "õ",
+    "block": "mcwfurnitures:dark_oak_chair[facing=west]"
+   },
+   {
+    "char": "ö",
+    "block": "handcrafted:birch_couch[color=brown,facing=north,shape=right,waterlogged=false]"
+   },
+   {
+    "char": "÷",
+    "block": "handcrafted:birch_couch[color=brown,facing=north,shape=middle,waterlogged=false]"
+   },
+   {
+    "char": "ø",
+    "block": "handcrafted:birch_couch[color=brown,facing=north,shape=left,waterlogged=false]"
+   },
+   {
+    "char": "ù",
+    "block": "supplementaries:globe[facing=north,powered=false,rotation=0,waterlogged=false]"
+   },
+   {
+    "char": "ú",
+    "block": "mcwfurnitures:spruce_chair[facing=east]"
+   },
+   {
+    "char": "û",
+    "block": "mcwfurnitures:spruce_table[east=false,north=false,south=false,west=false]"
+   },
+   {
+    "char": "ü",
+    "block": "mcwfurnitures:spruce_chair[facing=west]"
+   },
+   {
+    "char": "ý",
+    "block": "minecraft:potted_fern"
+   },
+   {
+    "char": "þ",
+    "block": "minecraft:potted_azalea_bush"
+   },
+   {
+    "char": "ÿ",
+    "block": "farmersdelight:tomato_crate"
+   },
+   {
+    "char": "Ā",
+    "block": "minecraft:light_blue_terracotta"
+   },
+   {
+    "char": "ā",
+    "block": "handcrafted:oak_chair[color=none,facing=south,waterlogged=false]"
+   },
+   {
+    "char": "Ă",
+    "block": "minecraft:iron_bars[east=true,north=false,south=false,waterlogged=false,west=true]"
+   },
+   {
+    "char": "ă",
+    "block": "minecraft:candle[candles=1,lit=false,waterlogged=false]"
+   },
+   {
+    "char": "Ą",
+    "block": "minecraft:glass_pane[east=false,north=true,south=true,waterlogged=false,west=false]"
+   },
+   {
+    "char": "ą",
+    "block": "supplementaries:book_pile[books=1,waterlogged=false]"
+   },
+   {
+    "char": "Ć",
+    "block": "minecraft:quartz_slab[type=top,waterlogged=false]"
+   },
+   {
+    "char": "ć",
+    "block": "farmersdelight:cutting_board[facing=south,waterlogged=false]"
+   },
+   {
+    "char": "Ĉ",
+    "block": "farmersdelight:cooking_pot[facing=north,support=none,waterlogged=false]"
+   },
+   {
+    "char": "ĉ",
+    "block": "minecraft:potted_red_tulip"
+   },
+   {
+    "char": "Ċ",
+    "block": "minecraft:candle[candles=3,lit=false,waterlogged=false]"
+   },
+   {
+    "char": "ċ",
+    "block": "minecraft:decorated_pot[cracked=false,facing=north,waterlogged=false]"
+   },
+   {
+    "char": "Č",
+    "block": "minecraft:candle[candles=2,lit=false,waterlogged=false]"
+   },
+   {
+    "char": "č",
+    "block": "mcwfurnitures:spruce_kitchen_cabinet[facing=north,hinge=left]"
+   },
+   {
+    "char": "Ď",
+    "block": "mcwfurnitures:spruce_kitchen_cabinet[facing=north,hinge=right]"
+   },
+   {
+    "char": "ď",
+    "block": "mcwlights:iron_chandelier[lit=true]"
+   },
+   {
+    "char": "Đ",
+    "block": "minecraft:white_carpet"
+   },
+   {
+    "char": "đ",
+    "block": "mcwfurnitures:birch_end_table[east=false,north=false,south=false,west=false]"
+   },
+   {
+    "char": "Ē",
+    "block": "minecraft:lime_carpet"
+   },
+   {
+    "char": "ē",
+    "block": "handcrafted:birch_fancy_bed[color=lime,facing=east,occupied=false,part=foot,shape=single]"
+   },
+   {
+    "char": "Ĕ",
+    "block": "handcrafted:birch_fancy_bed[color=lime,facing=east,occupied=false,part=head,shape=single]"
+   },
+   {
+    "char": "ĕ",
+    "block": "minecraft:campfire[facing=south,lit=false,signal_fire=false,waterlogged=false]"
+   },
+   {
+    "char": "Ė",
+    "block": "minecraft:red_carpet"
+   },
+   {
+    "char": "ė",
+    "block": "mcwfurnitures:spruce_coffee_table[connection=with_leg]"
+   },
+   {
+    "char": "Ę",
+    "block": "handcrafted:white_glazed_thin_pot"
+   },
+   {
+    "char": "ę",
+    "block": "minecraft:potted_white_tulip"
+   },
+   {
+    "char": "Ě",
+    "block": "minecraft:pink_carpet"
+   },
+   {
+    "char": "ě",
+    "block": "handcrafted:birch_fancy_bed[color=pink,facing=east,occupied=false,part=foot,shape=single]"
+   },
+   {
+    "char": "Ĝ",
+    "block": "handcrafted:birch_fancy_bed[color=pink,facing=east,occupied=false,part=head,shape=single]"
+   },
+   {
+    "char": "ĝ",
+    "block": "handcrafted:white_glazed_thick_pot"
+   },
+   {
+    "char": "Ğ",
+    "block": "mcwfurnitures:birch_counter[facing=south]"
+   },
+   {
+    "char": "ğ",
+    "block": "mcwfurnitures:birch_kitchen_sink[facing=south,water=false]"
+   },
+   {
+    "char": "Ġ",
+    "block": "mcwfurnitures:birch_chair[facing=east]"
+   },
+   {
+    "char": "ġ",
+    "block": "mcwfurnitures:birch_coffee_table[connection=with_leg]"
+   },
+   {
+    "char": "Ģ",
+    "block": "mcwfurnitures:birch_chair[facing=west]"
+   },
+   {
+    "char": "ģ",
+    "block": "handcrafted:birch_couch[color=black,facing=north,shape=right,waterlogged=false]"
+   },
+   {
+    "char": "Ĥ",
+    "block": "handcrafted:birch_couch[color=black,facing=north,shape=middle,waterlogged=false]"
+   },
+   {
+    "char": "ĥ",
+    "block": "handcrafted:birch_couch[color=black,facing=north,shape=left,waterlogged=false]"
+   },
+   {
+    "char": "Ħ",
+    "block": "mcwfurnitures:birch_table[east=false,north=false,south=false,west=false]"
+   },
+   {
+    "char": "ħ",
+    "block": "minecraft:flower_pot"
+   },
+   {
+    "char": "Ĩ",
+    "block": "mcwfurnitures:birch_kitchen_cabinet[facing=north,hinge=left]"
+   },
+   {
+    "char": "ĩ",
+    "block": "mcwfurnitures:birch_kitchen_cabinet[facing=north,hinge=right]"
+   },
+   {
+    "char": "Ī",
+    "block": "mcwfurnitures:oak_end_table[east=false,north=false,south=false,west=false]"
+   },
+   {
+    "char": "ī",
+    "block": "handcrafted:birch_fancy_bed[color=red,facing=east,occupied=false,part=foot,shape=single]"
+   },
+   {
+    "char": "Ĭ",
+    "block": "handcrafted:birch_fancy_bed[color=red,facing=east,occupied=false,part=head,shape=single]"
+   },
+   {
+    "char": "ĭ",
+    "block": "minecraft:potted_poppy"
+   },
+   {
+    "char": "Į",
+    "block": "minecraft:moss_carpet"
+   },
+   {
+    "char": "į",
+    "block": "mcwfurnitures:dark_oak_counter[facing=south]"
+   },
+   {
+    "char": "İ",
+    "block": "mcwfurnitures:dark_oak_kitchen_sink[facing=south,water=false]"
+   },
+   {
+    "char": "ı",
+    "block": "handcrafted:birch_couch[color=blue,facing=north,shape=right,waterlogged=false]"
+   },
+   {
+    "char": "Ĳ",
+    "block": "handcrafted:birch_couch[color=blue,facing=north,shape=middle,waterlogged=false]"
+   },
+   {
+    "char": "ĳ",
+    "block": "handcrafted:birch_couch[color=blue,facing=north,shape=left,waterlogged=false]"
+   },
+   {
+    "char": "Ĵ",
+    "block": "mcwfurnitures:dark_oak_table[east=false,north=false,south=false,west=false]"
+   },
+   {
+    "char": "ĵ",
+    "block": "mcwfurnitures:dark_oak_kitchen_cabinet[facing=north,hinge=left]"
+   },
+   {
+    "char": "Ķ",
+    "block": "mcwfurnitures:dark_oak_kitchen_cabinet[facing=north,hinge=right]"
+   },
+   {
+    "char": "ķ",
+    "block": "supplementaries:book_pile_horizontal[books=1,facing=north,waterlogged=false]"
+   },
+   {
+    "char": "ĸ",
+    "block": "mcwfurnitures:oak_counter[facing=south]"
+   },
+   {
+    "char": "Ĺ",
+    "block": "mcwfurnitures:oak_kitchen_sink[facing=south,water=false]"
+   },
+   {
+    "char": "ĺ",
+    "block": "minecraft:gray_carpet"
+   },
+   {
+    "char": "Ļ",
+    "block": "mcwfurnitures:stripped_oak_chair[facing=east]"
+   },
+   {
+    "char": "ļ",
+    "block": "mcwfurnitures:stripped_oak_coffee_table[connection=with_leg]"
+   },
+   {
+    "char": "Ľ",
+    "block": "mcwfurnitures:stripped_oak_chair[facing=west]"
+   },
+   {
+    "char": "ľ",
+    "block": "mcwfurnitures:oak_chair[facing=east]"
+   },
+   {
+    "char": "Ŀ",
+    "block": "mcwfurnitures:oak_table[east=false,north=false,south=false,west=false]"
+   },
+   {
+    "char": "ŀ",
+    "block": "mcwfurnitures:oak_chair[facing=west]"
+   },
+   {
+    "char": "Ł",
+    "block": "mcwfurnitures:oak_kitchen_cabinet[facing=north,hinge=left]"
+   },
+   {
+    "char": "ł",
+    "block": "mcwfurnitures:oak_kitchen_cabinet[facing=north,hinge=right]"
+   },
+   {
+    "char": "Ń",
+    "block": "minecraft:yellow_carpet"
+   },
+   {
+    "char": "ń",
+    "block": "handcrafted:birch_fancy_bed[color=yellow,facing=east,occupied=false,part=foot,shape=single]"
+   },
+   {
+    "char": "Ņ",
+    "block": "handcrafted:birch_fancy_bed[color=yellow,facing=east,occupied=false,part=head,shape=single]"
+   },
+   {
+    "char": "ņ",
+    "block": "handcrafted:golden_thin_pot"
+   },
+   {
+    "char": "Ň",
+    "block": "mcwfurnitures:stripped_oak_counter[facing=south]"
+   },
+   {
+    "char": "ň",
+    "block": "mcwfurnitures:stripped_oak_kitchen_sink[facing=south,water=false]"
+   },
+   {
+    "char": "ŉ",
+    "block": "minecraft:blue_carpet"
+   },
+   {
+    "char": "Ŋ",
+    "block": "mcwfurnitures:oak_coffee_table[connection=with_leg]"
+   },
+   {
+    "char": "ŋ",
+    "block": "handcrafted:birch_couch[color=gray,facing=north,shape=right,waterlogged=false]"
+   },
+   {
+    "char": "Ō",
+    "block": "handcrafted:birch_couch[color=gray,facing=north,shape=middle,waterlogged=false]"
+   },
+   {
+    "char": "ō",
+    "block": "handcrafted:birch_couch[color=gray,facing=north,shape=left,waterlogged=false]"
+   },
+   {
+    "char": "Ŏ",
+    "block": "mcwfurnitures:stripped_oak_table[east=false,north=false,south=false,west=false]"
+   },
+   {
+    "char": "ŏ",
+    "block": "mcwfurnitures:stripped_oak_kitchen_cabinet[facing=north,hinge=left]"
+   },
+   {
+    "char": "Ő",
+    "block": "mcwfurnitures:stripped_oak_kitchen_cabinet[facing=north,hinge=right]"
+   },
+   {
+    "char": "ő",
+    "block": "mcwfurnitures:stripped_oak_drawer[connection=single,facing=south]"
+   },
+   {
+    "char": "Œ",
+    "block": "mcwfurnitures:stripped_oak_chair[facing=south]"
+   },
+   {
+    "char": "œ",
+    "block": "mcwfurnitures:stripped_oak_table[east=true,north=false,south=false,west=false]"
+   },
+   {
+    "char": "Ŕ",
+    "block": "mcwfurnitures:stripped_oak_table[east=true,north=false,south=false,west=true]"
+   },
+   {
+    "char": "ŕ",
+    "block": "mcwfurnitures:stripped_oak_table[east=false,north=false,south=false,west=true]"
+   },
+   {
+    "char": "Ŗ",
+    "block": "mcwfurnitures:stripped_oak_chair[facing=north]"
+   },
+   {
+    "char": "ŗ",
+    "block": "supplementaries:candle_holder[candles=2,face=floor,facing=north,lit=false,waterlogged=false]"
+   },
+   {
+    "char": "Ř",
+    "block": "minecraft:candle[candles=4,lit=false,waterlogged=false]"
+   },
+   {
+    "char": "ř",
+    "block": "createfood:chocolate_milk_bottle_block[facing=north,stack_size=1]"
+   },
+   {
+    "char": "Ś",
+    "block": "handcrafted:white_crockery_combo[facing=north,waterlogged=false]"
+   },
+   {
+    "char": "ś",
+    "block": "mcwfurnitures:stripped_spruce_counter[facing=south]"
+   },
+   {
+    "char": "Ŝ",
+    "block": "mcwfurnitures:stripped_spruce_kitchen_sink[facing=south,water=false]"
+   },
+   {
+    "char": "ŝ",
+    "block": "mcwfurnitures:stripped_spruce_chair[facing=east]"
+   },
+   {
+    "char": "Ş",
+    "block": "mcwfurnitures:stripped_spruce_coffee_table[connection=with_leg]"
+   },
+   {
+    "char": "ş",
+    "block": "mcwfurnitures:stripped_spruce_chair[facing=west]"
+   },
+   {
+    "char": "Š",
+    "block": "handcrafted:birch_couch[color=light_gray,facing=north,shape=right,waterlogged=false]"
+   },
+   {
+    "char": "š",
+    "block": "handcrafted:birch_couch[color=light_gray,facing=north,shape=middle,waterlogged=false]"
+   },
+   {
+    "char": "Ţ",
+    "block": "handcrafted:birch_couch[color=light_gray,facing=north,shape=left,waterlogged=false]"
+   },
+   {
+    "char": "ţ",
+    "block": "mcwfurnitures:stripped_spruce_table[east=false,north=false,south=false,west=false]"
+   },
+   {
+    "char": "Ť",
+    "block": "minecraft:potted_bamboo"
+   },
+   {
+    "char": "ť",
+    "block": "mcwfurnitures:stripped_spruce_kitchen_cabinet[facing=north,hinge=left]"
+   },
+   {
+    "char": "Ŧ",
+    "block": "mcwfurnitures:stripped_spruce_kitchen_cabinet[facing=north,hinge=right]"
+   },
+   {
+    "char": "ŧ",
+    "block": "mcwfurnitures:stripped_oak_end_table[east=false,north=false,south=false,west=false]"
+   },
+   {
+    "char": "Ũ",
+    "block": "handcrafted:birch_fancy_bed[color=white,facing=east,occupied=false,part=foot,shape=single]"
+   },
+   {
+    "char": "ũ",
+    "block": "handcrafted:birch_fancy_bed[color=white,facing=east,occupied=false,part=head,shape=single]"
+   },
+   {
+    "char": "Ū",
+    "block": "mcwfurnitures:oak_drawer[connection=single,facing=south]"
+   },
+   {
+    "char": "ū",
+    "block": "mcwfurnitures:oak_chair[facing=south]"
+   },
+   {
+    "char": "Ŭ",
+    "block": "mcwfurnitures:oak_table[east=true,north=false,south=false,west=false]"
+   },
+   {
+    "char": "ŭ",
+    "block": "mcwfurnitures:oak_table[east=true,north=false,south=false,west=true]"
+   },
+   {
+    "char": "Ů",
+    "block": "mcwfurnitures:oak_table[east=false,north=false,south=false,west=true]"
+   },
+   {
+    "char": "ů",
+    "block": "mcwfurnitures:oak_chair[facing=north]"
+   },
+   {
+    "char": "Ű",
+    "block": "createfood:builders_tea_bottle_block[facing=north,stack_size=1]"
+   },
+   {
+    "char": "ű",
+    "block": "handcrafted:white_bowl[facing=north,pieces=1,waterlogged=false]"
+   },
+   {
+    "char": "Ų",
+    "block": "minecraft:iron_bars[east=false,north=false,south=false,waterlogged=false,west=false]"
+   },
+   {
+    "char": "ų",
+    "block": "minecraft:lightning_rod[facing=up,powered=false,waterlogged=false]"
+   }
+  ]
+ },
+ "slices": [
+  [
+   "ÀÀÀÀÀÀÁÀÂÀÀÃÀÀÂÀ",
+   "ÂÂÀÀÀÀÀÀÃÀÁÀÀÀÀÀ",
+   "ÀÀÀÀÀÀÀÀÀÀÀÁÀÀÀÀ",
+   "ÀÁÂÂÀÂÀÀÀÃÀÀÂÀÀÀ",
+   "ÃÂÀÀÀÀÀÀÂÀÃÀÀÃÀÀ",
+   "ÀÂÀÁÀÀÀÀÀÃÀÀÀÀÀÀ",
+   "ÂÀÀÀÀÀÀÀÂÀÂÀÂÀÀÂ",
+   "ÀÃÀÂÀÀÀÃÀÀÀÀÀÀÀÀ",
+   "ÀÃÀÀÀÀÂÃÁÀÁÃÀÀÀÃ",
+   "ÀÀÀÀÂÂÀÀÀÂÂÁÀÀÀÃ",
+   "ÁÄÃÀÀÀÁÀÂÀÀÀÁÂÀÂ",
+   "ÀÀÀÀÁÀÂÀÀÀÀÀÀÀÂÂ",
+   "ÃÀÅÅÅÅÆÅÅÅÅÆÅÅÅÆ",
+   "ÀÀÅÅÅÅÅÅÅÅÅÅÅÅÅÅ",
+   "ÂÂÀÁÁÀÀÀÀÁÀÀÀÅÅÅ",
+   "ÀÀÀÀÀÀÂÀÀÀÀÃÀÅÆÆ"
+  ],
+  [
+   "Ç   ÈÉÉÉÉÉÉÉÉÉÉÉ",
+   "   ÇÈÊËÊËÊËÊËÊËÊ",
+   "  Ç ÈËËËËËËËËËËË",
+   "    ÈÊËÊËÊËÊËÊËÊ",
+   "  Ç ÈËËËËËËËËËËË",
+   "    ÈÊËÊËÊËÊËÊËÊ",
+   " Ç  ÈËËËËËËËËËËË",
+   "  Ç ÈÊËÊËÊËÊËÊËÊ",
+   "    ÈËËËËËËËËËËË",
+   "   ÇÈÊËÊËÊËÊËÊËÊ",
+   " Ì ÇÈËËËËËËËËËËË",
+   " ÇÇ ÈÈÈÈÈÈÈÈÈÈÈÈ",
+   "                ",
+   "Ç               ",
+   "          Ç Ç   ",
+   "   Ç    ÇÇ      "
+  ],
+  [
+   "    ÍÈÈÈÈÈÈÈË   ",
+   "    Í       Ë   ",
+   "    Í       Ë ËË",
+   "    Í           ",
+   "    Í           ",
+   "    Í           ",
+   "    Í    Î      ",
+   "    Í         Ï ",
+   "    Í           ",
+   "    Í  Ð        ",
+   " Ì  ÍÈ          ",
+   "    ÈÍÍÍÍÍÍÍÍÑÒÓ",
+   "                ",
+   "                ",
+   "            È   ",
+   "                "
+  ],
+  [
+   "    ÍÈÈÈÈÈÈÈË   ",
+   "    Í ÔÔÔÔÔ Ë   ",
+   "    Í       ËÕËË",
+   "    Í           ",
+   "    Í           ",
+   "    Í           ",
+   "    Í           ",
+   "    Í           ",
+   "    Í           ",
+   "    Í           ",
+   " Ì  ÍÈ          ",
+   "    ÈÍÑÑÑÑÑÍÍÑÒÖ",
+   "                ",
+   "                ",
+   "            È   ",
+   "                "
+  ],
+  [
+   "    ÍÈÈÈÈÈÈÈË   ",
+   "    Í ÔÔÔÔÔ Ë   ",
+   "    Í       ËËËË",
+   "    Í           ",
+   "    Í           ",
+   "    Í           ",
+   "    Í           ",
+   "    Í           ",
+   "    Í           ",
+   "    Í           ",
+   " Ì  ÍÈ          ",
+   "    ÈÍÑÑÑÑÑÍÍÑÑÑ",
+   "                ",
+   "                ",
+   "            È   ",
+   "                "
+  ],
+  [
+   "    ÍÈÈÈÈÈÈÈË  Ë",
+   "    Í       Ë   ",
+   "    Í       ËËËË",
+   "    Í           ",
+   "    Í           ",
+   "    Í           ",
+   "    Í           ",
+   "    Í           ",
+   " ×  Í           ",
+   "ØÙØ Í           ",
+   "ÙÌÙ×ÍÈ          ",
+   "ØÙØ ÈÍÑÑÑÑÑÍÍÑÑÑ",
+   " Ø              ",
+   "                ",
+   "            È   ",
+   "                "
+  ]
+ ]
+}

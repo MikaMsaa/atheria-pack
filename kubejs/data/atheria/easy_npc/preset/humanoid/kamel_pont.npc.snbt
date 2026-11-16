@@ -1,0 +1,111 @@
+{
+	PresetMetadata: {
+		author: "Atheria",
+		category: "Atheria",
+		description: "PNJ de la campagne Atheria : Kamel (pont).",
+		entityTypeId: "easy_npc:humanoid",
+		name: "Kamel (pont)",
+		variantType: "STEVE",
+		version: "1.0.0"
+	},
+	data: {
+		ActionData: {
+			ActionEventSet: {
+				ON_INTERACTION: [
+					{
+						Type: "OPEN_DEFAULT_DIALOG"
+					}
+				]
+			}
+		},
+		CustomName: '{"text": "Kamel", "color": "#E8C66A"}',
+		DialogData: {
+			DialogDataSet: [
+				{
+					Buttons: [
+						{
+							Actions: [
+								{
+									Cmd: "/tag @initiator add q_ch2_kamel",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Cmd: "/playsound minecraft:entity.experience_orb.pickup master @initiator ~ ~ ~ 0.6 1.2",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Type: "CLOSE_DIALOG"
+								}
+							],
+							Label: "b_q_ch2_kamel",
+							Name: "On y va"
+						}
+					],
+					Conditions: [
+						{
+							Name: "acte_2",
+							Type: "PLAYER_TAG"
+						},
+						{
+							Name: "choix_ch1_passeurs",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch2_kamel",
+					Name: "q_ch2_kamel",
+					Priority: 10,
+					Texts: [
+						{
+							Text: "Tu m'as prévenu, et tu reviens quand même. Soit t'es loyal, soit t'as rien de mieux à faire. Les galeries sont tombées, alors je dors sous ce pont avec les rats. On verra si la route est plus gentille."
+						}
+					]
+				},
+				{
+					Conditions: [
+						{
+							Name: "q_ch2_kamel",
+							Type: "PLAYER_TAG"
+						}
+					],
+					Label: "q_ch2_kamel_fait",
+					Name: "q_ch2_kamel (fait)",
+					Priority: 11,
+					Texts: [
+						{
+							Text: "Tu as ce qu'il te faut. Avance."
+						}
+					]
+				},
+				{
+					Label: "repos",
+					Name: "Repos",
+					Priority: 1,
+					Texts: [
+						{
+							Text: "(Kamel surveille la route sous le pont. Il ne te fait pas signe.)"
+						}
+					]
+				}
+			],
+			Type: "STANDARD"
+		},
+		EasyNPCVersion: 3,
+		Invulnerable: 1b,
+		ObjectiveData: {
+			ObjectiveDataSet: [
+				{
+					Type: "LOOK_AT_PLAYER"
+				},
+				{
+					Type: "LOOK_AT_RESET"
+				}
+			]
+		},
+		PersistenceRequired: 1b,
+		Tags: ["dialogue.kamel_pont"],
+		VariantType: "STEVE",
+		id: "easy_npc:humanoid"
+	}
+}
