@@ -1,0 +1,77 @@
+{
+ "pnj": {
+  "nom": "Zaida"
+ },
+ "debut": "debut",
+ "noeuds": {
+  "q_ch2_zaid_ok": {
+   "texte": "Assieds-toi. Raconte-moi tout, depuis le début."
+  },
+  "q_ch2_zaid_refus": {
+   "texte": "La grange est ouverte. On parlera quand tu auras dormi."
+  },
+  "q_ch2_zaid": {
+   "lignes": [
+    {
+     "texte": "Ici, on ne te demande pas qui tu étais. On te demande ce que tu sais réparer, cultiver ou protéger."
+    },
+    {
+     "nom": "Toi",
+     "texte": "Kamel..."
+    },
+    {
+     "texte": "Le vieux fou me devait une bouteille depuis quinze ans. ...Il ne viendra pas, hein ? (Elle regarde la grange.) Tu peux dormir là."
+    }
+   ],
+   "choix": [
+    {
+     "texte": "Parler de Kamel.",
+     "style": "accepter",
+     "actions": [
+      {
+       "commande": "tag {joueur} add q_ch2_zaid"
+      },
+      {
+       "commande": "playsound minecraft:entity.experience_orb.pickup master {joueur} ~ ~ ~ 0.6 1.2"
+      }
+     ],
+     "aller": "q_ch2_zaid_ok"
+    },
+    {
+     "texte": "Plus tard. Je n'ai pas la force.",
+     "style": "refuser",
+     "aller": "q_ch2_zaid_refus"
+    }
+   ]
+  },
+  "q_ch2_zaid_fait": {
+   "texte": "Tu as ce qu'il te faut. Avance."
+  },
+  "repos": {
+   "texte": "Ici, on te demande ce que tu sais réparer, cultiver ou protéger."
+  },
+  "debut": {
+   "aiguillage": [
+    {
+     "si": {
+      "tag": [
+       "q_ch2_zaid"
+      ]
+     },
+     "aller": "q_ch2_zaid_fait"
+    },
+    {
+     "si": {
+      "tag": [
+       "q_ch2_morsure"
+      ]
+     },
+     "aller": "q_ch2_zaid"
+    },
+    {
+     "aller": "repos"
+    }
+   ]
+  }
+ }
+}

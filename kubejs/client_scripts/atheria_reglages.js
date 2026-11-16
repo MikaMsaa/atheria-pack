@@ -77,7 +77,7 @@ var ATHERIA_TOUCHES_V3 = {
   'key.disable_voice_chat': 'key.keyboard.unknown',
   'key.hide_icons': 'key.keyboard.unknown',
   'key.pingwheel.ping_location': 'key.keyboard.grave.accent',
-  'key.emotecraft.fastchoose': 'key.keyboard.k',
+  'key.emotecraft.fastchoose': 'key.keyboard.f7',
   // Le reste libère des touches utiles
   'key.sophisticatedbackpacks.open_backpack': 'key.keyboard.b',
   'gui.xaero_new_waypoint': 'key.keyboard.minus',

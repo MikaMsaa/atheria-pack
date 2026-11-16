@@ -1,0 +1,58 @@
+{
+	PresetMetadata: {
+		author: "Atheria",
+		category: "Atheria",
+		description: "Enfants du Choléra (station Bancoul) : Mounia, la Masquée.",
+		entityTypeId: "easy_npc:humanoid_slim",
+		name: "Enfant - Mounia",
+		variantType: "ALEX",
+		version: "1.0.0"
+	},
+	data: {
+		ActionData: {
+			ActionEventSet: {
+				ON_INTERACTION: [
+					{
+						Type: "OPEN_DEFAULT_DIALOG"
+					}
+				]
+			}
+		},
+		CustomName: '{"text": "Mounia", "color": "#B9B6AE"}',
+		DialogData: {
+			DialogDataSet: [
+				{
+					Label: "repos",
+					Name: "Repos",
+					Priority: 1,
+					Texts: [
+						{
+							Text: "Le filtre, c'est une bouteille et du coton. Ça marche une fois sur deux. Je passe quand c'est la bonne fois."
+						}
+					]
+				}
+			],
+			Type: "STANDARD"
+		},
+		EasyNPCVersion: 3,
+		Invulnerable: 1b,
+		ObjectiveData: {
+			ObjectiveDataSet: [
+				{
+					Type: "LOOK_AT_PLAYER"
+				},
+				{
+					Type: "LOOK_AT_RESET"
+				}
+			]
+		},
+		PersistenceRequired: 1b,
+		SkinData: {
+			Texture: "atheria:textures/entity/enfants/mounia.png",
+			Type: "RESOURCE_LOCATION"
+		},
+		Tags: ["enfants", "enfant.mounia"],
+		VariantType: "ALEX",
+		id: "easy_npc:humanoid_slim"
+	}
+}

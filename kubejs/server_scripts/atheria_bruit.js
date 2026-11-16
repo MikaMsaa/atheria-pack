@@ -1,4 +1,4 @@
-// Atheria Zombie Edition : le bruit attire les infectés (tirs et explosions), pas les autres mobs hostiles.
+// Atheria Zombie Edition : le bruit attire les infectés et les zombies (tirs et explosions), pas les autres mobs hostiles.
 // Un infecté sans cible marche vers la source du bruit. Un silencieux réduit fortement la portée.
 var BRUIT_PORTEE_TIR = 48
 var BRUIT_PORTEE_SILENCIEUX = 12
@@ -10,22 +10,12 @@ var BRUIT_DELAI_TICKS = 20
 var BRUIT_RELANCES = 4
 var BRUIT_PAS_RELANCE = 50
 var bruitDernier = {}
-var bruitCategories = {}
 
-function bruitEstHostile(mob) {
-  var id = '' + mob.type
-  if (bruitCategories[id] == null) {
-    var type = Java.loadClass('net.minecraft.world.entity.EntityType').byString(id)
-    // Les infectés de Spore ont leur propre catégorie
-    bruitCategories[id] = id.indexOf('spore:') == 0 || (type.isPresent() && type.get().getCategory().getName() == 'monster') ? 1 : 0
-  }
-  return bruitCategories[id] == 1
-}
-
-// Spore et les joueurs zombifiés de The Hordes
+// Spore, les joueurs zombifiés de The Hordes et les zombies vanilla
+var BRUIT_ZOMBIES = ['minecraft:zombie', 'minecraft:husk', 'minecraft:drowned', 'minecraft:zombie_villager']
 function bruitEstInfecte(mob) {
   var id = '' + mob.type
-  return id.indexOf('spore:') == 0 || id.indexOf('hordes:') == 0
+  return id.indexOf('spore:') == 0 || id.indexOf('hordes:') == 0 || BRUIT_ZOMBIES.indexOf(id) >= 0
 }
 
 function bruitAttirer(level, x, y, z, portee) {

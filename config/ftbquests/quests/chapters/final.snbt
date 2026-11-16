@@ -301,7 +301,7 @@
 			id: "08A6475AF12F1C4E"
 			rewards: [
 				{
-					count: 15
+					count: 30
 					id: "4BFF86BAD18925CE"
 					item: {
 						count: 1
@@ -310,6 +310,7 @@
 					type: "item"
 				}
 				{
+					count: 2
 					id: "2D7B59A5B2B4D6AD"
 					item: {
 						count: 1
@@ -318,6 +319,7 @@
 					type: "item"
 				}
 				{
+					count: 2
 					id: "250D01238F3D707C"
 					item: {
 						count: 1
@@ -326,12 +328,21 @@
 					type: "item"
 				}
 				{
-					count: 16
+					count: 2
 					id: "75E6CF594454215B"
+					item: {
+						count: 1
+						id: "atheria:antifongique"
+					}
+					type: "item"
+				}
+				{
+					count: 20
+					id: "5D7E54D776FFC134"
 					item: {
 						components: {
 							"minecraft:custom_data": {
-								AmmoId: "tacz:9mm"
+								AmmoId: "tacz:556x45"
 							}
 							"minecraft:max_stack_size": 60
 						}

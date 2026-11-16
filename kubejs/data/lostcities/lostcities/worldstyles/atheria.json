@@ -1,0 +1,198 @@
+{
+    "outsidestyle":  "outside",
+    "bridgesupport":  "v",
+    "highwaysupport":  "v",
+    "settings":  {
+                     "railwayavoidance":  "ignore",
+                     "railpartheight6":  1
+                 },
+    "multisettings":  {
+                          "areasize":  10,
+                          "minimum":  6,
+                          "maximum":  16,
+                          "correctstylefactor":  0.5,
+                          "attempts":  200
+                      },
+    "scattered":  {
+                      "areasize":  8,
+                      "chance":  0.7,
+                      "weightnone":  30,
+                      "list":  [
+                                   {
+                                       "name":  "radiotower",
+                                       "weight":  15,
+                                       "maxheightdiff":  3,
+                                       "biomes":  {
+                                                      "excluding":  [
+                                                                        "#minecraft:is_ocean",
+                                                                        "#minecraft:is_river",
+                                                                        "#minecraft:is_beach"
+                                                                    ]
+                                                  }
+                                   },
+                                   {
+                                       "name":  "oilrig",
+                                       "weight":  4,
+                                       "maxheightdiff":  100,
+                                       "biomes":  {
+                                                      "if_any":  [
+                                                                     "#minecraft:is_deep_ocean"
+                                                                 ]
+                                                  }
+                                   },
+                                   {
+                                       "name":  "cabin",
+                                       "weight":  10,
+                                       "maxheightdiff":  2,
+                                       "biomes":  {
+                                                      "excluding":  [
+                                                                        "#minecraft:is_ocean",
+                                                                        "#minecraft:is_river",
+                                                                        "#minecraft:is_beach"
+                                                                    ]
+                                                  }
+                                   },
+                                   {
+                                       "name":  "highway_gas_station",
+                                       "weight":  12,
+                                       "nearhighway":  true,
+                                       "maxheightdiff":  12,
+                                       "biomes":  {
+                                                      "excluding":  [
+                                                                        "#minecraft:is_ocean",
+                                                                        "#minecraft:is_river",
+                                                                        "#minecraft:is_beach"
+                                                                    ]
+                                                  }
+                                   },
+                                   {
+                                       "name":  "highway_restaurant",
+                                       "weight":  9,
+                                       "nearhighway":  true,
+                                       "maxheightdiff":  12,
+                                       "biomes":  {
+                                                      "excluding":  [
+                                                                        "#minecraft:is_ocean",
+                                                                        "#minecraft:is_river",
+                                                                        "#minecraft:is_beach"
+                                                                    ]
+                                                  }
+                                   },
+                                   {
+                                       "name":  "ath_garage",
+                                       "weight":  11,
+                                       "maxheightdiff":  10,
+                                       "biomes":  {
+                                                      "excluding":  [
+                                                                        "#minecraft:is_ocean",
+                                                                        "#minecraft:is_river",
+                                                                        "#minecraft:is_beach"
+                                                                    ]
+                                                  },
+                                       "nearhighway":  true
+                                   },
+                                   {
+                                       "name":  "ath_camp",
+                                       "weight":  6,
+                                       "maxheightdiff":  6,
+                                       "biomes":  {
+                                                      "excluding":  [
+                                                                        "#minecraft:is_ocean",
+                                                                        "#minecraft:is_river",
+                                                                        "#minecraft:is_beach"
+                                                                    ]
+                                                  },
+                                       "nearhighway":  true
+                                   },
+                                   {
+                                       "name":  "ath_poste",
+                                       "weight":  4,
+                                       "maxheightdiff":  10,
+                                       "biomes":  {
+                                                      "excluding":  [
+                                                                        "#minecraft:is_ocean",
+                                                                        "#minecraft:is_river",
+                                                                        "#minecraft:is_beach"
+                                                                    ]
+                                                  },
+                                       "nearhighway":  true
+                                   },
+                                   {
+                                       "name":  "ath_grange",
+                                       "weight":  22,
+                                       "maxheightdiff":  4,
+                                       "biomes":  {
+                                                      "if_any":  [
+                                                                     "atheria:terres_agricoles"
+                                                                 ]
+                                                  }
+                                   }
+                               ]
+                  },
+    "citybiomemultipliers":  [
+                                 {
+                                     "multiplier":  0.0,
+                                     "biomes":  {
+                                                    "excluding":  [
+                                                                      "minecraft:plains",
+                                                                      "biomesoplenty:dryland",
+                                                                      "minecraft:sparse_jungle"
+                                                                  ]
+                                                }
+                                 }
+                             ],
+    "citystyles":  [
+                       {
+                           "citystyle":  "citystyle_ath_haussmann",
+                           "factor":  1,
+                           "biomes":  {
+                                          "if_any":  [
+                                                         "minecraft:plains",
+                                                         "biomesoplenty:dryland"
+                                                     ]
+                                      }
+                       },
+                       {
+                           "citystyle":  "citystyle_ath_beton",
+                           "factor":  1,
+                           "biomes":  {
+                                          "if_any":  [
+                                                         "minecraft:plains",
+                                                         "biomesoplenty:dryland"
+                                                     ]
+                                      }
+                       },
+                       {
+                           "citystyle":  "citystyle_ath_verre",
+                           "factor":  0.6,
+                           "biomes":  {
+                                          "if_any":  [
+                                                         "minecraft:plains",
+                                                         "biomesoplenty:dryland"
+                                                     ]
+                                      }
+                       },
+                       {
+                           "citystyle":  "citystyle_ath_rouille",
+                           "factor":  1,
+                           "biomes":  {
+                                          "if_any":  [
+                                                         "minecraft:sparse_jungle"
+                                                     ]
+                                      }
+                       },
+                       {
+                           "citystyle":  "citystyle_ath_bidonville",
+                           "factor":  1,
+                           "biomes":  {
+                                          "if_any":  [
+                                                         "minecraft:sparse_jungle"
+                                                     ]
+                                      }
+                       },
+                       {
+                           "citystyle":  "citystyle_ath_beton",
+                           "factor":  0.01
+                       }
+                   ]
+}

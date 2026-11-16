@@ -81,7 +81,7 @@
 								}
 							],
 							Label: "b_q_ch5_coffre",
-							Name: "0 - 9 - 104"
+							Name: "0 - 007 - 104"
 						},
 						{
 							Actions: [
@@ -112,7 +112,7 @@
 								}
 							],
 							Label: "b_wrong1",
-							Name: "9 - 1 - 04"
+							Name: "7 - 0 - 104"
 						}
 					],
 					Conditions: [
@@ -172,6 +172,7 @@
 			]
 		},
 		PersistenceRequired: 1b,
+		Tags: ["dialogue.coffre_fort_de_salto"],
 		VariantType: "STEVE",
 		id: "easy_npc:humanoid"
 	}

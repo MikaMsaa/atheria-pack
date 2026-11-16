@@ -17,3 +17,18 @@ NativeEvents.onEvent('net.neoforged.neoforge.event.entity.EntityJoinLevelEvent',
   })
   if (jour < SPORES_JOUR_MIN || proche) event.setCanceled(true)
 })
+
+// Atheria - ni Madness (murmures, hallucinations, voile) ni Uneasy (battements de coeur, sommeil refusé) : la peur est retirée du pack.
+var SPORES_EFFETS_RETIRES = ['spore:madness', 'spore:uneasy']
+
+NativeEvents.onEvent('LOWEST', 'net.neoforged.neoforge.event.entity.living.MobEffectEvent$Applicable', event => {
+  var id = '' + event.getEffectInstance().getEffect().getRegisteredName()
+  if (SPORES_EFFETS_RETIRES.indexOf(id) < 0) return
+  event.setResult(Java.loadClass('net.neoforged.neoforge.event.entity.living.MobEffectEvent$Applicable$Result').DO_NOT_APPLY)
+})
+
+// Les joueurs déjà touchés dans une sauvegarde existante en sont libérés à la connexion
+PlayerEvents.loggedIn(event => {
+  SPORES_EFFETS_RETIRES.forEach(id => event.server.runCommandSilent('effect clear ' + event.player.username + ' ' + id))
+  event.player.persistentData.remove('atheria_peur')
+})

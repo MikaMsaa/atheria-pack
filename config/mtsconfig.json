@@ -238,9 +238,9 @@
       "diesel": {
         "creosote": 0.7,
         "diesel": 1.0,
-        "lava": 1.0,
+        "lava": 0.35,
         "oil": 0.5,
-        "biodiesel": 0.8
+        "biodiesel": 0.8,"seed_oil": 0.5
       },
       "furnace": {
         "lava": 1.0
@@ -253,9 +253,9 @@
         "gasoline": 1.0
       },
       "gasoline": {
-        "lava": 1.0,
+        "lava": 0.35,
         "gasoline": 1.0,
-        "ethanol": 0.85
+        "ethanol": 0.85,"bioethanol": 0.8
       }
     },
     "lastLoadedFluids": {

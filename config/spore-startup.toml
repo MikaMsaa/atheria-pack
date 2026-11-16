@@ -68,9 +68,9 @@
 ["Mob Roles, decides some of the interactions between the infected mobs"]
 	"Basic Infecteds" = ["spore:inf_human", "spore:inf_villager", "spore:inf_wanderer", "spore:inf_witch", "spore:inf_pillager", "spore:inf_player"]
 	"Evolved Infecteds" = ["spore:braiomil", "spore:knight", "spore:griefer", "spore:busser", "spore:spitter", "spore:leaper", "spore:slasher", "spore:howler", "spore:stalker", "spore:brute", "spore:inf_evoker", "spore:inf_vindicator"]
-	Support = ["spore:inf_witch", "spore:braiomil", "spore:howler", "spore:busser"]
+	Support = ["spore:inf_witch", "spore:howler", "spore:busser"]
 	Disposable = ["spore:inf_human", "spore:inf_villager", "spore:inf_wanderer", "spore:knight", "spore:griefer", "spore:slasher", "spore:volatile", "spore:inf_vindicator", "minecraft:creeper"]
-	Ranged = ["spore:spitter", "spore:inf_pillager", "spore:braiomil", "spore:inf_evoker"]
+	Ranged = ["spore:spitter", "spore:inf_pillager", "spore:inf_evoker"]
 
 	["Mob Evolutions and Infection System".Evolutions]
 		"Infected Human Evolutions" = ["spore:knight", "spore:griefer", "spore:braiomil", "spore:busser"]
@@ -745,7 +745,7 @@
 		#Default true
 		"Should the hivemind build a wall of flesh around itself?" = true
 		#Default true
-		"Should the hivemind spread madness?" = true
+		"Should the hivemind spread madness?" = false
 		#Default 3.0
 		# Default: 3.0
 		# Range: 0.1 ~ 1.7976931348623157E308
@@ -775,7 +775,7 @@
 		# Range: > 1
 		"Time before it grows back into a hivemind" = 1200
 		#Default true
-		"Should the Hivetumor spread madness?" = true
+		"Should the Hivetumor spread madness?" = false
 		"Sentient Mobs targeted by the Hivetumor" = ["minecraft:villager", "minecraft:pillager", "guardvillagers:guard", "minecraft:evoker", "minecraft:vindicator", "recruits:recruit", "recruits:bowman", "recruits:recruit_shieldman", "recruits:nomad", "recruits:horseman", "roamers:roamer"]
 		"Mobs that the Hivetumor can summon to defend itself" = ["spore:mound", "spore:umarmed", "spore:usurper", "spore:braurei"]
 

@@ -1,0 +1,246 @@
+{
+    "style":  "ath_bidonville",
+    "inherit":  "citystyle_common",
+    "buildingsettings":  {
+                             "buildingchance":  0,
+                             "minfloors":  1,
+                             "maxfloors":  2,
+                             "maxcellars":  0
+                         },
+    "streetblocks":  {
+                         "border":  "y",
+                         "wall":  "w",
+                         "street":  "S",
+                         "streetbase":  "b",
+                         "streetvariant":  "B"
+                     },
+    "parkblocks":  {
+                       "elevation":  "x"
+                   },
+    "corridorblocks":  {
+                           "roof":  "x",
+                           "glass":  "+"
+                       },
+    "railblocks":  {
+                       "railmain":  "y"
+                   },
+    "sphereblocks":  {
+                         "glass":  "Z",
+                         "border":  "9",
+                         "inner":  "b"
+                     },
+    "selectors":  {
+                      "buildings":  [
+                                        {
+                                            "factor":  2,
+                                            "value":  "ath_maison"
+                                        },
+                                        {
+                                            "factor":  0.5,
+                                            "value":  "ath_marche"
+                                        }
+                                    ],
+                      "multibuildings":  [
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_marche"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_cabanes"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_atelier"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_conteneurs"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_cantine"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_ruelle"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_chateau"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_ecole"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_bangas"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_foyer_jeunes"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_lavoir"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_motos"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_doukas"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_terrasses"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_jardins"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_dortoir"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_kiosques"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_foot"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_radio"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_boulangerie"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_ravine"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_parpaings"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_camp"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_barricade"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_place"
+                                             }
+                                         ],
+                      "bridges":  [
+                                      {
+                                          "factor":  1.0,
+                                          "value":  "bridge_open"
+                                      },
+                                      {
+                                          "factor":  1.0,
+                                          "value":  "bridge_covered"
+                                      }
+                                  ],
+                      "fronts":  [
+                                     {
+                                         "factor":  1.0,
+                                         "value":  "building_front1"
+                                     },
+                                     {
+                                         "factor":  1.0,
+                                         "value":  "building_front2"
+                                     },
+                                     {
+                                         "factor":  1.0,
+                                         "value":  "building_front3"
+                                     }
+                                 ],
+                      "stairs":  [
+                                     {
+                                         "factor":  1.0,
+                                         "value":  "stairs1"
+                                     },
+                                     {
+                                         "factor":  1.0,
+                                         "value":  "stairs2"
+                                     },
+                                     {
+                                         "factor":  1.0,
+                                         "value":  "stairsnormal"
+                                     },
+                                     {
+                                         "factor":  1.0,
+                                         "value":  "stairsbig"
+                                     }
+                                 ],
+                      "fountains":  [
+                                        {
+                                            "factor":  1.0,
+                                            "value":  "fountain1"
+                                        },
+                                        {
+                                            "factor":  1.0,
+                                            "value":  "fountain2"
+                                        },
+                                        {
+                                            "factor":  1.0,
+                                            "value":  "fountain3"
+                                        }
+                                    ],
+                      "parks":  [
+                                    {
+                                        "factor":  1.0,
+                                        "value":  "park_pool"
+                                    },
+                                    {
+                                        "factor":  1.0,
+                                        "value":  "park_plants"
+                                    },
+                                    {
+                                        "factor":  1.0,
+                                        "value":  "park_trees"
+                                    },
+                                    {
+                                        "factor":  1.0,
+                                        "value":  "park_plants_pillars"
+                                    },
+                                    {
+                                        "factor":  0.8,
+                                        "value":  "park_fountain1"
+                                    },
+                                    {
+                                        "factor":  0.8,
+                                        "value":  "park_fountain2"
+                                    },
+                                    {
+                                        "factor":  0.3,
+                                        "value":  "park_building"
+                                    },
+                                    {
+                                        "factor":  0.3,
+                                        "value":  "park_building2"
+                                    }
+                                ],
+                      "raildungeons":  [
+                                           {
+                                               "factor":  1.0,
+                                               "value":  "rail_dungeon1"
+                                           },
+                                           {
+                                               "factor":  1.0,
+                                               "value":  "rail_dungeon2"
+                                           }
+                                       ]
+                  }
+}

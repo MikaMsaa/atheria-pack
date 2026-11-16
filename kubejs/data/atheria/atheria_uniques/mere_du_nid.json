@@ -1,0 +1,10 @@
+{
+  "_aide": "La Mère du Nid (grand Nid de Bancoul, Ch4). À placer au plafond du Nid : /bestiaire unique mere_du_nid. Elle ne bouge pas et fait naître des Gonflés quand un joueur approche.",
+  "nom": "La Mère du Nid",
+  "entite": "spore:reconstructor",
+  "couleur": "red",
+  "attributs": { "minecraft:generic.max_health": 400, "minecraft:generic.armor": 10 },
+  "immobile": true,
+  "sans_gravite": true,
+  "naissances": { "entites": ["spore:volatile", "spore:busser", "spore:bloater"], "toutes_les": 20, "max": 6, "distance_joueur": 28 }
+}

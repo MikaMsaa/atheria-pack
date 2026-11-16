@@ -1,0 +1,13 @@
+{
+  "_aide": "Les Gonflés : sous-sols et bâtiments fermés (à l'intérieur des villes), bunkers et mines.",
+  "nom": "Les Gonflés",
+  "ou": [
+    { "ville": true, "couvert": true },
+    { "structures": ["#atheria:bunkers", "#atheria:mines"] }
+  ],
+  "apparitions": [
+    { "entite": "spore:volatile", "poids": 12, "min": 1, "max": 1 },
+    { "entite": "spore:busser", "poids": 8, "min": 1, "max": 1 },
+    { "entite": "spore:bloater", "poids": 5, "min": 1, "max": 1 }
+  ]
+}

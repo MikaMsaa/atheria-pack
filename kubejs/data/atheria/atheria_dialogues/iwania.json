@@ -1,0 +1,64 @@
+{
+ "pnj": {
+  "nom": "Iwania"
+ },
+ "debut": "debut",
+ "noeuds": {
+  "q_ch2_iwania": {
+   "lignes": [
+    {
+     "texte": "C'est mon mari. Il est parti chercher des médicaments il y a onze ans. Tu l'as vu ?"
+    },
+    {
+     "texte": "(Elle voit la réponse sur ton visage avant que tu parles.) D'accord. Merci de l'avoir rapportée."
+    }
+   ],
+   "choix": [
+    {
+     "texte": "Lui rendre la photo",
+     "actions": [
+      {
+       "commande": "execute as {joueur} if items entity @s container.* atheria:photo_famille run tag @s add q_ch2_iwania"
+      },
+      {
+       "commande": "clear {joueur} atheria:photo_famille 1"
+      },
+      {
+       "commande": "playsound minecraft:entity.experience_orb.pickup master {joueur} ~ ~ ~ 0.6 1.2"
+      }
+     ],
+     "fin": true
+    }
+   ]
+  },
+  "q_ch2_iwania_fait": {
+   "texte": "Tu as ce qu'il te faut. Avance."
+  },
+  "repos": {
+   "texte": "(Elle regarde la route, comme tous les soirs.)"
+  },
+  "debut": {
+   "aiguillage": [
+    {
+     "si": {
+      "tag": [
+       "q_ch2_iwania"
+      ]
+     },
+     "aller": "q_ch2_iwania_fait"
+    },
+    {
+     "si": {
+      "tag": [
+       "q_ch2_zaid"
+      ]
+     },
+     "aller": "q_ch2_iwania"
+    },
+    {
+     "aller": "repos"
+    }
+   ]
+  }
+ }
+}
