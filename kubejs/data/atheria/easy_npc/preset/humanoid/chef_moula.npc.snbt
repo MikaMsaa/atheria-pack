@@ -49,6 +49,10 @@
 		PersistenceRequired: 1b,
 		Tags: ["dialogue.chef_moula"],
 		VariantType: "STEVE",
-		id: "easy_npc:humanoid"
+		id: "easy_npc:humanoid",
+		SkinData: {
+			Texture: "atheria:textures/entity/pnj/chef_moula.png",
+			Type: "RESOURCE_LOCATION"
+		}
 	}
 }

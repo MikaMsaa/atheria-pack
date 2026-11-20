@@ -102,6 +102,10 @@
 		PersistenceRequired: 1b,
 		Tags: ["dialogue.kamel_morsure"],
 		VariantType: "STEVE",
-		id: "easy_npc:humanoid"
+		id: "easy_npc:humanoid",
+		SkinData: {
+			Texture: "atheria:textures/entity/pnj/kamel.png",
+			Type: "RESOURCE_LOCATION"
+		}
 	}
 }

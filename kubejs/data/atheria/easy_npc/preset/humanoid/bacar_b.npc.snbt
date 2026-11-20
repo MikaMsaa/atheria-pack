@@ -102,6 +102,10 @@
 		PersistenceRequired: 1b,
 		Tags: ["dialogue.bacar_b"],
 		VariantType: "STEVE",
-		id: "easy_npc:humanoid"
+		id: "easy_npc:humanoid",
+		SkinData: {
+			Texture: "atheria:textures/entity/pnj/bacar_b.png",
+			Type: "RESOURCE_LOCATION"
+		}
 	}
 }

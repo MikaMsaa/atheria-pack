@@ -49,6 +49,10 @@
 		PersistenceRequired: 1b,
 		Tags: ["dialogue.routouba"],
 		VariantType: "STEVE",
-		id: "easy_npc:humanoid"
+		id: "easy_npc:humanoid",
+		SkinData: {
+			Texture: "atheria:textures/entity/pnj/routouba.png",
+			Type: "RESOURCE_LOCATION"
+		}
 	}
 }

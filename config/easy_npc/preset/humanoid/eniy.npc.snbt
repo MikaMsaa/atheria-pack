@@ -167,6 +167,10 @@
 		PersistenceRequired: 1b,
 		Tags: ["dialogue.eniy"],
 		VariantType: "STEVE",
-		id: "easy_npc:humanoid"
+		id: "easy_npc:humanoid",
+		SkinData: {
+			Texture: "atheria:textures/entity/pnj/eniy.png",
+			Type: "RESOURCE_LOCATION"
+		}
 	}
 }

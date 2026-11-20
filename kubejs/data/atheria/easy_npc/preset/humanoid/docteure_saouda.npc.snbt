@@ -107,6 +107,10 @@
 		PersistenceRequired: 1b,
 		Tags: ["dialogue.docteure_saouda"],
 		VariantType: "STEVE",
-		id: "easy_npc:humanoid"
+		id: "easy_npc:humanoid",
+		SkinData: {
+			Texture: "atheria:textures/entity/pnj/docteure_saouda.png",
+			Type: "RESOURCE_LOCATION"
+		}
 	}
 }

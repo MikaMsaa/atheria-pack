@@ -107,6 +107,10 @@
 		PersistenceRequired: 1b,
 		Tags: ["dialogue.brigadier_rayek"],
 		VariantType: "STEVE",
-		id: "easy_npc:humanoid"
+		id: "easy_npc:humanoid",
+		SkinData: {
+			Texture: "atheria:textures/entity/pnj/brigadier_rayek.png",
+			Type: "RESOURCE_LOCATION"
+		}
 	}
 }
