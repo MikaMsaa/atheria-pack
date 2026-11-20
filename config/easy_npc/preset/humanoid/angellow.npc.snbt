@@ -122,6 +122,10 @@
 		PersistenceRequired: 1b,
 		Tags: ["dialogue.angellow"],
 		VariantType: "STEVE",
-		id: "easy_npc:humanoid"
+		id: "easy_npc:humanoid",
+		SkinData: {
+			Texture: "atheria:textures/entity/pnj/angellow.png",
+			Type: "RESOURCE_LOCATION"
+		}
 	}
 }

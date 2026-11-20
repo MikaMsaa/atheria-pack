@@ -49,6 +49,10 @@
 		PersistenceRequired: 1b,
 		Tags: ["dialogue.k2"],
 		VariantType: "STEVE",
-		id: "easy_npc:humanoid"
+		id: "easy_npc:humanoid",
+		SkinData: {
+			Texture: "atheria:textures/entity/pnj/k2.png",
+			Type: "RESOURCE_LOCATION"
+		}
 	}
 }

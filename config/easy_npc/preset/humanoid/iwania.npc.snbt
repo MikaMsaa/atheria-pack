@@ -113,6 +113,10 @@
 		PersistenceRequired: 1b,
 		Tags: ["dialogue.iwania"],
 		VariantType: "STEVE",
-		id: "easy_npc:humanoid"
+		id: "easy_npc:humanoid",
+		SkinData: {
+			Texture: "atheria:textures/entity/pnj/iwania.png",
+			Type: "RESOURCE_LOCATION"
+		}
 	}
 }
