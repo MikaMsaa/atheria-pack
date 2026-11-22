@@ -603,7 +603,7 @@
 [autospawn]
 	#Spawn the world's first Nexus automatically, shortly after the world
 	#is first loaded.
-	enabled = true
+	enabled = false
 	#Ticks after a world is first loaded before the automatic Nexus
 	#appears. The default is five minutes, so a new world is not an
 	#outbreak before anyone has found a tree.
