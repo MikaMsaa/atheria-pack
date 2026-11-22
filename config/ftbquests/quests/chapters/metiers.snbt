@@ -1,0 +1,593 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "square"
+	filename: "metiers"
+	group: "6044CFD50CE210E2"
+	icon: {
+		id: "create:cogwheel"
+	}
+	id: "521B55ADA989D8E5"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			icon: {
+				id: "minecraft:crafting_table"
+			}
+			id: "1DDFC65E144B2080"
+			rewards: [
+				{
+					count: 3
+					id: "3E44BC05FA216D55"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+			]
+			shape: "square"
+			size: 1.5d
+			tasks: [
+				{
+					id: "6AC8578D8BA84BC0"
+					type: "checkmark"
+				}
+			]
+			x: 4.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["1DDFC65E144B2080"]
+			icon: {
+				id: "create:cogwheel"
+			}
+			id: "13D38B6347E37C09"
+			rewards: [
+				{
+					count: 8
+					id: "67FDB4FCD0A8AEF4"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 4
+					id: "62689DB909A7EEE7"
+					item: {
+						count: 1
+						id: "create:cogwheel"
+					}
+					type: "item"
+				}
+				{
+					count: 8
+					id: "23988BE390DD5D0F"
+					item: {
+						count: 1
+						id: "create:shaft"
+					}
+					type: "item"
+				}
+				{
+					command: "/puffish_skills experience add {p} puffish_skills:survivant 30"
+					feedback_message: "+30 expérience Survivant"
+					id: "185FD75B6A28A832"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
+			shape: "square"
+			size: 1.25d
+			tasks: [
+				{
+					count: 16L
+					id: "332C97770F4571A3"
+					item: { count: 1, id: "create:andesite_alloy" }
+					type: "item"
+				}
+			]
+			x: 0.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["13D38B6347E37C09"]
+			id: "49F1C7E23916E1DF"
+			rewards: [
+				{
+					count: 10
+					id: "78B99E7A45C42B8A"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					id: "766487EFC104EC5F"
+					item: {
+						count: 1
+						id: "create:hand_crank"
+					}
+					type: "item"
+				}
+				{
+					command: "/puffish_skills experience add {p} puffish_skills:survivant 40"
+					feedback_message: "+40 expérience Survivant"
+					id: "637E5E8962FB442B"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
+			shape: "square"
+			size: 1.25d
+			tasks: [
+				{
+					id: "5E5BD2A4C8973701"
+					item: { count: 1, id: "create:millstone" }
+					type: "item"
+				}
+			]
+			x: 0.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["49F1C7E23916E1DF"]
+			id: "1E527FF9160EF7A4"
+			rewards: [
+				{
+					count: 14
+					id: "75F02487C29D40EF"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					id: "796EDF303A61282C"
+					item: {
+						count: 1
+						id: "create:wrench"
+					}
+					type: "item"
+				}
+				{
+					command: "/puffish_skills experience add {p} puffish_skills:survivant 60"
+					feedback_message: "+60 expérience Survivant"
+					id: "3B5F45AED4432B32"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
+			shape: "square"
+			size: 1.5d
+			tasks: [
+				{
+					id: "568F32187CE10609"
+					item: { count: 1, id: "create:mechanical_press" }
+					type: "item"
+				}
+				{
+					id: "34B3179EE1E29208"
+					item: { count: 1, id: "create:basin" }
+					type: "item"
+				}
+			]
+			x: 0.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["1DDFC65E144B2080"]
+			icon: {
+				id: "create:track"
+			}
+			id: "3E57821B6396E022"
+			rewards: [
+				{
+					count: 8
+					id: "3657270BBF79107E"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 8
+					id: "480321DB19A81B3E"
+					item: {
+						count: 1
+						id: "create:andesite_alloy"
+					}
+					type: "item"
+				}
+				{
+					command: "/puffish_skills experience add {p} puffish_skills:survivant 30"
+					feedback_message: "+30 expérience Survivant"
+					id: "512943D6CA4835BA"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
+			shape: "square"
+			size: 1.25d
+			tasks: [
+				{
+					count: 32L
+					id: "49550790736619B4"
+					item: { count: 1, id: "create:track" }
+					type: "item"
+				}
+			]
+			x: 3.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["3E57821B6396E022"]
+			id: "76428C7A968A89B8"
+			rewards: [
+				{
+					count: 12
+					id: "508B14F1B7C31E48"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 16
+					id: "66997C899F592C2F"
+					item: {
+						count: 1
+						id: "create:track"
+					}
+					type: "item"
+				}
+				{
+					command: "/puffish_skills experience add {p} puffish_skills:survivant 50"
+					feedback_message: "+50 expérience Survivant"
+					id: "44F22B7D8179461C"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
+			shape: "square"
+			size: 1.25d
+			tasks: [
+				{
+					id: "7C02BFC2B559A04D"
+					item: { count: 1, id: "create:track_station" }
+					type: "item"
+				}
+			]
+			x: 3.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["76428C7A968A89B8"]
+			id: "2A4ABF0BC32D81C6"
+			rewards: [
+				{
+					count: 16
+					id: "5F89D41E1C2AC505"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					id: "6D2C8774568B7152"
+					item: {
+						count: 1
+						id: "atheria:bidon_essence"
+					}
+					type: "item"
+				}
+				{
+					command: "/puffish_skills experience add {p} puffish_skills:survivant 70"
+					feedback_message: "+70 expérience Survivant"
+					id: "396A149CB6340E6B"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
+			shape: "square"
+			size: 1.5d
+			tasks: [
+				{
+					id: "3BCE1484B0AE69BB"
+					item: { count: 1, id: "create:controls" }
+					type: "item"
+				}
+			]
+			x: 3.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["1DDFC65E144B2080"]
+			icon: {
+				id: "simply_traps:spike_trap"
+			}
+			id: "3AD8132F0E2367C3"
+			rewards: [
+				{
+					count: 8
+					id: "17A5EA55937E5E4E"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 16
+					id: "26EFEB7497ECF2B1"
+					item: {
+						count: 1
+						id: "minecraft:iron_nugget"
+					}
+					type: "item"
+				}
+				{
+					command: "/puffish_skills experience add {p} puffish_skills:survivant 30"
+					feedback_message: "+30 expérience Survivant"
+					id: "39C5FA8FAA0C83B2"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
+			shape: "square"
+			size: 1.25d
+			tasks: [
+				{
+					count: 4L
+					id: "41B68EFFA458845E"
+					item: { count: 1, id: "simply_traps:stake_wall" }
+					type: "item"
+				}
+			]
+			x: 6.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["3AD8132F0E2367C3"]
+			id: "6CBA2B799E3B3748"
+			rewards: [
+				{
+					count: 10
+					id: "1DD10BB4B7569BEA"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "1FA056741D0B328D"
+					item: {
+						count: 1
+						id: "simply_traps:spike_trap"
+					}
+					type: "item"
+				}
+				{
+					command: "/puffish_skills experience add {p} puffish_skills:survivant 40"
+					feedback_message: "+40 expérience Survivant"
+					id: "3FB8C1B21C718B6E"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
+			shape: "square"
+			size: 1.25d
+			tasks: [
+				{
+					count: 4L
+					id: "3416A51E317821CF"
+					item: { count: 1, id: "simply_traps:circular_barbed_wire_iron" }
+					type: "item"
+				}
+			]
+			x: 6.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["6CBA2B799E3B3748"]
+			id: "6D49C9D8A6202E8E"
+			rewards: [
+				{
+					count: 14
+					id: "7A0F30D597019206"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 4
+					id: "72F875A64323591E"
+					item: {
+						count: 1
+						id: "minecraft:gunpowder"
+					}
+					type: "item"
+				}
+				{
+					command: "/puffish_skills experience add {p} puffish_skills:survivant 60"
+					feedback_message: "+60 expérience Survivant"
+					id: "4A6A45B5246E15DE"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
+			shape: "square"
+			size: 1.5d
+			tasks: [
+				{
+					id: "67D15A24C47C1814"
+					item: { count: 1, id: "trapperpelts:beartrapitem" }
+					type: "item"
+				}
+				{
+					id: "74F64C1DCA59B626"
+					item: { count: 1, id: "landmines:explosive_landmine" }
+					type: "item"
+				}
+			]
+			x: 6.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["1DDFC65E144B2080"]
+			icon: {
+				id: "sophisticatedbackpacks:upgrade_base"
+			}
+			id: "46933030B63798FA"
+			rewards: [
+				{
+					count: 8
+					id: "224BE6BA21AF3880"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 4
+					id: "641A0E1A4DDB765E"
+					item: {
+						count: 1
+						id: "minecraft:leather"
+					}
+					type: "item"
+				}
+				{
+					command: "/puffish_skills experience add {p} puffish_skills:survivant 30"
+					feedback_message: "+30 expérience Survivant"
+					id: "7FB0EC3FF8C415A3"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
+			shape: "square"
+			size: 1.25d
+			tasks: [
+				{
+					id: "2D6564790BCE75D5"
+					item: { count: 1, id: "sophisticatedbackpacks:upgrade_base" }
+					type: "item"
+				}
+			]
+			x: 9.0d
+			y: 0.5d
+		}
+		{
+			dependencies: ["46933030B63798FA"]
+			id: "7856881E0461FF9D"
+			rewards: [
+				{
+					count: 12
+					id: "1FB8235F3EE14854"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 2
+					id: "5022E5F47080A4CF"
+					item: {
+						count: 1
+						id: "atheria:ration"
+					}
+					type: "item"
+				}
+				{
+					command: "/puffish_skills experience add {p} puffish_skills:survivant 50"
+					feedback_message: "+50 expérience Survivant"
+					id: "2F8D67F4F6F13E22"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
+			shape: "square"
+			size: 1.25d
+			tasks: [
+				{
+					id: "3594C05F98A8A6E0"
+					item: { count: 1, id: "sophisticatedbackpacks:magnet_upgrade" }
+					type: "item"
+				}
+			]
+			x: 9.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["7856881E0461FF9D"]
+			id: "547E7E073EA5FDCB"
+			rewards: [
+				{
+					count: 14
+					id: "75EDB2047C6A0E2A"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					id: "3DC26D9BA35070DC"
+					item: {
+						count: 1
+						id: "sophisticatedbackpacks:feeding_upgrade"
+					}
+					type: "item"
+				}
+				{
+					command: "/puffish_skills experience add {p} puffish_skills:survivant 60"
+					feedback_message: "+60 expérience Survivant"
+					id: "592F3F2344D0A426"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
+			shape: "square"
+			size: 1.5d
+			tasks: [
+				{
+					id: "4D19812C8A58ED51"
+					item: { count: 1, id: "sophisticatedstorage:barrel" }
+					type: "item"
+				}
+				{
+					id: "243FB7EC49F11D8D"
+					item: { count: 1, id: "sophisticatedstorage:basic_to_iron_tier_upgrade" }
+					type: "item"
+				}
+			]
+			x: 9.0d
+			y: 3.5d
+		}
+	]
+}
