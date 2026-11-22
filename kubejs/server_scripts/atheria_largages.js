@@ -79,7 +79,7 @@ ServerEvents.tick(event => {
   if (fin && Date.now() > fin) atheriaLargageRetire(server)
 
   var h = atheriaLargageHeure()
-  if (LARGAGE_JOURS.indexOf(h.jour) < 0) return
+  if (LARGAGE_JOURS.indexOf(h.jour) < 0 && !(h.jour == 0 && atheriaSemaine() == 'cargaison')) return   // dimanche en plus : atheria_semaine.js
   var debut = LARGAGE_HEURE * 60
   // annonce 15 min avant
   if (h.minutes >= debut - 15 && h.minutes < debut && data.getString('atheria_largage_annonce') != h.cle) {

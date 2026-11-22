@@ -148,7 +148,7 @@ ServerEvents.tick(event => {
   })
   if (server.tickCount % 1200 != 307) return
   server.players.forEach(p => {
-    if (atheriaCoupeursPeutArreter(p) && Math.random() < COUPEURS.chanceParMinute) atheriaCoupeursArreter(p)
+    if (atheriaCoupeursPeutArreter(p) && Math.random() < COUPEURS.chanceParMinute * (atheriaSemaine() == 'coupeurs' ? 2 : 1)) atheriaCoupeursArreter(p)
   })
 })
 
@@ -158,7 +158,7 @@ EntityEvents.death('easy_npc:humanoid', event => {
   if (!e.tags.contains('atheria_coupeur')) return
   var lvl = e.level, x = e.x, y = e.y + 0.5, z = e.z
   function lacher(id, n, extra) { e.server.runCommandSilent('execute in ' + lvl.dimension + ' run summon item ' + x + ' ' + y + ' ' + z + ' {Item:{id:"' + id + '",count:' + n + (extra || '') + '}}') }
-  lacher('atheria:bon_caf', 1 + Math.floor(Math.random() * 3))
+  lacher('atheria:bon_caf', (1 + Math.floor(Math.random() * 3)) * (atheriaSemaine() == 'coupeurs' ? 2 : 1))
   if (Math.random() < 0.4) lacher('tacz:ammo', 6 + Math.floor(Math.random() * 7), ',components:{"minecraft:custom_data":{AmmoId:"tacz:9mm"}}')
   if (Math.random() < 0.25) lacher('firstaid:bandage', 1 + Math.floor(Math.random() * 2))
   if (Math.random() < 0.1) lacher('atheria:bidon_essence', 1)

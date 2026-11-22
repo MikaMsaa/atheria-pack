@@ -72,7 +72,7 @@ ServerEvents.tick(event => {
     var horde = sb.getOrCreatePlayerScore(SH.forNameOnly('#horde'), o).get()
     if (lune > 0 || horde > 0) return
   }
-  if (Math.random() < TEMPETE.chanceParMinute) atheriaTempeteDebut(server)
+  if (Math.random() < TEMPETE.chanceParMinute * (atheriaSemaine() == 'cendres' ? 2 : 1)) atheriaTempeteDebut(server)
 })
 
 // un redémarrage du serveur pendant une tempête la termine proprement au prochain tick

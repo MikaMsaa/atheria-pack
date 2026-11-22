@@ -115,7 +115,7 @@ function atheriaEniyVendre(p) {
     if (lots <= 0) return
     var retire = atheriaRetirer(p, r[0], lots * r[3])
     lots = Math.floor(retire / r[3])
-    var gain = lots * r[2] * (r[0] == recherche ? 2 : 1)
+    var gain = Math.round(lots * r[2] * (r[0] == recherche ? 2 : 1) * (atheriaSemaine() == 'marche' ? 1.5 : 1))
     total += gain
     lignes.push(lots * r[3] + ' ' + r[1] + ' : ' + gain + ' bons')
   })

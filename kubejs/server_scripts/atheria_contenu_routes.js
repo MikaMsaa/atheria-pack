@@ -39,6 +39,9 @@ function routeVehiculeProche(joueur, rayon) {
 }
 
 function routeXp(joueur, n) {
+  // « Second souffle » (atheria_rattrapage.js) : un peu plus pour les joueurs qui jouent peu, jamais au-delà d'un assidu
+  if (typeof atheriaRattrapageXp === 'function') n = atheriaRattrapageXp(joueur, n)
+  if (typeof atheriaHonneur === 'function') atheriaHonneur(joueur, 'experience', n)
   joueur.server.runCommandSilent('puffish_skills experience add ' + joueur.username + ' puffish_skills:survivant ' + n)
 }
 

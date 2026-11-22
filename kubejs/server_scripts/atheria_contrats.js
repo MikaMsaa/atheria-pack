@@ -111,8 +111,9 @@ function atheriaContratsAvancer(p, type, test, combien) {
     c.fait = Math.min(d[4], c.fait + combien)
     change = true
     if (c.fait >= d[4]) {
-      var gain = CONTRATS.recompense[etat.stade] + (p.tags.contains('skill_debrouille_2') ? 2 : 0)
+      var gain = Math.round(CONTRATS.recompense[etat.stade] * (atheriaSemaine() == 'radio' ? 1.5 : 1)) + (p.tags.contains('skill_debrouille_2') ? 2 : 0)
       routeXp(p, CONTRATS.xpCompetence)
+      atheriaHonneur(p, 'contrats', 1)
       p.server.runCommandSilent('give ' + p.username + ' atheria:bon_caf ' + gain)
       p.tell(Text.gold('[Radio] ').append(Text.yellow('Contrat rempli : ' + d[2] + '. ' + gain + ' bons CAF.')))
       p.server.runCommandSilent('playsound minecraft:entity.experience_orb.pickup master ' + p.username + ' ~ ~ ~ 0.7 1.1')
