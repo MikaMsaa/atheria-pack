@@ -65,6 +65,7 @@ PlayerEvents.inventoryChanged(event => {
     var o = CARNET_OBJETS[i]
     if (!o[0].test(id)) continue
     if (atheriaCarnetNoter(p, 'atheria_carnet_objets', o[1])) {
+      routeXp(p, 10)
       p.tell(Text.gold('[Carnet] ').append(Text.yellow(o[1] + ' : ')).append(Text.gray(o[2])))
       p.server.runCommandSilent('playsound minecraft:item.book.page_turn player ' + p.username + ' ~ ~ ~ 0.8 1')
     }
@@ -81,6 +82,7 @@ EntityEvents.death(event => {
     var f = CARNET_FAMILLES[i]
     if (f[1].indexOf(id) < 0) continue
     if (atheriaCarnetNoter(p, 'atheria_carnet_familles', f[0])) {
+      routeXp(p, 20)
       var n = atheriaCarnetListe(p, 'atheria_carnet_familles').length
       p.tell(Text.gold('[Carnet] ').append(Text.yellow(f[0] + ' (' + n + '/' + CARNET_FAMILLES.length + ') : ')).append(Text.gray(f[2])))
       p.server.runCommandSilent('playsound minecraft:item.book.page_turn player ' + p.username + ' ~ ~ ~ 0.8 1')

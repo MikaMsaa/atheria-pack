@@ -64,9 +64,10 @@ function atheriaEniyRecherche() {
   return ENIY_RACHAT[Math.floor(atheriaEniyHash('rachat' + w) * ENIY_RACHAT.length)][0]
 }
 
-function atheriaEniyPrix(a) {
+function atheriaEniyPrix(a, p) {
   var f = 0.75 + atheriaEniyHash(a[0] + atheriaEniySemaine()) * 0.5
   if (a[0] == atheriaEniyPromo()) f *= 0.6
+  if (p && p.tags.contains('skill_debrouille_1')) f *= 0.9   // compétence « Marchandage »
   return Math.max(1, Math.round(a[4] * f))
 }
 
@@ -82,7 +83,7 @@ function atheriaEniyTarifs(p, rayon) {
   p.tell(Text.gold('— Eniy, ' + (rayon ? ENIY_RAYONS[rayon] : 'tarifs de la semaine') + ' —'))
   ENIY_ARTICLES.forEach(a => {
     if (rayon && a[6] != rayon) return
-    var ligne = a[1] + ' : ' + atheriaEniyPrix(a) + ' bons'
+    var ligne = a[1] + ' : ' + atheriaEniyPrix(a, p) + ' bons'
     if (a[0] == promo) p.tell(Text.green(ligne + '  (promo de la semaine)'))
     else if (a[5] > stade) p.tell(Text.darkGray(ligne + '  (« Reviens quand tu seras plus solide. »)'))
     else p.tell(Text.gray(ligne))
@@ -98,7 +99,7 @@ function atheriaEniyAcheter(p, cle) {
   var a = ENIY_ARTICLES.filter(x => x[0] == cle)[0]
   if (!a) return 0
   if (a[5] > atheriaEniyStade(p)) { p.tell(Text.gray('Eniy : « Ça, c\'est pour les clients qui ont survécu un peu plus longtemps. Reviens plus tard. »')); return 0 }
-  var prix = atheriaEniyPrix(a)
+  var prix = atheriaEniyPrix(a, p)
   var dispo = atheriaCompter(p, 'atheria:bon_caf')
   if (dispo < prix) { p.tell(Text.red(a[1] + ' : ' + prix + ' bons. Il t\'en manque ' + (prix - dispo) + '. Eniy ne fait pas crédit.')); return 0 }
   if (atheriaRetirer(p, 'atheria:bon_caf', prix) !== prix) { p.tell(Text.red('Paiement refusé.')); return 0 }

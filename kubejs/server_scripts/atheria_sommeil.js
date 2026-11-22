@@ -40,9 +40,10 @@ ServerEvents.tick(event => {
     d.putInt('atheria_sommeil_sec', 0)
     if (duree < SOMMEIL.reposMinSec) return
     var dernier = d.getLong('atheria_repos_dernier')
-    if (dernier && Date.now() - dernier < SOMMEIL.reposDelaiMin * 60 * 1000) return
+    var leger = p.tags.contains('skill_debrouille_3')   // compétence « Sommeil léger »
+    if (dernier && Date.now() - dernier < SOMMEIL.reposDelaiMin * (leger ? 0.5 : 1) * 60 * 1000) return
     d.putLong('atheria_repos_dernier', Date.now())
-    p.potionEffects.add('minecraft:regeneration', SOMMEIL.reposEffetSec * 20, 0, false, true)
-    p.setStatusMessage(Text.green('Reposé : tu récupères mieux pendant 2 minutes.'))
+    p.potionEffects.add('minecraft:regeneration', SOMMEIL.reposEffetSec * (leger ? 1.5 : 1) * 20, 0, false, true)
+    p.setStatusMessage(Text.green('Reposé : tu récupères mieux pendant ' + (leger ? '3' : '2') + ' minutes.'))
   })
 })

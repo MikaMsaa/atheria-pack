@@ -25,4 +25,9 @@ LootJS.modifiers(event => {
       .randomChance(p[1])
       .addLoot(LootEntry.reference(p[2]))
   })
+  // compétence « Fouilleur » (arbre Survivant) : un objet de survie de plus de temps en temps
+  event.addTableModifier(LootType.CHEST)
+    .matchPlayerCustom(joueur => joueur.tags.contains('skill_eclaireur_2'))
+    .randomChance(0.2)
+    .addLoot(LootEntry.reference('atheria:inject/fournitures'))
 })

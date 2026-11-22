@@ -7,7 +7,8 @@ var CONTRATS = {
   parJour: 3,
   recompense: [0, 6, 8, 10, 12, 14],   // bons CAF par contrat, selon le stade
   bonus: 10,                            // les 3 contrats du jour
-  rayonLieu: 64
+  rayonLieu: 64,
+  xpCompetence: 25,                     // expérience de l'arbre Survivant par contrat (40 de plus pour les trois)
 }
 // [type, clé, texte, cible, nombre, stade mini]
 var CONTRATS_POOL = [
@@ -110,7 +111,8 @@ function atheriaContratsAvancer(p, type, test, combien) {
     c.fait = Math.min(d[4], c.fait + combien)
     change = true
     if (c.fait >= d[4]) {
-      var gain = CONTRATS.recompense[etat.stade]
+      var gain = CONTRATS.recompense[etat.stade] + (p.tags.contains('skill_debrouille_2') ? 2 : 0)
+      routeXp(p, CONTRATS.xpCompetence)
       p.server.runCommandSilent('give ' + p.username + ' atheria:bon_caf ' + gain)
       p.tell(Text.gold('[Radio] ').append(Text.yellow('Contrat rempli : ' + d[2] + '. ' + gain + ' bons CAF.')))
       p.server.runCommandSilent('playsound minecraft:entity.experience_orb.pickup master ' + p.username + ' ~ ~ ~ 0.7 1.1')
@@ -123,6 +125,7 @@ function atheriaContratsAvancer(p, type, test, combien) {
     etat.bonus = true
     p.server.runCommandSilent('give ' + p.username + ' atheria:bon_caf ' + CONTRATS.bonus)
     p.server.runCommandSilent('xp add ' + p.username + ' 200 points')
+    routeXp(p, 40)
     p.tell(Text.gold('[Radio] ').append(Text.yellow('Les trois contrats du jour sont remplis. Prime : ' + CONTRATS.bonus + ' bons CAF. Reviens demain.')))
   }
   atheriaContratsEcrire(p, etat)

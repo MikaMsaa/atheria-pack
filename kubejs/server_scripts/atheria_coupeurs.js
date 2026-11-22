@@ -165,6 +165,7 @@ EntityEvents.death('easy_npc:humanoid', event => {
   var src = event.source, p = src ? src.player : null
   if (p && p.isPlayer()) {
     p.addXP(15)
+    routeXp(p, 8)
     if (typeof atheriaCarnetNoter === 'function' && atheriaCarnetNoter(p, 'atheria_carnet_familles_humains', 'Coupeurs de route'))
       p.tell(Text.gold('[Carnet] ').append(Text.yellow('Coupeurs de route : ')).append(Text.gray('ils demandent avant de tirer. Payer coûte moins cher que se soigner, mais leurs poches valent le détour.')))
   }

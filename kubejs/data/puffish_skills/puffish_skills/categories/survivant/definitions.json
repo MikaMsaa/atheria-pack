@@ -1,166 +1,278 @@
 {
-    "bricolage_1":  {
-                        "title":  "Mains habiles",
-                        "description":  "Les pieces detachees reparent deux fois plus.",
-                        "icon":  {
-                                     "type":  "item",
-                                     "data":  {
-                                                  "item":  "atheria:pieces_vehicule"
-                                              }
-                                 },
-                        "rewards":  [
-                                        {
-                                            "type":  "puffish_skills:tag",
-                                            "data":  {
-                                                         "tag":  "skill_bricolage_1"
-                                                     }
-                                        }
-                                    ]
-                    },
-    "bricolage_2":  {
-                        "title":  "Tuyau patient",
-                        "description":  "Un reservoir d\u0027epave donne presque toujours quelque chose.",
-                        "icon":  {
-                                     "type":  "item",
-                                     "data":  {
-                                                  "item":  "atheria:kit_siphon"
-                                              }
-                                 },
-                        "rewards":  [
-                                        {
-                                            "type":  "puffish_skills:tag",
-                                            "data":  {
-                                                         "tag":  "skill_bricolage_2"
-                                                     }
-                                        }
-                                    ]
-                    },
-    "bricolage_3":  {
-                        "title":  "Moteur regle",
-                        "description":  "Ton moteur porte moins loin : il attire moins d\u0027infectes.",
-                        "icon":  {
-                                     "type":  "item",
-                                     "data":  {
-                                                  "item":  "minecraft:redstone"
-                                              }
-                                 },
-                        "rewards":  [
-                                        {
-                                            "type":  "puffish_skills:tag",
-                                            "data":  {
-                                                         "tag":  "skill_bricolage_3"
-                                                     }
-                                        }
-                                    ]
-                    },
-    "medecine_1":  {
-                       "title":  "Filtres bien visses",
-                       "description":  "Un filtre dure moitie plus longtemps.",
-                       "icon":  {
-                                    "type":  "item",
-                                    "data":  {
-                                                 "item":  "atheria:filtre"
-                                             }
-                                },
-                       "rewards":  [
-                                       {
-                                           "type":  "puffish_skills:tag",
-                                           "data":  {
-                                                        "tag":  "skill_medecine_1"
-                                                    }
-                                       }
-                                   ]
-                   },
-    "medecine_2":  {
-                       "title":  "Poumons solides",
-                       "description":  "Tu tiens plus longtemps sans masque dans l\u0027air contamine.",
-                       "icon":  {
-                                    "type":  "item",
-                                    "data":  {
-                                                 "item":  "minecraft:honey_bottle"
-                                             }
-                                },
-                       "rewards":  [
-                                       {
-                                           "type":  "puffish_skills:tag",
-                                           "data":  {
-                                                        "tag":  "skill_medecine_2"
-                                                    }
-                                       }
-                                   ]
-                   },
-    "medecine_3":  {
-                       "title":  "Peau tannee",
-                       "description":  "Un peu d\u0027armure naturelle.",
-                       "icon":  {
-                                    "type":  "item",
-                                    "data":  {
-                                                 "item":  "minecraft:leather"
-                                             }
-                                },
-                       "rewards":  [
-                                       {
-                                           "type":  "puffish_skills:attribute",
-                                           "data":  {
-                                                        "operation":  "addition",
-                                                        "value":  1,
-                                                        "attribute":  "minecraft:generic.armor"
-                                                    }
-                                       }
-                                   ]
-                   },
-    "tir_1":  {
-                  "title":  "Oeil froid",
-                  "description":  "Tes tirs font 5 % de degats en plus.",
-                  "icon":  {
-                               "type":  "item",
-                               "data":  {
-                                            "item":  "minecraft:arrow"
-                                        }
-                           },
-                  "rewards":  [
-                                  {
-                                      "type":  "puffish_skills:tag",
-                                      "data":  {
-                                                   "tag":  "skill_tir_1"
-                                               }
-                                  }
-                              ]
-              },
-    "tir_2":  {
-                  "title":  "Main ferme",
-                  "description":  "Tes tirs font encore 5 % de degats en plus.",
-                  "icon":  {
-                               "type":  "item",
-                               "data":  {
-                                            "item":  "minecraft:spectral_arrow"
-                                        }
-                           },
-                  "rewards":  [
-                                  {
-                                      "type":  "puffish_skills:tag",
-                                      "data":  {
-                                                   "tag":  "skill_tir_2"
-                                               }
-                                  }
-                              ]
-              },
-    "tir_3":  {
-                  "title":  "Tireur sur",
-                  "description":  "Tes tirs font encore 5 % de degats en plus.",
-                  "icon":  {
-                               "type":  "item",
-                               "data":  {
-                                            "item":  "minecraft:crossbow"
-                                        }
-                           },
-                  "rewards":  [
-                                  {
-                                      "type":  "puffish_skills:tag",
-                                      "data":  {
-                                                   "tag":  "skill_tir_3"
-                                               }
-                                  }
-                              ]
-              }
+    "bricolage_1": {
+        "title": "Mains habiles",
+        "description": "Les pieces detachees reparent deux fois plus.",
+        "icon": {
+            "type": "item",
+            "data": {
+                "item": "atheria:pieces_vehicule"
+            }
+        },
+        "rewards": [
+            {
+                "type": "puffish_skills:tag",
+                "data": {
+                    "tag": "skill_bricolage_1"
+                }
+            }
+        ]
+    },
+    "bricolage_2": {
+        "title": "Tuyau patient",
+        "description": "Un reservoir d'epave donne presque toujours quelque chose.",
+        "icon": {
+            "type": "item",
+            "data": {
+                "item": "atheria:kit_siphon"
+            }
+        },
+        "rewards": [
+            {
+                "type": "puffish_skills:tag",
+                "data": {
+                    "tag": "skill_bricolage_2"
+                }
+            }
+        ]
+    },
+    "bricolage_3": {
+        "title": "Moteur regle",
+        "description": "Ton moteur porte moins loin : il attire moins d'infectes.",
+        "icon": {
+            "type": "item",
+            "data": {
+                "item": "minecraft:redstone"
+            }
+        },
+        "rewards": [
+            {
+                "type": "puffish_skills:tag",
+                "data": {
+                    "tag": "skill_bricolage_3"
+                }
+            }
+        ]
+    },
+    "medecine_1": {
+        "title": "Filtres bien visses",
+        "description": "Un filtre dure moitie plus longtemps.",
+        "icon": {
+            "type": "item",
+            "data": {
+                "item": "atheria:filtre"
+            }
+        },
+        "rewards": [
+            {
+                "type": "puffish_skills:tag",
+                "data": {
+                    "tag": "skill_medecine_1"
+                }
+            }
+        ]
+    },
+    "medecine_2": {
+        "title": "Poumons solides",
+        "description": "Tu tiens plus longtemps sans masque dans l'air contamine.",
+        "icon": {
+            "type": "item",
+            "data": {
+                "item": "minecraft:honey_bottle"
+            }
+        },
+        "rewards": [
+            {
+                "type": "puffish_skills:tag",
+                "data": {
+                    "tag": "skill_medecine_2"
+                }
+            }
+        ]
+    },
+    "medecine_3": {
+        "title": "Peau tannee",
+        "description": "Un peu d'armure naturelle.",
+        "icon": {
+            "type": "item",
+            "data": {
+                "item": "minecraft:leather"
+            }
+        },
+        "rewards": [
+            {
+                "type": "puffish_skills:attribute",
+                "data": {
+                    "operation": "addition",
+                    "value": 1,
+                    "attribute": "minecraft:generic.armor"
+                }
+            }
+        ]
+    },
+    "tir_1": {
+        "title": "Oeil froid",
+        "description": "Tes tirs font 5 % de degats en plus.",
+        "icon": {
+            "type": "item",
+            "data": {
+                "item": "minecraft:arrow"
+            }
+        },
+        "rewards": [
+            {
+                "type": "puffish_skills:tag",
+                "data": {
+                    "tag": "skill_tir_1"
+                }
+            }
+        ]
+    },
+    "tir_2": {
+        "title": "Main ferme",
+        "description": "Tes tirs font encore 5 % de degats en plus.",
+        "icon": {
+            "type": "item",
+            "data": {
+                "item": "minecraft:spectral_arrow"
+            }
+        },
+        "rewards": [
+            {
+                "type": "puffish_skills:tag",
+                "data": {
+                    "tag": "skill_tir_2"
+                }
+            }
+        ]
+    },
+    "tir_3": {
+        "title": "Tireur sur",
+        "description": "Tes tirs font encore 5 % de degats en plus.",
+        "icon": {
+            "type": "item",
+            "data": {
+                "item": "minecraft:crossbow"
+            }
+        },
+        "rewards": [
+            {
+                "type": "puffish_skills:tag",
+                "data": {
+                    "tag": "skill_tir_3"
+                }
+            }
+        ]
+    },
+    "eclaireur_1": {
+        "title": "Bonnes jambes",
+        "description": "Tu marches et cours 5 % plus vite.",
+        "icon": {
+            "type": "item",
+            "data": {
+                "item": "minecraft:leather_boots"
+            }
+        },
+        "rewards": [
+            {
+                "type": "puffish_skills:attribute",
+                "data": {
+                    "operation": "multiply_base",
+                    "value": 0.05,
+                    "attribute": "minecraft:generic.movement_speed"
+                }
+            }
+        ]
+    },
+    "eclaireur_2": {
+        "title": "Fouilleur",
+        "description": "Les coffres que tu ouvres en premier cachent parfois un objet de plus.",
+        "icon": {
+            "type": "item",
+            "data": {
+                "item": "minecraft:barrel"
+            }
+        },
+        "rewards": [
+            {
+                "type": "puffish_skills:tag",
+                "data": {
+                    "tag": "skill_eclaireur_2"
+                }
+            }
+        ]
+    },
+    "eclaireur_3": {
+        "title": "Chutes amorties",
+        "description": "Tu tombes de 3 blocs de plus sans te blesser.",
+        "icon": {
+            "type": "item",
+            "data": {
+                "item": "minecraft:feather"
+            }
+        },
+        "rewards": [
+            {
+                "type": "puffish_skills:attribute",
+                "data": {
+                    "operation": "addition",
+                    "value": 3,
+                    "attribute": "minecraft:generic.safe_fall_distance"
+                }
+            }
+        ]
+    },
+    "debrouille_1": {
+        "title": "Marchandage",
+        "description": "Eniy te fait 10 % sur tous ses prix.",
+        "icon": {
+            "type": "item",
+            "data": {
+                "item": "atheria:bon_caf"
+            }
+        },
+        "rewards": [
+            {
+                "type": "puffish_skills:tag",
+                "data": {
+                    "tag": "skill_debrouille_1"
+                }
+            }
+        ]
+    },
+    "debrouille_2": {
+        "title": "Contacts radio",
+        "description": "Chaque contrat radio rempli rapporte 2 bons de plus.",
+        "icon": {
+            "type": "item",
+            "data": {
+                "item": "minecraft:jukebox"
+            }
+        },
+        "rewards": [
+            {
+                "type": "puffish_skills:tag",
+                "data": {
+                    "tag": "skill_debrouille_2"
+                }
+            }
+        ]
+    },
+    "debrouille_3": {
+        "title": "Sommeil leger",
+        "description": "Le repos au reveil revient deux fois plus vite et dure plus longtemps.",
+        "icon": {
+            "type": "item",
+            "data": {
+                "item": "minecraft:red_bed"
+            }
+        },
+        "rewards": [
+            {
+                "type": "puffish_skills:tag",
+                "data": {
+                    "tag": "skill_debrouille_3"
+                }
+            }
+        ]
+    }
 }
