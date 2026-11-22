@@ -2,9 +2,166 @@
     {
         "function": "hordes:set_spawntable",
         "value": [
-            "hordes:default"
+            "hordes:atheria_stade_1"
         ],
         "conditions": []
+    },
+    {
+        "function": "hordes:set_spawn_amount",
+        "value": 6,
+        "conditions": []
+    },
+    {
+        "function": "hordes:set_spawntable",
+        "value": [
+            "hordes:atheria_stade_2"
+        ],
+        "conditions": [
+            {
+                "name": "hordes:comparison",
+                "value": {
+                    "type": "int",
+                    "operation": ">=",
+                    "value1": {
+                        "name": "hordes:player_nbt",
+                        "value": "NeoForgeData.atheria_stade"
+                    },
+                    "value2": 2
+                }
+            }
+        ]
+    },
+    {
+        "function": "hordes:set_spawn_amount",
+        "value": 10,
+        "conditions": [
+            {
+                "name": "hordes:comparison",
+                "value": {
+                    "type": "int",
+                    "operation": ">=",
+                    "value1": {
+                        "name": "hordes:player_nbt",
+                        "value": "NeoForgeData.atheria_stade"
+                    },
+                    "value2": 2
+                }
+            }
+        ]
+    },
+    {
+        "function": "hordes:set_spawntable",
+        "value": [
+            "hordes:atheria_stade_3"
+        ],
+        "conditions": [
+            {
+                "name": "hordes:comparison",
+                "value": {
+                    "type": "int",
+                    "operation": ">=",
+                    "value1": {
+                        "name": "hordes:player_nbt",
+                        "value": "NeoForgeData.atheria_stade"
+                    },
+                    "value2": 3
+                }
+            }
+        ]
+    },
+    {
+        "function": "hordes:set_spawn_amount",
+        "value": 15,
+        "conditions": [
+            {
+                "name": "hordes:comparison",
+                "value": {
+                    "type": "int",
+                    "operation": ">=",
+                    "value1": {
+                        "name": "hordes:player_nbt",
+                        "value": "NeoForgeData.atheria_stade"
+                    },
+                    "value2": 3
+                }
+            }
+        ]
+    },
+    {
+        "function": "hordes:set_spawntable",
+        "value": [
+            "hordes:atheria_stade_4"
+        ],
+        "conditions": [
+            {
+                "name": "hordes:comparison",
+                "value": {
+                    "type": "int",
+                    "operation": ">=",
+                    "value1": {
+                        "name": "hordes:player_nbt",
+                        "value": "NeoForgeData.atheria_stade"
+                    },
+                    "value2": 4
+                }
+            }
+        ]
+    },
+    {
+        "function": "hordes:set_spawn_amount",
+        "value": 20,
+        "conditions": [
+            {
+                "name": "hordes:comparison",
+                "value": {
+                    "type": "int",
+                    "operation": ">=",
+                    "value1": {
+                        "name": "hordes:player_nbt",
+                        "value": "NeoForgeData.atheria_stade"
+                    },
+                    "value2": 4
+                }
+            }
+        ]
+    },
+    {
+        "function": "hordes:set_spawntable",
+        "value": [
+            "hordes:atheria_stade_5"
+        ],
+        "conditions": [
+            {
+                "name": "hordes:comparison",
+                "value": {
+                    "type": "int",
+                    "operation": ">=",
+                    "value1": {
+                        "name": "hordes:player_nbt",
+                        "value": "NeoForgeData.atheria_stade"
+                    },
+                    "value2": 5
+                }
+            }
+        ]
+    },
+    {
+        "function": "hordes:set_spawn_amount",
+        "value": 25,
+        "conditions": [
+            {
+                "name": "hordes:comparison",
+                "value": {
+                    "type": "int",
+                    "operation": ">=",
+                    "value1": {
+                        "name": "hordes:player_nbt",
+                        "value": "NeoForgeData.atheria_stade"
+                    },
+                    "value2": 5
+                }
+            }
+        ]
     },
     {
         "function": "hordes:multiple",
@@ -36,36 +193,6 @@
                         "minecraft:deep_frozen_ocean"
                     ]
                 }
-            }
-        ]
-    },
-    {
-        "function": "hordes:set_spawn_amount",
-        "value": 15,
-        "conditions": [
-            {
-                "name": "hordes:day",
-                "value": 13
-            }
-        ]
-    },
-    {
-        "function": "hordes:set_spawn_amount",
-        "value": 20,
-        "conditions": [
-            {
-                "name": "hordes:day",
-                "value": 20
-            }
-        ]
-    },
-    {
-        "function": "hordes:set_spawn_amount",
-        "value": 25,
-        "conditions": [
-            {
-                "name": "hordes:day",
-                "value": 27
             }
         ]
     },
