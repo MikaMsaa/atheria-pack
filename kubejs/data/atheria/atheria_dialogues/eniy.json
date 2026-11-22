@@ -51,6 +51,10 @@
    ],
    "choix": [
     {
+     "texte": "Voir la boutique",
+     "aller": "eniy_boutique"
+    },
+    {
      "texte": "Prendre un colis à livrer à Coconi",
      "actions": [
       {
@@ -110,6 +114,343 @@
     },
     {
      "aller": "repos"
+    }
+   ]
+  },
+  "eniy_boutique": {
+   "lignes": [
+    {
+     "texte": "Tout se négocie, sauf mes prix. Ils changent chaque lundi. Et je rachète tes spores, tes fragments, même ta chair avariée."
+    }
+   ],
+   "choix": [
+    {
+     "texte": "Tarifs de la semaine (dans le chat)",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} tarifs"
+      }
+     ],
+     "fin": true
+    },
+    {
+     "texte": "Survie",
+     "aller": "eniy_survie"
+    },
+    {
+     "texte": "Soins",
+     "aller": "eniy_soins"
+    },
+    {
+     "texte": "Armes et munitions",
+     "aller": "eniy_armes"
+    },
+    {
+     "texte": "Équipement",
+     "aller": "eniy_equipement"
+    },
+    {
+     "texte": "Outils",
+     "aller": "eniy_outils"
+    },
+    {
+     "texte": "Vendre mon butin",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} vendre"
+      }
+     ],
+     "fin": true
+    }
+   ]
+  },
+  "eniy_survie": {
+   "lignes": [
+    {
+     "texte": "Pour tenir jusqu'à demain."
+    }
+   ],
+   "choix": [
+    {
+     "texte": "Acheter : Ration de la PAF",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter ration"
+      }
+     ],
+     "aller": "eniy_survie"
+    },
+    {
+     "texte": "Acheter : Filtre à charbon",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter filtre"
+      }
+     ],
+     "aller": "eniy_survie"
+    },
+    {
+     "texte": "Acheter : Bidon d'essence",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter essence"
+      }
+     ],
+     "aller": "eniy_survie"
+    },
+    {
+     "texte": "Acheter : Fusée éclairante",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter fusee"
+      }
+     ],
+     "aller": "eniy_survie"
+    },
+    {
+     "texte": "Acheter : Chocolat de Dubaï « artisanal »",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter chocolat"
+      }
+     ],
+     "aller": "eniy_survie"
+    },
+    {
+     "texte": "Retour",
+     "aller": "eniy_boutique"
+    }
+   ]
+  },
+  "eniy_soins": {
+   "lignes": [
+    {
+     "texte": "Pansements, cachets, et rien de remboursé."
+    }
+   ],
+   "choix": [
+    {
+     "texte": "Acheter : Bandages",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter bandage"
+      }
+     ],
+     "aller": "eniy_soins"
+    },
+    {
+     "texte": "Acheter : Trousse de soins",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter trousse"
+      }
+     ],
+     "aller": "eniy_soins"
+    },
+    {
+     "texte": "Acheter : Antifongique",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter antifongique"
+      }
+     ],
+     "aller": "eniy_soins"
+    },
+    {
+     "texte": "Acheter : Morphine",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter morphine"
+      }
+     ],
+     "aller": "eniy_soins"
+    },
+    {
+     "texte": "Acheter : Stimpack militaire",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter stimpack"
+      }
+     ],
+     "aller": "eniy_soins"
+    },
+    {
+     "texte": "Retour",
+     "aller": "eniy_boutique"
+    }
+   ]
+  },
+  "eniy_armes": {
+   "lignes": [
+    {
+     "texte": "Du matériel de la ICE, d'origine garantie douteuse."
+    }
+   ],
+   "choix": [
+    {
+     "texte": "Acheter : Munitions 9 mm (x20)",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter 9mm"
+      }
+     ],
+     "aller": "eniy_armes"
+    },
+    {
+     "texte": "Acheter : Cartouches calibre 12 (x10)",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter 12g"
+      }
+     ],
+     "aller": "eniy_armes"
+    },
+    {
+     "texte": "Acheter : Munitions 5,56 mm (x20)",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter 556"
+      }
+     ],
+     "aller": "eniy_armes"
+    },
+    {
+     "texte": "Acheter : Munitions .308 (x10)",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter 308"
+      }
+     ],
+     "aller": "eniy_armes"
+    },
+    {
+     "texte": "Acheter : Grenade à fragmentation",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter grenade"
+      }
+     ],
+     "aller": "eniy_armes"
+    },
+    {
+     "texte": "Retour",
+     "aller": "eniy_boutique"
+    }
+   ]
+  },
+  "eniy_equipement": {
+   "lignes": [
+    {
+     "texte": "Ce qui sépare un survivant d'un repas."
+    }
+   ],
+   "choix": [
+    {
+     "texte": "Acheter : Masque à gaz",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter masque"
+      }
+     ],
+     "aller": "eniy_equipement"
+    },
+    {
+     "texte": "Acheter : Casque camouflé léger",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter casque"
+      }
+     ],
+     "aller": "eniy_equipement"
+    },
+    {
+     "texte": "Acheter : Gilet camouflé léger",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter gilet"
+      }
+     ],
+     "aller": "eniy_equipement"
+    },
+    {
+     "texte": "Acheter : Plaque de blindage légère",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter plaque"
+      }
+     ],
+     "aller": "eniy_equipement"
+    },
+    {
+     "texte": "Acheter : Lunettes de vision nocturne",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter vision"
+      }
+     ],
+     "aller": "eniy_equipement"
+    },
+    {
+     "texte": "Retour",
+     "aller": "eniy_boutique"
+    }
+   ]
+  },
+  "eniy_outils": {
+   "lignes": [
+    {
+     "texte": "Pour ceux qui veulent construire au lieu de courir."
+    }
+   ],
+   "choix": [
+    {
+     "texte": "Acheter : Marmite (Farmer's Delight)",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter marmite"
+      }
+     ],
+     "aller": "eniy_outils"
+    },
+    {
+     "texte": "Acheter : Sac à dos",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter sac"
+      }
+     ],
+     "aller": "eniy_outils"
+    },
+    {
+     "texte": "Acheter : Sac de couchage",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter couchage"
+      }
+     ],
+     "aller": "eniy_outils"
+    },
+    {
+     "texte": "Acheter : Manivelle (Create)",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter manivelle"
+      }
+     ],
+     "aller": "eniy_outils"
+    },
+    {
+     "texte": "Acheter : Engrenages (Create, x4)",
+     "actions": [
+      {
+       "commande": "atheria_eniy {joueur} acheter engrenage"
+      }
+     ],
+     "aller": "eniy_outils"
+    },
+    {
+     "texte": "Retour",
+     "aller": "eniy_boutique"
     }
    ]
   }
