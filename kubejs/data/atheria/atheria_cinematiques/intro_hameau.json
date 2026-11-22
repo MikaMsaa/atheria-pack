@@ -1,0 +1,173 @@
+{
+ "_aide": "Partie EN DIRECT de l'intro, jouée juste après la vidéo d'intro (Mika 22/11 « Vidéo puis direct au hameau »). 21 s : arrivée devant la case 0, entrée, les cinq cartes (soif, blessures, bruit, nuit, cendres) puis le carnet de R. Le titre et le contexte (An 20) sont dans la vidéo. Origine fixe 2407 66 -2759 = point d'apparition (case 0). eviter_sol = false pour l'intérieur. La version longue sans vidéo reste dans intro.json.",
+ "passable": "toujours",
+ "origine": [
+  2407,
+  66,
+  -2759
+ ],
+ "attente": 0,
+ "bandes": true,
+ "debut_noir": true,
+ "eviter_sol": false,
+ "plans": [
+  {
+   "duree": 7,
+   "regard": [
+    2.6,
+    1.2,
+    -0.4
+   ],
+   "points": [
+    {
+     "pos": [
+      6,
+      2.2,
+      -16
+     ]
+    },
+    {
+     "pos": [
+      6,
+      1.8,
+      -8
+     ]
+    },
+    {
+     "pos": [
+      4.6,
+      1.6,
+      -0.6
+     ]
+    }
+   ]
+  },
+  {
+   "duree": 14,
+   "regard": [
+    -0.2,
+    0.6,
+    -1.5
+   ],
+   "points": [
+    {
+     "pos": [
+      1.7,
+      1.5,
+      0.7
+     ]
+    },
+    {
+     "pos": [
+      1.0,
+      1.15,
+      -0.4
+     ]
+    },
+    {
+     "pos": [
+      0.7,
+      1.05,
+      -0.8
+     ]
+    }
+   ]
+  }
+ ],
+ "evenements": [
+  {
+   "t": 0,
+   "fondu": "ouverture",
+   "duree": 1.5
+  },
+  {
+   "t": 0,
+   "son": "minecraft:ambient.cave",
+   "volume": 0.5,
+   "hauteur": 0.7
+  },
+  {
+   "t": 1.0,
+   "duree": 3.2,
+   "carte": {
+    "titre": "La soif",
+    "icone": "thirstcanteen:leather_canteen",
+    "lignes": [
+     "L'eau des rivières rend malade : fais-la bouillir."
+    ]
+   }
+  },
+  {
+   "t": 4.2,
+   "duree": 3.2,
+   "carte": {
+    "titre": "Les blessures",
+    "icone": "firstaid:bandage",
+    "lignes": [
+     "Chaque partie du corps se soigne à part. Garde des bandages."
+    ]
+   }
+  },
+  {
+   "t": 6.6,
+   "son": "minecraft:block.wooden_door.open",
+   "volume": 0.7,
+   "hauteur": 0.9
+  },
+  {
+   "t": 7.4,
+   "duree": 3.2,
+   "carte": {
+    "titre": "Le bruit",
+    "icone": "minecraft:bell",
+    "lignes": [
+     "Un coup de feu attire les infectés. Le couteau est silencieux."
+    ]
+   }
+  },
+  {
+   "t": 7.6,
+   "son": "minecraft:entity.zombie.ambient",
+   "volume": 0.35,
+   "hauteur": 0.6
+  },
+  {
+   "t": 10.600000000000001,
+   "duree": 3.2,
+   "carte": {
+    "titre": "La nuit",
+    "icone": "comforts:sleeping_bag_brown",
+    "lignes": [
+     "Dormir ne fait plus passer la nuit, mais ça te soigne."
+    ]
+   }
+  },
+  {
+   "t": 13.8,
+   "duree": 3.2,
+   "carte": {
+    "titre": "Les cendres",
+    "icone": "atheria:masque_artisanal",
+    "lignes": [
+     "Quand le ciel vire au gris, abrite-toi ou porte un masque."
+    ]
+   }
+  },
+  {
+   "t": 17.2,
+   "texte": "« Si tu lis ça, tu as trouvé ma case. Garde-la. » — R.",
+   "duree": 3.8
+  },
+  {
+   "t": 17.5,
+   "son": "minecraft:item.book.page_turn",
+   "volume": 0.8,
+   "hauteur": 1.0
+  },
+  {
+   "t": 19.8,
+   "fondu": "fermeture",
+   "duree": 1.2
+  }
+ ]
+}
