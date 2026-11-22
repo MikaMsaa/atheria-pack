@@ -5,6 +5,23 @@ var ATHERIA_ECRAN_PAUSE = /\.PauseScreen@/
 var ATHERIA_FOND = 'atheria:textures/gui/fond_menu.png'
 var ATHERIA_VOILE = -1728053248 // noir à 60 %
 
+// REJOINDRE (Mika 22/11) : remplace MULTIJOUEUR et connecte directement au serveur Atheria (Minestrator).
+// Le bouton MULTIJOUEUR est masqué dans la mise en page FancyMenu ; SOLO reste une partie normale.
+var ATHERIA_SERVEUR = { nom: 'Atheria Zombie Edition', adresse: '91.197.6.18:28416' }
+function atheriaAjouterRejoindre(event, ecran, x, y) {
+  var ImageButton = Java.loadClass('net.minecraft.client.gui.components.ImageButton')
+  var WidgetSprites = Java.loadClass('net.minecraft.client.gui.components.WidgetSprites')
+  var images = new WidgetSprites('atheria:menu_rejoindre', 'atheria:menu_rejoindre_survol')
+  event.addListener(new ImageButton(x, y, 120, 16, images, b => {
+    var ConnectScreen = Java.loadClass('net.minecraft.client.gui.screens.ConnectScreen')
+    var ServerAddress = Java.loadClass('net.minecraft.client.multiplayer.resolver.ServerAddress')
+    var ServerData = Java.loadClass('net.minecraft.client.multiplayer.ServerData')
+    var Type = Java.loadClass('net.minecraft.client.multiplayer.ServerData$Type')
+    var donnees = new ServerData(ATHERIA_SERVEUR.nom, ATHERIA_SERVEUR.adresse, Type.OTHER)
+    ConnectScreen.startConnecting(ecran, Client, ServerAddress.parseString(ATHERIA_SERVEUR.adresse), donnees, false, null)
+  }))
+}
+
 // APPARENCE : ouvre la garde-robe Essential (skins et cosmétiques), placée entre MULTIJOUEUR et OPTIONS
 function atheriaAjouterApparence(event, ecran, x, y) {
   var ImageButton = Java.loadClass('net.minecraft.client.gui.components.ImageButton')
@@ -28,8 +45,10 @@ NativeEvents.onEvent('LOWEST', 'net.neoforged.neoforge.client.event.ScreenEvent$
     var retires = []
     event.getListenersList().forEach(w => {
       if (ATHERIA_BOUTONS_RETIRES.test('' + w)) retires.push(w)
+      else if (w.getMessage && /'menu\.multiplayer'/.test('' + w.getMessage())) retires.push(w)
     })
     retires.forEach(w => event.removeListener(w))
+    atheriaAjouterRejoindre(event, event.getScreen(), 44, Math.floor(event.getScreen().height / 2) - 10)
     atheriaAjouterApparence(event, event.getScreen(), 44, Math.floor(event.getScreen().height / 2) + 10)
   } catch (e) {
     console.error('[Atheria menu] ' + e)
