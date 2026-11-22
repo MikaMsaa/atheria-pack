@@ -1,7 +1,9 @@
 {
-  "_aide": "Le Gelé (sommets enneigés du Bénara) : /bestiaire unique gele. Le froid empêche les autres infectés d'apparaître là-haut.",
+  "_aide": "Le Gelé (sommets enneigés du Bénara) : /bestiaire unique gele. Le froid empêche les autres infectés d'apparaître là-haut. Boss de chapitre = calamité Spore (Mika 22/11). Stahlmorder.",
   "nom": "Le Gelé",
-  "entite": "spore:wendigo",
+  "entite": "spore:stahl",
   "couleur": "white",
-  "attributs": { "minecraft:generic.max_health": 300, "minecraft:generic.attack_damage": 14 }
+  "attributs": {
+    "minecraft:generic.max_health": 350
+  }
 }

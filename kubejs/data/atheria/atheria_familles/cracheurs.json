@@ -1,13 +1,43 @@
 {
-  "_aide": "Les Cracheurs : marchés, hôpitaux, marais aux spores.",
+  "_aide": "Les Cracheurs : marchés, hôpitaux, marais aux spores. Stade d'arrivée de chaque espèce : champ \"stade\" (1 à 5, Mika 22/11).",
   "nom": "Les Cracheurs",
   "ou": [
-    { "ville": true, "batiments": "marche|halles|souk|hopital|clinique|hospice|infirmerie|hp_tri" },
-    { "biomes": ["atheria:marecage_pollue"] },
-    { "structures": ["spore:hospital"] }
+    {
+      "ville": true,
+      "batiments": "marche|halles|souk|hopital|clinique|hospice|infirmerie|hp_tri"
+    },
+    {
+      "biomes": [
+        "atheria:marecage_pollue"
+      ]
+    },
+    {
+      "structures": [
+        "spore:hospital"
+      ]
+    }
   ],
   "apparitions": [
-    { "entite": "spore:spitter", "poids": 25, "min": 1, "max": 2 },
-    { "entite": "spore:mephitic", "poids": 15, "min": 1, "max": 1 }
+    {
+      "entite": "spore:spitter",
+      "poids": 25,
+      "min": 1,
+      "max": 2,
+      "stade": 2
+    },
+    {
+      "entite": "spore:mephitic",
+      "poids": 15,
+      "min": 1,
+      "max": 1,
+      "stade": 3
+    },
+    {
+      "entite": "spore:gorgon",
+      "poids": 6,
+      "min": 1,
+      "max": 1,
+      "stade": 4
+    }
   ]
 }

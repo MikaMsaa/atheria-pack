@@ -1,0 +1,35 @@
+{
+  "_aide": "Stades des joueurs et directeur d'apparitions (mod atheria-bestiaire 1.1.0, Mika 22/11). Plan : https://claude.ai/artifact/8kTtzEmvcNKFSmnhh2dHco. /reload relit ce fichier.",
+  "_aide_stades": "Stade = le plus haut de : quetes (un tag joueur qui commence par un des prefixes : stades 2, 3, 4, 5), equipement (armure + robustesse >= seuils : stades 2, 3, 4, 5 ; une arme a feu = stade 2), temps (jour du serveur >= plancher_jours : stades 2, 3).",
+  "prefixes_quetes": [["q_ch2_"], ["q_ch3_", "acte_3"], ["q_ch4_"], ["q_ch5_", "final_", "acte_5"]],
+  "seuils_armure": [8, 16, 22, 30],
+  "armes_stade_2": ["tacz:modern_kinetic_gun"],
+  "plancher_jours": [14, 28],
+  "directeur": {
+    "_aide": "plafonds = infectes autour d'un joueur (rayon_compte blocs) aux stades 1 a 5, multiplies par jour/lune/super_lune/horde et ville/campagne. Repit : sous repit_sante de vie ou touche depuis moins de repit_secondes, rien ne nait. base = entite|poids|min|max|stade, en plus des familles du lieu.",
+    "actif": true,
+    "periode": 200,
+    "plafonds": [6, 9, 12, 15, 18],
+    "jour": 0.5,
+    "lune": 1.5,
+    "super_lune": 2.0,
+    "horde": 1.0,
+    "ville": 1.3,
+    "campagne": 0.8,
+    "repit_sante": 0.4,
+    "repit_secondes": 45,
+    "distance_min": 24,
+    "distance_max": 44,
+    "rayon_compte": 48,
+    "max_par_vague": 4,
+    "lumiere_jour": 7,
+    "base": [
+      "spore:inf_human|60|1|3|1",
+      "spore:inf_villager|40|1|2|1",
+      "minecraft:zombie|50|2|4|1",
+      "spore:inf_player|15|1|1|2",
+      "spore:inf_wanderer|10|1|1|2",
+      "spore:inf_diseased_villager|10|1|2|2"
+    ]
+  }
+}

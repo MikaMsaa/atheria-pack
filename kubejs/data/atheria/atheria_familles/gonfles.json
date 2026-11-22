@@ -1,13 +1,46 @@
 {
-  "_aide": "Les Gonflés : sous-sols et bâtiments fermés (à l'intérieur des villes), bunkers et mines.",
+  "_aide": "Les Gonflés : sous-sols et bâtiments fermés (à l'intérieur des villes), bunkers et mines. Stade d'arrivée de chaque espèce : champ \"stade\" (1 à 5, Mika 22/11).",
   "nom": "Les Gonflés",
   "ou": [
-    { "ville": true, "couvert": true },
-    { "structures": ["#atheria:bunkers", "#atheria:mines"] }
+    {
+      "ville": true,
+      "couvert": true
+    },
+    {
+      "structures": [
+        "#atheria:bunkers",
+        "#atheria:mines"
+      ]
+    }
   ],
   "apparitions": [
-    { "entite": "spore:volatile", "poids": 12, "min": 1, "max": 1 },
-    { "entite": "spore:busser", "poids": 8, "min": 1, "max": 1 },
-    { "entite": "spore:bloater", "poids": 5, "min": 1, "max": 1 }
+    {
+      "entite": "spore:volatile",
+      "poids": 12,
+      "min": 1,
+      "max": 1,
+      "stade": 2
+    },
+    {
+      "entite": "spore:busser",
+      "poids": 8,
+      "min": 1,
+      "max": 1,
+      "stade": 3
+    },
+    {
+      "entite": "spore:bloater",
+      "poids": 5,
+      "min": 1,
+      "max": 1,
+      "stade": 4
+    },
+    {
+      "entite": "spore:griefer",
+      "poids": 5,
+      "min": 1,
+      "max": 1,
+      "stade": 4
+    }
   ]
 }

@@ -9,7 +9,7 @@ NativeEvents.onEvent('net.neoforged.neoforge.event.entity.EntityJoinLevelEvent',
   var level = event.getLevel()
   if (level.isClientSide()) return
   var entity = event.getEntity()
-  if (String(entity.getType()) != 'spore:mound') return
+  if ('' + entity.getEncodeId() != 'spore:mound') return
   var jour = Math.floor(Number(level.getDayTime()) / 24000)
   var proche = false
   level.getPlayers().forEach(p => {

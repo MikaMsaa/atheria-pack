@@ -23,3 +23,11 @@ ServerEvents.recipes(event => {
   // et ne se charge pas en 1.21.1. On la recrée avec le même identifiant.
   event.shapeless('create:placard', ['#createdeco:placards', 'minecraft:white_dye']).id('createdeco:placard')
 })
+
+// Atheria (Mika 22/11) : les creepers et les slimes n'existent plus, leurs objets se fabriquent aussi.
+// Poudre noire : charbon de bois, salpêtre (poudre d'os) et silex broyé. Les Gonflés en lâchent aussi (spore-common.toml).
+ServerEvents.recipes(event => {
+  event.shapeless('2x minecraft:gunpowder', ['minecraft:charcoal', 'minecraft:bone_meal', 'minecraft:bone_meal', 'minecraft:flint']).id('atheria:sans_creeper/poudre_noire')
+  // Colle : algues, sucre et argile. Les Cracheurs en lâchent aussi.
+  event.shapeless('minecraft:slime_ball', ['minecraft:kelp', 'minecraft:kelp', 'minecraft:sugar', 'minecraft:clay_ball']).id('atheria:sans_slime/colle')
+})

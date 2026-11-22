@@ -1,14 +1,53 @@
 {
-  "_aide": "Les Blouses : labos, bunkers de recherche, cliniques. Les labos de Spore ont déjà leurs propres apparitions.",
+  "_aide": "Les Blouses : labos, bunkers de recherche, cliniques. Les labos de Spore ont déjà leurs propres apparitions. Stade d'arrivée de chaque espèce : champ \"stade\" (1 à 5, Mika 22/11).",
   "nom": "Les Blouses",
   "ou": [
-    { "structures": ["bunkers:research_bunker", "bunkers:nuclear_facility"] },
-    { "ville": true, "batiments": "clinique|hp_tri" }
+    {
+      "structures": [
+        "bunkers:research_bunker",
+        "bunkers:nuclear_facility"
+      ]
+    },
+    {
+      "ville": true,
+      "batiments": "clinique|hp_tri"
+    }
   ],
   "apparitions": [
-    { "entite": "spore:inf_hazmat", "poids": 30, "min": 1, "max": 3 },
-    { "entite": "spore:chemist", "poids": 10, "min": 1, "max": 2 },
-    { "entite": "spore:conductor", "poids": 10, "min": 1, "max": 2 },
-    { "entite": "spore:lacerator", "poids": 6, "min": 1, "max": 1 }
+    {
+      "entite": "spore:inf_hazmat",
+      "poids": 30,
+      "min": 1,
+      "max": 3,
+      "stade": 1
+    },
+    {
+      "entite": "spore:chemist",
+      "poids": 10,
+      "min": 1,
+      "max": 2,
+      "stade": 2
+    },
+    {
+      "entite": "spore:conductor",
+      "poids": 10,
+      "min": 1,
+      "max": 2,
+      "stade": 2
+    },
+    {
+      "entite": "spore:lacerator",
+      "poids": 6,
+      "min": 1,
+      "max": 1,
+      "stade": 4
+    },
+    {
+      "entite": "spore:plagued",
+      "poids": 4,
+      "min": 1,
+      "max": 1,
+      "stade": 5
+    }
   ]
 }

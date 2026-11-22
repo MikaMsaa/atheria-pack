@@ -1,6 +1,19 @@
 {
-  "_aide": "Les Sirènes hurlent et appellent les Dakouane : dehors dans les villes (places, carrefours, toits).",
+  "_aide": "Les Sirènes hurlent et appellent les Dakouane : dehors dans les villes (places, carrefours, toits). Stade d'arrivée de chaque espèce : champ \"stade\" (1 à 5, Mika 22/11).",
   "nom": "Les Sirènes",
-  "ou": [ { "ville": true, "couvert": false } ],
-  "apparitions": [ { "entite": "spore:howler", "poids": 15, "min": 1, "max": 1 } ]
+  "ou": [
+    {
+      "ville": true,
+      "couvert": false
+    }
+  ],
+  "apparitions": [
+    {
+      "entite": "spore:howler",
+      "poids": 15,
+      "min": 1,
+      "max": 1,
+      "stade": 2
+    }
+  ]
 }

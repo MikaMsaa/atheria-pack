@@ -54,3 +54,27 @@ ServerEvents.tick(event => {
     console.info('[Atheria] ' + ceSoir + ' annulee (jour ' + jour + ', ' + raison + ')')
   }
 })
+
+// Directeur d'apparitions (mod atheria-bestiaire 1.1.0) : il lit dans le tableau de scores "atheria"
+// #lune (0 aucune, 1 lune de sang, 2 super lune de sang) et #horde (1 si une horde a lieu ce soir).
+// La lune de ce soir est notee entre 11000 et 12400 (avant son debut), effacee au lever du jour.
+var LUNES_CE_SOIR = 0
+ServerEvents.tick(event => {
+  var server = event.server
+  if (server.tickCount % 100 != 50) return
+  var level = server.overworld()
+  var heure = level.getDayTime() % 24000
+  if (heure >= 11000 && heure <= 12400) {
+    LUNES_CE_SOIR = 0
+    var forecast = EC2.lunarForecastWorldData(level).orElse(null)
+    if (forecast) {
+      var m = ('' + forecast.upcomingEventsByDaysInAdvance()).match(/^\{0=>Reference\{ResourceKey\[[^\]]* \/ ([a-z0-9_.\-]+:[a-z0-9_.\/\-]+)\]/)
+      if (m && m[1] == LUNES_DE_SANG[1]) LUNES_CE_SOIR = 2
+      else if (m && m[1] == LUNES_DE_SANG[0]) LUNES_CE_SOIR = 1
+    }
+  }
+  var nuit = heure >= 12600 && heure <= 23400
+  server.runCommandSilent('scoreboard objectives add atheria dummy')
+  server.runCommandSilent('scoreboard players set #lune atheria ' + (nuit ? LUNES_CE_SOIR : 0))
+  server.runCommandSilent('scoreboard players set #horde atheria ' + (nuit && nuitDeHorde(level) ? 1 : 0))
+})

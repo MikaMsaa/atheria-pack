@@ -1,9 +1,24 @@
 {
-  "_aide": "Les Chimiks (aveugles, chassent au son) : intérieurs des villes, galeries et mines. Ils naissent aussi de l'évolution des infectés.",
+  "_aide": "Les Chimiks (aveugles, chassent au son) : intérieurs des villes, galeries et mines. Ils naissent aussi de l'évolution des infectés. Stade d'arrivée de chaque espèce : champ \"stade\" (1 à 5, Mika 22/11).",
   "nom": "Les Chimiks",
   "ou": [
-    { "ville": true, "couvert": true },
-    { "structures": ["#atheria:mines"] }
+    {
+      "ville": true,
+      "couvert": true
+    },
+    {
+      "structures": [
+        "#atheria:mines"
+      ]
+    }
   ],
-  "apparitions": [ { "entite": "spore:braiomil", "poids": 15, "min": 1, "max": 2 } ]
+  "apparitions": [
+    {
+      "entite": "spore:braiomil",
+      "poids": 15,
+      "min": 1,
+      "max": 2,
+      "stade": 2
+    }
+  ]
 }

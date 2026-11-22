@@ -1,12 +1,20 @@
 {
-  "_aide": "Le Koro du laboratoire central (Ch5-6). Un exemplaire par alliance : /bestiaire unique koro_labo pose le repaire au coeur du labo (une seule fois, sur la carte finale). Chaque alliance qui entre a 20 blocs recoit le sien ; il n'attaque qu'elle, seule elle peut le blesser, et vaincu par elle il laisse le dossier remede. Tant qu'aucun joueur de l'alliance present n'a le tag dossier_remede_ok (donne par la recompense de Ch5-6), il revient 10 min apres (dossier perdu, vole, mort).",
+  "_aide": "Le Koro du laboratoire central (Ch5-6). Un exemplaire par alliance : /bestiaire unique koro_labo pose le repaire au coeur du labo (une seule fois, sur la carte finale). Chaque alliance qui entre a 20 blocs recoit le sien ; il n'attaque qu'elle, seule elle peut le blesser, et vaincu par elle il laisse le dossier remede. Tant qu'aucun joueur de l'alliance present n'a le tag dossier_remede_ok (donne par la recompense de Ch5-6), il revient 10 min apres (dossier perdu, vole, mort). Boss de chapitre = calamité Spore (Mika 22/11). Sieger.",
   "nom": "Le Koro du labo central",
-  "entite": "spore:brute",
+  "entite": "spore:sieger",
   "couleur": "red",
-  "attributs": { "minecraft:generic.max_health": 300, "minecraft:generic.attack_damage": 14, "minecraft:generic.knockback_resistance": 0.9 },
+  "attributs": {
+    "minecraft:generic.max_health": 500,
+    "minecraft:generic.knockback_resistance": 1.0
+  },
   "par_alliance": true,
   "reveil": 20,
   "revient_sans_tag": "dossier_remede_ok",
   "retour": 600,
-  "butin": [ { "objet": "atheria:dossier_remede", "nombre": 1 } ]
+  "butin": [
+    {
+      "objet": "atheria:dossier_remede",
+      "nombre": 1
+    }
+  ]
 }

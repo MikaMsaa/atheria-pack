@@ -1,7 +1,10 @@
 {
-  "_aide": "Le Patient zéro du CHM (sous-sol du CHM, pendant le Final) : /bestiaire unique patient_zero.",
+  "_aide": "Le Patient zéro du CHM (sous-sol du CHM, pendant le Final) : /bestiaire unique patient_zero. Boss de chapitre = calamité Spore (Mika 22/11). Howitzer.",
   "nom": "Le Patient zéro",
-  "entite": "spore:plagued",
+  "entite": "spore:howitzer",
   "couleur": "green",
-  "attributs": { "minecraft:generic.max_health": 350, "minecraft:generic.attack_damage": 12, "minecraft:generic.knockback_resistance": 0.8 }
+  "attributs": {
+    "minecraft:generic.max_health": 800,
+    "minecraft:generic.knockback_resistance": 1.0
+  }
 }
