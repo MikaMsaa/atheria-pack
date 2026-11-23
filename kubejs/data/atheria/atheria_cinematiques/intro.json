@@ -1,5 +1,5 @@
 {
- "_aide": "Partie EN DIRECT de l'intro, jouée juste après la vidéo d'intro (Mika 22/11 « Vidéo puis direct au hameau »). 21 s : arrivée devant la case 0, entrée, les cinq cartes (soif, blessures, bruit, nuit, cendres) puis le carnet de R. Le titre et le contexte (An 20) sont dans la vidéo. Origine fixe 2407 66 -2759 = point d'apparition (case 0). eviter_sol = false pour l'intérieur. Version longue sans vidéo (45 s) : intro_longue.json, lancée par /recit cinematique intro_longue <joueur>.",
+ "_aide": "Partie EN DIRECT de l'intro, jouée juste après la vidéo d'intro (Mika 22/11 « Vidéo puis direct au hameau »). 24 s : arrivée devant la case 0, entrée, les cinq cartes (soif, blessures, bruit, nuit, cendres) puis le carnet de R. Le titre et le contexte (An 20) sont dans la vidéo. Origine fixe 2407 66 -2759 = point d'apparition (case 0). eviter_sol = false pour l'intérieur. Version longue sans vidéo (45 s) : intro_longue.json, lancée par /recit cinematique intro_longue <joueur>.",
  "passable": "toujours",
  "origine": [
   2407,
@@ -12,7 +12,7 @@
  "eviter_sol": false,
  "plans": [
   {
-   "duree": 7,
+   "duree": 10,
    "regard": [
     2.6,
     1.2,
@@ -109,13 +109,13 @@
    }
   },
   {
-   "t": 6.6,
+   "t": 9.6,
    "son": "minecraft:block.wooden_door.open",
    "volume": 0.7,
    "hauteur": 0.9
   },
   {
-   "t": 7.4,
+   "t": 10.4,
    "duree": 3.2,
    "carte": {
     "titre": "Le bruit",
@@ -126,13 +126,13 @@
    }
   },
   {
-   "t": 7.6,
+   "t": 10.6,
    "son": "minecraft:entity.zombie.ambient",
    "volume": 0.35,
    "hauteur": 0.6
   },
   {
-   "t": 10.600000000000001,
+   "t": 13.6,
    "duree": 3.2,
    "carte": {
     "titre": "La nuit",
@@ -143,7 +143,7 @@
    }
   },
   {
-   "t": 13.8,
+   "t": 16.8,
    "duree": 3.2,
    "carte": {
     "titre": "Les cendres",
@@ -154,18 +154,18 @@
    }
   },
   {
-   "t": 17.2,
+   "t": 20.2,
    "texte": "« Si tu lis ça, tu as trouvé ma case. Garde-la. » — R.",
    "duree": 3.8
   },
   {
-   "t": 17.5,
+   "t": 20.5,
    "son": "minecraft:item.book.page_turn",
    "volume": 0.8,
    "hauteur": 1.0
   },
   {
-   "t": 19.8,
+   "t": 22.8,
    "fondu": "fermeture",
    "duree": 1.2
   }
