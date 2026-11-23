@@ -25,6 +25,10 @@ file = "config/appleskin-client.toml"
 hash = "7127a276c7305371397053cd8d0833e6825c828850626e4067b9fed1430ed217"
 
 [[files]]
+file = "config/atheria_recit_sans_intro.txt"
+hash = "fdf71b25d1e1fc73164c42b577c4fbcc0e760da446fc9ed322d775e94b7dc2d6"
+
+[[files]]
 file = "config/badoptimizations.txt"
 hash = "cae5ba66971b2f61e0b523c5aeb8b8d4fa806f0bea8a1709860e4fea94426ac9"
 
@@ -554,7 +558,7 @@ hash = "ae1922ff3e34481bfeb856e8b0be55c51168ba9a7bb404f38aca4ee8d6f5bbce"
 
 [[files]]
 file = "config/fancymenu/customization/title_screen_layout.txt"
-hash = "aca2918f65e7e40fbe5e15d9600b0118b94c29ba0cd8e53db860b89c44976afa"
+hash = "e4dac207837eddc44d6c54020c10f4e35d062367db6f53506d255f9499cb5c38"
 
 [[files]]
 file = "config/fancymenu/legacy_checklist.txt"
@@ -1150,7 +1154,7 @@ hash = "72ca2bcea2a9946a3a54842f14eff6f7b47d8fc96ef497c1b56406643b153fd7"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
-hash = "cda1de84880f439d9c8a025861a483d51972e76b8a5a6a253dd0196aec821ac5"
+hash = "d5cdbf28e513bee81e1c13db0000922dd0008778fa97021c2ed54de18b881545"
 
 [[files]]
 file = "config/moonlight-client.toml"
@@ -1366,7 +1370,7 @@ hash = "c5008e8e53ba7e2363f565f7e174a54c466bb26c020231cbf03491eca140b407"
 
 [[files]]
 file = "config/subtle_effects/blocks.toml"
-hash = "e4553c4913c0655ae10736be8f86d40598ed51a1c67e7d359c221fd209e4340d"
+hash = "eb5dca0aa84eaae497779c2947f6a74bb8aab31c09d9126afd20c735d3626be0"
 
 [[files]]
 file = "config/subtle_effects/entities.toml"
@@ -1456,10 +1460,6 @@ hash = "a23c55534c796d5e04d4cba6f8cae3b380a12229d2f7ca5d487c3d191e6d333e"
 [[files]]
 file = "config/walkietalkie-common.toml"
 hash = "733f572bb39cd54fd498b6ddf32ae9c9ef61efe8bcbf08e763dfdd69d6666980"
-
-[[files]]
-file = "config/worldedit/worldedit.properties"
-hash = "482b3be986a8d15f6eb89b585f077cedfce64157a325abc392d010eafd355e75"
 
 [[files]]
 file = "config/xaero/lib/client.cfg"
@@ -2174,6 +2174,10 @@ file = "kubejs/assets/spore/lang/fr_fr.json"
 hash = "c92e57e143dcdf478e342ac90ef5d25ae64187d848cf1465d081cd3fccd56c4c"
 
 [[files]]
+file = "kubejs/client_scripts/atheria_arrivee.js"
+hash = "a564f9229646d98a7f7f8d6e260c7c37efae6358f805770d73c2fa95a4d68eb7"
+
+[[files]]
 file = "kubejs/client_scripts/atheria_brume.js"
 hash = "b208b419e86999fc2b0a86cba99948c432f6fc7d6e4f9a97c11d8bfa13549dfe"
 
@@ -2192,6 +2196,10 @@ hash = "9f8d3cdefce33cccf4d04e9b867ca2fb837c8c2d07c331903a42a08bd41b2800"
 [[files]]
 file = "kubejs/client_scripts/atheria_infobulles.js"
 hash = "8bdb8e738280e911f30c0046b784c59cdab4f5dbf2872476127a769046d3e3c1"
+
+[[files]]
+file = "kubejs/client_scripts/atheria_intro_video.js"
+hash = "ad7c917dd90763ca3626c5720b3a4d591616d1a5f076a9b9057394cd842273d2"
 
 [[files]]
 file = "kubejs/client_scripts/atheria_menu.js"
@@ -2251,7 +2259,11 @@ hash = "ccc71fc72b73eb266c818519b2abf5e84ae96783d6b1ed2597d31ce815c1e578"
 
 [[files]]
 file = "kubejs/data/atheria/atheria_cinematiques/intro.json"
-hash = "e8e23dc6039b494731fb84a78b72a75e16c7372412912d0e44a53baa764858b0"
+hash = "a8a0314d2b8b4f8ef1dff494f6e60caad250e9644db73dbcb3967885e2366c7f"
+
+[[files]]
+file = "kubejs/data/atheria/atheria_cinematiques/intro_longue.json"
+hash = "990b5f3fd58e132f48d481bd0a181ca30ea7d37e407ac26e5f4bb5e0f667a4c8"
 
 [[files]]
 file = "kubejs/data/atheria/atheria_dialogues/angellow.json"
@@ -13250,6 +13262,10 @@ file = "kubejs/server_scripts/atheria_apparition.js"
 hash = "acf7468e74caa121f6eba37eff65d19d329ef833bb2f42503263e8c260e3e641"
 
 [[files]]
+file = "kubejs/server_scripts/atheria_arrivee.js"
+hash = "f1e3730031eeb3e04230bee0214166f20fe2933bc5cf16cdb628be479537cc9f"
+
+[[files]]
 file = "kubejs/server_scripts/atheria_avantpostes.js"
 hash = "9a7d07337cfb3379f1b7d0f2934f9893587eeb458c79fb58a4c3d6cc127ea441"
 
@@ -13308,6 +13324,10 @@ hash = "576dae7d6e3113f6433791021db3b8eaad5d25548513590a6412d6dec76582f9"
 [[files]]
 file = "kubejs/server_scripts/atheria_honneur.js"
 hash = "ceb3375d56174678a13a1c79265d602afdf5e143db1b6498a04bf8813f850a29"
+
+[[files]]
+file = "kubejs/server_scripts/atheria_intro_video.js"
+hash = "ca81690e7ddb94a38267e47596d2fe65a8722abdd6764f68d78428f4b657d399"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_joueurs.js"
@@ -13444,6 +13464,10 @@ hash = "7e66318763fc82e5fc3629a8dcffa5f69be814e4f13173858c0750f5d840a57a"
 [[files]]
 file = "mods/atheria-vehicules-5.jar"
 hash = "d78eb9a280e040d6ee355046af60d1a1b18bb9a003084da0141ca1e88abf8e3b"
+
+[[files]]
+file = "mods/atheria_reglages-1.0.8.jar"
+hash = "517d91fc9d26075cd1db146cab751079f396650936414247191387d771e2e9c3"
 
 [[files]]
 file = "mods/atlas-lib.pw.toml"
@@ -14252,7 +14276,7 @@ metafile = true
 
 [[files]]
 file = "mods/subtle-effects.pw.toml"
-hash = "8fa75a87e3b90e25fb8a298c2250144607ff3b2d2052d0246f660719ea709195"
+hash = "abea1aaa824128a43a6c6769e0e006e1fad8ac3b2073a5490f932d9cabe36178"
 metafile = true
 
 [[files]]
@@ -14378,11 +14402,6 @@ metafile = true
 [[files]]
 file = "mods/windy.pw.toml"
 hash = "487e2b84df68ee58c6ed681a709454dc518af310c143565e496d796c9300769b"
-metafile = true
-
-[[files]]
-file = "mods/worldedit.pw.toml"
-hash = "de999f6cc4c2f344e324b4f331fa9767844c31463c6e8066fcd67b613338ab8c"
 metafile = true
 
 [[files]]
