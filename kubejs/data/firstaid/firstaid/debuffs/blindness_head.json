@@ -1,0 +1,12 @@
+{
+  "type": "firstaid:on_hit",
+  "debuffSlot": "head",
+  "potionName": "blindness",
+  "timeBoundaries": [
+    {
+      "damageTakenThreshold": 6,
+      "effectDuration": 20,
+      "healthFractionThreshold": 0.1
+    }
+  ]
+}

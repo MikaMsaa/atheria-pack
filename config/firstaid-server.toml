@@ -203,9 +203,9 @@
 	#Enable severe pain audio effects (tinnitus sound)
 	enablePainAudioEffects = false
 	#Persistent toggle for /firstaid adrenaline (dynamic vs mild)
-	lowSuppressionEnabled = false
+	lowSuppressionEnabled = true
 	#Persistent toggle for projectile near-miss adrenaline
-	projectileSuppressionEnabled = true
+	projectileSuppressionEnabled = false
 	#Visual adrenaline intensity multiplier used when /firstaid adrenaline mild is active
 	# Default: 0.4
 	# Range: 0.0 ~ 1.0
