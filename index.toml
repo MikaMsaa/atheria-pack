@@ -25,6 +25,10 @@ file = "config/appleskin-client.toml"
 hash = "7127a276c7305371397053cd8d0833e6825c828850626e4067b9fed1430ed217"
 
 [[files]]
+file = "config/atheria_recit_sans_intro.txt"
+hash = "fdf71b25d1e1fc73164c42b577c4fbcc0e760da446fc9ed322d775e94b7dc2d6"
+
+[[files]]
 file = "config/badoptimizations.txt"
 hash = "cae5ba66971b2f61e0b523c5aeb8b8d4fa806f0bea8a1709860e4fea94426ac9"
 
@@ -2198,6 +2202,10 @@ file = "kubejs/client_scripts/atheria_infobulles.js"
 hash = "8bdb8e738280e911f30c0046b784c59cdab4f5dbf2872476127a769046d3e3c1"
 
 [[files]]
+file = "kubejs/client_scripts/atheria_intro_video.js"
+hash = "ad7c917dd90763ca3626c5720b3a4d591616d1a5f076a9b9057394cd842273d2"
+
+[[files]]
 file = "kubejs/client_scripts/atheria_menu.js"
 hash = "b8c5826bf3869b7040f5fcc7b2434abd250293c1fd595a58539462382998e89c"
 
@@ -2255,11 +2263,11 @@ hash = "ccc71fc72b73eb266c818519b2abf5e84ae96783d6b1ed2597d31ce815c1e578"
 
 [[files]]
 file = "kubejs/data/atheria/atheria_cinematiques/intro.json"
-hash = "990b5f3fd58e132f48d481bd0a181ca30ea7d37e407ac26e5f4bb5e0f667a4c8"
+hash = "1246467149d76ab479fe2fcb460fa20d5b568efc4835f5e1acef852b8611c2e6"
 
 [[files]]
-file = "kubejs/data/atheria/atheria_cinematiques/intro_hameau.json"
-hash = "ef8273702111e4dd3c27d7a872202e0406637a9db4f1ed30b2aaa03e03bc62ec"
+file = "kubejs/data/atheria/atheria_cinematiques/intro_longue.json"
+hash = "990b5f3fd58e132f48d481bd0a181ca30ea7d37e407ac26e5f4bb5e0f667a4c8"
 
 [[files]]
 file = "kubejs/data/atheria/atheria_dialogues/angellow.json"
@@ -13320,6 +13328,10 @@ hash = "576dae7d6e3113f6433791021db3b8eaad5d25548513590a6412d6dec76582f9"
 [[files]]
 file = "kubejs/server_scripts/atheria_honneur.js"
 hash = "ceb3375d56174678a13a1c79265d602afdf5e143db1b6498a04bf8813f850a29"
+
+[[files]]
+file = "kubejs/server_scripts/atheria_intro_video.js"
+hash = "ca81690e7ddb94a38267e47596d2fe65a8722abdd6764f68d78428f4b657d399"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_joueurs.js"
