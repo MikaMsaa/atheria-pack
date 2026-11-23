@@ -3,7 +3,7 @@
   "minVersion": "0.8",
   "package": "fr.atheria.monde.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": ["GenerationStructuresMixin"],
+  "mixins": ["GenerationStructuresMixin", "FacteurVilleMixin", "StyleVilleMixin", "NiveauVilleMixin", "ServeurPoseMixin"],
   "client": [
     "ProfilRelanceMixin",
     "SonsDinosauresMixin",

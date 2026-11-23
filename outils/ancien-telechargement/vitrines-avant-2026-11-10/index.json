@@ -1,0 +1,562 @@
+{
+ "base": {
+  "ath_v_ba_base": {
+   "graine": 1411,
+   "dimx": 4,
+   "dimz": 2,
+   "hauteur": 21
+  },
+  "ath_v_ba_radar": {
+   "graine": 1421,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 15
+  },
+  "ath_v_ba_depot": {
+   "graine": 1431,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 9
+  }
+ },
+ "bidonville": {
+  "ath_v_bd_marche": {
+   "graine": 1011,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 6
+  },
+  "ath_v_bd_cabanes": {
+   "graine": 1021,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 12
+  },
+  "ath_v_bd_atelier": {
+   "graine": 1031,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 9
+  },
+  "ath_v_bd_conteneurs": {
+   "graine": 1041,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 14
+  },
+  "ath_v_bd_cantine": {
+   "graine": 1051,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 8
+  },
+  "ath_v_bd_ruelle": {
+   "graine": 1061,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 8
+  },
+  "ath_v_bd_chateau": {
+   "graine": 1071,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 20
+  },
+  "ath_v_bd_ecole": {
+   "graine": 1081,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 7
+  }
+ },
+ "bois": {
+  "ath_v_bg_mairie": {
+   "graine": 131,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 31
+  },
+  "ath_v_bg_eglise": {
+   "graine": 141,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 37
+  },
+  "ath_v_bg_place": {
+   "graine": 151,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 14
+  },
+  "ath_v_bg_maisons": {
+   "graine": 161,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 20
+  },
+  "ath_v_bg_commerces": {
+   "graine": 171,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 21
+  },
+  "ath_v_bg_ecole": {
+   "graine": 181,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 24
+  },
+  "ath_v_bg_auberge": {
+   "graine": 191,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 29
+  },
+  "ath_v_bg_scierie": {
+   "graine": 201,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 23
+  }
+ },
+ "terracotta": {
+  "ath_v_ds_mission": {
+   "graine": 211,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 22
+  },
+  "ath_v_ds_mairie": {
+   "graine": 221,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 24
+  },
+  "ath_v_ds_souk_f": {
+   "graine": 231,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 13
+  },
+  "ath_v_ds_pueblo": {
+   "graine": 241,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 27
+  },
+  "ath_v_ds_motel": {
+   "graine": 251,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 11
+  },
+  "ath_v_ds_station": {
+   "graine": 261,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 11
+  },
+  "ath_v_ds_sherif": {
+   "graine": 271,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 17
+  },
+  "ath_v_ds_oasis": {
+   "graine": 281,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 26
+  }
+ },
+ "gothique": {
+  "ath_v_gt_cathedrale": {
+   "graine": 311,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 38
+  },
+  "ath_v_gt_beffroi": {
+   "graine": 321,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 44
+  },
+  "ath_v_gt_maisons": {
+   "graine": 331,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 28
+  },
+  "ath_v_gt_cimetiere": {
+   "graine": 341,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 18
+  },
+  "ath_v_gt_hospice": {
+   "graine": 351,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 19
+  },
+  "ath_v_gt_bibliotheque": {
+   "graine": 361,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 26
+  },
+  "ath_v_gt_quai": {
+   "graine": 371,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 19
+  },
+  "ath_v_gt_jardin": {
+   "graine": 381,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 16
+  }
+ },
+ "beton": {
+  "ath_v_grand_h_l_m": {
+   "graine": 611,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 67
+  },
+  "ath_v_bt_tour": {
+   "graine": 621,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 78
+  },
+  "ath_v_bt_centre": {
+   "graine": 631,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 17
+  },
+  "ath_v_bt_parking": {
+   "graine": 641,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 20
+  },
+  "ath_v_bt_college": {
+   "graine": 651,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 21
+  },
+  "ath_v_bt_piscine": {
+   "graine": 661,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 12
+  },
+  "ath_v_bt_eglise": {
+   "graine": 671,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 23
+  },
+  "ath_v_bt_square": {
+   "graine": 681,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 9
+  }
+ },
+ "garnison": {
+  "ath_v_ga_caserne": {
+   "graine": 1111,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 17
+  },
+  "ath_v_ga_poste": {
+   "graine": 1121,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 13
+  },
+  "ath_v_ga_armurerie": {
+   "graine": 1131,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 14
+  },
+  "ath_v_ga_hangar": {
+   "graine": 1141,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 19
+  },
+  "ath_v_ga_mess": {
+   "graine": 1151,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 11
+  },
+  "ath_v_ga_infirmerie": {
+   "graine": 1161,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 6
+  },
+  "ath_v_ga_heliport": {
+   "graine": 1171,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 23
+  },
+  "ath_v_ga_camp": {
+   "graine": 1181,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 10
+  }
+ },
+ "haussmann": {
+  "ath_v_grand_magasin": {
+   "graine": 411,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 45
+  },
+  "ath_v_immeubles": {
+   "graine": 421,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 45
+  },
+  "ath_v_gare": {
+   "graine": 431,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 27
+  },
+  "ath_v_theatre": {
+   "graine": 441,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 32
+  },
+  "ath_v_halles": {
+   "graine": 451,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 21
+  },
+  "ath_v_hbm": {
+   "graine": 461,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 51
+  },
+  "ath_v_square": {
+   "graine": 471,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 11
+  },
+  "ath_v_banque": {
+   "graine": 481,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 18
+  }
+ },
+ "hopital": {
+  "ath_v_hp_hopital": {
+   "graine": 1211,
+   "dimx": 4,
+   "dimz": 2,
+   "hauteur": 22
+  },
+  "ath_v_hp_tri": {
+   "graine": 1221,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 6
+  },
+  "ath_v_hp_parking": {
+   "graine": 1231,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 7
+  }
+ },
+ "moderne": {
+  "ath_v_md_villa": {
+   "graine": 811,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 17
+  },
+  "ath_v_md_residence": {
+   "graine": 821,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 37
+  },
+  "ath_v_md_mediatheque": {
+   "graine": 831,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 16
+  },
+  "ath_v_md_maisons": {
+   "graine": 841,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 15
+  },
+  "ath_v_md_concession": {
+   "graine": 851,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 11
+  },
+  "ath_v_md_parc": {
+   "graine": 861,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 8
+  },
+  "ath_v_md_gymnase": {
+   "graine": 871,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 13
+  },
+  "ath_v_md_eco": {
+   "graine": 881,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 9
+  }
+ },
+ "prison": {
+  "ath_v_pr_prison": {
+   "graine": 1311,
+   "dimx": 4,
+   "dimz": 2,
+   "hauteur": 15
+  },
+  "ath_v_pr_cour": {
+   "graine": 1321,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 13
+  },
+  "ath_v_pr_parloir": {
+   "graine": 1331,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 8
+  }
+ },
+ "rouille": {
+  "ath_v_ru_usine": {
+   "graine": 911,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 27
+  },
+  "ath_v_ru_entrepot": {
+   "graine": 921,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 12
+  },
+  "ath_v_ru_garage": {
+   "graine": 931,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 12
+  },
+  "ath_v_ru_corons": {
+   "graine": 941,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 18
+  },
+  "ath_v_ru_silos": {
+   "graine": 951,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 28
+  },
+  "ath_v_ru_gare": {
+   "graine": 961,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 18
+  },
+  "ath_v_ru_centrale": {
+   "graine": 971,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 23
+  },
+  "ath_v_ru_cafe": {
+   "graine": 981,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 27
+  }
+ },
+ "verre": {
+  "ath_v_vr_tour": {
+   "graine": 711,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 78
+  },
+  "ath_v_vr_hotel": {
+   "graine": 721,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 59
+  },
+  "ath_v_vr_galerie": {
+   "graine": 731,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 18
+  },
+  "ath_v_vr_siege": {
+   "graine": 741,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 42
+  },
+  "ath_v_vr_metro": {
+   "graine": 751,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 9
+  },
+  "ath_v_vr_parvis": {
+   "graine": 761,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 12
+  },
+  "ath_v_vr_brasserie": {
+   "graine": 771,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 11
+  },
+  "ath_v_vr_clinique": {
+   "graine": 781,
+   "dimx": 2,
+   "dimz": 2,
+   "hauteur": 25
+  }
+ }
+}

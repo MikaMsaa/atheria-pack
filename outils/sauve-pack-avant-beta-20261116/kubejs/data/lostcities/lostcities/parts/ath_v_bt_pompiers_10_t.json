@@ -1,0 +1,464 @@
+{
+ "xsize": 16,
+ "zsize": 16,
+ "palette": {
+  "palette": [
+   {
+    "char": "À",
+    "block": "mcwpaths:andesite_flagstone[engraved=false]"
+   },
+   {
+    "char": "Á",
+    "block": "mcwpaths:stone_flagstone[engraved=false]"
+   },
+   {
+    "char": "Â",
+    "block": "minecraft:smooth_stone"
+   },
+   {
+    "char": "Ã",
+    "block": "minecraft:polished_andesite"
+   },
+   {
+    "char": "Ä",
+    "block": "minecraft:light_gray_concrete"
+   },
+   {
+    "char": "Å",
+    "block": "minecraft:ladder[facing=north,waterlogged=false]"
+   },
+   {
+    "char": "Æ",
+    "block": "minecraft:barrel[facing=west,open=false]"
+   },
+   {
+    "char": "Ç",
+    "block": "minecraft:cobweb"
+   },
+   {
+    "char": "È",
+    "block": "handcrafted:oak_table[color=red,shape=single,waterlogged=false]"
+   },
+   {
+    "char": "É",
+    "block": "handcrafted:oak_chair[color=none,facing=north,waterlogged=false]"
+   },
+   {
+    "char": "Ê",
+    "block": "supplementaries:sack[open=false,waterlogged=false]"
+   },
+   {
+    "char": "Ë",
+    "block": "minecraft:iron_door[facing=west,half=lower,hinge=left,open=true,powered=false]"
+   },
+   {
+    "char": "Ì",
+    "block": "minecraft:iron_trapdoor[facing=west,half=bottom,open=true,powered=false,waterlogged=false]"
+   },
+   {
+    "char": "Í",
+    "block": "minecraft:glass_pane[east=true,north=false,south=false,waterlogged=false,west=true]"
+   },
+   {
+    "char": "Î",
+    "block": "minecraft:glass_pane[east=false,north=true,south=true,waterlogged=false,west=false]"
+   },
+   {
+    "char": "Ï",
+    "block": "minecraft:iron_door[facing=west,half=upper,hinge=left,open=true,powered=false]"
+   },
+   {
+    "char": "Ð",
+    "block": "minecraft:iron_bars[east=true,north=false,south=false,waterlogged=false,west=true]"
+   },
+   {
+    "char": "Ñ",
+    "block": "minecraft:iron_bars[east=false,north=true,south=true,waterlogged=false,west=false]"
+   },
+   {
+    "char": "Ò",
+    "block": "minecraft:iron_trapdoor[facing=south,half=top,open=false,powered=false,waterlogged=false]"
+   },
+   {
+    "char": "Ó",
+    "block": "mcwlights:iron_chandelier[lit=true]"
+   },
+   {
+    "char": "Ô",
+    "block": "minecraft:white_concrete"
+   },
+   {
+    "char": "Õ",
+    "block": "minecraft:red_concrete"
+   },
+   {
+    "char": "Ö",
+    "block": "handcrafted:birch_fancy_bed[color=red,facing=west,occupied=false,part=head,shape=single]"
+   },
+   {
+    "char": "×",
+    "block": "handcrafted:birch_fancy_bed[color=red,facing=west,occupied=false,part=foot,shape=single]"
+   },
+   {
+    "char": "Ø",
+    "block": "handcrafted:birch_fancy_bed[color=red,facing=east,occupied=false,part=foot,shape=single]"
+   },
+   {
+    "char": "Ù",
+    "block": "handcrafted:birch_fancy_bed[color=red,facing=east,occupied=false,part=head,shape=single]"
+   },
+   {
+    "char": "Ú",
+    "block": "minecraft:chain[axis=y,waterlogged=false]"
+   },
+   {
+    "char": "Û",
+    "block": "minecraft:lantern[hanging=true,waterlogged=false]"
+   }
+  ]
+ },
+ "slices": [
+  [
+   "                ",
+   "                ",
+   "       ÄÄÐÄÄ    ",
+   "ÒÒÒÒÄ  Ä   Ä    ",
+   "    Ä  Ä   Ñ    ",
+   "    Ä  ÄÅ  Ä    ",
+   "    Ä  ÄÄÄÄÄ    ",
+   "    Ä           ",
+   "    Ä           ",
+   "    ÄÄÄÄÄÄÄÄÄÄ  ",
+   "    ÄÄ       Ä  ",
+   "    ÄÄ       Ä  ",
+   "    ÄÄ       Ä  ",
+   "    ÄÄ       Ä  ",
+   "    ÄÄ   Ó   Ä  ",
+   "    ÄÄ       Ä  "
+  ],
+  [
+   "                ",
+   "                ",
+   "       ÄÄÐÄÄ    ",
+   "ÔÔÔÔÄ  Ä   Ä    ",
+   "    Ä  Ä   Ñ    ",
+   "    Ä  ÄÅ  Ä    ",
+   "    Ä  ÄÄÄÄÄ    ",
+   "    Ä           ",
+   "    Ä           ",
+   "    ÄÂÂÂÂÂÂÂÂÂ  ",
+   "    ÄÂÂÂÂÂÂÂÂÂ  ",
+   "    ÄÂÂÂÂÂÂÂÂÂ  ",
+   "    ÄÂÂÂÂÂÂÂÂÂ  ",
+   "    ÄÂÂÂÂÂÂÂÂÂ  ",
+   "    ÄÂÂÂÂÂÂÂÂÂ  ",
+   "    ÄÂÂÂÂÂÂÂÂÂ  "
+  ],
+  [
+   "                ",
+   "                ",
+   "       ÄÄÄÄÄ    ",
+   "ÕÕÕÕÕ  Ä   Ä    ",
+   "    Ä  Ä   Ä    ",
+   "    Ä  ÄÅ  Ä    ",
+   "    Ä  ÄÄÄÄÄ    ",
+   "    Ä           ",
+   "    Ä           ",
+   "    ÄÄÄÄÄÄÄÄÄÄ  ",
+   "    ÄÄ       Ä  ",
+   "    ÄÄÖ×   ØÙÄ  ",
+   "    ÄÄ       Ä  ",
+   "    ÄÄ       Ä  ",
+   "    ÄÄÖ×   ØÙÄ  ",
+   "    ÄÄ       Ä  "
+  ],
+  [
+   "                ",
+   "                ",
+   "       ÄÄÐÄÄ    ",
+   "ÔÔÔÔÔ  Ä   Ä    ",
+   "ÂÂÂÂÔ  Ä  ÚÑ    ",
+   "ÂÂÂÂÔ  ÄÅ  Ä    ",
+   "ÂÂÂÂÔ  ÄÄÄÄÄ    ",
+   "ÂÂÂÂÔ           ",
+   "ÂÂÂÂÔ           ",
+   "ÂÂÂÂÔÄÄÍÍÄÍÍÄÄ  ",
+   "ÂÂÂÂÔÄ       Ä  ",
+   "ÂÂÂÂÔÄ       Ä  ",
+   "ÂÂÂÂÔÄ       Î  ",
+   "ÂÂÂÂÔÄ       Î  ",
+   "ÂÂÂÂÔÄ       Ä  ",
+   "ÂÂÂÂÔÄ       Ä  "
+  ],
+  [
+   "                ",
+   "                ",
+   "       ÄÄÐÄÄ    ",
+   "       Ä   Ä    ",
+   "       Ä   Ñ    ",
+   "       ÄÅ  Ä    ",
+   "       ÄÄÄÄÄ    ",
+   "                ",
+   "                ",
+   "     ÄÄÍÍÄÍÍÄÄ  ",
+   "     Ä       Ä  ",
+   "     Ä       Ä  ",
+   "     Ä       Î  ",
+   "     Ä       Î  ",
+   "     Ä       Ä  ",
+   "     Ä       Ä  "
+  ],
+  [
+   "                ",
+   "                ",
+   "       ÄÄÐÄÄ    ",
+   "       Ä   Ä    ",
+   "       Ä   Ñ    ",
+   "       ÄÅ  Ä    ",
+   "       ÄÄÄÄÄ    ",
+   "                ",
+   "                ",
+   "     ÄÄÍÍÄÍÍÄÄ  ",
+   "     Ä       Ä  ",
+   "     Ä       Ä  ",
+   "     Ä       Î  ",
+   "     Ä       Î  ",
+   "     Ä       Ä  ",
+   "     Ä       Ä  "
+  ],
+  [
+   "                ",
+   "                ",
+   "       ÄÄÄÄÄ    ",
+   "       Ä   Ä    ",
+   "       Ä  ÚÄ    ",
+   "       ÄÅ  Ä    ",
+   "       ÄÄÄÄÄ    ",
+   "                ",
+   "                ",
+   "     ÄÄÄÄÄÄÄÄÄ  ",
+   "     Ä       Ä  ",
+   "     Ä       Ä  ",
+   "     Ä       Ä  ",
+   "     Ä       Ä  ",
+   "     Ä   Û   Ä  ",
+   "     Ä       Ä  "
+  ],
+  [
+   "                ",
+   "                ",
+   "       ÄÄÐÄÄ    ",
+   "       Ä   Ä    ",
+   "       Ä   Ñ    ",
+   "       ÄÅ  Ä    ",
+   "       ÄÄÄÄÄ    ",
+   "                ",
+   "                ",
+   "     ÂÂÂÂÂÂÂÂÂ  ",
+   "     ÂÂÂÂÂÂÂÂÂ  ",
+   "     ÂÂÂÂÂÂÂÂÂ  ",
+   "     ÂÂÂÂÂÂÂÂÂ  ",
+   "     ÂÂÂÂÂÂÂÂÂ  ",
+   "     ÂÂÂÂÂÂÂÂÂ  ",
+   "     ÂÂÂÂÂÂÂÂÂ  "
+  ],
+  [
+   "                ",
+   "                ",
+   "       ÄÄÐÄÄ    ",
+   "       Ä   Ä    ",
+   "       Ä   Ñ    ",
+   "       ÄÅ  Ä    ",
+   "       ÄÄÄÄÄ    ",
+   "                ",
+   "                ",
+   "     ÄÄÄÄÄÄÄÄÄ  ",
+   "     Ä       Ä  ",
+   "     Ä       Ä  ",
+   "     Ä       Ä  ",
+   "     Ä       Ä  ",
+   "     Ä       Ä  ",
+   "     Ä       Ä  "
+  ],
+  [
+   "                ",
+   "                ",
+   "       ÄÄÐÄÄ    ",
+   "       Ä   Ä    ",
+   "       Ä  ÚÑ    ",
+   "       ÄÅ  Ä    ",
+   "       ÄÄÄÄÄ    ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ],
+  [
+   "                ",
+   "                ",
+   "       ÄÄÄÄÄ    ",
+   "       Ä   Ä    ",
+   "       Ä   Ä    ",
+   "       ÄÅ  Ä    ",
+   "       ÄÄÄÄÄ    ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ],
+  [
+   "                ",
+   "                ",
+   "       ÄÄÐÄÄ    ",
+   "       Ä   Ä    ",
+   "       Ä   Ñ    ",
+   "       ÄÅ  Ä    ",
+   "       ÄÄÄÄÄ    ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ],
+  [
+   "                ",
+   "                ",
+   "       ÄÄÐÄÄ    ",
+   "       Ä   Ä    ",
+   "       Ä  ÚÑ    ",
+   "       ÄÅ  Ä    ",
+   "       ÄÄÄÄÄ    ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ],
+  [
+   "                ",
+   "                ",
+   "       ÄÄÐÄÄ    ",
+   "       Ä   Ä    ",
+   "       Ä   Ñ    ",
+   "       ÄÅ  Ä    ",
+   "       ÄÄÄÄÄ    ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ],
+  [
+   "                ",
+   "                ",
+   "       ÄÄÄÄÄ    ",
+   "       Ä   Ä    ",
+   "       Ä   Ä    ",
+   "       ÄÅ  Ä    ",
+   "       ÄÄÄÄÄ    ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ],
+  [
+   "                ",
+   "                ",
+   "       ÄÄÐÄÄ    ",
+   "       Ä   Ä    ",
+   "       Ä  ÚÑ    ",
+   "       ÄÅ  Ä    ",
+   "       ÄÄÄÄÄ    ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ],
+  [
+   "                ",
+   "                ",
+   "       ÄÄÐÄÄ    ",
+   "       Ä   Ä    ",
+   "       Ä   Ñ    ",
+   "       ÄÅ  Ä    ",
+   "       ÄÄÄÄÄ    ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ],
+  [
+   "                ",
+   "                ",
+   "       ÄÄÐÄÄ    ",
+   "       Ä   Ä    ",
+   "       Ä   Ñ    ",
+   "       ÄÇ  Ä    ",
+   "       ÄÄÄÄÄ    ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ],
+  [
+   "                ",
+   "                ",
+   "       ÂÂÂÂÂ    ",
+   "       ÂÂÂÂÂ    ",
+   "       ÂÂÂÂÂ    ",
+   "       ÂÂÂÂÂ    ",
+   "       ÂÂÂÂÂ    ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ]
+ ]
+}

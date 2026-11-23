@@ -1,0 +1,21 @@
+{
+  "type": "tacz:gun_smith_table_crafting",
+  "materials": [
+    { "item": { "item": "minecraft:glass_bottle" }, "count": 3 },
+    { "item": { "tag": "c:gunpowders" }, "count": 2 },
+    { "item": { "item": "minecraft:coal" }, "count": 2 }
+  ],
+  "result": {
+    "type": "custom",
+    "group": "lrtactical:throwable",
+    "item": {
+      "id": "lrtactical:throwable",
+      "count": 3,
+      "components": {
+        "minecraft:custom_data": {
+          "ThrowableId": "lrtactical:molotov"
+        }
+      }
+    }
+  }
+}

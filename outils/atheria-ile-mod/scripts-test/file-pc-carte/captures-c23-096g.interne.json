@@ -1,0 +1,70 @@
+{
+    "nom":  "captures-c23",
+    "fil":  "carte",
+    "type":  "captures",
+    "priorite":  4,
+    "ram_mo":  7300,
+    "ram_relance_mo":  7300,
+    "attente_relance_min":  8,
+    "garde_mo":  400,
+    "duree_max_min":  30,
+    "instance":  "AtheriaAudit",
+    "monde":  {
+                  "dossier":  "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\scripts-test\\captures-c23\\monde-c23-096g",
+                  "copier":  false
+              },
+    "fichiers":  [
+                     {
+                         "source":  "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\scripts-test\\facteur\\atheria-monde-ile-test-facteur.jar",
+                         "cible":  "mods\\atheria-monde.jar"
+                     },
+                     {
+                         "source":  "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\branche-relief\\atheria-ile-0.9.6g.jar",
+                         "cible":  "mods\\atheria-ile.jar"
+                     },
+                     {
+                         "source":  "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\scripts-test\\regions-client-v3n2-poissons.json",
+                         "cible":  "config\\atheria_ile\\regions.json"
+                     },
+                     {
+                         "source":  "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\branche-relief\\plateaux-v3l.json",
+                         "cible":  "config\\atheria_ile\\plateaux.json"
+                     },
+                     {
+                         "source":  "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\scripts-test\\relief_delta_c2.bin",
+                         "cible":  "config\\atheria_ile\\relief_delta.bin"
+                     },
+                     {
+                         "source":  "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\scripts-test\\relief_base.bin",
+                         "cible":  "config\\atheria_ile\\relief_base.bin"
+                     },
+                     {
+                         "source":  "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\scripts-test\\sculptures-c22",
+                         "cible":  "config\\atheria_ile\\sculptures"
+                     }
+                 ],
+    "brume":  false,
+    "couper_mods":  [
+                        "xaeroworldmap",
+                        "emotecraft",
+                        "appleskin",
+                        "Jade"
+                    ],
+    "options":  {
+                    "renderDistance":  8,
+                    "simulationDistance":  4
+                },
+    "memoire_mo":  4608,
+    "fenetre":  "1920x1080",
+    "points_par_lancement":  0,
+    "prefixe":  "relief_c23_",
+    "camera":  {
+                   "recul_sol":  24,
+                   "recul_haut":  40,
+                   "haut":  60,
+                   "rayon":  3
+               },
+    "points_fichier":  "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\scripts-test\\points-c23.json",
+    "sortie":  "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\scripts-test\\captures-c23",
+    "note":  "c23 MONDE NEUF : 0.9.6g (controle froid sur biome final) + 0.9.6f (lagon_poissons 1.2) + sculptures_chaudes 1 (0.9.6e), fichiers de la passe3b, profil leger Xmx 4608 ; monde garde dans captures-c23\\monde-c23-096g"
+}

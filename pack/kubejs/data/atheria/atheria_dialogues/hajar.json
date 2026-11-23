@@ -1,0 +1,78 @@
+{
+ "pnj": {
+  "nom": "Hajar"
+ },
+ "debut": "debut",
+ "noeuds": {
+  "q_ch4_hajar": {
+   "lignes": [
+    {
+     "texte": "Tu as un carnet. Je peux dessiner dedans ?"
+    },
+    {
+     "nom": "Toi",
+     "texte": "Qui es-tu ?"
+    },
+    {
+     "texte": "Zéro zéro sept. Avant, j'avais un autre nom. Ils l'ont écrit sur une étiquette. Je l'ai mangée."
+    },
+    {
+     "nom": "Toi",
+     "texte": "Tu as peur ?"
+    },
+    {
+     "texte": "Pas des Comocos. Eux ne me demandent rien. Les vivants, oui."
+    }
+   ],
+   "choix": [
+    {
+     "texte": "Lui tendre le carnet",
+     "actions": [
+      {
+       "commande": "execute as {joueur} if items entity @s container.* atheria:carnet_survivant run tag @s add q_ch4_hajar"
+      },
+      {
+       "commande": "execute as {joueur} if items entity @s container.* atheria:carnet_survivant run give @s atheria:carnet_hajar 1"
+      },
+      {
+       "commande": "clear {joueur} atheria:carnet_survivant 1"
+      },
+      {
+       "commande": "playsound minecraft:entity.experience_orb.pickup master {joueur} ~ ~ ~ 0.6 1.2"
+      }
+     ],
+     "fin": true
+    }
+   ]
+  },
+  "q_ch4_hajar_fait": {
+   "texte": "Tu as ce qu'il te faut. Avance."
+  },
+  "repos": {
+   "texte": "(Elle dessine. Elle ne lève pas les yeux.)"
+  },
+  "debut": {
+   "aiguillage": [
+    {
+     "si": {
+      "tag": [
+       "q_ch4_hajar"
+      ]
+     },
+     "aller": "q_ch4_hajar_fait"
+    },
+    {
+     "si": {
+      "tag": [
+       "chapitre_4"
+      ]
+     },
+     "aller": "q_ch4_hajar"
+    },
+    {
+     "aller": "repos"
+    }
+   ]
+  }
+ }
+}

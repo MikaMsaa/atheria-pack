@@ -1,0 +1,16 @@
+{
+ "nom": "captures-c22-passe3c-leger",
+ "fil": "carte",
+ "type": "script",
+ "priorite": 4,
+ "verrou": "file",
+ "client": true,
+ "ram_mo": 6300,
+ "duree_max_min": 40,
+ "script": "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\scripts-test\\file-pc-carte\\passe3c-leger.ps1",
+ "arguments": [
+  "-Interne",
+  "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\scripts-test\\file-pc-carte\\captures-c22-passe3c.interne.json"
+ ],
+ "note": "passe3c (z008 + poissons lagon) en profil JVM leger : profil-leger.ps1 Xmx 4096 autour de capturer.ps1 ; capturer coupe a 29 min (budget 30), avant la limite de 40 min de la file"
+}

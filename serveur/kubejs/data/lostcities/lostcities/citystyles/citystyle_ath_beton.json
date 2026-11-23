@@ -2,10 +2,10 @@
     "style":  "ath_beton",
     "inherit":  "citystyle_common",
     "buildingsettings":  {
-                             "buildingchance":  0.6,
+                             "buildingchance":  0,
                              "minfloors":  4,
                              "maxfloors":  12,
-                             "maxcellars":  2
+                             "maxcellars":  0
                          },
     "streetblocks":  {
                          "border":  "y",
@@ -67,11 +67,79 @@
                                              },
                                              {
                                                  "factor":  1,
-                                                 "value":  "ath_v_bt_eglise"
+                                                 "value":  "ath_v_bt_salle_fetes"
                                              },
                                              {
                                                  "factor":  1,
                                                  "value":  "ath_v_bt_square"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_coursives"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_poste"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_marche"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_dispensaire"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_gymnase"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_bibliotheque"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_maison_quartier"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_station"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_creche"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_foyer"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_commissariat"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_supermarche"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_boutiques"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_pompiers"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_mairie_annexe"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_cinema"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bt_chateau_eau"
                                              },
                                              {
                                                  "factor":  0.5,

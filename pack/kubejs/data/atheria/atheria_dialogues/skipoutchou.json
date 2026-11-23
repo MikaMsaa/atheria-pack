@@ -1,0 +1,80 @@
+{
+ "pnj": {
+  "nom": "Skipoutchou"
+ },
+ "debut": "debut",
+ "noeuds": {
+  "q_ch3_skip_ok": {
+   "texte": "Mets ce brassard. Ici, il veut dire que tu soignes avant de poser des questions."
+  },
+  "q_ch3_skip_refus": {
+   "texte": "Le choix viendra quand même. Il vient toujours."
+  },
+  "q_ch3_skip": {
+   "lignes": [
+    {
+     "texte": "La voix est un piège. Mais elle dit vrai : la porteuse existe. Je l'ai vue."
+    },
+    {
+     "nom": "Toi",
+     "texte": "Pourquoi la chercher ?"
+    },
+    {
+     "texte": "J'étais infirmière au CHM pendant la Grande Chiasse. J'ai vu des parents tenir la main de leurs enfants sans savoir s'ils devaient espérer ou fuir. Je ne veux plus entendre une salle entière demander qui aura droit au dernier lit."
+    }
+   ],
+   "choix": [
+    {
+     "texte": "Rejoindre les Goblini.",
+     "style": "accepter",
+     "actions": [
+      {
+       "commande": "tag {joueur} add q_ch3_skip"
+      },
+      {
+       "commande": "give {joueur} atheria:brassard_rouge 1"
+      },
+      {
+       "commande": "playsound minecraft:entity.experience_orb.pickup master {joueur} ~ ~ ~ 0.6 1.2"
+      }
+     ],
+     "aller": "q_ch3_skip_ok"
+    },
+    {
+     "texte": "Je ne choisis pas de camp pour l'instant.",
+     "style": "refuser",
+     "aller": "q_ch3_skip_refus"
+    }
+   ]
+  },
+  "q_ch3_skip_fait": {
+   "texte": "Tu as ce qu'il te faut. Avance."
+  },
+  "repos": {
+   "texte": "Les Goblini n'ont pas de chef. Ils ont une liste de choses à faire."
+  },
+  "debut": {
+   "aiguillage": [
+    {
+     "si": {
+      "tag": [
+       "q_ch3_skip"
+      ]
+     },
+     "aller": "q_ch3_skip_fait"
+    },
+    {
+     "si": {
+      "tag": [
+       "acte_3"
+      ]
+     },
+     "aller": "q_ch3_skip"
+    },
+    {
+     "aller": "repos"
+    }
+   ]
+  }
+ }
+}

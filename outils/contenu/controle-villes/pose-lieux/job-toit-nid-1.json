@@ -1,0 +1,19 @@
+{
+ "nom": "toit-nid-1",
+ "fil": "villes",
+ "type": "script",
+ "priorite": 5,
+ "verrou": "script",
+ "client": true,
+ "ram_mo": 7600,
+ "duree_max_min": 20,
+ "script": "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\contenu\\controle-villes\\pose-lieux\\lancer-captures-villes.ps1",
+ "arguments": [
+  "-Monde",
+  "lieux_6",
+  "-Points",
+  "points-nid.json"
+ ],
+ "note": "Toit de l ancien Nid dans la rue pilote (1 point)",
+ "apres": "tunnels-tram-2"
+}

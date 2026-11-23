@@ -22,6 +22,7 @@
 *.log
 /outils/**/build/
 /outils/**/out/
+/outils/ffmpeg/
 
 # Docs : seulement le texte (les captures .png font 776 Mo)
 /docs/**/*.png
@@ -40,3 +41,18 @@
 !/serveur/server.properties
 !/serveur/run.bat
 !/serveur/user_jvm_args.txt
+
+# Lourds : copies sur la cle USB, pas sur GitHub (23/11)
+/outils/mondes-cloud/
+/outils/export-cloud/
+/outils/intro-video/
+/outils/file-pc/
+/outils/minestrator/
+/outils/serveur-*/
+/outils/publication-beta/
+/outils/atheria-ile-mod/run/
+/outils/Mineways/
+*.mca
+*.mp4
+*.mkv
+*.blend1

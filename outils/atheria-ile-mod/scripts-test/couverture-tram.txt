@@ -1,0 +1,108 @@
+﻿regions lu : regions-v3o.json
+  Ligne principale       avant y 51..58 larg 10 -> apres y 51..58 larg 10
+  Embranchement          avant y 51..58 larg 10 -> apres y 51..58 larg 10
+  Station de Majicavo    avant y 48..58 larg - -> apres y 48..58 larg -
+  Petite station 1       avant y 48..58 larg - -> apres y 48..58 larg -
+  Petite station 2       avant y 48..58 larg - -> apres y 48..58 larg -
+  Petite station 3       avant y 48..58 larg - -> apres y 48..58 larg -
+  Station des veilleurs  avant y 48..60 larg - -> apres y 48..60 larg -
+  Grand Nid              avant y 48..60 larg - -> apres y 48..60 larg -
+
+1. Couverture au-dessus de la voute (surface - y_max), toutes les colonnes du volume
+  Ligne principale : 8476 colonnes (aucun 1731, ile_test_1 480, pilote-v3-colline2 6457, pilote-bis-c22m 1539) ; couverture min 5.0, p5 6.0, mediane 7.0
+    points les plus faibles (min sur la largeur, tranches de 8 blocs, ecartes de 32 blocs au moins) :
+      km   168 : couverture   5.0 en 2451,-2843 (ile_test_1)
+      km   592 : couverture   5.0 en 2515,-2443 (pilote-v3-colline2)
+      km   856 : couverture   5.0 en 2521,-2176 (pilote-bis-c22m)
+      km   208 : couverture   6.0 en 2451,-2800 (pilote-v3-colline2)
+      km   256 : couverture   6.0 en 2459,-2753 (pilote-v3-colline2)
+      km   624 : couverture   6.0 en 2515,-2412 (pilote-v3-colline2)
+    min de la couverture MOYENNE par tranche de 8 : 5.0 (km 864)
+    tranches sans donnees (moins de la moitie des colonnes lues) : km 0..168
+  Embranchement : 2077 colonnes (aucun 2731, ile_test_1 2077) ; couverture min 6.0, p5 6.0, mediane 8.0
+    points les plus faibles (min sur la largeur, tranches de 8 blocs, ecartes de 32 blocs au moins) :
+      km   408 : couverture   6.0 en 2164,-2788 (ile_test_1)
+      km   168 : couverture   6.0 en 2340,-2948 (ile_test_1)
+      km    96 : couverture   6.0 en 2394,-3002 (ile_test_1)
+      km   136 : couverture   7.0 en 2365,-2967 (ile_test_1)
+      km   440 : couverture   8.0 en 2151,-2763 (ile_test_1)
+      km   376 : couverture   8.0 en 2185,-2809 (ile_test_1)
+    min de la couverture MOYENNE par tranche de 8 : 6.3 (km 88)
+    tranches sans donnees (moins de la moitie des colonnes lues) : km 0..80, km 176..344, km 448..464
+  Station de Majicavo : 2304 colonnes (pilote-bis-c22m 2304) ; couverture min 4.0, p5 5.0, mediane 7.0
+    point le plus faible : 4.0 en 2579,-2013 (pilote-bis-c22m)
+  Petite station 1 : 128 colonnes (aucun 640, ile_test_1 128) ; couverture min 6.0, p5 6.0, mediane 6.0
+    point le plus faible : 6.0 en 2386,-3008 (ile_test_1)
+  Petite station 2 : aucune donnee
+  Petite station 3 : 768 colonnes (ile_test_1 768) ; couverture min 8.0, p5 8.0, mediane 8.0
+    point le plus faible : 8.0 en 2184,-2828 (ile_test_1)
+  Station des veilleurs : aucune donnee
+  Grand Nid : 2304 colonnes (ile_test_1 2304, aucun 2816) ; couverture min 39.0, p5 40.0, mediane 42.0
+    point le plus faible : 39.0 en 2046,-2776 (ile_test_1)
+Etalonnage ile_test_1 - pilote-v3-colline2 sur 2481 colonnes communes : mediane +0, p5 -2, p95 +1, |d|<=1 75 %
+
+2. Passages sous l eau (mer, lagon, bassins, rivieres) : roche entre fond d eau et voute, visee >= 4
+  Ligne principale : aucune colonne sous l eau
+  Embranchement : aucune colonne sous l eau
+  Station de Majicavo : aucune colonne sous l eau
+  Petite station 1 : aucune colonne sous l eau
+  Petite station 3 : aucune colonne sous l eau
+  Grand Nid : aucune colonne sous l eau
+  lot67 Port de Longoni (bassin et chenal poses par Villes, absents du monde) :
+
+3. Conflits
+  Ligne principale (y 51..58) :
+     touche le volume Bancoul                (y 43..63) :  279 colonnes, Y communs (jonction voulue ?)
+     touche le volume Station des Enfants    (y 48..63) :   40 colonnes, Y communs (jonction voulue ?)
+     touche le volume Station de Majicavo    (y 48..58) :   40 colonnes, Y communs (jonction voulue ?)
+     touche le volume Embranchement          (y 51..58) :  205 colonnes, Y communs (jonction voulue ?)
+     sous le lot Enceinte de Longoni                                :  567 colonnes dedans,  168 dans sa marge
+     sous le lot Point haut SO de l'enceinte                        :  110 colonnes dedans,  551 dans sa marge
+     sous le lot Longoni, bouche des Passeurs                       :    0 colonnes dedans,   14 dans sa marge
+     sous le lot Majicavo, salle a la lampe                         :    0 colonnes dedans,   40 dans sa marge
+     sous le lot Majicavo, bouche de station de tram                :    0 colonnes dedans,   14 dans sa marge
+     sous le lot lot70 Majicavo (trailer, RN1 posee par Villes)     :  542 colonnes dedans,  166 dans sa marge
+     sous le lot lot67 Port de Longoni (trailer, quai et eau posee  :  567 colonnes dedans,  168 dans sa marge
+     sous le plateau lot70 Majicavo (trailer) (Y 65, fondu 96) : 1539 colonnes ; couverture au plateau 7
+  Embranchement (y 51..58) :
+     touche le volume Bancoul                (y 43..63) :  200 colonnes, Y communs (jonction voulue ?)
+     touche le volume Station des Enfants    (y 48..63) :   40 colonnes, Y communs (jonction voulue ?)
+     touche le volume Ligne principale       (y 51..58) :  205 colonnes, Y communs (jonction voulue ?)
+     touche le volume Petite station 1       (y 48..58) :   18 colonnes, Y communs (jonction voulue ?)
+     touche le volume Petite station 2       (y 48..58) :  345 colonnes, Y communs (jonction voulue ?)
+     touche le volume Petite station 3       (y 48..58) :  348 colonnes, Y communs (jonction voulue ?)
+     touche le volume Station des veilleurs  (y 48..60) :  160 colonnes, Y communs (jonction voulue ?)
+     touche le volume Bouche des veilleurs   (y 56..surface) :  105 colonnes, Y communs (jonction voulue ?)
+     sous le lot Enceinte de Longoni                                :  520 colonnes dedans,  160 dans sa marge
+     sous le lot Point haut SO de l'enceinte                        :    0 colonnes dedans,  572 dans sa marge
+     sous le lot Longoni, bouche des Passeurs                       :    0 colonnes dedans,   14 dans sa marge
+     sous le lot Bouche des veilleurs, porche                       :  360 colonnes dedans,  366 dans sa marge
+     sous le lot lot67 Port de Longoni (trailer, quai et eau posee  :  520 colonnes dedans,  160 dans sa marge
+  Station de Majicavo (y 48..58) :
+     touche le volume Ligne principale       (y 51..58) :   40 colonnes, Y communs (jonction voulue ?)
+     touche le volume Puits de Majicavo      (y 44..surface) :  256 colonnes, Y communs (jonction voulue ?)
+     sous le lot Majicavo, salle a la lampe                         :  512 colonnes dedans,  951 dans sa marge
+     sous le lot Majicavo, bouche de station de tram                :  256 colonnes dedans, 1756 dans sa marge
+     sous le lot lot70 Majicavo (trailer, RN1 posee par Villes)     : 1632 colonnes dedans,  672 dans sa marge
+     sous le plateau lot70 Majicavo (trailer) (Y 65, fondu 96) : 2304 colonnes ; couverture au plateau 7
+  Petite station 1 (y 48..58) :
+     touche le volume Embranchement          (y 51..58) :   18 colonnes, Y communs (jonction voulue ?)
+  Petite station 2 (y 48..58) :
+     touche le volume Embranchement          (y 51..58) :  345 colonnes, Y communs (jonction voulue ?)
+  Petite station 3 (y 48..58) :
+     touche le volume Embranchement          (y 51..58) :  348 colonnes, Y communs (jonction voulue ?)
+  Station des veilleurs (y 48..60) :
+     touche le volume Embranchement          (y 51..58) :  160 colonnes, Y communs (jonction voulue ?)
+     a 1 blocs du volume Grand Nid (y 48..60), dans la marge de 8
+     touche le volume Bouche des veilleurs   (y 56..surface) :   30 colonnes, Y communs (jonction voulue ?)
+     sous le lot Bouche des veilleurs, porche                       :    0 colonnes dedans,  695 dans sa marge
+  Grand Nid (y 48..60) :
+     a 1 blocs du volume Station des veilleurs (y 48..60), dans la marge de 8
+
+4. chunks_volumes (exclusions.json) : chunks des volumes + marge 8
+  avant 394 chunks, apres 394 chunks : 0 nouveaux, 0 qui sortent
+  exclusions.json de serveur-ile-test (lecture seule) : 383 chunks_volumes ; nouveaux chunks absents : 21
+  -> exclusions.json est regenere par le mod au demarrage a partir de regions.json : il sera a jour si regions.json l est.
+
+GRILLE_EAU_KO : []
+GRILLE_COUV : Ligne principale 5.0 | Embranchement 6.0 | Station de Majicavo 4.0 | Petite station 1 6.0 | Petite station 3 8.0 | Grand Nid 39.0

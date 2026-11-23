@@ -1,0 +1,87 @@
+RECENSEMENT DES STRUCTURES (rayon de recherche 3000 blocs, Y = surface du terrain au point trouve)
+points de depart (centre de chaque region) :
+   P1 Côte calcaire et falaises du Nord : -2082, -3870
+   P2 Savane sèche (baobabs) : 738, -3090
+   P3 Friches urbaines (Majicavo, Mamoudzou) : 1878, -1374
+   P4 Plaines agricoles de Coconi : -1026, -1002
+   P5 Jungle de l'Ouest : -3258, 210
+   P6 Hauts plateaux et pins : -1470, 1422
+   P7 Sommet gelé du Bénara (hiver volcanique) : 246, 1746
+   P8 Marais aux spores : 1902, 750
+   P9 Canyons de latérite rouge : -1374, 2910
+   P10 Plaine de cendres : 2550, 2874
+   P11 Mangroves du Sud : 570, 4398
+   P12 Petite-Terre, cratère et campus Somaco : 4026, -906
+   P13 Île du volcan : -3174, 4338
+   P14 Îlot de la ICE : 4518, 4650
+spore:military_camp (espacement 35 chunks) :
+   P1 : 1748 blocs -> -1088, -2432  Y 68  Savane sèche (baobabs)
+   P2 : 99 blocs -> 752, -2992  Y 108  Savane sèche (baobabs)
+   P3 : 2699 blocs -> 16, -3328  Y 66  Savane sèche (baobabs)
+   P4 : 1794 blocs -> 272, -2240  Y 106  Savane sèche (baobabs)
+   P5 : 3419 blocs -> -1088,-2432 (meme que plus haut)
+   P6 : 1753 blocs -> -496, 2880  Y 148  Hauts plateaux et pins
+   P7 : 1355 blocs -> -496,2880 (meme que plus haut)
+   P8 : 3207 blocs -> -496,2880 (meme que plus haut)
+   P9 : 879 blocs -> -496,2880 (meme que plus haut)
+   P10 : 1671 blocs -> 2880, 4512  Y 68  Îlot de la ICE
+   P11 : 288 blocs -> 320, 4256  Y 66  Mangroves du Sud
+   P12 : 4359 blocs -> 704, -3728  Y 117  Savane sèche (baobabs)
+   P13 : 3049 blocs -> -496,2880 (meme que plus haut)
+   P14 : 202 blocs -> 4720, 4656  Y 70  Îlot de la ICE
+   => 10/14 points a moins de 3000 blocs, 9 exemplaires distincts, 1 a Y >= 120
+spore:lab (espacement 35 chunks) :
+   P1 : 4815 blocs -> 672, 80  Y 68  Marais aux spores
+   P2 : 3171 blocs -> 672,80 (meme que plus haut)
+   P3 : 1889 blocs -> 672,80 (meme que plus haut)
+   P4 : 2013 blocs -> 672,80 (meme que plus haut)
+   P5 : 3932 blocs -> 672,80 (meme que plus haut)
+   P6 : 2528 blocs -> 672,80 (meme que plus haut)
+   P7 : 1480 blocs -> 1264, 672  Y 66  Marais aux spores
+   P8 : 235 blocs -> 1728, 592  Y 66  Marais aux spores
+   P9 : 3492 blocs -> 672,80 (meme que plus haut)
+   P10 : 1929 blocs -> 1376, 1344  Y 64  Marais aux spores
+   P11 : 3159 blocs -> 1376,1344 (meme que plus haut)
+   P12 : 346 blocs -> 4016, -560  Y 68  Petite-Terre, cratère et campus Somaco
+   P13 : 5738 blocs -> 672,80 (meme que plus haut)
+   P14 : 4561 blocs -> 1376,1344 (meme que plus haut)
+   => 7/14 points a moins de 3000 blocs, 5 exemplaires distincts, 0 a Y >= 120
+spore:prison (espacement 35 chunks) :
+   P1 : 2420 blocs -> 224, -3136  Y 76  Savane sèche (baobabs)
+   P2 : 178 blocs -> 656, -3248  Y 127  Savane sèche (baobabs)
+   P3 : 607 blocs -> 1904, -768  Y 68  Friches urbaines (Majicavo, Mamoudzou)
+   P4 : 1267 blocs -> 240, -944  Y 128  Friches urbaines (Majicavo, Mamoudzou)
+   P5 : 4829 blocs -> 224,-3136 (meme que plus haut)
+   P6 : 2489 blocs -> 208, -416  Y 100  Friches urbaines (Majicavo, Mamoudzou)
+   P7 : 2162 blocs -> 208,-416 (meme que plus haut)
+   P8 : 1238 blocs -> 1280, -320  Y 105  Marais aux spores
+   P9 : 3683 blocs -> 208,-416 (meme que plus haut)
+   P10 : 769 blocs -> 3008, 2256  Y 76  Plaine de cendres
+   P11 : 3245 blocs -> 3008,2256 (meme que plus haut)
+   P12 : 1861 blocs -> 2608, -2112  Y 63  en mer
+   P13 : rien
+   P14 : 2335 blocs -> 2976, 2896  Y 70  Plaine de cendres
+   => 10/14 points a moins de 3000 blocs, 9 exemplaires distincts, 2 a Y >= 120
+spore:hospital (espacement 52 chunks) :
+   P1 : 4255 blocs -> 864, -800  Y 94  Friches urbaines (Majicavo, Mamoudzou)
+   P2 : 1776 blocs -> 1680, -1584  Y 112  Friches urbaines (Majicavo, Mamoudzou)
+   P3 : 289 blocs -> 1680,-1584 (meme que plus haut)
+   P4 : 1570 blocs -> 112, 80  Y 77  Marais aux spores
+   P5 : 3373 blocs -> 112,80 (meme que plus haut)
+   P6 : 2075 blocs -> 112,80 (meme que plus haut)
+   P7 : 1671 blocs -> 112,80 (meme que plus haut)
+   P8 : 1865 blocs -> 864,-800 (meme que plus haut)
+   P9 : 3196 blocs -> 112,80 (meme que plus haut)
+   P10 : 1287 blocs -> 2592, 4160  Y 117  Plaine de cendres
+   P11 : 2036 blocs -> 2592,4160 (meme que plus haut)
+   P12 : 2141 blocs -> 2592, -2496  Y 64  Friches urbaines (Majicavo, Mamoudzou)
+   P13 : 5379 blocs -> 112,80 (meme que plus haut)
+   P14 : 1987 blocs -> 2592,4160 (meme que plus haut)
+   => 10/14 points a moins de 3000 blocs, 5 exemplaires distincts, 0 a Y >= 120
+
+RESUME
+spore:military_camp  spore:military_camp : 10/14 points a moins de 3000 blocs, 9 exemplaires distincts, 1 a Y >= 120
+spore:lab  spore:lab : 7/14 points a moins de 3000 blocs, 5 exemplaires distincts, 0 a Y >= 120
+spore:prison  spore:prison : 10/14 points a moins de 3000 blocs, 9 exemplaires distincts, 2 a Y >= 120
+spore:hospital  spore:hospital : 10/14 points a moins de 3000 blocs, 5 exemplaires distincts, 0 a Y >= 120
+duree 26 s

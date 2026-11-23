@@ -2,10 +2,10 @@
     "style":  "ath_verre",
     "inherit":  "citystyle_common",
     "buildingsettings":  {
-                             "buildingchance":  0.7,
+                             "buildingchance":  0,
                              "minfloors":  8,
                              "maxfloors":  22,
-                             "maxcellars":  3
+                             "maxcellars":  0
                          },
     "streetblocks":  {
                          "border":  "y",
@@ -68,6 +68,74 @@
                                              {
                                                  "factor":  1,
                                                  "value":  "ath_v_vr_clinique"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_banque"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_residence"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_concession"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_biblio"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_donnees"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_piscine"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_parking"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_snack"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_gare_routiere"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_studio_t_v"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_creche"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_fitness"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_labo"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_musee"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_poste"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_concert"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_vr_jardinerie"
                                              },
                                              {
                                                  "factor":  0.4,

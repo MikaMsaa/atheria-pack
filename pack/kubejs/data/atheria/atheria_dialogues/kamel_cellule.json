@@ -1,0 +1,71 @@
+{
+ "pnj": {
+  "nom": "Kamel"
+ },
+ "debut": "debut",
+ "noeuds": {
+  "q_ch2_kamel_ok": {
+   "texte": "Reste derrière moi. Et si je tousse, tu ne poses pas de questions."
+  },
+  "q_ch2_kamel_refus": {
+   "texte": "Prépare-toi vite. Sur la route, personne n'attend personne."
+  },
+  "q_ch2_kamel": {
+   "lignes": [
+    {
+     "texte": "Tu m'as vendu et tu viens me chercher. Je ne sais pas si tu es un salaud ou si tu as un sens de l'orientation catastrophique. On verra sur la route."
+    }
+   ],
+   "choix": [
+    {
+     "texte": "On y va.",
+     "style": "accepter",
+     "actions": [
+      {
+       "commande": "tag {joueur} add q_ch2_kamel"
+      },
+      {
+       "commande": "playsound minecraft:entity.experience_orb.pickup master {joueur} ~ ~ ~ 0.6 1.2"
+      }
+     ],
+     "aller": "q_ch2_kamel_ok"
+    },
+    {
+     "texte": "Pas encore, je dois me préparer.",
+     "style": "refuser",
+     "aller": "q_ch2_kamel_refus"
+    }
+   ]
+  },
+  "q_ch2_kamel_fait": {
+   "texte": "Tu as ce qu'il te faut. Avance."
+  },
+  "repos": {
+   "texte": "(Kamel fixe le mur de sa cellule. Ce n'est pas toi qu'il attend.)"
+  },
+  "debut": {
+   "aiguillage": [
+    {
+     "si": {
+      "tag": [
+       "q_ch2_kamel"
+      ]
+     },
+     "aller": "q_ch2_kamel_fait"
+    },
+    {
+     "si": {
+      "tag": [
+       "acte_2",
+       "choix_ch1_paf"
+      ]
+     },
+     "aller": "q_ch2_kamel"
+    },
+    {
+     "aller": "repos"
+    }
+   ]
+  }
+ }
+}

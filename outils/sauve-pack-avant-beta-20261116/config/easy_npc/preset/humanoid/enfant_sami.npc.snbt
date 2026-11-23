@@ -1,0 +1,58 @@
+{
+	PresetMetadata: {
+		author: "Atheria",
+		category: "Atheria",
+		description: "Enfants du Choléra (station Bancoul) : Sami, l'Élève.",
+		entityTypeId: "easy_npc:humanoid",
+		name: "Enfant - Sami",
+		variantType: "STEVE",
+		version: "1.0.0"
+	},
+	data: {
+		ActionData: {
+			ActionEventSet: {
+				ON_INTERACTION: [
+					{
+						Type: "OPEN_DEFAULT_DIALOG"
+					}
+				]
+			}
+		},
+		CustomName: '{"text": "Sami", "color": "#B9B6AE"}',
+		DialogData: {
+			DialogDataSet: [
+				{
+					Label: "repos",
+					Name: "Repos",
+					Priority: 1,
+					Texts: [
+						{
+							Text: "Avant, le Foundi m'avait mis zéro en histoire. Maintenant il dit que j'ai la meilleure collection de spores de la station. Je prends."
+						}
+					]
+				}
+			],
+			Type: "STANDARD"
+		},
+		EasyNPCVersion: 3,
+		Invulnerable: 1b,
+		ObjectiveData: {
+			ObjectiveDataSet: [
+				{
+					Type: "LOOK_AT_PLAYER"
+				},
+				{
+					Type: "LOOK_AT_RESET"
+				}
+			]
+		},
+		PersistenceRequired: 1b,
+		SkinData: {
+			Texture: "atheria:textures/entity/enfants/sami.png",
+			Type: "RESOURCE_LOCATION"
+		},
+		Tags: ["enfants", "enfant.sami"],
+		VariantType: "STEVE",
+		id: "easy_npc:humanoid"
+	}
+}

@@ -1,0 +1,82 @@
+﻿POUR VILLES : réglages du mod de l'île, prêts à copier (refait le 15/11 pour 0.9.6d + regions-v3o, après le test c22 ; volumes du tram mis à jour à 12:55)
+=====================================================================================================================
+
+À faire uniquement dans une COPIE FRAÎCHE de serveur-ile-test, jamais dans serveur-ile-test lui-même.
+Ci-dessous, <copie> = le dossier de cette copie, et <monde> = le dossier du monde que le serveur va générer
+(celui de level-name dans <copie>\server.properties ; dans l'original, le monde de test s'appelle ile_test_1).
+
+ATTENTION : regions-v3o n'a pas encore été testée en jeu telle quelle.
+  v3o = v3n2 (testée en c22) + les 3 nouveaux lots ci-dessous (rue haussmannienne, centre commercial, camp des Goblini)
+  et leurs plateaux. Le relief, les sculptures, les îlots et les raccords sont ceux de c22 ; seuls les 3 lots et leurs plateaux sont nouveaux.
+
+Jar : 0.9.6d (atheria-ile-0.9.6d-ilots-chauds.jar, renommé atheria-ile.jar).
+  Il contient tout ce qui a été ajouté depuis la 0.9.4i :
+  - lacs hors lots et lave hors volcan (0.9.6) ;
+  - îlots et coraux (0.9.6b) ;
+  - raccords doux et végétation des marges (0.9.6c) ;
+  - îlots de sable chauds (0.9.6d) : plage ou lagon forcés sur les îlots, donc plus de glace ni de neige sur l'îlot A et au Phare.
+Réglages : regions-v3o, avec :
+  - les lots du trailer, dont lot68 (rue du jour 1) : x 2895..2987, z -1006..-899, marge 8, plateau à Y 67 ;
+  - 3 nouveaux lots, marge 8 :
+      Rue haussmannienne pilote      x 2912..3024,   z -768..-640
+      Centre commercial inondé       x 2968..3096,   z -1252..-1124
+      Camp caché des Goblini         x -2168..-2088, z -152..-72 (remplace l'ancien lot 64 x 64)
+  - 13 sculptures, dont l'îlot A et l'îlot du Phare (marqués « ilot ») ;
+  - ilots_chauds 16, fondu_doux 1, vegetation_marges 1, lacs_hors_lots 1, lave_hors_volcan 1.
+Volumes du tram (mission 3, ajoutés le 15/11 à 12:55, ligne principale déplacée au portail ouest à 13:00, vérifiés hors ligne par scripts-test\couverture_tram.py -> couverture-tram.txt) :
+  - Ligne principale : y 51..58, largeur 10 (gabarit Bancoul : 8 de large dont 6 utiles, rails à Y 53, voûte à Y 57) ;
+      points [2496,-3000] [2484,-3000] [2484,-2984] [2456,-2872] [2456,-2688] [2520,-2600] [2520,-2200] [2546,-2104] [2568,-2032]
+      elle sort par le portail OUEST (x 2496), partagé avec l'embranchement (recouvrement voulu x 2479..2500, z -3005..-2996) ;
+      elle ne passe plus par le portail est (x 2543).
+  - Embranchement : y 51..58, largeur 10 ; points [2496,-3000] [2400,-3000] [2300,-2916] [2200,-2816] [2136,-2752]
+  - Stations de Majicavo, petites stations 1 à 3, veilleurs et Grand Nid : y_min 48 (quais à Y 53), y_max inchangé.
+  - Portails murés en x 2496 et x 2543, z -3003..-2998 (Bancoul) ; le tram n'utilise plus que le portail ouest.
+  ATTENTION : une partie du tracé n'a jamais été générée dans un monde de test (le nouveau tronçon 2496,-3000 -> 2456,-2872, l'Embranchement, la petite station 2, les veilleurs) :
+  couverture non mesurée là. Règle du port lot67 : le bassin x 2549..2575 (eau Y 57..62, fond d'argile Y 56) est hors tracé (le tunnel le plus proche est à 53 blocs de son axe) ;
+  le reste du sous-sol du port ne descend pas sous Y 59 (voûte du tunnel à y_max 58).
+  Versions d'avant : ..\pour-villes-v3j-avant-tram\ (regions 01ff538b, sans le tram) ; branche-relief\regions-v3o.avant-ligne-ouest.json (b4253720, ligne par le portail est).
+Plateaux (plateaux-v3o) :
+  lot70 Majicavo Y 65 | lot68 Y 67 (fondu 32) | Rue haussmannienne Y 67 (fondu 16) | Centre commercial Y 65 (fondu 32) | Goblini Y 111 (fondu 16)
+  Goblini : le sol naturel y est à Y 111 (médiane), avec un sommet à Y 115 à côté ; 40 blocs libres voulus au-dessus.
+
+FICHIERS -> DESTINATION EXACTE
+------------------------------
+1. atheria-ile.jar            -> <copie>\mods\atheria-ile.jar
+     Retirer l'ancien jar atheria-ile.jar, qu'on remplace par celui-ci.
+     Il ne doit rester qu'UN SEUL jar atheria-ile*.jar dans mods\.
+     Ne pas toucher à atheria-monde.jar.
+2. regions.json               -> <copie>\config\atheria_ile\regions.json   (remplace l'existant ; c'est regions-v3o.json)
+3. plateaux.json              -> <copie>\config\atheria_ile\plateaux.json  (c'est plateaux-v3o.json)
+4. relief_delta.bin           -> <copie>\config\atheria_ile\relief_delta.bin  (delta d'érosion v3, celui des pilotes c18 à c22)
+5. relief_base.bin            -> <copie>\config\atheria_ile\relief_base.bin
+6. sculptures\                -> <copie>\config\atheria_ile\sculptures\   (le dossier entier : 13 sous-dossiers, chacun hauteur.png + masque.png)
+     Sans ce dossier, le journal signale les sculptures comme illisibles et le relief d'origine reste en place.
+7. atheria_ile_datapack.zip   -> <copie>\<monde>\datapacks\atheria_ile_datapack.zip
+     Remplace celui qui vient de ile_test_1\datapacks\ ; garder les autres datapacks.
+     C'est le datapack 1.4 (crochet relief + crochet plateau_raccord), avec le correctif C1 « sans lave » déjà appliqué.
+     Il est identique à celui des pilotes c18 à c22.
+Ne pas copier exclusions.json : le mod le réécrit tout seul au démarrage dès que regions.json ou carte.png changent.
+carte.png et relief.png de la copie sont déjà les bons (identiques à ceux des pilotes).
+
+PARTIR D'UN MONDE NEUF
+----------------------
+- <monde>\ ne doit contenir aucun dossier region\ : aucun chunk déjà généré.
+  Les chunks générés avec d'anciens réglages ne sont pas refaits : ils garderaient l'ancien relief, la glace ou les anciens lots.
+- Si on part d'un ancien monde, on ne garde que level.dat et datapacks\ (et serverconfig\ s'il existe).
+  Les pilotes partent du level.dat de serveur-ile-test\sauvegardes\avant-audit-carte\.
+- Le datapack doit être en place AVANT le premier démarrage. Sinon, les chunks générés avant restent sans relief ni plateaux.
+
+VÉRIFIER DANS LE JOURNAL (<copie>\logs\latest.log), après le démarrage
+--------------------------------------------------------------------
+- « 0.9.6d : ilots de sable chauds, anneau 16 blocs » : le jar 0.9.6d est chargé et le réglage est lu.
+- « 0.9.6c » : la ligne des raccords doux et de la végétation des marges.
+- « plateau de raccord » : une ligne par plateau, donc 5 lignes (lot70, lot68, rue haussmannienne, centre commercial, Goblini).
+  Si cette ligne manque, le crochet plateau_raccord n'est pas chargé : mauvais datapack, ou monde pas neuf.
+- « 0.9.5d : sculpture '...' » : 13 lignes, une par sculpture. Aucune ligne « sculpture illisible ».
+- « delta d'erosion relief_delta.bin » : le delta v3 est bien lu.
+- « exclusions.json » : « a jour » ou réécrit, avec le nombre de zones de villes.
+- Aucun « illisible » ni aucune erreur [atheria_ile].
+
+Empreintes (MD5, 8 premiers caractères) :
+  atheria-ile.jar 5b7afd96 | atheria_ile_datapack.zip 2e84a11d | regions.json fb3436a4 | plateaux.json bab0375b
+  relief_base.bin b70618b3 | relief_delta.bin c3e2414a

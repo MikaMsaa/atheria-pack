@@ -1,0 +1,11 @@
+{
+  "type": "lithostitched:wrap_density_function",
+  "target_function": "tectonic:noise/continent/erosion_raw",
+  "wrapper_function": {
+    "type": "atheria_ile:ile_champ",
+    "champ": "erosion",
+    "argument": {
+      "type": "lithostitched:wrapped_marker"
+    }
+  }
+}

@@ -1,0 +1,1 @@
+QFIN_BT2 = QFIN_BT2; QFIN = QFIN_BT2; QFIN_VUES = vuesBeton2

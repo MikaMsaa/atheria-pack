@@ -1,0 +1,18 @@
+{
+ "nom": "tunnels-tram-2",
+ "fil": "villes",
+ "type": "script",
+ "priorite": 5,
+ "verrou": "script",
+ "client": true,
+ "ram_mo": 7600,
+ "duree_max_min": 30,
+ "script": "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\contenu\\controle-villes\\pose-lieux\\lancer-captures-villes.ps1",
+ "arguments": [
+  "-Monde",
+  "lieux_6",
+  "-Points",
+  "points-tunnels-2.json"
+ ],
+ "note": "Suite des vues souterraines (4 points), meme monde lieux_6 deja genere autour de Bancoul"
+}

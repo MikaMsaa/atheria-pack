@@ -97,51 +97,51 @@
    },
    {
     "char": "×",
-    "block": "minecraft:glass_pane[east=true,north=true,south=true,waterlogged=false,west=false]"
+    "block": "chipped:sanded_sandstone"
    },
    {
     "char": "Ø",
-    "block": "minecraft:iron_bars[east=true,north=false,south=false,waterlogged=false,west=false]"
+    "block": "minecraft:glass_pane[east=true,north=true,south=true,waterlogged=false,west=false]"
    },
    {
     "char": "Ù",
-    "block": "minecraft:iron_bars[east=false,north=false,south=false,waterlogged=false,west=true]"
+    "block": "minecraft:iron_bars[east=true,north=false,south=false,waterlogged=false,west=false]"
    },
    {
     "char": "Ú",
-    "block": "minecraft:glass_pane[east=true,north=false,south=false,waterlogged=false,west=true]"
+    "block": "minecraft:iron_bars[east=false,north=false,south=false,waterlogged=false,west=true]"
    },
    {
     "char": "Û",
-    "block": "minecraft:dark_oak_slab[type=bottom,waterlogged=false]"
+    "block": "minecraft:glass_pane[east=true,north=false,south=false,waterlogged=false,west=true]"
    },
    {
     "char": "Ü",
-    "block": "minecraft:birch_leaves[distance=4,persistent=true,waterlogged=false]"
+    "block": "minecraft:dark_oak_slab[type=bottom,waterlogged=false]"
    },
    {
     "char": "Ý",
-    "block": "minecraft:azalea_leaves[distance=3,persistent=true,waterlogged=false]"
+    "block": "minecraft:birch_leaves[distance=4,persistent=true,waterlogged=false]"
    },
    {
     "char": "Þ",
-    "block": "minecraft:birch_leaves[distance=2,persistent=true,waterlogged=false]"
+    "block": "minecraft:azalea_leaves[distance=3,persistent=true,waterlogged=false]"
    },
    {
     "char": "ß",
-    "block": "minecraft:azalea_leaves[distance=2,persistent=true,waterlogged=false]"
+    "block": "minecraft:birch_leaves[distance=2,persistent=true,waterlogged=false]"
    },
    {
     "char": "à",
-    "block": "minecraft:birch_leaves[distance=3,persistent=true,waterlogged=false]"
+    "block": "minecraft:azalea_leaves[distance=2,persistent=true,waterlogged=false]"
    },
    {
     "char": "á",
-    "block": "minecraft:smooth_sandstone"
+    "block": "minecraft:birch_leaves[distance=3,persistent=true,waterlogged=false]"
    },
    {
     "char": "â",
-    "block": "chipped:sanded_sandstone"
+    "block": "minecraft:smooth_sandstone"
    },
    {
     "char": "ã",
@@ -227,12 +227,12 @@
  },
  "slices": [
   [
-   "      ÜÝÞß      ",
+   "      ÝÞßà      ",
    "                ",
    "    Ë Ë   Ë   Ë ",
    "                ",
    "                ",
-   "   ÈÈÊÈÈÈÈÈÈÈÈÚÚ",
+   "   ÈÈÊÈÈÈÈÈÈÈÈÛÛ",
    "   Ö            ",
    "   È  Ë         ",
    "   È            ",
@@ -245,40 +245,40 @@
    "   È            "
   ],
   [
-   "      ÜàÞàÜ     ",
-   "       ÜàÜ      ",
+   "      ÝáßáÝ     ",
+   "       ÝáÝ      ",
    "    Ë Ë   Ë   Ë ",
    "                ",
    "                ",
-   "   áááÊááâááãäÚÚ",
+   "   âââÊââ×ââãäÛÛ",
    "   Ö            ",
-   "   á  Ë         ",
-   "   á            ",
-   "   á            ",
+   "   â  Ë         ",
+   "   â            ",
+   "   â            ",
    "   Ö            ",
-   "   âÅÅ          ",
-   "   áÆÆË         ",
-   "   À            ",
+   "   ×ÅÅ          ",
+   "   âÆÆË         ",
+   "   ×            ",
    "   Ö            ",
-   "   á            "
+   "   â            "
   ],
   [
-   "      åÜÝæ      ",
+   "      åÝÞæ      ",
    "                ",
    "    Ë Ë   Ë   Ë ",
    "                ",
    "                ",
-   "   áâáááâáâááçÚÚ",
+   "   â×âââ×â×ââçÛÛ",
    "   Ö  è         ",
-   "   á  è         ",
-   "   á  è         ",
+   "   â  è         ",
+   "   â  è         ",
    "   Ê  è         ",
    "   Ö  è         ",
    "   ã  è         ",
-   "   áÅÅè         ",
-   "   âèèè         ",
+   "   âÅÅè         ",
    "   ×èèè         ",
-   "   âèèè         "
+   "   Øèèè         ",
+   "   ×èèè         "
   ],
   [
    "                ",
@@ -304,17 +304,17 @@
    "    Ë Ë   Ë   Ë ",
    "                ",
    "                ",
-   "   ÀáãáááÊáâááÊá",
-   "  ìá            ",
-   "   á            ",
-   "   á            ",
-   "   á            ",
-   "  ìá            ",
-   "   á            ",
-   "   á            ",
-   "   á            ",
-   "  ìá            ",
-   "   á            "
+   "   ×âãâââÊâ×ââÊâ",
+   "  ìâ            ",
+   "   â            ",
+   "   â            ",
+   "   â            ",
+   "  ìâ            ",
+   "   â            ",
+   "   â            ",
+   "   â            ",
+   "  ìâ            ",
+   "   â            "
   ],
   [
    "                ",
@@ -322,17 +322,17 @@
    "    Ë Ë   Ë   Ë ",
    "                ",
    "                ",
-   "   áááãÊááááâááá",
-   "   á            ",
-   "   á            ",
+   "   âââãÊââââ×âââ",
+   "   â            ",
+   "   â            ",
    "   Ê            ",
-   "   á            ",
-   "   á            ",
-   "   á            ",
-   "   á            ",
-   "   á            ",
-   "   á            ",
-   "   á            "
+   "   â            ",
+   "   â            ",
+   "   â            ",
+   "   â            ",
+   "   â            ",
+   "   â            ",
+   "   â            "
   ],
   [
    "                ",
@@ -340,17 +340,17 @@
    "   ÆÆÆÆÆÆÆÆÆÆÆÆÆ",
    "   ÆÆÆÆÆÆÆÆÆÆÆÆÆ",
    "   ÆÆÆÆÆÆÆÆÆÆÆÆÆ",
-   "   ááâÊááâáÀáááá",
-   "   á            ",
+   "   ââ×Êââ×â×ââââ",
+   "   â            ",
+   "   ×            ",
+   "   ×            ",
    "   â            ",
    "   â            ",
-   "   á            ",
-   "   á            ",
-   "   á            ",
-   "   á            ",
+   "   â            ",
+   "   â            ",
    "   ã            ",
-   "   á            ",
-   "   á            "
+   "   â            ",
+   "   â            "
   ],
   [
    "                ",

@@ -1,0 +1,13 @@
+08:11:27 ETAPE lancer-c20.ps1
+08:19:23 FIN lancer-c20.ps1 code 0
+08:19:23 pause de 3 min, verrou libre (True)
+08:40:09 DEBUT enchainement c21 + captures (ApresExt3=True)
+09:22:26 ext3 terminee : 09:22:15 LOCK_RENDU=True java=0
+09:22:26 pause de 150 s, verrou present=False
+09:24:56 ETAPE lancer-c21.ps1
+09:51:08 ENCHAINEMENT_ARRETE avant la prise du verrou par c21 (nouvel ordre)
+09:51:50 DEBUT enchainement c21 + captures (ApresExt3=False)
+09:51:50 ETAPE lancer-c21.ps1
+10:24:01 FIN lancer-c21.ps1 code 0
+10:24:01 QC c21 GRILLE : phare OK | z002 KO | hum KO | z003 OK | z006 KO | z001 OK | z008 OK | z010 OK | z013 OK | z004 OK | z009 OK | z011 OK | ilots Phare KO | ilots ilot A KO | majicavo marche OK | majicavo vegetation OK | lot68 Y 67 OK | lave hors volcan OK | lave sud lot68 OK
+10:24:01 QC_C21_MAUVAIS : captures NON lancees

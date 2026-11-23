@@ -19,6 +19,7 @@ public final class AtheriaRecit {
         NeoForge.EVENT_BUS.addListener(Commandes::enregistrer);
         Protection.brancher();
         Dialogues.brancher();
+        Zones.brancher();
         if (dist.isClient()) ClientRecit.init();
     }
 }

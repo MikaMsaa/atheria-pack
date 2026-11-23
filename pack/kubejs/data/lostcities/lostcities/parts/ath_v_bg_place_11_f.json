@@ -149,38 +149,42 @@
    },
    {
     "char": "ä",
-    "block": "minecraft:stone_brick_slab[type=bottom,waterlogged=false]"
+    "block": "minecraft:stone_brick_slab[type=double,waterlogged=false]"
    },
    {
     "char": "å",
-    "block": "minecraft:lantern[hanging=false,waterlogged=false]"
+    "block": "minecraft:stone_brick_slab[type=bottom,waterlogged=false]"
    },
    {
     "char": "æ",
-    "block": "minecraft:stone_brick_wall[east=none,north=tall,south=none,up=true,waterlogged=false,west=tall]"
+    "block": "minecraft:lantern[hanging=false,waterlogged=false]"
    },
    {
     "char": "ç",
-    "block": "minecraft:lantern[hanging=true,waterlogged=false]"
+    "block": "minecraft:stone_brick_wall[east=none,north=tall,south=none,up=true,waterlogged=false,west=tall]"
    },
    {
     "char": "è",
-    "block": "mcwroofs:spruce_roof[facing=south,half=bottom,shape=straight]"
+    "block": "minecraft:lantern[hanging=true,waterlogged=false]"
    },
    {
     "char": "é",
-    "block": "minecraft:stripped_spruce_log[axis=x]"
+    "block": "mcwroofs:spruce_roof[facing=south,half=bottom,shape=straight]"
    },
    {
     "char": "ê",
-    "block": "minecraft:stripped_spruce_log[axis=z]"
+    "block": "minecraft:stripped_spruce_log[axis=x]"
    },
    {
     "char": "ë",
-    "block": "mcwroofs:spruce_roof[facing=north,half=bottom,shape=straight]"
+    "block": "minecraft:stripped_spruce_log[axis=z]"
    },
    {
     "char": "ì",
+    "block": "mcwroofs:spruce_roof[facing=north,half=bottom,shape=straight]"
+   },
+   {
+    "char": "í",
     "block": "minecraft:spruce_slab[type=bottom,waterlogged=false]"
    }
   ]
@@ -259,12 +263,12 @@
    "                "
   ],
   [
-   "ää           ã  ",
-   "ää              ",
+   "äå           ã  ",
+   "åå              ",
    "                ",
    "                ",
    "                ",
-   "  Ñ  åÑ   Ñ   Ñ ",
+   "  Ñ  æÑ   Ñ   Ñ ",
    "                ",
    "                ",
    "                ",
@@ -277,7 +281,7 @@
    "                "
   ],
   [
-   "æ            ã  ",
+   "ç            ã  ",
    "                ",
    "                ",
    "                ",

@@ -1,0 +1,19 @@
+1. Lave de surface (12 blocs sous la surface ; lave des portails en ruine ignoree)
+  c20j (v3l)  lot68   lacs hors volcan 0 (0 colonnes), lacs sur le volcan 0 (0 colonnes), colonnes non generees 0
+  c20j (v3l)  lave    lacs hors volcan 0 (0 colonnes), lacs sur le volcan 0 (0 colonnes), colonnes non generees 0
+  c20j (v3l)  volcan  lacs hors volcan 0 (0 colonnes), lacs sur le volcan 1 (1 colonnes), colonnes non generees 0
+  c20j (v3l)  lagon   lacs hors volcan 0 (0 colonnes), lacs sur le volcan 0 (0 colonnes), colonnes non generees 0
+  c20z (v3j)  lot68   lacs hors volcan 2 (69 colonnes), lacs sur le volcan 0 (0 colonnes), colonnes non generees 0
+  c20z (v3j)  lave    lacs hors volcan 0 (0 colonnes), lacs sur le volcan 0 (0 colonnes), colonnes non generees 0
+  c20z (v3j)  volcan  lacs hors volcan 0 (0 colonnes), lacs sur le volcan 1 (1 colonnes), colonnes non generees 0
+  c20z (v3j)  lagon   lacs hors volcan 0 (0 colonnes), lacs sur le volcan 0 (0 colonnes), colonnes non generees 0
+  VERDICT lave : hors volcan c20j = 0 lac(s) (attendu 0) ; volcan c20j 1 colonnes contre c20z 1 (attendu egal) -> OK
+2. Lacs et mares naturels dans lot68 + marge + fondu (+16)
+  c20j (v3l)  4 mares ou lacs (< 400 colonnes), 54 colonnes ; ex [(2848, -983, 18), (2880, -941, 23), (2862, -922, 12), (2911, -934, 1)]
+  c20z (v3j)  10 mares ou lacs (< 400 colonnes), 249 colonnes ; ex [(2898, -939, 36), (2874, -939, 79), (2882, -1009, 55), (2862, -858, 12), (2905, -935, 17)]
+2b. Plateau lot68 (c20j, plateaux-v3l) : dessus du sol attendu a Y 67
+  lot68 : 9844 colonnes, Y le plus frequent 67, part a Y 67 : 97.0 %, min 58 max 68, non generees 0 -> OK
+3. Non-regression c20z (0.9.6, parametres a 0) : sol et bloc du dessus, colonne par colonne (bruit habituel ~400 colonnes par 256 x 256)
+  lot68  contre pilote-bis-c18j : 43264 colonnes comparees, 312 differentes (dont hauteur 148), attendu <= ~264 ; hors interieur complet ou non generees 6912 ; ex [(2833, -1056, (68, 'short_grass'), (68, 'oak_leaves')), (2837, -1055, (67, 'light_gray_concrete'), (68, 'short_grass')), (2839, -1055, (67, 'light_gray_concrete'), (68, 'short_grass')), (2841, -1055, (67, 'light_gray_concrete'), (68, 'short_grass'))]
+  lave   contre pilote-bis-c18j : 3840 colonnes comparees, 69 differentes (dont hauteur 66), attendu <= ~23 ; hors interieur complet ou non generees 5376 ; ex [(2541, -2101, (65, 'grass_block'), (66, 'bush')), (2541, -2098, (65, 'grass_block'), (66, 'bush')), (2541, -2091, (65, 'grass_block'), (66, 'short_grass')), (2542, -2124, (69, 'dead_leaves'), (65, 'grass_block'))]
+  lagon  contre pilote-bis-c19ref : 30976 colonnes comparees, 1 differentes (dont hauteur 0), attendu <= ~189 ; hors interieur complet ou non generees 5888 ; ex [(-2550, -5886, (62, 'water'), (62, 'tall_seagrass'))]

@@ -1,0 +1,44 @@
+﻿# Atheria Zombie Edition - compile le mod prototype de l'ile dessinee (atheria_ile)
+# Resultat : outils\atheria-ile-mod\atheria-ile.jar
+# Le mod ne fait RIEN tant que le datapack atheria_ile n'est pas dans le monde (world\datapacks).
+
+param([string]$Sortie = 'atheria-ile.jar')
+$ErrorActionPreference = 'Stop'
+$Ici  = Split-Path -Parent $MyInvocation.MyCommand.Path
+$Root = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $Ici))
+$Jdk  = 'C:\Program Files\Java\jdk-21\bin'
+$Lib  = Join-Path $Root 'serveur\libraries'
+$Tmp  = Join-Path $env:TEMP "atheria-ile-$([guid]::NewGuid())"
+
+$Prism = Join-Path $env:APPDATA 'PrismLauncher\libraries'
+$cp = @()
+# 0.7.4 : partie client (titres d'entree) -> compile contre le jar client de Minecraft et NeoForge (comme atheria-recit)
+$cp += Join-Path $Prism 'net\neoforged\neoforge\21.1.265\neoforge-21.1.265-client.jar'
+$cp += Join-Path $Prism 'net\minecraft\client\1.21.1-20240808.144430\client-1.21.1-20240808.144430-srg.jar'
+$cp += Join-Path $Lib 'net\neoforged\neoforge\21.1.265\neoforge-21.1.265-universal.jar'
+# bibliotheques du serveur, sauf Minecraft et NeoForge cote serveur (dont les jars vanilla obfusques)
+$cp += (Get-ChildItem $Lib -Recurse -Filter '*.jar' | Where-Object { $_.FullName -notmatch '\\net\\minecraft\\|\\net\\neoforged\\neoforge\\' }).FullName
+$cp += (Get-ChildItem (Join-Path $Prism 'org\joml') -Recurse -Filter 'joml-*.jar' | Where-Object { $_.Name -notmatch 'sources' }).FullName
+# MixinExtras est embarque dans NeoForge
+Add-Type -AssemblyName System.IO.Compression.FileSystem
+$Mx = Join-Path $env:TEMP 'mixinextras-atheria.jar'
+$neo = (Get-ChildItem $Lib -Recurse -Filter 'neoforge-*-universal.jar')[0].FullName
+$zip = [IO.Compression.ZipFile]::OpenRead($neo)
+[IO.Compression.ZipFileExtensions]::ExtractToFile(($zip.Entries | Where-Object { $_.Name -like 'mixinextras-neoforge-*.jar' })[0], $Mx, $true)
+$zip.Dispose()
+$cp += $Mx
+$sources = (Get-ChildItem (Join-Path $Ici 'src') -Recurse -Filter *.java).FullName
+
+New-Item -ItemType Directory -Force $Tmp | Out-Null
+& "$Jdk\javac.exe" --release 21 -encoding UTF-8 -proc:none -nowarn -cp ($cp -join ';') -d $Tmp $sources
+if ($LASTEXITCODE -ne 0) { throw "javac a echoue (code $LASTEXITCODE)" }
+Copy-Item (Join-Path $Ici 'ressources\*') $Tmp -Recurse -Force
+
+$manifest = Join-Path $env:TEMP "atheria-ile-manifest-$([guid]::NewGuid()).txt"
+[IO.File]::WriteAllText($manifest, "Implementation-Version: 0.9.5-lagon`nFMLModType: MOD`n")
+$Out = Join-Path $Ici $Sortie
+& "$Jdk\jar.exe" --create --file $Out --manifest $manifest -C $Tmp .
+if ($LASTEXITCODE -ne 0) { throw "jar a echoue (code $LASTEXITCODE)" }
+Remove-Item $Tmp -Recurse -Force; Remove-Item $manifest -Force
+Write-Host "Mod pret : $Out ($((Get-Item $Out).Length) octets)"
+

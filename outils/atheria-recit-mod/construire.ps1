@@ -17,6 +17,10 @@ $cp += Join-Path $Lib 'net\neoforged\neoforge\21.1.265\neoforge-21.1.265-univers
 # toutes les bibliotheques du serveur (FML, bus, brigadier, netty, gson, mixin...), sauf Minecraft et NeoForge cote serveur
 $cp += (Get-ChildItem $Lib -Recurse -Filter *.jar | Where-Object { $_.FullName -notmatch '\\net\\minecraft\\|\\net\\neoforged\\neoforge\\' }).FullName
 $cp += (Get-ChildItem (Join-Path $Prism 'org\lwjgl'),(Join-Path $Prism 'org\joml') -Recurse -Include 'lwjgl-3*.jar','lwjgl-glfw-3*.jar','joml-*.jar' | Where-Object { $_.Name -notmatch 'natives|sources' }).FullName
+# compat client facultative (First Person Model, ParCool) : seulement pour compiler, le mod ne les exige pas
+$Mods = Join-Path $Root 'instances\Atheria\minecraft\mods'
+$cp += (Get-ChildItem $Mods -Filter 'firstperson-*.jar').FullName
+$cp += (Get-ChildItem $Mods -Filter 'ParCool-*.jar').FullName
 $sources = (Get-ChildItem (Join-Path $Ici 'src') -Recurse -Filter *.java).FullName
 
 New-Item -ItemType Directory -Force $Tmp | Out-Null

@@ -1,0 +1,77 @@
+{
+ "pnj": {
+  "nom": "Bacar B."
+ },
+ "debut": "debut",
+ "noeuds": {
+  "q_ch2_peage_ok": {
+   "texte": "Négocier. J'adore. On commence par vider tes poches."
+  },
+  "q_ch2_peage_refus": {
+   "texte": "Tous les autres chemins passent chez les Dakouane. Tu reviendras."
+  },
+  "q_ch2_peage": {
+   "lignes": [
+    {
+     "texte": "La RN1 appartient à Kavelia. Tu paies, tu passes. Tu passes sans payer, tu paies différemment."
+    },
+    {
+     "nom": "Toi",
+     "texte": "Combien ?"
+    },
+    {
+     "texte": "Toutes tes munitions. La redistribution, c'est une idée ancienne."
+    }
+   ],
+   "choix": [
+    {
+     "texte": "Négocier le passage.",
+     "style": "accepter",
+     "actions": [
+      {
+       "commande": "tag {joueur} add q_ch2_peage"
+      },
+      {
+       "commande": "playsound minecraft:entity.experience_orb.pickup master {joueur} ~ ~ ~ 0.6 1.2"
+      }
+     ],
+     "aller": "q_ch2_peage_ok"
+    },
+    {
+     "texte": "Je trouverai un autre chemin.",
+     "style": "refuser",
+     "aller": "q_ch2_peage_refus"
+    }
+   ]
+  },
+  "q_ch2_peage_fait": {
+   "texte": "Tu as ce qu'il te faut. Avance."
+  },
+  "repos": {
+   "texte": "La RN1 appartient à Kavelia."
+  },
+  "debut": {
+   "aiguillage": [
+    {
+     "si": {
+      "tag": [
+       "q_ch2_peage"
+      ]
+     },
+     "aller": "q_ch2_peage_fait"
+    },
+    {
+     "si": {
+      "tag": [
+       "acte_2"
+      ]
+     },
+     "aller": "q_ch2_peage"
+    },
+    {
+     "aller": "repos"
+    }
+   ]
+  }
+ }
+}

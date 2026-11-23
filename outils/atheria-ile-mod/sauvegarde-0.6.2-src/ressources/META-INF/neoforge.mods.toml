@@ -1,0 +1,19 @@
+modLoader = "javafml"
+loaderVersion = "[1,)"
+license = "All rights reserved"
+
+[[mods]]
+modId = "atheria_ile"
+version = "0.6.2"
+displayName = "Atheria Ile"
+description = "Prototype : la carte dessinee de l'ile d'Atheria guide les cotes, le relief et les biomes. Inactif sans le datapack atheria_ile dans le monde."
+
+[[mixins]]
+config = "atheria_ile.mixins.json"
+
+[[dependencies.atheria_ile]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1,)"
+ordering = "NONE"
+side = "BOTH"

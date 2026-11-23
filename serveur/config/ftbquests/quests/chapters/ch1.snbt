@@ -9,24 +9,24 @@
 	id: "1851E1615BC00364"
 	images: [
 		{
-			height: 8.2d
+			height: 8.7d
 			id: "18E3F63CE79A6298"
 			image: "atheria:textures/quetes/ch1_formulaire.png"
 			order: -10
 			rotation: 0.0d
 			width: 19.6d
 			x: 8.0d
-			y: -0.4d
+			y: -0.15d
 		}
 		{
-			height: 36.2d
+			height: 36.7d
 			id: "190DE15EA0F85448"
 			image: "atheria:textures/quetes/ch1_large.png"
 			order: -20
 			rotation: 0.0d
 			width: 63.6d
 			x: 8.0d
-			y: -0.4d
+			y: -0.15d
 		}
 	]
 	order_index: 1
@@ -38,15 +38,25 @@
 				id: "atheria:fiche_quarantaine"
 			}
 			id: "1B0324F1DEFCFC25"
-			rewards: [{
-				count: 2
-				id: "41868A6A4185C20F"
-				item: {
-					count: 1
-					id: "atheria:bon_caf"
+			rewards: [
+				{
+					count: 2
+					id: "41868A6A4185C20F"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
 				}
-				type: "item"
-			}]
+				{
+					command: "/tag {p} add q_ch1_checkpoint"
+					feedback_message: "Avancée partagée avec ton équipe"
+					id: "583B1963427A8B79"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
 			shape: "gear"
 			size: 1.5d
 			tasks: [{
@@ -60,14 +70,24 @@
 		{
 			dependencies: ["1B0324F1DEFCFC25"]
 			id: "0B4512FBF20C6FD8"
-			rewards: [{
-				id: "141FA118ABBB4FD0"
-				item: {
-					count: 1
-					id: "atheria:ration"
+			rewards: [
+				{
+					id: "141FA118ABBB4FD0"
+					item: {
+						count: 1
+						id: "atheria:ration"
+					}
+					type: "item"
 				}
-				type: "item"
-			}]
+				{
+					command: "/tag {p} add q_ch1_saouda"
+					feedback_message: "Avancée partagée avec ton équipe"
+					id: "44843F792C67C0A4"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
 			tasks: [
 				{
 					id: "4A28468F61AE8E1A"
@@ -139,6 +159,14 @@
 				id: "atheria:jeton_eniy"
 			}
 			id: "5C69C7C8BACB3868"
+			rewards: [{
+				command: "/tag {p} add q_ch1_eniy"
+				feedback_message: "Avancée partagée avec ton équipe"
+				id: "1926F3AA646C1357"
+				permission_level: 2
+				silent: true
+				type: "command"
+			}]
 			tasks: [{
 				id: "41383B960CCA80BA"
 				stage: "q_ch1_eniy"
@@ -249,7 +277,7 @@
 			id: "157159353B183695"
 			rewards: [
 				{
-					count: 3
+					count: 4
 					id: "119D9371E2B4452E"
 					item: {
 						count: 1
@@ -267,11 +295,11 @@
 					type: "item"
 				}
 				{
-					count: 3
+					count: 2
 					id: "23E28C53DE863796"
 					item: {
 						count: 1
-						id: "minecraft:bread"
+						id: "atheria:ration"
 					}
 					type: "item"
 				}
@@ -290,6 +318,14 @@
 				id: "atheria:cle_galeries"
 			}
 			id: "452E341A6D89534B"
+			rewards: [{
+				command: "/tag {p} add q_ch1_kamel"
+				feedback_message: "Avancée partagée avec ton équipe"
+				id: "06B4130844EE97C5"
+				permission_level: 2
+				silent: true
+				type: "command"
+			}]
 			tasks: [{
 				id: "6AD1F68AA0691A22"
 				stage: "q_ch1_kamel"
@@ -402,6 +438,14 @@
 			}
 			id: "39FBED3BC64098C7"
 			max_completable_dependents: 1
+			rewards: [{
+				command: "/tag {p} add q_ch1_kayssi"
+				feedback_message: "Avancée partagée avec ton équipe"
+				id: "7AEA23C74209CB37"
+				permission_level: 2
+				silent: true
+				type: "command"
+			}]
 			shape: "diamond"
 			size: 1.25d
 			tasks: [{
@@ -595,14 +639,50 @@
 			shape: "gear"
 			size: 1.5d
 			tasks: [{
-				entity: "spore:inf_human"
-				entityTypeTag: "atheria:infectes"
 				id: "3DBBF2FE57930FC9"
-				type: "kill"
-				value: 15L
+				stage: "sirene_tenue"
+				type: "gamestage"
 			}]
 			x: 16.0d
 			y: 0.0d
+		}
+		{
+			dependencies: [
+				"75904C602107C24C"
+				"241F0E35768EBFE6"
+			]
+			dependency_requirement: "one_completed"
+			id: "1A91DBAE0D5C0377"
+			optional: true
+			rewards: [{
+				command: "/tag {p} add sirene_tenue"
+				feedback_message: "Mur est tenu"
+				id: "42AE9F1678811921"
+				permission_level: 2
+				silent: true
+				type: "command"
+			}]
+			tasks: [
+				{
+					id: "50CB0DDF735F4D85"
+					stage: "sirene_passee"
+					type: "gamestage"
+				}
+				{
+					id: "64367327F2F8E4B8"
+					stage: "sirene_rattrapage"
+					type: "gamestage"
+				}
+				{
+					entity: "spore:inf_human"
+					entityTypeTag: "atheria:infectes"
+					id: "098EA512C8B0E34A"
+					type: "kill"
+					value: 15L
+				}
+			]
+			x: 16.0d
+			y: 2.0d
 		}
 	]
 }

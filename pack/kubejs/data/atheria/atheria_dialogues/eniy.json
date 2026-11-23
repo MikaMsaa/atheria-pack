@@ -1,0 +1,117 @@
+{
+ "pnj": {
+  "nom": "Eniy"
+ },
+ "debut": "debut",
+ "noeuds": {
+  "q_ch1_eniy_ok": {
+   "texte": "Le premier jeton est offert. Le deuxième, c'est le prix du marché."
+  },
+  "q_ch1_eniy_refus": {
+   "texte": "Personne n'achète jamais rien. Jusqu'au jour où il a faim."
+  },
+  "q_ch1_eniy": {
+   "lignes": [
+    {
+     "texte": "Avant la catastrophe, je faisais du dropshipping. Aujourd'hui je vends de l'information, du carburant, des médicaments et un chocolat tellement cher que même les zombies ne peuvent pas se le payer. Mon business model est devenu résistant au marché."
+    }
+   ],
+   "choix": [
+    {
+     "texte": "Donne-moi ton jeton.",
+     "style": "accepter",
+     "actions": [
+      {
+       "commande": "tag {joueur} add q_ch1_eniy"
+      },
+      {
+       "commande": "give {joueur} atheria:jeton_eniy 1"
+      },
+      {
+       "commande": "playsound minecraft:entity.experience_orb.pickup master {joueur} ~ ~ ~ 0.6 1.2"
+      }
+     ],
+     "aller": "q_ch1_eniy_ok"
+    },
+    {
+     "texte": "Je n'achète rien aujourd'hui.",
+     "style": "refuser",
+     "aller": "q_ch1_eniy_refus"
+    }
+   ]
+  },
+  "q_ch1_eniy_fait": {
+   "texte": "Tu as ce qu'il te faut. Avance."
+  },
+  "eniy_colis": {
+   "lignes": [
+    {
+     "texte": "Bienvenue dans l'expérience premium. Livraison, formation, chocolat. Tu prends quoi ?"
+    }
+   ],
+   "choix": [
+    {
+     "texte": "Prendre un colis à livrer à Coconi",
+     "actions": [
+      {
+       "commande": "give {joueur} atheria:colis 1"
+      }
+     ],
+     "fin": true
+    },
+    {
+     "texte": "Acheter une clé de cellule (20 bons)",
+     "actions": [
+      {
+       "commande": "atheria_payer {joueur} 20 atheria:cle_cellule"
+      }
+     ],
+     "fin": true
+    },
+    {
+     "texte": "Vendre une Puff à Eniy",
+     "actions": [
+      {
+       "commande": "atheria_vendre_puff {joueur}"
+      }
+     ],
+     "fin": true
+    }
+   ]
+  },
+  "repos": {
+   "texte": "Le marché est fermé pour inventaire. Reviens quand tu seras solvable."
+  },
+  "debut": {
+   "aiguillage": [
+    {
+     "si": {
+      "tag": [
+       "q_ch1_eniy"
+      ]
+     },
+     "aller": "eniy_colis"
+    },
+    {
+     "si": {
+      "tag": [
+       "q_ch1_eniy"
+      ]
+     },
+     "aller": "q_ch1_eniy_fait"
+    },
+    {
+     "si": {
+      "tag": [
+       "q_ch1_checkpoint"
+      ]
+     },
+     "aller": "q_ch1_eniy"
+    },
+    {
+     "aller": "repos"
+    }
+   ]
+  }
+ }
+}

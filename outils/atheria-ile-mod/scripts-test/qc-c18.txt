@@ -1,0 +1,36 @@
+﻿1. Plateaux (monde j) : dessus du sol dans l emprise
+  lot70 : 16384 colonnes, Y le plus frequent 65, part a Y 65 : 91.9 %, min 60 max 73, non generees 0
+  lot68 : 9696 colonnes, Y le plus frequent 65, part a Y 65 : 95.6 %, min 50 max 66, non generees 0
+2. Changements de surface ref -> j hors emprises, fondus et marges (bruit habituel : ~400 colonnes par zone de 256x256)
+  lot70 : 31672 colonnes changees, dont 0 hors emprises/fondus ; ex []
+  lot68 : 28289 colonnes changees, dont 5682 hors emprises/fondus ; ex [(2818, -1064, (86, 'smooth_stone'), (68, 'spruce_picket_fence')), (2818, -1063, (86, 'smooth_stone'), (68, 'spruce_picket_fence')), (2818, -1062, (86, 'smooth_stone'), (68, 'spruce_picket_fence')), (2818, -1061, (87, 'black_concrete'), (68, 'spruce_picket_fence')), (2818, -1060, (73, 'white_concrete'), (68, 'spruce_picket_fence'))]
+  lot69 : 6405 colonnes changees, dont 6405 hors emprises/fondus ; ex [(2433, -3105, (67, 'grass_block'), (68, 'poppy')), (2435, -3105, (68, 'poppy'), (67, 'grass_block')), (2435, -3104, (68, 'poppy'), (67, 'grass_block')), (2443, -3093, (66, 'grass_block'), (68, 'heliconia')), (2444, -3093, (67, 'heliconia'), (65, 'grass_block'))]
+  lot67 : 10991 colonnes changees, dont 10991 hors emprises/fondus ; ex [(2461, -3176, (64, 'dune_grass'), (65, 'sea_oats')), (2464, -3181, (64, 'dune_grass'), (65, 'sea_oats')), (2464, -3180, (64, 'dune_grass'), (65, 'sea_oats')), (2465, -3181, (64, 'dune_grass'), (65, 'sea_oats')), (2466, -2893, (68, 'moss_block'), (68, 'mossy_cobblestone'))]
+3. RN1 : chaussee (black_concrete_powder) sur l axe x 2522..2523, z -2144..-1888
+  ref : chaussee dans lot70 98, hors lot70 83, Y [65, 66, 67]
+  j : chaussee dans lot70 0, hors lot70 76, Y [65, 66]
+4. Sol au-dessus de la bouche des Passeurs (2512..2515, -3024..-3019)
+  ref : min 65 max 65 mediane 65
+  j : min 65 max 65 mediane 65
+5. Cote est de l enceinte (monde j) : premiere colonne d eau et profondeur a +16 / +48
+  z -3088 : eau a x 2576, prof 7 (fond Y 55) ; +16 prof 6 (fond Y 56) ; +48 terre Y 63
+  z -3072 : eau a x 2576, prof 7 (fond Y 55) ; +16 prof 6 (fond Y 56) ; +48 terre Y 63
+  z -3056 : eau a x 2576, prof 7 (fond Y 55) ; +16 prof 6 (fond Y 56) ; +48 terre Y 63
+  z -3040 : eau a x 2576, prof 7 (fond Y 55) ; +16 prof 6 (fond Y 56) ; +48 terre Y 64
+  z -3024 : eau a x 2576, prof 7 (fond Y 55) ; +16 prof 6 (fond Y 56) ; +48 terre Y 65
+  z -3008 : eau a x 2576, prof 7 (fond Y 55) ; +16 prof 6 (fond Y 56) ; +48 terre Y 64
+  z -2992 : eau a x 2576, prof 7 (fond Y 55) ; +16 prof 6 (fond Y 56) ; +48 terre Y 65
+  z -2976 : eau a x 2576, prof 7 (fond Y 55) ; +16 prof 6 (fond Y 56) ; +48 terre Y 67
+  z -2960 : pas d eau jusqu a x 2780 (ou non genere)
+6. Port 0.9.4h (monde j) : bassin x 2576..2623 z -3088..-2961 (fond 55 -> 57 le long de x), chenal x 2592..2623 z -3132..-3089 (fond 58 -> 57 le long de z), eau jusqu a Y 62
+  colonnes 7552 (non generees 0) : seches 0, surface != 62 : 0, fond hors 55..58 : 1, fond different du profil : 2, colonnes avec eau courante : 0
+  fonds : [(55, 1536), (56, 3070), (57, 2240), (58, 705), (59, 1)] ; ex []
+  pourtour (3 blocs, 1383 colonnes) : eau au-dessus de 62 : 0, sol sous 62 sans eau : 0 (plus 376 dans lot67, cote quai, ou Villes pose son eau) ; ex []
+  cote quai x 2549..2575 : 432 colonnes lues, avec eau 0, sols [(53, 1), (54, 1), (56, 15), (57, 15), (59, 13), (60, 4), (62, 1), (63, 186)]
+  raccord : 21999 colonnes d eau reliees au bassin hors bassin/chenal (z le plus au nord -3184) ; OK (lagon atteint)
+  lot 0 (enceinte de Longoni, fN 0) recouvre tout le bassin : la pose est faite quand meme si les colonnes ne sont pas seches ci-dessus
+  VERDICT port : KO
+7. Toit naturel au-dessus des volumes de Longoni (monde j) : le mod ne creuse rien, le build creuse jusqu a y_max ; toit = sol - y_max
+  Bancoul 43..63 (x 2480..2548) : 3726 colonnes, toit perce (<=0) 455, 1 bloc 472, 2 blocs 717, >=3 2082, sous l eau 0
+  Station des Enfants 48..63 : 1968 colonnes, toit perce (<=0) 161, 1 bloc 349, 2 blocs 551, >=3 907, sous l eau 0
+  Puits des Passeurs 38..47 : 25 colonnes, toit perce (<=0) 0, 1 bloc 0, 2 blocs 0, >=3 25, sous l eau 0

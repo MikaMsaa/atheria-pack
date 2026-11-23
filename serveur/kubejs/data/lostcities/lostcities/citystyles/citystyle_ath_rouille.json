@@ -2,10 +2,10 @@
     "style":  "ath_rouille",
     "inherit":  "citystyle_common",
     "buildingsettings":  {
-                             "buildingchance":  0.55,
+                             "buildingchance":  0,
                              "minfloors":  1,
                              "maxfloors":  4,
-                             "maxcellars":  1
+                             "maxcellars":  0
                          },
     "streetblocks":  {
                          "border":  "y",
@@ -47,6 +47,38 @@
                       "multibuildings":  [
                                              {
                                                  "factor":  1,
+                                                 "value":  "ath_v_ru_capitainerie"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_conteneurs"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_portique"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_criee"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_frigo"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_chantier"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_citernes"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_douane"
+                                             },
+                                             {
+                                                 "factor":  1,
                                                  "value":  "ath_v_ru_usine"
                                              },
                                              {
@@ -76,6 +108,42 @@
                                              {
                                                  "factor":  1,
                                                  "value":  "ath_v_ru_cafe"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_distillerie"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_station"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_centrale2"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_dechets"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_pompiers"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_depot_bus"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_barge"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_beton"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_ru_ateliers"
                                              },
                                              {
                                                  "factor":  0.3,

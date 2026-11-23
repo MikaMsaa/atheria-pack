@@ -9,24 +9,24 @@
 	id: "42E6EB64D82BDFA9"
 	images: [
 		{
-			height: 11.2d
+			height: 12.7d
 			id: "6163C7CC20D935D2"
 			image: "atheria:textures/quetes/contrats_tableau.png"
 			order: -10
 			rotation: 0.0d
 			width: 13.7d
 			x: 2.25d
-			y: 3.4d
+			y: 4.15d
 		}
 		{
-			height: 39.2d
+			height: 40.7d
 			id: "470B8985C5908AA5"
 			image: "atheria:textures/quetes/contrats_large.png"
 			order: -20
 			rotation: 0.0d
 			width: 57.7d
 			x: 2.25d
-			y: 3.4d
+			y: 4.15d
 		}
 	]
 	order_index: 0
@@ -816,6 +816,135 @@
 			}]
 			x: 3.0d
 			y: 7.5d
+		}
+		{
+			can_repeat: true
+			dependencies: ["198383BA4980A89C"]
+			icon: {
+				id: "minecraft:map"
+			}
+			id: "2828D1DFBBCE36E2"
+			repeat_cooldown: 86400
+			rewards: [
+				{
+					id: "40ABCD2D921991C6"
+					item: {
+						count: 1
+						id: "minecraft:map"
+					}
+					type: "item"
+				}
+				{
+					count: 4
+					id: "133E8E764EC8CFD4"
+					item: {
+						count: 1
+						id: "atheria:fusee_eclairante"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "593C247BEFB5AA66"
+					stage: "peage_paye"
+					type: "gamestage"
+				}
+				{
+					consume_items: true
+					count: 5L
+					id: "28FB5CC51F5D63DE"
+					item: { count: 1, id: "atheria:bon_caf" }
+					type: "item"
+				}
+			]
+			x: 0.0d
+			y: 9.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["198383BA4980A89C"]
+			icon: {
+				id: "atheria:bandana_coupeur"
+			}
+			id: "52F9B582C3C0403B"
+			repeat_cooldown: 86400
+			rewards: [
+				{
+					count: 6
+					id: "4F58B65FD4A06BB0"
+					item: {
+						count: 1
+						id: "atheria:bon_caf"
+					}
+					type: "item"
+				}
+				{
+					count: 6
+					id: "5030369B00911B69"
+					item: {
+						components: {
+							"minecraft:custom_data": {
+								AmmoId: "tacz:9mm"
+							}
+							"minecraft:max_stack_size": 60
+						}
+						count: 1
+						id: "tacz:ammo"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "43E57BD69594C874"
+					stage: "coupeurs_ok"
+					type: "gamestage"
+				}
+				{
+					entity: "spore:inf_human"
+					entityTypeTag: "atheria:infectes"
+					id: "77DA227704670D8F"
+					type: "kill"
+					value: 10L
+				}
+			]
+			x: 1.5d
+			y: 9.0d
+		}
+		{
+			can_repeat: true
+			dependencies: ["198383BA4980A89C"]
+			icon: {
+				id: "atheria:bidon_essence"
+			}
+			id: "21A3B8B8B0D6D0E6"
+			repeat_cooldown: 86400
+			rewards: [{
+				count: 8
+				id: "0CE04714A160D53B"
+				item: {
+					count: 1
+					id: "atheria:bon_caf"
+				}
+				type: "item"
+			}]
+			tasks: [
+				{
+					id: "08E1C00AF3183B5F"
+					stage: "coupeurs_ok"
+					type: "gamestage"
+				}
+				{
+					consume_items: true
+					count: 2L
+					id: "34140AF8C98797D6"
+					item: { count: 1, id: "atheria:bidon_essence" }
+					type: "item"
+				}
+			]
+			x: 3.0d
+			y: 9.0d
 		}
 		{
 			dependencies: ["2909F01C0F07507F"]

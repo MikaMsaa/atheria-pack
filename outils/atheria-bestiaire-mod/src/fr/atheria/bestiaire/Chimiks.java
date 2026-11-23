@@ -7,7 +7,14 @@ import java.util.IdentityHashMap;
 import java.util.Map;
 import java.util.UUID;
 import java.util.function.Consumer;
+import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
+import net.minecraft.core.SectionPos;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -111,8 +118,6 @@ final class Chimiks {
 
     private static void son(VanillaGameEvent e) {
         if (!(e.getLevel() instanceof ServerLevel level)) return;
-        Map<Mob, Ouie> chimiks = ACTIFS.get(level.dimension());
-        if (chimiks == null || chimiks.isEmpty()) return;
         Entity cause = e.getCause();
         if (AtheriaBestiaire.infecte(cause)) return;
         Holder<GameEvent> h = e.getVanillaEvent();
@@ -125,6 +130,9 @@ final class Chimiks {
             if (p == null) return;
             portee = p;
         }
+        Bruit.signaler(cause, portee);
+        Map<Mob, Ouie> chimiks = ACTIFS.get(level.dimension());
+        if (chimiks == null || chimiks.isEmpty()) return;
         entendre(level, chimiks, e.getEventPosition(), cause, portee);
     }
 
@@ -137,6 +145,8 @@ final class Chimiks {
         for (Map.Entry<Mob, Ouie> en : chimiks.entrySet()) {
             Mob m = en.getKey();
             if (m == source || !m.isAlive() || m.distanceToSqr(pos) > r2) continue;
+            // un bruit sans auteur (generateur, explosion lointaine) ne fait pas oublier la proie qu'il poursuit
+            if (source == null && m.getTarget() != null) continue;
             en.setValue(new Ouie(source == null ? null : source.getUUID(), pos, t));
             if (proches == null) proches = new ArrayList<>();
             proches.add(m);
@@ -150,9 +160,16 @@ final class Chimiks {
             if (attaque) {
                 if (cur == null) m.setTarget(source);
             } else if (cur == null) {
-                m.getNavigation().moveTo(pos.x, pos.y, pos.z, VITESSE);
+                aller(m, pos);
             }
         }
+    }
+
+    // Vers le bruit : la source est souvent un bloc plein (roue a aube, moteur) ou un point inaccessible ; on vise a 2 blocs pres,
+    // sinon le chemin echoue et le Chimik reste sur place.
+    private static void aller(Mob m, Vec3 pos) {
+        net.minecraft.world.level.pathfinder.Path chemin = m.getNavigation().createPath(BlockPos.containing(pos), 2);
+        if (chemin != null) m.getNavigation().moveTo(chemin, VITESSE);
     }
 
     private static Ouie ouie(Mob m) {
@@ -187,6 +204,7 @@ final class Chimiks {
         if (level.dimension() == Level.OVERWORLD && level.getGameTime() % 20 == 0) moteurs(level);
         Map<Mob, Ouie> chimiks = ACTIFS.get(level.dimension());
         if (chimiks == null || chimiks.isEmpty()) return;
+        if (level.getGameTime() % 40 == 20) generateurs(level, chimiks);
         long t = level.getGameTime();
         ArrayList<Mob> lacher = null;
         for (Map.Entry<Mob, Ouie> en : chimiks.entrySet()) {
@@ -203,7 +221,7 @@ final class Chimiks {
         for (Mob m : lacher) {
             m.setTarget(null);
             Ouie o = ouie(m);
-            if (o != null) m.getNavigation().moveTo(o.pos().x, o.pos().y, o.pos().z, VITESSE);
+            if (o != null) aller(m, o.pos());
         }
     }
 
@@ -217,34 +235,113 @@ final class Chimiks {
                 continue;
             }
             Vec3 avant = VEHICULES.put(p.getUUID(), p.position());
-            if (avant == null || chimiks == null || chimiks.isEmpty()) continue;
+            if (avant == null) continue;
             double d2 = avant.distanceToSqr(p.position());
-            if (d2 > 2.5 * 2.5 && d2 < 80 * 80) entendre(level, chimiks, p.position(), p, d2 > 8 * 8 ? 32 : 20);
+            if (d2 <= 2.5 * 2.5 || d2 >= 80 * 80) continue;
+            int portee = d2 > 8 * 8 ? 32 : 20;
+            Bruit.signaler(p, portee);
+            if (chimiks != null && !chimiks.isEmpty()) entendre(level, chimiks, p.position(), p, portee);
+        }
+    }
+
+    // Generateurs en marche (roues a aube, moulins, machines a vapeur, alternateurs et moteurs de Create et Crafts & Additions,
+    // liste dans le tag de blocs atheria:generateurs) : un bourdonnement entendu a 16 blocs. On ne regarde que les chunks
+    // autour des Chimiks charges, sans en charger aucun.
+    private static final int PORTEE_GENERATEUR = 16;
+    private static final Map<Class<?>, Method> VITESSES = new HashMap<>();
+
+    private static void generateurs(ServerLevel level, Map<Mob, Ouie> chimiks) {
+        LongOpenHashSet chunks = new LongOpenHashSet();
+        for (Mob m : chimiks.keySet()) {
+            if (!m.isAlive() || m.getTarget() != null) continue;
+            int cx = SectionPos.blockToSectionCoord(m.getBlockX()), cz = SectionPos.blockToSectionCoord(m.getBlockZ());
+            for (int dx = -1; dx <= 1; dx++) for (int dz = -1; dz <= 1; dz++) chunks.add(ChunkPos.asLong(cx + dx, cz + dz));
+        }
+        if (chunks.isEmpty()) return;
+        ArrayList<BlockPos> sources = null;
+        for (long c : chunks) {
+            LevelChunk ch = level.getChunkSource().getChunkNow(ChunkPos.getX(c), ChunkPos.getZ(c));
+            if (ch == null) continue;
+            for (BlockEntity be : ch.getBlockEntities().values()) {
+                if (be.isRemoved() || !be.getBlockState().is(AtheriaBestiaire.GENERATEURS) || !enMarche(level, be)) continue;
+                if (sources == null) sources = new ArrayList<>();
+                sources.add(be.getBlockPos());
+            }
+        }
+        if (sources != null) for (BlockPos p : sources) entendre(level, chimiks, Vec3.atCenterOf(p), null, PORTEE_GENERATEUR);
+    }
+
+    // Un bloc de Create tourne si sa vitesse n'est pas nulle ; une machine a vapeur, si l'arbre qu'elle entraine tourne.
+    private static boolean enMarche(ServerLevel level, BlockEntity be) {
+        Float v = vitesse(be);
+        if (v != null) return Math.abs(v) > 0.01f;
+        for (Direction d : Direction.values()) {
+            BlockEntity voisin = level.getBlockEntity(be.getBlockPos().relative(d));
+            Float w = voisin == null ? null : vitesse(voisin);
+            if (w != null && Math.abs(w) > 0.01f) return true;
+        }
+        return false;
+    }
+
+    private static Float vitesse(BlockEntity be) {
+        Method g = VITESSES.computeIfAbsent(be.getClass(), k -> {
+            try {
+                Method m = k.getMethod("getSpeed");
+                return m.getReturnType() == float.class ? m : null;
+            } catch (NoSuchMethodException ex) {
+                return null;
+            }
+        });
+        if (g == null) return null;
+        try {
+            return (Float) g.invoke(be);
+        } catch (Throwable t) {
+            return null;
         }
     }
 
     // Tirs TACZ (si le mod est la) : 40 blocs, 10 avec un silencieux.
-    @SuppressWarnings("unchecked")
+    // Cote serveur, TACZ annonce la detente (GunShootEvent, a chaque tir) et, selon l'arme, chaque balle (GunFireEvent) :
+    // on ecoute les deux, un seul bruit par tireur et par tick.
+    private static UUID dernierTireur;
+    private static long dernierTick = -1;
+
     private static void brancherTacz() {
         if (!ModList.get().isLoaded("tacz")) return;
+        int branches = 0;
+        for (String nom : new String[]{"com.tacz.guns.api.event.common.GunShootEvent", "com.tacz.guns.api.event.common.GunFireEvent"}) {
+            if (brancherTir(nom)) branches++;
+        }
+        if (branches == 0) AtheriaBestiaire.LOG.warn("Tirs TACZ non branches sur l'ouie des Chimiks");
+    }
+
+    @SuppressWarnings("unchecked")
+    private static boolean brancherTir(String nom) {
         try {
-            Class<? extends Event> c = (Class<? extends Event>) Class.forName("com.tacz.guns.api.event.common.GunFireEvent");
+            Class<? extends Event> c = (Class<? extends Event>) Class.forName(nom);
             Method tireur = c.getMethod("getShooter");
             Method arme = c.getMethod("getGunItemStack");
             Consumer<Event> ecoute = ev -> {
                 try {
                     if (!(tireur.invoke(ev) instanceof LivingEntity le) || !(le.level() instanceof ServerLevel level)) return;
+                    long t = level.getGameTime();
+                    if (t == dernierTick && le.getUUID().equals(dernierTireur)) return;
+                    dernierTireur = le.getUUID();
+                    dernierTick = t;
+                    boolean silencieux = String.valueOf(((ItemStack) arme.invoke(ev)).getComponentsPatch()).contains("silencer");
+                    Bruit.signaler(le, silencieux ? 10 : 40);
                     Map<Mob, Ouie> chimiks = ACTIFS.get(level.dimension());
                     if (chimiks == null || chimiks.isEmpty()) return;
-                    boolean silencieux = String.valueOf(((ItemStack) arme.invoke(ev)).getComponentsPatch()).contains("silencer");
                     entendre(level, chimiks, le.position(), le, silencieux ? 10 : 40);
                 } catch (Throwable t) {
                     AtheriaBestiaire.LOG.debug("Tir TACZ ignore : {}", t.toString());
                 }
             };
             NeoForge.EVENT_BUS.addListener(EventPriority.LOWEST, false, (Class<Event>) c, ecoute);
+            return true;
         } catch (Throwable t) {
-            AtheriaBestiaire.LOG.warn("Tirs TACZ non branches sur l'ouie des Chimiks : {}", t.toString());
+            AtheriaBestiaire.LOG.warn("Evenement de tir TACZ {} non branche : {}", nom, t.toString());
+            return false;
         }
     }
 }

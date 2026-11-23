@@ -1,0 +1,19 @@
+VALIDATION DES ROUTES (blocs reels, un releve tous les 2 blocs d'axe, mesure au fil de la generation)
+RN1 : 5786 releves sur 11275 blocs d'axe
+   releves non mesures (chunks jamais charges) : 5416
+   trous (surface qui n'est pas de la chaussee sur l'axe) : 0 (0,00 %)
+   marches de plus d'un bloc entre deux releves voisins (2 blocs) : 0
+   pente max (abscisse reelle, fenetres 8/16/32 blocs, escalier des Y entiers deduit) : 0,124 (1 pour 8,1) vers 277, -1356 ; profil vise 0,125 ; lecture brute sur 8 blocs 0,245
+   ecart de plus d'un bloc avec le profil calcule : 0 releves
+   largeur reelle de chaussee : min 14, moyenne 15,0, max 16 (visee 15)
+   TRONCON DROIT 2534,-2360 -> 2521,-1992 : 368 blocs, Y 2147483647..-2147483648 (denivele 1), ecart a la droite 0,00 bloc
+   PONT Pont de Kamel (tablier vise Y 69, 85 releves) : 0 mesures, air sous la dalle a l'axe min - / moy 0,0 / max -1, 0 au-dessus de l'eau
+     detail (1 sur 5) :
+   bas-cotes des troncons droits encombres (de 1 a 6 blocs au-dessus) : 0 / 0 colonnes
+   zoom debut : 160 x 160 blocs autour de 2624, -2960
+   zoom troncon-droit : 160 x 160 blocs autour de 2528, -2176
+   zoom pente-max : 160 x 160 blocs autour de 277, -1356
+   zoom milieu : 160 x 160 blocs autour de 569, -769
+   zoom fin : 160 x 160 blocs autour de -984, 1176
+   finition des routes : 209 chunks finis, 0 decharges avant leur tour, 0 hors capacite, 0 en attente (ce lancement)
+(assemble a partir de 1 troncons, un lancement de serveur chacun)

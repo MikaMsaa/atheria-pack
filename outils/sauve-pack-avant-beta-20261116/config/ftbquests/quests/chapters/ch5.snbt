@@ -1,0 +1,858 @@
+{
+	id: "4FDB1F232230A896"
+	group: "655C988475622574"
+	order_index: 5
+	filename: "ch5"
+	default_quest_shape: "circle"
+	icon: {
+		id: "atheria:badge_somaco"
+		count: 1
+	}
+	quests: [
+		{
+			id: "59990559384B94F7"
+			x: -2.0d
+			y: 0.0d
+			shape: "hexagon"
+			icon: {
+				id: "minecraft:bell"
+				count: 1
+			}
+			dependencies: ["73819ABC084FE688", "43DD52F72F246C26", "706A4445534DC455", "681401614C468910"]
+			dependency_requirement: "one_completed"
+			tasks: [
+				{
+					id: "155DBFE17BA87715"
+					type: "gamestage"
+					stage: "acte_4"
+				}
+			]
+			rewards: [ ]
+		}
+		{
+			id: "7332D9F934E02B37"
+			x: 0.0d
+			y: 0.0d
+			dependencies: ["59990559384B94F7"]
+			tasks: [
+				{
+					id: "15E3BD401936DD09"
+					type: "item"
+					item: "atheria:bidon_essence"
+					count: 3
+					consume_items: true
+				}
+				{
+					id: "66685CA67E37E9FA"
+					type: "item"
+					item: "atheria:ration"
+					count: 10
+					consume_items: true
+				}
+				{
+					id: "017162F578F9FFF0"
+					type: "item"
+					item: "atheria:trousse_soins"
+					count: 2
+					consume_items: true
+				}
+				{
+					id: "66D9C321E7E81E4A"
+					type: "item"
+					item: "atheria:filtre"
+					count: 8
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "08FA38E6C9BD578F"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 20
+				}
+				{
+					id: "18609B1B6F521556"
+					type: "item"
+					item: "atheria:trousse_soins"
+					count: 2
+				}
+				{
+					id: "1000D8DB1C0F8C34"
+					type: "item"
+					item: "atheria:filtre"
+					count: 2
+				}
+				{
+					id: "31A3ECBC59C4C6E8"
+					type: "item"
+					item: "atheria:antifongique"
+				}
+				{
+					id: "58927443273AEE7B"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:556x45"}
+						}
+					}
+					count: 14
+				}
+				{
+					id: "1E80B8F4656B6E7B"
+					type: "item"
+					item: "explorerscompass:explorerscompass"
+				}
+			]
+		}
+		{
+			id: "7D7FA6D4F03CF70E"
+			x: 2.0d
+			y: 0.0d
+			shape: "diamond"
+			icon: {
+				id: "minecraft:oak_boat"
+				count: 1
+			}
+			dependencies: ["7332D9F934E02B37"]
+			tasks: [
+				{
+					id: "1071FE6B31D877A8"
+					type: "checkmark"
+				}
+			]
+			rewards: [ ]
+		}
+		{
+			id: "260DEED43C02DC33"
+			x: 4.0d
+			y: -1.5d
+			dependencies: ["7D7FA6D4F03CF70E"]
+			tasks: [
+				{
+					id: "061F7BFA4DF5E12F"
+					type: "item"
+					item: "minecraft:iron_ingot"
+					count: 32
+					consume_items: true
+				}
+				{
+					id: "7BD2FE4DC3D605AE"
+					type: "item"
+					item: "atheria:bidon_essence"
+					count: 4
+					consume_items: true
+				}
+				{
+					id: "49B16E40380C4F7C"
+					type: "item"
+					item: "atheria:batterie"
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "75D7647334FFBC49"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 15
+				}
+				{
+					id: "3E58C1D44F560F13"
+					type: "item"
+					item: "atheria:trousse_soins"
+				}
+				{
+					id: "53D9978DCC733A33"
+					type: "item"
+					item: "atheria:filtre"
+					count: 2
+				}
+				{
+					id: "41C1EEC62F75E996"
+					type: "item"
+					item: "atheria:ration_luxe"
+					count: 2
+				}
+				{
+					id: "29079480FD1EAEDF"
+					type: "command"
+					command: "/tag {p} add traversee_ok"
+					permission_level: 2
+					silent: true
+					feedback_message: "Accès à Petite-Terre"
+				}
+			]
+		}
+		{
+			id: "23DE5676485339A9"
+			x: 4.0d
+			y: -0.5d
+			icon: {
+				id: "minecraft:spruce_boat"
+				count: 1
+			}
+			dependencies: ["7D7FA6D4F03CF70E"]
+			tasks: [
+				{
+					id: "31D190376602F770"
+					type: "gamestage"
+					stage: "kwassa_ok"
+				}
+			]
+			rewards: [
+				{
+					id: "4E4C546A16534BBD"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 15
+				}
+				{
+					id: "207E489713D79F5A"
+					type: "item"
+					item: "atheria:trousse_soins"
+				}
+				{
+					id: "292B7BD4D2C66663"
+					type: "item"
+					item: "atheria:filtre"
+					count: 2
+				}
+				{
+					id: "4D5E94F3620E05CB"
+					type: "item"
+					item: "atheria:ration_luxe"
+					count: 2
+				}
+				{
+					id: "520773D736D93920"
+					type: "command"
+					command: "/tag {p} add traversee_ok"
+					permission_level: 2
+					silent: true
+					feedback_message: "Accès à Petite-Terre"
+				}
+			]
+		}
+		{
+			id: "699EF5DA33366EE8"
+			x: 4.0d
+			y: 0.5d
+			dependencies: ["7D7FA6D4F03CF70E"]
+			tasks: [
+				{
+					id: "6C10CAC4F761AD2E"
+					type: "item"
+					item: "atheria:poisson_seche"
+					count: 16
+					consume_items: true
+				}
+				{
+					id: "7BD2AEEAE1453745"
+					type: "item"
+					item: "atheria:filet"
+					count: 2
+					consume_items: true
+				}
+			]
+			rewards: [
+				{
+					id: "0661C1B21E415DC5"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 15
+				}
+				{
+					id: "13C87D0E465EAF9D"
+					type: "item"
+					item: "atheria:trousse_soins"
+				}
+				{
+					id: "04CD7BEA1671B81C"
+					type: "item"
+					item: "atheria:filtre"
+					count: 2
+				}
+				{
+					id: "76E969FBAEA19D71"
+					type: "item"
+					item: "atheria:ration_luxe"
+					count: 2
+				}
+				{
+					id: "20548C5ED78D59A9"
+					type: "command"
+					command: "/scoreboard players add {p} aura_sud 1"
+					permission_level: 2
+					silent: true
+					feedback_message: "+1 aura Pêcheurs du Sud"
+				}
+				{
+					id: "29A9E3D23738FCB2"
+					type: "command"
+					command: "/tag {p} add traversee_ok"
+					permission_level: 2
+					silent: true
+					feedback_message: "Accès à Petite-Terre"
+				}
+			]
+		}
+		{
+			id: "613060ED7ACC1095"
+			x: 4.0d
+			y: 1.5d
+			icon: {
+				id: "minecraft:turtle_helmet"
+				count: 1
+			}
+			dependencies: ["7D7FA6D4F03CF70E"]
+			invisible: true
+			tasks: [
+				{
+					id: "164B59AAC9880073"
+					type: "gamestage"
+					stage: "exploit_leon"
+				}
+			]
+			rewards: [
+				{
+					id: "539414A61850EA3E"
+					type: "command"
+					command: "/tag {p} add titre_leon_marchand"
+					permission_level: 2
+					silent: true
+					feedback_message: "Titre « Léon Marchand »"
+				}
+				{
+					id: "5AF755FAB3FB8AAC"
+					type: "command"
+					command: "/tag {p} add traversee_ok"
+					permission_level: 2
+					silent: true
+					feedback_message: "Accès à Petite-Terre"
+				}
+			]
+		}
+		{
+			id: "5AB49E6829EAB379"
+			x: 6.0d
+			y: 0.0d
+			icon: {
+				id: "minecraft:red_bed"
+				count: 1
+			}
+			dependencies: ["260DEED43C02DC33", "23DE5676485339A9", "699EF5DA33366EE8", "613060ED7ACC1095"]
+			dependency_requirement: "one_completed"
+			tasks: [
+				{
+					id: "24E2831762948E78"
+					type: "gamestage"
+					stage: "pose_lit"
+				}
+				{
+					id: "71EA1E1A0C73909A"
+					type: "gamestage"
+					stage: "pose_coffre"
+				}
+				{
+					id: "1C529FA87FAD5EF5"
+					type: "gamestage"
+					stage: "pose_feu"
+				}
+				{
+					id: "416AC095C6EF3C93"
+					type: "item"
+					item: "atheria:archive_30"
+				}
+			]
+			rewards: [
+				{
+					id: "444B6C01DC364B49"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 20
+				}
+				{
+					id: "32AAE0802D69F0D0"
+					type: "item"
+					item: "atheria:trousse_soins"
+					count: 2
+				}
+				{
+					id: "482FAA3739499AA5"
+					type: "item"
+					item: "atheria:filtre"
+					count: 2
+				}
+				{
+					id: "4D3E88713DC68C0C"
+					type: "item"
+					item: "atheria:antifongique"
+				}
+				{
+					id: "4BB38864EFAE48DC"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:556x45"}
+						}
+					}
+					count: 14
+				}
+			]
+		}
+		{
+			id: "396DA7AECFF1846F"
+			x: 8.0d
+			y: 0.0d
+			dependencies: ["5AB49E6829EAB379"]
+			tasks: [
+				{
+					id: "07EAA2F389CA1196"
+					type: "item"
+					item: "atheria:badge_somaco"
+				}
+			]
+			rewards: [
+				{
+					id: "789A6D9778F02E2A"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 15
+				}
+				{
+					id: "1587E335C0C79A3C"
+					type: "item"
+					item: "atheria:trousse_soins"
+				}
+				{
+					id: "27674F128A29E242"
+					type: "item"
+					item: "atheria:filtre"
+					count: 2
+				}
+				{
+					id: "0AAC7E7B5276D2F9"
+					type: "item"
+					item: "atheria:ration_luxe"
+					count: 2
+				}
+			]
+		}
+		{
+			id: "7EFAD255B29B4EBA"
+			x: 10.0d
+			y: -1.0d
+			icon: {
+				id: "atheria:cassette_salto"
+				count: 1
+			}
+			dependencies: ["396DA7AECFF1846F"]
+			tasks: [
+				{
+					id: "42C87D49C5BA9A5B"
+					type: "gamestage"
+					stage: "q_ch5_coffre"
+				}
+			]
+			rewards: [
+				{
+					id: "400D28B458AA3BD8"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 30
+				}
+				{
+					id: "7B74AE7CD073EB7F"
+					type: "item"
+					item: "atheria:trousse_soins"
+					count: 2
+				}
+				{
+					id: "6EE18C005CBC234F"
+					type: "item"
+					item: "firstaid:morphine"
+					count: 2
+				}
+				{
+					id: "5946CD45DCB3A9CA"
+					type: "item"
+					item: "atheria:antifongique"
+					count: 2
+				}
+				{
+					id: "774B35BCA707124F"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:556x45"}
+						}
+					}
+					count: 20
+				}
+				{
+					id: "6CC2626D2751F90E"
+					type: "command"
+					command: "/tag {p} add q_ch5_coffre"
+					permission_level: 2
+					silent: true
+					feedback_message: "Avancée partagée avec ton équipe"
+				}
+			]
+		}
+		{
+			id: "21D9455054C524BB"
+			x: 10.0d
+			y: 1.0d
+			icon: {
+				id: "minecraft:wither_skeleton_skull"
+				count: 1
+			}
+			dependencies: ["396DA7AECFF1846F"]
+			tasks: [
+				{
+					id: "5A2A30445A5E0DEC"
+					type: "item"
+					item: "atheria:dossier_remede"
+				}
+			]
+			rewards: [
+				{
+					id: "6E1F657C8A334A93"
+					type: "item"
+					item: {
+						id: "tacz:modern_kinetic_gun"
+						count: 1
+						components: {
+							"minecraft:custom_data": {GunId:"tacz:hk_mk23",GunFireMode:"SEMI"}
+						}
+					}
+				}
+				{
+					id: "2823FFB43E9A74C7"
+					type: "item"
+					item: {
+						id: "tacz:attachment"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AttachmentId:"tacz:muzzle_silencer_knight_qd"}
+						}
+					}
+				}
+				{
+					id: "2CB49D996180F90F"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:45acp"}
+						}
+					}
+					count: 24
+				}
+				{
+					id: "041FD77033FF412C"
+					type: "command"
+					command: "/tag {p} add titre_la_salto"
+					permission_level: 2
+					silent: true
+					feedback_message: "Titre « Porteur de La Salto »"
+				}
+				{
+					id: "5E20B90916D8D195"
+					type: "command"
+					command: "/tag {p} add dossier_remede_ok"
+					permission_level: 2
+					silent: true
+					feedback_message: "Dossier du remède enregistré"
+				}
+			]
+		}
+		{
+			id: "4E5592D4EAF22194"
+			x: 8.5d
+			y: 2.6d
+			icon: {
+				id: "atheria:antifongique"
+				count: 1
+			}
+			dependencies: ["396DA7AECFF1846F"]
+			optional: true
+			tasks: [
+				{
+					id: "69D2495927B1B3CC"
+					type: "gamestage"
+					stage: "choix_hajar_goblini"
+				}
+			]
+			rewards: [
+				{
+					id: "0EA2116559B5CB3E"
+					type: "item"
+					item: "atheria:antifongique"
+					count: 4
+				}
+				{
+					id: "6380D3464244A5C9"
+					type: "item"
+					item: "atheria:filtre"
+					count: 4
+				}
+			]
+		}
+		{
+			id: "6DD52C603198B8C5"
+			x: 9.5d
+			y: 2.6d
+			icon: {
+				id: "atheria:cendre_grise"
+				count: 1
+			}
+			dependencies: ["396DA7AECFF1846F"]
+			optional: true
+			tasks: [
+				{
+					id: "7D814A1046E31211"
+					type: "gamestage"
+					stage: "choix_hajar_enfants"
+				}
+			]
+			rewards: [
+				{
+					id: "408DB3873F9FECF2"
+					type: "item"
+					item: "atheria:cendre_grise"
+					count: 4
+				}
+				{
+					id: "7A2B4DE68951FA39"
+					type: "item"
+					item: "atheria:decoction_fundi"
+					count: 2
+				}
+			]
+		}
+		{
+			id: "78EA6F209E3BB6B8"
+			x: 10.5d
+			y: 2.6d
+			icon: {
+				id: "atheria:carte_citoyen"
+				count: 1
+			}
+			dependencies: ["396DA7AECFF1846F"]
+			optional: true
+			tasks: [
+				{
+					id: "73F84B1F80E4A1A0"
+					type: "gamestage"
+					stage: "choix_hajar_paf"
+				}
+			]
+			rewards: [
+				{
+					id: "54D0F79F9CBD8D74"
+					type: "item"
+					item: "atheria:trousse_soins"
+					count: 2
+				}
+				{
+					id: "2D5A3678BCA86EEF"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:9mm"}
+						}
+					}
+					count: 20
+				}
+			]
+		}
+		{
+			id: "0009F3033F222CD3"
+			x: 11.5d
+			y: 2.6d
+			icon: {
+				id: "atheria:dessin_hajar"
+				count: 1
+			}
+			dependencies: ["396DA7AECFF1846F"]
+			optional: true
+			tasks: [
+				{
+					id: "26D906C53943E1E5"
+					type: "gamestage"
+					stage: "choix_hajar_fuite"
+				}
+			]
+			rewards: [
+				{
+					id: "7DB05348A4A98E38"
+					type: "item"
+					item: "atheria:fusee_eclairante"
+					count: 8
+				}
+				{
+					id: "07584D2DDFF1437E"
+					type: "item"
+					item: "atheria:filtre"
+					count: 4
+				}
+			]
+		}
+		{
+			id: "77620AD34B3B06B8"
+			x: 12.0d
+			y: 0.0d
+			dependencies: ["7EFAD255B29B4EBA", "21D9455054C524BB"]
+			tasks: [
+				{
+					id: "7B8DE6F693106D4A"
+					type: "item"
+					item: "atheria:archive_33"
+				}
+			]
+			rewards: [
+				{
+					id: "75FC5ECAC9144527"
+					type: "item"
+					item: "atheria:bon_caf"
+					count: 20
+				}
+				{
+					id: "361C47C2ED346E39"
+					type: "item"
+					item: "atheria:trousse_soins"
+					count: 2
+				}
+				{
+					id: "08501EB69C2A115A"
+					type: "item"
+					item: "atheria:filtre"
+					count: 2
+				}
+				{
+					id: "71688EFF87B0BA96"
+					type: "item"
+					item: "atheria:antifongique"
+				}
+				{
+					id: "1F11922CCB151A5A"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:556x45"}
+						}
+					}
+					count: 14
+				}
+			]
+		}
+		{
+			id: "6BCD1A8EB604DCF6"
+			x: 14.0d
+			y: 0.0d
+			shape: "diamond"
+			icon: {
+				id: "atheria:badge_somaco"
+				count: 1
+			}
+			dependencies: ["77620AD34B3B06B8"]
+			tasks: [
+				{
+					id: "33F389D0C32C60A5"
+					type: "gamestage"
+					stage: "q_ch5_kayssi"
+				}
+			]
+			rewards: [ ]
+		}
+		{
+			id: "74D7FFD525B59A3E"
+			x: 16.0d
+			y: 0.0d
+			shape: "gear"
+			size: 1.5d
+			icon: {
+				id: "minecraft:lightning_rod"
+				count: 1
+			}
+			dependencies: ["6BCD1A8EB604DCF6"]
+			optional: true
+			tasks: [
+				{
+					id: "20987667B11C1905"
+					type: "gamestage"
+					stage: "salto_diffusee_joueur"
+				}
+			]
+			rewards: [
+				{
+					id: "35B5C68510068C33"
+					type: "item"
+					item: {
+						id: "tacz:ammo"
+						count: 1
+						components: {
+							"minecraft:custom_data": {AmmoId:"tacz:556x45"}
+						}
+					}
+					count: 25
+				}
+				{
+					id: "78B66F9C4F6ACF35"
+					type: "item"
+					item: "atheria:trousse_soins"
+					count: 2
+				}
+				{
+					id: "585B20BAC7D7F362"
+					type: "item"
+					item: "sophisticatedbackpacks:diamond_backpack"
+				}
+				{
+					id: "006DFADE41F94F78"
+					type: "command"
+					command: "/tag {p} add titre_verite_sortie"
+					permission_level: 2
+					silent: true
+					feedback_message: "Titre « La vérité est sortie »"
+				}
+			]
+		}
+	]
+	quest_links: [ ]
+	images: [
+		{
+			id: "0C127FBE7FB5608B"
+			x: 6.7d
+			y: 0.15d
+			width: 22.2d
+			height: 9.3d
+			rotation: 0.0d
+			image: "atheria:textures/quetes/ch5_carte.png"
+			order: -10
+		}
+		{
+			id: "43CB26FA2070FC8D"
+			x: 6.7d
+			y: 0.15d
+			width: 66.2d
+			height: 37.3d
+			rotation: 0.0d
+			image: "atheria:textures/quetes/ch5_large.png"
+			order: -20
+		}
+	]
+}

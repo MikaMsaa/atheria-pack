@@ -1,0 +1,64 @@
+{
+ "pnj": {
+  "nom": "Kamel"
+ },
+ "debut": "debut",
+ "noeuds": {
+  "q_ch2_feu": {
+   "lignes": [
+    {
+     "texte": "Rayade filmait tout. La barge, les bouchons, les chiens, le ciel. Trois cents abonnés, mais il se comportait comme si le monde attendait sa vidéo. Je lui disais d'arrêter. Il répondait que les gens avaient besoin de voir que quelque chose continuait."
+    },
+    {
+     "texte": "(Après un silence.) J'ai gardé sa dernière cassette."
+    }
+   ],
+   "choix": [
+    {
+     "texte": "Écouter",
+     "actions": [
+      {
+       "commande": "tag {joueur} add q_ch2_feu"
+      },
+      {
+       "commande": "give {joueur} atheria:cassette_rnboi 1"
+      },
+      {
+       "commande": "playsound minecraft:entity.experience_orb.pickup master {joueur} ~ ~ ~ 0.6 1.2"
+      }
+     ],
+     "fin": true
+    }
+   ]
+  },
+  "q_ch2_feu_fait": {
+   "texte": "Tu as ce qu'il te faut. Avance."
+  },
+  "repos": {
+   "texte": "(Kamel tisonne le feu. Il parle à quelqu'un d'autre, pas à toi.)"
+  },
+  "debut": {
+   "aiguillage": [
+    {
+     "si": {
+      "tag": [
+       "q_ch2_feu"
+      ]
+     },
+     "aller": "q_ch2_feu_fait"
+    },
+    {
+     "si": {
+      "tag": [
+       "q_ch2_kamel"
+      ]
+     },
+     "aller": "q_ch2_feu"
+    },
+    {
+     "aller": "repos"
+    }
+   ]
+  }
+ }
+}

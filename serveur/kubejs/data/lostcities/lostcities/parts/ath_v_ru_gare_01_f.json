@@ -53,22 +53,26 @@
    },
    {
     "char": "Ì",
-    "block": "supplementaries:sack[open=false,waterlogged=false]"
+    "block": "minecraft:spruce_slab[type=double,waterlogged=false]"
    },
    {
     "char": "Í",
-    "block": "minecraft:barrel[facing=up,open=false]"
+    "block": "supplementaries:sack[open=false,waterlogged=false]"
    },
    {
     "char": "Î",
-    "block": "minecraft:waxed_oxidized_cut_copper_slab[type=bottom,waterlogged=false]"
+    "block": "minecraft:barrel[facing=up,open=false]"
    },
    {
     "char": "Ï",
-    "block": "minecraft:redstone_lamp[lit=false]"
+    "block": "minecraft:waxed_oxidized_cut_copper_slab[type=bottom,waterlogged=false]"
    },
    {
     "char": "Ð",
+    "block": "minecraft:redstone_lamp[lit=false]"
+   },
+   {
+    "char": "Ñ",
     "block": "minecraft:iron_trapdoor[facing=north,half=bottom,open=false,powered=false,waterlogged=false]"
    }
   ]
@@ -113,7 +117,7 @@
   [
    "                ",
    "      ÊÊÊÊ  ÊÊÊÊ",
-   "      ÊËËËËËËËËÊ",
+   "      ÊËÌËËËÌËËÊ",
    "      ÊÊÊÊÊÊÊÊÊÊ",
    "                ",
    " È              ",
@@ -131,7 +135,7 @@
   [
    "                ",
    "      ÊÊÊÊ  ÊÊÊÊ",
-   "      Ê Ì   Í  Ê",
+   "      Ê Í   Î  Ê",
    "      ÊÊÊÊÊÊÊÊÊÊ",
    "                ",
    " È              ",

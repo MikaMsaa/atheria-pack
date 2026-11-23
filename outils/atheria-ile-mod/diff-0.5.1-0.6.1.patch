@@ -1,0 +1,937 @@
+diff --git a/src/fr/atheria/ile/AtheriaIle.java b/src/fr/atheria/ile/AtheriaIle.java
+index 6601526..a2394f8 100644
+--- a/src/fr/atheria/ile/AtheriaIle.java
++++ b/src/fr/atheria/ile/AtheriaIle.java
+@@ -32,6 +32,7 @@ public final class AtheriaIle {
+         FEATURES.register("route", () -> new RouteFeature(net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration.CODEC));
+         FONCTIONS.register("ile_continents", () -> IleContinents.MAP_CODEC);
+         FONCTIONS.register("ile_champ", () -> IleChamp.MAP_CODEC);
++        FONCTIONS.register("volumes", () -> DensiteVolumes.MAP_CODEC);
+     }
+ 
+     public AtheriaIle(IEventBus busDuMod) {
+diff --git a/src/fr/atheria/ile/CarteIle.java b/src/fr/atheria/ile/CarteIle.java
+index ee5dd24..ea5e17d 100644
+--- a/src/fr/atheria/ile/CarteIle.java
++++ b/src/fr/atheria/ile/CarteIle.java
+@@ -161,6 +161,8 @@ public final class CarteIle {
+     public final java.util.List<Route> routes;
+     /** lots fixes ("lots") : rien n'y est pose par le mod */
+     public final java.util.List<Lot> lots;
++    /** volumes souterrains reserves ("volumes_souterrains") */
++    public final Volumes volumes;
+     /** marge des routes pour les chunks exclus (blocs depuis l'axe) et cles triees des chunks exclus */
+     public final int margeRoute;
+     final long[] chunksExclus;
+@@ -409,6 +411,7 @@ public final class CarteIle {
+         LOG.info("[atheria_ile] {} biomes de passage, lagon {}, passes {} blocs", passageBiome.size(), lagonBiome, passesLargeur);
+         routes = Route.lire(config);
+         lots = Lot.lire(config);
++        volumes = Volumes.lire(config);
+         int mr = 64;
+         for (Route r : routes) mr = r.margeStructures;
+         margeRoute = mr;
+diff --git a/src/fr/atheria/ile/DensiteVolumes.java b/src/fr/atheria/ile/DensiteVolumes.java
+new file mode 100644
+index 0000000..bd6ec64
+--- /dev/null
++++ b/src/fr/atheria/ile/DensiteVolumes.java
+@@ -0,0 +1,60 @@
++package fr.atheria.ile;
++
++import com.mojang.serialization.Codec;
++import com.mojang.serialization.MapCodec;
++import com.mojang.serialization.codecs.RecordCodecBuilder;
++import net.minecraft.util.KeyDispatchDataCodec;
++import net.minecraft.world.level.levelgen.DensityFunction;
++
++/**
++ * Enveloppe une fonction de densite de grottes (Tectonic : caves, cave/noodle, underground_river/total,
++ * lava_tunnel/total ; vanilla : vein_toggle) : dans un volume souterrain reserve et sa marge, elle rend "valeur",
++ * la valeur neutre (pas de grotte, pas de riviere, pas de filon). Le terrain de base n'est pas touche : la surface
++ * reste la meme, la roche reste pleine autour du volume, et l'aquifere (qui ne remplit que les vides) n'y met rien.
++ * S'utilise via un modificateur Lithostitched (wrap_density_function) du datapack du monde.
++ */
++public final class DensiteVolumes implements DensityFunction {
++    public static final MapCodec<DensiteVolumes> MAP_CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
++            DensityFunction.HOLDER_HELPER_CODEC.fieldOf("argument").forGetter(DensiteVolumes::argument),
++            Codec.DOUBLE.fieldOf("valeur").forGetter(DensiteVolumes::valeur)
++    ).apply(i, DensiteVolumes::new));
++
++    public static final KeyDispatchDataCodec<DensiteVolumes> CODEC = KeyDispatchDataCodec.of(MAP_CODEC);
++
++    private final DensityFunction argument;
++    private final double valeur;
++
++    private DensiteVolumes(DensityFunction argument, double valeur) {
++        this.argument = argument;
++        this.valeur = valeur;
++    }
++
++    public DensityFunction argument() { return argument; }
++    public double valeur() { return valeur; }
++
++    @Override
++    public double compute(FunctionContext ctx) {
++        CarteIle c = CarteIle.active();
++        if (c != null && c.volumes.densite(ctx.blockX(), ctx.blockY(), ctx.blockZ())) return valeur;
++        return argument.compute(ctx);
++    }
++
++    @Override
++    public void fillArray(double[] tab, ContextProvider p) {
++        p.fillAllDirectly(tab, this);
++    }
++
++    @Override
++    public DensityFunction mapAll(Visitor visitor) {
++        return visitor.apply(new DensiteVolumes(argument.mapAll(visitor), valeur));
++    }
++
++    @Override
++    public double minValue() { return Math.min(valeur, argument.minValue()); }
++
++    @Override
++    public double maxValue() { return Math.max(valeur, argument.maxValue()); }
++
++    @Override
++    public KeyDispatchDataCodec<? extends DensityFunction> codec() { return CODEC; }
++}
+diff --git a/src/fr/atheria/ile/Exclusions.java b/src/fr/atheria/ile/Exclusions.java
+index c4948a4..f9d7b8a 100644
+--- a/src/fr/atheria/ile/Exclusions.java
++++ b/src/fr/atheria/ile/Exclusions.java
+@@ -25,6 +25,9 @@ import java.util.Set;
+ public final class Exclusions {
+     private Exclusions() {}
+ 
++    /** change quand le contenu du fichier change a config egale (le fichier est alors reecrit) */
++    static final String GENERATEUR = "atheria_ile 0.6.1";
++
+     static long cle(int cx, int cz) { return ((long) cx << 32) | (cz & 0xFFFFFFFFL); }
+ 
+     /** distance minimale entre le segment (ax,az)-(bx,bz) et le carre des centres de blocs du chunk */
+@@ -87,7 +90,8 @@ public final class Exclusions {
+             if (Files.isRegularFile(dest)) {
+                 try (Reader rd = Files.newBufferedReader(dest, StandardCharsets.UTF_8)) {
+                     JsonObject o = JsonParser.parseReader(rd).getAsJsonObject();
+-                    if (o.has("source_sha256") && hash.equals(o.get("source_sha256").getAsString())) {
++                    if (o.has("source_sha256") && hash.equals(o.get("source_sha256").getAsString())
++                            && o.has("generateur") && GENERATEUR.equals(o.get("generateur").getAsString())) {
+                         CarteIle.LOG.info("[atheria_ile] exclusions.json a jour ({} chunks exclus)", c.chunksExclus.length);
+                         return;
+                     }
+@@ -99,6 +103,7 @@ public final class Exclusions {
+             o.addProperty("version", 1);
+             o.addProperty("convention", "x2,z2 exclus");
+             o.addProperty("source_sha256", hash);
++            o.addProperty("generateur", GENERATEUR);
+             o.addProperty("route_marge_blocs", c.margeRoute);
+             JsonArray lots = new JsonArray();
+             for (Lot l : c.lots) {
+@@ -109,6 +114,17 @@ public final class Exclusions {
+                 lots.add(lo);
+             }
+             o.add("lots", lots);
++            JsonObject vs = new JsonObject();
++            vs.addProperty("marge_blocs", c.volumes.marge);
++            vs.addProperty("convention", "boites : x2,z2 exclus ; couloirs : blocs a moins de largeur_blocs/2 de la polyligne ; y_min et y_max inclus");
++            JsonArray ve = new JsonArray();
++            for (JsonObject v : c.volumes.sources) ve.add(v.deepCopy());
++            vs.add("elements", ve);
++            JsonArray pa = new JsonArray();
++            for (String m : c.volumes.poseAutorisee()) pa.add(m);
++            vs.add("pose_autorisee", pa);
++            vs.addProperty("pose_autorisee_aide", "pendant la generation, seules les structures, features et modeles (.nbt) de ces identifiants (namespace:* = tout le namespace), la finition des vitrines atheria_monde et le code appele via IleApi.poserDansVolume posent dans les volumes ; apres la generation (commandes, WorldEdit, construction a la main) rien n'est bloque");
++            o.add("volumes_souterrains", vs);
+             List<int[]> ch = new ArrayList<>();
+             for (long k : c.chunksExclus) ch.add(new int[]{(int) (k >> 32), (int) k});
+             ch.sort((a, b) -> a[0] != b[0] ? Integer.compare(a[0], b[0]) : Integer.compare(a[1], b[1]));
+@@ -130,7 +146,14 @@ public final class Exclusions {
+             sb.append("\n  ]");
+             sb.append(",\n  \"chunks_exclus\": [");
+             for (int i = 0; i < ch.size(); i++) sb.append(i == 0 ? "\n    " : ",\n    ").append('[').append(ch.get(i)[0]).append(", ").append(ch.get(i)[1]).append(']');
+-            sb.append("\n  ]\n}\n");
++            sb.append("\n  ]");
++            // chunks_volumes : chunks au-dessus d'un volume souterrain ou de sa marge (pas de caves de batiments la)
++            List<int[]> cv = new ArrayList<>();
++            for (long k : ValidationVolumes.chunks(c)) cv.add(new int[]{net.minecraft.world.level.ChunkPos.getX(k), net.minecraft.world.level.ChunkPos.getZ(k)});
++            cv.sort((a, b) -> a[0] != b[0] ? Integer.compare(a[0], b[0]) : Integer.compare(a[1], b[1]));
++            sb.append(",\n  \"chunks_volumes\": [");
++            for (int i = 0; i < cv.size(); i++) sb.append(i == 0 ? "\n    " : ",\n    ").append('[').append(cv.get(i)[0]).append(", ").append(cv.get(i)[1]).append(']');
++            sb.append(cv.isEmpty() ? "]\n}\n" : "\n  ]\n}\n");
+             Path tmp = c.dossier.resolve("exclusions.json.tmp");
+             Files.writeString(tmp, sb.toString(), StandardCharsets.UTF_8);
+             try {
+diff --git a/src/fr/atheria/ile/PoseVolumes.java b/src/fr/atheria/ile/PoseVolumes.java
+new file mode 100644
+index 0000000..7663dc3
+--- /dev/null
++++ b/src/fr/atheria/ile/PoseVolumes.java
+@@ -0,0 +1,34 @@
++package fr.atheria.ile;
++
++import net.minecraft.resources.ResourceLocation;
++
++/**
++ * Levee de la protection des volumes souterrains, par fil d'execution. Un compteur (et non un booleen) pour les
++ * appels imbriques : une structure atheria_monde qui pose une feature, une feature qui en pose une autre...
++ * Le compteur n'est lu que pour un bloc deja reconnu dans un volume reserve : le chemin chaud (hors volumes)
++ * ne touche jamais au ThreadLocal. Un seul int[] par fil, cree une fois : aucune allocation ensuite.
++ */
++public final class PoseVolumes {
++    private PoseVolumes() {}
++
++    private static final ThreadLocal<int[]> PROFONDEUR = ThreadLocal.withInitial(() -> new int[1]);
++
++    /** vrai si la protection est levee sur ce fil (pose autorisee en cours) */
++    public static boolean levee() { return PROFONDEUR.get()[0] > 0; }
++
++    public static void entrer() { PROFONDEUR.get()[0]++; }
++
++    public static void sortir() { int[] p = PROFONDEUR.get(); if (p[0] > 0) p[0]--; }
++
++    /** vrai si l'identifiant (structure, feature, modele) a le droit de poser dans les volumes */
++    public static boolean autorise(ResourceLocation id) {
++        CarteIle c = CarteIle.active();
++        return id != null && c != null && c.volumes.autorise(id.getNamespace(), id.getPath());
++    }
++
++    /** vrai si un namespace entier est autorise (motif "namespace:*") */
++    public static boolean autoriseNamespace(String ns) {
++        CarteIle c = CarteIle.active();
++        return c != null && c.volumes.autoriseNamespace(ns);
++    }
++}
+diff --git a/src/fr/atheria/ile/Tests.java b/src/fr/atheria/ile/Tests.java
+index b258640..ee9998a 100644
+--- a/src/fr/atheria/ile/Tests.java
++++ b/src/fr/atheria/ile/Tests.java
+@@ -52,7 +52,7 @@ public final class Tests {
+     private static int zoneTotal, zoneX, zoneZ, zoneRayon;
+     private static long zoneDebut;
+     private static int zoneFaits;
+-    private static boolean routesAValider;
++    private static boolean routesAValider, volumesAValider;
+     /** chunks demandes en meme temps (generation sur les fils du serveur, pas sur le thread principal) */
+     private static final int EN_VOL_MAX = 24;
+     private static final long ZONE_DELAI_MS = 30 * 60_000L;
+@@ -378,6 +378,16 @@ public final class Tests {
+                 routesAValider = true;
+                 CarteIle.LOG.info("[atheria_ile] validation des routes : {} chunks a generer le long du trace", aGenerer.size());
+             }
++            volumesAValider = false;
++            if (bool(c.config, "valider_volumes") && !c.volumes.vide()) {
++                java.util.LinkedHashSet<Long> vus = new java.util.LinkedHashSet<>();
++                for (ChunkPos p : aGenerer) vus.add(p.toLong());
++                vus.addAll(ValidationVolumes.chunks(c));
++                aGenerer.clear();
++                for (long l : vus) aGenerer.add(new ChunkPos(l));
++                volumesAValider = true;
++                CarteIle.LOG.info("[atheria_ile] validation des volumes souterrains : {} chunks a generer en tout", aGenerer.size());
++            }
+             zoneTotal = aGenerer.size();
+             zoneDebut = System.currentTimeMillis();
+         }
+@@ -401,7 +411,7 @@ public final class Tests {
+             CarteIle.LOG.info("[atheria_ile] zone reelle : {} / {} chunks ({} s)", zoneFaits, zoneTotal, (System.currentTimeMillis() - zoneDebut) / 1000);
+         }
+         if (zoneTotal > 0 && zoneFaits < zoneTotal) {
+-            if (System.currentTimeMillis() - zoneDebut > (routesAValider ? 3 * ZONE_DELAI_MS : ZONE_DELAI_MS)) {
++            if (System.currentTimeMillis() - zoneDebut > (routesAValider || volumesAValider ? 3 * ZONE_DELAI_MS : ZONE_DELAI_MS)) {
+                 CarteIle.LOG.error("[atheria_ile] zone reelle abandonnee : {} / {} chunks en {} min", zoneFaits, zoneTotal, ZONE_DELAI_MS / 60000);
+                 ecrire(c, "rapport-zone.txt", "ECHEC : generation trop lente, " + zoneFaits + " / " + zoneTotal + " chunks\n");
+                 libererTickets(cache);
+@@ -422,6 +432,12 @@ public final class Tests {
+                 CarteIle.LOG.error("[atheria_ile] ECHEC de la validation des routes", e);
+                 ecrire(c, "rapport-routes.txt", "ECHEC :\n" + pile(e));
+             }
++            if (volumesAValider) try {
++                ValidationVolumes.mesurer(niveau, c);
++            } catch (Throwable e) {
++                CarteIle.LOG.error("[atheria_ile] ECHEC de la validation des volumes", e);
++                ecrire(c, "rapport-volumes.txt", "ECHEC :\n" + pile(e));
++            }
+             libererTickets(cache);
+         }
+         fin(server);
+diff --git a/src/fr/atheria/ile/ValidationVolumes.java b/src/fr/atheria/ile/ValidationVolumes.java
+new file mode 100644
+index 0000000..18362ce
+--- /dev/null
++++ b/src/fr/atheria/ile/ValidationVolumes.java
+@@ -0,0 +1,86 @@
++package fr.atheria.ile;
++
++import net.minecraft.core.BlockPos;
++import net.minecraft.server.level.ServerLevel;
++import net.minecraft.tags.BlockTags;
++import net.minecraft.world.level.block.state.BlockState;
++import net.minecraft.world.level.chunk.LevelChunk;
++import net.minecraft.world.level.levelgen.Heightmap;
++
++import java.util.ArrayList;
++import java.util.LinkedHashSet;
++import java.util.List;
++
++/**
++ * Mesures sur les vrais blocs des volumes souterrains reserves (chunks deja charges seulement) : dans le volume et
++ * sa marge, sous la surface - 2, compte des vides (air, eau, lave), des fluides et des minerais ; couverture reelle
++ * (surface - y_max) sur l'emprise.
++ */
++final class ValidationVolumes {
++    private ValidationVolumes() {}
++
++    /** chunks a generer : ceux qui touchent un volume ou sa marge */
++    static List<Long> chunks(CarteIle c) {
++        LinkedHashSet<Long> s = new LinkedHashSet<>();
++        Volumes v = c.volumes;
++        for (int i = 0; i < v.elements(); i++) {
++            double[] b = v.boite(i);
++            for (int cz = (int) Math.floor((b[1] - v.marge) / 16); cz <= (int) Math.floor((b[3] + v.marge) / 16); cz++)
++                for (int cx = (int) Math.floor((b[0] - v.marge) / 16); cx <= (int) Math.floor((b[2] + v.marge) / 16); cx++)
++                    if (v.chunkTouche(cx, cz)) s.add(net.minecraft.world.level.ChunkPos.asLong(cx, cz));
++        }
++        return new ArrayList<>(s);
++    }
++
++    static void mesurer(ServerLevel n, CarteIle c) throws Exception {
++        Volumes v = c.volumes;
++        StringBuilder sb = new StringBuilder("VALIDATION DES VOLUMES SOUTERRAINS (blocs reels ; volume + marge " + v.marge + ", sous la surface - 2)\n");
++        BlockPos.MutableBlockPos p = new BlockPos.MutableBlockPos();
++        int ne = v.noms.length;
++        long[] blocs = new long[ne], vides = new long[ne], fluides = new long[ne], minerais = new long[ne], absents = new long[ne];
++        int[] couvMin = new int[ne];
++        int[] couvX = new int[ne], couvZ = new int[ne], yHaut = new int[ne];
++        java.util.Arrays.fill(couvMin, Integer.MAX_VALUE);
++        StringBuilder[] ex = new StringBuilder[ne];
++        for (int k = 0; k < ne; k++) ex[k] = new StringBuilder();
++        for (int i = 0; i < v.elements(); i++) {
++            int e = v.nomElement(i);
++            yHaut[e] = Math.max(yHaut[e], v.yMax(i));
++            double[] b = v.boite(i);
++            int x0 = (int) Math.floor(b[0]) - v.marge, x1 = (int) Math.ceil(b[2]) + v.marge, z0 = (int) Math.floor(b[1]) - v.marge, z1 = (int) Math.ceil(b[3]) + v.marge;
++            int y0 = v.yMin(i) - v.marge, y1 = Math.min(n.getMaxBuildHeight() - 1, v.yMax(i) + v.marge);
++            for (int z = z0; z <= z1; z++) for (int x = x0; x <= x1; x++) {
++                LevelChunk ch = n.getChunkSource().getChunkNow(x >> 4, z >> 4);
++                if (ch == null) { absents[e]++; continue; }
++                int surf = ch.getHeight(Heightmap.Types.OCEAN_FLOOR, x & 15, z & 15);
++                // couverture reelle sur l'emprise (pas pour les puits, qui montent a la surface)
++                if (v.yMax(i) < 400 && v.dansEmprise(i, x, z)) {
++                    int cv = surf - v.yMax(i);
++                    if (cv < couvMin[e]) { couvMin[e] = cv; couvX[e] = x; couvZ[e] = z; }
++                }
++                for (int y = y0; y <= Math.min(y1, surf - 3); y++) {
++                    if (!v.reserve(x, y, z)) continue;
++                    BlockState s = ch.getBlockState(p.set(x, y, z));
++                    blocs[e]++;
++                    boolean fl = !s.getFluidState().isEmpty();
++                    if (s.isAir() || fl) {
++                        vides[e]++;
++                        if (fl) fluides[e]++;
++                        if (ex[e].length() < 200) ex[e].append(String.format(" %d,%d,%d=%s", x, y, z, s.getBlock().getDescriptionId().replace("block.minecraft.", "")));
++                    } else if (s.is(net.neoforged.neoforge.common.Tags.Blocks.ORES) || s.is(BlockTags.COAL_ORES) || s.is(BlockTags.IRON_ORES) || s.is(BlockTags.COPPER_ORES)) {
++                        minerais[e]++;
++                    }
++                }
++            }
++        }
++        for (int e = 0; e < ne; e++) {
++            sb.append(String.format("%s : %d blocs mesures, colonnes non chargees %d%n", v.noms[e], blocs[e], absents[e]));
++            sb.append(String.format("   vides (air, eau, lave) : %d dont fluides %d%s%n", vides[e], fluides[e], ex[e].length() > 0 ? " (" + ex[e].toString().trim() + ")" : ""));
++            sb.append(String.format("   minerais : %d%n", minerais[e]));
++            if (couvMin[e] != Integer.MAX_VALUE) sb.append(String.format("   couverture reelle min (surface - y_max) : %d a %d, %d (visee >= 5)%n", couvMin[e], couvX[e], couvZ[e]));
++            else sb.append("   couverture : puits vers la surface (non mesuree)\n");
++        }
++        Tests.ecrireRapport(c, "rapport-volumes.txt", sb.toString());
++        CarteIle.LOG.info("[atheria_ile] validation des volumes souterrains ecrite : rapport-volumes.txt");
++    }
++}
+diff --git a/src/fr/atheria/ile/Volumes.java b/src/fr/atheria/ile/Volumes.java
+new file mode 100644
+index 0000000..7667aaf
+--- /dev/null
++++ b/src/fr/atheria/ile/Volumes.java
+@@ -0,0 +1,207 @@
++package fr.atheria.ile;
++
++import com.google.gson.JsonArray;
++import com.google.gson.JsonElement;
++import com.google.gson.JsonObject;
++
++import java.util.ArrayList;
++import java.util.List;
++
++/**
++ * Volumes souterrains reserves ("volumes_souterrains" dans regions.json) : boites [x1,x2) x [z1,z2) et couloirs
++ * (polyligne + largeur), entre y_min et y_max inclus ("surface" = jusqu'en haut). Le mod n'y creuse rien :
++ * pas de grottes de bruit, de carvers, d'aquifere, de lave, de filons, de minerais, de features ni de morceaux de
++ * structures, dans le volume et sur marge_blocs autour. Le build y creuse ensuite tunnels et stations.
++ * Toutes les requetes sont sans allocation (grille par chunk).
++ */
++public final class Volumes {
++    /** marge reservee (blocs) ; pour la densite on ajoute une cellule de bruit (4 blocs en x/z, 8 en y) */
++    public final int marge, margeDensiteH, margeDensiteV;
++    public final String[] noms;
++    /** par element (une boite, ou un segment de couloir) : forme 0 boite / 1 segment, coordonnees, demi-largeur, Y, nom */
++    private final byte[] forme;
++    private final double[] ax, az, bx, bz, demi;
++    private final int[] ymin, ymax, nom;
++    private final int gx0, gz0, gn, gm;
++    private final int[][] grille;
++    /** description pour exclusions.json */
++    final List<JsonObject> sources = new ArrayList<>();
++    /** motifs "namespace:*" ou identifiants exacts autorises a poser dans les volumes pendant la generation */
++    public static final String[] POSE_AUTORISEE_DEFAUT = {"atheria_monde:*", "atheria:*"};
++    String[] poseAutorisee = POSE_AUTORISEE_DEFAUT;
++
++    public String[] poseAutorisee() { return poseAutorisee.clone(); }
++
++    boolean autoriseNamespace(String ns) {
++        for (String m : poseAutorisee) if (m.endsWith(":*") && m.regionMatches(0, ns, 0, ns.length()) && m.length() == ns.length() + 2) return true;
++        return false;
++    }
++
++    boolean autorise(String ns, String chemin) {
++        for (String m : poseAutorisee) {
++            int i = m.indexOf(':');
++            if (i != ns.length() || !m.startsWith(ns)) continue;
++            if (m.endsWith(":*") && m.length() == ns.length() + 2) return true;
++            if (m.length() == ns.length() + 1 + chemin.length() && m.endsWith(chemin)) return true;
++        }
++        return false;
++    }
++
++    private Volumes(int marge, List<String> noms, List<double[]> el, List<int[]> ys, List<Byte> formes) {
++        this.marge = marge;
++        this.margeDensiteH = marge + 4;
++        this.margeDensiteV = marge + 8;
++        this.noms = noms.toArray(new String[0]);
++        int n = el.size();
++        forme = new byte[n]; ax = new double[n]; az = new double[n]; bx = new double[n]; bz = new double[n]; demi = new double[n];
++        ymin = new int[n]; ymax = new int[n]; nom = new int[n];
++        double minX = Double.MAX_VALUE, minZ = Double.MAX_VALUE, maxX = -Double.MAX_VALUE, maxZ = -Double.MAX_VALUE;
++        for (int i = 0; i < n; i++) {
++            double[] e = el.get(i);
++            forme[i] = formes.get(i); ax[i] = e[0]; az[i] = e[1]; bx[i] = e[2]; bz[i] = e[3]; demi[i] = e[4];
++            ymin[i] = ys.get(i)[0]; ymax[i] = ys.get(i)[1]; nom[i] = ys.get(i)[2];
++            double r = demi[i] + margeDensiteH + 1;
++            minX = Math.min(minX, Math.min(ax[i], bx[i]) - r); maxX = Math.max(maxX, Math.max(ax[i], bx[i]) + r);
++            minZ = Math.min(minZ, Math.min(az[i], bz[i]) - r); maxZ = Math.max(maxZ, Math.max(az[i], bz[i]) + r);
++        }
++        if (n == 0) { gx0 = gz0 = 0; gn = gm = 0; grille = new int[0][]; return; }
++        gx0 = (int) Math.floor(minX / 16); gz0 = (int) Math.floor(minZ / 16);
++        gn = (int) Math.floor(maxX / 16) - gx0 + 1; gm = (int) Math.floor(maxZ / 16) - gz0 + 1;
++        List<List<Integer>> tmp = new ArrayList<>(gn * gm);
++        for (int i = 0; i < gn * gm; i++) tmp.add(null);
++        for (int i = 0; i < n; i++) {
++            double r = demi[i] + margeDensiteH + 1;
++            int cx0 = (int) Math.floor((Math.min(ax[i], bx[i]) - r) / 16) - gx0, cx1 = (int) Math.floor((Math.max(ax[i], bx[i]) + r) / 16) - gx0;
++            int cz0 = (int) Math.floor((Math.min(az[i], bz[i]) - r) / 16) - gz0, cz1 = (int) Math.floor((Math.max(az[i], bz[i]) + r) / 16) - gz0;
++            for (int cz = cz0; cz <= cz1; cz++) for (int cx = cx0; cx <= cx1; cx++) {
++                // garder seulement les chunks vraiment touches (distance carre du chunk / element <= marge densite)
++                if (distanceChunk(i, cx + gx0, cz + gz0) > margeDensiteH) continue;
++                int k = cz * gn + cx;
++                if (tmp.get(k) == null) tmp.set(k, new ArrayList<>());
++                tmp.get(k).add(i);
++            }
++        }
++        grille = new int[gn * gm][];
++        for (int k = 0; k < gn * gm; k++) if (tmp.get(k) != null) grille[k] = tmp.get(k).stream().mapToInt(Integer::intValue).toArray();
++    }
++
++    public boolean vide() { return grille.length == 0; }
++
++    /** distance horizontale du centre du bloc (px, pz) a l'element (0 dedans) */
++    private double distance(int i, double px, double pz) {
++        if (forme[i] == 0) {
++            double dx = Math.max(Math.max(ax[i] - px, 0), px - bx[i]), dz = Math.max(Math.max(az[i] - pz, 0), pz - bz[i]);
++            return Math.sqrt(dx * dx + dz * dz);
++        }
++        double dx = bx[i] - ax[i], dz = bz[i] - az[i], l2 = dx * dx + dz * dz;
++        double t = l2 == 0 ? 0 : Math.max(0, Math.min(1, ((px - ax[i]) * dx + (pz - az[i]) * dz) / l2));
++        double ex = ax[i] + t * dx - px, ez = az[i] + t * dz - pz;
++        return Math.max(0, Math.sqrt(ex * ex + ez * ez) - demi[i]);
++    }
++
++    /** distance minimale entre les centres de blocs du chunk et l'element */
++    private double distanceChunk(int i, int cx, int cz) {
++        double best = Double.MAX_VALUE;
++        // les 4 bords du carre suffisent pour une boite ou un segment hors du carre ; centre pour le cas "dedans"
++        for (int k = 0; k <= 15; k += 15) for (int j = 0; j <= 15; j++) {
++            best = Math.min(best, distance(i, cx * 16 + j + 0.5, cz * 16 + k + 0.5));
++            best = Math.min(best, distance(i, cx * 16 + k + 0.5, cz * 16 + j + 0.5));
++        }
++        // element entierement dans le chunk
++        double mx = forme[i] == 0 ? (ax[i] + bx[i]) / 2 : ax[i], mz = forme[i] == 0 ? (az[i] + bz[i]) / 2 : az[i];
++        if (mx >= cx * 16 && mx < cx * 16 + 16 && mz >= cz * 16 && mz < cz * 16 + 16) best = 0;
++        return best;
++    }
++
++    /** index de l'element (volume + marge mh horizontale / mv verticale) qui contient le bloc, -1 sinon */
++    private int trouver(int x, int y, int z, int mh, int mv) {
++        int cx = (x >> 4) - gx0, cz = (z >> 4) - gz0;
++        if (cx < 0 || cz < 0 || cx >= gn || cz >= gm) return -1;
++        int[] l = grille[cz * gn + cx];
++        if (l == null) return -1;
++        double px = x + 0.5, pz = z + 0.5;
++        for (int i : l) {
++            if (y < ymin[i] - mv || y > ymax[i] + mv) continue;
++            if (distance(i, px, pz) <= mh) return i;
++        }
++        return -1;
++    }
++
++    /** dans un volume ou sa marge (carvers, minerais, features, structures) */
++    public boolean reserve(int x, int y, int z) { return trouver(x, y, z, marge, marge) >= 0; }
++
++    /** dans un volume, sa marge et une cellule de bruit de plus (fonctions de densite) */
++    public boolean densite(int x, int y, int z) { return trouver(x, y, z, margeDensiteH, margeDensiteV) >= 0; }
++
++    /** nom du volume qui contient le bloc (sans marge), null sinon */
++    public String nomA(int x, int y, int z) { int i = trouver(x, y, z, 0, 0); return i < 0 ? null : noms[nom[i]]; }
++
++    /** vrai si le chunk touche un volume ou sa marge, a n'importe quel Y */
++    public boolean chunkTouche(int cx, int cz) {
++        int gx = cx - gx0, gz = cz - gz0;
++        if (gx < 0 || gz < 0 || gx >= gn || gz >= gm) return false;
++        int[] l = grille[gz * gn + gx];
++        if (l == null) return false;
++        for (int i : l) if (distanceChunk(i, cx, cz) <= marge) return true;
++        return false;
++    }
++
++    int elements() { return forme.length; }
++    int yMin(int i) { return ymin[i]; }
++    int yMax(int i) { return ymax[i]; }
++    int nomElement(int i) { return nom[i]; }
++    /** echantillons de l'emprise (sans marge) de l'element i, tous les pas blocs : x, z dans out (renvoie le nombre) */
++    boolean dansEmprise(int i, int x, int z) { return distance(i, x + 0.5, z + 0.5) <= 0; }
++    double[] boite(int i) {
++        double r = demi[i];
++        return new double[]{Math.min(ax[i], bx[i]) - r, Math.min(az[i], bz[i]) - r, Math.max(ax[i], bx[i]) + r, Math.max(az[i], bz[i]) + r};
++    }
++
++    static Volumes lire(JsonObject config) {
++        List<String> noms = new ArrayList<>();
++        List<double[]> el = new ArrayList<>();
++        List<int[]> ys = new ArrayList<>();
++        List<Byte> formes = new ArrayList<>();
++        int marge = 8;
++        List<JsonObject> src = new ArrayList<>();
++        String[] pose = POSE_AUTORISEE_DEFAUT;
++        if (config.has("volumes_souterrains") && config.get("volumes_souterrains").isJsonObject()) {
++            JsonObject v = config.getAsJsonObject("volumes_souterrains");
++            if (v.has("marge_blocs")) marge = Math.max(0, v.get("marge_blocs").getAsInt());
++            if (v.has("pose_autorisee") && v.get("pose_autorisee").isJsonArray()) {
++                List<String> l = new ArrayList<>();
++                for (JsonElement e : v.getAsJsonArray("pose_autorisee")) { String s = e.getAsString().trim(); if (s.indexOf(':') > 0) l.add(s); }
++                pose = l.toArray(new String[0]);
++            }
++            if (v.has("elements")) for (JsonElement e : v.getAsJsonArray("elements")) {
++                JsonObject o = e.getAsJsonObject();
++                src.add(o);
++                String n = o.has("nom") ? o.get("nom").getAsString() : "volume " + (noms.size() + 1);
++                int in = noms.size();
++                noms.add(n);
++                int y0 = o.get("y_min").getAsInt();
++                int y1 = o.get("y_max").isJsonPrimitive() && o.get("y_max").getAsJsonPrimitive().isString() ? 512 : o.get("y_max").getAsInt();
++                String f = o.has("forme") ? o.get("forme").getAsString() : "boite";
++                if (f.equals("couloir")) {
++                    JsonArray p = o.getAsJsonArray("points");
++                    double d = (o.has("largeur_blocs") ? o.get("largeur_blocs").getAsDouble() : 9) / 2.0;
++                    for (int i = 0; i + 1 < p.size(); i++) {
++                        JsonArray a = p.get(i).getAsJsonArray(), b = p.get(i + 1).getAsJsonArray();
++                        el.add(new double[]{a.get(0).getAsDouble(), a.get(1).getAsDouble(), b.get(0).getAsDouble(), b.get(1).getAsDouble(), d});
++                        ys.add(new int[]{y0, y1, in}); formes.add((byte) 1);
++                    }
++                } else {
++                    double x1 = o.get("x1").getAsDouble(), z1 = o.get("z1").getAsDouble(), x2 = o.get("x2").getAsDouble(), z2 = o.get("z2").getAsDouble();
++                    el.add(new double[]{Math.min(x1, x2), Math.min(z1, z2), Math.max(x1, x2), Math.max(z1, z2), 0});
++                    ys.add(new int[]{y0, y1, in}); formes.add((byte) 0);
++                }
++                CarteIle.LOG.info("[atheria_ile] volume souterrain '{}' : {} , Y {} a {}", n, f, y0, y1 >= 512 ? "surface" : y1);
++            }
++        }
++        Volumes vol = new Volumes(marge, noms, el, ys, formes);
++        vol.sources.addAll(src);
++        vol.poseAutorisee = pose;
++        if (!el.isEmpty()) CarteIle.LOG.info("[atheria_ile] pose autorisee dans les volumes pendant la generation : {}", String.join(", ", pose));
++        return vol;
++    }
++}
+diff --git a/src/fr/atheria/ile/api/IleApi.java b/src/fr/atheria/ile/api/IleApi.java
+index 323629f..c8574b9 100644
+--- a/src/fr/atheria/ile/api/IleApi.java
++++ b/src/fr/atheria/ile/api/IleApi.java
+@@ -29,6 +29,29 @@ public final class IleApi {
+         return d;
+     }
+ 
++    /** nom du volume souterrain reserve qui contient le bloc (sans la marge), null sinon */
++    public static String volumeA(int bx, int by, int bz) {
++        CarteIle c = CarteIle.active();
++        return c == null ? null : c.volumes.nomA(bx, by, bz);
++    }
++
++    /** vrai si le bloc est dans un volume souterrain reserve ou sa marge (le monde n'y genere rien) */
++    public static boolean dansReserveSouterraine(int bx, int by, int bz) {
++        CarteIle c = CarteIle.active();
++        return c != null && c.volumes.reserve(bx, by, bz);
++    }
++
++    /**
++     * Leve la protection des volumes souterrains le temps de l'appel, sur ce fil seulement (pour un mod qui pose
++     * Bancoul, les tunnels ou les stations pendant la generation). Imbrication permise ; la protection revient
++     * meme si l'action leve une exception. Inutile apres la generation : commandes, WorldEdit et construction a
++     * la main ne passent pas par WorldGenRegion et ne sont jamais bloques.
++     */
++    public static void poserDansVolume(Runnable action) {
++        fr.atheria.ile.PoseVolumes.entrer();
++        try { action.run(); } finally { fr.atheria.ile.PoseVolumes.sortir(); }
++    }
++
+     /** nom du lot qui contient le bloc (sans la marge, x2 et z2 exclus), null sinon */
+     public static String lotA(int bx, int bz) {
+         CarteIle c = CarteIle.active();
+diff --git a/src/fr/atheria/ile/mixin/CarversVolumesMixin.java b/src/fr/atheria/ile/mixin/CarversVolumesMixin.java
+new file mode 100644
+index 0000000..5ac472e
+--- /dev/null
++++ b/src/fr/atheria/ile/mixin/CarversVolumesMixin.java
+@@ -0,0 +1,31 @@
++package fr.atheria.ile.mixin;
++
++import fr.atheria.ile.CarteIle;
++import net.minecraft.core.BlockPos;
++import net.minecraft.core.Holder;
++import net.minecraft.world.level.biome.Biome;
++import net.minecraft.world.level.chunk.CarvingMask;
++import net.minecraft.world.level.chunk.ChunkAccess;
++import net.minecraft.world.level.levelgen.Aquifer;
++import net.minecraft.world.level.levelgen.carver.CarverConfiguration;
++import net.minecraft.world.level.levelgen.carver.CarvingContext;
++import net.minecraft.world.level.levelgen.carver.WorldCarver;
++import org.apache.commons.lang3.mutable.MutableBoolean;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.injection.At;
++import org.spongepowered.asm.mixin.injection.Inject;
++import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
++
++import java.util.function.Function;
++
++/** Aucun carver (grottes, canyons, y compris ceux des mods) ne creuse un volume souterrain reserve ni sa marge. */
++@Mixin(WorldCarver.class)
++public abstract class CarversVolumesMixin {
++    @Inject(method = "carveBlock", at = @At("HEAD"), cancellable = true)
++    private void atheriaIle$pasDansLesVolumes(CarvingContext ctx, CarverConfiguration config, ChunkAccess chunk, Function<BlockPos, Holder<Biome>> biomes,
++                                              CarvingMask masque, BlockPos.MutableBlockPos pos, BlockPos.MutableBlockPos test, Aquifer aquifere,
++                                              MutableBoolean surface, CallbackInfoReturnable<Boolean> retour) {
++        CarteIle c = CarteIle.active();
++        if (c != null && c.volumes.reserve(pos.getX(), pos.getY(), pos.getZ())) retour.setReturnValue(false);
++    }
++}
+diff --git a/src/fr/atheria/ile/mixin/FeaturesVolumesMixin.java b/src/fr/atheria/ile/mixin/FeaturesVolumesMixin.java
+new file mode 100644
+index 0000000..1ad5edb
+--- /dev/null
++++ b/src/fr/atheria/ile/mixin/FeaturesVolumesMixin.java
+@@ -0,0 +1,33 @@
++package fr.atheria.ile.mixin;
++
++import fr.atheria.ile.CarteIle;
++import fr.atheria.ile.PoseVolumes;
++import net.minecraft.core.BlockPos;
++import net.minecraft.core.registries.BuiltInRegistries;
++import net.minecraft.util.RandomSource;
++import net.minecraft.world.level.WorldGenLevel;
++import net.minecraft.world.level.chunk.ChunkGenerator;
++import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.injection.At;
++import org.spongepowered.asm.mixin.injection.Inject;
++import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
++
++/** Exception a la reserve souterraine pour les features dont le type est dans pose_autorisee. */
++@Mixin(ConfiguredFeature.class)
++public abstract class FeaturesVolumesMixin {
++    private static boolean atheriaIle$autorisee(ConfiguredFeature<?, ?> f) {
++        CarteIle c = CarteIle.active();
++        return c != null && !c.volumes.vide() && PoseVolumes.autorise(BuiltInRegistries.FEATURE.getKey(f.feature()));
++    }
++
++    @Inject(method = "place", at = @At("HEAD"))
++    private void atheriaIle$leverReserve(WorldGenLevel niveau, ChunkGenerator generateur, RandomSource alea, BlockPos pos, CallbackInfoReturnable<Boolean> retour) {
++        if (atheriaIle$autorisee((ConfiguredFeature<?, ?>) (Object) this)) PoseVolumes.entrer();
++    }
++
++    @Inject(method = "place", at = @At("RETURN"))
++    private void atheriaIle$retablirReserve(WorldGenLevel niveau, ChunkGenerator generateur, RandomSource alea, BlockPos pos, CallbackInfoReturnable<Boolean> retour) {
++        if (atheriaIle$autorisee((ConfiguredFeature<?, ?>) (Object) this)) PoseVolumes.sortir();
++    }
++}
+diff --git a/src/fr/atheria/ile/mixin/MineraisVolumesMixin.java b/src/fr/atheria/ile/mixin/MineraisVolumesMixin.java
+new file mode 100644
+index 0000000..795bd95
+--- /dev/null
++++ b/src/fr/atheria/ile/mixin/MineraisVolumesMixin.java
+@@ -0,0 +1,28 @@
++package fr.atheria.ile.mixin;
++
++import fr.atheria.ile.CarteIle;
++import net.minecraft.core.BlockPos;
++import net.minecraft.util.RandomSource;
++import net.minecraft.world.level.block.state.BlockState;
++import net.minecraft.world.level.levelgen.feature.OreFeature;
++import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.injection.At;
++import org.spongepowered.asm.mixin.injection.Inject;
++import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
++
++import java.util.function.Function;
++
++/**
++ * Pas de minerai dans un volume souterrain reserve ni sa marge. Les minerais (OreFeature et ScatteredOreFeature)
++ * passent tous par canPlaceOre ; OreFeature ecrit directement dans les sections, sans WorldGenRegion.setBlock.
++ */
++@Mixin(OreFeature.class)
++public abstract class MineraisVolumesMixin {
++    @Inject(method = "canPlaceOre", at = @At("HEAD"), cancellable = true)
++    private static void atheriaIle$pasDeMinerai(BlockState etat, Function<BlockPos, BlockState> lecteur, RandomSource alea, OreConfiguration config,
++                                                OreConfiguration.TargetBlockState cible, BlockPos.MutableBlockPos pos, CallbackInfoReturnable<Boolean> retour) {
++        CarteIle c = CarteIle.active();
++        if (c != null && c.volumes.reserve(pos.getX(), pos.getY(), pos.getZ())) retour.setReturnValue(false);
++    }
++}
+diff --git a/src/fr/atheria/ile/mixin/ModelesVolumesMixin.java b/src/fr/atheria/ile/mixin/ModelesVolumesMixin.java
+new file mode 100644
+index 0000000..9eea55a
+--- /dev/null
++++ b/src/fr/atheria/ile/mixin/ModelesVolumesMixin.java
+@@ -0,0 +1,43 @@
++package fr.atheria.ile.mixin;
++
++import fr.atheria.ile.CarteIle;
++import fr.atheria.ile.PoseVolumes;
++import net.minecraft.core.BlockPos;
++import net.minecraft.resources.ResourceLocation;
++import net.minecraft.util.RandomSource;
++import net.minecraft.world.level.ChunkPos;
++import net.minecraft.world.level.StructureManager;
++import net.minecraft.world.level.WorldGenLevel;
++import net.minecraft.world.level.chunk.ChunkGenerator;
++import net.minecraft.world.level.levelgen.structure.BoundingBox;
++import net.minecraft.world.level.levelgen.structure.TemplateStructurePiece;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.Shadow;
++import org.spongepowered.asm.mixin.injection.At;
++import org.spongepowered.asm.mixin.injection.Inject;
++import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
++
++/**
++ * Exception a la reserve souterraine pour un morceau de structure tire d'un modele (.nbt) dont l'identifiant est
++ * dans pose_autorisee, meme si la structure qui l'utilise appartient a un autre mod.
++ */
++@Mixin(TemplateStructurePiece.class)
++public abstract class ModelesVolumesMixin {
++    @Shadow protected abstract ResourceLocation makeTemplateLocation();
++
++    private boolean atheriaIle$autorise(ChunkPos pos) {
++        CarteIle c = CarteIle.active();
++        if (c == null || c.volumes.vide() || !c.volumes.chunkTouche(pos.x, pos.z)) return false;
++        return PoseVolumes.autorise(makeTemplateLocation());
++    }
++
++    @Inject(method = "postProcess", at = @At("HEAD"))
++    private void atheriaIle$leverReserve(WorldGenLevel niveau, StructureManager gestionnaire, ChunkGenerator generateur, RandomSource alea, BoundingBox boite, ChunkPos pos, BlockPos pivot, CallbackInfo retour) {
++        if (atheriaIle$autorise(pos)) PoseVolumes.entrer();
++    }
++
++    @Inject(method = "postProcess", at = @At("RETURN"))
++    private void atheriaIle$retablirReserve(WorldGenLevel niveau, StructureManager gestionnaire, ChunkGenerator generateur, RandomSource alea, BoundingBox boite, ChunkPos pos, BlockPos pivot, CallbackInfo retour) {
++        if (atheriaIle$autorise(pos)) PoseVolumes.sortir();
++    }
++}
+diff --git a/src/fr/atheria/ile/mixin/RegionVolumesMixin.java b/src/fr/atheria/ile/mixin/RegionVolumesMixin.java
+new file mode 100644
+index 0000000..35935eb
+--- /dev/null
++++ b/src/fr/atheria/ile/mixin/RegionVolumesMixin.java
+@@ -0,0 +1,33 @@
++package fr.atheria.ile.mixin;
++
++import fr.atheria.ile.CarteIle;
++import fr.atheria.ile.PoseVolumes;
++import net.minecraft.core.BlockPos;
++import net.minecraft.server.level.WorldGenRegion;
++import net.minecraft.world.level.block.state.BlockState;
++import net.minecraft.world.level.levelgen.Heightmap;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.injection.At;
++import org.spongepowered.asm.mixin.injection.Inject;
++import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
++
++/**
++ * Pendant la generation (features, morceaux de structures : mineshafts, bunkers, donjons, geodes, sources, lacs de
++ * lave, decors des biomes de grottes...), aucun bloc n'est pose dans un volume souterrain reserve ni sa marge,
++ * tant qu'on est a plus de 2 blocs sous la surface : la vegetation, les routes et les batiments de surface ne sont
++ * jamais touches.
++ */
++@Mixin(WorldGenRegion.class)
++public abstract class RegionVolumesMixin {
++    @Inject(method = "setBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;II)Z", at = @At("HEAD"), cancellable = true)
++    private void atheriaIle$pasDansLesVolumes(BlockPos pos, BlockState etat, int drapeaux, int recursion, CallbackInfoReturnable<Boolean> retour) {
++        CarteIle c = CarteIle.active();
++        if (c == null || c.volumes.vide()) return;
++        int x = pos.getX(), y = pos.getY(), z = pos.getZ();
++        if (!c.volumes.reserve(x, y, z)) return;
++        // pose autorisee en cours (structure ou feature de pose_autorisee, IleApi.poserDansVolume) : on laisse faire
++        if (PoseVolumes.levee()) return;
++        int surface = ((WorldGenRegion) (Object) this).getHeight(Heightmap.Types.OCEAN_FLOOR_WG, x, z);
++        if (y < surface - 2) retour.setReturnValue(false);
++    }
++}
+diff --git a/src/fr/atheria/ile/mixin/StructuresVolumesMixin.java b/src/fr/atheria/ile/mixin/StructuresVolumesMixin.java
+new file mode 100644
+index 0000000..6dbdfa6
+--- /dev/null
++++ b/src/fr/atheria/ile/mixin/StructuresVolumesMixin.java
+@@ -0,0 +1,40 @@
++package fr.atheria.ile.mixin;
++
++import fr.atheria.ile.CarteIle;
++import fr.atheria.ile.PoseVolumes;
++import net.minecraft.core.registries.Registries;
++import net.minecraft.util.RandomSource;
++import net.minecraft.world.level.ChunkPos;
++import net.minecraft.world.level.StructureManager;
++import net.minecraft.world.level.WorldGenLevel;
++import net.minecraft.world.level.chunk.ChunkGenerator;
++import net.minecraft.world.level.levelgen.structure.BoundingBox;
++import net.minecraft.world.level.levelgen.structure.StructureStart;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.injection.At;
++import org.spongepowered.asm.mixin.injection.Inject;
++import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
++
++/**
++ * Exception a la reserve souterraine : une structure dont l'identifiant est dans pose_autorisee (par defaut
++ * atheria_monde:* et atheria:*) pose ses morceaux dans les volumes. Le test est refait a la sortie (il est
++ * deterministe) : aucun etat partage entre fils, une meme structure etant posee dans plusieurs chunks a la fois.
++ */
++@Mixin(StructureStart.class)
++public abstract class StructuresVolumesMixin {
++    private static boolean atheriaIle$autorisee(StructureStart s, WorldGenLevel niveau, ChunkPos pos) {
++        CarteIle c = CarteIle.active();
++        if (c == null || c.volumes.vide() || !c.volumes.chunkTouche(pos.x, pos.z)) return false;
++        return PoseVolumes.autorise(niveau.registryAccess().registryOrThrow(Registries.STRUCTURE).getKey(s.getStructure()));
++    }
++
++    @Inject(method = "placeInChunk", at = @At("HEAD"))
++    private void atheriaIle$leverReserve(WorldGenLevel niveau, StructureManager gestionnaire, ChunkGenerator generateur, RandomSource alea, BoundingBox boite, ChunkPos pos, CallbackInfo retour) {
++        if (atheriaIle$autorisee((StructureStart) (Object) this, niveau, pos)) PoseVolumes.entrer();
++    }
++
++    @Inject(method = "placeInChunk", at = @At("RETURN"))
++    private void atheriaIle$retablirReserve(WorldGenLevel niveau, StructureManager gestionnaire, ChunkGenerator generateur, RandomSource alea, BoundingBox boite, ChunkPos pos, CallbackInfo retour) {
++        if (atheriaIle$autorisee((StructureStart) (Object) this, niveau, pos)) PoseVolumes.sortir();
++    }
++}
+diff --git a/src/fr/atheria/ile/mixin/VitrinesVolumesMixin.java b/src/fr/atheria/ile/mixin/VitrinesVolumesMixin.java
+new file mode 100644
+index 0000000..6744ee7
+--- /dev/null
++++ b/src/fr/atheria/ile/mixin/VitrinesVolumesMixin.java
+@@ -0,0 +1,29 @@
++package fr.atheria.ile.mixin;
++
++import fr.atheria.ile.PoseVolumes;
++import net.minecraft.world.level.WorldGenLevel;
++import net.minecraft.world.level.chunk.ChunkAccess;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.Pseudo;
++import org.spongepowered.asm.mixin.injection.At;
++import org.spongepowered.asm.mixin.injection.Inject;
++import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
++
++/**
++ * Exception a la reserve souterraine pour la finition des batiments vitrine du mod atheria_monde
++ * (FinitionVitrines.finir, en fin de decoration du chunk, qui pose via WorldGenRegion.setBlock). Dependance
++ * souple : sans atheria_monde, ce mixin est ignore. Actif seulement si atheria_monde:* est dans pose_autorisee.
++ */
++@Pseudo
++@Mixin(targets = "fr.atheria.monde.FinitionVitrines", remap = false)
++public abstract class VitrinesVolumesMixin {
++    @Inject(method = "finir", at = @At("HEAD"), require = 0)
++    private static void atheriaIle$leverReserve(WorldGenLevel niveau, ChunkAccess chunk, CallbackInfo retour) {
++        if (PoseVolumes.autoriseNamespace("atheria_monde")) PoseVolumes.entrer();
++    }
++
++    @Inject(method = "finir", at = @At("RETURN"), require = 0)
++    private static void atheriaIle$retablirReserve(WorldGenLevel niveau, ChunkAccess chunk, CallbackInfo retour) {
++        if (PoseVolumes.autoriseNamespace("atheria_monde")) PoseVolumes.sortir();
++    }
++}
+diff --git a/sauvegarde-0.5.1-src/atheria_ile.mixins.json b/ressources/atheria_ile.mixins.json
+index 0cc919a..cc52dd5 100644
+--- a/sauvegarde-0.5.1-src/atheria_ile.mixins.json
++++ b/ressources/atheria_ile.mixins.json
+@@ -3,6 +3,6 @@
+   "minVersion": "0.8",
+   "package": "fr.atheria.ile.mixin",
+   "compatibilityLevel": "JAVA_21",
+-  "mixins": ["MultiNoiseBiomeSourceMixin", "StructuresRouteMixin"],
++  "mixins": ["MultiNoiseBiomeSourceMixin", "StructuresRouteMixin", "CarversVolumesMixin", "MineraisVolumesMixin", "RegionVolumesMixin", "StructuresVolumesMixin", "FeaturesVolumesMixin", "ModelesVolumesMixin", "VitrinesVolumesMixin"],
+   "injectors": {"defaultRequire": 1}
+ }
+diff --git a/sauvegarde-0.5.1-src/construire.ps1 b/construire.ps1
+index 2ea60b4..a1486f9 100644
+--- a/sauvegarde-0.5.1-src/construire.ps1
++++ b/construire.ps1
+@@ -1,7 +1,8 @@
+-# Atheria Zombie Edition - compile le mod prototype de l'ile dessinee (atheria_ile)
++﻿# Atheria Zombie Edition - compile le mod prototype de l'ile dessinee (atheria_ile)
+ # Resultat : outils\atheria-ile-mod\atheria-ile.jar
+ # Le mod ne fait RIEN tant que le datapack atheria_ile n'est pas dans le monde (world\datapacks).
+ 
++param([string]$Sortie = 'atheria-ile.jar')
+ $ErrorActionPreference = 'Stop'
+ $Ici  = Split-Path -Parent $MyInvocation.MyCommand.Path
+ $Root = Split-Path -Parent (Split-Path -Parent $Ici)
+@@ -28,8 +29,8 @@ if ($LASTEXITCODE -ne 0) { throw "javac a echoue (code $LASTEXITCODE)" }
+ Copy-Item (Join-Path $Ici 'ressources\*') $Tmp -Recurse -Force
+ 
+ $manifest = Join-Path $env:TEMP "atheria-ile-manifest-$([guid]::NewGuid()).txt"
+-[IO.File]::WriteAllText($manifest, "Implementation-Version: 0.5.1`nFMLModType: MOD`n")
+-$Out = Join-Path $Ici 'atheria-ile.jar'
++[IO.File]::WriteAllText($manifest, "Implementation-Version: 0.6.1`nFMLModType: MOD`n")
++$Out = Join-Path $Ici $Sortie
+ & "$Jdk\jar.exe" --create --file $Out --manifest $manifest -C $Tmp .
+ if ($LASTEXITCODE -ne 0) { throw "jar a echoue (code $LASTEXITCODE)" }
+ Remove-Item $Tmp -Recurse -Force; Remove-Item $manifest -Force
+diff --git a/sauvegarde-0.5.1-src/neoforge.mods.toml b/ressources/META-INF/neoforge.mods.toml
+index 86f7d83..b39a551 100644
+--- a/sauvegarde-0.5.1-src/neoforge.mods.toml
++++ b/ressources/META-INF/neoforge.mods.toml
+@@ -4,7 +4,7 @@ license = "All rights reserved"
+ 
+ [[mods]]
+ modId = "atheria_ile"
+-version = "0.5.1"
++version = "0.6.1"
+ displayName = "Atheria Ile"
+ description = "Prototype : la carte dessinee de l'ile d'Atheria guide les cotes, le relief et les biomes. Inactif sans le datapack atheria_ile dans le monde."
+ 
+
+=== datapack 0.8 = 0.7 + data/atheria_ile/lithostitched/worldgen_modifier/volumes_{caves,noodle,riviere_souterraine,tunnel_lave,filons}.json
+{
+  "type": "lithostitched:wrap_density_function",
+  "target_function": "tectonic:caves",
+  "wrapper_function": {
+    "type": "atheria_ile:volumes",
+    "argument": {"type": "lithostitched:wrapped_marker"},
+    "valeur": 64
+  }
+}
+(cibles : tectonic:caves 64 ; tectonic:cave/noodle 64 ; tectonic:underground_river/total 64 ; tectonic:lava_tunnel/total 0 ; minecraft:overworld/noise_router/vein_toggle 0)

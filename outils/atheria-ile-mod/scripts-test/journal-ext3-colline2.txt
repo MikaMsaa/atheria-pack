@@ -1,0 +1,65 @@
+08:30:40 ATTENTE_VERROU extension 3 colline2
+08:30:40 PRIS_PAR : thread batiments banc-vh 6604 2026-11-15T08:26:29
+08:30:41 ATTENTE verrou=thread batiments banc-vh 6604 2026-11-15T08:26:29 java=0 prism=0 libre=7202 trailer_rendus=0 villes=False
+08:32:41 ATTENTE verrou=thread batiments banc-vh 6604 2026-11-15T08:26:29 java=0 prism=0 libre=7360 trailer_rendus=0 villes=False
+08:34:42 ATTENTE verrou=thread batiments banc-vh 6604 2026-11-15T08:26:29 java=0 prism=0 libre=7315 trailer_rendus=0 villes=False
+08:36:42 ATTENTE verrou=thread batiments banc-vh 6604 2026-11-15T08:26:29 java=0 prism=0 libre=7399 trailer_rendus=0 villes=False
+08:38:42 ATTENTE verrou=thread batiments banc-vh 6604 2026-11-15T08:26:29 java=0 prism=0 libre=7225 trailer_rendus=0 villes=False
+08:40:43 ATTENTE verrou=thread batiments banc-vh 6604 2026-11-15T08:26:29 java=0 prism=0 libre=6786 trailer_rendus=0 villes=False
+08:42:44 ATTENTE verrou=thread batiments banc-vh 6604 2026-11-15T08:26:29 java=0 prism=0 libre=6850 trailer_rendus=0 villes=False
+08:44:44 ATTENTE verrou=thread batiments banc-vh 6604 2026-11-15T08:26:29 java=0 prism=0 libre=6803 trailer_rendus=0 villes=False
+08:46:45 ATTENTE verrou=thread batiments banc-vh 6604 2026-11-15T08:26:29 java=0 prism=0 libre=6798 trailer_rendus=0 villes=False
+08:48:45 ATTENTE verrou=thread batiments banc-vh 6604 2026-11-15T08:26:29 java=0 prism=0 libre=6848 trailer_rendus=0 villes=False
+08:48:48 VERROU_RENDU par : thread batiments banc-vh 6604 2026-11-15T08:26:29
+08:49:06 PRIS_PAR : thread trailer style (C24 colline3) 2026-11-15T08:49:04+04:00
+08:50:46 ATTENTE verrou=thread trailer style (C24 colline3) 2026-11-15T08:49:04+04:00
+ java=0 prism=0 libre=5527 trailer_rendus=0 villes=True
+08:52:10 VERROU_RENDU par : thread trailer style (C24 colline3) 2026-11-15T08:49:04+04:00
+08:52:40 PRIS_PAR : thread batiments banc-vh 23504 2026-11-15T08:52:38
+08:52:46 ATTENTE verrou=thread batiments banc-vh 23504 2026-11-15T08:52:38 java=0 prism=1 libre=6585 trailer_rendus=1 villes=True
+08:53:42 ATTENTE_ARRETEE (PID 10088, sans verrou) : relance avec la file Villes puis Trailer
+08:53:48 ATTENTE_VERROU extension 3 colline2
+08:53:48 PRIS_PAR : thread batiments banc-vh 23504 2026-11-15T08:52:38
+08:53:49 ATTENTE verrou=thread batiments banc-vh 23504 2026-11-15T08:52:38 java=1 prism=1 libre=2806 trailer_rendus=0 villes=False
+08:55:50 ATTENTE verrou=thread batiments banc-vh 23504 2026-11-15T08:52:38 java=1 prism=1 libre=1197 trailer_rendus=0 villes=False
+08:57:50 ATTENTE verrou=thread batiments banc-vh 23504 2026-11-15T08:52:38 java=1 prism=1 libre=609 trailer_rendus=0 villes=False
+08:59:51 ATTENTE verrou=thread batiments banc-vh 23504 2026-11-15T08:52:38 java=1 prism=1 libre=353 trailer_rendus=0 villes=False
+09:01:00 VERROU_RENDU par : thread batiments banc-vh 23504 2026-11-15T08:52:38
+09:01:51 ATTENTE verrou= java=0 prism=0 libre=8690 trailer_rendus=0 villes=True
+09:03:52 ATTENTE verrou= java=0 prism=0 libre=8566 trailer_rendus=0 villes=True
+09:05:52 ATTENTE verrou= java=0 prism=0 libre=8346 trailer_rendus=0 villes=True
+09:06:02 LOCK_PRIS PID 18072 libre=8330 trailer_rendus=0 villes=True libre_depuis=301 s
+09:06:02 debut extension 3
+09:06:02 verrou tenu (thread ile (extension 3 colline2 : serveur seul, 35 min) PID 18072 2026-11-15T09:06:02) libre=8276
+09:06:02 Xmx 4G (consigne : pic memoire limite)
+09:08:54 EMPREINTE avant 13115 chunks, dont 7741 complets
+09:08:54 datapack du monde (celui de colline2, garde) B3B54788
+09:08:54 copie : ile CE786716 regions 03886893 delta C3E2414A
+09:08:54 serveur java=9520
+09:09:45 serveur pret
+09:09:54 sommet : sonde redemandee
+09:09:58 [SONDE_RELIEF] 3400,-1250 delta=-0,39 aDelta=true fN=1,000 fD=1,000 depth(y64)=0,0431 final(y64)=0,3324 depth(y96)=-0,2069 final(y96)=-0,3406 depth(y128)=-0,4569 final(y128)=-0,4581 decalage=0 hauteur=73
+09:09:58 [SONDE_RELIEF] 2200,-1500 delta=5,77 aDelta=true fN=0,000 fD=1,000 depth(y64)=0,0499 final(y64)=0,4585 depth(y96)=-0,2001 final(y96)=-0,2865 depth(y128)=-0,4501 final(y128)=-0,4581 decalage=6 hauteur=77
+09:09:58 [SONDE_RELIEF] 2374,-1282 delta=37,22 aDelta=true fN=0,000 fD=1,000 depth(y64)=0,2317 final(y64)=0,0647 depth(y96)=-0,0183 final(y96)=0,3403 depth(y128)=-0,2683 final(y128)=0,0352 decalage=37 hauteur=132
+09:09:58 SOMMET hauteur=132 (vise 132)
+09:12:32 RECTANGLE nord ouest x 2330..3116 z -2750..-1800 fini en 148 s libre=3123
+09:14:53 RECTANGLE nord est x 3115..3901 z -2750..-1800 fini en 118 s libre=3107
+09:17:39 ERREUR java sorti
+09:17:39 serveur arrete code=1
+09:17:42 monde -> pilote-v3-colline2
+09:17:44 INTEGRITE nord chunks 5940 {'minecraft:full': 5938, 'absent': 1, 'minecraft:initialize_light': 1}
+09:17:44 INTEGRITE nord defauts 1 [(205, -165, 'absent')]
+09:17:44 INTEGRITE nord non full 1 [(235, -114, 'minecraft:initialize_light')]
+09:17:44 INTEGRITE nord boite non full blocs x 3760 3775 z -1824 -1809
+09:17:44 INTEGRITE sud chunks 6039 {'minecraft:full': 198, 'minecraft:initialize_light': 99, 'minecraft:carvers': 99, 'minecraft:biomes': 99, 'minecraft:structure_starts': 792, 'absent': 297, 'region absente': 4455}
+09:17:44 INTEGRITE sud defauts 4752 [(145, -35, 'absent'), (146, -35, 'absent'), (147, -35, 'absent'), (148, -35, 'absent'), (149, -35, 'absent'), (150, -35, 'absent'), (151, -35, 'absent'), (152, -35, 'absent'), (153, -35, 'absent'), (154, -35, 'absent'), (155, -35, 'absent'), (156, -35, 'absent'), (157, -35, 'absent'), (158, -35, 'absent'), (159, -35, 'absent'), (160, -35, 'absent'), (161, -35, 'absent'), (162, -35, 'absent'), (163, -35, 'absent'), (164, -35, 'absent'), (165, -35, 'absent'), (166, -35, 'absent'), (167, -35, 'absent'), (168, -35, 'absent'), (169, -35, 'absent'), (170, -35, 'absent'), (171, -35, 'absent'), (172, -35, 'absent'), (173, -35, 'absent'), (174, -35, 'absent')]
+09:17:44 INTEGRITE sud non full 1089 [(145, -46, 'minecraft:initialize_light'), (146, -46, 'minecraft:initialize_light'), (147, -46, 'minecraft:initialize_light'), (148, -46, 'minecraft:initialize_light'), (149, -46, 'minecraft:initialize_light'), (150, -46, 'minecraft:initialize_light'), (151, -46, 'minecraft:initialize_light'), (152, -46, 'minecraft:initialize_light'), (153, -46, 'minecraft:initialize_light'), (154, -46, 'minecraft:initialize_light'), (155, -46, 'minecraft:initialize_light'), (156, -46, 'minecraft:initialize_light'), (157, -46, 'minecraft:initialize_light'), (158, -46, 'minecraft:initialize_light'), (159, -46, 'minecraft:initialize_light'), (160, -46, 'minecraft:initialize_light'), (161, -46, 'minecraft:initialize_light'), (162, -46, 'minecraft:initialize_light'), (163, -46, 'minecraft:initialize_light'), (164, -46, 'minecraft:initialize_light'), (165, -46, 'minecraft:initialize_light'), (166, -46, 'minecraft:initialize_light'), (167, -46, 'minecraft:initialize_light'), (168, -46, 'minecraft:initialize_light'), (169, -46, 'minecraft:initialize_light'), (170, -46, 'minecraft:initialize_light'), (171, -46, 'minecraft:initialize_light'), (172, -46, 'minecraft:initialize_light'), (173, -46, 'minecraft:initialize_light'), (174, -46, 'minecraft:initialize_light')]
+09:17:44 INTEGRITE sud boite non full blocs x 2320 3903 z -736 -561
+09:22:14 EMPREINTE complets avant 7741 ; complets MODIFIES 0 []
+09:22:14 EMPREINTE incomplets avant 5374 (bordure, completes par la generation) ; changes 1151
+09:22:14 EMPREINTE nouveaux 7342 ; statuts des nouveaux ['minecraft:biomes', 'minecraft:carvers', 'minecraft:full', 'minecraft:initialize_light', 'minecraft:structure_starts']
+09:22:15 ARBRE apres blocs non arbre dans la boite : {'dirt': 75, 'sand': 11, 'grass_block': 136, 'air': 2954, 'short_grass': 23, 'dead_bush': 3, 'tiny_cactus': 8, 'bush': 1}
+09:22:15 ARBRE apres noms complets : []
+09:22:15 copie remise : regions 04158CBC jvm -Xmx4G
+09:22:15 FIN_EXT3 java=0 (verrou NON supprime par ce script)
+09:22:15 LOCK_RENDU=True java=0

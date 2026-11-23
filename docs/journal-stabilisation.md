@@ -1037,3 +1037,218 @@ Pas encore vérifié : groupes nés naturellement, apparitions dans les vrais li
 - Lot47 (graines 2411-2491, QFIN_MH2, vuesMamoudzouH) : mairie, poste, grand hotel, passage couvert, ecole, commissariat, musee, eglise, brasserie. Helpers hm* (facade hmFac, cage hmEsc, planchers, pignons) sur la palette THM_HF et le boulevard hbRue.
 - Audit : boucle sans accolades (erreur Rhino), origine de la rue non fixee avant hbRue, appuis poses au sol, garde-corps de mezzanine non connectes, choeur trop sombre (rosace ajoutee), 3 vues recadrees. Tout verifie en jeu. Captures docs/vitrine-batiments/haussmann2-mamoudzou.
 - Haussmann a 17/25. Reste : serie 3 haussmann (8), puis beton et verre (17 chacun).
+
+## Rangement du projet (08/11/2026)
+
+- Dossier partage trie : arborescence captures/, une seule copie du journal (modpack/docs).
+- Nettoyage du PC : 1 453 Mo liberes par le script, plus 327 Mo pour les brouillons grands-11 a grands-15 (1 780 Mo en tout).
+- Deplacements : ffmpeg -> outils\ffmpeg, anciens scripts de telechargement -> outils\ancien-telechargement, captures -> docs\captures, logs de test -> docs\archives\logs.
+- Journal du rangement : docs\archives\rangement-2026-11-08.log.
+
+## 40. Zones fermées par stade de quête et nouvelles familles (08/11, nuit)
+
+Feu vert de Mika pour la nuit (point 3). Rien dans pack\mods ni instances\Atheria.
+
+Zones fermées (dans atheria-recit, `Zones.java`) : `kubejs\data\atheria\atheria_zones\<id>.json`, avec des boîtes (deux coins inclus ; [x, z] = toute la hauteur), une condition `ouverte_si` (les mêmes que les dialogues : tag, sans_tag, vue, score, quete_finie, quete_pas_finie, quete_commencee) et un message.
+- Un joueur pour qui la zone est fermée est ramené à sa dernière position sûre dehors, ou par le bord le plus proche s'il n'en a pas. S'il est en véhicule, il descend d'abord.
+- Les perles de l'End et les fruits de chorus vers l'intérieur sont annulés.
+- Une bordure de poussière rouge s'affiche à moins de 6 blocs, visible du seul joueur concerné.
+- Les joueurs en créatif, en spectateur, en cinématique ou en dialogue ne sont pas concernés. La condition est revérifiée chaque seconde.
+- `/recit zones` donne l'état pour soi. `exemple_zone.json` est désactivé (`"active": false`) : la zone et la quête qui l'ouvre restent à choisir par Mika.
+
+Bestiaire : 2 familles ajoutées (noms provisoires, aussi dans le document du bestiaire).
+- Rôdeurs (spore:stalker, tag `atheria:flaireurs`) : forêts, jungles, champs. Ils sentent un joueur à moitié de sa vie ou moins à 32 blocs (`Odeur.java`).
+- Pleureuses (spore:inf_witch) : marais, zone contaminée, cimetières, églises.
+- Le griefer n'a pas été utilisé : ses explosions pourraient abîmer les bâtiments.
+
+Essai (AtheriaRecit, lancé après la fermeture du jeu du fil des villes, sans erreur du mod) :
+- Rôdeur : à 19 blocs d'un joueur à 8 PV, il est passé à 1 bloc en 8 s et l'a visé.
+- Zone fermée : le joueur téléporté dedans a été ressorti au bord (x 4999).
+- Avec le tag d'ouverture, il est resté dedans. Tag retiré : ressorti.
+## 09/11 06:05 - Une ville = une architecture (atheria-monde)
+- Cause : environ 70 % des chunks de ville sont hors du rayon de tout centre ; Lost Cities leur tirait un style au hasard, chunk par chunk.
+- Correction (StyleVilles + StyleVilleMixin) : tout chunk de ville prend le style du centre le plus proche (distance rapportee au rayon). Centres indexes par cellules de 16 x 16 chunks, recherche jusqu'a ~96 chunks.
+- Releve ZZ Villes 37 : chunks voisins de meme style 39 % avant, 53 % (1re version), 98,3 % maintenant (191086 / 194480), 0 repli. Les ecarts restants sont les frontieres entre villes.
+- Jar copie dans l'instance seulement (pas pack ni serveur, en attente de l'accord de Mika). Ancien jar : outils/atheria-monde-mod/atheria-monde.avant-style.jar.bak
+- Serveur dedie : ajout dans serveur/mods de Handcrafted 4.0.3, Macaw's Paths 1.1.1, Macaw's Windows 2.4.2 (crash "Unknown block handcrafted:birch_desk").
+
+## 41. Vérifications de la nuit en jeu : groupes, tirs, perles, chorus (09/11)
+
+Demandé par le coordinateur pour suivre le « vérifie toi-même » de Mika. Toujours dans AtheriaRecit seulement.
+
+**Défaut trouvé et corrigé** : les Chimiks n'entendaient pas les tirs TACZ. Côté serveur, TACZ annonce chaque tir par `GunShootEvent`, et le mod n'écoutait que `GunFireEvent`. `Chimiks.java` écoute maintenant les deux, avec un seul bruit par tireur et par tick. Le jar a été recompilé (51 Ko).
+
+Résultats de l'essai :
+- **Tirs** : Chimik à 22 blocs. Tir avec silencieux (portée 10) : il ne vise pas. Tir normal (portée 40) : il vise le joueur.
+- **Groupes naturels de Dakouane** : 2 min de nuit, 98 zombies nés. Groupes vus de 4 à 9 (jamais plus de 10), avec quelques isolés.
+- **Perle de l'End**, sur une plateforme plate :
+  - Témoin dehors : le joueur est téléporté (4985 → 4991) et prend les dégâts de la perle.
+  - Perle vers la zone fermée : annulée (le joueur reste à 4997,5 et garde 20 PV).
+- **Chorus** à 1 bloc du bord, 12 fois : jamais dans la zone. 7 téléportations dehors, 5 refusées.
+
+Aucune erreur des mods dans les journaux. Les erreurs du script de test (KubeJS cache `getUUID`, `getYRot` et `builtInRegistryHolder`) ont été contournées.
+
+Retrait des éléments religieux (règle de Mika du 09/11) : les Pleureuses n'apparaissent plus dans les églises, les cathédrales, les missions ni les cimetières. Il reste les marais, la zone contaminée et les hospices. C'est fait dans le pack, le serveur, l'instance de test et le document du bestiaire. Une recherche dans mes mods (intro, dialogues, bestiaire, zones) n'a rien trouvé d'autre de religieux.
+
+Lanceur de test : il suit la règle commune du PC. Il crée `outils\pause-file.lock` (et attend s'il existe), vérifie qu'aucun java de plus de 1 Go ne tourne, puis supprime le verrou quand son jeu est fermé.
+### 09/11 07:50 - Retrait des elements religieux (fil batiments)
+- Generateur (instance, pack, serveur) : retires des citystyles ath_v_bg_eglise, ath_v_bt_eglise, ath_v_ds_mission, ath_v_gt_cathedrale, ath_v_gt_cimetiere, ath_eglise (5 styles) ; ath_v_gt_hospice et ath_v_gt_beffroi retires en attendant une version sans croix. Sauvegardes : outils\ancien-telechargement\religieux-retire-2026-11-09.
+- Vitrines remplacees : mosquee beton 3 -> cinema de quartier ; eglise beton 1 -> salle des fetes ; eglise haussmannienne 2 -> conservatoire a horloge ; salle de priere bidonville 2 -> radio du quartier ; eglise du bourg -> salle communale et potager ; mission du desert -> relais de diligence ; cathedrale -> halle aux draps ; cimetiere gothique -> square clos a orangerie. Croix retirees de l'hospice (cour) et de la place du beffroi, tombes de l'hospice remplacees.
+- Au passage : paratonnerres retires des sources vitrine touchees ; il en reste dans les fichiers du generateur deja exportes (31 batiments), a traiter.
+### 09/11 11:10 - Remplacements laiques verifies en jeu
+- Tests muets : beton 3, beton 1, haussmannien 2, bidonville 2, bourg-desert-gothique : tous termines, 0 bloc invalide, aucun nouveau defaut a l'audit (les lignes restantes existaient deja avant).
+- Retouches apres captures : fleche d'ardoise de la salle communale remplacee par un toit bas, fleches de la halle aux draps remplacees par des tours crenelees, allee rouge de l'hotel des ventes retiree. Noms changes pour ne pas doubler la serie 3 : foyer des jeunes (bidonville 2), hotel des ventes (haussmannien 2).
+- Captures : docs\vitrine-batiments\sans-religieux + planche-sans-religieux.png.
+
+## 09/11 : quartier de verre, serie 2 (9 batiments)
+Banque (coffres au sous-sol, salle des marches), residence R+8 (2 appartements par palier, balcons), concession automobile (hall et atelier), bibliotheque universitaire (salle double hauteur, mezzanine, toit vegetalise), centre de donnees (baies, salle de controle, enceinte), centre aquatique, parking a etages (rampes alternees, escalier exterieur), restauration rapide (drive, aire de jeux), gare routiere (quais sous verriere, autocars). Fichier zz_vitrine_lot51.js, graines 2711 a 2791. Second test : 0 bloc invalide, 0 defaut d'audit, 26 vues controlees. Verre : 17 batiments sur 25.
+
+
+## 09/11 : quartier de verre, serie 3 (8 batiments) : verre complet (25)
+Studio de television (plateau double hauteur, regie, redaction, pylone), creche (dortoir, salle d'eveil, jardin clos), salle de sport (musculation, cardio, cours, sauna, piste en toiture), laboratoire (paillasses, sorbonnes, chambre froide), musee d'art contemporain (atrium vitre, salles a sheds), poste et centre de tri, salle de concert (scene, balcons, regie son), jardinerie sous serre. Fichier zz_vitrine_lot52.js, graines 4711 a 4781. Trois tests : 0 bloc invalide, 0 defaut d'audit ; studio et salle de concert eclaircis, 6 vues refaites. Quartier de verre : 25 batiments sur 25. Rien n'est encore integre au generateur.
+
+## 10/11 - Integration des batiments vitrine au generateur de villes
+
+**Fait.** Export des 21 series (192 lots, 0 bloc invalide), conversion propre (174 batiments : 25 par architecture pour haussmann, beton, verre, rouille, bidonville ; aucun batiment religieux ; anciens fichiers dans `outils\ancien-telechargement\vitrines-avant-2026-11-10`), generation des villes, synchronisation pack / serveur / instance.
+
+**Causes des villes cassees et corrections.**
+- Profil Lost Cities : ruines (35 %) et explosions mises a 0 (batiments coupes ou flottants).
+- Lave : sources et lacs de surface retires (`atheria:sans_lave_surface`) ; la lave des biomes volcaniques est retiree des batiments par la finition.
+- Lost Cities ne pose pas l'air de ses modeles et d'autres generateurs passent apres lui : terrain, arbres, plantes et lave se melaient aux batiments, des blocs poses manquaient.
+- Correction dans le mod maison atheria-monde (`FinitionVitrines`) : passe 1 a la fin de la decoration du chunk (volume remis comme le modele, nettoyage au-dessus du toit), passe 2 au chargement du chunk neuf (debordements des chunks voisins). La vegetation basse sur les sols libres est laissee.
+- Reglages de l'ile (fil de la map) : villes seulement dans les biomes des Friches et de Petite-Terre, ponts a 0. `plannedPrimaryBridgeMaxLength` doit rester entre 1 et 64 (0 fait planter Lost Cities) ; `avoidWater` remis a faux (il supprimait l'eau des fontaines et piscines des modeles).
+- Part des batiments vitrine : 62 % mesures, chance des batiments isoles multipliee par 0,3 : 77 % (plan : 70 a 85 %).
+
+**Controle bloc par bloc** (`outils\contenu\controle-villes`, 576 chunks de 72 types, monde de test avec villes dans tous les biomes) :
+- ZZ Villes 39, sans finition : 20 103 blocs differents sur 3 millions, lave dans 5 chunks.
+- ZZ Villes 40, passe 1 : 1 008 differents, 0 lave.
+- ZZ Villes 41, passes 1 et 2 : 1 bloc different (un tas de feuilles), 0 lave, 0 erreur du mod, 0 repli du style de ville.
+
+Captures : `docs\vitrine-batiments\integration-villes-41`.
+
+**Reste.** Les anciens petits batiments (ath_maison, ath_villa, ath_marche) et les tours generiques font encore 23 % des batiments : choix de Mika entre les garder, les reduire ou passer a 100 % de vitrines. Les villes en montagne gardent des falaises taillees. Longoni n'a pas de ville avec les biomes actuels de l'ile. Rien n'est pousse sur GitHub ni dans le mrpack.
+## 42. Étape 1 du bestiaire et test groupé de la prochaine version (10/11)
+
+Mod atheria-bestiaire (jar dans instances\AtheriaRecit uniquement, en attente de validation) :
+- Cendre grise (tag `cendre_grise`) : les Dakouane et les Contaminés (tag `atheria:ignorent_cendre`) ignorent le joueur ; pas les Chimiks, les infectés forts ni les uniques. Un coup du joueur lève l'effet.
+- Pacte des Enfants (tag `choix_hajar_enfants`) : un Chimik ne cible jamais le joueur en premier, sauf s'il a été frappé par lui ou son équipe FTB dans les 30 s. Nouveau `Equipes.java` (FTB Teams par réflexion, partagé).
+- Générateurs Create et Crafts & Additions en marche (tag de blocs `atheria:generateurs`) : bruit entendu à 16 blocs. Le Chimik vise à 2 blocs de la source (sinon il restait bloqué contre le bloc plein).
+- Koro du labo central (ch5_6) : un exemplaire par alliance au même repaire ; il n'attaque et ne prend de dégâts que de son alliance ; il laisse le dossier remède ; il revient 10 min après tant que personne de l'alliance n'a `dossier_remede_ok` ; il revient aussi s'il disparaît 60 s sans mourir.
+
+Test groupé (7 passages et 2 essais courts) : Koro, cendre grise, Vinicius, revente de Puff, pactes, roue à aube : OK. Deux défauts dans atheria_campagne.js ont été remontés au fil lore : hordes jamais créées (`level.dimension()` refusé, écriture dans `global` refusée) et clé d'Eniy jamais remise alors que les bons sont débités (prix en Integer Java comparé avec `!==`).
+Pièges d'essai : la zone x≈7000 est contaminée, donc les essais se font près de l'apparition (600/700). Il faut un forceload avant les fill (une zone non chargée fait échouer le fill), respecter la limite de 32 768 blocs par fill, et lancer les kill avec `execute at <joueur>`. Les brutes Spore plafonnent les dégâts à environ 100 par coup.
+
+## 43. Version des quêtes et bestiaire mis dans le pack (10/11)
+
+Sur feu vert de Mika (« attends que le lore et quêtes ait terminé, ensuite tu pourras le mettre dans le pack ») :
+- Sauvegarde avant modification : scratchpad `avant-pack-2026-11-10.zip`.
+- Suppression des anciens PNJ remplacés : kamel (instance Atheria, pack, serveur), zaid, le_fundi_flat et mama_sarambavi (pack et serveur).
+- Version finale du fil lore (211 quêtes, liens entre chapitres) copiée dans pack et serveur : identique à instances\Atheria, aucun conflit avec le bestiaire.
+- atheria-bestiaire.jar ajouté dans pack\mods et serveur\mods. `packwiz refresh` fait ; version encore 1.0.8, rien n'est envoyé sur GitHub.
+- En attente : décision de Mika pour atheria-recit (les dialogues des PNJ en dépendent). Les tests multijoueur sont reportés à Minestrator.
+- Vérification statique remontée au fil lore : deux chemins du péage peuvent se cumuler (coupeurs_ok garde son effet après « Attaquer le barrage »), et les 4 choix d'Hajar ne sont pas exclusifs.
+- Correctifs du fil lore installés le même jour : péage (coupeurs_ok retiré si Vinicius est abattu) et choix d'Hajar exclusifs (max_completable_dependents=1 et tag posé seulement sans autre choix) ; 32 textures de quêtes (bande Coupeurs du tableau des contrats, noms des stations du métro) mises dans pack, serveur et instances\Atheria. Empreintes vérifiées : les 176 fichiers sont identiques partout. Index packwiz rafraîchi.
+- Mod des dialogues (atheria-recit, version du 08/11) ajouté sur demande de Mika (« on le peaufinera plus tard ») dans pack\mods, serveur\mods et instances\Atheria. Le fichier config\atheria_recit_sans_intro.txt n'est posé que dans instances\Atheria, pour que l'intro ne coupe pas les essais des autres fils ; le pack et le serveur ne l'ont pas, donc les joueurs voient l'intro. Index packwiz rafraîchi.
+
+### 10/11 19:30 - Retouches des vitrines (retour de Mika)
+- Rideaux, tringles et volets (mcwwindows *curtain*, *shutter*) retires de tous les batiments du generateur : 7 400 blocs. Filtre permanent dans `outils\contenu\convertir-vitrines.py` (fonction nettoyer), donc aussi applique aux prochains exports.
+- Demi-dalles basses qui portent un bloc rendues doubles (513), pour que rien ne flotte d'un demi-bloc (cheminees sur toit en dalles, etc.).
+- 174 batiments reconvertis (1 416 parts, memes noms), synchronises vers serveur et instance. Sauvegarde : `outils\ancien-telechargement\vitrines-avant-retouches-2026-11-10`.
+- Restent : maquettes de vehicules (tram, ambulance, camion, conteneurs) a refaire plus grandes et detaillees, agrandissement des quartiers, captures.
+
+## 44. EMF Compat: ParCool avec FA Player (11/11)
+- Choix de Mika : toutes les figures ParCool gardent l'animation de ParCool ; le deplacement normal reste celui de FA+Player.
+- Mods : EMF Compat: ParCool 1.0.1 (CurseForge 1707027, client seulement, GPL-3.0) et EMF Compat: Core 2.4.0 (Modrinth hbGct5uU). Dependances deja presentes : EMF 3.3.12, ETF 7.2.6, ParCool 4.0.1.6.
+- Le pack integre "EMF Compat: ParCool Animations" (id `mod/emf_compat_parcool:resourcepacks/parcool_animations`) n'est pas actif tout seul : il faut l'ajouter dans resourcePacks au-dessus de FA+Player. Il remplace les animations ParCool dont il lit les variables (course rapide, ramper, nage, poteau, charge, saut d'obstacle, accroche).
+- Pack Atheria `Atheria-ParCool-choix.zip` (au-dessus du pack integre) : copie GPL de a_player_parcool.jpm ou les 67 lectures parcool_* valent 0, donc ParCool garde toutes ses figures. Source : `outils\emf-compat-parcool\`.
+- Essai muet (AtheriaRecit, sous verrou, 235 s) : 5 mods charges, packs actifs dans le bon ordre, aucune erreur EMF ni compat. Pas encore vu a l'image : le fil du trailer le verra en jeu.
+- Installe dans instances\Atheria (2 jars, zip, options.txt ; sauvegarde des options dans le scratchpad). Pas dans serveur (client seulement).
+- Pack public : PAS ajoute. L'auteur interdit le telechargement par des outils tiers : packwiz-installer s'arrete et demande un telechargement manuel (verifie avec un mini pack). On ne peut pas non plus l'heberger (modeles (c) FreshLX). Decision de Mika attendue.
+- Point (a) du fil du trailer (sauts de membres au melange FA vers ParCool, chemin le plus court pres de 180 degres) : `core.smoothPoseTransitions` mis a false dans config/emf_compat.json (instances Atheria et AtheriaRecit, copie dans outilsmf-compat-parcool). Les figures passent alors directement a la pose de ParCool, avec les transitions de ParCool lui-meme, comme le veut Mika. A confirmer par la capture du trailer (comparer on/off).
+- Correction du point precedent : `core.smoothPoseTransitions` remis par defaut (true), car il ne coupait que le fondu de passation, pas la cause. Cause reelle (lue dans Core 2.4.0) : `PoseSnapshot.lerpAngle` melange chaque angle par le plus court chemin (difference ramenee dans [-pi, pi]) ; pres de 180 degres ce chemin change de sens d'une image a l'autre, d'ou les sauts et clignotements.
+- Nouveau mod client `outils\atheria-emf-fix-mod` -> atheria-emf-fix.jar (lowcodefml, un mixin, 2 Ko) : remplace ce melange par une interpolation lineaire, continue si les deux poses le sont. Mixin non requis : sans EMF Compat il ne fait rien. Essai muet (AtheriaRecit, 200 s) : de -3 vers 3 a mi-poids donne 0 (avant : -3,14, le chemin retourne), 4 cas justes, aucune erreur nouvelle par rapport a l'essai precedent. Installe dans instances\Atheria. Reste de ParCool lui-meme : la roulade qui demarre a mi-poids apres un plongeon (non touche, c'est le comportement de ParCool).
+- atheria-emf-fix (retour du trailer : un echec silencieux a une mise a jour d EMF Compat) : plugin de mixin VerifPlugin qui ecrit dans le journal "Correctif actif sur ...lerpAngle", ou un AVERTISSEMENT "introuvable : correctif INACTIF" si la methode change. Pas de require=1 : un echec ferait planter le jeu au rendu. Essai muet : message actif present, 4 cas justes. Reinstalle dans instances\Atheria.
+
+## 45. Jauge de bruit (11-12/11)
+- Demande de Mika : jauge de bruit discrete et esthetique ; style A choisi (ondes sous le viseur). Rien a l'ecran au calme.
+- atheria-bestiaire : Bruit.java (chaque bruit d'un joueur, meme portee que l'ouie des Chimiks : pas, gestes, portes, coffres, blocs, chutes, coups recus, vehicules, tirs TACZ ; paquet facultatif, au plus 1 tous les 5 ticks) et client/JaugeBruit.java (calque au-dessus du viseur). 1 onde jusqu'a ~10 blocs, 2 ondes de 12 a 29, 3 ondes (la derniere ambre) a 30 et plus. Tenue 0,25 s puis fondu 1,4 s. Ombre d'un pixel sous chaque arc pour rester lisible sur ciel ou neige. Rien en creatif, spectateur, ni avec F1. Accroupi, les pas ne font aucun bruit.
+- Essais muets sous verrou (AtheriaRecit) : 4 -> 1 onde, 14 -> 2, 48 -> 3, creatif -> aucun paquet, aucune erreur. Captures : captures\jauge-bruit\. Note : le script d'un autre fil (zz_vitrine_client.js, actif dans AtheriaRecit) cache l'ATH ; mes essais le reactivent a chaque tick.
+- Pas encore dans le pack : attend la validation de Mika (pack\mods et serveur\mods). Sauvegarde du mod avant : scratchpad bestiaire-avant-jauge.
+- Morsure et infection : en suspens (Mika). Acquis : 3 jours de jeu, pas de contamination entre joueurs. Bloquant : aucun remede avant la fin dans les quetes.
+
+## 46. Ecran noir au Cat Leap en premiere personne (12/11)
+- Signale par le fil du trailer (capture en jeu de Mika du 11/11) : avec First Person Model, la camera entre dans le corps pendant le Cat Leap, ecran noir ~0,65 s.
+- Correctif dans atheria-recit (client, PremierePersonneParCool.java, charge seulement si firstperson et parcool sont la) : gestionnaire d'activation de l'API de FPM qui rend la vue normale (mains) pendant les figures qui font basculer le corps : Cat Leap 36 ticks, flips 20, roulade 16, et pendant plongeon, esquive, saut d'obstacle, castaway, chute libre, glissade (+6 ticks de fondu). Course rapide, marche, accroche : corps garde. En cas de changement d'API ParCool : un avertissement unique, puis plus rien n'est bloque (pas de plantage).
+- Essai muet (AtheriaRecit) : 2 gestionnaires enregistres, corps cache exactement pendant chaque fenetre, jamais pendant la course rapide. Limite : les vraies touches ne peuvent pas etre simulees fenetre en arriere-plan, donc l'ecran noir lui-meme n'a pas ete revu ; a confirmer par un Cat Leap a la main.
+- Installe dans instances\Atheria (atheria-recit.jar). Pas encore dans pack ni serveur. Sauvegarde : scratchpad recit-avant-fpm.
+
+## 47. Poses assises : Take a Seat! (13/11)
+- Demande du trailer : reprendre des poses assises type Sitting+ (chaise, sol). Sitting+ n'existe pas pour NeoForge 1.21.1 ; remplacant retenu avec l'accord de Mika : Take a Seat! 1.0.4 + EMF Compat: Take a Seat 2.0.1 (animations EMF).
+- Chargement verifie dans AtheriaRecit avec ParCool, First Person Model et EMF : aucune erreur.
+- Installe : pack (packwiz mr add tas, emf-compat-core, emf-compat-take-a-seat ; les deux EMF en client), serveur (Take a Seat seul, cote serveur facultatif mais utile en multijoueur), instances\Atheria.
+- Reste a decider : le pack public n'a pas encore le correctif atheria-emf-fix (sauts de membres d'EMF Compat), qui n'est pour l'instant que dans les instances locales.
+- Le script de test ferme maintenant aussi la fenetre Prism qu'il ouvre (une fenetre oubliee bloquait le fil Carte).
+- Controle qualite (grille du 13/11) :
+  - Chargement client OK (pack complet : FA Player, ParCool, FPM, EMF, TaCZ) ; serveur dedie OK (« Take a Seat initialized », pret en 70 s, 2,75 Go). Aucune erreur nouvelle, les erreurs vues existaient deja (recettes, verifications de version).
+  - Poses verifiees en jeu : clic droit main vide sur un escalier, commandes /sit chair, ground, campfire ; le serveur renvoie la pose a tous les joueurs (multijoueur OK). Captures : captures/take-a-seat/.
+  - Perf, meme scenario avec et sans : FPS 80,2 contre 69,9 (pas de baisse), 20 TPS dans les deux cas (10,5 ms contre 10,0 ms par tick), RAM du jeu 6,8 Go contre 7,2 Go, AllTheLeaks : aucune fuite sur 15 min.
+  - packwiz : hashes sha512 verifies, licences MIT (Take a Seat) et GPL-3.0 (EMF Compat), dependances presentes.
+  - Limite connue : Take a Seat est une pose, pas un siege ; on s'assoit la ou l'on se tient, il faut donc se placer sur la chaise avant.
+  - Retour arriere : retirer mods/tas, emf-compat-core et emf-compat-take-a-seat (.pw.toml) puis packwiz refresh ; supprimer les 2 jars d'instances\Atheria et takeaseat de serveur\mods. Copie de l'index d'avant : scratchpad index-avant-tas.toml.
+
+## 48. Correctif EMF dans le pack public (13/11)
+- Accord de Mika (« Oui vas-y ») : atheria-emf-fix.jar (sha1 0ae0944a) ajoute a pack/mods et serveur/mods, packwiz refresh (sha256 e2184b8c verifie). Copie de l'index d'avant : scratchpad index-avant-emffix.toml.
+- Controle qualite :
+  - Client : « Correctif actif sur PoseSnapshot.lerpAngle » dans le journal du jeu, sans erreur, y compris pendant les poses Take a Seat.
+  - Serveur dedie : charge, pret en 35 s, arret propre (code 0), aucune ligne ERROR. Le correctif ne touche que le client ; sur le serveur il ne fait rien.
+  - Il ne s'active que si EMF Compat Core est present (sinon simple avertissement dans le journal, pas de plantage).
+  - Retour arriere : supprimer mods/atheria-emf-fix.jar du pack et du serveur, puis packwiz refresh.
+
+## 49. Cat Leap en premiere personne : ecran noir verifie (14/11)
+- Capture ParCool relancee par Mika (14/11 02:08, prises C1/C2_catleap_fpm en premiere personne, avec First Person Model).
+- Mesure image par image (20 i/s, 83,5 a 94,5 s de capture_brute.mkv) : luminosite minimale 185/255, aucune image sombre. Le 11/11, l'ecran etait noir environ 0,65 s au meme moment.
+- Le corps FPM est visible avant le saut, puis seule la vue normale pendant la figure, comme prevu. Planche : captures/catleap-fpm/planche-catleap.png.
+- Journal du jeu : correctif EMF actif, aucune alerte « Compat First Person Model / ParCool desactivee ».
+- Le correctif est dans instances\Atheria ; pas encore dans le pack ni sur le serveur (attente du feu vert de Mika).
+
+## 50. Jauge de bruit et correctif Cat Leap dans le pack (14/11)
+- Feu vert de Mika. atheria-recit.jar (sha1 97f58643) et atheria-bestiaire.jar (sha1 e9706a8f) copies dans pack/mods et serveur/mods, packwiz refresh, hashes de l'index verifies.
+- Verifie avant : par rapport aux jars du pack, seuls mes changements partent (recit : PremierePersonneParCool + ClientRecit ; bestiaire : Bruit, JaugeBruit, AtheriaBestiaire, Chimiks).
+- Controle qualite : serveur dedie charge (12 familles, 4 uniques, 25 dialogues), pret en 38 s, arret propre, aucune erreur ; cote client, jauge et correctif deja verifies (sections 45, 46, 49) ; paquet de la jauge facultatif (un client sans le mod se connecte quand meme).
+- Retour arriere : anciens jars et index dans le scratchpad avant-jauge-fpm\ (*.bak), les remettre puis packwiz refresh.
+- A noter : instances\Atheria n'a pas atheria-bestiaire.jar (deja avant ce changement) ; il arrivera avec la mise a jour du pack.
+
+## 51. Variantes des Dakouane (14/11)
+- Constat : les Dakouane (zombie vanilla) n'avaient qu'une texture (zombie.png de Fresh Animations) ; les autres familles sont des mobs Spore, chacun avec sa texture propre.
+- Accord de Mika pour ajouter des variantes (« plus que 10 te gene pas »). 20 tenues generees par outils/atheria-variantes-infectes/generer.py sur le gabarit Fresh Animations : visage, yeux et ombrage d'origine gardes ; teints varies gagnes par l'infection ; civils, dockers (gilets ternis, salopette), soignants, mecanicien, cuisinier, employe, coureuse... ; usure de vingt ans (couleurs passees, taches brun-gris, accrocs). Ni texte, ni sang, ni symbole.
+- Pack de ressources ETF : Atheria-Infectes-variantes.zip (assets/minecraft/optifine/random/entity/zombie/zombie2..21.png + zombie.properties textures.1=2-21 ; le zombie vert d'origine est exclu). Tirage selon l'UUID : meme apparence pour tous les joueurs.
+- Essai en jeu (AtheriaRecit, 24 zombies) : variantes bien tirees, aucun zombie vert, aucune erreur ETF. Captures : captures/variantes-dakouane/.
+- Le damier noir et magenta signale le 14/11 venait de l'instance d'essai AtheriaPilote du fil Ile (allegee, sans ecran de chargement Atheria), pas du modpack.
+- En attente : validation de Mika avant installation dans le pack (resourcepacks + options.txt, au-dessus de Fresh Animations).
+- Validation de Mika (14/11). Installe : pack/resourcepacks/Atheria-Infectes-variantes.zip (sha256 b326f55a verifie dans l'index), active dans pack/options.txt et instances\Atheria\minecraft\options.txt juste au-dessus de FA+Player/Fresh Animations. Rien sur le serveur (textures cote joueur uniquement). Retour arriere : scratchpad avant-variantes\ (options et index .bak), retirer le zip puis packwiz refresh.
+
+## 52. Generation des villes plus rapide (atheria-monde, 14/11)
+- Probleme (trouve par le fil Carte) : Lost Cities, pour chaque chunk genere, parcourt les 57 x 57 chunks voisins (cityMaxRadius 448) a la recherche de centres de ville. Avec notre profil, seules les villes predefinies peuvent etre des centres.
+- Correctif : FacteurVilleMixin (atheria-monde) ne visite que les centres de villes predefinies, dans le meme ordre et avec les memes calculs : resultat identique au bit pres. Il ne s'active que si cityChance <= 0 (ni space ni spheres) ; sinon c'est le code d'origine. Mode dans config/atheria-facteur.txt : rapide (defaut), verif (compare et compte les ecarts) ou off.
+- Integration : cache des centres dans un seul objet immuable (sur entre threads de generation), journal via log4j, require=1 garde (si une mise a jour de Lost Cities casse une injection, le jeu refuse de demarrer au lieu de retirer les villes en silence). Regle a garder : rayon d'une ville predefinie <= cityMaxRadius.
+- Tests : serveur dedie jetable, mode verif, 441 chunks autour de 2960 -904 : 1 114 112 calculs compares, 0 ecart, aucune erreur liee au mod, AllTheLeaks : aucune fuite. Vitesse sur la meme zone : 52 s avec le correctif contre 1 min 51 avec la boucle d'origine (mesuree en mode verif, qui la fait tourner) soit environ 2 fois plus rapide. Client (AtheriaRecit) : chargement sans erreur, mode=rapide, ville generee a 2960 -904, 9,4 ms par tick en moyenne pendant la generation. Capture : captures/facteur-villes/monde-facteur.png.
+- Incident de file : le 1er essai a plante au demarrage (Distant Horizons + Chunky sur monde neuf, sans lien avec le correctif) et le verrou est reste pris ; corrige (monde prepare, PID dans le verrou).
+- En attente : validation de Mika avant de copier outils\atheria-monde-mod\atheria-monde.jar dans pack\mods, serveur\mods et instances\Atheria. Retour arriere : jar d'avant dans le pack (sha1 d6154b2e) et sauvegarde des sources dans le scratchpad monde-avant-facteur.
+- Validation de Mika (14/11, « oui »). Installe : outils\atheria-monde-mod\atheria-monde.jar (sha1 a4ac685d, sha256 3a47304c) dans pack\mods, serveur\mods et instances\Atheria ; packwiz refresh, seule la ligne atheria-monde change dans l'index (hash verifie). Mode par defaut rapide (pas de fichier atheria-facteur.txt). cityMaxRadius reste 448. Retour arriere : scratchpad avant-facteur-install\ (3 jars + index.toml .bak). Chargement muet du serveur en mode verif programme apres le creneau du Trailer.
+- Controle apres installation (serveur\ reel, monde jetable zz-monde-facteur, mode verif temporaire) : pret en 80 s, 393 216 calculs compares, 0 ecart, aucune erreur liee a atheria-monde, arret propre ; fichier de mode et monde jetable retires. Termine.
+
+## 53. Visages des Dakouane : 40 civils infectes (atheria-variantes-infectes, 14/11)
+- Demande de Mika : plus de variete et des visages differents, des civils infectes detailles et realistes.
+- generer.py : 20 nouveaux personnages (40 au total), un visage par personnage (sourcils, nez, bouche, orbites, barbe, signe distinctif), passe HD 128x128 (grain de peau, coutures, poches, boutons, lacets, veines, oreilles), yeux Fresh Animations recopies de la texture d'origine. Sauvegardes .avant-visages.
+- Essai en jeu (AtheriaRecit, creneau du coordinateur) : 40 zombies forces par nom, groupes et gros plans ; tout s'affiche, yeux alignes, aucune erreur ETF. Captures : captures\visages-dakouane\. Instance de test remise en etat (scripts .off, zip d'origine).
+- Reste : damier leger en haut du crane des chauves (de tres pres). Sortie : outils\atheria-variantes-infectes\sortie\Atheria-Infectes-variantes.zip (sha1 df68d577). Installation dans le pack en attente du oui de Mika.
+- Correctif apres essai : coupe 'degarni' = couronne a l'arriere et sur les cotes, crane nu au milieu (fin du damier). Zip regenere.
+- Installation (oui de Mika, 14/11 16:20 UTC) : zip sha1 76fc6138 copie dans pack\resourcepacks et instances\Atheria (deja actif dans options.txt) ; packwiz refresh, seule la ligne du zip change dans l'index (sha256 ceb9abef, verifie). Retour arriere : scratchpad avant-visages-install\ (2 zips + index.toml/pack.toml .bak). Termine.
+
+## 54. Visages des Dakouane v2 : aplats 64x64, peau melangee (15/11)
+- Choix de Mika (fil Trailer) : 40 nouveaux visages, peau melangee gris-vert / peau humaine ternie, style en aplats 64x64. Fichiers du fil Trailer : trailer\assets\tex\visages_v2\lot40\jeu\zombie2..41.png (generateur faire_v4.py du Trailer ; lot40\blender reste au trailer).
+- Pack : meme structure que Atheria-Infectes-variantes.zip (pack.mcmeta, zombie.properties textures.1=2-41 inchange), seules les 40 textures remplacees, LISEZ-MOI complete.
+- Essai en jeu (AtheriaRecit, sous verrou, 251 s, pack force par nom) : les 40 variantes s'affichent, aucune texture manquante, yeux Fresh Animations bien places (calque x12-19 y18 : orbites variees voulues), passage 128 -> 64 px sans defaut, membres gauches corrects (le modele FA reflete les membres droits, cases gauches vides comme la base FA et l'ancienne version ; vue de cote verifiee). Aucune erreur ETF/EMF nouvelle. Captures : captures\visages-dakouane-v2\. Limite : vues de dos et gros plans rates (camera), clignement non observe.
+- Installation (oui de Mika dans le fil Mods, 15/11) : zip sha1 a11d6492 dans pack\resourcepacks, instances\Atheria (et donc AtheriaRecit, lien physique) et outils\atheria-variantes-infectes\sortie ; packwiz refresh, seule la ligne du zip change (sha256 88419fd3, verifie). Rien sur le serveur (textures cote joueur).
+- Retour arriere : scratchpad du fil Mods avant-visages-v2-install\ (2 zips + index.toml/pack.toml .bak) et sortie\Atheria-Infectes-variantes.avant-v2-128px.zip.bak ; remettre le zip puis packwiz refresh.
+- A noter : outils\atheria-variantes-infectes\generer.py produit encore l'ancienne version 128 px ; la source de la v2 est faire_v4.py du Trailer.

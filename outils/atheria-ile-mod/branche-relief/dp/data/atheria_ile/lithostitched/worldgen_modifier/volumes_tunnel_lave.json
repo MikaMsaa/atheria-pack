@@ -1,0 +1,9 @@
+{
+  "type": "lithostitched:wrap_density_function",
+  "target_function": "tectonic:lava_tunnel/total",
+  "wrapper_function": {
+    "type": "atheria_ile:volumes",
+    "argument": {"type": "lithostitched:wrapped_marker"},
+    "valeur": 0
+  }
+}

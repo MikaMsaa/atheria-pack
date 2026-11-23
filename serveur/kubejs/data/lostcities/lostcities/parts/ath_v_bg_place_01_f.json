@@ -205,14 +205,18 @@
    },
    {
     "char": "ò",
-    "block": "minecraft:lantern[hanging=false,waterlogged=false]"
+    "block": "minecraft:stone_brick_slab[type=double,waterlogged=false]"
    },
    {
     "char": "ó",
-    "block": "minecraft:stone_brick_wall[east=tall,north=tall,south=none,up=true,waterlogged=false,west=none]"
+    "block": "minecraft:lantern[hanging=false,waterlogged=false]"
    },
    {
     "char": "ô",
+    "block": "minecraft:stone_brick_wall[east=tall,north=tall,south=none,up=true,waterlogged=false,west=none]"
+   },
+   {
+    "char": "õ",
     "block": "minecraft:stripped_spruce_log[axis=x]"
    }
   ]
@@ -291,12 +295,12 @@
    "                "
   ],
   [
+   "              ñò",
    "              ññ",
-   "              ññ",
    "                ",
    "                ",
    "                ",
-   "  å       ò     ",
+   "  å       ó     ",
    "                ",
    "                ",
    "                ",
@@ -309,7 +313,7 @@
    "                "
   ],
   [
-   "  í            ó",
+   "  í            ô",
    "                ",
    "                ",
    "                ",
@@ -318,7 +322,7 @@
    "                ",
    "                ",
    "                ",
-   "      ôôôôô     ",
+   "      õõõõõ     ",
    "                ",
    "              ð ",
    "             ðéð",

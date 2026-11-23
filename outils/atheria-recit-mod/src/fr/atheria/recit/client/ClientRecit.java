@@ -63,6 +63,8 @@ public final class ClientRecit implements Reseau.Client {
         bus.addListener(ClientRecit::rendreJoueur);
         bus.addListener(ClientRecit::deconnexion);
         bus.addListener(ClientRecit::fonduSortie);
+        // First Person Model + ParCool : vue normale pendant les figures qui font basculer le corps
+        if (net.neoforged.fml.ModList.get().isLoaded("firstperson") && net.neoforged.fml.ModList.get().isLoaded("parcool")) PremierePersonneParCool.brancher();
     }
 
     // ---------- paquets ----------

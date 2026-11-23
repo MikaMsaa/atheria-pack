@@ -2,10 +2,10 @@
     "style":  "ath_gothique",
     "inherit":  "citystyle_common",
     "buildingsettings":  {
-                             "buildingchance":  0.5,
+                             "buildingchance":  0,
                              "minfloors":  3,
                              "maxfloors":  9,
-                             "maxcellars":  2
+                             "maxcellars":  0
                          },
     "streetblocks":  {
                          "border":  "y",
@@ -32,10 +32,6 @@
     "selectors":  {
                       "buildings":  [
                                         {
-                                            "factor":  0.7,
-                                            "value":  "ath_eglise"
-                                        },
-                                        {
                                             "factor":  1.2,
                                             "value":  "ath_maison"
                                         }
@@ -43,7 +39,7 @@
                       "multibuildings":  [
                                              {
                                                  "factor":  1,
-                                                 "value":  "ath_v_gt_cathedrale"
+                                                 "value":  "ath_v_gt_halle_draps"
                                              },
                                              {
                                                  "factor":  1,
@@ -55,7 +51,7 @@
                                              },
                                              {
                                                  "factor":  1,
-                                                 "value":  "ath_v_gt_cimetiere"
+                                                 "value":  "ath_v_gt_square_clos"
                                              },
                                              {
                                                  "factor":  1,

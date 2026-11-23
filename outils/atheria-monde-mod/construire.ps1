@@ -36,7 +36,7 @@ if ($LASTEXITCODE -ne 0) { throw "javac a echoue (code $LASTEXITCODE)" }
 Copy-Item (Join-Path $Ici 'ressources\*') $Tmp -Recurse -Force
 
 $manifest = Join-Path $env:TEMP "atheria-monde-manifest-$([guid]::NewGuid()).txt"
-[IO.File]::WriteAllText($manifest, "Implementation-Version: 1.0.0`nFMLModType: MOD`n")
+[IO.File]::WriteAllText($manifest, "Implementation-Version: 1.1.0`nFMLModType: MOD`n")
 $Out = Join-Path $Ici 'atheria-monde.jar'
 & "$Jdk\jar.exe" --create --file $Out --manifest $manifest -C $Tmp .
 if ($LASTEXITCODE -ne 0) { throw "jar a echoue (code $LASTEXITCODE)" }

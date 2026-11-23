@@ -1,0 +1,108 @@
+{
+ "pnj": {
+  "nom": "Terminal du labo 7"
+ },
+ "debut": "debut",
+ "noeuds": {
+  "q_ch3_terminal_ok": {
+   "texte": "Accès accordé."
+  },
+  "q_ch3_terminal": {
+   "lignes": [
+    {
+     "texte": "SOMACO - LABORATOIRE 7 Accès restreint. Entrez le code d'accès."
+    }
+   ],
+   "choix": [
+    {
+     "texte": "7-4-0-1",
+     "actions": [
+      {
+       "commande": "summon spore:inf_human ~2 ~ ~"
+      },
+      {
+       "commande": "summon spore:inf_human ~-2 ~ ~"
+      },
+      {
+       "commande": "playsound minecraft:block.note_block.bass master {joueur} ~ ~ ~ 1 0.5"
+      },
+      {
+       "message": "CODE ERRONÉ. Alarme déclenchée."
+      }
+     ],
+     "fin": true
+    },
+    {
+     "texte": "1-0-4-7",
+     "actions": [
+      {
+       "commande": "tag {joueur} add q_ch3_terminal"
+      },
+      {
+       "commande": "give {joueur} atheria:dossier_symbiose 1"
+      },
+      {
+       "commande": "give {joueur} atheria:archive_14 1"
+      },
+      {
+       "commande": "playsound minecraft:entity.experience_orb.pickup master {joueur} ~ ~ ~ 0.6 1.2"
+      }
+     ],
+     "aller": "q_ch3_terminal_ok"
+    },
+    {
+     "texte": "1-9-8-4",
+     "actions": [
+      {
+       "commande": "summon spore:inf_human ~2 ~ ~"
+      },
+      {
+       "commande": "summon spore:inf_human ~-2 ~ ~"
+      },
+      {
+       "commande": "playsound minecraft:block.note_block.bass master {joueur} ~ ~ ~ 1 0.5"
+      },
+      {
+       "message": "CODE ERRONÉ. Alarme déclenchée."
+      }
+     ],
+     "fin": true
+    },
+    {
+     "texte": "S'éloigner du terminal",
+     "style": "refuser",
+     "fin": true
+    }
+   ]
+  },
+  "q_ch3_terminal_fait": {
+   "texte": "Tu as ce qu'il te faut. Avance."
+  },
+  "repos": {
+   "texte": "SOMACO - LABORATOIRE 7. Écran noir. Aucune alimentation."
+  },
+  "debut": {
+   "aiguillage": [
+    {
+     "si": {
+      "tag": [
+       "q_ch3_terminal"
+      ]
+     },
+     "aller": "q_ch3_terminal_fait"
+    },
+    {
+     "si": {
+      "tag": [
+       "acte_3"
+      ]
+     },
+     "aller": "q_ch3_terminal"
+    },
+    {
+     "aller": "repos"
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,70 @@
+{
+ "nom": "captures-c22-passe3c",
+ "fil": "carte",
+ "type": "captures",
+ "priorite": 4,
+ "ram_mo": 6300,
+ "ram_relance_mo": 6300,
+ "attente_relance_min": 8,
+ "garde_mo": 400,
+ "duree_max_min": 30,
+ "instance": "AtheriaAudit",
+ "monde": {
+  "ref": "carte-c22"
+ },
+ "fichiers": [
+  {
+   "source": "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\scripts-test\\facteur\\atheria-monde-ile-test-facteur.jar",
+   "cible": "mods\\atheria-monde.jar"
+  },
+  {
+   "source": "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\branche-relief\\atheria-ile-0.9.6d-ilots-chauds.jar",
+   "cible": "mods\\atheria-ile.jar"
+  },
+  {
+   "source": "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\scripts-test\\regions-client-v3n2-sans-titres.json",
+   "cible": "config\\atheria_ile\\regions.json"
+  },
+  {
+   "source": "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\branche-relief\\plateaux-v3l.json",
+   "cible": "config\\atheria_ile\\plateaux.json"
+  },
+  {
+   "source": "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\scripts-test\\relief_delta_c2.bin",
+   "cible": "config\\atheria_ile\\relief_delta.bin"
+  },
+  {
+   "source": "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\scripts-test\\relief_base.bin",
+   "cible": "config\\atheria_ile\\relief_base.bin"
+  },
+  {
+   "source": "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\scripts-test\\sculptures-c22",
+   "cible": "config\\atheria_ile\\sculptures"
+  }
+ ],
+ "brume": false,
+ "couper_mods": [
+  "xaeroworldmap",
+  "emotecraft",
+  "appleskin",
+  "Jade"
+ ],
+ "options": {
+  "renderDistance": 8,
+  "simulationDistance": 4
+ },
+ "memoire_mo": 4096,
+ "fenetre": "1920x1080",
+ "points_par_lancement": 0,
+ "prefixe": "relief_c22_",
+ "camera": {
+  "recul_sol": 24,
+  "recul_haut": 40,
+  "haut": 60,
+  "rayon": 3
+ },
+ "points_fichier": "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\scripts-test\\points-c22-passe3c.json",
+ "sortie": "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\scripts-test\\captures-c22\\passe3c",
+ "note": "passe3c : z008 vue sol + poissons au lagon (ParCool actif), memes fichiers que la passe3b, profil JVM leger Xmx 4096",
+ "accepter_autre_version": true
+}

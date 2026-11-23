@@ -1,0 +1,23 @@
+{
+ "nom": "figer-carte-c22",
+ "fil": "carte",
+ "type": "calcul",
+ "priorite": 4,
+ "ram_mo": 500,
+ "duree_max_min": 20,
+ "apres": "regions-client-v3n2",
+ "script": "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\file-pc\\figer-monde.ps1",
+ "arguments": [
+  "-Source",
+  "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\serveur-pilote-essai\\pilote-bis-c22m",
+  "-Nom",
+  "carte-c22",
+  "-Fil",
+  "carte",
+  "-Note",
+  "c22m genere le 15/11 10:50-11:12 : 0.9.6d + regions-v3n2 (serveur ; regions.json note = version client de v3n2) + plateaux-v3l + delta c2 + base + datapack 1.4 C1 + 13 sculptures ; 16 zones (12 lieux, lagon, Majicavo 128, lot68 112, Goblini 64). QC c22 sans KO.",
+  "-Version",
+  "atheria-ile.jar=C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\branche-relief\\atheria-ile-0.9.6d-ilots-chauds.jar;atheria-monde.jar=C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\scripts-test\\facteur\\atheria-monde-ile-test-facteur.jar;regions.json=C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\scripts-test\\regions-client-v3n2.json;plateaux.json=C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\branche-relief\\plateaux-v3l.json;relief_delta.bin=C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\scripts-test\\relief_delta_c2.bin;relief_base.bin=C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\scripts-test\\relief_base.bin"
+ ],
+ "note": "fige pilote-bis-c22m en reference carte-c22 (la source n est pas touchee)"
+}

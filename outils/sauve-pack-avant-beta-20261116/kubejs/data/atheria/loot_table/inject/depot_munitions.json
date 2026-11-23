@@ -1,0 +1,33 @@
+{
+    "type":  "minecraft:chest",
+    "pools":  [
+                  {
+                      "rolls":  {
+                                    "type":  "minecraft:uniform",
+                                    "min":  2,
+                                    "max":  4
+                                },
+                      "entries":  [
+                                      {
+                                          "type":  "minecraft:loot_table",
+                                          "value":  "atheria:inject/munitions_militaires"
+                                      }
+                                  ]
+                  },
+                  {
+                      "rolls":  1,
+                      "conditions":  [
+                                         {
+                                             "condition":  "minecraft:random_chance",
+                                             "chance":  0.5
+                                         }
+                                     ],
+                      "entries":  [
+                                      {
+                                          "type":  "minecraft:loot_table",
+                                          "value":  "atheria:inject/munitions_pistolet"
+                                      }
+                                  ]
+                  }
+              ]
+}

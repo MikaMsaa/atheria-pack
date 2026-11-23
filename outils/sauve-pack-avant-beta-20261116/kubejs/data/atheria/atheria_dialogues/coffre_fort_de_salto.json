@@ -1,0 +1,108 @@
+{
+ "pnj": {
+  "nom": "Coffre-fort de Salto"
+ },
+ "debut": "debut",
+ "noeuds": {
+  "q_ch5_coffre_ok": {
+   "texte": "Accès accordé."
+  },
+  "q_ch5_coffre": {
+   "lignes": [
+    {
+     "texte": "Coffre-fort personnel. Trois molettes. Une étiquette effacée : « date - sujet - fréquence »."
+    }
+   ],
+   "choix": [
+    {
+     "texte": "1 - 0 - 47",
+     "actions": [
+      {
+       "commande": "summon spore:inf_human ~2 ~ ~"
+      },
+      {
+       "commande": "summon spore:inf_human ~-2 ~ ~"
+      },
+      {
+       "commande": "playsound minecraft:block.note_block.bass master {joueur} ~ ~ ~ 1 0.5"
+      },
+      {
+       "message": "CODE ERRONÉ. Alarme déclenchée."
+      }
+     ],
+     "fin": true
+    },
+    {
+     "texte": "0 - 007 - 104",
+     "actions": [
+      {
+       "commande": "tag {joueur} add q_ch5_coffre"
+      },
+      {
+       "commande": "give {joueur} atheria:cassette_salto 1"
+      },
+      {
+       "commande": "give {joueur} atheria:archive_31 1"
+      },
+      {
+       "commande": "playsound minecraft:entity.experience_orb.pickup master {joueur} ~ ~ ~ 0.6 1.2"
+      }
+     ],
+     "aller": "q_ch5_coffre_ok"
+    },
+    {
+     "texte": "7 - 0 - 104",
+     "actions": [
+      {
+       "commande": "summon spore:inf_human ~2 ~ ~"
+      },
+      {
+       "commande": "summon spore:inf_human ~-2 ~ ~"
+      },
+      {
+       "commande": "playsound minecraft:block.note_block.bass master {joueur} ~ ~ ~ 1 0.5"
+      },
+      {
+       "message": "CODE ERRONÉ. Alarme déclenchée."
+      }
+     ],
+     "fin": true
+    },
+    {
+     "texte": "Laisser le coffre",
+     "style": "refuser",
+     "fin": true
+    }
+   ]
+  },
+  "q_ch5_coffre_fait": {
+   "texte": "Tu as ce qu'il te faut. Avance."
+  },
+  "repos": {
+   "texte": "Un coffre-fort mural. Trois molettes rouillées."
+  },
+  "debut": {
+   "aiguillage": [
+    {
+     "si": {
+      "tag": [
+       "q_ch5_coffre"
+      ]
+     },
+     "aller": "q_ch5_coffre_fait"
+    },
+    {
+     "si": {
+      "tag": [
+       "acte_4"
+      ]
+     },
+     "aller": "q_ch5_coffre"
+    },
+    {
+     "aller": "repos"
+    }
+   ]
+  }
+ }
+}

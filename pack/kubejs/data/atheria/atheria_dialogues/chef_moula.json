@@ -1,0 +1,18 @@
+{
+ "pnj": {
+  "nom": "Chef Moula"
+ },
+ "debut": "debut",
+ "noeuds": {
+  "repos": {
+   "texte": "C'est pas un plat, c'est une menace au moral des troupes."
+  },
+  "debut": {
+   "aiguillage": [
+    {
+     "aller": "repos"
+    }
+   ]
+  }
+ }
+}

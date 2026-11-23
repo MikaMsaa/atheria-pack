@@ -1,0 +1,136 @@
+diff -ru sauvegarde-0.1.5/src/fr/atheria/ile/CarteIle.java src/fr/atheria/ile/CarteIle.java
+--- sauvegarde-0.1.5/src/fr/atheria/ile/CarteIle.java	2026-11-09 16:44:04.131998500 +0400
++++ src/fr/atheria/ile/CarteIle.java	2026-11-09 16:44:32.017881100 +0400
+@@ -79,6 +79,8 @@
+     public final double origineX, origineZ;
+     public final long graine;
+     public final double deformation;
++    /** fondu des frontieres de regions (blocs, 0 = desactive) et taille de ses taches */
++    public final double fondu, tailleFondu;
+     public final List<Region> regions = new ArrayList<>();
+     /** classe par pixel : 0 océan, 1 lagon, 2 récif, 3+k région k */
+     final byte[] classe;
+@@ -86,6 +88,8 @@
+     final float[] distance;
+     /** région de la terre la plus proche, pour chaque pixel */
+     final byte[] regionProche;
++    /** numero de la terre (ile) la plus proche, pour chaque pixel : le fondu ne traverse jamais la mer */
++    final int[] ileProche;
+     /** relief des régions, lissé */
+     final float[] relief;
+ 
+@@ -104,6 +108,8 @@
+         origineZ = -h * bpp / 2.0;
+         graine = config.has("graine") ? config.get("graine").getAsLong() : 1L;
+         deformation = config.has("deformation_bords_blocs") ? config.get("deformation_bords_blocs").getAsDouble() : 24.0;
++        fondu = config.has("fondu_bords_blocs") && !config.get("fondu_bords_blocs").isJsonNull() ? Math.max(0, config.get("fondu_bords_blocs").getAsDouble()) : 0.0;
++        tailleFondu = Math.max(24.0, fondu * 0.4);
+ 
+         // classes déclarées
+         Map<Integer, Integer> parCouleur = new HashMap<>();
+@@ -182,7 +188,23 @@
+         }
+ 
+         // région de la terre la plus proche (parcours en largeur depuis toutes les terres)
++        // + numero de l'ile (composante de terre, 4-voisins) la plus proche
+         regionProche = new byte[n];
++        ileProche = new int[n];
++        java.util.Arrays.fill(ileProche, -1);
++        int iles = 0;
++        for (int s = 0; s < n; s++) {
++            if (!terre(s) || ileProche[s] >= 0) continue;
++            ArrayDeque<Integer> f = new ArrayDeque<>();
++            f.add(s);
++            ileProche[s] = iles;
++            while (!f.isEmpty()) {
++                int i = f.poll(), x = i % w, z = i / w;
++                int[] voisins = {x > 0 ? i - 1 : -1, x < w - 1 ? i + 1 : -1, z > 0 ? i - w : -1, z < h - 1 ? i + w : -1};
++                for (int v : voisins) if (v >= 0 && terre(v) && ileProche[v] < 0) { ileProche[v] = iles; f.add(v); }
++            }
++            iles++;
++        }
+         boolean[] vu = new boolean[n];
+         ArrayDeque<Integer> file = new ArrayDeque<>();
+         for (int i = 0; i < n; i++) {
+@@ -193,9 +215,10 @@
+             int x = i % w, z = i / w;
+             int[] voisins = {x > 0 ? i - 1 : -1, x < w - 1 ? i + 1 : -1, z > 0 ? i - w : -1, z < h - 1 ? i + w : -1};
+             for (int v : voisins) {
+-                if (v >= 0 && !vu[v]) { vu[v] = true; regionProche[v] = regionProche[i]; file.add(v); }
++                if (v >= 0 && !vu[v]) { vu[v] = true; regionProche[v] = regionProche[i]; ileProche[v] = ileProche[i]; file.add(v); }
+             }
+         }
++        LOG.info("[atheria_ile] {} terres separees par la mer ; fondu des frontieres {} blocs", iles, fondu);
+ 
+         // relief des régions lissé (flou boîte séparable, deux passes)
+         int rayon = config.has("lissage_relief_pixels") ? Math.max(0, config.get("lissage_relief_pixels").getAsInt()) : 8;
+@@ -351,10 +374,25 @@
+     public int region(int bx, int bz) {
+         double wx = bx + (bruit(bx / 96.0, bz / 96.0, 11) + 0.5 * bruit(bx / 37.0, bz / 37.0, 12)) * deformation;
+         double wz = bz + (bruit(bx / 96.0, bz / 96.0, 21) + 0.5 * bruit(bx / 37.0, bz / 37.0, 22)) * deformation;
+-        int px = (int) Math.floor((wx - origineX) / bpp), pz = (int) Math.floor((wz - origineZ) / bpp);
++        int ici = indexPixel(wx, wz);
++        int r = regionProche[ici] & 0xFF;
++        if (fondu <= 0) return r;
++        // fondu : chaque tache (cellule bruitee, deterministe) lit la region d'un point decale d'au plus 'fondu' blocs ;
++        // loin d'une frontiere le point decale tombe dans la meme region, pres d'une frontiere les deux s'entremelent
++        double fx = wx + bruit(bx / 48.0, bz / 48.0, 51) * tailleFondu * 0.6;
++        double fz = wz + bruit(bx / 48.0, bz / 48.0, 52) * tailleFondu * 0.6;
++        long cx = (long) Math.floor(fx / tailleFondu), cz = (long) Math.floor(fz / tailleFondu);
++        double ox = (hash01(cx, cz, 53) * 2 - 1) * fondu, oz = (hash01(cx, cz, 54) * 2 - 1) * fondu;
++        int la = indexPixel(wx + ox, wz + oz);
++        if (ileProche[la] != ileProche[ici]) return r; // jamais de melange entre deux terres separees par la mer
++        return regionProche[la] & 0xFF;
++    }
++
++    private int indexPixel(double bx, double bz) {
++        int px = (int) Math.floor((bx - origineX) / bpp), pz = (int) Math.floor((bz - origineZ) / bpp);
+         px = Math.max(0, Math.min(w - 1, px));
+         pz = Math.max(0, Math.min(h - 1, pz));
+-        return regionProche[pz * w + px] & 0xFF;
++        return pz * w + px;
+     }
+ 
+     /** Cellule de Voronoï (taille de la région) qui décide du sous-biome ; renvoie un nombre dans [0,1). */
+--- sauvegarde-0.1.5/construire.ps1	2026-11-09 16:44:04.139324000 +0400
++++ construire.ps1	2026-11-09 16:44:32.019493300 +0400
+@@ -28,7 +28,7 @@
+ Copy-Item (Join-Path $Ici 'ressources\*') $Tmp -Recurse -Force
+ 
+ $manifest = Join-Path $env:TEMP "atheria-ile-manifest-$([guid]::NewGuid()).txt"
+-[IO.File]::WriteAllText($manifest, "Implementation-Version: 0.1.5`nFMLModType: MOD`n")
++[IO.File]::WriteAllText($manifest, "Implementation-Version: 0.1.6`nFMLModType: MOD`n")
+ $Out = Join-Path $Ici 'atheria-ile.jar'
+ & "$Jdk\jar.exe" --create --file $Out --manifest $manifest -C $Tmp .
+ if ($LASTEXITCODE -ne 0) { throw "jar a echoue (code $LASTEXITCODE)" }
+--- sauvegarde-0.1.5/ressources/META-INF/neoforge.mods.toml	2026-11-09 16:44:04.137793300 +0400
++++ ressources/META-INF/neoforge.mods.toml	2026-11-09 16:44:32.017881100 +0400
+@@ -4,7 +4,7 @@
+ 
+ [[mods]]
+ modId = "atheria_ile"
+-version = "0.1.5"
++version = "0.1.6"
+ displayName = "Atheria Ile"
+ description = "Prototype : la carte dessinee de l'ile d'Atheria guide les cotes, le relief et les biomes. Inactif sans le datapack atheria_ile dans le monde."
+ 
+--- sauvegarde-0.1.5/regions.json	2026-11-09 16:44:04.157985800 +0400
++++ regions.json	2026-11-09 16:45:06.800783700 +0400
+@@ -4,6 +4,7 @@
+  "graine": 20261108,
+  "lissage_relief_pixels": 8,
+  "deformation_bords_blocs": 28,
++ "fondu_bords_blocs": 128,
+  "rendu_au_demarrage": false,
+  "rendu_pas_blocs": 32,
+  "zone_reelle": null,
+--- sauvegarde-0.1.5/regions-test.json	2026-11-09 16:44:04.171903000 +0400
++++ regions-test.json	2026-11-09 16:45:06.800783700 +0400
+@@ -4,6 +4,7 @@
+  "graine": 20261108,
+  "lissage_relief_pixels": 8,
+  "deformation_bords_blocs": 28,
++ "fondu_bords_blocs": 128,
+  "rendu_au_demarrage": true,
+  "rendu_pas_blocs": 32,
+  "zone_reelle": {

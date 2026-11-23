@@ -1,0 +1,1821 @@
+{
+  "_aide": "carte.png : 1 pixel = blocs_par_pixel blocs, centre de l'image = 0,0. Chaque couleur exacte = une classe ci-dessous.",
+  "blocs_par_pixel": 12,
+  "graine": 20261108,
+  "lissage_relief_pixels": 8,
+  "deformation_bords_blocs": 28,
+  "fondu_bords_blocs": 128,
+  "relief_image": "relief.png",
+  "rivieres_aleatoires": false,
+  "riviere_vallee_blocs": 100,
+  "riviere_lit_blocs": 10,
+  "lissage_cotes_pixels": 6,
+  "passages": [
+    {
+      "regions": [
+        "Côte calcaire",
+        "Savane"
+      ],
+      "biome": "biomesoplenty:shrubland",
+      "largeur_blocs": 80
+    },
+    {
+      "regions": [
+        "Côte calcaire",
+        "Plaines agricoles"
+      ],
+      "biome": "biomesoplenty:grassland",
+      "largeur_blocs": 80
+    },
+    {
+      "regions": [
+        "Côte calcaire",
+        "Jungle"
+      ],
+      "biome": "terralith:rocky_jungle",
+      "largeur_blocs": 80
+    },
+    {
+      "regions": [
+        "Savane",
+        "Friches"
+      ],
+      "biome": "biomesoplenty:wasteland_steppe",
+      "largeur_blocs": 80
+    },
+    {
+      "regions": [
+        "Savane",
+        "Plaines agricoles"
+      ],
+      "biome": "biomesoplenty:prairie",
+      "largeur_blocs": 80
+    },
+    {
+      "regions": [
+        "Savane",
+        "Jungle"
+      ],
+      "biome": "biomesoplenty:lush_savanna",
+      "largeur_blocs": 80
+    },
+    {
+      "regions": [
+        "Savane",
+        "Hauts plateaux"
+      ],
+      "biome": "terralith:arid_highlands",
+      "largeur_blocs": 56
+    },
+    {
+      "regions": [
+        "Savane",
+        "Canyons"
+      ],
+      "biome": "terralith:savanna_badlands",
+      "largeur_blocs": 80
+    },
+    {
+      "regions": [
+        "Savane",
+        "Mangroves"
+      ],
+      "biome": "biomesoplenty:bayou",
+      "largeur_blocs": 80
+    },
+    {
+      "regions": [
+        "Savane",
+        "Île du volcan"
+      ],
+      "biome": "biomesoplenty:volcanic_plains",
+      "largeur_blocs": 80
+    },
+    {
+      "regions": [
+        "Friches",
+        "Plaines agricoles"
+      ],
+      "biome": "biomesoplenty:field",
+      "largeur_blocs": 80
+    },
+    {
+      "regions": [
+        "Friches",
+        "Hauts plateaux"
+      ],
+      "biome": "biomesoplenty:shrubland",
+      "largeur_blocs": 56
+    },
+    {
+      "regions": [
+        "Friches",
+        "Marais"
+      ],
+      "biome": "biomesoplenty:dead_forest",
+      "largeur_blocs": 80
+    },
+    {
+      "regions": [
+        "Plaines agricoles",
+        "Jungle"
+      ],
+      "biome": "terralith:lush_valley",
+      "largeur_blocs": 80
+    },
+    {
+      "regions": [
+        "Plaines agricoles",
+        "Hauts plateaux"
+      ],
+      "biome": "terralith:valley_clearing",
+      "largeur_blocs": 56
+    },
+    {
+      "regions": [
+        "Jungle",
+        "Hauts plateaux"
+      ],
+      "biome": "biomesoplenty:rocky_rainforest",
+      "largeur_blocs": 56
+    },
+    {
+      "regions": [
+        "Hauts plateaux",
+        "Sommet"
+      ],
+      "biome": "biomesoplenty:snowy_coniferous_forest",
+      "largeur_blocs": 56
+    },
+    {
+      "regions": [
+        "Hauts plateaux",
+        "Marais"
+      ],
+      "biome": "biomesoplenty:moor",
+      "largeur_blocs": 56
+    },
+    {
+      "regions": [
+        "Hauts plateaux",
+        "Canyons"
+      ],
+      "biome": "terralith:arid_highlands",
+      "largeur_blocs": 56
+    },
+    {
+      "regions": [
+        "Hauts plateaux",
+        "Plaine de cendres"
+      ],
+      "biome": "atheria:foret_calcinee",
+      "largeur_blocs": 56
+    },
+    {
+      "regions": [
+        "Hauts plateaux",
+        "Mangroves"
+      ],
+      "biome": "biomesoplenty:rocky_rainforest",
+      "largeur_blocs": 56
+    },
+    {
+      "regions": [
+        "Sommet",
+        "Plaine de cendres"
+      ],
+      "biome": "terralith:basalt_cliffs",
+      "largeur_blocs": 56
+    },
+    {
+      "regions": [
+        "Marais",
+        "Plaine de cendres"
+      ],
+      "biome": "atheria:foret_calcinee",
+      "largeur_blocs": 80
+    },
+    {
+      "regions": [
+        "Canyons",
+        "Île du volcan"
+      ],
+      "biome": "biomesoplenty:volcanic_plains",
+      "largeur_blocs": 80
+    },
+    {
+      "regions": [
+        "Plaine de cendres",
+        "Mangroves"
+      ],
+      "biome": "biomesoplenty:dead_forest",
+      "largeur_blocs": 80
+    },
+    {
+      "regions": [
+        "Mangroves",
+        "Île du volcan"
+      ],
+      "biome": "biomesoplenty:volcanic_plains",
+      "largeur_blocs": 80
+    }
+  ],
+  "lagon": {
+    "biome": "minecraft:warm_ocean",
+    "recif": "minecraft:warm_ocean",
+    "passes": "terralith:deep_warm_ocean",
+    "passes_largeur_blocs": 72,
+    "passes_continents": -0.3
+  },
+  "zones_biome": [
+    {
+      "nom": "Colline C24",
+      "x": 2390,
+      "z": -1290,
+      "rayon_blocs": 130,
+      "bord_blocs": 48,
+      "biome": "biomesoplenty:dryland",
+      "plage": false
+    },
+    {
+      "nom": "Port de Longoni",
+      "x": 2800,
+      "z": -2950,
+      "rayon_blocs": 400,
+      "bord_blocs": 64,
+      "biome": "minecraft:sparse_jungle",
+      "plage": false
+    },
+    {
+      "nom": "Campus Somaco",
+      "x": 4224,
+      "z": -640,
+      "rayon_blocs": 300,
+      "bord_blocs": 48,
+      "biome": "atheria:zone_contaminee",
+      "plage": true,
+      "lacs": true
+    },
+    {
+      "nom": "Mamoudzou",
+      "forme": "rectangle",
+      "x1": 2660,
+      "z1": -1300,
+      "x2": 3040,
+      "z2": -780,
+      "bord_blocs": 48,
+      "biome": "minecraft:plains",
+      "plage": false
+    },
+    {
+      "nom": "Majicavo",
+      "forme": "rectangle",
+      "x1": 2288,
+      "z1": -2128,
+      "x2": 2528,
+      "z2": -1888,
+      "bord_blocs": 16,
+      "biome": "biomesoplenty:dryland",
+      "plage": false,
+      "zone_ville": true
+    }
+  ],
+  "titres_regions": {
+    "actif": true,
+    "intervalle_ticks": 20,
+    "stabilite_controles": 3,
+    "delai_min_secondes": 20,
+    "oubli_secondes": 300
+  },
+  "bordure_monde_blocs": 12000,
+  "reperes": [
+    {
+      "nom": "Campus Somaco",
+      "x": 4224,
+      "z": -640,
+      "couleur": 2
+    }
+  ],
+  "plage_hauteur_max_blocs": 10,
+  "plage_largeur_blocs": 32,
+  "plage_cote_mer_blocs": 0,
+  "rendu_au_demarrage": false,
+  "rendu_pas_blocs": 32,
+  "arret_apres_tests": false,
+  "classes": {
+    "#123462": {
+      "type": "ocean"
+    },
+    "#46afb9": {
+      "type": "lagon"
+    },
+    "#96e1d7": {
+      "type": "recif"
+    },
+    "#aaaf8c": {
+      "type": "region",
+      "nom": "Côte calcaire et falaises du Nord",
+      "biomes": [
+        {
+          "biome": "terralith:white_cliffs",
+          "poids": 3
+        },
+        {
+          "biome": "terralith:rocky_shrubland",
+          "poids": 1
+        },
+        {
+          "biome": "biomesoplenty:grassland",
+          "poids": 1
+        }
+      ],
+      "montagne": "terralith:white_cliffs",
+      "relief": 0.08,
+      "cellule": 224,
+      "cote": "falaise",
+      "plage": "minecraft:beach",
+      "taches": [
+        {
+          "biome": "biomesoplenty:crag",
+          "part": 0.06,
+          "taille_blocs": 64
+        }
+      ],
+      "grottes": [
+        {
+          "biome": "terralith:cave/diorite_caves",
+          "poids": 2
+        },
+        {
+          "biome": "minecraft:dripstone_caves",
+          "poids": 1
+        }
+      ]
+    },
+    "#b6a658": {
+      "type": "region",
+      "nom": "Savane sèche (baobabs)",
+      "biomes": [
+        {
+          "biome": "minecraft:savanna",
+          "poids": 3
+        },
+        {
+          "biome": "terralith:fractured_savanna",
+          "poids": 2
+        },
+        {
+          "biome": "biomesoplenty:scrubland",
+          "poids": 2
+        },
+        {
+          "biome": "terralith:savanna_slopes",
+          "poids": 1
+        }
+      ],
+      "montagne": "terralith:savanna_slopes",
+      "relief": 0.0,
+      "cellule": 224,
+      "cote": "plage",
+      "plage": "minecraft:beach",
+      "taches": [
+        {
+          "biome": "terralith:brushland",
+          "part": 0.1,
+          "taille_blocs": 72
+        },
+        {
+          "biome": "biomesoplenty:lush_savanna",
+          "part": 0.06,
+          "taille_blocs": 64
+        }
+      ],
+      "grottes": [
+        {
+          "biome": "terralith:cave/granite_caves",
+          "poids": 2
+        },
+        {
+          "biome": "yungscavebiomes:lost_caves",
+          "poids": 1
+        }
+      ]
+    },
+    "#a0988e": {
+      "type": "region",
+      "nom": "Friches urbaines (Majicavo, Mamoudzou)",
+      "biomes": [
+        {
+          "biome": "minecraft:plains",
+          "poids": 3
+        },
+        {
+          "biome": "biomesoplenty:wasteland",
+          "poids": 2
+        },
+        {
+          "biome": "biomesoplenty:dryland",
+          "poids": 1
+        }
+      ],
+      "montagne": null,
+      "relief": -0.04,
+      "cellule": 224,
+      "cote": "plage",
+      "plage": "minecraft:beach",
+      "taches": [
+        {
+          "biome": "biomesoplenty:wasteland_steppe",
+          "part": 0.1,
+          "taille_blocs": 72
+        },
+        {
+          "biome": "biomesoplenty:dead_forest",
+          "part": 0.05,
+          "taille_blocs": 48
+        }
+      ],
+      "grottes": [
+        {
+          "biome": "terralith:cave/andesite_caves",
+          "poids": 2
+        },
+        {
+          "biome": "terralith:cave/infested_caves",
+          "poids": 1
+        }
+      ]
+    },
+    "#7aa048": {
+      "type": "region",
+      "nom": "Plaines agricoles de Coconi",
+      "biomes": [
+        {
+          "biome": "atheria:terres_agricoles",
+          "poids": 4
+        },
+        {
+          "biome": "minecraft:sunflower_plains",
+          "poids": 1
+        },
+        {
+          "biome": "biomesoplenty:pasture",
+          "poids": 1
+        }
+      ],
+      "montagne": null,
+      "relief": -0.03,
+      "cellule": 224,
+      "cote": "plage",
+      "plage": "minecraft:beach",
+      "taches": [
+        {
+          "biome": "biomesoplenty:field",
+          "part": 0.08,
+          "taille_blocs": 80
+        },
+        {
+          "biome": "biomesoplenty:orchard",
+          "part": 0.05,
+          "taille_blocs": 56
+        },
+        {
+          "biome": "biomesoplenty:lavender_field",
+          "part": 0.04,
+          "taille_blocs": 48
+        }
+      ],
+      "grottes": [
+        {
+          "biome": "minecraft:lush_caves",
+          "poids": 1
+        },
+        {
+          "biome": "terralith:cave/andesite_caves",
+          "poids": 1
+        }
+      ]
+    },
+    "#22662a": {
+      "type": "region",
+      "nom": "Jungle de l'Ouest",
+      "biomes": [
+        {
+          "biome": "biomesoplenty:rainforest",
+          "poids": 3
+        },
+        {
+          "biome": "terralith:tropical_jungle",
+          "poids": 2
+        },
+        {
+          "biome": "minecraft:bamboo_jungle",
+          "poids": 1
+        }
+      ],
+      "montagne": "terralith:jungle_mountains",
+      "relief": 0.05,
+      "cellule": 224,
+      "cote": "plage",
+      "plage": "minecraft:beach",
+      "taches": [
+        {
+          "biome": "terralith:rocky_jungle",
+          "part": 0.08,
+          "taille_blocs": 72
+        },
+        {
+          "biome": "biomesoplenty:floodplain",
+          "part": 0.05,
+          "taille_blocs": 64
+        }
+      ],
+      "grottes": [
+        {
+          "biome": "terralith:cave/underground_jungle",
+          "poids": 2
+        },
+        {
+          "biome": "minecraft:lush_caves",
+          "poids": 1
+        }
+      ]
+    },
+    "#54784a": {
+      "type": "region",
+      "nom": "Hauts plateaux et pins",
+      "biomes": [
+        {
+          "biome": "terralith:highlands",
+          "poids": 2
+        },
+        {
+          "biome": "terralith:forested_highlands",
+          "poids": 2
+        },
+        {
+          "biome": "biomesoplenty:coniferous_forest",
+          "poids": 1
+        }
+      ],
+      "montagne": "terralith:alpine_highlands",
+      "relief": 0.18,
+      "cellule": 224,
+      "cote": "falaise",
+      "plage": "minecraft:beach",
+      "taches": [
+        {
+          "biome": "terralith:temperate_highlands",
+          "part": 0.08,
+          "taille_blocs": 80
+        },
+        {
+          "biome": "biomesoplenty:fir_clearing",
+          "part": 0.06,
+          "taille_blocs": 56
+        }
+      ],
+      "grottes": [
+        {
+          "biome": "terralith:cave/tuff_caves",
+          "poids": 1
+        },
+        {
+          "biome": "minecraft:dripstone_caves",
+          "poids": 1
+        }
+      ]
+    },
+    "#e1e6eb": {
+      "type": "region",
+      "nom": "Sommet gelé du Bénara (hiver volcanique)",
+      "biomes": [
+        {
+          "biome": "terralith:snowy_shield",
+          "poids": 2
+        },
+        {
+          "biome": "terralith:alpine_grove",
+          "poids": 1
+        }
+      ],
+      "montagne": "terralith:frozen_cliffs",
+      "relief": 0.35,
+      "cellule": 224,
+      "cote": "falaise",
+      "plage": "minecraft:snowy_beach",
+      "taches": [
+        {
+          "biome": "terralith:wintry_forest",
+          "part": 0.06,
+          "taille_blocs": 56
+        }
+      ],
+      "grottes": [
+        {
+          "biome": "yungscavebiomes:frosted_caves",
+          "poids": 2
+        },
+        {
+          "biome": "terralith:cave/frostfire_caves",
+          "poids": 1
+        }
+      ]
+    },
+    "#586246": {
+      "type": "region",
+      "nom": "Marais aux spores",
+      "biomes": [
+        {
+          "biome": "atheria:marecage_pollue",
+          "poids": 3
+        },
+        {
+          "biome": "atheria:zone_contaminee",
+          "poids": 2
+        },
+        {
+          "biome": "biomesoplenty:bog",
+          "poids": 1
+        }
+      ],
+      "montagne": null,
+      "relief": -0.05,
+      "cellule": 224,
+      "cote": "vase",
+      "plage": null,
+      "taches": [
+        {
+          "biome": "biomesoplenty:marsh",
+          "part": 0.08,
+          "taille_blocs": 64
+        },
+        {
+          "biome": "biomesoplenty:dead_forest",
+          "part": 0.06,
+          "taille_blocs": 56
+        }
+      ],
+      "grottes": [
+        {
+          "biome": "terralith:cave/fungal_caves",
+          "poids": 2
+        },
+        {
+          "biome": "biomesoplenty:spider_nest",
+          "poids": 1
+        }
+      ],
+      "chenaux": 1.2
+    },
+    "#b05c34": {
+      "type": "region",
+      "nom": "Canyons de latérite rouge",
+      "biomes": [
+        {
+          "biome": "terralith:bryce_canyon",
+          "poids": 2
+        },
+        {
+          "biome": "minecraft:badlands",
+          "poids": 2
+        },
+        {
+          "biome": "minecraft:wooded_badlands",
+          "poids": 1
+        },
+        {
+          "biome": "terralith:savanna_badlands",
+          "poids": 1
+        }
+      ],
+      "montagne": "minecraft:eroded_badlands",
+      "relief": 0.12,
+      "cellule": 224,
+      "cote": "falaise",
+      "plage": "minecraft:beach",
+      "taches": [
+        {
+          "biome": "terralith:sandstone_valley",
+          "part": 0.06,
+          "taille_blocs": 64
+        },
+        {
+          "biome": "terralith:red_oasis",
+          "part": 0.04,
+          "taille_blocs": 40
+        }
+      ],
+      "grottes": [
+        {
+          "biome": "minecraft:dripstone_caves",
+          "poids": 2
+        },
+        {
+          "biome": "terralith:cave/granite_caves",
+          "poids": 1
+        }
+      ]
+    },
+    "#7c7a76": {
+      "type": "region",
+      "nom": "Plaine de cendres",
+      "biomes": [
+        {
+          "biome": "atheria:plaine_cendres",
+          "poids": 3
+        },
+        {
+          "biome": "atheria:foret_calcinee",
+          "poids": 2
+        },
+        {
+          "biome": "biomesoplenty:volcanic_plains",
+          "poids": 1
+        }
+      ],
+      "montagne": null,
+      "relief": 0.0,
+      "cellule": 224,
+      "cote": "roche",
+      "plage": "minecraft:stony_shore",
+      "taches": [
+        {
+          "biome": "terralith:gravel_desert",
+          "part": 0.08,
+          "taille_blocs": 72
+        },
+        {
+          "biome": "terralith:basalt_cliffs",
+          "part": 0.05,
+          "taille_blocs": 56
+        }
+      ],
+      "grottes": [
+        {
+          "biome": "terralith:cave/thermal_caves",
+          "poids": 2
+        },
+        {
+          "biome": "terralith:cave/mantle_caves",
+          "poids": 1
+        }
+      ]
+    },
+    "#467052": {
+      "type": "region",
+      "nom": "Mangroves du Sud",
+      "biomes": [
+        {
+          "biome": "minecraft:mangrove_swamp",
+          "poids": 3
+        },
+        {
+          "biome": "biomesoplenty:bayou",
+          "poids": 1
+        }
+      ],
+      "montagne": null,
+      "relief": -0.06,
+      "cellule": 224,
+      "cote": "vase",
+      "plage": null,
+      "taches": [
+        {
+          "biome": "biomesoplenty:wetland",
+          "part": 0.08,
+          "taille_blocs": 64
+        },
+        {
+          "biome": "biomesoplenty:marsh",
+          "part": 0.05,
+          "taille_blocs": 56
+        }
+      ],
+      "grottes": [
+        {
+          "biome": "minecraft:lush_caves",
+          "poids": 2
+        },
+        {
+          "biome": "terralith:cave/fungal_caves",
+          "poids": 1
+        }
+      ],
+      "chenaux": 1.6
+    },
+    "#c4b278": {
+      "type": "region",
+      "nom": "Petite-Terre, cratère et campus Somaco",
+      "titre": "Petite-Terre",
+      "biomes": [
+        {
+          "biome": "terralith:hot_shrubland",
+          "poids": 1
+        }
+      ],
+      "montagne": "terralith:hot_shrubland",
+      "relief": 0.05,
+      "cellule": 224,
+      "cote": "plage",
+      "plage": "minecraft:beach",
+      "taches": [],
+      "grottes": [
+        {
+          "biome": "terralith:cave/thermal_caves",
+          "poids": 1
+        },
+        {
+          "biome": "terralith:cave/tuff_caves",
+          "poids": 1
+        }
+      ]
+    },
+    "#463834": {
+      "type": "region",
+      "nom": "Île du volcan",
+      "biomes": [
+        {
+          "biome": "terralith:volcanic_peaks",
+          "poids": 3
+        },
+        {
+          "biome": "biomesoplenty:volcanic_plains",
+          "poids": 1
+        }
+      ],
+      "montagne": "terralith:volcanic_peaks",
+      "relief": 0.4,
+      "cellule": 224,
+      "cote": "roche",
+      "plage": "minecraft:stony_shore",
+      "taches": [
+        {
+          "biome": "terralith:basalt_cliffs",
+          "part": 0.08,
+          "taille_blocs": 56
+        }
+      ],
+      "grottes": [
+        {
+          "biome": "terralith:cave/thermal_caves",
+          "poids": 2
+        },
+        {
+          "biome": "terralith:cave/mantle_caves",
+          "poids": 1
+        }
+      ]
+    },
+    "#c8be8c": {
+      "type": "region",
+      "nom": "Îlot de la ICE",
+      "biomes": [
+        {
+          "biome": "biomesoplenty:tropics",
+          "poids": 1
+        }
+      ],
+      "montagne": null,
+      "relief": 0.0,
+      "cellule": 224,
+      "cote": "plage",
+      "plage": "minecraft:beach",
+      "taches": [],
+      "grottes": [
+        {
+          "biome": "minecraft:lush_caves",
+          "poids": 1
+        }
+      ]
+    },
+    "#2b5fd9": {
+      "type": "riviere"
+    },
+    "#3d7ee0": {
+      "type": "lac"
+    }
+  },
+  "erosion_force": 0.5,
+  "erosion_plat": 0.4,
+  "chenaux_largeur": 0.065,
+  "chenaux_continents": -0.18,
+  "routes": [
+    {
+      "nom": "RN1",
+      "_aide": "Longoni -> Majicavo -> Mamoudzou -> Coconi -> pied du Benara ; troncons_droits = aretes gardees droites (indices de points)",
+      "largeur_blocs": 14,
+      "bas_cotes_blocs": 10,
+      "talus_blocs": 20,
+      "rayon_virage_blocs": 48,
+      "pente_max": 0.125,
+      "marge_structures_blocs": 17,
+      "troncons_droits": [
+        [
+          6,
+          7
+        ]
+      ],
+      "points": [
+        [
+          2624,
+          -2960
+        ],
+        [
+          2456,
+          -2808
+        ],
+        [
+          2424,
+          -2744
+        ],
+        [
+          2472,
+          -2680
+        ],
+        [
+          2568,
+          -2648
+        ],
+        [
+          2600,
+          -2584
+        ],
+        [
+          2536,
+          -2408
+        ],
+        [
+          2520,
+          -1944
+        ],
+        [
+          2616,
+          -1656
+        ],
+        [
+          2600,
+          -1448
+        ],
+        [
+          2632,
+          -1384
+        ],
+        [
+          2632,
+          -1192
+        ],
+        [
+          2760,
+          -840
+        ],
+        [
+          2856,
+          -728
+        ],
+        [
+          2856,
+          -536
+        ],
+        [
+          2776,
+          -376
+        ],
+        [
+          2552,
+          -376
+        ],
+        [
+          2392,
+          -296
+        ],
+        [
+          2296,
+          -296
+        ],
+        [
+          2056,
+          -200
+        ],
+        [
+          1944,
+          -104
+        ],
+        [
+          1864,
+          -104
+        ],
+        [
+          1752,
+          -40
+        ],
+        [
+          1544,
+          -40
+        ],
+        [
+          1384,
+          -120
+        ],
+        [
+          1224,
+          -120
+        ],
+        [
+          1112,
+          -8
+        ],
+        [
+          984,
+          -8
+        ],
+        [
+          856,
+          -72
+        ],
+        [
+          856,
+          -152
+        ],
+        [
+          744,
+          -344
+        ],
+        [
+          744,
+          -568
+        ],
+        [
+          536,
+          -808
+        ],
+        [
+          424,
+          -1016
+        ],
+        [
+          440,
+          -1048
+        ],
+        [
+          240,
+          -1130
+        ],
+        [
+          196,
+          -1196
+        ],
+        [
+          440,
+          -1262
+        ],
+        [
+          264,
+          -1368
+        ],
+        [
+          184,
+          -1320
+        ],
+        [
+          104,
+          -1336
+        ],
+        [
+          -88,
+          -1496
+        ],
+        [
+          -216,
+          -1720
+        ],
+        [
+          -440,
+          -1784
+        ],
+        [
+          -632,
+          -1672
+        ],
+        [
+          -696,
+          -1576
+        ],
+        [
+          -856,
+          -1448
+        ],
+        [
+          -936,
+          -1304
+        ],
+        [
+          -1096,
+          -1208
+        ],
+        [
+          -1112,
+          -1064
+        ],
+        [
+          -1176,
+          -936
+        ],
+        [
+          -1240,
+          -904
+        ],
+        [
+          -1320,
+          -792
+        ],
+        [
+          -1464,
+          -408
+        ],
+        [
+          -1464,
+          -360
+        ],
+        [
+          -1384,
+          -248
+        ],
+        [
+          -1608,
+          8
+        ],
+        [
+          -1320,
+          440
+        ],
+        [
+          -1048,
+          680
+        ],
+        [
+          -1016,
+          744
+        ],
+        [
+          -1080,
+          936
+        ],
+        [
+          -984,
+          1176
+        ]
+      ],
+      "ponts": [
+        {
+          "nom": "Pont de Kamel",
+          "_aide": "tablier sureleve a Y (dalle a Y-1), plat sur +-demi_longueur d'abscisse, rampes a pente_max ; rien sous le tablier",
+          "x": 2060,
+          "z": -198,
+          "demi_longueur_blocs": 40,
+          "y": 69
+        }
+      ]
+    }
+  ],
+  "lots": [
+    {
+      "nom": "Enceinte de Longoni",
+      "x1": 2448,
+      "z1": -3088,
+      "x2": 2624,
+      "z2": -2960,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Point haut SO de l'enceinte",
+      "x1": 2448,
+      "z1": -2992,
+      "x2": 2480,
+      "z2": -2960,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Longoni, toits du parkour",
+      "x1": 2560,
+      "z1": -3008,
+      "x2": 2608,
+      "z2": -2976,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Longoni, bouche des Passeurs",
+      "x1": 2512,
+      "z1": -3024,
+      "x2": 2528,
+      "z2": -3008,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Majicavo, salle a la lampe",
+      "x1": 2544,
+      "z1": -2016,
+      "x2": 2576,
+      "z2": -1984,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Majicavo, bouche de station de tram",
+      "x1": 2576,
+      "z1": -2016,
+      "x2": 2592,
+      "z2": -2000,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Mamoudzou, rue",
+      "x1": 2896,
+      "z1": -912,
+      "x2": 3008,
+      "z2": -896,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Mamoudzou, ruelle",
+      "x1": 2944,
+      "z1": -896,
+      "x2": 2960,
+      "z2": -848,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Mamoudzou, toit",
+      "x1": 2976,
+      "z1": -944,
+      "x2": 3008,
+      "z2": -912,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Mamoudzou immeuble voisin du toit",
+      "x1": 2944,
+      "z1": -944,
+      "x2": 2976,
+      "z2": -912,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Mamoudzou, facade nord",
+      "x1": 2896,
+      "z1": -944,
+      "x2": 2944,
+      "z2": -912,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Mamoudzou, facade sud ouest",
+      "x1": 2896,
+      "z1": -896,
+      "x2": 2944,
+      "z2": -864,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Mamoudzou, facade sud est",
+      "x1": 2960,
+      "z1": -896,
+      "x2": 3008,
+      "z2": -864,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Mamoudzou, CHM",
+      "x1": 2864,
+      "z1": -1232,
+      "x2": 2912,
+      "z2": -1184,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Station Total",
+      "x1": 2768,
+      "z1": -576,
+      "x2": 2816,
+      "z2": -528,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Coconi (Refuge, champs, granges, marche)",
+      "x1": -1104,
+      "z1": -912,
+      "x2": -976,
+      "z2": -784,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Coconi, barrage a l'exutoire du lac",
+      "x1": -928,
+      "z1": -1088,
+      "x2": -880,
+      "z2": -1040,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Camp cache des Goblini",
+      "x1": -2160,
+      "z1": -144,
+      "x2": -2096,
+      "z2": -80,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Station radio du Benara",
+      "x1": -1072,
+      "z1": 1184,
+      "x2": -1024,
+      "z2": 1232,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Tombe de Rayade",
+      "x1": -1056,
+      "z1": 1232,
+      "x2": -1040,
+      "z2": 1248,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Mont Benara, emetteur et antennes",
+      "x1": 192,
+      "z1": 1408,
+      "x2": 256,
+      "z2": 1472,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Champ de mines, col ouest",
+      "x1": -704,
+      "z1": 1392,
+      "x2": -640,
+      "z2": 1456,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Champ de mines, col sud",
+      "x1": 224,
+      "z1": 2480,
+      "x2": 288,
+      "z2": 2544,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Champ de mines, col sud-est",
+      "x1": 752,
+      "z1": 2112,
+      "x2": 816,
+      "z2": 2176,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Labo 7 (terminal 1-0-4-7), site A",
+      "x1": -1856,
+      "z1": -5152,
+      "x2": -1760,
+      "z2": -5056,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Bunker PAF",
+      "x1": 448,
+      "z1": -4864,
+      "x2": 528,
+      "z2": -4784,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Relais ch3, tour Structory",
+      "x1": -2064,
+      "z1": 1296,
+      "x2": -2016,
+      "z2": 1344,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Relais ch3, mine",
+      "x1": -1056,
+      "z1": 2560,
+      "x2": -992,
+      "z2": 2624,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Relais ch3, bunker",
+      "x1": -3744,
+      "z1": 1024,
+      "x2": -3680,
+      "z2": 1088,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Choungui, station de ski fantome",
+      "x1": -336,
+      "z1": 1488,
+      "x2": -240,
+      "z2": 1552,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Vahibe, ville miniere",
+      "x1": -2096,
+      "z1": 2000,
+      "x2": -1968,
+      "z2": 2128,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Handrema, cite des cendres",
+      "x1": 1440,
+      "z1": 2672,
+      "x2": 1568,
+      "z2": 2800,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Mtsamboro, ville morte",
+      "x1": -3152,
+      "z1": -5312,
+      "x2": -3024,
+      "z2": -5184,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Kaweni, ville morte",
+      "x1": 1440,
+      "z1": -2432,
+      "x2": 1568,
+      "z2": -2304,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Sada, ville morte",
+      "x1": -4000,
+      "z1": 448,
+      "x2": -3872,
+      "z2": 576,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Dembeni, ville morte",
+      "x1": 1984,
+      "z1": 192,
+      "x2": 2112,
+      "z2": 320,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Chirongui, ville morte",
+      "x1": 736,
+      "z1": 3712,
+      "x2": 864,
+      "z2": 3840,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Barge, quai Grande-Terre",
+      "x1": 3040,
+      "z1": -704,
+      "x2": 3104,
+      "z2": -672,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Barge, quai Petite-Terre",
+      "x1": 3264,
+      "z1": -720,
+      "x2": 3328,
+      "z2": -688,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Village des pecheurs du Sud",
+      "x1": 2448,
+      "z1": 5040,
+      "x2": 2512,
+      "z2": 5104,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Crique des contrebandiers",
+      "x1": 3072,
+      "z1": -144,
+      "x2": 3120,
+      "z2": -96,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Phare",
+      "x1": -2656,
+      "z1": -5760,
+      "x2": -2624,
+      "z2": -5728,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Parc de Zamani (hauteurs)",
+      "x1": -1408,
+      "z1": 4544,
+      "x2": -1280,
+      "z2": 4672,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Ilot de la ICE, base militaire",
+      "x1": 4448,
+      "z1": 4624,
+      "x2": 4544,
+      "z2": 4720,
+      "marge_blocs": 16
+    },
+    {
+      "nom": "Bouche des veilleurs, porche",
+      "x1": 2144,
+      "z1": -2784,
+      "x2": 2176,
+      "z2": -2752,
+      "marge_blocs": 16
+    }
+  ],
+  "_aide_lots": "lots : rectangles [x1,x2) x [z1,z2) (x2,z2 exclus) reserves aux batiments faits main ; le mod n'y pose rien (ni route ni structure), marge_blocs autour sans structure",
+  "volumes_souterrains": {
+    "_aide": "volumes reserves pour le build souterrain : ni grottes de bruit, ni carvers, ni aquifere, ni lave, ni filons, ni minerais, ni features ni morceaux de structures, dans le volume et sur marge_blocs autour. Boites x2,z2 exclus ; couloirs : largeur_blocs centree sur la polyligne ; y_min/y_max inclus, \"surface\" pour un puits",
+    "marge_blocs": 8,
+    "pose_autorisee": [
+      "atheria_monde:*",
+      "atheria:*"
+    ],
+    "_aide_pose": "pendant la generation, seules les structures, features et modeles .nbt de ces identifiants (namespace:* = tout le namespace), la finition des vitrines atheria_monde et IleApi.poserDansVolume posent dans les volumes ; apres la generation rien n est bloque",
+    "elements": [
+      {
+        "nom": "Puits des Passeurs",
+        "forme": "boite",
+        "x1": 2518,
+        "z1": -3018,
+        "x2": 2523,
+        "z2": -3013,
+        "y_min": 38,
+        "y_max": "surface"
+      },
+      {
+        "nom": "Bancoul",
+        "forme": "boite",
+        "x1": 2480,
+        "z1": -3040,
+        "x2": 2560,
+        "z2": -2992,
+        "y_min": 44,
+        "y_max": 58
+      },
+      {
+        "nom": "Ligne principale",
+        "forme": "couloir",
+        "points": [
+          [
+            2520,
+            -2992
+          ],
+          [
+            2456,
+            -2872
+          ],
+          [
+            2456,
+            -2688
+          ],
+          [
+            2520,
+            -2600
+          ],
+          [
+            2520,
+            -2200
+          ],
+          [
+            2546,
+            -2104
+          ],
+          [
+            2568,
+            -2032
+          ]
+        ],
+        "largeur_blocs": 9,
+        "y_min": 44,
+        "y_max": 56
+      },
+      {
+        "nom": "Station de Majicavo",
+        "forme": "boite",
+        "x1": 2560,
+        "z1": -2032,
+        "x2": 2608,
+        "z2": -1984,
+        "y_min": 44,
+        "y_max": 58
+      },
+      {
+        "nom": "Puits de Majicavo",
+        "forme": "boite",
+        "x1": 2576,
+        "z1": -2016,
+        "x2": 2592,
+        "z2": -2000,
+        "y_min": 44,
+        "y_max": "surface"
+      },
+      {
+        "nom": "Embranchement",
+        "forme": "couloir",
+        "points": [
+          [
+            2480,
+            -3016
+          ],
+          [
+            2400,
+            -3016
+          ],
+          [
+            2300,
+            -2916
+          ],
+          [
+            2200,
+            -2816
+          ],
+          [
+            2136,
+            -2752
+          ]
+        ],
+        "largeur_blocs": 9,
+        "y_min": 44,
+        "y_max": 56
+      },
+      {
+        "nom": "Petite station 1",
+        "forme": "boite",
+        "x1": 2384,
+        "z1": -3028,
+        "x2": 2416,
+        "z2": -3004,
+        "y_min": 44,
+        "y_max": 58
+      },
+      {
+        "nom": "Petite station 2",
+        "forme": "boite",
+        "x1": 2284,
+        "z1": -2928,
+        "x2": 2316,
+        "z2": -2904,
+        "y_min": 44,
+        "y_max": 58
+      },
+      {
+        "nom": "Petite station 3",
+        "forme": "boite",
+        "x1": 2184,
+        "z1": -2828,
+        "x2": 2216,
+        "z2": -2804,
+        "y_min": 44,
+        "y_max": 58
+      },
+      {
+        "nom": "Station des veilleurs",
+        "forme": "boite",
+        "x1": 2080,
+        "z1": -2784,
+        "x2": 2144,
+        "z2": -2720,
+        "y_min": 44,
+        "y_max": 60
+      },
+      {
+        "nom": "Grand Nid",
+        "forme": "boite",
+        "x1": 2000,
+        "z1": -2784,
+        "x2": 2080,
+        "z2": -2720,
+        "y_min": 44,
+        "y_max": 60
+      },
+      {
+        "nom": "Passage des Passeurs",
+        "forme": "couloir",
+        "points": [
+          [
+            2520,
+            -3016
+          ],
+          [
+            2520,
+            -3034
+          ],
+          [
+            2550,
+            -3034
+          ]
+        ],
+        "largeur_blocs": 3,
+        "y_min": 38,
+        "y_max": 42
+      },
+      {
+        "nom": "Trappe des Passeurs",
+        "forme": "boite",
+        "x1": 2548,
+        "z1": -3036,
+        "x2": 2553,
+        "z2": -3031,
+        "y_min": 38,
+        "y_max": 44
+      },
+      {
+        "nom": "Bouche des veilleurs",
+        "forme": "couloir",
+        "points": [
+          [
+            2144,
+            -2760
+          ],
+          [
+            2172,
+            -2760
+          ]
+        ],
+        "largeur_blocs": 9,
+        "y_min": 56,
+        "y_max": "surface"
+      }
+    ],
+    "refus_par_chunk": [
+      "subsurface:*"
+    ]
+  },
+  "sonde_villes": [
+    {
+      "nom": "colline_c24_libre",
+      "x1": 2000,
+      "z1": -1760,
+      "x2": 2608,
+      "z2": -864
+    }
+  ],
+  "relief_naturel": {
+    "zones_relief_libres": [
+      [
+        2000,
+        -1760,
+        2608,
+        -864
+      ]
+    ],
+    "zones_forme": [
+      [
+        2374,
+        -1282,
+        75,
+        110
+      ]
+    ],
+    "_aide_zones_forme": "0.9.0 : [x, z, r_plein, r_fondu] la surface suit exactement bicubique(relief_base.bin + delta) (colline C24 remodelee), fondu smoothstep vers le relief decale",
+    "_aide_zones_relief_libres": "0.9.0 : pour le delta d'erosion seul, les Friches (zones_villes) sont levees dans ces rectangles [x1,z1,x2,z2] ; routes, lots, volumes, zones et villes Lost Cities (rayon + marge) restent proteges",
+    "_aide": "0.8.0-relief : tout a 0 ou actif=false => identique a 0.7.x au bit pres. Masque automatiquement dans villes, couloir RN1, lots, volumes et zones (forceNaturel).",
+    "actif": true,
+    "deformation_cote_blocs": 48,
+    "cote_fractale_blocs": 16,
+    "micro_relief": 0.12,
+    "meandres_blocs": 48,
+    "largeur_riviere_variation": 0.45,
+    "transition_regions_blocs": 64,
+    "details_par_chunk": 1.6,
+    "erosion_delta": "relief_delta.bin",
+    "deformation_cote_large_blocs": 70,
+    "cote_fractale_fine_blocs": 3,
+    "criques_blocs": 22,
+    "falaises_calcaire": 0,
+    "aiguilles_calcaire": 1.0,
+    "lagon_pente": 0.08,
+    "passes_meandres_blocs": 60,
+    "_aide_cotes_v3": "0.9.1 : warp large (700/1600 blocs), cote fine (3 blocs), criques (poches 20-50 blocs), falaises et aiguilles de la Cote calcaire (unites de continents), lagon plus profond vers le large, passes sinueuses ; tout a 0 = 0.9.0 au bit pres ; tout multiplie par forceNaturel (0 en ville, routes, lots, volumes)",
+    "falaises_3d": 1,
+    "falaises_hauteur_min_blocs": 8,
+    "falaises_hauteur_max_blocs": 25,
+    "recif_remontee": 0.012,
+    "_aide_cotes_v3e": "0.9.2 : falaises 3D de la Cote calcaire (8 a 25 blocs, eboulis au pied, leger surplomb, aiguilles devant), crete du recif remontee sous la surface, lagon plus profond vers le large ; 0 = 0.9.1 au bit pres ; tout multiplie par forceNaturel",
+    "recif_plafond_y": 61,
+    "_aide_cotes_v3f": "v3f (0.9.3) : crete du recif remontee mais plafonnee en 3D : aucun bloc plein au-dessus de Y 61 sur les pixels recif et lagon (eau >= 1 bloc), fondu sur 8 blocs depuis le trait de cote ; 0 = inactif",
+    "riviere_bancs": 0.6,
+    "riviere_delta_blocs": 80,
+    "sols_taches": 0.5,
+    "debris_par_chunk": 0.03,
+    "_aide_nature_v3g": "v3g (0.9.4) : bancs de sable dans le lit (0..1), delta qui elargit le lit jusqu'a x2,5 a moins de N blocs de la mer, sols en taches par type de region (0..1), debris post-apo par chunk (au plus 0,2) ; 0 = 0.9.3 au bit pres ; jamais en zone protegee"
+  }
+}

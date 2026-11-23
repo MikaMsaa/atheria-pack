@@ -1,0 +1,14 @@
+{
+  "lieux": [
+    { "nom": "majicavo", "modele": "atheria_monde:lieu_majicavo", "x": 2466, "y": 63, "z": -2080 },
+    { "nom": "rue_mamoudzou", "modele": "atheria_monde:lieu_rue_mamoudzou", "x": 2903, "y": 65, "z": -998 },
+    { "nom": "port_longoni", "modele": "atheria_monde:lieu_port_longoni", "x": 2448, "y": 54, "z": -3088 },
+    { "nom": "station_sous", "modele": "atheria_monde:lieu_station_sous", "x": 2496, "y": 48, "z": -3027, "souterrain": true, "apres": "port_longoni" },
+    { "nom": "station_bouche", "modele": "atheria_monde:lieu_station_bouche", "x": 2509, "y": 64, "z": -3026, "apres": "station_sous" },
+    { "nom": "station_puits", "modele": "atheria_monde:lieu_station_puits", "x": 2533, "y": 64, "z": -3003, "apres": "station_sous" },
+    { "nom": "mamoudzou_pilote", "modele": "atheria_monde:lieu_mamoudzou_pilote", "x": 2912, "y": 65, "z": -768, "rotation": 90 },
+    { "nom": "centre_inonde", "modele": "atheria_monde:lieu_centre_inonde", "x": 2968, "y": 62, "z": -1252 },
+    { "nom": "porte_rn1", "modele": "atheria_monde:lieu_porte_rn1", "x": 2440, "y": 62, "z": -2960, "apres": "port_longoni" },
+    { "nom": "camp_goblini", "modele": "atheria_monde:lieu_camp_goblini", "x": -2168, "y": 109, "z": -152 }
+  ]
+}

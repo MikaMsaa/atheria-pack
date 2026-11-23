@@ -265,7 +265,7 @@ public final class Dialogues {
     // "si": { "tag": "x" ou ["x","y"], "sans_tag": ..., "vue": "intro", "score": {"objectif": "o", "min": 1, "max": 5},
     //         "quete_finie": "1A2B3C4D5E6F7A8B", "quete_pas_finie": ..., "quete_commencee": ... }
     // Quetes : etat FTB Quests de l'equipe du joueur (si FTB Quests est absent, la condition est fausse).
-    private static boolean condition(ServerPlayer p, JsonObject o) {
+    static boolean condition(ServerPlayer p, JsonObject o) {
         if (!o.has("si")) return true;
         JsonObject si = o.getAsJsonObject("si");
         for (String t : liste(si, "tag")) if (!p.getTags().contains(t)) return false;

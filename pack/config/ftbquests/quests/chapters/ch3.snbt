@@ -107,7 +107,7 @@
 			id: "0C4829D5F10E0658"
 			rewards: [
 				{
-					count: 3
+					count: 10
 					id: "34A8AEA4A9F422AE"
 					item: {
 						count: 1
@@ -116,25 +116,32 @@
 					type: "item"
 				}
 				{
-					count: 2
 					id: "361FFD6DF90C7366"
 					item: {
 						count: 1
-						id: "firstaid:bandage"
+						id: "atheria:trousse_soins"
+					}
+					type: "item"
+				}
+				{
+					id: "062A3D37BAC4BFED"
+					item: {
+						count: 1
+						id: "atheria:filtre"
 					}
 					type: "item"
 				}
 				{
 					count: 3
-					id: "062A3D37BAC4BFED"
+					id: "4478832FA7937281"
 					item: {
 						count: 1
-						id: "minecraft:bread"
+						id: "atheria:ration"
 					}
 					type: "item"
 				}
 				{
-					id: "4478832FA7937281"
+					id: "306C1E0C4F9A63BF"
 					item: {
 						count: 1
 						id: "atheria:archive_12"
@@ -158,7 +165,7 @@
 			id: "51424CD0921ECEA0"
 			rewards: [
 				{
-					count: 8
+					count: 15
 					id: "44E235C7CCA9E096"
 					item: {
 						count: 1
@@ -167,15 +174,15 @@
 					type: "item"
 				}
 				{
-					count: 2
 					id: "5A534B03FDED2B19"
 					item: {
 						count: 1
-						id: "firstaid:plaster"
+						id: "atheria:trousse_soins"
 					}
 					type: "item"
 				}
 				{
+					count: 2
 					id: "7DF8115B88F87B4F"
 					item: {
 						count: 1
@@ -184,12 +191,20 @@
 					type: "item"
 				}
 				{
-					count: 8
 					id: "58638D8CED6A2F0B"
+					item: {
+						count: 1
+						id: "atheria:antifongique"
+					}
+					type: "item"
+				}
+				{
+					count: 10
+					id: "6456B02A7E31EE21"
 					item: {
 						components: {
 							"minecraft:custom_data": {
-								AmmoId: "tacz:9mm"
+								AmmoId: "tacz:556x45"
 							}
 							"minecraft:max_stack_size": 60
 						}
@@ -201,7 +216,7 @@
 				{
 					command: "/tag {p} add titre_kaizen"
 					feedback_message: "Titre « Kaizen »"
-					id: "6456B02A7E31EE21"
+					id: "1079B2485DA61C33"
 					permission_level: 2
 					silent: true
 					type: "command"
@@ -230,7 +245,7 @@
 			id: "1BED2FF43B0A15BB"
 			rewards: [
 				{
-					count: 8
+					count: 15
 					id: "79B293BB1B4FD0CA"
 					item: {
 						count: 1
@@ -239,15 +254,15 @@
 					type: "item"
 				}
 				{
-					count: 2
 					id: "7F5EB731BBB67791"
 					item: {
 						count: 1
-						id: "firstaid:plaster"
+						id: "atheria:trousse_soins"
 					}
 					type: "item"
 				}
 				{
+					count: 2
 					id: "7DB54DF4CB75DC97"
 					item: {
 						count: 1
@@ -256,12 +271,20 @@
 					type: "item"
 				}
 				{
-					count: 8
 					id: "18B3858A20EC16B7"
+					item: {
+						count: 1
+						id: "atheria:antifongique"
+					}
+					type: "item"
+				}
+				{
+					count: 10
+					id: "0F4D91ADF821461A"
 					item: {
 						components: {
 							"minecraft:custom_data": {
-								AmmoId: "tacz:9mm"
+								AmmoId: "tacz:556x45"
 							}
 							"minecraft:max_stack_size": 60
 						}
@@ -272,7 +295,7 @@
 				}
 				{
 					count: 2
-					id: "0F4D91ADF821461A"
+					id: "705BB85693DC9DEA"
 					item: {
 						count: 1
 						id: "atheria:filtre"
@@ -372,7 +395,7 @@
 			id: "493426E2E8FDAC97"
 			rewards: [
 				{
-					count: 8
+					count: 15
 					id: "605D9FB751CB4144"
 					item: {
 						count: 1
@@ -381,15 +404,15 @@
 					type: "item"
 				}
 				{
-					count: 2
 					id: "1BE2EF67957DD1F1"
 					item: {
 						count: 1
-						id: "firstaid:plaster"
+						id: "atheria:trousse_soins"
 					}
 					type: "item"
 				}
 				{
+					count: 2
 					id: "33F1F304C29EE869"
 					item: {
 						count: 1
@@ -398,12 +421,20 @@
 					type: "item"
 				}
 				{
-					count: 8
 					id: "12BEE9A24EF786CC"
+					item: {
+						count: 1
+						id: "atheria:antifongique"
+					}
+					type: "item"
+				}
+				{
+					count: 10
+					id: "32A68697AD4A3ECA"
 					item: {
 						components: {
 							"minecraft:custom_data": {
-								AmmoId: "tacz:9mm"
+								AmmoId: "tacz:556x45"
 							}
 							"minecraft:max_stack_size": 60
 						}
@@ -411,6 +442,14 @@
 						id: "tacz:ammo"
 					}
 					type: "item"
+				}
+				{
+					command: "/tag {p} add q_ch3_terminal"
+					feedback_message: "Avancée partagée avec ton équipe"
+					id: "2FE76F6BDF558813"
+					permission_level: 2
+					silent: true
+					type: "command"
 				}
 			]
 			tasks: [{
@@ -426,7 +465,7 @@
 			id: "674E0A996E1DEC11"
 			rewards: [
 				{
-					count: 8
+					count: 15
 					id: "7199CC94EE8669F1"
 					item: {
 						count: 1
@@ -435,15 +474,15 @@
 					type: "item"
 				}
 				{
-					count: 2
 					id: "28EEC1027CA3D00A"
 					item: {
 						count: 1
-						id: "firstaid:plaster"
+						id: "atheria:trousse_soins"
 					}
 					type: "item"
 				}
 				{
+					count: 2
 					id: "46421A3BBE9643D8"
 					item: {
 						count: 1
@@ -452,12 +491,20 @@
 					type: "item"
 				}
 				{
-					count: 8
 					id: "4294500029F07E47"
+					item: {
+						count: 1
+						id: "atheria:antifongique"
+					}
+					type: "item"
+				}
+				{
+					count: 10
+					id: "4F124B685ABD1B3E"
 					item: {
 						components: {
 							"minecraft:custom_data": {
-								AmmoId: "tacz:9mm"
+								AmmoId: "tacz:556x45"
 							}
 							"minecraft:max_stack_size": 60
 						}
@@ -489,14 +536,24 @@
 				id: "minecraft:lantern"
 			}
 			id: "7C08E676813C9413"
-			rewards: [{
-				command: "/scoreboard players add {p} aura_goblini 2"
-				feedback_message: "+2 aura Goblini"
-				id: "6A142A7788D7FAC3"
-				permission_level: 2
-				silent: true
-				type: "command"
-			}]
+			rewards: [
+				{
+					command: "/scoreboard players add {p} aura_goblini 2"
+					feedback_message: "+2 aura Goblini"
+					id: "6A142A7788D7FAC3"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+				{
+					command: "/tag {p} add q_ch3_skip"
+					feedback_message: "Avancée partagée avec ton équipe"
+					id: "417AA8B89E46866E"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+			]
 			tasks: [{
 				id: "7BF041A921AC5BA7"
 				stage: "q_ch3_skip"
@@ -510,7 +567,7 @@
 			id: "74E97CF7DD469DB3"
 			rewards: [
 				{
-					count: 15
+					count: 22
 					id: "3DC37AACAB174861"
 					item: {
 						count: 1
@@ -519,6 +576,7 @@
 					type: "item"
 				}
 				{
+					count: 2
 					id: "0AF9900151C874EE"
 					item: {
 						count: 1
@@ -527,6 +585,7 @@
 					type: "item"
 				}
 				{
+					count: 2
 					id: "049E6B968853A27C"
 					item: {
 						count: 1
@@ -535,12 +594,20 @@
 					type: "item"
 				}
 				{
-					count: 16
 					id: "5C243CB1DC0F729A"
+					item: {
+						count: 1
+						id: "atheria:antifongique"
+					}
+					type: "item"
+				}
+				{
+					count: 16
+					id: "3B2ABFEE775D7528"
 					item: {
 						components: {
 							"minecraft:custom_data": {
-								AmmoId: "tacz:9mm"
+								AmmoId: "tacz:556x45"
 							}
 							"minecraft:max_stack_size": 60
 						}
@@ -614,6 +681,14 @@
 					silent: true
 					type: "command"
 				}
+				{
+					command: "/execute as {p} unless entity @s[tag=traitre_goblini] run tag @s add confiance_goblini"
+					feedback_message: "Skipoutchou te fait confiance"
+					id: "3EFC53806B0F1A23"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
 			]
 			shape: "gear"
 			size: 1.5d
@@ -640,12 +715,14 @@
 			y: 0.0d
 		}
 		{
-			dependencies: ["493426E2E8FDAC97"]
+			dependencies: [
+				"674E0A996E1DEC11"
+				"74E97CF7DD469DB3"
+			]
 			icon: {
 				id: "atheria:journal_operateur"
 			}
 			id: "3347E7767A4459B5"
-			optional: true
 			rewards: [
 				{
 					command: "/scoreboard players add {p} aura_paf 3"
@@ -663,6 +740,22 @@
 					silent: true
 					type: "command"
 				}
+				{
+					command: "/tag {p} remove confiance_goblini"
+					feedback_message: "Skipoutchou ne te fait plus confiance"
+					id: "21CADD5B32E8845A"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
+				{
+					command: "/tag {p} add chapitre_4"
+					feedback_message: "Chapitre 4 débloqué"
+					id: "0F5D1852DE5B468F"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
 			]
 			tasks: [
 				{
@@ -676,8 +769,19 @@
 					item: { count: 1, id: "atheria:journal_operateur" }
 					type: "item"
 				}
+				{
+					id: "6FC3657BBE4CBC19"
+					item: { count: 1, id: "atheria:dossier_symbiose" }
+					type: "item"
+				}
+				{
+					consume_items: true
+					id: "50911D799DA4DD1A"
+					item: { count: 1, id: "atheria:kit_analyse" }
+					type: "item"
+				}
 			]
-			x: 10.0d
+			x: 12.0d
 			y: -2.0d
 		}
 	]

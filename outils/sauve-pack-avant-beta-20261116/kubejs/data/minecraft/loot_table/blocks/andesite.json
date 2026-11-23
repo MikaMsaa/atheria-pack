@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            { "type": "minecraft:item", "name": "minecraft:andesite", "conditions": [ {"condition":"minecraft:match_tool","predicate":{"predicates":{"minecraft:enchantments":[{"enchantments":"minecraft:silk_touch","levels":{"min":1}}]}}} ] },
+            { "type": "minecraft:item", "name": "trydeas_meleez:chromite", "conditions": [ { "condition": "minecraft:random_chance", "chance": 0.2 } ] },
+            { "type": "minecraft:item", "name": "minecraft:andesite" }
+          ]
+        }
+      ]
+    }
+  ],
+  "random_sequence": "minecraft:blocks/andesite"
+}

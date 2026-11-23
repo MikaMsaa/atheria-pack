@@ -1,0 +1,10 @@
+{
+  "_aide": "Exemple de zone fermée jusqu'à un stade de la campagne (désactivée : \"active\": false). Copier ce fichier, mettre les vrais coins (les deux sont inclus ; [x, z] seulement = toute la hauteur), la quête qui l'ouvre, puis /reload. Conditions possibles, comme les dialogues : tag, sans_tag, vue, score, quete_finie, quete_pas_finie, quete_commencee. Un joueur pour qui elle est fermée est ramené dehors ; /recit zones donne l'état pour soi.",
+  "active": false,
+  "nom": "Campus Somaco",
+  "dimension": "minecraft:overworld",
+  "boites": [ { "de": [1000, 1000], "a": [1100, 1100] } ],
+  "ouverte_si": { "quete_finie": "0000000000000000" },
+  "message": "Le campus est bouclé. Il te faut d'abord un laissez-passer.",
+  "bordure": true
+}

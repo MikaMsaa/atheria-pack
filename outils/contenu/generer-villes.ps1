@@ -128,17 +128,7 @@ $mc += , (Lignes (Grille ' '))
 Part 'ath_marche' $mc @((B 'e' 'minecraft:spruce_slab[type=bottom]'), (B 't' 'minecraft:red_terracotta'))
 Batiment 'ath_marche' 1 1 @('ath_marche') @('ath_toit_vide') '$'
 
-# Eglise : nef haute et clocher
-$eg = @()
-$s = Grille '$'; $eg += , (Lignes $s)
-foreach ($n in 1..7) {
-    $m = Grille ' '; Bord $m 2 0 13 15 '#'; if ($n -ge 2 -and $n -le 5) { foreach ($z in 3, 7, 11) { $m[$z, 2] = 'v'; $m[$z, 13] = 'v' } }
-    if ($n -le 2) { Plein $m 7 15 8 15 ' ' }; if ($n -eq 1) { foreach ($z in 3, 5, 7, 9) { Plein $m 4 $z 6 $z 'e'; Plein $m 9 $z 11 $z 'e' } ; $m[1, 7] = 'C' }
-    $eg += , (Lignes $m)
-}
-foreach ($n in 8..12) { $m = Grille ' '; $i = $n - 8; if ((2 + $i) -le (13 - $i)) { Plein $m (2 + $i) 0 (13 - $i) 15 '$'; if ((3 + $i) -lt (12 - $i)) { Plein $m (3 + $i) 1 (12 - $i) 14 ' ' } }; $eg += , (Lignes $m) }
-Part 'ath_eglise' $eg @((B 'v' 'minecraft:red_stained_glass_pane'), (B 'e' 'minecraft:spruce_slab[type=bottom]'))
-Batiment 'ath_eglise' 1 1 @('ath_eglise') @('ath_toit_vide') '$'
+# (l'ancien batiment ath_eglise a ete retire le 10/11 : aucun element religieux dans le pack)
 
 # Toit d'un grand batiment : seul le pourtour exterieur a un rebord. Coin 'xz' d'apres les captures : 00 nord-ouest, 01 sud-ouest, 10 nord-est, 11 sud-est.
 function RebordExterieur($g, $coin, $car, $pas = 1) {
@@ -292,7 +282,10 @@ function Choix($h) { $l = @(); foreach ($k in $h.Keys) { $l += [ordered]@{ facto
 function Ville($nom, $chance, $min, $max, $caves, $batiments, $multi, $parcs = 0.3) {
     $o = $base | ConvertTo-Json -Depth 30 | ConvertFrom-Json
     $o.style = $nom
-    $o.buildingsettings = [ordered]@{ buildingchance = $chance; minfloors = $min; maxfloors = $max; maxcellars = $caves }
+    # 10/11 (carte blanche de Mika) : plus aucun batiment isole d'un chunk (anciennes boites ath_maison, ath_villa, ath_marche et
+    # tours generiques : ils faisaient tache a cote des batiments vitrine). Les multibatiments vitrine sont places quelle que soit
+    # cette chance ; le reste de la ville est fait de rues, de places et de parcs.
+    $o.buildingsettings = [ordered]@{ buildingchance = 0.0; minfloors = $min; maxfloors = $max; maxcellars = 0 }  # aucune cave : rien ne doit descendre dans les galeries du tram
     $o.selectors.buildings = (Choix $batiments)
     $o.selectors.multibuildings = (Choix $multi)
     Ecrire "$lc\citystyles\citystyle_$nom.json" $o
@@ -312,15 +305,15 @@ function Multi($vitrines, $autres) {
     $h
 }
 $od = [ordered]@{}
-Ville 'ath_brique' 0.45 2 5 1 ([ordered]@{ ath_maison = 2; ath_marche = 0.3; ath_eglise = 0.1; ath_entrepot = 0.2 }) (Multi @('bois', 0.5, 'haussmann', 0.3) ([ordered]@{ ath_hopital = 0.4 }))
+Ville 'ath_brique' 0.45 2 5 1 ([ordered]@{ ath_maison = 2; ath_marche = 0.3; ath_entrepot = 0.2 }) (Multi @('bois', 0.5, 'haussmann', 0.3) ([ordered]@{ ath_hopital = 0.4 }))
 Ville 'ath_beton' 0.6 4 12 2 ([ordered]@{ ath_barre = 2.5; ath_entrepot = 0.2 }) (Multi @('beton', 1) ([ordered]@{ ath_hopital = 0.5; ath_prison = 0.3 }))
 Ville 'ath_verre' 0.7 8 22 3 ([ordered]@{ ath_tour = 3 }) (Multi @('verre', 1) ([ordered]@{ ath_hopital = 0.4 }))
-Ville 'ath_terracotta' 0.4 1 3 0 ([ordered]@{ ath_villa = 3; ath_marche = 0.6; ath_maison = 0.5; ath_eglise = 0.12 }) (Multi @('terracotta', 1) ([ordered]@{ ath_hopital = 0.15 }))
-Ville 'ath_bois' 0.25 1 2 0 ([ordered]@{ ath_maison = 3; ath_entrepot = 0.4; ath_eglise = 0.15; ath_marche = 0.3 }) (Multi @('bois', 1) ([ordered]@{ ath_prison = 0.1 }))
+Ville 'ath_terracotta' 0.4 1 3 0 ([ordered]@{ ath_villa = 3; ath_marche = 0.6; ath_maison = 0.5 }) (Multi @('terracotta', 1) ([ordered]@{ ath_hopital = 0.15 }))
+Ville 'ath_bois' 0.25 1 2 0 ([ordered]@{ ath_maison = 3; ath_entrepot = 0.4; ath_marche = 0.3 }) (Multi @('bois', 1) ([ordered]@{ ath_prison = 0.1 }))
 Ville 'ath_rouille' 0.55 1 4 1 ([ordered]@{ ath_entrepot = 3; ath_barre = 0.4; ath_marche = 0.2 }) (Multi @('rouille', 1, 'base', 0.3) ([ordered]@{ ath_base = 0.5; ath_prison = 0.2 }))
-Ville 'ath_gothique' 0.5 3 9 2 ([ordered]@{ ath_eglise = 0.7; ath_maison = 1.2 }) (Multi @('gothique', 1, 'prison', 0.3) ([ordered]@{ ath_prison = 0.5 }))
+Ville 'ath_gothique' 0.5 3 9 2 ([ordered]@{ ath_maison = 1.2 }) (Multi @('gothique', 1, 'prison', 0.3) ([ordered]@{ ath_prison = 0.5 }))
 Ville 'ath_moderne' 0.35 2 5 1 ([ordered]@{ ath_villa = 1.5; ath_tour = 0.3 }) (Multi @('moderne', 1, 'hopital', 0.3) ([ordered]@{ ath_hopital = 0.5 }))
-Ville 'ath_haussmann' 0.7 5 8 2 ([ordered]@{ ath_maison = 2.5; ath_eglise = 0.08 }) (Multi @('haussmann', 1, 'hopital', 0.2) ([ordered]@{ ath_hopital = 0.4 }))
+Ville 'ath_haussmann' 0.7 5 8 2 ([ordered]@{ ath_maison = 2.5 }) (Multi @('haussmann', 1, 'hopital', 0.2) ([ordered]@{ ath_hopital = 0.4 }))
 Ville 'ath_bidonville' 0.75 1 2 0 ([ordered]@{ ath_maison = 2; ath_marche = 0.5 }) (Multi @('bidonville', 1) $od)
 Ville 'ath_garnison' 0.4 1 4 2 ([ordered]@{ ath_entrepot = 1.5; ath_barre = 0.6 }) (Multi @('garnison', 1, 'base', 0.5, 'prison', 0.3) ([ordered]@{ ath_base = 1.2; ath_prison = 0.4 }))
 Copy-Item "$lc\palettes\ath_beton.json" "$lc\palettes\ath_garnison.json" -Force
@@ -337,30 +330,42 @@ $monde.scattered.list = @($monde.scattered.list) + @(
     (Epars 'ath_grange' 22 $false 4 @{ if_any = @('atheria:terres_agricoles') })
 )
 function Style($nom, $f, $biomes = $null) { $o = [ordered]@{ citystyle = "citystyle_$nom"; factor = $f }; if ($biomes) { $o.biomes = @{ if_any = $biomes } }; $o }
-# Architecture par biome (plan des villes) : chaque centre de ville tire son style selon le biome de son centre.
-# Dans son biome, l'architecture du biome pese environ 80 %, le reste vient des poids de fond (voisins logiques, beton en peripherie).
-# Les anciens styles (standard, atheria_*) ne gardent qu'un poids de fond faible.
-$fond = @{ citystyle_standard = 0.04; citystyle_atheria_metropole = 0.03; citystyle_atheria_banlieue = 0.03; citystyle_atheria_bourg = 0.03; citystyle_atheria_industrie = 0.02; citystyle_desert = 0.3 }
-foreach ($s in $monde.citystyles) { if ($fond.ContainsKey($s.citystyle)) { $s.factor = $fond[$s.citystyle] } }
-$PLAINES = @('#c:is_plains', 'minecraft:plains', 'minecraft:sunflower_plains', 'minecraft:meadow')
-$FORETS = @('#minecraft:is_forest', '#c:is_forest')
-$monde.citystyles = @($monde.citystyles) + @(
-    # fond : partout, faible
-    (Style 'ath_beton' 0.15), (Style 'ath_brique' 0.04), (Style 'ath_haussmann' 0.03), (Style 'ath_verre' 0.02), (Style 'ath_terracotta' 0.02),
-    (Style 'ath_bois' 0.03), (Style 'ath_rouille' 0.03), (Style 'ath_gothique' 0.03), (Style 'ath_moderne' 0.03), (Style 'ath_bidonville' 0.03), (Style 'ath_garnison' 0.03),
-    # biomes
-    (Style 'ath_bois' 2.4 @('#minecraft:is_taiga', '#c:is_snowy', '#c:is_icy', '#c:is_coniferous_tree')),
-    (Style 'ath_terracotta' 2.4 @('#minecraft:is_badlands', '#minecraft:is_savanna', '#c:is_savanna', '#c:is_desert', '#c:is_badlands', 'minecraft:desert')),
-    (Style 'ath_gothique' 3.6 @('minecraft:dark_forest', '#c:is_spooky', '#c:is_swamp', 'minecraft:swamp')),
-    (Style 'ath_haussmann' 1.2 ($PLAINES + $FORETS)), (Style 'ath_brique' 1.2 ($PLAINES + $FORETS)), (Style 'ath_verre' 0.5 $PLAINES),
-    (Style 'ath_moderne' 3.6 @('#minecraft:is_beach', '#c:is_beach', '#c:is_birch_forest', 'minecraft:birch_forest', 'minecraft:old_growth_birch_forest')),
-    (Style 'ath_rouille' 2.4 @('#minecraft:is_river', '#c:is_river', '#minecraft:is_beach', '#c:is_stony_shores')),
-    (Style 'ath_bidonville' 2.4 @('#minecraft:is_jungle', '#c:is_jungle', 'minecraft:mangrove_swamp')),
-    (Style 'ath_garnison' 2.4 @('#minecraft:is_mountain', '#c:is_mountain', '#minecraft:is_hill', '#c:is_hill'))
+# Architecture par region de l'ile (10/11, fige avec Mika et le fil de la map) : chaque centre de ville tire son style selon le biome de son centre.
+#   Friches urbaines (Majicavo, Mamoudzou) : minecraft:plains, biomesoplenty:dryland -> haussmann, beton, verre
+#   Longoni, le port (biome reserve minecraft:sparse_jungle, pose par le mod de l'ile) -> rouille, bidonville
+#   Petite-Terre : AUCUNE ville Lost Cities (decision de Mika du 10/11) : seulement le campus Somaco et le quai de la barge, construits a la main
+# Les villes ne naissent que dans ces biomes (citybiomemultipliers de worldstyle.base.json).
+# Les anciens styles (standard, atheria_*, desert) sont retires : ils posaient des tours generiques.
+$monde.citystyles = @(
+    (Style 'ath_haussmann' 1.0 @('minecraft:plains', 'biomesoplenty:dryland')),
+    (Style 'ath_beton' 1.0 @('minecraft:plains', 'biomesoplenty:dryland')),
+    (Style 'ath_verre' 0.6 @('minecraft:plains', 'biomesoplenty:dryland')),
+    (Style 'ath_rouille' 1.0 @('minecraft:sparse_jungle')),
+    (Style 'ath_bidonville' 1.0 @('minecraft:sparse_jungle')),
+    # repli hors de ces biomes (mondes de test) : jamais de style vide
+    (Style 'ath_beton' 0.01)
 )
 # Les styles varient d'un quartier a l'autre : a 0,8 il fallait 4 chunks sur 4 du meme style et les grands batiments ne sortaient presque jamais
 $monde.multisettings.correctstylefactor = 0.5
 # Batiments vitrine (2x2 et 4x2 chunks) : plus de grands lots par zone de 10x10 chunks pour qu'ils forment l'essentiel des villes
 $monde.multisettings.minimum = 6; $monde.multisettings.maximum = 16; $monde.multisettings.attempts = 200
 Ecrire "$lc\worldstyles\atheria.json" $monde
+# ===== Villes predefinies de l'ile (10/11) =====
+# Avec un tirage au hasard (cityChance), Majicavo et Longoni n'avaient aucune ville : leurs zones sont trop petites pour
+# qu'un centre y tombe. Les villes du lore sont donc posees a des centres fixes, et le tirage au hasard est coupe dans le
+# profil (cityChance 0) : il n'y a de ville que la ou le lore en veut une. Coordonnees : carte v4 du mod de l'ile.
+# Les biomes a villes et zones_villes (exclusions.json) decoupent ensuite chaque ville a la forme de sa region.
+function VilleFixe($nom, $x, $z, $rayon, $style) {
+    Ecrire "$lc\predefinedcities\$nom.json" ([ordered]@{ dimension = 'minecraft:overworld'; chunkx = [int][math]::Floor($x / 16); chunkz = [int][math]::Floor($z / 16); radius = $rayon; citystyle = "citystyle_$style" })
+}
+Get-ChildItem "$lc\predefinedcities" -Filter 'ath_*.json' -ErrorAction SilentlyContinue | Remove-Item
+# Longoni, le port : rouille cote quais (est), bidonville cote terre (ouest et sud de l'enceinte)
+VilleFixe 'ath_longoni_port' 2860 -2960 300 'ath_rouille'
+VilleFixe 'ath_longoni_bidonville' 2620 -2860 260 'ath_bidonville'
+# Majicavo : ruines en beton au bord de la RN1
+VilleFixe 'ath_majicavo' 2408 -2008 120 'ath_beton'   # carre de dryland 2288,-2128 -> 2528,-1888, a l'ouest de la RN1 (fil Carte)
+# Mamoudzou : haussmann autour de la rue du jour 1, verre au centre (CHM), beton vers la RN1
+VilleFixe 'ath_mamoudzou_haussmann' 2924 -846 200 'ath_haussmann'   # hors des lots de la rue (fil Carte)
+VilleFixe 'ath_mamoudzou_verre' 2890 -1090 180 'ath_verre'
+VilleFixe 'ath_mamoudzou_beton' 2760 -1190 200 'ath_beton'
 "villes generees : $((Get-ChildItem "$lc\parts").Count) parties, $((Get-ChildItem "$lc\citystyles").Count) architectures"

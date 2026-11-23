@@ -29,6 +29,7 @@ import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
 // /recit intro                                    revoir l'intro (tout joueur)
+// /recit zones                                    zones fermees et leur etat pour soi (tout joueur)
 // /recit cinematique <nom> [joueurs]              jouer une cinematique (op)
 // /recit dialogue <nom> [joueurs] [pnj]           ouvrir un dialogue (op ; utile depuis Easy NPC ou une quete)
 // /recit reinitialiser <joueurs>                  oublier les cinematiques vues (l'intro repartira a la connexion)
@@ -46,6 +47,7 @@ public final class Commandes {
         CommandDispatcher<CommandSourceStack> d = e.getDispatcher();
         d.register(Commands.literal("recit")
                 .then(Commands.literal("intro").executes(Commandes::revoirIntro))
+                .then(Commands.literal("zones").executes(Zones::lister))
                 .then(Commands.literal("cinematique").requires(s -> s.hasPermission(2))
                         .then(Commands.argument("nom", StringArgumentType.string()).suggests(CINES)
                                 .executes(c -> cine(c, nom(c), List.of(c.getSource().getPlayerOrException())))

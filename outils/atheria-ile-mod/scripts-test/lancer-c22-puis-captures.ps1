@@ -1,0 +1,37 @@
+﻿# Enchaine c22 (0.9.6d, regions-v3n2, memes zones que c21) puis les captures c22 (copie de lancer-c21-puis-captures.ps1, 15/11).
+# -ApresExt3 : attend d'abord que lancer-ext3-colline2.ps1 ait rendu le verrou (LOCK_RENDU dans son journal) ou soit fini.
+# Chaque etape prend et rend son propre verrou. Entre deux passages : 150 s de pause, verrou libre, pour qui attend.
+# Les captures ne partent que si c22 est fini ET si la GRILLE de qc-c22.txt n'a aucun KO.
+param([switch]$ApresExt3, [string]$File = '')
+$Ici = Split-Path -Parent $MyInvocation.MyCommand.Path
+$Lock = 'C:\Users\El-Afdal\Desktop\Atheria Zombie Edition\outils\pause-file.lock'
+$Journal = "$Ici\journal-enchainement-c22.txt"
+function J($t) { $l = "$(Get-Date -Format HH:mm:ss) $t"; [IO.File]::AppendAllText($Journal, "$l`r`n"); Write-Host $l }
+function Lignes($f) { if (Test-Path $f) { @(Get-Content $f) } else { @() } }
+J "DEBUT enchainement c22 + captures (ApresExt3=$ApresExt3)"
+if ($ApresExt3) {
+  $je = "$Ici\journal-ext3-colline2.txt"; $n0 = 0; $t0 = Get-Date
+  # on part de la derniere ligne ATTENTE_VERROU : seul le passage en cours compte
+  $L = Lignes $je; for ($k = $L.Count - 1; $k -ge 0; $k--) { if ($L[$k] -match 'ATTENTE_VERROU') { $n0 = $k; break } }
+  while ($true) {
+    $L = Lignes $je; $fin = @($L | Select-Object -Skip $n0 | Where-Object { $_ -match 'LOCK_RENDU=|ABANDON' })
+    if ($fin) { J "ext3 terminee : $($fin[-1])"; break }
+    if (((Get-Date) - $t0).TotalMinutes -gt 240) { J 'ext3 pas finie en 4 h : abandon'; exit 1 }
+    Start-Sleep 15
+  }
+  J "pause de 150 s, verrou present=$(Test-Path $Lock)"; Start-Sleep 150
+}
+$jc = "$Ici\journal-c22.txt"; $c0 = (Lignes $jc).Count
+J 'ETAPE lancer-c22.ps1'
+if ($File) { & powershell -NoProfile -ExecutionPolicy Bypass -File "$Ici\lancer-c22.ps1" -File $File } else { & powershell -NoProfile -ExecutionPolicy Bypass -File "$Ici\lancer-c22.ps1" }
+J "FIN lancer-c22.ps1 code $LASTEXITCODE"
+$nouv = @(Lignes $jc | Select-Object -Skip $c0)
+if (-not ($nouv -match 'CRENEAU22_FINI') -or -not ($nouv -match 'QC_FINI')) { J 'c22 pas fini ou QC absent : captures NON lancees'; exit 1 }
+$grille = (Get-Content "$Ici\qc-c22.txt" | Where-Object { $_ -match '^GRILLE' }) -join ''
+J "QC c22 $grille"
+if (-not $grille -or $grille -match '\bKO\b') { J 'QC_C22_MAUVAIS : captures NON lancees'; exit 2 }
+J "pause de 150 s, verrou present=$(Test-Path $Lock)"; Start-Sleep 150
+J 'ETAPE lancer-captures-c22.ps1'
+& powershell -NoProfile -ExecutionPolicy Bypass -File "$Ici\lancer-captures-c22.ps1"
+J "FIN lancer-captures-c22.ps1 code $LASTEXITCODE"
+J 'ENCHAINEMENT_FINI'

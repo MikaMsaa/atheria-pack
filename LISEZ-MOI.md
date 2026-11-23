@@ -1,3 +1,22 @@
+# Atheria Zombie Edition : plan du dossier (rangé le 08/11/2026)
+
+| Dossier | À quoi il sert |
+| --- | --- |
+| `pack\` | Le modpack publié (packwiz → GitHub → mises à jour auto des joueurs). Ne pas déplacer. |
+| `instances\Atheria` | Instance Prism de test (monde « ZZ Villes 33 » indispensable au fil des villes, « ZZ Villes 37 » en cours). |
+| `instances\AtheriaRecit` | Instance de test du mod de récit. |
+| `serveur\` | Serveur de test (ne jamais toucher `server.properties` à la main). |
+| `outils\atheria-*-mod\` | Sources des mods maison. |
+| `outils\contenu\` | Générateurs des villes, biomes, compétences (`synchro-contenu.ps1` copie vers instance + serveur). |
+| `outils\ffmpeg\` | ffmpeg pour le trailer. |
+| `outils\ancien-telechargement\` | Ancienne méthode d'installation des mods (avant packwiz), gardée au cas où. |
+| `client\` | Ancien dossier client (touches par défaut, réglages shaders). |
+| `docs\` | Journal (`journal-stabilisation.md`), butin, guides ; `captures\`, `vitrine-batiments\` (versions finales), `archives\`. |
+| `Atheria-Zombie-Edition-1.0.8.mrpack` | Dernière version installable d'un coup (nouvelles installations). |
+| `sauvegarder.bat` | Sauvegarde vers GitHub, branche « sauvegarde » (jamais main). |
+
+---
+
 # Atheria Zombie Edition : mods
 
 Minecraft **1.21.1**, **NeoForge** (21.1.235 ou plus récent conseillé), **Java 21**.

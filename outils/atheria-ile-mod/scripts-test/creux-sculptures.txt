@@ -1,0 +1,57 @@
+﻿python : C:\Users\El-Afdal\Desktop\Atheria Zombie Edition\outils\atheria-ile-mod\scripts-test\creux_sculptures.py:47: 
+DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use 
+get_flattened_data instead.
+Au caractère Ligne:1 : 394
++ ... ipts-test'; python -I "$st\creux_sculptures.py" 'C:\Users\El-Afdal\De ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\El-Afd...d_data instead.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  H = [v / 256.0 for v in HI.getdata()]; M = list(MI.getdata()); M = [m[0] if isinstance(m, tuple) else m for m in M]
+ileA  monde :   0 creux secs {} (profondeur {}) ; carte arrondie :   0 creux, 0/0 creux du monde expliques ; accord monde/carte 85 % ; apres comblement : 0 creux (0 colonnes remontees)
+phare monde :   0 creux secs {} (profondeur {}) ; carte arrondie :   2 creux, 0/0 creux du monde expliques ; accord monde/carte 72 % ; apres comblement : 0 creux (3 colonnes remontees)
+z002  monde :   4 creux secs {'3x3': 3, '1x1': 1} (profondeur {1: 4}) ; carte arrondie :   4 creux, 1/4 creux du monde expliques ; accord monde/carte 70 % ; apres comblement : 0 creux (15 colonnes remontees)
+      ex. -5141,-661 Y 62, 9 colonnes, profondeur 1, bloc sand, carte 62.49
+      ex. -5129,-661 Y 62, 9 colonnes, profondeur 1, bloc sand, carte 62.36
+      ex. -5169,-657 Y 63, 9 colonnes, profondeur 1, bloc sand, carte 63.60
+hum   monde :   4 creux secs {'1x3': 1, '3x3': 1, '3x2': 1, '2x1': 1} (profondeur {1: 4}) ; carte arrondie :   6 creux, 0/4 creux du monde expliques ; accord monde/carte 64 % ; apres comblement : 0 creux (37 colonnes remontees)
+      ex. 3319,851 Y 62, 3 colonnes, profondeur 1, bloc stone, carte 62.05
+      ex. 3319,863 Y 62, 9 colonnes, profondeur 1, bloc stone, carte 62.02
+      ex. 3296,871 Y 62, 4 colonnes, profondeur 1, bloc terre_calcinee, carte 62.00
+z003  monde :  11 creux secs {'3x3': 7, '2x3': 2, '2x2': 1, '2x4': 1} (profondeur {1: 10, 4: 1}) ; carte arrondie :   9 creux, 2/11 creux du monde expliques ; accord monde/carte 79 % ; apres comblement : 0 creux (43 colonnes remontees)
+      ex. 187,-5717 Y 66, 8 colonnes, profondeur 1, bloc sand, carte 65.73
+      ex. 179,-5705 Y 65, 8 colonnes, profondeur 1, bloc sand, carte 65.58
+      ex. 204,-5704 Y 65, 4 colonnes, profondeur 1, bloc sand, carte 65.05
+z006  monde :   9 creux secs {'1x1': 4, '3x3': 3, '2x1': 1, '3x1': 1} (profondeur {1: 9}) ; carte arrondie :   9 creux, 2/9 creux du monde expliques ; accord monde/carte 60 % ; apres comblement : 0 creux (33 colonnes remontees)
+      ex. -1429,5755 Y 62, 8 colonnes, profondeur 1, bloc sand, carte 62.36
+      ex. -1418,5755 Y 62, 1 colonnes, profondeur 1, bloc mud, carte 63.86
+      ex. -1425,5759 Y 62, 9 colonnes, profondeur 1, bloc sand, carte 62.48
+z001  monde :  45 creux secs {'1x1': 23, '3x3': 6, '2x2': 4, '2x3': 4} (profondeur {1: 45}) ; carte arrondie :  16 creux, 3/45 creux du monde expliques ; accord monde/carte 57 % ; apres comblement : 0 creux (54 colonnes remontees)
+      ex. 3358,-1309 Y 63, 1 colonnes, profondeur 1, bloc dirt, carte 64.40
+      ex. 3369,-1308 Y 65, 1 colonnes, profondeur 1, bloc dirt, carte 66.64
+      ex. 3353,-1303 Y 63, 1 colonnes, profondeur 1, bloc dirt, carte 64.49
+z008  monde :  44 creux secs {'1x1': 29, '3x3': 9, '2x2': 3, '1x2': 2} (profondeur {1: 36, 2: 8}) ; carte arrondie :  13 creux, 2/44 creux du monde expliques ; accord monde/carte 68 % ; apres comblement : 0 creux (43 colonnes remontees)
+      ex. -3905,4367 Y 70, 9 colonnes, profondeur 1, bloc blackstone, carte 70.22
+      ex. -3957,4387 Y 64, 9 colonnes, profondeur 1, bloc stone, carte 64.51
+      ex. -3877,4388 Y 71, 4 colonnes, profondeur 1, bloc basalt, carte 71.65
+z010  monde :  61 creux secs {'1x1': 34, '2x3': 4, '3x2': 4, '2x1': 4} (profondeur {1: 58, 2: 2, 3: 1}) ; carte arrondie :  21 creux, 5/61 creux du monde expliques ; accord monde/carte 32 % ; apres comblement : 0 creux (87 colonnes remontees)
+      ex. -248,-3578 Y 93, 1 colonnes, profondeur 1, bloc dirt, carte 94.30
+      ex. -352,-3573 Y 97, 3 colonnes, profondeur 1, bloc moss_block, carte 97.38
+      ex. -296,-3573 Y 97, 4 colonnes, profondeur 1, bloc moss_block, carte 97.53
+z013  monde : 154 creux secs {'1x1': 61, '2x2': 24, '2x1': 18, '1x2': 14} (profondeur {1: 146, 5: 2, 2: 2}) ; carte arrondie :  21 creux, 5/154 creux du monde expliques ; accord monde/carte 36 % ; apres comblement : 0 creux (111 colonnes remontees)
+      ex. -1352,2070 Y 147, 8 colonnes, profondeur 1, bloc podzol, carte 147.93
+      ex. -1276,2070 Y 151, 3 colonnes, profondeur 5, bloc stone, carte 157.40
+      ex. -1360,2072 Y 145, 1 colonnes, profondeur 1, bloc dirt, carte 146.41
+z004  monde :  69 creux secs {'1x1': 46, '1x2': 6, '2x2': 3, '2x3': 3} (profondeur {1: 69}) ; carte arrondie :  33 creux, 0/69 creux du monde expliques ; accord monde/carte 60 % ; apres comblement : 0 creux (79 colonnes remontees)
+      ex. -3235,3185 Y 117, 1 colonnes, profondeur 1, bloc white_terracotta, carte 120.05
+      ex. -3208,3186 Y 121, 1 colonnes, profondeur 1, bloc white_terracotta, carte 123.41
+      ex. -3173,3187 Y 124, 3 colonnes, profondeur 1, bloc white_terracotta, carte 126.29
+z009  monde :   4 creux secs {'2x3': 1, '1x1': 1, '2x1': 1, '3x2': 1} (profondeur {1: 4}) ; carte arrondie :  25 creux, 0/4 creux du monde expliques ; accord monde/carte 0 % ; apres comblement : 0 creux (165 colonnes remontees)
+      ex. -388,1624 Y 157, 4 colonnes, profondeur 1, bloc stone, carte 174.28
+      ex. -419,1641 Y 158, 1 colonnes, profondeur 1, bloc stone, carte 179.43
+      ex. -422,1643 Y 158, 2 colonnes, profondeur 1, bloc ice_sheet, carte 180.48
+z011  monde :  27 creux secs {'1x1': 9, '3x3': 5, '3x2': 3, '2x1': 3} (profondeur {1: 25, 5: 1, 4: 1}) ; carte arrondie :  24 creux, 6/27 creux du monde expliques ; accord monde/carte 20 % ; apres comblement : 0 creux (116 colonnes remontees)
+      ex. 1667,-445 Y 65, 9 colonnes, profondeur 1, bloc dirt, carte 66.55
+      ex. 1687,-441 Y 67, 6 colonnes, profondeur 1, bloc dirt, carte 68.48
+      ex. 1737,-432 Y 84, 2 colonnes, profondeur 1, bloc stone, carte 89.25
+TOTAL {'monde': 432, 'carte': 183, 'apres': 0, 'expl': 26}

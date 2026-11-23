@@ -7,6 +7,8 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -34,13 +36,19 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.living.LivingChangeTargetEvent;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
@@ -60,10 +68,21 @@ final class Uniques {
     private static final Gson GSON = new Gson();
     static final String CLE = "atheria_unique";
     private static final String ENFANT = "atheria_enfant";
+    private static final String ALLIANCE = "atheria_alliance";
+    private static final Map<String, Integer> ABSENT = new HashMap<>();
     private static final double DISTANCE_BARRE = 40;
 
+    // Par alliance ("par_alliance": true) : la commande pose un repaire au lieu du mob ; chaque alliance (equipe FTB) qui
+    // y entre (a "reveil" blocs, et si le joueur remplit "reveil_si" : tags / sans_tags) recoit son propre exemplaire,
+    // qui n'attaque qu'elle et que seule elle peut blesser. Vaincu par elle : il laisse son "butin" et ne revient plus pour
+    // elle ; tue autrement (autre cause, perdu), il reviendra a son prochain passage.
     record Unique(String id, String nom, EntityType<?> type, BossEvent.BossBarColor couleur, Map<Holder<Attribute>, Double> attributs,
-                  boolean immobile, boolean sansGravite, List<EntityType<?>> naissances, int toutesLes, int max, double distanceJoueur) {
+                  boolean immobile, boolean sansGravite, List<EntityType<?>> naissances, int toutesLes, int max, double distanceJoueur,
+                  boolean parAlliance, double reveil, List<String> siTags, List<String> sansTags, List<ItemStack> butin,
+                  String revientSansTag, int retour) {
+    }
+
+    record Repaire(String dimension, double x, double y, double z, float rot) {
     }
 
     static volatile Map<String, Unique> UNIQUES = Map.of();
@@ -80,11 +99,14 @@ final class Uniques {
         NeoForge.EVENT_BUS.addListener(Uniques::depart);
         NeoForge.EVENT_BUS.addListener(Uniques::mort);
         NeoForge.EVENT_BUS.addListener(Uniques::tick);
+        NeoForge.EVENT_BUS.addListener(EventPriority.LOW, Uniques::cible);
+        NeoForge.EVENT_BUS.addListener(EventPriority.HIGH, Uniques::coup);
         NeoForge.EVENT_BUS.addListener((ServerStoppedEvent e) -> {
             BARRES.values().forEach(ServerBossEvent::removeAllPlayers);
             BARRES.clear();
             CHARGES.clear();
             PROCHAINE.clear();
+            ABSENT.clear();
         });
     }
 
@@ -132,8 +154,25 @@ final class Uniques {
             max = n.has("max") ? Math.max(0, n.get("max").getAsInt()) : 4;
             if (n.has("distance_joueur")) dist = n.get("distance_joueur").getAsDouble();
         }
+        List<String> si = new ArrayList<>(), sans = new ArrayList<>();
+        if (o.has("reveil_si")) {
+            JsonObject r = o.getAsJsonObject("reveil_si");
+            if (r.has("tags")) for (JsonElement e : r.getAsJsonArray("tags")) si.add(e.getAsString());
+            if (r.has("sans_tags")) for (JsonElement e : r.getAsJsonArray("sans_tags")) sans.add(e.getAsString());
+        }
+        List<ItemStack> butin = new ArrayList<>();
+        if (o.has("butin")) for (JsonElement e : o.getAsJsonArray("butin")) {
+            JsonObject b = e.getAsJsonObject();
+            var it = BuiltInRegistries.ITEM.getOptional(ResourceLocation.parse(b.get("objet").getAsString()));
+            if (it.isPresent()) butin.add(new ItemStack(it.get(), b.has("nombre") ? Math.max(1, b.get("nombre").getAsInt()) : 1));
+            else AtheriaBestiaire.LOG.warn("Unique {} : objet de butin inconnu {}", id, b.get("objet").getAsString());
+        }
         return new Unique(id, nom, t, couleur, Map.copyOf(attr), o.has("immobile") && o.get("immobile").getAsBoolean(),
-                o.has("sans_gravite") && o.get("sans_gravite").getAsBoolean(), List.copyOf(nes), toutesLes, max, dist);
+                o.has("sans_gravite") && o.get("sans_gravite").getAsBoolean(), List.copyOf(nes), toutesLes, max, dist,
+                o.has("par_alliance") && o.get("par_alliance").getAsBoolean(), o.has("reveil") ? Math.max(4, o.get("reveil").getAsDouble()) : 24,
+                List.copyOf(si), List.copyOf(sans), List.copyOf(butin),
+                o.has("revient_sans_tag") ? o.get("revient_sans_tag").getAsString() : null,
+                o.has("retour") ? Math.max(0, o.get("retour").getAsInt()) : 600);
     }
 
     // ---------- etat sauvegarde : qui existe, qui a ete vaincu ----------
@@ -141,6 +180,10 @@ final class Uniques {
     static final class Etat extends SavedData {
         final Map<String, UUID> vivants = new HashMap<>();
         final Map<String, Boolean> vaincus = new HashMap<>();
+        // repaires des uniques par alliance ; cles des etats par alliance : "<id>@<alliance>"
+        final Map<String, Repaire> repaires = new HashMap<>();
+        // moment (temps de jeu) de chaque victoire d'alliance, pour un retour eventuel (revient_sans_tag)
+        final Map<String, Long> victoires = new HashMap<>();
 
         @Override
         public CompoundTag save(CompoundTag t, HolderLookup.Provider p) {
@@ -148,8 +191,22 @@ final class Uniques {
             vivants.forEach((k, u) -> v.putUUID(k, u));
             CompoundTag d = new CompoundTag();
             vaincus.forEach(d::putBoolean);
+            CompoundTag r = new CompoundTag();
+            repaires.forEach((k, a) -> {
+                CompoundTag c = new CompoundTag();
+                c.putString("dim", a.dimension());
+                c.putDouble("x", a.x());
+                c.putDouble("y", a.y());
+                c.putDouble("z", a.z());
+                c.putFloat("rot", a.rot());
+                r.put(k, c);
+            });
             t.put("vivants", v);
             t.put("vaincus", d);
+            t.put("repaires", r);
+            CompoundTag w = new CompoundTag();
+            victoires.forEach(w::putLong);
+            t.put("victoires", w);
             return t;
         }
 
@@ -159,6 +216,13 @@ final class Uniques {
             for (String k : v.getAllKeys()) if (v.hasUUID(k)) e.vivants.put(k, v.getUUID(k));
             CompoundTag d = t.getCompound("vaincus");
             for (String k : d.getAllKeys()) e.vaincus.put(k, d.getBoolean(k));
+            CompoundTag w = t.getCompound("victoires");
+            for (String k : w.getAllKeys()) e.victoires.put(k, w.getLong(k));
+            CompoundTag r = t.getCompound("repaires");
+            for (String k : r.getAllKeys()) {
+                CompoundTag c = r.getCompound(k);
+                e.repaires.put(k, new Repaire(c.getString("dim"), c.getDouble("x"), c.getDouble("y"), c.getDouble("z"), c.getFloat("rot")));
+            }
             return e;
         }
     }
@@ -188,6 +252,7 @@ final class Uniques {
             return 0;
         }
         Etat etat = etat(s.getServer());
+        if (u.parAlliance()) return poserRepaire(s, u, etat, force);
         UUID ancien = etat.vivants.get(id);
         if (!force) {
             if (ancien != null) {
@@ -206,30 +271,12 @@ final class Uniques {
                 if (en != null) en.discard();
             }
         }
-        Entity en = u.type().create(level);
-        if (!(en instanceof Mob m)) {
-            if (en != null) en.discard();
+        Vec3 p = s.getPosition();
+        Mob m = creer(level, u, p, s.getRotation().y, MobSpawnType.COMMAND);
+        if (m == null) {
             s.sendFailure(Component.literal(EntityType.getKey(u.type()) + " n'est pas une créature"));
             return 0;
         }
-        Vec3 p = s.getPosition();
-        m.moveTo(p.x, p.y, p.z, s.getRotation().y, 0f);
-        EventHooks.finalizeMobSpawn(m, level, level.getCurrentDifficultyAt(BlockPos.containing(p)), MobSpawnType.COMMAND, null);
-        u.attributs().forEach((a, v) -> {
-            AttributeInstance i = m.getAttribute(a);
-            if (i != null) i.setBaseValue(v);
-        });
-        if (u.immobile()) {
-            AttributeInstance vit = m.getAttribute(Attributes.MOVEMENT_SPEED);
-            if (vit != null) vit.setBaseValue(0);
-            AttributeInstance recul = m.getAttribute(Attributes.KNOCKBACK_RESISTANCE);
-            if (recul != null) recul.setBaseValue(1);
-        }
-        if (u.sansGravite()) m.setNoGravity(true);
-        m.setHealth(m.getMaxHealth());
-        m.setCustomName(Component.literal(u.nom()));
-        m.setCustomNameVisible(true);
-        m.setPersistenceRequired();
         m.getPersistentData().putString(CLE, id);
         // l'etat d'abord : l'arrivee dans le monde verifie que c'est bien l'exemplaire en place
         UUID avant = etat.vivants.put(id, m.getUUID());
@@ -246,6 +293,60 @@ final class Uniques {
         return 1;
     }
 
+    private static Mob creer(ServerLevel level, Unique u, Vec3 p, float rot, MobSpawnType raison) {
+        Entity en = u.type().create(level);
+        if (!(en instanceof Mob m)) {
+            if (en != null) en.discard();
+            return null;
+        }
+        m.moveTo(p.x, p.y, p.z, rot, 0f);
+        EventHooks.finalizeMobSpawn(m, level, level.getCurrentDifficultyAt(BlockPos.containing(p)), raison, null);
+        u.attributs().forEach((a, v) -> {
+            AttributeInstance i = m.getAttribute(a);
+            if (i != null) i.setBaseValue(v);
+        });
+        if (u.immobile()) {
+            AttributeInstance vit = m.getAttribute(Attributes.MOVEMENT_SPEED);
+            if (vit != null) vit.setBaseValue(0);
+            AttributeInstance recul = m.getAttribute(Attributes.KNOCKBACK_RESISTANCE);
+            if (recul != null) recul.setBaseValue(1);
+        }
+        if (u.sansGravite()) m.setNoGravity(true);
+        m.setHealth(m.getMaxHealth());
+        m.setCustomName(Component.literal(u.nom()));
+        m.setCustomNameVisible(true);
+        m.setPersistenceRequired();
+        return m;
+    }
+
+    // Unique par alliance : la commande pose (ou deplace, avec "force") le repaire ; "force" remet aussi toutes les alliances a zero.
+    private static int poserRepaire(CommandSourceStack s, Unique u, Etat etat, boolean force) {
+        String id = u.id();
+        if (etat.repaires.containsKey(id) && !force) {
+            s.sendFailure(Component.literal("Le repaire de " + u.nom() + " est déjà posé. Ajoute « force » pour le déplacer et remettre toutes les alliances à zéro."));
+            return 0;
+        }
+        String prefixe = id + "@";
+        if (force) {
+            for (var it = etat.vivants.entrySet().iterator(); it.hasNext(); ) {
+                var en = it.next();
+                if (!en.getKey().startsWith(prefixe)) continue;
+                for (ServerLevel l : s.getServer().getAllLevels()) {
+                    Entity x = l.getEntity(en.getValue());
+                    if (x != null) x.discard();
+                }
+                it.remove();
+            }
+            etat.vaincus.keySet().removeIf(k -> k.startsWith(prefixe));
+            etat.victoires.keySet().removeIf(k -> k.startsWith(prefixe));
+        }
+        Vec3 p = s.getPosition();
+        etat.repaires.put(id, new Repaire(s.getLevel().dimension().location().toString(), p.x, p.y, p.z, s.getRotation().y));
+        etat.setDirty();
+        s.sendSuccess(() -> Component.literal("Repaire de " + u.nom() + " posé : il apparaîtra pour chaque alliance qui s'en approche."), true);
+        return 1;
+    }
+
     private static int lister(CommandContext<CommandSourceStack> c) {
         Etat etat = etat(c.getSource().getServer());
         if (UNIQUES.isEmpty()) {
@@ -253,7 +354,17 @@ final class Uniques {
             return 0;
         }
         for (Unique u : UNIQUES.values()) {
-            String st = etat.vivants.containsKey(u.id()) ? "en place" : Boolean.TRUE.equals(etat.vaincus.get(u.id())) ? "vaincu" : "pas encore placé";
+            if (u.parAlliance()) {
+                String px = u.id() + "@";
+                long vivants = etat.vivants.keySet().stream().filter(k -> k.startsWith(px)).count();
+                long vaincus = etat.vaincus.keySet().stream().filter(k -> k.startsWith(px)).count();
+                Repaire r = etat.repaires.get(u.id());
+                String ou = r == null ? "repaire pas encore posé" : "repaire en " + (int) r.x() + " " + (int) r.y() + " " + (int) r.z();
+                c.getSource().sendSuccess(() -> Component.literal(u.nom() + " (" + u.id() + ", par alliance) : " + ou + ", "
+                        + vivants + " en vie, vaincu par " + vaincus + " alliance(s)"), false);
+                continue;
+            }
+            String st =etat.vivants.containsKey(u.id()) ? "en place" : Boolean.TRUE.equals(etat.vaincus.get(u.id())) ? "vaincu" : "pas encore placé";
             c.getSource().sendSuccess(() -> Component.literal(u.nom() + " (" + u.id() + ") : " + st), false);
         }
         return UNIQUES.size();
@@ -265,16 +376,31 @@ final class Uniques {
         return e instanceof Mob m && m.getPersistentData().contains(CLE) ? m.getPersistentData().getString(CLE) : null;
     }
 
+    // alliance d'un exemplaire par alliance (null pour un unique ordinaire)
+    static UUID alliance(Mob m) {
+        CompoundTag d = m.getPersistentData();
+        return d.hasUUID(ALLIANCE) ? d.getUUID(ALLIANCE) : null;
+    }
+
+    // cle de l'etat : "<id>" ou "<id>@<alliance>"
+    private static String cle(Mob m) {
+        String id = id(m);
+        if (id == null) return null;
+        UUID a = alliance(m);
+        return a == null ? id : id + "@" + a;
+    }
+
     private static void arrivee(EntityJoinLevelEvent e) {
-        String id = e.getLevel().isClientSide() ? null : id(e.getEntity());
-        if (id == null) return;
-        // un ancien exemplaire remplace par "force" (ou deja vaincu) qui se recharge : il n'existe plus
+        String cle = !e.getLevel().isClientSide() && e.getEntity() instanceof Mob mob ? cle(mob) : null;
+        if (cle == null) return;
+        // un ancien exemplaire remplace par "force" (ou deja vaincu, ou declare perdu) qui se recharge : il n'existe plus
         MinecraftServer s = e.getLevel().getServer();
-        if (s != null && !e.getEntity().getUUID().equals(etat(s).vivants.get(id))) {
+        if (s != null && !e.getEntity().getUUID().equals(etat(s).vivants.get(cle))) {
             e.setCanceled(true);
             return;
         }
         CHARGES.put(e.getEntity().getUUID(), (Mob) e.getEntity());
+        ABSENT.remove(cle);
     }
 
     private static void depart(EntityLeaveLevelEvent e) {
@@ -287,18 +413,44 @@ final class Uniques {
     }
 
     private static void mort(LivingDeathEvent e) {
-        String id = id(e.getEntity());
-        if (id == null || e.getEntity().level().isClientSide()) return;
-        Etat etat = etat(e.getEntity().getServer());
-        if (e.getEntity().getUUID().equals(etat.vivants.get(id))) {
-            etat.vivants.remove(id);
-            etat.vaincus.put(id, true);
-            etat.setDirty();
+        if (!(e.getEntity() instanceof Mob m) || m.level().isClientSide()) return;
+        String cle = cle(m);
+        if (cle == null) return;
+        Etat etat = etat(m.getServer());
+        if (!m.getUUID().equals(etat.vivants.get(cle))) return;
+        etat.vivants.remove(cle);
+        UUID a = alliance(m);
+        // par alliance : vaincu seulement par un joueur de l'alliance ; sinon il reviendra
+        boolean vaincu = a == null || ((e.getSource().getEntity() instanceof Player ? e.getSource().getEntity() : m.getKillCredit()) instanceof Player p && a.equals(Equipes.alliance(p.getUUID())));
+        if (vaincu) {
+            etat.vaincus.put(cle, true);
+            if (a != null) etat.victoires.put(cle, m.level().getGameTime());
+            Unique u = UNIQUES.get(id(m));
+            if (u != null) for (ItemStack it : u.butin()) {
+                ItemEntity ie = m.spawnAtLocation(it.copy());
+                if (ie != null) ie.setUnlimitedLifetime();
+            }
         }
+        etat.setDirty();
+    }
+
+    // L'exemplaire d'une alliance n'attaque qu'elle et ne prend de coups que d'elle
+    private static void cible(LivingChangeTargetEvent e) {
+        if (!(e.getEntity() instanceof Mob m) || !(e.getNewAboutToBeSetTarget() instanceof Player p) || m.level().isClientSide()) return;
+        UUID a = alliance(m);
+        if (a != null && !a.equals(Equipes.alliance(p.getUUID()))) e.setCanceled(true);
+    }
+
+    private static void coup(LivingIncomingDamageEvent e) {
+        if (!(e.getEntity() instanceof Mob m) || m.level().isClientSide() || !(e.getSource().getEntity() instanceof Player p)) return;
+        UUID a = alliance(m);
+        if (a != null && !p.isCreative() && !a.equals(Equipes.alliance(p.getUUID()))) e.setCanceled(true);
     }
 
     private static void tick(LevelTickEvent.Post e) {
-        if (!(e.getLevel() instanceof ServerLevel level) || CHARGES.isEmpty() || level.getGameTime() % 10 != 0) return;
+        if (!(e.getLevel() instanceof ServerLevel level) || level.getGameTime() % 10 != 0) return;
+        if (level.getGameTime() % 20 == 0) repaires(level);
+        if (CHARGES.isEmpty()) return;
         for (Mob m : new ArrayList<>(CHARGES.values())) {
             if (m.level() != level || !m.isAlive()) continue;
             Unique u = UNIQUES.get(id(m));
@@ -307,16 +459,78 @@ final class Uniques {
         }
     }
 
+    // Chaque seconde : une alliance pres d'un repaire, sans exemplaire vivant ni victoire, recoit le sien.
+    // Un exemplaire inscrit vivant mais introuvable 60 s de suite alors que l'alliance est au repaire est declare perdu.
+    private static void repaires(ServerLevel level) {
+        if (UNIQUES.isEmpty() || level.players().isEmpty()) return;
+        Etat etat = null;
+        String dim = level.dimension().location().toString();
+        for (Unique u : UNIQUES.values()) {
+            if (!u.parAlliance()) continue;
+            if (etat == null) etat = etat(level.getServer());
+            Repaire r = etat.repaires.get(u.id());
+            if (r == null || !r.dimension().equals(dim)) continue;
+            Vec3 c = new Vec3(r.x(), r.y(), r.z());
+            if (!level.isLoaded(BlockPos.containing(c))) continue;
+            double r2 = u.reveil() * u.reveil();
+            Set<String> vues = new HashSet<>();
+            for (ServerPlayer p : level.players()) {
+                if (!p.isAlive() || p.isSpectator() || p.isCreative() || p.distanceToSqr(c) > r2 || !reveille(u, p)) continue;
+                UUID a = Equipes.alliance(p.getUUID());
+                String cle = u.id() + "@" + a;
+                if (!vues.add(cle)) continue;
+                if (Boolean.TRUE.equals(etat.vaincus.get(cle))) {
+                    // vaincu : il ne revient que si l'alliance n'a pas encore valide (revient_sans_tag), apres "retour" secondes
+                    if (u.revientSansTag() == null || p.getTags().contains(u.revientSansTag())) continue;
+                    Long quand = etat.victoires.get(cle);
+                    if (quand != null && level.getGameTime() - quand < u.retour() * 20L) continue;
+                    etat.vaincus.remove(cle);
+                    etat.victoires.remove(cle);
+                }
+                UUID vivant = etat.vivants.get(cle);
+                if (vivant != null) {
+                    if (CHARGES.containsKey(vivant)) {
+                        ABSENT.remove(cle);
+                        continue;
+                    }
+                    if (ABSENT.merge(cle, 1, Integer::sum) < 60) continue;
+                    ABSENT.remove(cle);
+                    AtheriaBestiaire.LOG.info("{} de l'alliance {} introuvable depuis 60 s : il revient au repaire", u.nom(), a);
+                }
+                Mob m = creer(level, u, c, r.rot(), MobSpawnType.EVENT);
+                if (m == null) continue;
+                m.getPersistentData().putString(CLE, u.id());
+                m.getPersistentData().putUUID(ALLIANCE, a);
+                etat.vivants.put(cle, m.getUUID());
+                if (!level.tryAddFreshEntityWithPassengers(m)) {
+                    if (vivant != null) etat.vivants.put(cle, vivant);
+                    else etat.vivants.remove(cle);
+                    AtheriaBestiaire.LOG.warn("{} n'a pas pu apparaitre a son repaire pour l'alliance {} (refuse par le monde ou un autre mod)", u.nom(), a);
+                    continue;
+                }
+                AtheriaBestiaire.LOG.info("{} apparait a son repaire pour l'alliance {}", u.nom(), a);
+                etat.setDirty();
+            }
+        }
+    }
+
+    private static boolean reveille(Unique u, ServerPlayer p) {
+        Set<String> tags = p.getTags();
+        for (String t : u.siTags()) if (!tags.contains(t)) return false;
+        for (String t : u.sansTags()) if (tags.contains(t)) return false;
+        return true;
+    }
     private static void barre(ServerLevel level, Mob m, Unique u) {
         ServerBossEvent b = BARRES.computeIfAbsent(m.getUUID(), k -> new ServerBossEvent(m.getDisplayName(),
                 u == null ? BossEvent.BossBarColor.RED : u.couleur(), BossEvent.BossBarOverlay.PROGRESS));
         b.setProgress(Math.max(0f, Math.min(1f, m.getHealth() / m.getMaxHealth())));
         double d2 = DISTANCE_BARRE * DISTANCE_BARRE;
+        UUID a = alliance(m);
         for (ServerPlayer p : new ArrayList<>(b.getPlayers())) {
             if (p.level() != level || !p.isAlive() || p.distanceToSqr(m) > d2) b.removePlayer(p);
         }
         for (ServerPlayer p : level.players()) {
-            if (p.isAlive() && !p.isSpectator() && p.distanceToSqr(m) <= d2) b.addPlayer(p);
+            if (p.isAlive() && !p.isSpectator() && p.distanceToSqr(m) <= d2 && (a == null || a.equals(Equipes.alliance(p.getUUID())))) b.addPlayer(p);
         }
     }
 

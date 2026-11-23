@@ -1,0 +1,153 @@
+RENDU DE L'ILE (sans generer de chunk)
+echantillons : 375 x 375 (1 tous les 32 blocs), duree 253,4 s
+hauteur du fond : min -27, max 303, niveau de la mer 63
+terre sur l'image : 34,1 %, terre generee : 30,7 %
+ecarts terre/mer pres des cotes (< 96 blocs) : 731 (0,52 %)
+rivieres dans les terres (normal, en bleu) : 1888 (1,34 %)
+ecarts terre/mer FRANCS hors rivieres (> 96 blocs de la cote) : 2547 (1,81 %)
+plages enneigees dans une region non froide : 0 (attendu 0)
+biomes de surface hors liste de leur region : 0 sur 43210 echantillons de terre (0,00 %)
+
+BIOMES PAR REGION (echantillons de terre)
+Canyons de latérite rouge (2906)
+    33,0 %  minecraft:badlands
+    32,8 %  minecraft:eroded_badlands
+    17,8 %  terralith:bryce_canyon
+    10,9 %  terralith:savanna_badlands
+     5,3 %  minecraft:wooded_badlands
+     0,3 %  minecraft:beach
+Côte calcaire et falaises du Nord (6035)
+    66,0 %  terralith:white_cliffs
+    17,1 %  minecraft:plains
+    13,8 %  terralith:rocky_shrubland
+     2,7 %  minecraft:beach
+     0,1 %  terralith:gravel_beach
+     0,1 %  biomesoplenty:gravel_beach
+     0,1 %  biomesoplenty:dune_beach
+Friches urbaines (Majicavo, Mamoudzou) (3769)
+    45,6 %  minecraft:plains
+    31,8 %  biomesoplenty:wasteland
+    18,2 %  biomesoplenty:dryland
+     3,3 %  minecraft:beach
+     1,0 %  biomesoplenty:dune_beach
+     0,1 %  terralith:gravel_beach
+Hauts plateaux et pins (3123)
+    36,8 %  terralith:forested_highlands
+    26,5 %  terralith:highlands
+    22,9 %  terralith:alpine_highlands
+    13,8 %  biomesoplenty:coniferous_forest
+Jungle de l'Ouest (4135)
+    43,5 %  biomesoplenty:rainforest
+    34,5 %  terralith:tropical_jungle
+    18,0 %  minecraft:bamboo_jungle
+     3,8 %  minecraft:beach
+     0,2 %  terralith:jungle_mountains
+     0,1 %  terralith:gravel_beach
+Mangroves du Sud (3634)
+    49,9 %  minecraft:mangrove_swamp
+    25,9 %  biomesoplenty:bayou
+    17,1 %  biomesoplenty:tropics
+     5,0 %  minecraft:beach
+     1,3 %  biomesoplenty:gravel_beach
+     0,5 %  terralith:gravel_beach
+     0,3 %  biomesoplenty:dune_beach
+Marais aux spores (2769)
+    51,5 %  atheria:marecage_pollue
+    23,2 %  atheria:zone_contaminee
+    20,3 %  biomesoplenty:bog
+     3,5 %  biomesoplenty:dune_beach
+     1,6 %  minecraft:beach
+Petite-Terre, cratère et campus Somaco (1486)
+    52,2 %  terralith:volcanic_crater
+    40,8 %  terralith:hot_shrubland
+     7,0 %  minecraft:beach
+Plaine de cendres (3991)
+    58,1 %  atheria:plaine_cendres
+    26,1 %  atheria:foret_calcinee
+    12,9 %  biomesoplenty:volcanic_plains
+     2,6 %  minecraft:beach
+     0,3 %  biomesoplenty:gravel_beach
+Plaines agricoles de Coconi (3412)
+    62,5 %  atheria:terres_agricoles
+    20,3 %  minecraft:sunflower_plains
+    17,2 %  biomesoplenty:pasture
+Savane sèche (baobabs) (3106)
+    40,7 %  minecraft:savanna
+    20,5 %  terralith:fractured_savanna
+    20,0 %  terralith:savanna_slopes
+    17,5 %  biomesoplenty:scrubland
+     1,1 %  minecraft:beach
+     0,1 %  biomesoplenty:gravel_beach
+     0,0 %  terralith:gravel_beach
+Sommet gelé du Bénara (hiver volcanique) (2306)
+    46,6 %  terralith:frozen_cliffs
+    33,4 %  terralith:snowy_shield
+    19,9 %  terralith:alpine_grove
+Île du volcan (1753)
+    86,0 %  terralith:volcanic_peaks
+    10,1 %  biomesoplenty:volcanic_plains
+     3,9 %  minecraft:beach
+Îlot de la ICE (785)
+    81,5 %  biomesoplenty:tropics
+    17,1 %  minecraft:beach
+     1,4 %  biomesoplenty:dune_beach
+
+LEGENDE rendu-biomes.png
+   #3c95e8  atheria:foret_calcinee
+   #67dd94  atheria:marecage_pollue
+   #ed583b  atheria:plaine_cendres
+   #9858b1  atheria:terres_agricoles
+   #7941b1  atheria:zone_contaminee
+   #41d35d  biomesoplenty:bayou
+   #37dc80  biomesoplenty:bog
+   #b31d5a  biomesoplenty:coniferous_forest
+   #6a8dde  biomesoplenty:dryland
+   #e8dca0  biomesoplenty:dune_beach
+   #e8dca0  biomesoplenty:gravel_beach
+   #a6f032  biomesoplenty:pasture
+   #7745dc  biomesoplenty:rainforest
+   #47ddae  biomesoplenty:scrubland
+   #ea6c36  biomesoplenty:spider_nest
+   #dcdb62  biomesoplenty:tropics
+   #bf8c30  biomesoplenty:volcanic_plains
+   #7ccb4e  biomesoplenty:wasteland
+   #84b65f  minecraft:badlands
+   #eb6853  minecraft:bamboo_jungle
+   #e8dca0  minecraft:beach
+   #1e3f8a  minecraft:cold_ocean
+   #1e3f8a  minecraft:deep_cold_ocean
+   #1e3f8a  minecraft:deep_lukewarm_ocean
+   #1e3f8a  minecraft:deep_ocean
+   #6745cc  minecraft:dripstone_caves
+   #b1434a  minecraft:eroded_badlands
+   #1e3f8a  minecraft:frozen_ocean
+   #3f76e4  minecraft:frozen_river
+   #1e3f8a  minecraft:lukewarm_ocean
+   #bd3f9f  minecraft:mangrove_swamp
+   #1e3f8a  minecraft:ocean
+   #74b361  minecraft:plains
+   #3f76e4  minecraft:river
+   #eba44c  minecraft:savanna
+   #432bb4  minecraft:sunflower_plains
+   #1e3f8a  minecraft:warm_ocean
+   #4534ac  minecraft:wooded_badlands
+   #77e9ca  terralith:alpine_grove
+   #edb64a  terralith:alpine_highlands
+   #5f4fd7  terralith:bryce_canyon
+   #1e3f8a  terralith:deep_warm_ocean
+   #e4a242  terralith:forested_highlands
+   #cf25d2  terralith:fractured_savanna
+   #d86a29  terralith:frozen_cliffs
+   #e8dca0  terralith:gravel_beach
+   #da5d25  terralith:highlands
+   #51a791  terralith:hot_shrubland
+   #c144d7  terralith:jungle_mountains
+   #4db557  terralith:rocky_shrubland
+   #7abf5a  terralith:savanna_badlands
+   #b15daf  terralith:savanna_slopes
+   #20ced3  terralith:snowy_shield
+   #5cbe70  terralith:tropical_jungle
+   #5b92c0  terralith:volcanic_crater
+   #b54aba  terralith:volcanic_peaks
+   #3f76e4  terralith:warm_river
+   #d06923  terralith:white_cliffs

@@ -1,0 +1,1067 @@
+diff -ru sauvegarde-0.2.0/src/fr/atheria/ile/CarteIle.java src/fr/atheria/ile/CarteIle.java
+--- sauvegarde-0.2.0/src/fr/atheria/ile/CarteIle.java	2026-11-09 21:53:16.420138100 +0400
++++ src/fr/atheria/ile/CarteIle.java	2026-11-09 21:55:18.175636600 +0400
+@@ -80,6 +80,13 @@
+         public boolean plageDefinie;
+         /** profil de cote : plage, falaise, vase, roche */
+         public String cote = "plage";
++        /** sous-biomes en taches (au plus 4) : biome, part de la region (0..0.5), taille des taches (blocs) */
++        public final List<String> taches = new ArrayList<>();
++        public final List<Double> tachesPart = new ArrayList<>();
++        public final List<Integer> tachesTaille = new ArrayList<>();
++        /** biomes de grottes de la region (remplacent les biomes de grottes d'origine) */
++        public final List<String> grottes = new ArrayList<>();
++        public final List<Integer> grottesPoids = new ArrayList<>();
+         Region(String nom, String montagne, double relief, int cellule, int couleur) {
+             this.nom = nom; this.montagne = montagne; this.relief = relief; this.cellule = Math.max(32, cellule); this.couleur = couleur;
+         }
+@@ -110,6 +117,15 @@
+     final float[] dRiviere, dLac;
+     /** profil de côte lissé par pixel : plancher au bord, plancher à 500 blocs, plafond (vase) */
+     final float[] coteBas, coteHaut, cotePlafond;
++    /** biomes de passage entre deux regions voisines : regle la plus proche par pixel (-1 aucune) et distance (px) a l'autre region */
++    final byte[] passageRegle;
++    final float[] passageDist;
++    public final List<String> passageBiome = new ArrayList<>();
++    final List<int[]> passagePaire = new ArrayList<>();
++    final List<Double> passageLargeur = new ArrayList<>();
++    /** lagon vivant : biomes du lagon, du recif et des passes ; passes plus profondes (largeur en blocs, continentalite du fond) */
++    public final String lagonBiome, recifBiome, passesBiome;
++    public final double passesLargeur, passesFond;
+     public final boolean rivieresAleatoires;
+     public final double valleeRiviere, rayonRiviere;
+     public final int pixelsRiviere, pixelsLac;
+@@ -170,6 +186,27 @@
+                         reg.poids.add(p);
+                     }
+                     if (reg.biomes.isEmpty()) throw new IllegalStateException("region sans biome : " + reg.nom);
++                    if (c.has("taches") && c.get("taches").isJsonArray()) {
++                        for (JsonElement b : c.getAsJsonArray("taches")) {
++                            JsonObject o = b.getAsJsonObject();
++                            if (!o.has("biome") || o.get("biome").isJsonNull()) continue;
++                            if (reg.taches.size() >= 4) { LOG.warn("[atheria_ile] region '{}' : plus de 4 taches, les suivantes sont ignorees", reg.nom); break; }
++                            double part = o.has("part") ? o.get("part").getAsDouble() : 0.08;
++                            if (part <= 0) continue;
++                            reg.taches.add(o.get("biome").getAsString());
++                            reg.tachesPart.add(Math.min(0.5, part));
++                            reg.tachesTaille.add(o.has("taille_blocs") ? Math.max(16, o.get("taille_blocs").getAsInt()) : 64);
++                        }
++                    }
++                    if (c.has("grottes") && c.get("grottes").isJsonArray()) {
++                        for (JsonElement b : c.getAsJsonArray("grottes")) {
++                            JsonObject o = b.getAsJsonObject();
++                            int p = o.has("poids") ? o.get("poids").getAsInt() : 1;
++                            if (p <= 0 || !o.has("biome")) continue;
++                            reg.grottes.add(o.get("biome").getAsString());
++                            reg.grottesPoids.add(p);
++                        }
++                    }
+                     if (regions.size() >= 120) throw new IllegalStateException("trop de regions (max 120)");
+                     regions.add(reg);
+                     cl = 2 + regions.size();
+@@ -276,6 +313,42 @@
+         }
+         LOG.info("[atheria_ile] {} terres separees par la mer ; fondu des frontieres {} blocs", iles, fondu);
+ 
++        // biomes de passage : pour chaque paire declaree, distance (par la terre) a l'autre region
++        byte[] pRegle = null;
++        float[] pDist = null;
++        if (config.has("passages") && config.get("passages").isJsonArray()) {
++            for (JsonElement e : config.getAsJsonArray("passages")) {
++                JsonObject o = e.getAsJsonObject();
++                if (!o.has("regions") || !o.has("biome") || o.get("biome").isJsonNull()) { LOG.warn("[atheria_ile] passage incomplet ignore : {}", o); continue; }
++                JsonArray rs = o.getAsJsonArray("regions");
++                int a = rs.size() == 2 ? regionNommee(rs.get(0).getAsString()) : -1, b = rs.size() == 2 ? regionNommee(rs.get(1).getAsString()) : -1;
++                if (a < 0 || b < 0 || a == b) { LOG.warn("[atheria_ile] passage {} : regions introuvables ou identiques, ignore", rs); continue; }
++                if (passageBiome.size() >= 120) { LOG.warn("[atheria_ile] plus de 120 passages, les suivants sont ignores"); break; }
++                double larg = o.has("largeur_blocs") ? Math.max(16, o.get("largeur_blocs").getAsDouble()) : 96.0;
++                if (pRegle == null) { pRegle = new byte[n]; pDist = new float[n]; java.util.Arrays.fill(pRegle, (byte) -1); java.util.Arrays.fill(pDist, Float.MAX_VALUE); }
++                boolean[] mA = new boolean[n], mB = new boolean[n];
++                for (int i = 0; i < n; i++) if (terre(i)) { int rr = classe[i] - 3; if (rr == a) mA[i] = true; else if (rr == b) mB[i] = true; }
++                float[] dA = chanfreinTerre(mA), dB = chanfreinTerre(mB);
++                int k = passageBiome.size();
++                for (int i = 0; i < n; i++) {
++                    float dd = mA[i] ? dB[i] - 0.5f : mB[i] ? dA[i] - 0.5f : Float.MAX_VALUE;
++                    if (dd * bpp < larg * 1.2 && dd < pDist[i]) { pDist[i] = dd; pRegle[i] = (byte) k; }
++                }
++                passageBiome.add(o.get("biome").getAsString());
++                passagePaire.add(new int[]{a, b});
++                passageLargeur.add(larg);
++            }
++        }
++        passageRegle = pRegle;
++        passageDist = pDist;
++        JsonObject lg = config.has("lagon") && config.get("lagon").isJsonObject() ? config.getAsJsonObject("lagon") : null;
++        lagonBiome = texte(lg, "biome");
++        recifBiome = texte(lg, "recif");
++        passesBiome = texte(lg, "passes");
++        passesLargeur = lg != null && lg.has("passes_largeur_blocs") ? Math.max(0, lg.get("passes_largeur_blocs").getAsDouble()) : 0.0;
++        passesFond = lg != null && lg.has("passes_continents") ? Math.max(-0.45, Math.min(-0.20, lg.get("passes_continents").getAsDouble())) : -0.30;
++        LOG.info("[atheria_ile] {} biomes de passage, lagon {}, passes {} blocs", passageBiome.size(), lagonBiome, passesLargeur);
++
+         // relief des régions lissé (flou boîte séparable, deux passes)
+         int rayon = config.has("lissage_relief_pixels") ? Math.max(0, config.get("lissage_relief_pixels").getAsInt()) : 8;
+         float[] base = new float[n];
+@@ -313,6 +386,51 @@
+         LOG.info("[atheria_ile] rivieres dessinees {} px, lacs {} px, relief dessine {}, rivieres aleatoires {}", nRiv, nLac, ht != null, rivieresAleatoires);
+     }
+ 
++    private static String texte(JsonObject o, String cle) {
++        return o != null && o.has(cle) && !o.get(cle).isJsonNull() ? o.get(cle).getAsString() : null;
++    }
++
++    /** region par nom exact, sinon par debut de nom ; -1 si aucune */
++    int regionNommee(String nom) {
++        for (int i = 0; i < regions.size(); i++) if (regions.get(i).nom.equals(nom)) return i;
++        for (int i = 0; i < regions.size(); i++) if (regions.get(i).nom.startsWith(nom)) return i;
++        return -1;
++    }
++
++    /** distance (px) au masque en ne passant que par la terre ; la mer est infranchissable */
++    private float[] chanfreinTerre(boolean[] m) {
++        int n = w * h;
++        float inf = 1e9f;
++        float[] d = new float[n];
++        for (int i = 0; i < n; i++) d[i] = m[i] ? 0f : inf;
++        final float a = 1f, b = 1.4142f;
++        for (int z = 0; z < h; z++) for (int x = 0; x < w; x++) {
++            int i = z * w + x;
++            if (!terre(i)) { d[i] = inf; continue; }
++            float v = d[i];
++            if (x > 0) v = Math.min(v, d[i - 1] + a);
++            if (z > 0) {
++                v = Math.min(v, d[i - w] + a);
++                if (x > 0) v = Math.min(v, d[i - w - 1] + b);
++                if (x < w - 1) v = Math.min(v, d[i - w + 1] + b);
++            }
++            d[i] = v;
++        }
++        for (int z = h - 1; z >= 0; z--) for (int x = w - 1; x >= 0; x--) {
++            int i = z * w + x;
++            if (!terre(i)) continue;
++            float v = d[i];
++            if (x < w - 1) v = Math.min(v, d[i + 1] + a);
++            if (z < h - 1) {
++                v = Math.min(v, d[i + w] + a);
++                if (x < w - 1) v = Math.min(v, d[i + w + 1] + b);
++                if (x > 0) v = Math.min(v, d[i + w - 1] + b);
++            }
++            d[i] = v;
++        }
++        return d;
++    }
++
+     private float[] chanfreinMasque(boolean[] m) {
+         int n = w * h;
+         float inf = 1e9f;
+@@ -459,8 +577,12 @@
+         if (hauteur != null) v += 0.32 * bilineaire(hauteur, px, pz) * terreDedans;
+         // detail d'origine : plein a terre, attenue en mer (sinon des ilots sortent du lagon)
+         v += (d > 0 ? 0.06 : 0.02) * Math.max(-1, Math.min(1, o));
+-        if (cl == LAGON) v = Math.min(v, -0.19);          // le lagon reste sous la mer (cote Tectonic -0.155)
+-        else if (cl == RECIF) v = Math.min(v, -0.17);
++        if (cl == LAGON || cl == RECIF) {
++            v = Math.min(v, cl == LAGON ? -0.19 : -0.17);   // le lagon reste sous la mer (cote Tectonic -0.155)
++            // passes : chenaux plus profonds a travers le lagon et le recif, loin des plages
++            double f = passe(bx, bz, d);
++            if (f > 0) v = Math.min(v, v + (passesFond - v) * f);
++        }
+         else if (d > 0) {
+             // a terre : profil de cote de la region (plage basse, falaise, vase, roche), sans cuvette marine
+             double bas = bilineaire(coteBas, px, pz), haut = bilineaire(coteHaut, px, pz), plafond = bilineaire(cotePlafond, px, pz);
+@@ -475,6 +597,22 @@
+         return v;
+     }
+ 
++    /** Force (0..1) d'une passe du lagon au bloc donne ; d = distance signee a la cote (blocs). 0 hors lagon/recif. */
++    double passe(int bx, int bz, double d) {
++        if (passesLargeur <= 0 || d > -60) return 0;
++        double nz = Math.abs(bruit(bx / 1400.0, bz / 1400.0, 71) + 0.3 * bruit(bx / 380.0, bz / 380.0, 72));
++        double eps = passesLargeur / 1400.0;
++        if (nz >= eps) return 0;
++        return (1 - lisse(0, eps, nz)) * lisse(-60, -180, d);
++    }
++
++    /** Passe du lagon (pour le biome) : vrai au coeur d'une passe. */
++    public boolean dansPasse(int bx, int bz) {
++        int cl = classeA(bx, bz);
++        if (cl != LAGON && cl != RECIF) return false;
++        return passe(bx, bz, distanceBlocs(bx, bz)) > 0.5;
++    }
++
+     /** Erosion de Tectonic dictée par relief.png : |e| petit = montagnes, grand = plat (signe d'origine garde). */
+     public double erosion(int bx, int bz, double o) {
+         if (hauteur == null) return o;
+@@ -512,7 +650,7 @@
+         return (v >>> 11) * 0x1.0p-53;
+     }
+ 
+-    private double bruit(double x, double z, long canal) {
++    double bruit(double x, double z, long canal) {
+         int x0 = (int) Math.floor(x), z0 = (int) Math.floor(z);
+         double tx = x - x0, tz = z - z0;
+         tx = tx * tx * (3 - 2 * tx);
+@@ -523,9 +661,26 @@
+ 
+     /** Index de région (0..n-1) au bloc donné, bords déformés pour éviter les escaliers de pixels. */
+     public int region(int bx, int bz) {
++        return regionPassage(bx, bz) & 0xFF;
++    }
++
++    /** Region (8 bits bas) et regle de passage + 1 (bits 8 a 15, 0 = pas de biome de passage ici). Sans allocation. */
++    public int regionPassage(int bx, int bz) {
+         double wx = bx + (bruit(bx / 96.0, bz / 96.0, 11) + 0.5 * bruit(bx / 37.0, bz / 37.0, 12)) * deformation;
+         double wz = bz + (bruit(bx / 96.0, bz / 96.0, 21) + 0.5 * bruit(bx / 37.0, bz / 37.0, 22)) * deformation;
+         int ici = indexPixel(wx, wz);
++        int r = regionMelangee(bx, bz, wx, wz, ici);
++        if (passageRegle == null) return r;
++        int k = passageRegle[ici];
++        if (k < 0) return r;
++        int[] paire = passagePaire.get(k);
++        if (r != paire[0] && r != paire[1]) return r;
++        // largeur ondulee (0.7 a 1.2 fois la largeur declaree) : la bande de passage ne suit pas les pixels
++        double lim = passageLargeur.get(k) * (0.95 + 0.25 * bruit(bx / 90.0, bz / 90.0, 61));
++        return passageDist[ici] * bpp < lim ? r | ((k + 1) << 8) : r;
++    }
++
++    private int regionMelangee(int bx, int bz, double wx, double wz, int ici) {
+         int r = regionProche[ici] & 0xFF;
+         if (fondu <= 0) return r;
+         // fondu : chaque tache (cellule bruitee, deterministe) lit la region d'un point decale d'au plus 'fondu' blocs ;
+diff -ru sauvegarde-0.2.0/src/fr/atheria/ile/TableBiomes.java src/fr/atheria/ile/TableBiomes.java
+--- sauvegarde-0.2.0/src/fr/atheria/ile/TableBiomes.java	2026-11-09 21:53:16.418099800 +0400
++++ src/fr/atheria/ile/TableBiomes.java	2026-11-09 21:54:40.989392100 +0400
+@@ -28,14 +28,31 @@
+         boolean froide;
+         /** biome posé sur la bande de plage (null : pas de plage dans cette région) */
+         Holder<Biome> plage;
++        /** sous-biomes en taches : biome, taille (blocs), seuil du bruit, canal */
++        Holder<Biome>[] taches;
++        double[] tacheTaille, tacheSeuil;
++        long[] tacheCanal;
++        /** biomes de grottes */
++        Holder<Biome>[] grottes;
++        int[] cumulGrottes;
++        int totalGrottes;
+     }
+ 
++    /** taille des cellules qui choisissent le biome de grotte (blocs) */
++    static final int CELLULE_GROTTE = 160;
++
+     /** bande de plage : côté terre (blocs), côté mer (blocs), hauteur max au-dessus de la mer */
+     final int plageLargeur, plageMer, plageHauteur, mer;
+ 
+     final CarteIle carte;
+     final RegionBiomes[] regions;
+     final Set<Holder<Biome>> sousTerrainSeulement;
++    /** biomes de grottes jamais remplaces (deep_dark : cites anciennes) */
++    final Set<Holder<Biome>> grottesGardees = new HashSet<>();
++    /** biome de chaque regle de passage (null si absent du monde) */
++    final Holder<Biome>[] passages;
++    /** lagon vivant (null : biome d'origine garde) */
++    final Holder<Biome> lagon, recif, passes;
+     /** plage normale qui remplace la plage enneigée hors des régions froides (null si absente) */
+     final Holder<Biome> plage;
+     public final List<String> avertissements = new ArrayList<>();
+@@ -67,6 +84,32 @@
+             for (Holder<Biome> h : rb.biomes) if (h.is(Tags.Biomes.IS_SNOWY)) rb.froide = true;
+             if (rb.montagne != null && rb.montagne.is(Tags.Biomes.IS_SNOWY)) rb.froide = true;
+             if (rb.biomes.length == 0) avertissements.add("region '" + def.nom + "' : aucun biome valide, la generation d'origine est gardee");
++            // taches : seuil du bruit pour que la part demandee soit couverte (quantile mesure une fois ici)
++            List<Holder<Biome>> tl = new ArrayList<>();
++            List<double[]> tv = new ArrayList<>();
++            for (int i = 0; i < def.taches.size(); i++) {
++                Holder<Biome> h = trouver(parId, def.taches.get(i), def.nom);
++                if (h == null) continue;
++                long canal = 300L + r * 8L + i;
++                tl.add(h);
++                tv.add(new double[]{def.tachesTaille.get(i), seuil(carte, canal, def.tachesPart.get(i)), canal});
++            }
++            rb.taches = tl.toArray(new Holder[0]);
++            rb.tacheTaille = new double[tv.size()];
++            rb.tacheSeuil = new double[tv.size()];
++            rb.tacheCanal = new long[tv.size()];
++            for (int i = 0; i < tv.size(); i++) { rb.tacheTaille[i] = tv.get(i)[0]; rb.tacheSeuil[i] = tv.get(i)[1]; rb.tacheCanal[i] = (long) tv.get(i)[2]; }
++            List<Holder<Biome>> gl = new ArrayList<>();
++            List<Integer> gp = new ArrayList<>();
++            for (int i = 0; i < def.grottes.size(); i++) {
++                Holder<Biome> h = trouver(parId, def.grottes.get(i), def.nom);
++                if (h != null) { gl.add(h); gp.add(def.grottesPoids.get(i)); }
++            }
++            rb.grottes = gl.toArray(new Holder[0]);
++            rb.cumulGrottes = new int[gp.size()];
++            int tg = 0;
++            for (int i = 0; i < gp.size(); i++) { tg += gp.get(i); rb.cumulGrottes[i] = tg; }
++            rb.totalGrottes = tg;
+             regions[r] = rb;
+         }
+         // biomes qui n'existent que sous terre dans la table de climat (grottes)
+@@ -80,6 +123,16 @@
+         }
+         dessous.removeAll(enSurface);
+         sousTerrainSeulement = dessous;
++        Holder<Biome> dd = parId.get(ResourceLocation.withDefaultNamespace("deep_dark"));
++        if (dd != null) grottesGardees.add(dd);
++        passages = new Holder[carte.passageBiome.size()];
++        for (int k = 0; k < passages.length; k++) {
++            int[] pr = carte.passagePaire.get(k);
++            passages[k] = trouver(parId, carte.passageBiome.get(k), "passage " + carte.regions.get(pr[0]).nom + " / " + carte.regions.get(pr[1]).nom);
++        }
++        lagon = carte.lagonBiome == null ? null : trouver(parId, carte.lagonBiome, "lagon");
++        recif = carte.recifBiome == null ? null : trouver(parId, carte.recifBiome, "recif");
++        passes = carte.passesBiome == null ? null : trouver(parId, carte.passesBiome, "passes du lagon");
+         plage = parId.get(ResourceLocation.withDefaultNamespace("beach"));
+         Holder<Biome> plageNeige = parId.get(ResourceLocation.withDefaultNamespace("snowy_beach"));
+         plageLargeur = entier(carte, "plage_largeur_blocs", 24);
+@@ -95,6 +148,16 @@
+         for (String a : avertissements) CarteIle.LOG.warn("[atheria_ile] {}", a);
+     }
+ 
++    /** seuil du bruit de taches au-dessus duquel tombe la part demandee des points (4096 echantillons) */
++    private static double seuil(CarteIle carte, long canal, double part) {
++        int n = 4096;
++        double[] v = new double[n];
++        for (int i = 0; i < n; i++) v[i] = carte.bruit(i * 0.6180339887 * 7.3, (i % 64) * 1.4142135623 + i * 0.0137, canal);
++        java.util.Arrays.sort(v);
++        int k = (int) Math.min(n - 1, Math.max(0, Math.round((1 - part) * n)));
++        return v[k];
++    }
++
+     private static int entier(CarteIle carte, String cle, int defaut) {
+         return carte.config.has(cle) && !carte.config.get(cle).isJsonNull() ? carte.config.get(cle).getAsInt() : defaut;
+     }
+@@ -116,8 +179,17 @@
+     /** Garde le biome d'origine pour l'eau, les plages, les rivières et les grottes. */
+     boolean garder(Holder<Biome> base) {
+         return base.is(BiomeTags.IS_OCEAN) || base.is(BiomeTags.IS_DEEP_OCEAN) || base.is(BiomeTags.IS_RIVER)
+-                || base.is(BiomeTags.IS_BEACH) || base.is(Tags.Biomes.IS_UNDERGROUND) || base.is(Tags.Biomes.IS_CAVE)
+-                || sousTerrainSeulement.contains(base);
++                || base.is(BiomeTags.IS_BEACH) || grotte(base);
++    }
++
++    boolean grotte(Holder<Biome> base) {
++        return base.is(Tags.Biomes.IS_UNDERGROUND) || base.is(Tags.Biomes.IS_CAVE) || sousTerrainSeulement.contains(base);
++    }
++
++    private static Holder<Biome> tirer(Holder<Biome>[] bs, int[] cumul, int total, double u) {
++        int t = (int) (u * total);
++        for (int i = 0; i < cumul.length; i++) if (t < cumul[i]) return bs[i];
++        return bs[bs.length - 1];
+     }
+ 
+     public Holder<Biome> choisir(Holder<Biome> base, int bx, int by, int bz) {
+@@ -129,19 +201,40 @@
+             if (p != null) return p;
+         }
+         if (garder(base)) {
++            // grottes : biome de grotte de la region (sauf deep_dark, garde pour les cites anciennes)
++            if (grotte(base)) {
++                if (grottesGardees.contains(base)) return base;
++                int r = carte.region(bx, bz);
++                RegionBiomes rb = regions[r];
++                if (rb.grottes.length == 0) return base;
++                return tirer(rb.grottes, rb.cumulGrottes, rb.totalGrottes, carte.tirageCellule(bx, bz, CELLULE_GROTTE, r + 100));
++            }
++            // lagon vivant : fond de sable, coraux et herbiers (ocean chaud), passes plus profondes
++            if ((lagon != null || recif != null) && base.is(BiomeTags.IS_OCEAN) && !base.is(BiomeTags.IS_RIVER)) {
++                int cl = carte.classeA(bx, bz);
++                Holder<Biome> b = cl == CarteIle.LAGON ? lagon : cl == CarteIle.RECIF ? recif : null;
++                if (b != null) return passes != null && carte.dansPasse(bx, bz) ? passes : b;
++            }
+             // pas de plage enneigée sur une côte tropicale
+             if (plage != null && base.is(BiomeTags.IS_BEACH) && base.is(Tags.Biomes.IS_SNOWY)
+                     && !regions[carte.region(bx, bz)].froide) return plage;
+             return base;
+         }
+-        int r = carte.region(bx, bz);
++        int rp = carte.regionPassage(bx, bz);
++        int r = rp & 0xFF;
+         RegionBiomes rb = regions[r];
+         if (rb.biomes.length == 0) return base;
+         if (rb.montagne != null && base.is(BiomeTags.IS_MOUNTAIN)) return rb.montagne;
++        // bande de passage entre deux regions voisines
++        int k = (rp >> 8) - 1;
++        if (k >= 0 && passages[k] != null) return passages[k];
++        // sous-biomes en taches
++        for (int i = 0; i < rb.taches.length; i++) {
++            double tt = rb.tacheTaille[i];
++            if (carte.bruit(bx / tt, bz / tt, rb.tacheCanal[i]) > rb.tacheSeuil[i]) return rb.taches[i];
++        }
+         if (rb.biomes.length == 1) return rb.biomes[0];
+-        int t = (int) (carte.tirageCellule(bx, bz, rb.cellule, r) * rb.total);
+-        for (int i = 0; i < rb.cumul.length; i++) if (t < rb.cumul[i]) return rb.biomes[i];
+-        return rb.biomes[rb.biomes.length - 1];
++        return tirer(rb.biomes, rb.cumul, rb.total, carte.tirageCellule(bx, bz, rb.cellule, r));
+     }
+ 
+     /** Pour le rapport : la région accepte-t-elle ce biome ? */
+@@ -150,6 +243,12 @@
+         if (b.equals(rb.montagne)) return true;
+         if (b.equals(plage) || b.equals(rb.plage)) return true;
+         for (Holder<Biome> h : rb.biomes) if (h.equals(b)) return true;
++        for (Holder<Biome> h : rb.taches) if (h.equals(b)) return true;
++        for (Holder<Biome> h : rb.grottes) if (h.equals(b)) return true;
++        for (int k = 0; k < passages.length; k++) {
++            int[] p = carte.passagePaire.get(k);
++            if ((p[0] == region || p[1] == region) && b.equals(passages[k])) return true;
++        }
+         return false;
+     }
+ }
+--- sauvegarde-0.2.0/ressources/META-INF/neoforge.mods.toml	2026-11-09 21:53:16.426917600 +0400
++++ ressources/META-INF/neoforge.mods.toml	2026-11-09 21:54:52.685063400 +0400
+@@ -4,7 +4,7 @@
+ 
+ [[mods]]
+ modId = "atheria_ile"
+-version = "0.2.0"
++version = "0.3.0"
+ displayName = "Atheria Ile"
+ description = "Prototype : la carte dessinee de l'ile d'Atheria guide les cotes, le relief et les biomes. Inactif sans le datapack atheria_ile dans le monde."
+ 
+--- sauvegarde-0.2.0/construire.ps1	2026-11-09 21:53:16.429950900 +0400
++++ construire.ps1	2026-11-09 21:54:52.735643900 +0400
+@@ -28,7 +28,7 @@
+ Copy-Item (Join-Path $Ici 'ressources\*') $Tmp -Recurse -Force
+ 
+ $manifest = Join-Path $env:TEMP "atheria-ile-manifest-$([guid]::NewGuid()).txt"
+-[IO.File]::WriteAllText($manifest, "Implementation-Version: 0.2.0`nFMLModType: MOD`n")
++[IO.File]::WriteAllText($manifest, "Implementation-Version: 0.3.0`nFMLModType: MOD`n")
+ $Out = Join-Path $Ici 'atheria-ile.jar'
+ & "$Jdk\jar.exe" --create --file $Out --manifest $manifest -C $Tmp .
+ if ($LASTEXITCODE -ne 0) { throw "jar a echoue (code $LASTEXITCODE)" }
+--- sauvegarde-0.2.0/regions-test.json	2026-11-09 21:53:16.463602300 +0400
++++ regions-test.json	2026-11-09 21:57:04.539693900 +0400
+@@ -10,6 +10,223 @@
+  "riviere_vallee_blocs": 150,
+  "riviere_lit_blocs": 16,
+  "lissage_cotes_pixels": 6,
++ "passages": [
++  {
++   "regions": [
++    "Côte calcaire",
++    "Savane"
++   ],
++   "biome": "terralith:shrubland",
++   "largeur_blocs": 80
++  },
++  {
++   "regions": [
++    "Côte calcaire",
++    "Plaines agricoles"
++   ],
++   "biome": "biomesoplenty:grassland",
++   "largeur_blocs": 80
++  },
++  {
++   "regions": [
++    "Côte calcaire",
++    "Jungle"
++   ],
++   "biome": "terralith:rocky_jungle",
++   "largeur_blocs": 80
++  },
++  {
++   "regions": [
++    "Savane",
++    "Friches"
++   ],
++   "biome": "biomesoplenty:wasteland_steppe",
++   "largeur_blocs": 80
++  },
++  {
++   "regions": [
++    "Savane",
++    "Plaines agricoles"
++   ],
++   "biome": "biomesoplenty:prairie",
++   "largeur_blocs": 80
++  },
++  {
++   "regions": [
++    "Savane",
++    "Jungle"
++   ],
++   "biome": "biomesoplenty:lush_savanna",
++   "largeur_blocs": 80
++  },
++  {
++   "regions": [
++    "Savane",
++    "Hauts plateaux"
++   ],
++   "biome": "terralith:arid_highlands",
++   "largeur_blocs": 56
++  },
++  {
++   "regions": [
++    "Savane",
++    "Canyons"
++   ],
++   "biome": "terralith:savanna_badlands",
++   "largeur_blocs": 80
++  },
++  {
++   "regions": [
++    "Savane",
++    "Mangroves"
++   ],
++   "biome": "biomesoplenty:tropics",
++   "largeur_blocs": 80
++  },
++  {
++   "regions": [
++    "Savane",
++    "Île du volcan"
++   ],
++   "biome": "terralith:ashen_savanna",
++   "largeur_blocs": 80
++  },
++  {
++   "regions": [
++    "Friches",
++    "Plaines agricoles"
++   ],
++   "biome": "biomesoplenty:field",
++   "largeur_blocs": 80
++  },
++  {
++   "regions": [
++    "Friches",
++    "Hauts plateaux"
++   ],
++   "biome": "biomesoplenty:shrubland",
++   "largeur_blocs": 56
++  },
++  {
++   "regions": [
++    "Friches",
++    "Marais"
++   ],
++   "biome": "biomesoplenty:dead_forest",
++   "largeur_blocs": 80
++  },
++  {
++   "regions": [
++    "Plaines agricoles",
++    "Jungle"
++   ],
++   "biome": "terralith:lush_valley",
++   "largeur_blocs": 80
++  },
++  {
++   "regions": [
++    "Plaines agricoles",
++    "Hauts plateaux"
++   ],
++   "biome": "terralith:valley_clearing",
++   "largeur_blocs": 56
++  },
++  {
++   "regions": [
++    "Jungle",
++    "Hauts plateaux"
++   ],
++   "biome": "biomesoplenty:rocky_rainforest",
++   "largeur_blocs": 56
++  },
++  {
++   "regions": [
++    "Hauts plateaux",
++    "Sommet"
++   ],
++   "biome": "biomesoplenty:snowy_coniferous_forest",
++   "largeur_blocs": 56
++  },
++  {
++   "regions": [
++    "Hauts plateaux",
++    "Marais"
++   ],
++   "biome": "biomesoplenty:moor",
++   "largeur_blocs": 56
++  },
++  {
++   "regions": [
++    "Hauts plateaux",
++    "Canyons"
++   ],
++   "biome": "terralith:arid_highlands",
++   "largeur_blocs": 56
++  },
++  {
++   "regions": [
++    "Hauts plateaux",
++    "Plaine de cendres"
++   ],
++   "biome": "terralith:ashen_savanna",
++   "largeur_blocs": 56
++  },
++  {
++   "regions": [
++    "Hauts plateaux",
++    "Mangroves"
++   ],
++   "biome": "biomesoplenty:rocky_rainforest",
++   "largeur_blocs": 56
++  },
++  {
++   "regions": [
++    "Sommet",
++    "Plaine de cendres"
++   ],
++   "biome": "terralith:basalt_cliffs",
++   "largeur_blocs": 56
++  },
++  {
++   "regions": [
++    "Marais",
++    "Plaine de cendres"
++   ],
++   "biome": "atheria:foret_calcinee",
++   "largeur_blocs": 80
++  },
++  {
++   "regions": [
++    "Canyons",
++    "Île du volcan"
++   ],
++   "biome": "biomesoplenty:volcanic_plains",
++   "largeur_blocs": 80
++  },
++  {
++   "regions": [
++    "Plaine de cendres",
++    "Mangroves"
++   ],
++   "biome": "biomesoplenty:dead_forest",
++   "largeur_blocs": 80
++  },
++  {
++   "regions": [
++    "Mangroves",
++    "Île du volcan"
++   ],
++   "biome": "biomesoplenty:volcanic_plains",
++   "largeur_blocs": 80
++  }
++ ],
++ "lagon": {
++  "biome": "minecraft:warm_ocean",
++  "recif": "minecraft:warm_ocean",
++  "passes": "terralith:deep_warm_ocean",
++  "passes_largeur_blocs": 48,
++  "passes_continents": -0.3
++ },
+  "rendu_au_demarrage": true,
+  "rendu_pas_blocs": 32,
+  "zone_reelle": {
+@@ -49,7 +266,29 @@
+    "relief": 0.08,
+    "cellule": 224,
+    "cote": "falaise",
+-   "plage": "minecraft:beach"
++   "plage": "minecraft:beach",
++   "taches": [
++    {
++     "biome": "biomesoplenty:crag",
++     "part": 0.06,
++     "taille_blocs": 64
++    },
++    {
++     "biome": "biomesoplenty:grassland",
++     "part": 0.08,
++     "taille_blocs": 80
++    }
++   ],
++   "grottes": [
++    {
++     "biome": "terralith:cave/diorite_caves",
++     "poids": 2
++    },
++    {
++     "biome": "minecraft:dripstone_caves",
++     "poids": 1
++    }
++   ]
+   },
+   "#b6a658": {
+    "type": "region",
+@@ -76,7 +315,29 @@
+    "relief": 0.0,
+    "cellule": 224,
+    "cote": "plage",
+-   "plage": "minecraft:beach"
++   "plage": "minecraft:beach",
++   "taches": [
++    {
++     "biome": "terralith:brushland",
++     "part": 0.1,
++     "taille_blocs": 72
++    },
++    {
++     "biome": "biomesoplenty:lush_savanna",
++     "part": 0.06,
++     "taille_blocs": 64
++    }
++   ],
++   "grottes": [
++    {
++     "biome": "terralith:cave/granite_caves",
++     "poids": 2
++    },
++    {
++     "biome": "yungscavebiomes:lost_caves",
++     "poids": 1
++    }
++   ]
+   },
+   "#a0988e": {
+    "type": "region",
+@@ -99,7 +360,29 @@
+    "relief": -0.04,
+    "cellule": 224,
+    "cote": "plage",
+-   "plage": "minecraft:beach"
++   "plage": "minecraft:beach",
++   "taches": [
++    {
++     "biome": "biomesoplenty:wasteland_steppe",
++     "part": 0.1,
++     "taille_blocs": 72
++    },
++    {
++     "biome": "biomesoplenty:dead_forest",
++     "part": 0.05,
++     "taille_blocs": 48
++    }
++   ],
++   "grottes": [
++    {
++     "biome": "terralith:cave/andesite_caves",
++     "poids": 2
++    },
++    {
++     "biome": "terralith:cave/infested_caves",
++     "poids": 1
++    }
++   ]
+   },
+   "#7aa048": {
+    "type": "region",
+@@ -122,7 +405,34 @@
+    "relief": -0.03,
+    "cellule": 224,
+    "cote": "plage",
+-   "plage": "minecraft:beach"
++   "plage": "minecraft:beach",
++   "taches": [
++    {
++     "biome": "biomesoplenty:field",
++     "part": 0.08,
++     "taille_blocs": 80
++    },
++    {
++     "biome": "biomesoplenty:orchard",
++     "part": 0.05,
++     "taille_blocs": 56
++    },
++    {
++     "biome": "biomesoplenty:lavender_field",
++     "part": 0.04,
++     "taille_blocs": 48
++    }
++   ],
++   "grottes": [
++    {
++     "biome": "minecraft:lush_caves",
++     "poids": 1
++    },
++    {
++     "biome": "terralith:cave/andesite_caves",
++     "poids": 1
++    }
++   ]
+   },
+   "#22662a": {
+    "type": "region",
+@@ -145,7 +455,29 @@
+    "relief": 0.05,
+    "cellule": 224,
+    "cote": "plage",
+-   "plage": "minecraft:beach"
++   "plage": "minecraft:beach",
++   "taches": [
++    {
++     "biome": "terralith:rocky_jungle",
++     "part": 0.08,
++     "taille_blocs": 72
++    },
++    {
++     "biome": "biomesoplenty:floodplain",
++     "part": 0.05,
++     "taille_blocs": 64
++    }
++   ],
++   "grottes": [
++    {
++     "biome": "terralith:cave/underground_jungle",
++     "poids": 2
++    },
++    {
++     "biome": "minecraft:lush_caves",
++     "poids": 1
++    }
++   ]
+   },
+   "#54784a": {
+    "type": "region",
+@@ -168,7 +500,29 @@
+    "relief": 0.18,
+    "cellule": 224,
+    "cote": "falaise",
+-   "plage": "minecraft:beach"
++   "plage": "minecraft:beach",
++   "taches": [
++    {
++     "biome": "terralith:temperate_highlands",
++     "part": 0.08,
++     "taille_blocs": 80
++    },
++    {
++     "biome": "biomesoplenty:fir_clearing",
++     "part": 0.06,
++     "taille_blocs": 56
++    }
++   ],
++   "grottes": [
++    {
++     "biome": "terralith:cave/tuff_caves",
++     "poids": 1
++    },
++    {
++     "biome": "minecraft:dripstone_caves",
++     "poids": 1
++    }
++   ]
+   },
+   "#e1e6eb": {
+    "type": "region",
+@@ -187,7 +541,24 @@
+    "relief": 0.35,
+    "cellule": 224,
+    "cote": "falaise",
+-   "plage": "minecraft:snowy_beach"
++   "plage": "minecraft:snowy_beach",
++   "taches": [
++    {
++     "biome": "terralith:wintry_forest",
++     "part": 0.06,
++     "taille_blocs": 56
++    }
++   ],
++   "grottes": [
++    {
++     "biome": "yungscavebiomes:frosted_caves",
++     "poids": 2
++    },
++    {
++     "biome": "terralith:cave/frostfire_caves",
++     "poids": 1
++    }
++   ]
+   },
+   "#586246": {
+    "type": "region",
+@@ -210,7 +581,29 @@
+    "relief": -0.05,
+    "cellule": 224,
+    "cote": "vase",
+-   "plage": null
++   "plage": null,
++   "taches": [
++    {
++     "biome": "biomesoplenty:marsh",
++     "part": 0.08,
++     "taille_blocs": 64
++    },
++    {
++     "biome": "biomesoplenty:dead_forest",
++     "part": 0.06,
++     "taille_blocs": 56
++    }
++   ],
++   "grottes": [
++    {
++     "biome": "terralith:cave/fungal_caves",
++     "poids": 2
++    },
++    {
++     "biome": "biomesoplenty:spider_nest",
++     "poids": 1
++    }
++   ]
+   },
+   "#b05c34": {
+    "type": "region",
+@@ -237,7 +630,29 @@
+    "relief": 0.12,
+    "cellule": 224,
+    "cote": "falaise",
+-   "plage": "minecraft:beach"
++   "plage": "minecraft:beach",
++   "taches": [
++    {
++     "biome": "terralith:sandstone_valley",
++     "part": 0.06,
++     "taille_blocs": 64
++    },
++    {
++     "biome": "terralith:red_oasis",
++     "part": 0.04,
++     "taille_blocs": 40
++    }
++   ],
++   "grottes": [
++    {
++     "biome": "minecraft:dripstone_caves",
++     "poids": 2
++    },
++    {
++     "biome": "terralith:cave/granite_caves",
++     "poids": 1
++    }
++   ]
+   },
+   "#7c7a76": {
+    "type": "region",
+@@ -260,7 +675,29 @@
+    "relief": 0.0,
+    "cellule": 224,
+    "cote": "roche",
+-   "plage": "minecraft:stony_shore"
++   "plage": "minecraft:stony_shore",
++   "taches": [
++    {
++     "biome": "terralith:ashen_savanna",
++     "part": 0.08,
++     "taille_blocs": 72
++    },
++    {
++     "biome": "terralith:basalt_cliffs",
++     "part": 0.05,
++     "taille_blocs": 56
++    }
++   ],
++   "grottes": [
++    {
++     "biome": "terralith:cave/thermal_caves",
++     "poids": 2
++    },
++    {
++     "biome": "terralith:cave/mantle_caves",
++     "poids": 1
++    }
++   ]
+   },
+   "#467052": {
+    "type": "region",
+@@ -283,7 +720,29 @@
+    "relief": -0.06,
+    "cellule": 224,
+    "cote": "vase",
+-   "plage": null
++   "plage": null,
++   "taches": [
++    {
++     "biome": "biomesoplenty:wetland",
++     "part": 0.08,
++     "taille_blocs": 64
++    },
++    {
++     "biome": "terralith:orchid_swamp",
++     "part": 0.05,
++     "taille_blocs": 56
++    }
++   ],
++   "grottes": [
++    {
++     "biome": "minecraft:lush_caves",
++     "poids": 2
++    },
++    {
++     "biome": "terralith:cave/fungal_caves",
++     "poids": 1
++    }
++   ]
+   },
+   "#c4b278": {
+    "type": "region",
+@@ -302,7 +761,24 @@
+    "relief": 0.05,
+    "cellule": 224,
+    "cote": "plage",
+-   "plage": "minecraft:beach"
++   "plage": "minecraft:beach",
++   "taches": [
++    {
++     "biome": "biomesoplenty:shrubland",
++     "part": 0.08,
++     "taille_blocs": 64
++    }
++   ],
++   "grottes": [
++    {
++     "biome": "terralith:cave/thermal_caves",
++     "poids": 1
++    },
++    {
++     "biome": "terralith:cave/tuff_caves",
++     "poids": 1
++    }
++   ]
+   },
+   "#463834": {
+    "type": "region",
+@@ -321,7 +797,24 @@
+    "relief": 0.4,
+    "cellule": 224,
+    "cote": "roche",
+-   "plage": "minecraft:stony_shore"
++   "plage": "minecraft:stony_shore",
++   "taches": [
++    {
++     "biome": "terralith:basalt_cliffs",
++     "part": 0.08,
++     "taille_blocs": 56
++    }
++   ],
++   "grottes": [
++    {
++     "biome": "terralith:cave/thermal_caves",
++     "poids": 2
++    },
++    {
++     "biome": "terralith:cave/mantle_caves",
++     "poids": 1
++    }
++   ]
+   },
+   "#c8be8c": {
+    "type": "region",
+@@ -336,7 +829,14 @@
+    "relief": 0.0,
+    "cellule": 224,
+    "cote": "plage",
+-   "plage": "minecraft:beach"
++   "plage": "minecraft:beach",
++   "taches": [],
++   "grottes": [
++    {
++     "biome": "minecraft:lush_caves",
++     "poids": 1
++    }
++   ]
+   },
+   "#2b5fd9": {
+    "type": "riviere"

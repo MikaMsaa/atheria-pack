@@ -1,0 +1,772 @@
+diff --git a/src/fr/atheria/ile/AtheriaIle.java b/src/fr/atheria/ile/AtheriaIle.java
+index 33a48bd..6601526 100644
+--- a/src/fr/atheria/ile/AtheriaIle.java
++++ b/src/fr/atheria/ile/AtheriaIle.java
+@@ -25,13 +25,18 @@ public final class AtheriaIle {
+     private static final DeferredRegister<MapCodec<? extends DensityFunction>> FONCTIONS =
+             DeferredRegister.create(Registries.DENSITY_FUNCTION_TYPE, ID);
+ 
++    private static final DeferredRegister<net.minecraft.world.level.levelgen.feature.Feature<?>> FEATURES =
++            DeferredRegister.create(Registries.FEATURE, ID);
++
+     static {
++        FEATURES.register("route", () -> new RouteFeature(net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration.CODEC));
+         FONCTIONS.register("ile_continents", () -> IleContinents.MAP_CODEC);
+         FONCTIONS.register("ile_champ", () -> IleChamp.MAP_CODEC);
+     }
+ 
+     public AtheriaIle(IEventBus busDuMod) {
+         FONCTIONS.register(busDuMod);
++        FEATURES.register(busDuMod);
+         NeoForge.EVENT_BUS.addListener(ServerStartedEvent.class, e -> {
+             Jeu.avertirSiCarteManquante(e.getServer());
+             Jeu.bordure(e.getServer());
+diff --git a/src/fr/atheria/ile/CarteIle.java b/src/fr/atheria/ile/CarteIle.java
+index acaf084..48966b8 100644
+--- a/src/fr/atheria/ile/CarteIle.java
++++ b/src/fr/atheria/ile/CarteIle.java
+@@ -153,6 +153,8 @@ public final class CarteIle {
+     public final boolean[] zonePlage;
+     /** true : la zone remplace aussi les biomes d'eau des lacs dessines (terre de la carte), jamais la mer ni le lagon */
+     public final boolean[] zoneLacs;
++    /** routes dessinees ("routes") */
++    public final java.util.List<Route> routes;
+     public final double passesLargeur, passesFond;
+     public final boolean rivieresAleatoires;
+     /** pilotage de l'erosion de Tectonic par relief.png : force (0..1) et |e| vise en plaine (0.05 + erosionPlat) */
+@@ -387,6 +389,7 @@ public final class CarteIle {
+         passesLargeur = lg != null && lg.has("passes_largeur_blocs") ? Math.max(0, lg.get("passes_largeur_blocs").getAsDouble()) : 0.0;
+         passesFond = lg != null && lg.has("passes_continents") ? Math.max(-0.45, Math.min(-0.20, lg.get("passes_continents").getAsDouble())) : -0.30;
+         LOG.info("[atheria_ile] {} biomes de passage, lagon {}, passes {} blocs", passageBiome.size(), lagonBiome, passesLargeur);
++        routes = Route.lire(config);
+         List<JsonObject> zl = new ArrayList<>();
+         if (config.has("zones_biome") && config.get("zones_biome").isJsonArray())
+             for (var e : config.getAsJsonArray("zones_biome")) if (e.isJsonObject() && e.getAsJsonObject().has("biome")) zl.add(e.getAsJsonObject());
+diff --git a/src/fr/atheria/ile/Route.java b/src/fr/atheria/ile/Route.java
+new file mode 100644
+index 0000000..2a44f04
+--- /dev/null
++++ b/src/fr/atheria/ile/Route.java
+@@ -0,0 +1,250 @@
++package fr.atheria.ile;
++
++import com.google.gson.JsonArray;
++import com.google.gson.JsonElement;
++import com.google.gson.JsonObject;
++import net.minecraft.world.level.LevelHeightAccessor;
++import net.minecraft.world.level.chunk.ChunkGenerator;
++import net.minecraft.world.level.levelgen.Heightmap;
++import net.minecraft.world.level.levelgen.RandomState;
++
++import java.util.ArrayList;
++import java.util.List;
++
++/**
++ * Route dessinee ("routes" dans regions.json) : polyligne de points (x, z), virages arrondis,
++ * troncons droits gardes tels quels, axe echantillonne tous les 2 blocs, profil en long lisse (pente max).
++ * Toutes les requetes par colonne sont sans allocation (grille d'index precalculee).
++ */
++public final class Route {
++    public static final double PAS = 2.0;
++    /** cellule de la grille d'index (blocs) */
++    private static final int CELLULE = 32;
++
++    public final String nom;
++    public final int demiLargeur, basCotes, talus, margeStructures;
++    public final double penteMax;
++    /** axe : x, z, abscisse curviligne ; drapeau "troncon droit garde" */
++    public final float[] ax, az;
++    public final float[] abs;
++    public final boolean[] droit;
++    /** profil en long (Y de la chaussee) par echantillon, calcule a la premiere generation */
++    private volatile int[] profil;
++
++    private final int gx0, gz0, gn, gm;
++    private final int[][] grille;
++    private final boolean[] proche;
++
++    /** portee de la grille fine : chaussee + bas-cotes + talus */
++    public final int portee;
++
++    private Route(String nom, List<double[]> pts, boolean[] aretesDroites, int demiLargeur, int basCotes, int talus, int rayonVirage,
++                  double penteMax, int margeStructures) {
++        this.nom = nom;
++        this.demiLargeur = demiLargeur;
++        this.basCotes = basCotes;
++        this.talus = talus;
++        this.penteMax = penteMax;
++        this.margeStructures = margeStructures;
++        // --- virages arrondis : a chaque sommet interieur, on coupe r blocs de chaque cote et on pose une courbe de Bezier
++        List<double[]> axe = new ArrayList<>();
++        List<Boolean> estDroit = new ArrayList<>();
++        int n = pts.size();
++        double[] coupeAvant = new double[n], coupeApres = new double[n];
++        for (int i = 1; i < n - 1; i++) {
++            double l1 = dist(pts.get(i - 1), pts.get(i)), l2 = dist(pts.get(i), pts.get(i + 1));
++            double r = Math.min(rayonVirage, Math.min(l1, l2) / 2.5);
++            coupeAvant[i] = r;
++            coupeApres[i] = r;
++        }
++        for (int i = 0; i < n - 1; i++) {
++            double[] a = pts.get(i), b = pts.get(i + 1);
++            double l = dist(a, b);
++            double ux = (b[0] - a[0]) / l, uz = (b[1] - a[1]) / l;
++            double s0 = coupeApres[i], s1 = l - coupeAvant[i + 1];
++            // troncon droit
++            for (double s = s0; s < s1; s += PAS) { axe.add(new double[]{a[0] + ux * s, a[1] + uz * s}); estDroit.add(aretesDroites[i]); }
++            // virage vers l'arete suivante
++            if (i + 1 < n - 1) {
++                double[] c = pts.get(i + 2);
++                double l2 = dist(b, c);
++                double vx = (c[0] - b[0]) / l2, vz = (c[1] - b[1]) / l2;
++                double[] p0 = {b[0] - ux * coupeAvant[i + 1], b[1] - uz * coupeAvant[i + 1]};
++                double[] p2 = {b[0] + vx * coupeApres[i + 1], b[1] + vz * coupeApres[i + 1]};
++                double longueur = coupeAvant[i + 1] + coupeApres[i + 1];
++                int k = Math.max(1, (int) Math.ceil(longueur / PAS));
++                for (int j = 0; j < k; j++) {
++                    double t = j / (double) k;
++                    double x = (1 - t) * (1 - t) * p0[0] + 2 * (1 - t) * t * b[0] + t * t * p2[0];
++                    double z = (1 - t) * (1 - t) * p0[1] + 2 * (1 - t) * t * b[1] + t * t * p2[1];
++                    axe.add(new double[]{x, z});
++                    estDroit.add(false);
++                }
++            }
++        }
++        double[] fin = pts.get(n - 1);
++        axe.add(new double[]{fin[0], fin[1]});
++        estDroit.add(aretesDroites[n - 2]);
++        int m = axe.size();
++        ax = new float[m]; az = new float[m]; abs = new float[m]; droit = new boolean[m];
++        double cum = 0;
++        for (int i = 0; i < m; i++) {
++            if (i > 0) cum += dist(axe.get(i - 1), axe.get(i));
++            ax[i] = (float) axe.get(i)[0];
++            az[i] = (float) axe.get(i)[1];
++            abs[i] = (float) cum;
++            droit[i] = estDroit.get(i);
++        }
++        // --- grille d'index : pour chaque cellule, les echantillons a moins de "portee" blocs
++        portee = demiLargeur + basCotes + talus + 2;
++        float minX = Float.MAX_VALUE, minZ = Float.MAX_VALUE, maxX = -Float.MAX_VALUE, maxZ = -Float.MAX_VALUE;
++        for (int i = 0; i < m; i++) { minX = Math.min(minX, ax[i]); maxX = Math.max(maxX, ax[i]); minZ = Math.min(minZ, az[i]); maxZ = Math.max(maxZ, az[i]); }
++        int large = Math.max(portee, margeStructures) + CELLULE;
++        gx0 = (int) Math.floor((minX - large) / CELLULE);
++        gz0 = (int) Math.floor((minZ - large) / CELLULE);
++        gn = (int) Math.floor((maxX + large) / CELLULE) - gx0 + 1;
++        gm = (int) Math.floor((maxZ + large) / CELLULE) - gz0 + 1;
++        int[] compte = new int[gn * gm];
++        proche = new boolean[gn * gm];
++        for (int pass = 0; pass < 2; pass++) {
++            int[][] g = pass == 1 ? new int[gn * gm][] : null;
++            if (g != null) for (int i = 0; i < g.length; i++) if (compte[i] > 0) g[i] = new int[compte[i]];
++            int[] rempli = new int[gn * gm];
++            for (int i = 0; i < m; i++) {
++                int cx0 = (int) Math.floor((ax[i] - portee) / CELLULE) - gx0, cx1 = (int) Math.floor((ax[i] + portee) / CELLULE) - gx0;
++                int cz0 = (int) Math.floor((az[i] - portee) / CELLULE) - gz0, cz1 = (int) Math.floor((az[i] + portee) / CELLULE) - gz0;
++                for (int cz = cz0; cz <= cz1; cz++) for (int cx = cx0; cx <= cx1; cx++) {
++                    int k = cz * gn + cx;
++                    if (g == null) compte[k]++; else g[k][rempli[k]++] = i;
++                }
++                if (pass == 0) {
++                    int mr = margeStructures + demiLargeur;
++                    int px0 = (int) Math.floor((ax[i] - mr) / CELLULE) - gx0, px1 = (int) Math.floor((ax[i] + mr) / CELLULE) - gx0;
++                    int pz0 = (int) Math.floor((az[i] - mr) / CELLULE) - gz0, pz1 = (int) Math.floor((az[i] + mr) / CELLULE) - gz0;
++                    for (int cz = pz0; cz <= pz1; cz++) for (int cx = px0; cx <= px1; cx++) proche[cz * gn + cx] = true;
++                }
++            }
++            if (g != null) { grilleTmp = g; }
++        }
++        grille = grilleTmp;
++        grilleTmp = null;
++    }
++
++    private int[][] grilleTmp;
++
++    private static double dist(double[] a, double[] b) { return Math.hypot(b[0] - a[0], b[1] - a[1]); }
++
++    static List<Route> lire(JsonObject config) {
++        List<Route> l = new ArrayList<>();
++        if (!config.has("routes") || !config.get("routes").isJsonArray()) return l;
++        for (JsonElement e : config.getAsJsonArray("routes")) {
++            JsonObject o = e.getAsJsonObject();
++            List<double[]> pts = new ArrayList<>();
++            for (JsonElement p : o.getAsJsonArray("points")) { JsonArray a = p.getAsJsonArray(); pts.add(new double[]{a.get(0).getAsDouble(), a.get(1).getAsDouble()}); }
++            if (pts.size() < 2) continue;
++            boolean[] droites = new boolean[pts.size() - 1];
++            if (o.has("troncons_droits")) for (JsonElement d : o.getAsJsonArray("troncons_droits")) {
++                JsonArray a = d.getAsJsonArray();
++                for (int i = a.get(0).getAsInt(); i < a.get(1).getAsInt() && i < droites.length; i++) droites[i] = true;
++            }
++            int largeur = o.has("largeur_blocs") ? o.get("largeur_blocs").getAsInt() : 14;
++            Route r = new Route(o.has("nom") ? o.get("nom").getAsString() : "route", pts, droites,
++                    Math.max(2, largeur / 2), o.has("bas_cotes_blocs") ? o.get("bas_cotes_blocs").getAsInt() : 10,
++                    o.has("talus_blocs") ? o.get("talus_blocs").getAsInt() : 20,
++                    o.has("rayon_virage_blocs") ? o.get("rayon_virage_blocs").getAsInt() : 48,
++                    o.has("pente_max") ? o.get("pente_max").getAsDouble() : 0.125,
++                    o.has("marge_structures_blocs") ? o.get("marge_structures_blocs").getAsInt() : 64);
++            CarteIle.LOG.info("[atheria_ile] route '{}' : {} points, {} blocs d'axe, chaussee {} blocs, bas-cotes {}, talus {}",
++                    r.nom, pts.size(), (int) r.abs[r.abs.length - 1], 2 * r.demiLargeur, r.basCotes, r.talus);
++            l.add(r);
++        }
++        return l;
++    }
++
++    /**
++     * Echantillon d'axe le plus proche du bloc (dans la portee), -1 sinon. d2 : distance au carre ecrite dans out[0].
++     * Sans allocation.
++     */
++    public int proche(int bx, int bz, double[] out) {
++        int cx = Math.floorDiv(bx, CELLULE) - gx0, cz = Math.floorDiv(bz, CELLULE) - gz0;
++        if (cx < 0 || cz < 0 || cx >= gn || cz >= gm) return -1;
++        int[] l = grille[cz * gn + cx];
++        if (l == null) return -1;
++        int best = -1;
++        double bd = (double) portee * portee;
++        for (int i : l) {
++            double dx = bx + 0.5 - ax[i], dz = bz + 0.5 - az[i];
++            double d2 = dx * dx + dz * dz;
++            if (d2 < bd) { bd = d2; best = i; }
++        }
++        out[0] = bd;
++        return best;
++    }
++
++    /** Vrai si le bloc est a moins de (demi-largeur + marge structures) de l'axe, a la cellule pres. */
++    public boolean pres(int bx, int bz) {
++        int cx = Math.floorDiv(bx, CELLULE) - gx0, cz = Math.floorDiv(bz, CELLULE) - gz0;
++        return cx >= 0 && cz >= 0 && cx < gn && cz < gm && proche[cz * gn + cx];
++    }
++
++    public boolean profilPret() { return profil != null; }
++
++    /** Y de la chaussee a l'echantillon i (profil calcule a la premiere demande, une seule fois). */
++    public int y(int i, ChunkGenerator gen, LevelHeightAccessor h, RandomState rs, int mer) {
++        int[] p = profil;
++        if (p == null) p = calculerProfil(gen, h, rs, mer);
++        return p[i];
++    }
++
++    public int y(int i) { return profil[i]; }
++
++    private synchronized int[] calculerProfil(ChunkGenerator gen, LevelHeightAccessor h, RandomState rs, int mer) {
++        if (profil != null) return profil;
++        long debut = System.currentTimeMillis();
++        int m = ax.length;
++        int pas = 8; // un releve tous les 8 echantillons = 16 blocs
++        int nc = (m - 1) / pas + 1;
++        double[] brut = new double[nc];
++        for (int k = 0; k < nc; k++) {
++            int i = Math.min(m - 1, k * pas);
++            int y = gen.getBaseHeight((int) ax[i], (int) az[i], Heightmap.Types.OCEAN_FLOOR_WG, h, rs);
++            brut[k] = Math.max(mer + 2, y);   // jamais sous l'eau : pont ou remblai au-dessus des rivieres
++        }
++        // lissage (moyenne glissante sur +-64 blocs), troncons droits a plat (moyenne du troncon)
++        double[] lis = new double[nc];
++        for (int k = 0; k < nc; k++) {
++            double s = 0; int c = 0;
++            for (int j = Math.max(0, k - 4); j <= Math.min(nc - 1, k + 4); j++) { s += brut[j]; c++; }
++            lis[k] = s / c;
++        }
++        int k0 = -1;
++        for (int k = 0; k <= nc; k++) {
++            boolean d = k < nc && droit[Math.min(m - 1, k * pas)];
++            if (d && k0 < 0) k0 = k;
++            if (!d && k0 >= 0) {
++                double s = 0;
++                for (int j = k0; j < k; j++) s += lis[j];
++                double moy = Math.round(s / (k - k0));
++                for (int j = k0; j < k; j++) lis[j] = moy;
++                k0 = -1;
++            }
++        }
++        // pente max dans les deux sens (deblai et remblai)
++        double dmax = penteMax * pas * PAS;
++        for (int k = 1; k < nc; k++) lis[k] = Math.max(lis[k - 1] - dmax, Math.min(lis[k - 1] + dmax, lis[k]));
++        for (int k = nc - 2; k >= 0; k--) lis[k] = Math.max(lis[k + 1] - dmax, Math.min(lis[k + 1] + dmax, lis[k]));
++        int[] p = new int[m];
++        for (int i = 0; i < m; i++) {
++            double f = i / (double) pas;
++            int k = Math.min(nc - 1, (int) f);
++            double t = f - k;
++            double v = k + 1 < nc ? lis[k] * (1 - t) + lis[k + 1] * t : lis[k];
++            p[i] = (int) Math.round(v);
++        }
++        profil = p;
++        int mn = Integer.MAX_VALUE, mx = Integer.MIN_VALUE;
++        for (int v : p) { mn = Math.min(mn, v); mx = Math.max(mx, v); }
++        CarteIle.LOG.info("[atheria_ile] route '{}' : profil en long calcule ({} releves, Y {}..{}, {} ms)", nom, nc, mn, mx, System.currentTimeMillis() - debut);
++        return p;
++    }
++}
+diff --git a/src/fr/atheria/ile/RouteFeature.java b/src/fr/atheria/ile/RouteFeature.java
+new file mode 100644
+index 0000000..427b489
+--- /dev/null
++++ b/src/fr/atheria/ile/RouteFeature.java
+@@ -0,0 +1,173 @@
++package fr.atheria.ile;
++
++import com.mojang.serialization.Codec;
++import net.minecraft.core.BlockPos;
++import net.minecraft.server.level.WorldGenRegion;
++import net.minecraft.tags.BlockTags;
++import net.minecraft.world.level.WorldGenLevel;
++import net.minecraft.world.level.block.Blocks;
++import net.minecraft.world.level.block.state.BlockState;
++import net.minecraft.world.level.chunk.ChunkGenerator;
++import net.minecraft.world.level.levelgen.Heightmap;
++import net.minecraft.world.level.levelgen.RandomState;
++import net.minecraft.world.level.levelgen.feature.Feature;
++import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
++import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
++
++/**
++ * Pose les routes dessinees (etape top_layer_modification, apres les arbres) :
++ * chaussee d'asphalte use a la hauteur du profil en long, bas-cotes degages, talus raccordes au terrain,
++ * pont mince au-dessus de l'eau douce. Les colonnes du chunk sont remodelees ; dans une marge de 12 blocs
++ * sur les chunks voisins, seule la vegetation qui deborde sur la route est retiree.
++ * Sans allocation par colonne.
++ */
++public final class RouteFeature extends Feature<NoneFeatureConfiguration> {
++    private static final int MARGE = 12;
++    private static final int DEBLAI_MAX = 48, REMBLAI_MAX = 40;
++
++    private static final BlockState AIR = Blocks.AIR.defaultBlockState();
++    private static final BlockState ASPHALTE = Blocks.BLACK_CONCRETE_POWDER.defaultBlockState();
++    private static final BlockState TUF = Blocks.TUFF.defaultBlockState();
++    private static final BlockState GRAVIER = Blocks.GRAVEL.defaultBlockState();
++    private static final BlockState TERRE_GROSSIERE = Blocks.COARSE_DIRT.defaultBlockState();
++    private static final BlockState LIGNE = Blocks.LIGHT_GRAY_CONCRETE_POWDER.defaultBlockState();
++    private static final BlockState HERBE_BLOC = Blocks.GRASS_BLOCK.defaultBlockState();
++    private static final BlockState TERRE = Blocks.DIRT.defaultBlockState();
++    private static final BlockState PIERRE = Blocks.STONE.defaultBlockState();
++    private static final BlockState PONT = Blocks.POLISHED_ANDESITE.defaultBlockState();
++    private static final BlockState HERBE = Blocks.SHORT_GRASS.defaultBlockState();
++    private static final BlockState TERRE_RACINES = Blocks.ROOTED_DIRT.defaultBlockState();
++
++    public RouteFeature(Codec<NoneFeatureConfiguration> codec) { super(codec); }
++
++    @Override
++    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> ctx) {
++        CarteIle c = CarteIle.active();
++        if (c == null || c.routes.isEmpty()) return false;
++        WorldGenLevel niveau = ctx.level();
++        BlockPos o = ctx.origin();
++        int x0 = o.getX() & ~15, z0 = o.getZ() & ~15;
++        ChunkGenerator gen = ctx.chunkGenerator();
++        RandomState rs = niveau instanceof WorldGenRegion wgr ? wgr.getLevel().getChunkSource().randomState() : null;
++        if (rs == null) return false;
++        int mer = gen.getSeaLevel();
++        boolean pose = false;
++        double[] d2 = new double[1];
++        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
++        for (Route r : c.routes) {
++            if (!r.pres(x0 + 8, z0 + 8) && !r.pres(x0, z0) && !r.pres(x0 + 15, z0 + 15) && !r.pres(x0, z0 + 15) && !r.pres(x0 + 15, z0)) continue;
++            for (int bz = z0 - MARGE; bz < z0 + 16 + MARGE; bz++) {
++                for (int bx = x0 - MARGE; bx < x0 + 16 + MARGE; bx++) {
++                    int i = r.proche(bx, bz, d2);
++                    if (i < 0) continue;
++                    double d = Math.sqrt(d2[0]);
++                    boolean ici = bx >= x0 && bx < x0 + 16 && bz >= z0 && bz < z0 + 16;
++                    int y = r.y(i, gen, niveau, rs, mer);
++                    if (!ici) {
++                        if (d <= r.demiLargeur + r.basCotes) degager(niveau, pos, bx, bz, y);
++                        continue;
++                    }
++                    pose |= colonne(niveau, c, r, pos, bx, bz, i, d, y);
++                }
++            }
++        }
++        return pose;
++    }
++
++    private static boolean vegetal(BlockState s) {
++        return s.isAir() || s.is(BlockTags.LEAVES) || s.is(BlockTags.LOGS) || s.canBeReplaced() || s.is(Blocks.SNOW)
++                || s.is(BlockTags.FLOWERS) || s.is(Blocks.BAMBOO) || s.is(Blocks.VINE) || s.is(Blocks.CACTUS) || s.is(Blocks.SUGAR_CANE)
++                || s.is(BlockTags.SAPLINGS) || s.is(Blocks.MUSHROOM_STEM) || s.is(Blocks.BROWN_MUSHROOM_BLOCK) || s.is(Blocks.RED_MUSHROOM_BLOCK);
++    }
++
++    /** dessus du sol naturel (premier bloc ni vegetal ni fluide), et vrai dans eau[0] s'il y a de l'eau au-dessus */
++    private static int sol(WorldGenLevel n, BlockPos.MutableBlockPos p, int bx, int bz, int haut, boolean[] eau) {
++        int bas = n.getMinBuildHeight();
++        eau[0] = false;
++        for (int y = haut; y > bas; y--) {
++            BlockState s = n.getBlockState(p.set(bx, y, bz));
++            if (!s.getFluidState().isEmpty()) { eau[0] = true; continue; }
++            if (!vegetal(s)) return y;
++        }
++        return bas;
++    }
++
++    private static final ThreadLocal<boolean[]> EAU = ThreadLocal.withInitial(() -> new boolean[1]);
++
++    /** retire arbres et plantes au-dessus de la route (chunks voisins : la vegetation qui deborde) */
++    private static void degager(WorldGenLevel n, BlockPos.MutableBlockPos p, int bx, int bz, int y) {
++        int haut = n.getHeight(Heightmap.Types.WORLD_SURFACE_WG, bx, bz);
++        for (int yy = Math.min(haut, y + 40); yy > y; yy--) {
++            BlockState s = n.getBlockState(p.set(bx, yy, bz));
++            if (!s.isAir() && s.getFluidState().isEmpty() && (s.is(BlockTags.LEAVES) || s.is(BlockTags.LOGS) || s.canBeReplaced()))
++                n.setBlock(p, AIR, 2);
++        }
++    }
++
++    private boolean colonne(WorldGenLevel n, CarteIle c, Route r, BlockPos.MutableBlockPos p, int bx, int bz, int i, double d, int y) {
++        int haut = n.getHeight(Heightmap.Types.WORLD_SURFACE_WG, bx, bz);
++        boolean[] eau = EAU.get();
++        int g = sol(n, p, bx, bz, Math.max(haut, y + 2), eau);
++        double plat = r.demiLargeur + r.basCotes;
++        if (d > plat) {
++            // talus : raccord progressif entre la route et le terrain naturel
++            double t = Math.min(1, (d - plat) / r.talus);
++            t = t * t * (3 - 2 * t);
++            int cible = (int) Math.round(y + (g - y) * t);
++            if (eau[0] || cible == g) return false;
++            if (cible > g) {
++                if (cible - g > REMBLAI_MAX) return false;
++                for (int yy = g + 1; yy < cible; yy++) n.setBlock(p.set(bx, yy, bz), TERRE, 2);
++                n.setBlock(p.set(bx, cible, bz), HERBE_BLOC, 2);
++            } else {
++                if (g - cible > DEBLAI_MAX) return false;
++                for (int yy = Math.max(haut, g); yy > cible; yy--) n.setBlock(p.set(bx, yy, bz), AIR, 2);
++                BlockState dessous = n.getBlockState(p.set(bx, cible, bz));
++                if (dessous.is(BlockTags.DIRT) || dessous.is(Blocks.SAND) || dessous.is(Blocks.GRAVEL)) n.setBlock(p, HERBE_BLOC, 2);
++            }
++            return true;
++        }
++        // chaussee et bas-cotes : tout degager au-dessus, poser la surface, remblayer dessous
++        for (int yy = Math.min(Math.max(haut, g), y + DEBLAI_MAX); yy > y; yy--) {
++            BlockState s = n.getBlockState(p.set(bx, yy, bz));
++            if (!s.isAir()) n.setBlock(p, AIR, 2);
++        }
++        boolean chaussee = d <= r.demiLargeur;
++        n.setBlock(p.set(bx, y, bz), chaussee ? surface(c, bx, bz, d, r.abs[i]) : basCote(c, bx, bz), 2);
++        // sous la surface : fondation, puis remblai jusqu'au sol (pont mince si de l'eau douce est dessous)
++        boolean surEau = false;
++        for (int yy = y - 1; yy >= y - REMBLAI_MAX && yy > n.getMinBuildHeight(); yy--) {
++            BlockState s = n.getBlockState(p.set(bx, yy, bz));
++            if (!s.getFluidState().isEmpty()) { surEau = true; break; }
++            if (!vegetal(s) && yy < y - 2) break;
++            n.setBlock(p, yy >= y - 2 ? (chaussee ? PIERRE : TERRE) : (chaussee ? PIERRE : TERRE), 2);
++        }
++        if (surEau) n.setBlock(p.set(bx, y - 1, bz), PONT, 2);
++        // herbe dans les joints et sur les bas-cotes (jamais d'arbre)
++        double h = c.bruit(bx * 1.37, bz * 1.37, 517);
++        BlockState top = n.getBlockState(p.set(bx, y, bz));
++        if ((top.is(Blocks.GRASS_BLOCK) && h > 0.55) || (top.is(Blocks.COARSE_DIRT) && chaussee && h > 0.75))
++            n.setBlock(p.set(bx, y + 1, bz), HERBE, 2);
++        return true;
++    }
++
++    /** asphalte use : enrobe noir, tuf, gravier, terre ; fissures ; ligne centrale effacee */
++    private static BlockState surface(CarteIle c, int bx, int bz, double d, float s) {
++        double fissure = Math.abs(c.bruit(bx / 9.0, bz / 9.0, 511) + 0.5 * c.bruit(bx / 3.5, bz / 3.5, 512));
++        if (fissure < 0.035) return GRAVIER;
++        double u = c.bruit(bx / 6.0, bz / 6.0, 513) * 0.6 + c.bruit(bx * 0.9, bz * 0.9, 514) * 0.4;
++        if (d < 0.8 && (((int) (s / 4)) % 3 == 0) && c.bruit(bx * 0.7, bz * 0.7, 515) > 0.1) return LIGNE;
++        if (u > 0.55) return TERRE_GROSSIERE;
++        if (u > 0.35) return GRAVIER;
++        if (u < -0.45) return TUF;
++        return ASPHALTE;
++    }
++
++    private static BlockState basCote(CarteIle c, int bx, int bz) {
++        // bas-cotes : herbe et terre (jamais les blocs de la chaussee, pour que sa largeur reste mesurable)
++        double u = c.bruit(bx / 5.0, bz / 5.0, 516);
++        if (u > 0.5) return TERRE_RACINES;
++        if (u > 0.3) return TERRE;
++        return HERBE_BLOC;
++    }
++}
+diff --git a/src/fr/atheria/ile/Tests.java b/src/fr/atheria/ile/Tests.java
+index 69cee08..b258640 100644
+--- a/src/fr/atheria/ile/Tests.java
++++ b/src/fr/atheria/ile/Tests.java
+@@ -52,6 +52,7 @@ public final class Tests {
+     private static int zoneTotal, zoneX, zoneZ, zoneRayon;
+     private static long zoneDebut;
+     private static int zoneFaits;
++    private static boolean routesAValider;
+     /** chunks demandes en meme temps (generation sur les fils du serveur, pas sur le thread principal) */
+     private static final int EN_VOL_MAX = 24;
+     private static final long ZONE_DELAI_MS = 30 * 60_000L;
+@@ -353,6 +354,7 @@ public final class Tests {
+             enVol.clear();
+             tenus.clear();
+             zoneFaits = 0;
++            routesAValider = false;
+             if (zoneRayon > 0) {
+                 int cx = zoneX >> 4, cz = zoneZ >> 4;
+                 for (int dz = -zoneRayon; dz <= zoneRayon; dz++)
+@@ -360,9 +362,24 @@ public final class Tests {
+                 zoneTotal = aGenerer.size();
+                 zoneDebut = System.currentTimeMillis();
+                 CarteIle.LOG.info("[atheria_ile] generation reelle de {} chunks autour de {} {}", zoneTotal, zoneX, zoneZ);
+-            } else {
+-                zoneTotal = 0;
+             }
++            if (bool(c.config, "valider_routes") && !c.routes.isEmpty()) {
++                // couloir de chaque route : chunks de la chaussee et des bas-cotes, sans doublon
++                java.util.LinkedHashSet<Long> vus = new java.util.LinkedHashSet<>();
++                for (ChunkPos p : aGenerer) vus.add(p.toLong());
++                for (Route r : c.routes) {
++                    int w = r.demiLargeur + r.basCotes;
++                    for (int i = 0; i < r.ax.length; i += 4)
++                        for (int dz = -w; dz <= w; dz += 8) for (int dx = -w; dx <= w; dx += 8)
++                            vus.add(ChunkPos.asLong(((int) r.ax[i] + dx) >> 4, ((int) r.az[i] + dz) >> 4));
++                }
++                aGenerer.clear();
++                for (long l : vus) aGenerer.add(new ChunkPos(l));
++                routesAValider = true;
++                CarteIle.LOG.info("[atheria_ile] validation des routes : {} chunks a generer le long du trace", aGenerer.size());
++            }
++            zoneTotal = aGenerer.size();
++            zoneDebut = System.currentTimeMillis();
+         }
+         ServerLevel niveau = server.overworld();
+         ServerChunkCache cache = niveau.getChunkSource();
+@@ -384,7 +401,7 @@ public final class Tests {
+             CarteIle.LOG.info("[atheria_ile] zone reelle : {} / {} chunks ({} s)", zoneFaits, zoneTotal, (System.currentTimeMillis() - zoneDebut) / 1000);
+         }
+         if (zoneTotal > 0 && zoneFaits < zoneTotal) {
+-            if (System.currentTimeMillis() - zoneDebut > ZONE_DELAI_MS) {
++            if (System.currentTimeMillis() - zoneDebut > (routesAValider ? 3 * ZONE_DELAI_MS : ZONE_DELAI_MS)) {
+                 CarteIle.LOG.error("[atheria_ile] zone reelle abandonnee : {} / {} chunks en {} min", zoneFaits, zoneTotal, ZONE_DELAI_MS / 60000);
+                 ecrire(c, "rapport-zone.txt", "ECHEC : generation trop lente, " + zoneFaits + " / " + zoneTotal + " chunks\n");
+                 libererTickets(cache);
+@@ -393,12 +410,18 @@ public final class Tests {
+             return;
+         }
+         if (zoneTotal > 0) {
+-            try {
++            if (zoneRayon > 0) try {
+                 vueDuDessus(niveau, c);
+             } catch (Throwable e) {
+                 CarteIle.LOG.error("[atheria_ile] ECHEC de la vue du dessus", e);
+                 ecrire(c, "rapport-zone.txt", "ECHEC :\n" + pile(e));
+             }
++            if (routesAValider) try {
++                ValidationRoutes.mesurer(niveau, c);
++            } catch (Throwable e) {
++                CarteIle.LOG.error("[atheria_ile] ECHEC de la validation des routes", e);
++                ecrire(c, "rapport-routes.txt", "ECHEC :\n" + pile(e));
++            }
+             libererTickets(cache);
+         }
+         fin(server);
+diff --git a/src/fr/atheria/ile/ValidationRoutes.java b/src/fr/atheria/ile/ValidationRoutes.java
+new file mode 100644
+index 0000000..7f718f4
+--- /dev/null
++++ b/src/fr/atheria/ile/ValidationRoutes.java
+@@ -0,0 +1,153 @@
++package fr.atheria.ile;
++
++import net.minecraft.core.BlockPos;
++import net.minecraft.server.level.ServerLevel;
++import net.minecraft.world.level.block.Blocks;
++import net.minecraft.world.level.block.state.BlockState;
++import net.minecraft.world.level.chunk.LevelChunk;
++import net.minecraft.world.level.levelgen.Heightmap;
++import net.minecraft.world.level.material.MapColor;
++
++import javax.imageio.ImageIO;
++import java.awt.image.BufferedImage;
++import java.nio.file.Files;
++import java.nio.file.Path;
++
++/** Mesures sur les vrais blocs des routes generees (chunks deja charges, jamais de chargement bloquant). */
++final class ValidationRoutes {
++    private ValidationRoutes() {}
++
++    private static boolean chaussee(BlockState s) {
++        return s.is(Blocks.BLACK_CONCRETE_POWDER) || s.is(Blocks.TUFF) || s.is(Blocks.GRAVEL) || s.is(Blocks.COARSE_DIRT) || s.is(Blocks.LIGHT_GRAY_CONCRETE_POWDER);
++    }
++
++    private static LevelChunk chunk(ServerLevel n, int x, int z) {
++        return n.getChunkSource().getChunkNow(x >> 4, z >> 4);
++    }
++
++    /** Y du bloc de surface (sous l'herbe courte eventuelle), Integer.MIN_VALUE si chunk absent */
++    private static int dessus(ServerLevel n, BlockPos.MutableBlockPos p, int x, int z) {
++        LevelChunk ch = chunk(n, x, z);
++        if (ch == null) return Integer.MIN_VALUE;
++        int y = ch.getHeight(Heightmap.Types.WORLD_SURFACE, x & 15, z & 15);
++        BlockState s = ch.getBlockState(p.set(x, y, z));
++        while (y > n.getMinBuildHeight() && (s.isAir() || s.is(Blocks.SHORT_GRASS) || s.is(Blocks.TALL_GRASS) || s.canBeReplaced())) { y--; s = ch.getBlockState(p.set(x, y, z)); }
++        return y;
++    }
++
++    private static BlockState etat(ServerLevel n, BlockPos.MutableBlockPos p, int x, int y, int z) {
++        LevelChunk ch = chunk(n, x, z);
++        return ch == null ? null : ch.getBlockState(p.set(x, y, z));
++    }
++
++    static void mesurer(ServerLevel n, CarteIle c) throws Exception {
++        StringBuilder sb = new StringBuilder("VALIDATION DES ROUTES (blocs reels, un releve tous les 2 blocs d'axe)\n");
++        BlockPos.MutableBlockPos p = new BlockPos.MutableBlockPos();
++        Path dossier = c.dossier.resolve("rendus");
++        Files.createDirectories(dossier);
++        for (Route r : c.routes) {
++            int m = r.ax.length;
++            if (!r.profilPret()) { sb.append(r.nom).append(" : ECHEC, la feature n'a jamais tourne (datapack sans biome_modifier ?)\n"); continue; }
++            int[] ym = new int[m];
++            int absents = 0, trous = 0, ecartProfil = 0, marches = 0, lmin = 999, lmax = 0, encombres = 0, mesuresBas = 0;
++            long lsom = 0; int ln = 0;
++            double penteMax = 0; int iPente = 0;
++            StringBuilder listeTrous = new StringBuilder();
++            for (int i = 0; i < m; i++) {
++                int x = (int) Math.floor(r.ax[i]), z = (int) Math.floor(r.az[i]);
++                int y = dessus(n, p, x, z);
++                if (y == Integer.MIN_VALUE) { absents++; ym[i] = Integer.MIN_VALUE; continue; }
++                ym[i] = y;
++                BlockState s = etat(n, p, x, y, z);
++                if (!chaussee(s)) { trous++; if (trous <= 15) listeTrous.append(String.format(" %d,%d,Y%d=%s", x, z, y, s.getBlock().getDescriptionId().replace("block.minecraft.", ""))); }
++                if (Math.abs(y - r.y(i)) > 1) ecartProfil++;
++                if (i > 0 && ym[i - 1] != Integer.MIN_VALUE && Math.abs(y - ym[i - 1]) > 1) marches++;
++                if (i >= 4 && ym[i - 4] != Integer.MIN_VALUE) {
++                    double pe = Math.abs(y - ym[i - 4]) / (r.abs[i] - r.abs[i - 4]);
++                    if (pe > penteMax) { penteMax = pe; iPente = i; }
++                }
++                // largeur reelle : perpendiculaire a l'axe, tant que la surface est de la chaussee a +-1 bloc
++                if (i % 5 == 0 && i > 0 && i < m - 1) {
++                    double dx = r.ax[i + 1] - r.ax[i - 1], dz = r.az[i + 1] - r.az[i - 1], l = Math.hypot(dx, dz);
++                    double nx = -dz / l, nz = dx / l;
++                    int larg = 1;
++                    for (int sgn = -1; sgn <= 1; sgn += 2) {
++                        for (int t = 1; t <= 20; t++) {
++                            int xx = (int) Math.floor(r.ax[i] + sgn * nx * t), zz = (int) Math.floor(r.az[i] + sgn * nz * t);
++                            int yy = dessus(n, p, xx, zz);
++                            if (yy == Integer.MIN_VALUE || Math.abs(yy - y) > 1 || !chaussee(etat(n, p, xx, yy, zz))) break;
++                            larg++;
++                        }
++                    }
++                    lmin = Math.min(lmin, larg); lmax = Math.max(lmax, larg); lsom += larg; ln++;
++                }
++                // bas-cotes degages : rien de solide ni de feuillage dans les 6 blocs au-dessus, de la chaussee jusqu'a demi-largeur + bas-cotes
++                if (r.droit[i] && i % 5 == 0 && i > 0 && i < m - 1) {
++                    double dx = r.ax[i + 1] - r.ax[i - 1], dz = r.az[i + 1] - r.az[i - 1], l = Math.hypot(dx, dz);
++                    double nx = -dz / l, nz = dx / l;
++                    for (int sgn = -1; sgn <= 1; sgn += 2) for (int t = r.demiLargeur + 1; t <= r.demiLargeur + r.basCotes; t++) {
++                        int xx = (int) Math.floor(r.ax[i] + sgn * nx * t), zz = (int) Math.floor(r.az[i] + sgn * nz * t);
++                        mesuresBas++;
++                        for (int yy = y + 1; yy <= y + 6; yy++) {
++                            BlockState s2 = etat(n, p, xx, yy, zz);
++                            if (s2 != null && !s2.isAir() && !s2.is(Blocks.SHORT_GRASS) && !s2.is(Blocks.TALL_GRASS)) { encombres++; break; }
++                        }
++                    }
++                }
++            }
++            sb.append(String.format("%s : %d releves sur %.0f blocs d'axe%n", r.nom, m, r.abs[m - 1]));
++            sb.append(String.format("   chunks non charges : %d releves%n", absents));
++            sb.append(String.format("   trous (surface qui n'est pas de la chaussee sur l'axe) : %d (%.2f %%)%s%n", trous, 100.0 * trous / Math.max(1, m - absents), listeTrous));
++            sb.append(String.format("   marches de plus d'un bloc entre deux releves voisins (2 blocs) : %d%n", marches));
++            sb.append(String.format("   pente max mesuree sur 8 blocs : %.3f (1 pour %.1f) vers %d, %d ; profil vise %.3f%n", penteMax, penteMax > 0 ? 1 / penteMax : 0, (int) r.ax[iPente], (int) r.az[iPente], r.penteMax));
++            sb.append(String.format("   ecart de plus d'un bloc avec le profil calcule : %d releves%n", ecartProfil));
++            sb.append(String.format("   largeur reelle de chaussee : min %d, moyenne %.1f, max %d (visee %d)%n", lmin, lsom / (double) Math.max(1, ln), lmax, 2 * r.demiLargeur + 1));
++            // troncons droits
++            int i0 = -1;
++            for (int i = 0; i <= m; i++) {
++                boolean d = i < m && r.droit[i];
++                if (d && i0 < 0) i0 = i;
++                if (!d && i0 >= 0) {
++                    int mn = Integer.MAX_VALUE, mx = Integer.MIN_VALUE;
++                    double ecart = 0;
++                    double ax0 = r.ax[i0], az0 = r.az[i0], ax1 = r.ax[i - 1], az1 = r.az[i - 1], L = Math.hypot(ax1 - ax0, az1 - az0);
++                    for (int j = i0; j < i; j++) {
++                        if (ym[j] != Integer.MIN_VALUE) { mn = Math.min(mn, ym[j]); mx = Math.max(mx, ym[j]); }
++                        ecart = Math.max(ecart, Math.abs((r.ax[j] - ax0) * (az1 - az0) - (r.az[j] - az0) * (ax1 - ax0)) / L);
++                    }
++                    sb.append(String.format("   TRONCON DROIT %d,%d -> %d,%d : %.0f blocs, Y %d..%d (denivele %d), ecart a la droite %.2f bloc%n",
++                            (int) ax0, (int) az0, (int) ax1, (int) az1, L, mn, mx, mx - mn, ecart));
++                    i0 = -1;
++                }
++            }
++            sb.append(String.format("   bas-cotes des troncons droits encombres (de 1 a 6 blocs au-dessus) : %d / %d colonnes%n", encombres, mesuresBas));
++            // zooms : debut, milieu du troncon droit, pente max, fin
++            int milieuDroit = -1;
++            for (int i = 0; i < m; i++) if (r.droit[i]) { milieuDroit = i; }
++            int premierDroit = -1;
++            for (int i = 0; i < m; i++) if (r.droit[i]) { premierDroit = i; break; }
++            int[] cibles = {0, premierDroit >= 0 ? (premierDroit + milieuDroit) / 2 : m / 4, iPente, m / 2, m - 1};
++            String[] noms = {"debut", "troncon-droit", "pente-max", "milieu", "fin"};
++            for (int k = 0; k < cibles.length; k++) {
++                int cx = (int) r.ax[cibles[k]], cz = (int) r.az[cibles[k]];
++                BufferedImage im = new BufferedImage(160, 160, BufferedImage.TYPE_INT_RGB);
++                for (int j = 0; j < 160; j++) for (int i = 0; i < 160; i++) {
++                    int x = cx - 80 + i, z = cz - 80 + j;
++                    LevelChunk ch = chunk(n, x, z);
++                    if (ch == null) { im.setRGB(i, j, 0x101010); continue; }
++                    int y = ch.getHeight(Heightmap.Types.WORLD_SURFACE, x & 15, z & 15);
++                    BlockState s = ch.getBlockState(p.set(x, y, z));
++                    MapColor mc = s.getMapColor(n, p);
++                    int col = mc == MapColor.NONE ? 0 : mc.col;
++                    double ombre = 0.7 + 0.3 * Math.max(0, Math.min(1, (y - 60) / 80.0));
++                    int rr = (int) (((col >> 16) & 255) * ombre), gg = (int) (((col >> 8) & 255) * ombre), bb = (int) ((col & 255) * ombre);
++                    im.setRGB(i, j, (rr << 16) | (gg << 8) | bb);
++                }
++                ImageIO.write(im, "png", dossier.resolve("route-" + r.nom + "-" + noms[k] + ".png").toFile());
++                sb.append(String.format("   zoom %s : 160 x 160 blocs autour de %d, %d%n", noms[k], cx, cz));
++            }
++        }
++        Tests.ecrireRapport(c, "rapport-routes.txt", sb.toString());
++        CarteIle.LOG.info("[atheria_ile] validation des routes ecrite : rapport-routes.txt");
++    }
++}
+diff --git a/src/fr/atheria/ile/mixin/StructuresRouteMixin.java b/src/fr/atheria/ile/mixin/StructuresRouteMixin.java
+new file mode 100644
+index 0000000..b9d32ee
+--- /dev/null
++++ b/src/fr/atheria/ile/mixin/StructuresRouteMixin.java
+@@ -0,0 +1,31 @@
++package fr.atheria.ile.mixin;
++
++import fr.atheria.ile.CarteIle;
++import fr.atheria.ile.Route;
++import net.minecraft.core.RegistryAccess;
++import net.minecraft.core.SectionPos;
++import net.minecraft.world.level.ChunkPos;
++import net.minecraft.world.level.StructureManager;
++import net.minecraft.world.level.chunk.ChunkAccess;
++import net.minecraft.world.level.chunk.ChunkGenerator;
++import net.minecraft.world.level.levelgen.RandomState;
++import net.minecraft.world.level.levelgen.structure.StructureSet;
++import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.injection.At;
++import org.spongepowered.asm.mixin.injection.Inject;
++import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
++
++/** Aucune structure ne demarre sur le couloir d'une route dessinee (chaussee + marge_structures_blocs). */
++@Mixin(ChunkGenerator.class)
++public abstract class StructuresRouteMixin {
++    @Inject(method = "tryGenerateStructure", at = @At("HEAD"), cancellable = true)
++    private void atheriaIle$pasSurLaRoute(StructureSet.StructureSelectionEntry entree, StructureManager gestionnaire, RegistryAccess registres, RandomState aleatoire,
++                                          StructureTemplateManager modeles, long graine, ChunkAccess chunk, ChunkPos pos, SectionPos section,
++                                          CallbackInfoReturnable<Boolean> retour) {
++        CarteIle c = CarteIle.active();
++        if (c == null || c.routes.isEmpty()) return;
++        int bx = pos.getMiddleBlockX(), bz = pos.getMiddleBlockZ();
++        for (Route r : c.routes) if (r.pres(bx, bz)) { retour.setReturnValue(false); return; }
++    }
++}
+
+=== ressources/atheria_ile.mixins.json : + "StructuresRouteMixin" ; mods.toml + construire.ps1 : version 0.4.6 -> 0.5.0
+=== datapack 0.7 = 0.6 + fichiers suivants
+--- data/atheria_ile/neoforge/biome_modifier/routes.json
+{
+ "type": "neoforge:add_features",
+ "biomes": "#atheria_ile:routes",
+ "features": "atheria_ile:routes",
+ "step": "top_layer_modification"
+}
+--- data/atheria_ile/worldgen/configured_feature/routes.json
+{
+ "type": "atheria_ile:route",
+ "config": {}
+}
+--- data/atheria_ile/worldgen/placed_feature/routes.json
+{
+ "feature": "atheria_ile:routes",
+ "placement": []
+}
+--- data/atheria_ile/tags/worldgen/biome/routes.json (75 biomes + #minecraft:is_overworld, replace false ; non recopie)

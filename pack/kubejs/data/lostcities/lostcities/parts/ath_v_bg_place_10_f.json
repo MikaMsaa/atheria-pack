@@ -161,10 +161,14 @@
    },
    {
     "char": "ç",
-    "block": "minecraft:red_wall_banner[facing=south]"
+    "block": "minecraft:stone_brick_slab[type=double,waterlogged=false]"
    },
    {
     "char": "è",
+    "block": "minecraft:red_wall_banner[facing=south]"
+   },
+   {
+    "char": "é",
     "block": "minecraft:stone_brick_wall[east=none,north=none,south=tall,up=true,waterlogged=false,west=tall]"
    }
   ]
@@ -258,7 +262,7 @@
    "             â  ",
    "            âãâ ",
    "ææ         âãÛãâ",
-   "ææ          âãâ "
+   "çæ          âãâ "
   ],
   [
    "                ",
@@ -268,7 +272,7 @@
    "                ",
    "                ",
    "         ä      ",
-   "         ç      ",
+   "         è      ",
    "                ",
    "                ",
    "                ",
@@ -276,7 +280,7 @@
    "             â  ",
    "            âãâ ",
    "           âãÛãâ",
-   "è           âãâ "
+   "é           âãâ "
   ]
  ]
 }

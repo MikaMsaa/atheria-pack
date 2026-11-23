@@ -1,0 +1,154 @@
+diff -ru sauvegarde-0.4.3/src/fr/atheria/ile/CarteIle.java src/fr/atheria/ile/CarteIle.java
+--- sauvegarde-0.4.3/src/fr/atheria/ile/CarteIle.java	2026-11-10 08:19:46.849397000 +0400
++++ src/fr/atheria/ile/CarteIle.java	2026-11-10 09:19:05.838891500 +0400
+@@ -146,6 +146,11 @@
+     final List<Double> passageLargeur = new ArrayList<>();
+     /** lagon vivant : biomes du lagon, du recif et des passes ; passes plus profondes (largeur en blocs, continentalite du fond) */
+     public final String lagonBiome, recifBiome, passesBiome;
++    /** zones rondes a biome force ("zones_biome") : centre, rayon et bord bruite (blocs), biome, nom */
++    public final double[] zoneX, zoneZ, zoneRayon, zoneBord;
++    public final String[] zoneBiome, zoneNom;
++    /** false : la zone remplace aussi la bande de plage (jamais l'eau ni le lagon) */
++    public final boolean[] zonePlage;
+     public final double passesLargeur, passesFond;
+     public final boolean rivieresAleatoires;
+     /** pilotage de l'erosion de Tectonic par relief.png : force (0..1) et |e| vise en plaine (0.05 + erosionPlat) */
+@@ -380,6 +385,23 @@
+         passesLargeur = lg != null && lg.has("passes_largeur_blocs") ? Math.max(0, lg.get("passes_largeur_blocs").getAsDouble()) : 0.0;
+         passesFond = lg != null && lg.has("passes_continents") ? Math.max(-0.45, Math.min(-0.20, lg.get("passes_continents").getAsDouble())) : -0.30;
+         LOG.info("[atheria_ile] {} biomes de passage, lagon {}, passes {} blocs", passageBiome.size(), lagonBiome, passesLargeur);
++        List<JsonObject> zl = new ArrayList<>();
++        if (config.has("zones_biome") && config.get("zones_biome").isJsonArray())
++            for (var e : config.getAsJsonArray("zones_biome")) if (e.isJsonObject() && e.getAsJsonObject().has("biome")) zl.add(e.getAsJsonObject());
++        int nz = zl.size();
++        zoneX = new double[nz]; zoneZ = new double[nz]; zoneRayon = new double[nz]; zoneBord = new double[nz];
++        zoneBiome = new String[nz]; zoneNom = new String[nz]; zonePlage = new boolean[nz];
++        for (int i = 0; i < nz; i++) {
++            JsonObject o = zl.get(i);
++            zoneX[i] = o.has("x") ? o.get("x").getAsDouble() : 0;
++            zoneZ[i] = o.has("z") ? o.get("z").getAsDouble() : 0;
++            zoneRayon[i] = o.has("rayon_blocs") ? Math.max(0, o.get("rayon_blocs").getAsDouble()) : 0;
++            zoneBord[i] = o.has("bord_blocs") ? Math.max(0, Math.min(zoneRayon[i], o.get("bord_blocs").getAsDouble())) : 0;
++            zoneBiome[i] = o.get("biome").getAsString();
++            zoneNom[i] = o.has("nom") ? o.get("nom").getAsString() : "zone " + (i + 1);
++            zonePlage[i] = !o.has("plage") || o.get("plage").isJsonNull() || o.get("plage").getAsBoolean();
++            LOG.info("[atheria_ile] zone de biome '{}' : {} sur {} blocs autour de {}, {} (bord {}, plage gardee {})", zoneNom[i], zoneBiome[i], (long) zoneRayon[i], (long) zoneX[i], (long) zoneZ[i], (long) zoneBord[i], zonePlage[i]);
++        }
+ 
+         // relief des régions lissé (flou boîte séparable, deux passes)
+         int rayon = config.has("lissage_relief_pixels") ? Math.max(0, config.get("lissage_relief_pixels").getAsInt()) : 8;
+@@ -739,6 +761,18 @@
+         return ((a * (1 - tx) + b * tx) * (1 - tz) + (c * (1 - tx) + d * tx) * tz) * 2 - 1;
+     }
+ 
++    /** Index de la zone de biome force qui couvre ce bloc (bord bruite), -1 si aucune. Sans allocation. */
++    public int zoneBiome(int bx, int bz) {
++        for (int i = 0; i < zoneX.length; i++) {
++            double dx = bx - zoneX[i], dz = bz - zoneZ[i], max = zoneRayon[i] + zoneBord[i];
++            double d2 = dx * dx + dz * dz;
++            if (d2 > max * max) continue;
++            double lim = zoneRayon[i] + zoneBord[i] * (0.65 * bruit(bx / 90.0, bz / 90.0, 900 + 2L * i) + 0.35 * bruit(bx / 33.0, bz / 33.0, 901 + 2L * i));
++            if (d2 < lim * lim) return i;
++        }
++        return -1;
++    }
++
+     /** Index de région (0..n-1) au bloc donné, bords déformés pour éviter les escaliers de pixels. */
+     public int region(int bx, int bz) {
+         return regionPassage(bx, bz) & 0xFF;
+diff -ru sauvegarde-0.4.3/src/fr/atheria/ile/TableBiomes.java src/fr/atheria/ile/TableBiomes.java
+--- sauvegarde-0.4.3/src/fr/atheria/ile/TableBiomes.java	2026-11-10 08:19:46.846235100 +0400
++++ src/fr/atheria/ile/TableBiomes.java	2026-11-10 09:19:05.850729100 +0400
+@@ -53,6 +53,8 @@
+     final Holder<Biome>[] passages;
+     /** lagon vivant (null : biome d'origine garde) */
+     final Holder<Biome> lagon, recif, passes;
++    /** biome de chaque zone de biome force (null si absent du monde : la zone est ignoree) */
++    final Holder<Biome>[] zones;
+     /** plage normale qui remplace la plage enneigée hors des régions froides (null si absente) */
+     final Holder<Biome> plage;
+     public final List<String> avertissements = new ArrayList<>();
+@@ -133,6 +135,8 @@
+         lagon = carte.lagonBiome == null ? null : trouver(parId, carte.lagonBiome, "lagon");
+         recif = carte.recifBiome == null ? null : trouver(parId, carte.recifBiome, "recif");
+         passes = carte.passesBiome == null ? null : trouver(parId, carte.passesBiome, "passes du lagon");
++        zones = new Holder[carte.zoneBiome.length];
++        for (int i = 0; i < zones.length; i++) zones[i] = trouver(parId, carte.zoneBiome[i], "zone " + carte.zoneNom[i]);
+         plage = parId.get(ResourceLocation.withDefaultNamespace("beach"));
+         Holder<Biome> plageNeige = parId.get(ResourceLocation.withDefaultNamespace("snowy_beach"));
+         plageLargeur = entier(carte, "plage_largeur_blocs", 24);
+@@ -193,6 +197,13 @@
+     }
+ 
+     public Holder<Biome> choisir(Holder<Biome> base, int bx, int by, int bz) {
++        // zone sans plage ("plage": false, port de Longoni) : le biome de la zone va jusqu'a l'eau,
++        // sur la terre de la carte seulement, jamais sur l'eau, le lagon, les rivieres ni les grottes
++        if (zones.length > 0) {
++            int z = carte.zoneBiome(bx, bz);
++            if (z >= 0 && zones[z] != null && !carte.zonePlage[z] && !base.is(BiomeTags.IS_OCEAN) && !base.is(BiomeTags.IS_DEEP_OCEAN)
++                    && !base.is(BiomeTags.IS_RIVER) && !grotte(base) && carte.distanceBlocs(bx, bz) >= 0) return zones[z];
++        }
+         // plages : la carte remet du sable sur toute côte basse (sauf rivières, grands fonds et grottes)
+         // (test de hauteur et de distance d'abord : le moins cher ; aucune allocation, les holders sont resolus au constructeur)
+         if (surPlage(bx, by, bz) && !base.is(BiomeTags.IS_RIVER) && !base.is(BiomeTags.IS_DEEP_OCEAN)
+@@ -220,6 +231,11 @@
+                     && !regions[carte.region(bx, bz)].froide) return plage;
+             return base;
+         }
++        // zone de biome force (port de Longoni...) : surface seulement, l'eau, les plages et les grottes sont gardees plus haut
++        if (zones.length > 0) {
++            int z = carte.zoneBiome(bx, bz);
++            if (z >= 0 && zones[z] != null) return zones[z];
++        }
+         int rp = carte.regionPassage(bx, bz);
+         int r = rp & 0xFF;
+         RegionBiomes rb = regions[r];
+@@ -237,6 +253,13 @@
+         return tirer(rb.biomes, rb.cumul, rb.total, carte.tirageCellule(bx, bz, rb.cellule, r));
+     }
+ 
++    /** Pour le rapport : biome attendu a ce bloc (region, ou zone de biome force qui le couvre) ? */
++    public boolean attendu(int region, Holder<Biome> b, int bx, int bz) {
++        if (attendu(region, b)) return true;
++        int z = zones.length == 0 ? -1 : carte.zoneBiome(bx, bz);
++        return z >= 0 && b.equals(zones[z]);
++    }
++
+     /** Pour le rapport : la région accepte-t-elle ce biome ? */
+     public boolean attendu(int region, Holder<Biome> b) {
+         RegionBiomes rb = regions[region];
+diff -ru sauvegarde-0.4.3/src/fr/atheria/ile/Tests.java src/fr/atheria/ile/Tests.java
+--- sauvegarde-0.4.3/src/fr/atheria/ile/Tests.java	2026-11-10 08:19:46.855741500 +0400
++++ src/fr/atheria/ile/Tests.java	2026-11-10 08:20:11.849706000 +0400
+@@ -236,7 +236,7 @@
+                     int r = c.region(x, z);
+                     String nomR = c.regions.get(r).nom;
+                     parRegion.computeIfAbsent(nomR, n -> new TreeMap<>()).merge(id, 1, Integer::sum);
+-                    if (!table.garder(biome[k]) && !table.attendu(r, biome[k])) {
++                    if (!table.garder(biome[k]) && !table.attendu(r, biome[k], x, z)) {
+                         etrangers++;
+                         etrangersParBiome.merge(id, 1, Integer::sum);
+                         ec = 0xFFFF00;
+--- sauvegarde-0.4.3/regions.json	2026-11-10 08:19:46.893097500 +0400
++++ regions.json	2026-11-10 09:19:05.859867100 +0400
+@@ -227,6 +227,9 @@
+   "passes_largeur_blocs": 48,
+   "passes_continents": -0.3
+  },
++ "zones_biome": [
++  {"nom": "Port de Longoni", "x": 2800, "z": -2950, "rayon_blocs": 400, "bord_blocs": 64, "biome": "minecraft:sparse_jungle", "plage": false}
++ ],
+  "titres_regions": {
+   "actif": true,
+   "intervalle_ticks": 20,
+--- sauvegarde-0.4.3/ressources/META-INF/neoforge.mods.toml	2026-11-10 08:19:46.862845600 +0400
++++ ressources/META-INF/neoforge.mods.toml	2026-11-10 08:20:11.851219500 +0400
+@@ -4,7 +4,7 @@
+ 
+ [[mods]]
+ modId = "atheria_ile"
+-version = "0.4.3"
++version = "0.4.4"
+ displayName = "Atheria Ile"
+ description = "Prototype : la carte dessinee de l'ile d'Atheria guide les cotes, le relief et les biomes. Inactif sans le datapack atheria_ile dans le monde."
+ 

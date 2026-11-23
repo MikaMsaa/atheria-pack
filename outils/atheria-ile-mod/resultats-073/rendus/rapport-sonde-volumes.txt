@@ -1,0 +1,16 @@
+SONDE DES VOLUMES (8 chunks de chunks_volumes ; reserve = volume + marge 8, sous la surface - 2)
+chunk 154,-188 (marge seule) : 5440 blocs de reserve, vides 0 (fluides 0), minerais 0
+chunk 152,-175 (marge seule) : 2640 blocs de reserve, vides 0 (fluides 0), minerais 0
+chunk 156,-160 (marge seule) : 2640 blocs de reserve, vides 0 (fluides 0), minerais 0
+chunk 156,-144 (marge seule) : 2464 blocs de reserve, vides 0 (fluides 0), minerais 0
+chunk 160,-128 (Ligne principale) : 7424 blocs de reserve, vides 951 (fluides 0), minerais 0 : 2566,36,-2048=air 2567,34,-2048=air 2567,35,-2048=air 2567,36,-2048=air 2568,33,-2048=air 2568,34,-2048=air 2568,35,-2048=air 2568,36,-2048=air 2569,32,-2048=air
+   colonne 2566,-2048 : OCEAN_FLOOR 63, WORLD_SURFACE 63, MOTION_BLOCKING 63, biome minecraft:plains ; [20..22 stone] [23..24 air] [25..35 stone] [36..36 air] [37..59 stone] [60..62 dirt] [63..63 grass_block] [64.. air]
+   departs de structures dans le chunk : 1
+chunk 148,-186 (marge seule) : 1422 blocs de reserve, vides 93 (fluides 0), minerais 0 : 2369,32,-2976=air 2369,33,-2976=air 2369,34,-2976=air 2369,35,-2976=air 2369,36,-2976=air 2370,32,-2976=air 2370,33,-2976=air 2370,34,-2976=air 2370,35,-2976=air
+   colonne 2369,-2976 : OCEAN_FLOOR 66, WORLD_SURFACE 66, MOTION_BLOCKING 66, biome biomesoplenty:dryland ; [20..29 stone] [30..36 air] [37..58 stone] [59..62 sandstone] [63..66 sand] [67.. air]
+chunk 136,-175 (Embranchement) : 7358 blocs de reserve, vides 4 (fluides 0), minerais 0 : 2180,32,-2800=air 2181,32,-2800=air 2182,32,-2800=air 2183,32,-2800=air
+   colonne 2180,-2800 : OCEAN_FLOOR 66, WORLD_SURFACE 66, MOTION_BLOCKING 66, biome biomesoplenty:wasteland ; [20..32 air] [33..49 stone] [50..50 dried_salt] [51..53 stone] [54..66 dried_salt] [67.. air]
+chunk 125,-174 (Grand Nid) : 9472 blocs de reserve, vides 2248 (fluides 1864), minerais 0 : 2000,47,-2784=water 2000,48,-2784=water 2000,49,-2784=water 2000,50,-2784=water 2000,51,-2784=water 2000,52,-2784=water 2000,53,-2784=water 2000,54,-2784=water
+   colonne 2000,-2784 : OCEAN_FLOOR 103, WORLD_SURFACE 103, MOTION_BLOCKING 103, biome biomesoplenty:scrubland ; [20..46 stone] [47..59 water] [60..76 air] [77..87 stone] [88..89 copper_ore] [90..99 stone] [100..102 dirt] [103..103 grass_block] [104.. air]
+   departs de structures dans le chunk : 1
+TOTAL : 38860 blocs, vides 3296 (fluides 1864), minerais 0 -> A VOIR

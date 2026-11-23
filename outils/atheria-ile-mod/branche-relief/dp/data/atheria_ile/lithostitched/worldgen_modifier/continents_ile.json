@@ -1,0 +1,8 @@
+{
+  "type": "lithostitched:wrap_density_function",
+  "target_function": "tectonic:noise/raw_continents",
+  "wrapper_function": {
+    "type": "atheria_ile:ile_continents",
+    "argument": {"type": "lithostitched:wrapped_marker"}
+  }
+}

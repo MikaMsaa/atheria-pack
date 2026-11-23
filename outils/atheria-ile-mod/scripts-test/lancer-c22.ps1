@@ -1,0 +1,148 @@
+﻿# Relief v3, creneau 2b (jar 0.9.0 base_terrain, fondu adaptatif par decalage de colonne) :
+# (e) pilote de Mamoudzou avec fondu adaptatif (instance AtheriaPilote, monde pilote-3tp-pret recopie),
+# (f) captures v3 des 7 points + colline (instance AtheriaAudit, copie de pilote-v3-colline).
+# Copie jetable + instances de test seulement. Le verrou n'est supprime qu'au nettoyage final.
+param([int]$LibreClient = 6500, [int]$BudgetMin = 40, [string]$File = '')
+$ErrorActionPreference = 'Stop'
+$Racine = 'C:\Users\El-Afdal\Desktop\Atheria Zombie Edition'
+$Ess = "$Racine\outils\serveur-pilote-essai"
+$Lock = "$Racine\outils\pause-file.lock"
+$Ici = Split-Path -Parent $MyInvocation.MyCommand.Path
+$SP = $Ici; $C1 = "$SP\c1"; $Fac = "$SP\facteur"
+$BR = "$Racine\outils\atheria-ile-mod\branche-relief"
+$Journal = "$Ici\journal-c22.txt"
+$Libere = (Get-Date).AddMinutes(-1)   # avec la pause de 3 min de l enchainement : 5 min laissees a un autre fil (Mods) pour prendre le verrou
+$Prism = 'C:\Users\El-Afdal\AppData\Local\Programs\PrismLauncher\prismlauncher.exe'
+$MP = "$Racine\instances\AtheriaPilote\minecraft"; $MA = "$Racine\instances\AtheriaAudit\minecraft"
+function J($t) { $l = "$(Get-Date -Format HH:mm:ss) $t"; [IO.File]::AppendAllText($Journal, "$l`r`n"); Write-Host $l }
+function Libre { [int]((Get-CimInstance Win32_OperatingSystem).FreePhysicalMemory / 1024) }
+function GrosJava { @(Get-Process java, javaw -ErrorAction SilentlyContinue | Where-Object { $_.WorkingSet64 -gt 1GB }).Count }
+function Prisms { @(Get-Process prismlauncher -ErrorAction SilentlyContinue).Count }
+function Contenu { if (Test-Path $Lock) { try { Get-Content $Lock -Raw } catch { '?' } } else { $null } }
+function Client($inst, $M, $monde, $motifFin, $filtre, $maxMin) {
+  $t1 = Get-Date
+  while ((Libre) -lt $LibreClient -or (GrosJava) -gt 0) { if (((Get-Date) - $t1).TotalMinutes -gt 3) { J "CLIENT_REFUSE libre=$(Libre) java=$(GrosJava)"; throw 'ram client' }; Start-Sleep 10 }
+  $avant = @(Get-Process javaw, java -ErrorAction SilentlyContinue | ForEach-Object { $_.Id }); $debut = Get-Date
+  $pp = Start-Process $Prism -ArgumentList @('--launch', $inst, '--world', $monde) -PassThru; $script:monPrism = $pp.Id
+  $mj = $null
+  for ($k = 0; $k -lt 30 -and -not $mj; $k++) { Start-Sleep 3; $mj = (Get-CimInstance Win32_Process -Filter "Name='javaw.exe' OR Name='java.exe'" | Where-Object { $avant -notcontains $_.ProcessId -and $_.CommandLine -like "*$inst*" } | Select-Object -First 1).ProcessId }
+  if (-not $mj) { throw 'java client introuvable' }
+  $script:monJava = $mj; J "$inst java=$mj"
+  $arret = $null; $dern = Get-Date; $finVue = $null
+  while ($true) {
+    Start-Sleep 10
+    $pj = Get-Process -Id $mj -ErrorAction SilentlyContinue
+    if (-not $pj) { J "$inst termine"; break }
+    $lib = Libre; $n = @(Get-ChildItem "$M\screenshots" -Filter $filtre -ErrorAction SilentlyContinue).Count
+    if (((Get-Date) - $dern).TotalSeconds -ge 120) { J "$inst libre=$lib jeu=$([int]($pj.WorkingSet64/1MB)) captures=$n"; $dern = Get-Date }
+    if (-not $finVue) { try { $fs = [IO.File]::Open("$M\logs\latest.log", 'Open', 'Read', 'ReadWrite'); $sr = New-Object IO.StreamReader($fs); $tx = $sr.ReadToEnd(); $sr.Close(); if ($tx -match $motifFin) { $finVue = Get-Date; J 'FIN_SCRIPT_VUE' } } catch { } }
+    if ($finVue -and ((Get-Date) - $finVue).TotalSeconds -gt 90) { Stop-Process -Id $mj -Force; J "TUE mon java client $mj (bloque apres la fin)"; break }
+    $crash = Get-ChildItem "$M\crash-reports" -Filter '*.txt' -ErrorAction SilentlyContinue | Where-Object { $_.LastWriteTime -gt $debut }
+    $inc = if ($crash) { "CRASH $($crash[0].Name)" } elseif ($lib -lt 300) { "MEMOIRE $lib" } elseif (((Get-Date) - $debut).TotalMinutes -gt $maxMin) { "DUREE $maxMin min" } else { $null }
+    if ($inc -and -not $arret) { J "INCIDENT $inc : arret propre demande"; Set-Content "$M\kubejs\audit\arret.json" '{"arret":true}' -Encoding ASCII; $arret = Get-Date }
+    if ($arret -and ((Get-Date) - $arret).TotalSeconds -gt 120) { Stop-Process -Id $mj -Force; J "TUE mon java client $mj"; break }
+  }
+  $script:monJava = $null
+  Remove-Item "$M\kubejs\audit\arret.json" -ErrorAction SilentlyContinue
+  Start-Sleep 5; if ($script:monPrism) { Get-Process -Id $script:monPrism -ErrorAction SilentlyContinue | Stop-Process -ErrorAction SilentlyContinue; $script:monPrism = $null }
+  J "$inst captures=$(@(Get-ChildItem "$M\screenshots" -Filter $filtre).Count)"
+  Start-Sleep 10
+}
+
+J 'debut creneau 22 : serveur seul, 0.9.6d v3n2 (ilots chauds, ileA ilot) : memes 16 zones que c21, 40 min'
+$vuAutre = $false; $dernAtt = Get-Date '2000-01-01'
+# file d'attente du 15/11 : Mods (5 min pour prendre, pause de 3 min de l'enchainement comprise), puis le Trailer (5 min pour prendre, 2 passages),
+# puis c21 apres 2 min de verrou libre, 6,5 Go libres, aucun java de plus de 1 Go, aucun Prism.
+$D = Get-Date; $etat = 'mods'; $tEtat = $D.AddMinutes(-3); $tLibreDepuis = $D; $precedent = $null; $rendusTrailer = 0; $tDernRenduTr = $null; $unPassage = $false
+$je = "$Ici\journal-ext3-colline2.txt"; if ((Test-Path $je) -and ((Get-Content $je -Tail 1) -match 'LOCK_RENDU=') -and ((Get-Date) - (Get-Item $je).LastWriteTime).TotalMinutes -lt 15) { $etat = 'trailer'; $tEtat = Get-Date; $unPassage = $true; J 'ext3 vient de finir : file Trailer (1 passage ~25 min) puis Villes (1 passage ~25 min), 5 min au plus chacun pour prendre, puis 2 min de verrou libre' }
+# -File 'villes,trailer' (15/11 09:51) : passages a laisser, dans l'ordre ; chacun a 5 min pour prendre le verrou, puis on attend qu'il le rende
+if ($File) {
+  $MOT = @{ villes = '(?i)ville|batiment'; trailer = '(?i)trailer|blender'; mods = '(?i)mod' }
+  $prec2 = Contenu
+  foreach ($nom in ($File -split ',')) {
+    $nom = $nom.Trim(); $m = $MOT[$nom]; $t5 = Get-Date; $tient = $false; J "FILE : attente de $nom (5 min pour prendre)"
+    while ($true) {
+      $c = Contenu
+      if ($c -and $c -ne $prec2) { J "AUTRE_A_PRIS : $($c.Trim())" }
+      if (-not $c -and $prec2) { J "VERROU_RENDU par : $($prec2.Trim())"; $tLibreDepuis = Get-Date }
+      if ($c -and $c -match $m) { $tient = $true }
+      if ($tient -and -not $c -and $prec2) { J "FILE : $nom passe"; $prec2 = $c; break }
+      if (-not $tient -and -not $c -and ((Get-Date) - $t5).TotalMinutes -ge 5) { J "FILE : $nom pas venu en 5 min"; $prec2 = $c; break }
+      $prec2 = $c
+      if (((Get-Date) - $D).TotalMinutes -gt 180) { J 'ABANDON attente 3 h'; exit 1 }
+      Start-Sleep 3
+    }
+  }
+  $etat = 'fini'; $precedent = Contenu; if ($precedent) { $tLibreDepuis = Get-Date }
+}while ($true) {
+  $c = Contenu
+  if ($c -and $c -notmatch '^thread ile') {
+    if ($c -ne $precedent) { J "AUTRE_A_PRIS : $($c.Trim())" }
+    if ($etat -eq 'mods' -and $c -match '(?i)mod') { $etat = 'mods_tient' }
+    elseif ($etat -in 'mods', 'mods_tient', 'trailer' -and $c -match '(?i)trailer|blender') { $etat = 'trailer_tient' }
+    elseif ($etat -eq 'villes' -and $c -match '(?i)ville|batiment') { $etat = 'villes_tient' }
+  }
+  if (-not $c -and $precedent) {
+    J "VERROU_RENDU par : $($precedent.Trim())"; $tLibreDepuis = Get-Date
+    if ($etat -eq 'mods_tient') { $etat = 'trailer'; $tEtat = Get-Date; J 'MODS_FINI : 5 min laissees au Trailer' }
+    elseif ($etat -eq 'trailer_tient') { $rendusTrailer++; $tDernRenduTr = Get-Date; $etat = if ($unPassage) { 'sud' } elseif ($rendusTrailer -ge 2) { 'fini' } else { 'trailer_pause' }; $tEtat = Get-Date; J "TRAILER passage $rendusTrailer rendu (etat $etat)" }
+    elseif ($etat -eq 'villes_tient') { $etat = 'fini'; J 'VILLES passage rendu' }
+  }
+  if ($c -and $etat -eq 'trailer_pause' -and $c -match '(?i)trailer|blender') { $etat = 'trailer_tient' }
+  $precedent = $c
+  if ($etat -eq 'mods' -and ((Get-Date) - $tEtat).TotalMinutes -ge 5) { $etat = 'trailer'; $tEtat = Get-Date; J 'MODS pas venu en 5 min : 5 min laissees au Trailer' }
+  if ($etat -eq 'trailer' -and ((Get-Date) - $tEtat).TotalMinutes -ge 5) { if ($unPassage) { $etat = 'sud'; $tEtat = Get-Date; J 'TRAILER pas venu en 5 min : bande sud puis Villes' } else { $etat = 'fini'; J 'TRAILER pas venu en 5 min' } }
+  if ($etat -eq 'sud') { $js = "$Ici\journal-sud-colline2.txt"; $ls = @(if (Test-Path $js) { Get-Content $js }); if ($ls -match 'LOCK_RENDU=|ABANDON') { $etat = 'villes'; $tEtat = Get-Date; J 'BANDE SUD finie : 5 min laissees a Villes' } elseif (-not ($ls -match 'LOCK_PRIS') -and ((Get-Date) - $tEtat).TotalMinutes -ge 10) { $etat = 'villes'; $tEtat = Get-Date; J 'BANDE SUD pas partie en 10 min : 5 min laissees a Villes' } }
+  if ($etat -eq 'villes' -and ((Get-Date) - $tEtat).TotalMinutes -ge 5) { $etat = 'fini'; J 'VILLES pas venu en 5 min' }
+  if ($etat -eq 'trailer_pause' -and ((Get-Date) - $tDernRenduTr).TotalMinutes -ge 5) { $etat = 'fini'; J 'TRAILER : pas de 2e passage en 5 min' }
+  $tour = (-not $c) -and $etat -eq 'fini' -and ((Get-Date) - $tLibreDepuis).TotalSeconds -ge 120
+  $pris = $false
+  if ($tour -and (GrosJava) -eq 0 -and (Prisms) -eq 0 -and (Libre) -ge 6500) {
+    try { $fs = [IO.File]::Open($Lock, 'CreateNew', 'Write'); $b = [Text.Encoding]::UTF8.GetBytes("thread ile (creneau 22 : serveur seul, 0.9.6d v3n2, copie jetable) PID $PID $(Get-Date -Format s)"); $fs.Write($b, 0, $b.Length); $fs.Close(); $pris = $true } catch { $pris = $false }
+  }
+  if ($pris) { break }
+  if (((Get-Date) - $dernAtt).TotalSeconds -ge 60) { J "ATTENTE etat=$etat verrou=$c java=$(GrosJava) prism=$(Prisms) libre=$(Libre)"; $dernAtt = Get-Date }
+  if (((Get-Date) - $D).TotalMinutes -gt 180) { J 'ABANDON attente 3 h'; exit 1 }
+  Start-Sleep 3
+}
+$T0 = Get-Date
+J "LOCK_PRIS PID $PID libre=$(Libre)"
+$script:monJava = $null; $script:monPrism = $null
+$rnP = @()
+$rnA = @("$MA\mods\atheria-ile.jar", "$MA\mods\atheria-monde.jar", "$MA\config\atheria_ile\regions.json", "$MA\kubejs\client_scripts\zz_audit_client.js")
+try {
+  function Reste { $BudgetMin - ((Get-Date) - $T0).TotalMinutes }
+  # serveur seul (pas de client) : 1 monde neuf n094h (0.9.4g v3i, riv + hum)
+  & powershell -NoProfile -ExecutionPolicy Bypass -File "$Ici\lancer-bis-c22.ps1" -SousVerrou | Out-Null
+  J "nature : $((Get-Content "$Ici\journal-bis-c22.txt" | Select-String 'generation|COMPARE .* vs pilote-bis-b073|ERREUR|arrete' | ForEach-Object { $_.Line }) -join ' || ')"
+  J "CRENEAU22_FINI $([int]((Get-Date) - $T0).TotalMinutes) min"
+} catch { J "ERREUR $_" } finally {
+  if ($script:monJava -and (Get-Process -Id $script:monJava -ErrorAction SilentlyContinue)) { Stop-Process -Id $script:monJava -Force; J 'JAVA_CLIENT_ARRETE_EN_SORTIE' }
+  Start-Sleep 5
+  if ($script:monPrism) { Get-Process -Id $script:monPrism -ErrorAction SilentlyContinue | Stop-Process -ErrorAction SilentlyContinue; J 'PRISM_FERME' }
+  foreach ($f in $rnP) { if (Test-Path "$f.bak-c9") { Remove-Item $f -Force -ErrorAction SilentlyContinue; Rename-Item "$f.bak-c9" (Split-Path $f -Leaf) } }
+  Remove-Item "$MP\config\atheria_ile\relief_base.bin" -ErrorAction SilentlyContinue
+  Remove-Item "$MA\kubejs\client_scripts\zz_relief_client.js", "$MA\kubejs\audit\arret.json", "$MA\config\atheria_ile\relief_delta.bin", "$MA\config\atheria_ile\relief_base.bin" -ErrorAction SilentlyContinue
+  foreach ($jn in "relief_E", "relief_F", "relief_G", "relief_H") { if (Test-Path "$MA\saves\$jn") { cmd /c rmdir "$MA\saves\$jn" } }
+  if (Test-Path "$MA\kubejs\audit\atheria_brume.js.bak-c9") { Move-Item "$MA\kubejs\audit\atheria_brume.js.bak-c9" "$MA\kubejs\client_scripts\atheria_brume.js"; J "brume remise" }
+  if (Test-Path "$MA\kubejs\audit\zz_audit_client.js.bak-c9") { Move-Item "$MA\kubejs\audit\zz_audit_client.js.bak-c9" "$MA\kubejs\client_scripts\zz_audit_client.js.bak-c9" }
+  foreach ($f in $rnA) { if (Test-Path "$f.bak-c9") { Remove-Item $f -Force -ErrorAction SilentlyContinue; Rename-Item "$f.bak-c9" (Split-Path $f -Leaf) } }
+  if (Test-Path "$Ess\pilote\level.dat") { try { Move-Item "$Ess\pilote" "$Ess\pilote-v3-fondu-incomplet"; New-Item -ItemType Directory "$Ess\pilote" | Out-Null; J 'monde pilote range : pilote-v3-fondu-incomplet' } catch { J "monde pilote RESTE dans pilote : $_" } }
+  J "instances remises : pilote $((Get-ChildItem "$MP\mods" -Filter 'atheria-ile*.jar' | ForEach-Object { "$($_.Name)=$($_.Length)" }) -join ' ') ; audit $((Get-ChildItem "$MA\mods" -Filter 'atheria-*.jar' | ForEach-Object { "$($_.Name)=$($_.Length)" }) -join ' ')"
+  foreach ($fb in "$Racine\instances\AtheriaPilote\instance.cfg", "$MP\options.txt") { if (Test-Path "$fb.bak-c9c") { Copy-Item "$fb.bak-c9c" $fb -Force; Remove-Item "$fb.bak-c9c" } }
+  J "pilote remis : $(Select-String -Path "$Racine\instances\AtheriaPilote\instance.cfg" -Pattern 'MaxMemAlloc=\d+' | ForEach-Object { $_.Matches[0].Value })"
+  foreach ($fb in "$Racine\instances\AtheriaAudit\instance.cfg", "$MA\options.txt") { if (Test-Path "$fb.bak-c9r") { Copy-Item "$fb.bak-c9r" $fb -Force; Remove-Item "$fb.bak-c9r" } }
+  J "audit remis : $(Select-String -Path "$Racine\instances\AtheriaAudit\instance.cfg" -Pattern 'MaxMemAlloc=\d+' | ForEach-Object { $_.Matches[0].Value }) $(Select-String -Path "$MA\options.txt" -Pattern '^renderDistance:\d+' | ForEach-Object { $_.Matches[0].Value })"
+  foreach ($m in Get-ChildItem "$MA\mods" -Filter '*.disabled-c9') { Rename-Item $m.FullName ($m.Name -replace '\.disabled-c9$', '') }
+  if (Test-Path "$C1\zz_relief_client.modele.js.bak-c9") { Copy-Item "$C1\zz_relief_client.modele.js.bak-c9" "$C1\zz_relief_client.modele.js" -Force; Remove-Item "$C1\zz_relief_client.modele.js.bak-c9" }
+  if ($script:HashMods) { $h2 = (Get-ChildItem "$MA\mods" -Filter *.jar | Where-Object { $_.Name -match '^(xaeroworldmap|emotecraft|appleskin)' } | Sort-Object Name | ForEach-Object { "$($_.Name)=$($_.Length)" }) -join ';'; J "mods remis identiques : $($h2 -eq $script:HashMods)" }
+  # nettoyage final : seule etape qui supprime le verrou
+  $c = Contenu; if ($c -match "creneau 22 .* PID $PID") { Remove-Item $Lock -Force -ErrorAction SilentlyContinue } else { J "verrou pas a moi ($c) : laisse" }
+  J "LOCK_SUPPRIME=$(-not (Test-Path $Lock))"
+}
+# QC hors verrou (lecture des fichiers de region seulement, aucun java)
+if (Test-Path "$Ess\pilote-bis-c22m\region") {
+  & python -I "$Ici\qc_c22.py" "$Ess\pilote-bis-c22m" 2>&1 | Out-File "$Ici\qc-c22.txt" -Encoding utf8
+  J "QC c22 : $((Get-Content "$Ici\qc-c22.txt") -join ' || ')"
+  J "QC_FINI"
+}

@@ -131,7 +131,8 @@ final class Dakouane {
         }
         if (level.getGameTime() % 40 != 0 || !nuit(level)) return;
         for (ServerPlayer p : level.players()) {
-            if (p.isSpectator() || p.isCreative() || !p.isAlive()) continue;
+            // couvert de cendre grise, il n'interesse pas les Dakouane (Pactes)
+            if (p.isSpectator() || p.isCreative() || !p.isAlive() || p.getTags().contains(Pactes.CENDRE)) continue;
             int portee = lumiere(level, p);
             if (portee > 0) attirer(level, p, portee);
         }

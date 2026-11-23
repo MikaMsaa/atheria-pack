@@ -1,0 +1,350 @@
+{
+ "xsize": 16,
+ "zsize": 16,
+ "palette": {
+  "palette": [
+   {
+    "char": "À",
+    "block": "minecraft:mud"
+   },
+   {
+    "char": "Á",
+    "block": "minecraft:grass_block[snowy=false]"
+   },
+   {
+    "char": "Â",
+    "block": "minecraft:podzol[snowy=false]"
+   },
+   {
+    "char": "Ã",
+    "block": "minecraft:coarse_dirt"
+   },
+   {
+    "char": "Ä",
+    "block": "minecraft:moss_block"
+   },
+   {
+    "char": "Å",
+    "block": "minecraft:rooted_dirt"
+   },
+   {
+    "char": "Æ",
+    "block": "minecraft:stone_bricks"
+   },
+   {
+    "char": "Ç",
+    "block": "minecraft:cobblestone"
+   },
+   {
+    "char": "È",
+    "block": "minecraft:mossy_cobblestone"
+   },
+   {
+    "char": "É",
+    "block": "minecraft:andesite"
+   },
+   {
+    "char": "Ê",
+    "block": "minecraft:water[level=0]"
+   },
+   {
+    "char": "Ë",
+    "block": "minecraft:polished_andesite"
+   },
+   {
+    "char": "Ì",
+    "block": "minecraft:polished_deepslate"
+   },
+   {
+    "char": "Í",
+    "block": "minecraft:short_grass"
+   },
+   {
+    "char": "Î",
+    "block": "minecraft:lily_of_the_valley"
+   },
+   {
+    "char": "Ï",
+    "block": "minecraft:dead_bush"
+   },
+   {
+    "char": "Ð",
+    "block": "minecraft:light_gray_carpet"
+   },
+   {
+    "char": "Ñ",
+    "block": "supplementaries:book_pile[books=1,waterlogged=false]"
+   },
+   {
+    "char": "Ò",
+    "block": "minecraft:polished_blackstone_wall[east=none,north=none,south=none,up=true,waterlogged=false,west=none]"
+   },
+   {
+    "char": "Ó",
+    "block": "minecraft:white_carpet"
+   },
+   {
+    "char": "Ô",
+    "block": "minecraft:stone_brick_slab[type=bottom,waterlogged=false]"
+   },
+   {
+    "char": "Õ",
+    "block": "minecraft:dark_oak_log[axis=y]"
+   },
+   {
+    "char": "Ö",
+    "block": "minecraft:lily_pad"
+   },
+   {
+    "char": "×",
+    "block": "minecraft:dark_oak_trapdoor[facing=west,half=bottom,open=true,powered=false,waterlogged=false]"
+   },
+   {
+    "char": "Ø",
+    "block": "minecraft:dark_oak_stairs[facing=south,half=bottom,shape=straight,waterlogged=false]"
+   },
+   {
+    "char": "Ù",
+    "block": "minecraft:dark_oak_trapdoor[facing=east,half=bottom,open=true,powered=false,waterlogged=false]"
+   },
+   {
+    "char": "Ú",
+    "block": "supplementaries:notice_board[culled=false,facing=south,has_book=false,powered=false]"
+   },
+   {
+    "char": "Û",
+    "block": "minecraft:dark_oak_stairs[facing=north,half=bottom,shape=straight,waterlogged=false]"
+   },
+   {
+    "char": "Ü",
+    "block": "minecraft:cracked_stone_bricks"
+   },
+   {
+    "char": "Ý",
+    "block": "minecraft:mossy_stone_bricks"
+   },
+   {
+    "char": "Þ",
+    "block": "minecraft:dark_oak_log[axis=z]"
+   },
+   {
+    "char": "ß",
+    "block": "minecraft:soul_lantern[hanging=true,waterlogged=false]"
+   },
+   {
+    "char": "à",
+    "block": "minecraft:dark_oak_log[axis=x]"
+   },
+   {
+    "char": "á",
+    "block": "minecraft:chiseled_stone_bricks"
+   },
+   {
+    "char": "â",
+    "block": "minecraft:polished_blackstone_wall[east=low,north=none,south=none,up=true,waterlogged=false,west=none]"
+   },
+   {
+    "char": "ã",
+    "block": "minecraft:polished_blackstone_wall[east=none,north=none,south=none,up=true,waterlogged=false,west=tall]"
+   },
+   {
+    "char": "ä",
+    "block": "minecraft:stone_brick_wall[east=none,north=none,south=tall,up=true,waterlogged=false,west=tall]"
+   },
+   {
+    "char": "å",
+    "block": "minecraft:stone_brick_wall[east=none,north=tall,south=none,up=true,waterlogged=false,west=tall]"
+   },
+   {
+    "char": "æ",
+    "block": "minecraft:stone_brick_stairs[facing=east,half=top,shape=straight,waterlogged=false]"
+   },
+   {
+    "char": "ç",
+    "block": "minecraft:stone_brick_stairs[facing=west,half=top,shape=straight,waterlogged=false]"
+   },
+   {
+    "char": "è",
+    "block": "minecraft:polished_blackstone_slab[type=bottom,waterlogged=false]"
+   },
+   {
+    "char": "é",
+    "block": "minecraft:lantern[hanging=true,waterlogged=false]"
+   },
+   {
+    "char": "ê",
+    "block": "minecraft:stone_brick_stairs[facing=north,half=top,shape=straight,waterlogged=false]"
+   },
+   {
+    "char": "ë",
+    "block": "minecraft:dark_oak_planks"
+   },
+   {
+    "char": "ì",
+    "block": "minecraft:red_carpet"
+   },
+   {
+    "char": "í",
+    "block": "minecraft:potted_dead_bush"
+   },
+   {
+    "char": "î",
+    "block": "minecraft:iron_block"
+   },
+   {
+    "char": "ï",
+    "block": "mcwdoors:dark_oak_glass_door[facing=south,half=lower,hinge=right,open=false,powered=false]"
+   },
+   {
+    "char": "ð",
+    "block": "minecraft:stone_brick_wall[east=low,north=none,south=none,up=false,waterlogged=false,west=low]"
+   },
+   {
+    "char": "ñ",
+    "block": "minecraft:stone_brick_wall[east=low,north=low,south=none,up=true,waterlogged=false,west=low]"
+   },
+   {
+    "char": "ò",
+    "block": "minecraft:stone_brick_wall[east=none,north=low,south=none,up=true,waterlogged=false,west=low]"
+   },
+   {
+    "char": "ó",
+    "block": "minecraft:candle[candles=1,lit=false,waterlogged=false]"
+   },
+   {
+    "char": "ô",
+    "block": "mcwdoors:dark_oak_glass_door[facing=south,half=upper,hinge=right,open=false,powered=false]"
+   },
+   {
+    "char": "õ",
+    "block": "minecraft:glass_pane[east=true,north=false,south=false,waterlogged=false,west=true]"
+   },
+   {
+    "char": "ö",
+    "block": "minecraft:gray_wall_banner[facing=south]"
+   },
+   {
+    "char": "÷",
+    "block": "minecraft:cobweb"
+   },
+   {
+    "char": "ø",
+    "block": "minecraft:moss_carpet"
+   },
+   {
+    "char": "ù",
+    "block": "minecraft:deepslate_tile_stairs[facing=north,half=bottom,shape=straight,waterlogged=false]"
+   }
+  ]
+ },
+ "slices": [
+  [
+   "ÀÀÁÂÃÂÁÃÁÄÃÁÃÁÂÁ",
+   "ÁÂÃÂÅÁÂÁÁÁÀÁÁÂÁÂ",
+   "ÅÄÄÀÂÁÂÁÂÄÁÄÂÂÁÀ",
+   "ÆÆÆÇÈÉÇÇÇÇÇÉÉÆÆÇ",
+   "ÉÇÆÇÇÈÇÆÇÇÄÇÉÈÈÄ",
+   "ÆÆÇÆÉÆÇÆÇÆÈÉÇÆÇÉ",
+   "ÈÇÇÇÇÇÉÇÇÇÇÉÉÆÇÆ",
+   "ÆÆÇÇÇÆÆÇÉÇÆÇÇÇÆÇ",
+   "ÊÊÆÄÇÇÆÄÇÂÆÇÇÆÇÇ",
+   "ÆÊÆÉÆÇÇÇÇÆÉÇÇÆÇÆ",
+   "ÆÊÆÇÇÉÇÇÆÇÆÆÇÆÈÇ",
+   "ÊÊÆÆÆÇÆÆÆÆÆÇÇÇÇÇ",
+   "ÆÆÆÇÉÇÇÇÇÇÇÆÇÄÇÉ",
+   "ÇÉÇÄÈÆÇÆÇÂÇÆÄÇÉÇ",
+   "ÈÇÄÇÄÇÄÆÉÇÈÇÉÇÈÇ",
+   "ÉÆÆÇÇÆÇÆÄÈÇÆÆÉÇÇ"
+  ],
+  [
+   "ËÌËÌËÌËÌËÌËÌËÌ  ",
+   "ÌËÌËÌËÌËÌËÌËÌÌÍÎ",
+   "ÌÌÌÌÌÌÌÌÌÌÌÌÌÌÏ ",
+   "              Ð ",
+   "      Ñ         ",
+   "              Ò ",
+   "   Ó       Ó Ó  ",
+   "ÔÔ              ",
+   "  Ô      Õ      ",
+   "Æ Ô        Ó    ",
+   "Æ Ô             ",
+   " ÖÔ            Ó",
+   "ÔÔ              ",
+   "   ×ØØØÙ Õ      ",
+   "          Ó   Ò ",
+   "                "
+  ],
+  [
+   "   Ú     ÛÛÛ Æ  ",
+   "             Æ  ",
+   " Ì  Ì  Ì  Ì  Ì  ",
+   "                ",
+   "                ",
+   "              Ò ",
+   "                ",
+   "                ",
+   "         Õ      ",
+   "Ü               ",
+   "Æ               ",
+   "                ",
+   "                ",
+   "         Õ      ",
+   "              Ò ",
+   "                "
+  ],
+  [
+   "             Ý  ",
+   "             Ý  ",
+   " Ì  Ì  Ì  Ì  Ì  ",
+   "                ",
+   "                ",
+   "              Ò ",
+   "                ",
+   "         Þ      ",
+   "         Õ      ",
+   "Ü               ",
+   "Æ               ",
+   "                ",
+   "         Þ      ",
+   "         Õ      ",
+   "              Ò ",
+   "                "
+  ],
+  [
+   "             Ý  ",
+   "             Æ  ",
+   " Ì  Ì  Ì  Ì  Ì  ",
+   "                ",
+   "                ",
+   "             ßÒ ",
+   "                ",
+   "         Õ      ",
+   "        àÕ      ",
+   "á               ",
+   "á               ",
+   "                ",
+   "         Õ      ",
+   "        àÕ      ",
+   "             ßÒ ",
+   "                "
+  ],
+  [
+   "             Æ  ",
+   "             Æ  ",
+   " Ì  Ì  Ì  Ì  Ì  ",
+   "                ",
+   "                ",
+   "             âã ",
+   "                ",
+   "                ",
+   "        ÕÕàà    ",
+   "ä               ",
+   "å               ",
+   "                ",
+   "                ",
+   "        ÕÕàà    ",
+   "             âã ",
+   "                "
+  ]
+ ]
+}

@@ -1,0 +1,20 @@
+{
+    "nom":  "captures-c23-leger",
+    "fil":  "carte",
+    "type":  "script",
+    "priorite":  4,
+    "verrou":  "file",
+    "client":  true,
+    "ram_mo":  7300,
+    "duree_max_min":  40,
+    "script":  "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\scripts-test\\file-pc-carte\\passe3d-leger.ps1",
+    "arguments":  [
+                      "-Interne",
+                      "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\atheria-ile-mod\\scripts-test\\file-pc-carte\\captures-c23-096g.interne.json",
+                      "-Xmx",
+                      "4608"
+                  ],
+    "note":  "c23 monde neuf monde-c23-096g : 0.9.6g (froid sur biome final) + 0.9.6f poissons + sculptures_chaudes, lagon (f) + hum + ileA, profil leger Xmx 4608 via passe3d-leger.ps1",
+    "ram_relance_mo":  7300,
+    "garde_mo":  400
+}

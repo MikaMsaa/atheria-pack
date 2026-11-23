@@ -1,0 +1,6 @@
+{
+  "_aide": "Les Rôdeurs : se fondent dans le décor et sentent le sang (un joueur blessé à moitié de sa vie est senti à 32 blocs). Forêts, jungles, champs et terres agricoles.",
+  "nom": "Les Rôdeurs",
+  "ou": [ { "ville": false, "biomes": ["#minecraft:is_forest", "#minecraft:is_jungle", "#minecraft:is_taiga", "atheria:terres_agricoles", "atheria:foret_calcinee"] } ],
+  "apparitions": [ { "entite": "spore:stalker", "poids": 12, "min": 1, "max": 1 } ]
+}

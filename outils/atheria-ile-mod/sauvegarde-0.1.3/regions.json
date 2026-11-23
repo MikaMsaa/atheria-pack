@@ -1,0 +1,304 @@
+{
+ "_aide": "carte.png : 1 pixel = blocs_par_pixel blocs, centre de l'image = 0,0. Chaque couleur exacte = une classe ci-dessous.",
+ "blocs_par_pixel": 12,
+ "graine": 20261108,
+ "lissage_relief_pixels": 8,
+ "deformation_bords_blocs": 28,
+ "rendu_au_demarrage": false,
+ "rendu_pas_blocs": 32,
+ "zone_reelle": null,
+ "arret_apres_tests": false,
+ "classes": {
+  "#123462": {
+   "type": "ocean"
+  },
+  "#46afb9": {
+   "type": "lagon"
+  },
+  "#96e1d7": {
+   "type": "recif"
+  },
+  "#aaaf8c": {
+   "type": "region",
+   "nom": "Côte calcaire et falaises du Nord",
+   "biomes": [
+    {
+     "biome": "terralith:white_cliffs",
+     "poids": 3
+    },
+    {
+     "biome": "terralith:rocky_shrubland",
+     "poids": 1
+    },
+    {
+     "biome": "minecraft:plains",
+     "poids": 1
+    }
+   ],
+   "montagne": "terralith:white_cliffs",
+   "relief": 0.08,
+   "cellule": 224
+  },
+  "#b6a658": {
+   "type": "region",
+   "nom": "Savane sèche (baobabs)",
+   "biomes": [
+    {
+     "biome": "minecraft:savanna",
+     "poids": 3
+    },
+    {
+     "biome": "terralith:fractured_savanna",
+     "poids": 2
+    },
+    {
+     "biome": "biomesoplenty:scrubland",
+     "poids": 2
+    },
+    {
+     "biome": "terralith:savanna_slopes",
+     "poids": 1
+    }
+   ],
+   "montagne": "terralith:savanna_slopes",
+   "relief": 0.0,
+   "cellule": 224
+  },
+  "#a0988e": {
+   "type": "region",
+   "nom": "Friches urbaines (Majicavo, Mamoudzou)",
+   "biomes": [
+    {
+     "biome": "minecraft:plains",
+     "poids": 3
+    },
+    {
+     "biome": "biomesoplenty:wasteland",
+     "poids": 2
+    },
+    {
+     "biome": "biomesoplenty:dryland",
+     "poids": 1
+    }
+   ],
+   "montagne": null,
+   "relief": -0.04,
+   "cellule": 224
+  },
+  "#7aa048": {
+   "type": "region",
+   "nom": "Plaines agricoles de Coconi",
+   "biomes": [
+    {
+     "biome": "atheria:terres_agricoles",
+     "poids": 4
+    },
+    {
+     "biome": "minecraft:sunflower_plains",
+     "poids": 1
+    },
+    {
+     "biome": "biomesoplenty:pasture",
+     "poids": 1
+    }
+   ],
+   "montagne": null,
+   "relief": -0.03,
+   "cellule": 224
+  },
+  "#22662a": {
+   "type": "region",
+   "nom": "Jungle de l'Ouest",
+   "biomes": [
+    {
+     "biome": "biomesoplenty:rainforest",
+     "poids": 3
+    },
+    {
+     "biome": "terralith:tropical_jungle",
+     "poids": 2
+    },
+    {
+     "biome": "minecraft:bamboo_jungle",
+     "poids": 1
+    }
+   ],
+   "montagne": "terralith:jungle_mountains",
+   "relief": 0.05,
+   "cellule": 224
+  },
+  "#54784a": {
+   "type": "region",
+   "nom": "Hauts plateaux et pins",
+   "biomes": [
+    {
+     "biome": "terralith:highlands",
+     "poids": 2
+    },
+    {
+     "biome": "terralith:forested_highlands",
+     "poids": 2
+    },
+    {
+     "biome": "biomesoplenty:coniferous_forest",
+     "poids": 1
+    }
+   ],
+   "montagne": "terralith:alpine_highlands",
+   "relief": 0.18,
+   "cellule": 224
+  },
+  "#e1e6eb": {
+   "type": "region",
+   "nom": "Sommet gelé du Bénara (hiver volcanique)",
+   "biomes": [
+    {
+     "biome": "terralith:snowy_shield",
+     "poids": 2
+    },
+    {
+     "biome": "terralith:alpine_grove",
+     "poids": 1
+    }
+   ],
+   "montagne": "terralith:frozen_cliffs",
+   "relief": 0.35,
+   "cellule": 224
+  },
+  "#586246": {
+   "type": "region",
+   "nom": "Marais aux spores",
+   "biomes": [
+    {
+     "biome": "atheria:marecage_pollue",
+     "poids": 3
+    },
+    {
+     "biome": "atheria:zone_contaminee",
+     "poids": 2
+    },
+    {
+     "biome": "biomesoplenty:bog",
+     "poids": 1
+    }
+   ],
+   "montagne": null,
+   "relief": -0.05,
+   "cellule": 224
+  },
+  "#b05c34": {
+   "type": "region",
+   "nom": "Canyons de latérite rouge",
+   "biomes": [
+    {
+     "biome": "terralith:bryce_canyon",
+     "poids": 2
+    },
+    {
+     "biome": "minecraft:badlands",
+     "poids": 2
+    },
+    {
+     "biome": "minecraft:wooded_badlands",
+     "poids": 1
+    },
+    {
+     "biome": "terralith:savanna_badlands",
+     "poids": 1
+    }
+   ],
+   "montagne": "minecraft:eroded_badlands",
+   "relief": 0.12,
+   "cellule": 224
+  },
+  "#7c7a76": {
+   "type": "region",
+   "nom": "Plaine de cendres",
+   "biomes": [
+    {
+     "biome": "atheria:plaine_cendres",
+     "poids": 3
+    },
+    {
+     "biome": "atheria:foret_calcinee",
+     "poids": 2
+    },
+    {
+     "biome": "biomesoplenty:volcanic_plains",
+     "poids": 1
+    }
+   ],
+   "montagne": null,
+   "relief": 0.0,
+   "cellule": 224
+  },
+  "#467052": {
+   "type": "region",
+   "nom": "Mangroves du Sud",
+   "biomes": [
+    {
+     "biome": "minecraft:mangrove_swamp",
+     "poids": 3
+    },
+    {
+     "biome": "biomesoplenty:tropics",
+     "poids": 1
+    },
+    {
+     "biome": "biomesoplenty:bayou",
+     "poids": 1
+    }
+   ],
+   "montagne": null,
+   "relief": -0.06,
+   "cellule": 224
+  },
+  "#c4b278": {
+   "type": "region",
+   "nom": "Petite-Terre, cratère et campus Somaco",
+   "biomes": [
+    {
+     "biome": "terralith:volcanic_crater",
+     "poids": 2
+    },
+    {
+     "biome": "terralith:hot_shrubland",
+     "poids": 2
+    }
+   ],
+   "montagne": "terralith:volcanic_crater",
+   "relief": 0.05,
+   "cellule": 224
+  },
+  "#463834": {
+   "type": "region",
+   "nom": "Île du volcan",
+   "biomes": [
+    {
+     "biome": "terralith:volcanic_peaks",
+     "poids": 3
+    },
+    {
+     "biome": "biomesoplenty:volcanic_plains",
+     "poids": 1
+    }
+   ],
+   "montagne": "terralith:volcanic_peaks",
+   "relief": 0.4,
+   "cellule": 224
+  },
+  "#c8be8c": {
+   "type": "region",
+   "nom": "Îlot de la ICE",
+   "biomes": [
+    {
+     "biome": "biomesoplenty:tropics",
+     "poids": 1
+    }
+   ],
+   "montagne": null,
+   "relief": 0.0,
+   "cellule": 224
+  }
+ }
+}

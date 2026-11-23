@@ -1,0 +1,26 @@
+modLoader = "lowcodefml"
+loaderVersion = "[1,)"
+license = "All rights reserved"
+
+[[mods]]
+modId = "atheria_emf_fix"
+version = "1.0.0"
+displayName = "Atheria EMF Fix"
+description = "Client seulement : melange continu des poses entre EMF (FA+Player) et ParCool via EMF Compat, sans sauts de membres. Ne fait rien sans EMF Compat."
+
+[[mixins]]
+config = "atheria_emf_fix.mixins.json"
+
+[[dependencies.atheria_emf_fix]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1,)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.atheria_emf_fix]]
+modId = "emf_compat_core"
+type = "optional"
+versionRange = "[2.4,)"
+ordering = "NONE"
+side = "CLIENT"

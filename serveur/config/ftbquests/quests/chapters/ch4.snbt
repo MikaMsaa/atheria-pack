@@ -33,11 +33,15 @@
 	quest_links: [ ]
 	quests: [
 		{
-			dependencies: ["7EF891538C7A0155"]
+			dependencies: [
+				"7EF891538C7A0155"
+				"3347E7767A4459B5"
+			]
+			dependency_requirement: "one_completed"
 			id: "5AFEC1D96C7E93F3"
 			rewards: [
 				{
-					count: 3
+					count: 10
 					id: "65724CFD1CCBBA74"
 					item: {
 						count: 1
@@ -46,26 +50,33 @@
 					type: "item"
 				}
 				{
-					count: 2
 					id: "60C8494A3E0F8A5E"
 					item: {
 						count: 1
-						id: "firstaid:bandage"
+						id: "atheria:trousse_soins"
+					}
+					type: "item"
+				}
+				{
+					id: "06A1406ED4C3A9E2"
+					item: {
+						count: 1
+						id: "atheria:filtre"
 					}
 					type: "item"
 				}
 				{
 					count: 3
-					id: "06A1406ED4C3A9E2"
+					id: "0C8456F29F940A75"
 					item: {
 						count: 1
-						id: "minecraft:bread"
+						id: "atheria:ration"
 					}
 					type: "item"
 				}
 				{
 					count: 2
-					id: "0C8456F29F940A75"
+					id: "0CC750245C052F21"
 					item: {
 						count: 1
 						id: "atheria:filtre"
@@ -108,10 +119,51 @@
 		}
 		{
 			dependencies: ["5AFEC1D96C7E93F3"]
+			icon: {
+				id: "atheria:carte_galeries"
+			}
+			id: "2C22ED8817117FD1"
+			optional: true
+			rewards: [
+				{
+					id: "6B9C5AEA01178B4D"
+					item: {
+						count: 1
+						id: "atheria:archive_20"
+					}
+					type: "item"
+				}
+				{
+					count: 8
+					id: "40002160DC55FC34"
+					item: {
+						count: 1
+						id: "atheria:fusee_eclairante"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					id: "2ECFCB0E50C38A39"
+					stage: "choix_ch1_passeurs"
+					type: "gamestage"
+				}
+				{
+					id: "0F2DE7104370AD3A"
+					item: { count: 1, id: "atheria:carte_galeries" }
+					type: "item"
+				}
+			]
+			x: 1.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["5AFEC1D96C7E93F3"]
 			id: "53D24D03300C9A8F"
 			rewards: [
 				{
-					count: 3
+					count: 10
 					id: "2EE3E26F75705631"
 					item: {
 						count: 1
@@ -120,20 +172,27 @@
 					type: "item"
 				}
 				{
-					count: 2
 					id: "1AB31678BA381F04"
 					item: {
 						count: 1
-						id: "firstaid:bandage"
+						id: "atheria:trousse_soins"
+					}
+					type: "item"
+				}
+				{
+					id: "3231029DD95C6D30"
+					item: {
+						count: 1
+						id: "atheria:filtre"
 					}
 					type: "item"
 				}
 				{
 					count: 3
-					id: "3231029DD95C6D30"
+					id: "36FCD095B77D40A9"
 					item: {
 						count: 1
-						id: "minecraft:bread"
+						id: "atheria:ration"
 					}
 					type: "item"
 				}
@@ -151,7 +210,7 @@
 			id: "3A9B2F03982A532A"
 			rewards: [
 				{
-					count: 8
+					count: 15
 					id: "277C30BF33F95616"
 					item: {
 						count: 1
@@ -160,15 +219,15 @@
 					type: "item"
 				}
 				{
-					count: 2
 					id: "1635047A11668042"
 					item: {
 						count: 1
-						id: "firstaid:plaster"
+						id: "atheria:trousse_soins"
 					}
 					type: "item"
 				}
 				{
+					count: 2
 					id: "04D5C041F2CEB6F1"
 					item: {
 						count: 1
@@ -177,12 +236,20 @@
 					type: "item"
 				}
 				{
-					count: 8
 					id: "001F997E54449F59"
+					item: {
+						count: 1
+						id: "atheria:antifongique"
+					}
+					type: "item"
+				}
+				{
+					count: 10
+					id: "14F2FA1E2CE2E91E"
 					item: {
 						components: {
 							"minecraft:custom_data": {
-								AmmoId: "tacz:9mm"
+								AmmoId: "tacz:556x45"
 							}
 							"minecraft:max_stack_size": 60
 						}
@@ -194,7 +261,7 @@
 				{
 					command: "/tag {p} add titre_sigma_galeries"
 					feedback_message: "Titre « Sigma des galeries »"
-					id: "14F2FA1E2CE2E91E"
+					id: "010B8184CE2631F2"
 					permission_level: 2
 					silent: true
 					type: "command"
@@ -273,6 +340,14 @@
 		{
 			dependencies: ["36375EC332F2867E"]
 			id: "285F52D5CAB0AF0B"
+			rewards: [{
+				command: "/tag {p} add q_ch4_hajar"
+				feedback_message: "Avancée partagée avec ton équipe"
+				id: "50226095504B729E"
+				permission_level: 2
+				silent: true
+				type: "command"
+			}]
 			tasks: [
 				{
 					consume_items: true
@@ -350,6 +425,14 @@
 					}
 					type: "item"
 				}
+				{
+					id: "09B9E21B23B021DE"
+					item: {
+						count: 1
+						id: "sophisticatedbackpacks:gold_backpack"
+					}
+					type: "item"
+				}
 			]
 			shape: "diamond"
 			size: 1.25d
@@ -405,7 +488,7 @@
 					type: "item"
 				}
 				{
-					command: "/tag {p} add choix_hajar_goblini"
+					command: "/execute as {p} if entity @s[tag=!choix_hajar_enfants,tag=!choix_hajar_paf,tag=!choix_hajar_fuite] run tag @s add choix_hajar_goblini"
 					feedback_message: "Choix : Goblini"
 					id: "18663F8ED568ECDC"
 					permission_level: 2
@@ -421,10 +504,17 @@
 					type: "command"
 				}
 			]
-			tasks: [{
-				id: "5D16286DA6DD2DCF"
-				type: "checkmark"
-			}]
+			tasks: [
+				{
+					id: "5D16286DA6DD2DCF"
+					type: "checkmark"
+				}
+				{
+					id: "0CCC18BFD8060645"
+					stage: "confiance_goblini"
+					type: "gamestage"
+				}
+			]
 			x: 16.0d
 			y: -2.25d
 		}
@@ -462,7 +552,7 @@
 					type: "item"
 				}
 				{
-					command: "/tag {p} add choix_hajar_enfants"
+					command: "/execute as {p} if entity @s[tag=!choix_hajar_goblini,tag=!choix_hajar_paf,tag=!choix_hajar_fuite] run tag @s add choix_hajar_enfants"
 					feedback_message: "Choix : Enfants"
 					id: "78D8558F60A2B6BC"
 					permission_level: 2
@@ -517,7 +607,7 @@
 					type: "item"
 				}
 				{
-					command: "/tag {p} add choix_hajar_paf"
+					command: "/execute as {p} if entity @s[tag=!choix_hajar_goblini,tag=!choix_hajar_enfants,tag=!choix_hajar_fuite] run tag @s add choix_hajar_paf"
 					feedback_message: "Choix : PAF"
 					id: "0A30AAFB081CE523"
 					permission_level: 2
@@ -556,7 +646,7 @@
 					type: "item"
 				}
 				{
-					command: "/tag {p} add choix_hajar_fuite"
+					command: "/execute as {p} if entity @s[tag=!choix_hajar_goblini,tag=!choix_hajar_enfants,tag=!choix_hajar_paf] run tag @s add choix_hajar_fuite"
 					feedback_message: "Choix : la laisser partir"
 					id: "720CDDF9F757511F"
 					permission_level: 2

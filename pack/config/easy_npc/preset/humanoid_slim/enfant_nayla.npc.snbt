@@ -1,0 +1,58 @@
+{
+	PresetMetadata: {
+		author: "Atheria",
+		category: "Atheria",
+		description: "Enfants du Choléra (station Bancoul) : Nayla, la Veilleuse.",
+		entityTypeId: "easy_npc:humanoid_slim",
+		name: "Enfant - Nayla",
+		variantType: "ALEX",
+		version: "1.0.0"
+	},
+	data: {
+		ActionData: {
+			ActionEventSet: {
+				ON_INTERACTION: [
+					{
+						Type: "OPEN_DEFAULT_DIALOG"
+					}
+				]
+			}
+		},
+		CustomName: '{"text": "Nayla", "color": "#B9B6AE"}',
+		DialogData: {
+			DialogDataSet: [
+				{
+					Label: "repos",
+					Name: "Repos",
+					Priority: 1,
+					Texts: [
+						{
+							Text: "Chaque nom sur ce mur, quelqu'un l'a dit à voix haute une dernière fois. Moi je les relis, pour qu'ils durent encore un peu."
+						}
+					]
+				}
+			],
+			Type: "STANDARD"
+		},
+		EasyNPCVersion: 3,
+		Invulnerable: 1b,
+		ObjectiveData: {
+			ObjectiveDataSet: [
+				{
+					Type: "LOOK_AT_PLAYER"
+				},
+				{
+					Type: "LOOK_AT_RESET"
+				}
+			]
+		},
+		PersistenceRequired: 1b,
+		SkinData: {
+			Texture: "atheria:textures/entity/enfants/nayla.png",
+			Type: "RESOURCE_LOCATION"
+		},
+		Tags: ["enfants", "enfant.nayla"],
+		VariantType: "ALEX",
+		id: "easy_npc:humanoid_slim"
+	}
+}

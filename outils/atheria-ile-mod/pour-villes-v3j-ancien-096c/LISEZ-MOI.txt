@@ -1,0 +1,56 @@
+POUR VILLES : réglages du mod de l'île, prêts à copier (préparé le 15/11, refait pour 0.9.6c)
+=============================================================================================
+
+*** PAS ENCORE PRÊT : en attente des tests c20 et c21. Ne rien copier avant leur feu vert. ***
+(l'ancienne version de ce dossier, en 0.9.4i + v3j, est gardée hors du projet, dans les fichiers temporaires du fil île)
+
+À faire uniquement dans une COPIE FRAÎCHE de serveur-ile-test, jamais dans serveur-ile-test lui-même.
+Ci-dessous, <copie> = le dossier de cette copie, et <monde> = le dossier du monde que le serveur va générer
+(celui de level-name dans <copie>\server.properties ; dans l'original, le monde de test s'appelle ile_test_1).
+
+Jar : 0.9.6c (atheria-ile-0.9.6c-raccords.jar, renommé atheria-ile.jar).
+  Elle contient tout ce qui a été ajouté depuis la 0.9.4i : lacs hors lots et lave hors volcan (0.9.6), îlots et coraux (0.9.6b),
+  raccords doux et végétation des marges (0.9.6c). Ces deux derniers réglages restent coupés tant que regions.json ne les active pas.
+Réglages : regions-v3m (13 sculptures, dont l'îlot A et l'îlot du Phare ; fondu_doux et vegetation_marges à 0).
+  Le test c21 essaie v3n = v3m + fondu_doux 1 + vegetation_marges 1. Si c21 est bon, ce dossier pourra passer en v3n.
+lot68 (rue du jour 1) : x 2895..2987, z -1006..-899, marge 8, plateau à Y 67 (aligné sur Lost Cities, groundLevel 67).
+
+FICHIERS -> DESTINATION EXACTE
+------------------------------
+1. atheria-ile.jar            -> <copie>\mods\atheria-ile.jar
+     RETIRER l'ancien jar : <copie>\mods\atheria-ile.jar (version 0.7.3), qu'on remplace par celui-ci.
+     Il ne doit rester qu'UN SEUL jar atheria-ile*.jar dans mods\.
+     Ne pas toucher à atheria-monde.jar.
+2. regions.json               -> <copie>\config\atheria_ile\regions.json   (remplace l'existant ; c'est regions-v3m.json)
+3. plateaux.json              -> <copie>\config\atheria_ile\plateaux.json  (c'est plateaux-v3l.json : lot70 Majicavo à Y 65, lot68 à Y 67)
+4. relief_delta.bin           -> <copie>\config\atheria_ile\relief_delta.bin  (delta d'érosion v3, celui des pilotes c18 à c21)
+5. relief_base.bin            -> <copie>\config\atheria_ile\relief_base.bin
+6. sculptures\                -> <copie>\config\atheria_ile\sculptures\   (le dossier entier : 13 sous-dossiers, chacun hauteur.png + masque.png)
+     Sans ce dossier, regions.json signale les sculptures comme illisibles et le relief d'origine reste en place.
+7. atheria_ile_datapack.zip   -> <copie>\<monde>\datapacks\atheria_ile_datapack.zip
+     Remplace celui qui vient de ile_test_1\datapacks\ ; garder les autres datapacks.
+     C'est le datapack 1.4 (crochet relief + crochet plateau_raccord), avec le correctif C1 « sans lave » déjà appliqué.
+     Il est donc identique à celui des pilotes c18 à c21.
+Ne pas copier exclusions.json : le mod le réécrit tout seul au démarrage dès que regions.json ou carte.png changent.
+carte.png et relief.png de la copie sont déjà les bons (identiques à ceux des pilotes).
+
+LE MONDE DOIT ÊTRE NEUF
+-----------------------
+- <monde>\ ne doit contenir aucun dossier region\ : pas de chunk déjà généré.
+- Si on part d'un ancien monde, on ne garde que level.dat et datapacks\ (et serverconfig\ s'il existe).
+  Les pilotes partent du level.dat de serveur-ile-test\sauvegardes\avant-audit-carte\.
+- Le datapack doit être en place AVANT le premier démarrage. Sinon, les chunks générés avant restent sans relief ni plateaux.
+
+VÉRIFIER DANS LE JOURNAL (<copie>\logs\latest.log), après le démarrage
+--------------------------------------------------------------------
+- Le jar se vérifie par son empreinte (ci-dessous) : avec v3m, la ligne « 0.9.6c » n'apparaît pas, car elle ne s'écrit que si fondu_doux ou vegetation_marges vaut plus que 0.
+- « plateau de raccord » : une ligne par plateau (lot70 et lot68).
+  Si cette ligne manque, le crochet plateau_raccord n'est pas chargé : mauvais datapack, ou monde pas neuf.
+- « 0.9.5d : sculpture '...' » : 13 lignes, une par sculpture. Aucune ligne « sculpture illisible ».
+- « delta d'erosion relief_delta.bin » : le delta v3 est bien lu.
+- « exclusions.json » : « a jour » ou réécrit, avec le nombre de zones de villes.
+- Aucun « illisible » ni aucune erreur [atheria_ile].
+
+Empreintes (MD5, 8 premiers caractères) :
+  atheria-ile.jar ffadd28c | atheria_ile_datapack.zip 2e84a11d | regions.json 422395be | plateaux.json 126a9b84
+  relief_base.bin b70618b3 | relief_delta.bin c3e2414a

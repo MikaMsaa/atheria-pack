@@ -2,7 +2,7 @@
     "style":  "ath_bois",
     "inherit":  "citystyle_common",
     "buildingsettings":  {
-                             "buildingchance":  0.25,
+                             "buildingchance":  0,
                              "minfloors":  1,
                              "maxfloors":  2,
                              "maxcellars":  0
@@ -40,10 +40,6 @@
                                             "value":  "ath_entrepot"
                                         },
                                         {
-                                            "factor":  0.15,
-                                            "value":  "ath_eglise"
-                                        },
-                                        {
                                             "factor":  0.3,
                                             "value":  "ath_marche"
                                         }
@@ -55,7 +51,7 @@
                                              },
                                              {
                                                  "factor":  1,
-                                                 "value":  "ath_v_bg_eglise"
+                                                 "value":  "ath_v_bg_salle_communale"
                                              },
                                              {
                                                  "factor":  1,

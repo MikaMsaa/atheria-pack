@@ -1,0 +1,29 @@
+{
+    "nom":  "stations-tram-modpack",
+    "fil":  "villes",
+    "type":  "script",
+    "priorite": 6,
+    "verrou":  "script",
+    "client":  true,
+    "ram_mo": 7300,
+    "garde_mo":  150,
+    "duree_max_min":  50,
+    "script":  "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\file-pc\\profil-leger.ps1",
+    "arguments":  [
+                      "-Instance",
+                      "AtheriaAudit",
+                      "-Xmx",
+                      "4608",
+                      "-Vue",
+                      "4",
+                      "-Script",
+                      "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\contenu\\controle-villes\\pose-lieux\\lancer-captures-villes.ps1",
+                      "-Monde",
+                      "lieux_8",
+                      "-Points",
+                      "points-stations.json",
+                      "-LibreMin",
+                      "5000"
+                  ],
+    "note":  "Stations, veilleurs, Grand Nid et tunnels version modpack, monde neuf lieux_8 ; profil leger Xmx 4096 + vue 4 (vues souterraines neuves)"
+}

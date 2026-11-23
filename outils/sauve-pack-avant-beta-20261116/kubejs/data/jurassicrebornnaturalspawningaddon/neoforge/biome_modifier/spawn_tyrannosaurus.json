@@ -1,0 +1,30 @@
+{
+    "type":  "neoforge:add_spawns",
+    "biomes":  [
+                   "minecraft:plains",
+                   "minecraft:sunflower_plains",
+                   "minecraft:meadow",
+                   "terralith:valley_clearing",
+                   "terralith:shield_clearing",
+                   "terralith:blooming_plateau",
+                   "terralith:blooming_valley",
+                   "terralith:lush_valley",
+                   "terralith:lavender_valley",
+                   "terralith:sakura_valley",
+                   "biomesoplenty:grassland",
+                   "biomesoplenty:prairie",
+                   "biomesoplenty:pasture",
+                   "biomesoplenty:field",
+                   "biomesoplenty:forested_field",
+                   "biomesoplenty:lavender_field",
+                   "biomesoplenty:floodplain"
+               ],
+    "spawners":  [
+                     {
+                         "type":  "jurassicreborn:tyrannosaurus",
+                         "weight":  2,
+                         "minCount":  1,
+                         "maxCount":  1
+                     }
+                 ]
+}

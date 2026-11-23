@@ -1,0 +1,9 @@
+﻿Ligne principale lue dans regions-v3o.json : [[2496, -3000], [2484, -3000], [2484, -2984], [2456, -2872]] ... y 51 .. 58 largeur 10
+1. Troncon neuf 2496,-3000 -> 2456,-2872 : 1531 colonnes, lues 0 (aucun 1531)
+2. Bassin x 2549..2575, z -3088..-2961 : distance mini a un axe de tunnel 53.5 blocs (Ligne principale, en 2549,-3001) ; il faut > 5 + 4 = 9 -> OK
+   en hauteur : voute y_max 58, fond du bassin Y 56 : le tunnel est sous le bassin seulement s il passe dessous ; hors trace -> OK
+   reste du sous-sol du port (rien sous Y 59) : y_max 58 -> 0 blocs libres au-dessus de la voute, OK (>= 0)
+3. Recouvrement ligne / embranchement : 205 colonnes, x 2479..2500, z -3005..-2996 (attendu x 2484..2496)
+   colonnes communes hors x 2479..2501 (axe +-5) : 0 -> OK
+   portail ouest x 2496, z -3003..-2998 : ligne dedans, embranchement dedans
+   ancien portail est x 2543 : ligne n y passe plus

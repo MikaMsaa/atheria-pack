@@ -2,10 +2,10 @@
     "style":  "ath_brique",
     "inherit":  "citystyle_common",
     "buildingsettings":  {
-                             "buildingchance":  0.45,
+                             "buildingchance":  0,
                              "minfloors":  2,
                              "maxfloors":  5,
-                             "maxcellars":  1
+                             "maxcellars":  0
                          },
     "streetblocks":  {
                          "border":  "y",
@@ -40,10 +40,6 @@
                                             "value":  "ath_marche"
                                         },
                                         {
-                                            "factor":  0.1,
-                                            "value":  "ath_eglise"
-                                        },
-                                        {
                                             "factor":  0.2,
                                             "value":  "ath_entrepot"
                                         }
@@ -55,7 +51,7 @@
                                              },
                                              {
                                                  "factor":  0.5,
-                                                 "value":  "ath_v_bg_eglise"
+                                                 "value":  "ath_v_bg_salle_communale"
                                              },
                                              {
                                                  "factor":  0.5,
@@ -112,6 +108,74 @@
                                              {
                                                  "factor":  0.3,
                                                  "value":  "ath_v_banque"
+                                             },
+                                             {
+                                                 "factor":  0.3,
+                                                 "value":  "ath_v_hm_mairie"
+                                             },
+                                             {
+                                                 "factor":  0.3,
+                                                 "value":  "ath_v_hm_poste"
+                                             },
+                                             {
+                                                 "factor":  0.3,
+                                                 "value":  "ath_v_hm_hotel"
+                                             },
+                                             {
+                                                 "factor":  0.3,
+                                                 "value":  "ath_v_hm_passage"
+                                             },
+                                             {
+                                                 "factor":  0.3,
+                                                 "value":  "ath_v_hm_ecole"
+                                             },
+                                             {
+                                                 "factor":  0.3,
+                                                 "value":  "ath_v_hm_commissariat"
+                                             },
+                                             {
+                                                 "factor":  0.3,
+                                                 "value":  "ath_v_hm_musee"
+                                             },
+                                             {
+                                                 "factor":  0.3,
+                                                 "value":  "ath_v_hm_salle_ventes"
+                                             },
+                                             {
+                                                 "factor":  0.3,
+                                                 "value":  "ath_v_hm_brasserie"
+                                             },
+                                             {
+                                                 "factor":  0.3,
+                                                 "value":  "ath_v_hm_angle"
+                                             },
+                                             {
+                                                 "factor":  0.3,
+                                                 "value":  "ath_v_hm_hotel_particulier"
+                                             },
+                                             {
+                                                 "factor":  0.3,
+                                                 "value":  "ath_v_hm_cinema"
+                                             },
+                                             {
+                                                 "factor":  0.3,
+                                                 "value":  "ath_v_hm_piscine"
+                                             },
+                                             {
+                                                 "factor":  0.3,
+                                                 "value":  "ath_v_hm_lycee"
+                                             },
+                                             {
+                                                 "factor":  0.3,
+                                                 "value":  "ath_v_hm_ateliers"
+                                             },
+                                             {
+                                                 "factor":  0.3,
+                                                 "value":  "ath_v_hm_conservatoire"
+                                             },
+                                             {
+                                                 "factor":  0.3,
+                                                 "value":  "ath_v_hm_tribunal"
                                              },
                                              {
                                                  "factor":  0.4,

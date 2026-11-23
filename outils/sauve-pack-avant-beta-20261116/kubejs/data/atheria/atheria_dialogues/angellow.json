@@ -1,0 +1,75 @@
+{
+ "pnj": {
+  "nom": "Angellow"
+ },
+ "debut": "debut",
+ "noeuds": {
+  "angellow": {
+   "lignes": [
+    {
+     "texte": "Six... seven ! (Il fait le geste. Encore. Et encore.)"
+    }
+   ],
+   "choix": [
+    {
+     "texte": "Faire le geste « 67 » avant lui",
+     "actions": [
+      {
+       "commande": "tag {joueur} add angellow_respect"
+      }
+     ],
+     "aller": "angellow_respect"
+    },
+    {
+     "texte": "Soupirer",
+     "actions": [
+      {
+       "commande": "tag {joueur} add angellow_vu"
+      }
+     ],
+     "fin": true
+    }
+   ]
+  },
+  "angellow_respect": {
+   "lignes": [
+    {
+     "texte": "(Il reste silencieux pour la première fois. Puis, à voix basse :) Respect."
+    }
+   ]
+  },
+  "angellow_fait": {
+   "lignes": [
+    {
+     "texte": "(Il te salue d'un « 67 » discret, entre initiés.)"
+    }
+   ]
+  },
+  "repos": {
+   "texte": "Six... seven."
+  },
+  "debut": {
+   "aiguillage": [
+    {
+     "si": {
+      "tag": [
+       "angellow_respect"
+      ]
+     },
+     "aller": "angellow_fait"
+    },
+    {
+     "si": {
+      "tag": [
+       "q_ch2_zaid"
+      ]
+     },
+     "aller": "angellow"
+    },
+    {
+     "aller": "repos"
+    }
+   ]
+  }
+ }
+}

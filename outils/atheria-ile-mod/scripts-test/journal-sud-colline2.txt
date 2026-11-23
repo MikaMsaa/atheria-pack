@@ -1,0 +1,48 @@
+09:24:37 ATTENTE_VERROU bande sud colline2 (juste apres le passage du Trailer, avant Villes et c21)
+09:24:37 PRIS_PAR : thread trailer style (C24 colline3) 2026-11-15T09:22:35+04:00
+09:24:38 ATTENTE verrou=thread trailer style (C24 colline3) 2026-11-15T09:22:35+04:00
+ java=0 prism=0 libre=6052 trailer_rendus=0 villes=False
+09:26:38 VERROU_RENDU par : thread trailer style (C24 colline3) 2026-11-15T09:22:35+04:00
+09:26:38 ATTENTE verrou= java=0 prism=0 libre=7688 trailer_rendus=1 villes=False
+09:26:59 LOCK_PRIS PID 2216 libre=7620 trailer_rendus=1 villes=False libre_depuis=21 s
+09:27:00 Xmx choisi 5G (libre 7610)
+09:27:00 debut bande sud (8 rectangles, Xmx 5G)
+09:27:00 verrou tenu (thread ile (bande sud colline2 : serveur seul, 8 rectangles, 15 min) PID 2216 2026-11-15T09:26:59) libre=7589
+09:27:00 Xmx 5G
+09:31:38 EMPREINTE avant 20457 chunks, dont 13740 complets
+09:31:38 datapack du monde (celui de colline2, garde) B3B54788
+09:31:38 copie : ile CE786716 regions 03886893 delta C3E2414A
+09:31:38 serveur java=15816
+09:32:23 serveur pret
+09:32:32 sommet : sonde redemandee
+09:32:36 [SONDE_RELIEF] 3400,-1250 delta=-0,39 aDelta=true fN=1,000 fD=1,000 depth(y64)=0,0431 final(y64)=0,3324 depth(y96)=-0,2069 final(y96)=-0,3406 depth(y128)=-0,4569 final(y128)=-0,4581 decalage=0 hauteur=73
+09:32:36 [SONDE_RELIEF] 2200,-1500 delta=5,77 aDelta=true fN=0,000 fD=1,000 depth(y64)=0,0499 final(y64)=0,4585 depth(y96)=-0,2001 final(y96)=-0,2865 depth(y128)=-0,4501 final(y128)=-0,4581 decalage=6 hauteur=77
+09:32:36 [SONDE_RELIEF] 2374,-1282 delta=37,22 aDelta=true fN=0,000 fD=1,000 depth(y64)=0,2317 final(y64)=0,0647 depth(y96)=-0,0183 final(y96)=0,3403 depth(y128)=-0,2683 final(y128)=0,0352 decalage=37 hauteur=132
+09:32:36 SOMMET hauteur=132 (vise 132)
+09:33:49 RECTANGLE sud 1 x 2329..2723 z -760..-280 fini en 66 s libre=1778
+09:34:31 RECTANGLE sud 2 x 2722..3116 z -760..-280 fini en 31 s libre=1706
+09:35:13 RECTANGLE sud 3 x 3115..3509 z -760..-280 fini en 31 s libre=1746
+09:35:55 RECTANGLE sud 4 x 3508..3902 z -760..-280 fini en 31 s libre=2005
+09:36:52 RECTANGLE sud 5 x 2329..2723 z -280..200 fini en 46 s libre=1987
+09:37:34 RECTANGLE sud 6 x 2722..3116 z -280..200 fini en 31 s libre=1909
+09:38:10 RECTANGLE sud 7 x 3115..3509 z -280..200 fini en 26 s libre=1939
+09:38:52 RECTANGLE sud 8 x 3508..3902 z -280..200 fini en 31 s libre=1915
+09:38:57 GENERATION finie en 381 s (bande sud x 2330..3900, z -760..200, 8 rectangles)
+09:39:17 save-all fait
+09:39:23 serveur arrete code=0
+09:39:26 monde -> pilote-v3-colline2
+09:39:27 INTEGRITE nord chunks 5940 {'minecraft:full': 5938, 'absent': 1, 'minecraft:initialize_light': 1}
+09:39:27 INTEGRITE nord defauts 1 [(205, -165, 'absent')]
+09:39:27 INTEGRITE nord non full 1 [(235, -114, 'minecraft:initialize_light')]
+09:39:27 INTEGRITE nord boite non full blocs x 3760 3775 z -1824 -1809
+09:39:29 INTEGRITE sud chunks 6039 {'minecraft:full': 6039}
+09:39:29 INTEGRITE sud defauts 0 []
+09:39:29 INTEGRITE sud non full 0 []
+09:45:34 EMPREINTE complets avant 13740 ; complets MODIFIES 0 []
+09:45:34 EMPREINTE incomplets avant 6717 (bordure, completes par la generation) ; changes 1167
+09:45:34 EMPREINTE nouveaux 7281 ; statuts des nouveaux ['minecraft:biomes', 'minecraft:carvers', 'minecraft:full', 'minecraft:initialize_light', 'minecraft:structure_starts']
+09:45:35 ARBRE apres blocs non arbre dans la boite : {'dirt': 75, 'sand': 11, 'grass_block': 136, 'air': 2954, 'short_grass': 23, 'dead_bush': 3, 'tiny_cactus': 8, 'bush': 1}
+09:45:35 ARBRE apres noms complets : []
+09:45:35 copie remise : regions 04158CBC jvm -Xmx4G
+09:45:35 FIN_SUD java=0 (verrou NON supprime par ce script)
+09:45:35 LOCK_RENDU=True java=0

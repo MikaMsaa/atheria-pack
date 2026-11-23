@@ -1,0 +1,336 @@
+# Variantes de Dakouane (zombie vanilla) pour Atheria : textures aleatoires ETF dessinees sur le gabarit
+# zombie.png de Fresh Animations (64x64, seule la moitie haute sert). Chaque variante garde le visage, les yeux et
+# l'ombrage de Fresh Animations ; on change la peau (teints varies, gagnes par l'infection), les cheveux et les habits
+# (civils, dockers, soignants...), uses par vingt ans : decolores, taches, accrocs. Ni texte, ni symbole, ni sang.
+# Usage : python -I generer.py  -> sortie\Atheria-Infectes-variantes.zip + apercus\
+import colorsys, json, os, random, sys, zipfile
+from PIL import Image, ImageDraw
+
+ICI = os.path.dirname(os.path.abspath(__file__))
+BASE = Image.open(os.path.join(ICI, 'base', 'zombie_fa.png')).convert('RGBA')
+W, H = BASE.size
+
+# ---------- classes de pixels du gabarit (peau, haut, bas, chaussures, intouchable) ----------
+def classe(x, y):
+    r, g, b, a = BASE.getpixel((x, y))
+    if a == 0: return None
+    if 12 <= x < 20 and 16 <= y < 20: return 'fixe'          # yeux de Fresh Animations : jamais touches
+    if y >= 32: return 'fixe'
+    h, s, v = colorsys.rgb_to_hsv(r / 255, g / 255, b / 255)
+    if s < 0.15:
+        return 'chaussure' if y >= 29 or (8 <= x < 12 and y < 20) else 'fixe'
+    if 0.17 < h < 0.42: return 'peau'
+    if 0.42 <= h < 0.56: return 'haut'
+    if 0.56 <= h < 0.8: return 'bas'
+    return 'fixe'
+
+CLASSE = {(x, y): classe(x, y) for y in range(H) for x in range(W)}
+
+def lum(p):
+    r, g, b = p[:3]
+    return 0.299 * r + 0.587 * g + 0.114 * b
+
+MOY = {}
+for c in ('peau', 'haut', 'bas', 'chaussure'):
+    v = [lum(BASE.getpixel(k)) for k, cc in CLASSE.items() if cc == c]
+    MOY[c] = sum(v) / len(v)
+
+# zones du modele (disposition 64x32 du zombie)
+def bras(x, y): return 40 <= x < 56 and 16 <= y < 32
+def jambe(x, y): return 0 <= x < 16 and 16 <= y < 32 and not (12 <= x < 20 and y < 20)
+def corps(x, y): return 16 <= x < 40 and 16 <= y < 32
+def tete(x, y): return x < 32 and y < 16
+def face_corps(x, y):  # face avant / arriere du torse (y 20-31)
+    if 20 <= x < 28: return 'avant'
+    if 32 <= x < 40: return 'arriere'
+    if 16 <= x < 20 or 28 <= x < 32: return 'cote'
+    return None
+
+def melange(a, b, t):
+    return tuple(int(round(a[i] * (1 - t) + b[i] * t)) for i in range(3))
+
+def teinte(base, l, moy, rng, bruit=0.06, contraste=1.0):
+    f = (l / moy) ** contraste if moy else 1
+    f *= 1 + rng.uniform(-bruit, bruit)
+    return tuple(max(0, min(255, int(c * f))) for c in base)
+
+# peau infectee : teint humain + gris-vert de l'infection (jamais le vert vif d'origine)
+INFECTION = (112, 124, 104)
+TEINTS = {
+    'clair': (214, 178, 150), 'rose': (206, 160, 138), 'olive': (176, 140, 100), 'mate': (160, 118, 84),
+    'brun': (122, 86, 60), 'fonce': (88, 62, 46), 'tres_fonce': (66, 48, 38),
+}
+CHEVEUX = {
+    'noir': (30, 28, 28), 'brun': (62, 44, 32), 'chatain': (96, 70, 48), 'roux_terne': (124, 70, 42),
+    'blond_sale': (150, 128, 84), 'gris': (128, 126, 122), 'poivre_sel': (92, 90, 88), 'blanc_sale': (180, 176, 166),
+}
+
+def couleur_peau(nom, infection):
+    # l'infection ternit le teint (gris), le verdit un peu et l'assombrit, sans effacer les differences de teint
+    r, g, b = TEINTS[nom]
+    gris = 0.3 * r + 0.59 * g + 0.11 * b
+    r, g, b = (c * (1 - infection) + gris * infection for c in (r, g, b))
+    r, g, b = r * 0.9, g * 1.0, b * 0.86
+    f = 0.86
+    return tuple(max(0, min(255, int(c * f))) for c in (r, g, b))
+
+# ---------- les variantes : (nom, teint, infection, cheveux, coupe, haut, couleur haut, bas, couleur bas, pieds, usure) ----------
+V = [
+    dict(n='docker_gilet', teint='brun', inf=0.45, chev='noir', coupe='ras', haut='gilet', c_haut=(70, 78, 92), gilet=(196, 120, 40), bas='cargo', c_bas=(60, 62, 56), pieds='bottes', usure=0.5),
+    dict(n='docker_salopette', teint='fonce', inf=0.4, chev='noir', coupe='crepu', haut='tshirt', c_haut=(150, 140, 120), bas='salopette', c_bas=(46, 66, 104), pieds='bottes', usure=0.6),
+    dict(n='docker_bonnet', teint='olive', inf=0.5, chev='brun', coupe='bonnet', bonnet=(40, 52, 70), haut='manches', c_haut=(86, 44, 40), bas='cargo', c_bas=(78, 72, 58), pieds='bottes', usure=0.55),
+    dict(n='infirmiere', teint='mate', inf=0.45, chev='noir', coupe='longs', haut='blouse_soin', c_haut=(96, 150, 156), bas='pyjama', c_bas=(96, 150, 156), pieds='baskets', c_pieds=(200, 200, 196), usure=0.45),
+    dict(n='aide_soignant', teint='clair', inf=0.5, chev='chatain', coupe='court', haut='blouse_soin', c_haut=(120, 156, 120), bas='pyjama', c_bas=(120, 156, 120), pieds='baskets', c_pieds=(190, 190, 186), usure=0.5),
+    dict(n='medecin', teint='brun', inf=0.45, chev='poivre_sel', coupe='court', haut='veste_ouverte', c_haut=(196, 194, 184), c_dessous=(90, 110, 140), bas='toile', c_bas=(64, 64, 70), pieds='chaussures', c_pieds=(40, 32, 28), usure=0.5),
+    dict(n='civil_jean', teint='rose', inf=0.5, chev='blond_sale', coupe='court', haut='tshirt', c_haut=(150, 46, 44), bas='jean', c_bas=(58, 78, 120), pieds='baskets', c_pieds=(120, 120, 118), usure=0.6),
+    dict(n='civile_robe_chemise', teint='tres_fonce', inf=0.35, chev='noir', coupe='tresses', haut='manches', c_haut=(196, 150, 60), bas='jean', c_bas=(44, 56, 84), pieds='sandales', usure=0.55),
+    dict(n='lyceen_capuche', teint='olive', inf=0.5, chev='noir', coupe='court', haut='sweat', c_haut=(70, 74, 80), bas='jogging', c_bas=(38, 40, 46), pieds='baskets', c_pieds=(170, 60, 50), usure=0.55),
+    dict(n='pecheur', teint='fonce', inf=0.45, chev='gris', coupe='ras', haut='debardeur', c_haut=(196, 190, 170), bas='short', c_bas=(64, 88, 70), pieds='pieds_nus', usure=0.7),
+    dict(n='vendeuse_marche', teint='mate', inf=0.4, chev='brun', coupe='chignon', haut='manches', c_haut=(128, 60, 96), bas='jupe', c_bas=(60, 90, 70), pieds='sandales', usure=0.55),
+    dict(n='employe_bureau', teint='clair', inf=0.55, chev='brun', coupe='raie', haut='chemise', c_haut=(168, 186, 204), cravate=(70, 40, 44), bas='toile', c_bas=(46, 48, 58), pieds='chaussures', c_pieds=(34, 26, 22), usure=0.5),
+    dict(n='mecanicien', teint='brun', inf=0.5, chev='noir', coupe='court', haut='combinaison', c_haut=(52, 70, 96), bas='combinaison', c_bas=(52, 70, 96), pieds='bottes', usure=0.65),
+    dict(n='cuisinier', teint='rose', inf=0.55, chev='roux_terne', coupe='court', haut='veste_cuisine', c_haut=(196, 192, 182), bas='carreaux', c_bas=(60, 60, 60), pieds='chaussures', c_pieds=(30, 30, 30), usure=0.55),
+    dict(n='vieux_gilet_laine', teint='olive', inf=0.5, chev='blanc_sale', coupe='degarni', haut='manches', c_haut=(110, 92, 70), bas='toile', c_bas=(90, 84, 70), pieds='chaussures', c_pieds=(50, 38, 30), usure=0.6),
+    dict(n='coureuse', teint='fonce', inf=0.4, chev='noir', coupe='queue', haut='debardeur', c_haut=(60, 120, 150), bas='short', c_bas=(36, 36, 40), pieds='baskets', c_pieds=(200, 196, 190), usure=0.5),
+    dict(n='agent_securite', teint='tres_fonce', inf=0.4, chev='noir', coupe='ras', haut='polo', c_haut=(36, 40, 52), bas='cargo', c_bas=(36, 40, 52), pieds='bottes', usure=0.5),
+    dict(n='ouvrier_chantier', teint='mate', inf=0.5, chev='brun', coupe='court', haut='gilet', c_haut=(150, 140, 120), gilet=(200, 170, 50), bas='jean', c_bas=(70, 86, 110), pieds='bottes', usure=0.65),
+    dict(n='etudiante_veste', teint='clair', inf=0.45, chev='chatain', coupe='longs', haut='veste_ouverte', c_haut=(110, 86, 60), c_dessous=(200, 196, 186), bas='jean', c_bas=(40, 46, 64), pieds='baskets', c_pieds=(150, 150, 150), usure=0.5),
+    dict(n='chauffeur_bus', teint='brun', inf=0.5, chev='poivre_sel', coupe='degarni', haut='chemise', c_haut=(150, 170, 196), bas='toile', c_bas=(40, 50, 76), pieds='chaussures', c_pieds=(30, 26, 24), usure=0.55),
+]
+
+def generer(v, graine):
+    rng = random.Random(graine)
+    im = BASE.copy()
+    px = im.load()
+    peau = couleur_peau(v['teint'], v['inf'])
+    peau_sombre = tuple(int(c * 0.72) for c in peau)
+    c_haut = v['c_haut']; c_bas = v.get('c_bas', (60, 60, 60))
+    # vingt ans d'usure : couleurs passees vers le gris-brun
+    passe = (118, 112, 100)
+    c_haut = melange(c_haut, passe, 0.25 * v['usure'])
+    c_bas = melange(c_bas, passe, 0.25 * v['usure'])
+    c_pieds = v.get('c_pieds', (70, 56, 44))
+    if v['pieds'] == 'bottes': c_pieds = (52, 44, 36)
+
+    def p_peau(x, y):
+        return teinte(peau, lum(BASE.getpixel((x, y))) if CLASSE[(x, y)] == 'peau' else MOY['peau'], MOY['peau'], rng, 0.05, 1.1)
+
+    def p_tissu(c, x, y, cl):
+        l = lum(BASE.getpixel((x, y))) if CLASSE[(x, y)] in ('haut', 'bas', 'chaussure') else MOY[cl]
+        return teinte(c, l, MOY[CLASSE[(x, y)]] if CLASSE[(x, y)] in MOY else MOY[cl], rng, 0.07, 0.8)
+
+    nouv = {}
+    for (x, y), cl in CLASSE.items():
+        if cl is None or cl == 'fixe': continue
+        if cl == 'peau': nouv[(x, y)] = p_peau(x, y)
+        elif cl == 'haut': nouv[(x, y)] = p_tissu(c_haut, x, y, 'haut')
+        elif cl == 'bas': nouv[(x, y)] = p_tissu(c_bas, x, y, 'bas')
+        elif cl == 'chaussure': nouv[(x, y)] = p_tissu(c_pieds, x, y, 'chaussure')
+
+    def met(x, y, c):
+        if CLASSE.get((x, y)) not in (None, 'fixe'): nouv[(x, y)] = c
+
+    haut = v['haut']
+    # ---- manches ----
+    longues = haut in ('manches', 'sweat', 'chemise', 'combinaison', 'veste_ouverte', 'veste_cuisine')
+    for x in range(40, 56):
+        for y in range(16, 32):
+            if (x, y) not in nouv: continue
+            if 20 <= y < 24 or (44 <= x < 48 and y < 20):
+                if haut == 'debardeur': nouv[(x, y)] = p_peau(x, y)
+                else: nouv[(x, y)] = p_tissu(c_haut, x, y, 'haut')
+            elif 24 <= y < 29 and longues:
+                nouv[(x, y)] = p_tissu(c_haut, x, y, 'haut')
+                if y == 28 and haut in ('chemise', 'sweat'): nouv[(x, y)] = tuple(int(c * 0.8) for c in c_haut)
+    # ---- torse ----
+    for x in range(16, 40):
+        for y in range(20, 30):
+            if (x, y) not in nouv: continue
+            f = face_corps(x, y)
+            if haut == 'debardeur' and f == 'avant' and y < 22 and (x in (20, 21, 26, 27)) is False: nouv[(x, y)] = p_peau(x, y)
+            if haut == 'debardeur' and f == 'cote' and y < 23: nouv[(x, y)] = p_peau(x, y)
+    # col / encolure
+    for x in range(20, 28):
+        for y in range(20, 22):
+            if haut in ('chemise', 'polo', 'veste_cuisine', 'combinaison'):
+                if y == 20 and x not in (23, 24): met(x, y, tuple(min(255, int(c * 1.12)) for c in c_haut))
+                elif y == 20: met(x, y, p_peau(x, y))
+            if haut == 'blouse_soin' and y == 21 and x in (22, 25): met(x, y, p_peau(x, y))
+    if haut == 'chemise':
+        for y in range(21, 29): met(23 + (y % 2 == 0), y, tuple(int(c * 0.86) for c in c_haut))  # boutonnage
+        if v.get('cravate'):
+            for y in range(21, 27): met(23, y, v['cravate']); met(24, y, v['cravate'])
+    if haut == 'polo':
+        for y in range(21, 23): met(24, y, tuple(int(c * 0.7) for c in c_haut))
+    if haut in ('veste_ouverte',):
+        for y in range(20, 30):
+            met(23, y, teinte(v['c_dessous'], MOY['haut'], MOY['haut'], rng)); met(24, y, teinte(v['c_dessous'], MOY['haut'], MOY['haut'], rng))
+            met(22, y, tuple(int(c * 0.8) for c in c_haut)); met(25, y, tuple(int(c * 0.8) for c in c_haut))
+    if haut == 'veste_cuisine':
+        for y in range(21, 29, 2): met(22, y, (150, 146, 136)); met(25, y, (150, 146, 136))
+    if haut == 'sweat':
+        for x in range(21, 27): met(x, 26, tuple(int(c * 0.82) for c in c_haut)); met(x, 27, tuple(int(c * 0.88) for c in c_haut))
+        for x in range(32, 40): met(x, 20, tuple(int(c * 0.8) for c in c_haut)); met(x, 21, tuple(int(c * 0.85) for c in c_haut))  # capuche dans le dos
+    if haut == 'gilet':
+        g = melange(v['gilet'], passe, 0.35 * v['usure'])
+        for x in range(16, 40):
+            f = face_corps(x, 20)
+            if f is None: continue
+            for y in range(20, 30):
+                if f == 'avant' and x in (23, 24): continue  # gilet ouvert
+                c = teinte(g, MOY['haut'], MOY['haut'], rng, 0.08)
+                if y in (24, 27): c = melange((176, 176, 170), (110, 108, 100), rng.uniform(0.2, 0.6))  # bandes reflechissantes ternies
+                met(x, y, c)
+    if v['bas'] == 'salopette':
+        for y in range(21, 30):
+            for x in range(21, 27): met(x, y, p_tissu(c_bas, x, y, 'bas'))
+            for x in range(33, 39): met(x, y, p_tissu(c_bas, x, y, 'bas'))
+        for y in range(20, 22): met(21, y, c_bas); met(26, y, c_bas); met(33, y, c_bas); met(38, y, c_bas)
+    if haut == 'combinaison':
+        for y in range(20, 30):
+            for x in range(16, 40):
+                if (x, y) in nouv and CLASSE[(x, y)] != 'peau': nouv[(x, y)] = p_tissu(c_haut, x, y, 'haut')
+        for y in range(21, 29): met(24, y, tuple(int(c * 0.75) for c in c_haut))  # fermeture
+    # ---- bas ----
+    for x in range(0, 16):
+        for y in range(20, 32):
+            if (x, y) not in nouv or CLASSE[(x, y)] == 'fixe': continue
+            if v['bas'] in ('short',) and 25 <= y < 29: nouv[(x, y)] = p_peau(x, y)
+            if v['bas'] == 'jupe' and 24 <= y < 29: nouv[(x, y)] = p_peau(x, y)
+            if v['bas'] == 'jean' and y == 28: nouv[(x, y)] = tuple(int(c * 0.82) for c in c_bas)
+            if v['bas'] == 'cargo' and 23 <= y < 26 and x % 4 in (0, 3): nouv[(x, y)] = tuple(int(c * 0.8) for c in c_bas)
+            if v['bas'] == 'carreaux' and y < 29:
+                nouv[(x, y)] = (132, 128, 122) if (x + y) % 2 == 0 else (66, 66, 68)
+            if v['bas'] == 'jogging' and x % 4 == 0 and y < 29: nouv[(x, y)] = (150, 150, 150)
+            if y >= 29:
+                if v['pieds'] == 'pieds_nus': nouv[(x, y)] = p_peau(x, y)
+                elif v['pieds'] == 'sandales': nouv[(x, y)] = (60, 44, 34) if y == 31 else p_peau(x, y)
+                elif v['pieds'] == 'baskets' and y == 31: nouv[(x, y)] = (200, 198, 192)
+    if v['bas'] == 'jupe':
+        for x in range(28, 36):
+            for y in range(16, 20): met(x, y, p_tissu(c_bas, x, y, 'bas'))
+    if v['pieds'] in ('pieds_nus', 'sandales'):
+        for x in range(8, 12):
+            for y in range(16, 20): met(x, y, peau_sombre)
+
+    # ---- usure : taches brun-gris, accrocs (la peau apparait), effilochage ; jamais de rouge ----
+    tissus = [k for k in nouv if CLASSE[k] in ('haut', 'bas') or (bras(*k) and k[1] < 29) or (corps(*k) and k[1] >= 20)]
+    for _ in range(int(14 * v['usure'])):
+        x, y = rng.choice(tissus)
+        c0 = (64, 54, 44) if rng.random() < 0.6 else (88, 92, 70)
+        for dx, dy in ((0, 0), (1, 0), (0, 1)):
+            if (x + dx, y + dy) in nouv and rng.random() < 0.8 and CLASSE[(x + dx, y + dy)] != 'peau':
+                nouv[(x + dx, y + dy)] = melange(nouv[(x + dx, y + dy)], c0, rng.uniform(0.35, 0.6))
+    for _ in range(int(6 * v['usure'])):
+        x, y = rng.choice(tissus)
+        if CLASSE[(x, y)] != 'peau' and not (12 <= x < 20 and y < 20):
+            nouv[(x, y)] = peau_sombre
+
+    # ---- plaques d'infection sur la peau : vert-gris sombre, jamais rouge ----
+    peaux = [k for k, c in CLASSE.items() if c == 'peau' and k in nouv and not (8 <= k[0] < 16 and 8 <= k[1] < 16 and 10 <= k[0] <= 13 and 10 <= k[1] <= 12)]
+    for _ in range(9):
+        x, y = rng.choice(peaux)
+        for dx, dy in ((0, 0), (1, 0), (0, 1), (1, 1)):
+            k = (x + dx, y + dy)
+            if k in nouv and CLASSE[k] == 'peau' and rng.random() < 0.75:
+                nouv[k] = melange(nouv[k], (70, 84, 62), rng.uniform(0.35, 0.55))
+
+    # ---- cheveux sur la tete (le modele de Fresh Animations n'a pas de calque chapeau) ----
+    ch = CHEVEUX[v['chev']]
+    coupe = v['coupe']
+    def poil(x, y, densite=1.0):
+        if rng.random() <= densite:
+            nouv[(x, y)] = teinte(ch, 100, 100, rng, 0.14)
+    if coupe != 'chauve':
+        dens_dessus = {'degarni': 0.35, 'ras': 0.75}.get(coupe, 1.0)
+        for x in range(8, 16):
+            for y in range(0, 8):
+                if coupe == 'degarni' and 2 <= y <= 5 and 10 <= x <= 13: continue
+                poil(x, y, dens_dessus)
+        rangs = {'ras': (1, 1, 1), 'court': (1, 2, 2), 'raie': (1, 2, 3), 'degarni': (0, 2, 3), 'crepu': (2, 2, 3),
+                 'longs': (2, 6, 8), 'tresses': (1, 5, 8), 'chignon': (1, 3, 4), 'queue': (1, 3, 6), 'bonnet': (2, 2, 3)}[coupe]
+        avant, cote, arriere = rangs
+        for x in range(8, 16):
+            for y in range(8, 8 + avant): poil(x, y, 0.9 if y == 8 else 0.55)
+        if coupe == 'raie':
+            for y in range(8, 10): nouv[(13, y)] = p_peau(13, y)
+        for x in list(range(0, 8)) + list(range(16, 24)):
+            haut_c = cote + (1 if (x in (0, 1, 22, 23)) else 0)  # plus long vers l'arriere
+            for y in range(8, 8 + haut_c): poil(x, y, 0.95 if coupe not in ('ras',) else 0.7)
+        for x in range(24, 32):
+            for y in range(8, 8 + arriere):
+                d = 0.95
+                if coupe == 'tresses' and x % 2 == 1 and y > 9: d = 0.0
+                if coupe == 'queue' and not (27 <= x <= 28) and y > 11: d = 0.0
+                poil(x, y, d)
+        if coupe == 'chignon':
+            for x in range(26, 30):
+                for y in range(9, 12): nouv[(x, y)] = teinte(ch, 80, 100, rng, 0.1)
+        if coupe == 'crepu':
+            for (x, y) in list(nouv):
+                if tete(x, y) and nouv[(x, y)] and rng.random() < 0.25 and lum(nouv[(x, y)] + (255,)) < lum(ch + (255,)) + 30 and y < 11:
+                    nouv[(x, y)] = tuple(int(c * 0.8) for c in nouv[(x, y)])
+        if coupe == 'bonnet':
+            b = melange(v['bonnet'], passe, 0.3)
+            for x in range(8, 16):
+                for y in range(0, 8): nouv[(x, y)] = teinte(b, 100, 100, rng, 0.08)
+            for x in range(0, 32):
+                for y in range(8, 10): nouv[(x, y)] = teinte(b, 90 if y == 9 else 100, 100, rng, 0.08)
+
+    for k, c in nouv.items():
+        px[k] = c + (255,)
+    return im
+
+# ---------- apercu a plat : face avant assemblee (tete, torse, bras, jambes) ----------
+def face(im):
+    s = Image.new('RGBA', (16, 32), (0, 0, 0, 0))
+    s.paste(im.crop((8, 8, 16, 16)), (4, 0))
+    s.paste(im.crop((20, 20, 28, 32)), (4, 8))
+    s.paste(im.crop((44, 20, 48, 32)), (0, 8)); s.paste(im.crop((44, 20, 48, 32)).transpose(Image.FLIP_LEFT_RIGHT), (12, 8))
+    s.paste(im.crop((4, 20, 8, 32)), (4, 20)); s.paste(im.crop((4, 20, 8, 32)).transpose(Image.FLIP_LEFT_RIGHT), (8, 20))
+    return s
+
+def main():
+    sortie = os.path.join(ICI, 'sortie'); apercus = os.path.join(ICI, 'apercus')
+    os.makedirs(sortie, exist_ok=True); os.makedirs(apercus, exist_ok=True)
+    images = []
+    for i, v in enumerate(V):
+        im = generer(v, 1000 + i)
+        images.append((v['n'], im))
+    # planche : original + variantes, face avant x8 + texture brute
+    cols = 7
+    cw, chh = 16 * 8 + 16, 32 * 8 + 24
+    tout = [('original_FA', BASE)] + images
+    rows = (len(tout) + cols - 1) // cols
+    pl = Image.new('RGB', (cols * cw, rows * chh), (40, 40, 44))
+    d = ImageDraw.Draw(pl)
+    for i, (n, im) in enumerate(tout):
+        f = face(im).resize((128, 256), Image.NEAREST)
+        x0, y0 = (i % cols) * cw + 8, (i // cols) * chh + 4
+        pl.paste(f, (x0, y0), f)
+        d.text((x0, y0 + 258), f'{i + 1} {n}'[:22], fill=(230, 230, 230))
+    pl.save(os.path.join(apercus, 'planche-faces.png'))
+    brut = Image.new('RGBA', (cols * 64 * 3, rows * 34 * 3), (40, 40, 44, 255))
+    for i, (n, im) in enumerate(tout):
+        t = im.crop((0, 0, 64, 32)).resize((192, 96), Image.NEAREST)
+        brut.paste(t, ((i % cols) * 192, (i // cols) * 102), t)
+    brut.save(os.path.join(apercus, 'planche-textures.png'))
+    # pack de ressources ETF
+    z = os.path.join(sortie, 'Atheria-Infectes-variantes.zip')
+    with zipfile.ZipFile(z, 'w', zipfile.ZIP_DEFLATED) as zf:
+        zf.writestr('pack.mcmeta', json.dumps({'pack': {'pack_format': 34, 'supported_formats': [15, 99],
+            'description': 'Atheria : variantes des Dakouane (textures aleatoires ETF, gabarit Fresh Animations)'}}, ensure_ascii=False, indent=1))
+        n = len(images) + 1
+        zf.writestr('assets/minecraft/optifine/random/entity/zombie/zombie.properties',
+                    '# Atheria : %d apparences de Dakouane, tirees au hasard par ETF selon l\'UUID (identiques pour tous les joueurs).\n# Le zombie vert d\'origine (1) est exclu : il jure avec le lore.\ntextures.1=2-%d\n' % (n - 1, n))
+        for i, (nom, im) in enumerate(images):
+            tmp = os.path.join(sortie, f'zombie{i + 2}.png'); im.save(tmp)
+            zf.write(tmp, f'assets/minecraft/optifine/random/entity/zombie/zombie{i + 2}.png'); os.remove(tmp)
+        zf.writestr('LISEZ-MOI.txt', 'Atheria Zombie Edition : %d variantes de zombie (Dakouane) pour Entity Texture Features.\n'
+                    'Dessinees sur le zombie.png de Fresh Animations (meme visage, memes yeux, meme ombrage).\n'
+                    'A placer AU-DESSUS de Fresh Animations. Genere par outils/atheria-variantes-infectes/generer.py.\n' % len(images)
+                    + '\n'.join(f'zombie{i + 2}.png : {n}' for i, (n, _) in enumerate(images)) + '\n')
+    print('ok', len(images), 'variantes ->', z)
+
+if __name__ == '__main__':
+    main()

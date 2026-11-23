@@ -1,0 +1,18 @@
+{
+ "nom": "tunnels-tram-1",
+ "fil": "villes",
+ "type": "script",
+ "priorite": 5,
+ "verrou": "script",
+ "client": true,
+ "ram_mo": 7600,
+ "duree_max_min": 35,
+ "script": "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\contenu\\controle-villes\\pose-lieux\\lancer-captures-villes.ps1",
+ "arguments": [
+  "-Monde",
+  "lieux_6",
+  "-Points",
+  "points-galeries.json"
+ ],
+ "note": "Passe tunnels du tram (6 vues souterraines + toit du Nid), monde neuf lieux_6 de serveur-lieux-essai, jeu en 5 Go ; le script prend et rend le verrou lui-meme"
+}

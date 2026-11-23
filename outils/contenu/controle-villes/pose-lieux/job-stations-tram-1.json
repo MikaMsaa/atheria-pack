@@ -1,0 +1,18 @@
+{
+ "nom": "stations-tram-1",
+ "fil": "villes",
+ "type": "script",
+ "priorite": 5,
+ "verrou": "script",
+ "client": true,
+ "ram_mo": 7600,
+ "duree_max_min": 40,
+ "script": "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\contenu\\controle-villes\\pose-lieux\\lancer-captures-villes.ps1",
+ "arguments": [
+  "-Monde",
+  "lieux_7",
+  "-Points",
+  "points-stations.json"
+ ],
+ "note": "Stations du tram (Majicavo et son puits, 3 petites stations) sur un monde neuf lieux_7"
+}

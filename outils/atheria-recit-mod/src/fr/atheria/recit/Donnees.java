@@ -71,5 +71,11 @@ public final class Donnees {
                 LOG.info("{} dialogue(s) : {}", DIALOGUES.size(), DIALOGUES.keySet());
             }
         });
+        e.addListener(new SimpleJsonResourceReloadListener(GSON, "atheria_zones") {
+            @Override
+            protected void apply(Map<ResourceLocation, JsonElement> lus, ResourceManager rm, ProfilerFiller pf) {
+                Zones.charger(lus);
+            }
+        });
     }
 }

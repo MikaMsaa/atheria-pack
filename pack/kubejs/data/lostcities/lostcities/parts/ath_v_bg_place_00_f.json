@@ -181,22 +181,26 @@
    },
    {
     "char": "ì",
-    "block": "minecraft:lantern[hanging=true,waterlogged=false]"
+    "block": "minecraft:stone_brick_slab[type=double,waterlogged=false]"
    },
    {
     "char": "í",
-    "block": "minecraft:stone_brick_wall[east=tall,north=none,south=tall,up=true,waterlogged=false,west=none]"
+    "block": "minecraft:lantern[hanging=true,waterlogged=false]"
    },
    {
     "char": "î",
-    "block": "minecraft:spruce_slab[type=bottom,waterlogged=false]"
+    "block": "minecraft:stone_brick_wall[east=tall,north=none,south=tall,up=true,waterlogged=false,west=none]"
    },
    {
     "char": "ï",
-    "block": "minecraft:dark_oak_planks"
+    "block": "minecraft:spruce_slab[type=bottom,waterlogged=false]"
    },
    {
     "char": "ð",
+    "block": "minecraft:dark_oak_planks"
+   },
+   {
+    "char": "ñ",
     "block": "minecraft:lightning_rod[facing=up,powered=false,waterlogged=false]"
    }
   ]
@@ -290,7 +294,7 @@
    "                ",
    "  ç             ",
    " çËç          ëë",
-   "  ç           ëë"
+   "  ç           ëì"
   ],
   [
    "                ",
@@ -299,7 +303,7 @@
    "     Þ Þ     ç  ",
    "                ",
    "   Þ     Þ      ",
-   "      ì         ",
+   "      í         ",
    "   Þ     Þ      ",
    "                ",
    "     Þ Þ        ",
@@ -308,7 +312,7 @@
    "  æ             ",
    " æçæ            ",
    "æçËçæ           ",
-   " æçæ           í"
+   " æçæ           î"
   ]
  ]
 }

@@ -1,0 +1,63 @@
+{
+    "type":  "minecraft:chest",
+    "pools":  [
+                  {
+                      "rolls":  {
+                                    "type":  "minecraft:uniform",
+                                    "min":  2,
+                                    "max":  3
+                                },
+                      "entries":  [
+                                      {
+                                          "type":  "minecraft:loot_table",
+                                          "value":  "atheria:inject/munitions_militaires"
+                                      }
+                                  ]
+                  },
+                  {
+                      "rolls":  1,
+                      "conditions":  [
+                                         {
+                                             "condition":  "minecraft:random_chance",
+                                             "chance":  0.35
+                                         }
+                                     ],
+                      "entries":  [
+                                      {
+                                          "type":  "minecraft:loot_table",
+                                          "value":  "atheria:inject/pistolet"
+                                      }
+                                  ]
+                  },
+                  {
+                      "rolls":  1,
+                      "conditions":  [
+                                         {
+                                             "condition":  "minecraft:random_chance",
+                                             "chance":  0.15
+                                         }
+                                     ],
+                      "entries":  [
+                                      {
+                                          "type":  "minecraft:loot_table",
+                                          "value":  "atheria:inject/arme_longue"
+                                      }
+                                  ]
+                  },
+                  {
+                      "rolls":  1,
+                      "conditions":  [
+                                         {
+                                             "condition":  "minecraft:random_chance",
+                                             "chance":  0.3
+                                         }
+                                     ],
+                      "entries":  [
+                                      {
+                                          "type":  "minecraft:loot_table",
+                                          "value":  "atheria:inject/accessoire"
+                                      }
+                                  ]
+                  }
+              ]
+}

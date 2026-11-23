@@ -1,0 +1,10 @@
+{
+  "_aide": "Les Koro : masses blindées, au cœur des labos et des hôpitaux de Spore. Rares.",
+  "nom": "Les Koro",
+  "ou": [ { "structures": ["spore:lab", "spore:hospital"] } ],
+  "apparitions": [
+    { "entite": "spore:brute", "poids": 5, "min": 1, "max": 1 },
+    { "entite": "spore:gargoyle", "poids": 3, "min": 1, "max": 1 },
+    { "entite": "spore:ogre", "poids": 2, "min": 1, "max": 1 }
+  ]
+}

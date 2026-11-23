@@ -1,0 +1,11 @@
+{
+  "type": "lithostitched:wrap_density_function",
+  "target_function": "tectonic:noise/continent/ridges",
+  "wrapper_function": {
+    "type": "atheria_ile:ile_champ",
+    "champ": "cretes",
+    "argument": {
+      "type": "lithostitched:wrapped_marker"
+    }
+  }
+}

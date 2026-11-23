@@ -1,0 +1,27 @@
+{
+    "nom":  "stations-tram-leger",
+    "fil":  "villes",
+    "type":  "script",
+    "priorite":  5,
+    "verrou":  "script",
+    "client":  true,
+    "ram_mo":  6000,
+    "garde_mo":  250,
+    "duree_max_min":  50,
+    "script":  "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\file-pc\\profil-leger.ps1",
+    "arguments":  [
+                      "-Instance",
+                      "AtheriaAudit",
+                      "-Xmx",
+                      "4608",
+                      "-Script",
+                      "C:\\Users\\El-Afdal\\Desktop\\Atheria Zombie Edition\\outils\\contenu\\controle-villes\\pose-lieux\\lancer-captures-villes.ps1",
+                      "-Monde",
+                      "lieux_7",
+                      "-Points",
+                      "points-stations.json",
+                      "-LibreMin",
+                      "5000"
+                  ],
+    "note":  "Mesure du profil memoire leger (Xmx 4608, C1 seul) sur la passe la plus lourde : monde neuf, 11 vues des stations"
+}

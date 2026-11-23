@@ -1,0 +1,419 @@
+diff -ru sauvegarde-0.1.4/src/fr/atheria/ile/CarteIle.java src/fr/atheria/ile/CarteIle.java
+--- sauvegarde-0.1.4/src/fr/atheria/ile/CarteIle.java	2026-11-09 16:17:45.774026300 +0400
++++ src/fr/atheria/ile/CarteIle.java	2026-11-09 16:18:00.472392600 +0400
+@@ -65,6 +65,9 @@
+         public final double relief;
+         public final int cellule;
+         public final int couleur;
++        /** biome de plage de la région ; plageDefinie=false : choix automatique (beach, ou snowy_beach si froide) ; plage=null et plageDefinie : pas de plage */
++        public String plage;
++        public boolean plageDefinie;
+         Region(String nom, String montagne, double relief, int cellule, int couleur) {
+             this.nom = nom; this.montagne = montagne; this.relief = relief; this.cellule = Math.max(32, cellule); this.couleur = couleur;
+         }
+@@ -120,6 +123,10 @@
+                     Region reg = new Region(c.get("nom").getAsString(), montagne,
+                             c.has("relief") ? c.get("relief").getAsDouble() : 0.0,
+                             c.has("cellule") ? c.get("cellule").getAsInt() : 224, rgb);
++                    if (c.has("plage")) {
++                        reg.plageDefinie = true;
++                        reg.plage = c.get("plage").isJsonNull() ? null : c.get("plage").getAsString();
++                    }
+                     JsonArray bs = c.getAsJsonArray("biomes");
+                     for (JsonElement b : bs) {
+                         JsonObject o = b.getAsJsonObject();
+diff -ru sauvegarde-0.1.4/src/fr/atheria/ile/TableBiomes.java src/fr/atheria/ile/TableBiomes.java
+--- sauvegarde-0.1.4/src/fr/atheria/ile/TableBiomes.java	2026-11-09 16:17:45.771458700 +0400
++++ src/fr/atheria/ile/TableBiomes.java	2026-11-09 16:18:00.473073100 +0400
+@@ -26,8 +26,13 @@
+         int cellule;
+         /** au moins un biome enneigé : les plages enneigées y sont permises */
+         boolean froide;
++        /** biome posé sur la bande de plage (null : pas de plage dans cette région) */
++        Holder<Biome> plage;
+     }
+ 
++    /** bande de plage : côté terre (blocs), côté mer (blocs), hauteur max au-dessus de la mer */
++    final int plageLargeur, plageMer, plageHauteur, mer;
++
+     final CarteIle carte;
+     final RegionBiomes[] regions;
+     final Set<Holder<Biome>> sousTerrainSeulement;
+@@ -76,9 +81,31 @@
+         dessous.removeAll(enSurface);
+         sousTerrainSeulement = dessous;
+         plage = parId.get(ResourceLocation.withDefaultNamespace("beach"));
++        Holder<Biome> plageNeige = parId.get(ResourceLocation.withDefaultNamespace("snowy_beach"));
++        plageLargeur = entier(carte, "plage_largeur_blocs", 24);
++        plageMer = entier(carte, "plage_cote_mer_blocs", 8);
++        plageHauteur = entier(carte, "plage_hauteur_max_blocs", 5);
++        mer = entier(carte, "niveau_mer", 63);
++        for (int r = 0; r < regions.length; r++) {
++            CarteIle.Region def = carte.regions.get(r);
++            RegionBiomes rb = regions[r];
++            if (def.plageDefinie) rb.plage = def.plage == null ? null : trouver(parId, def.plage, def.nom);
++            else rb.plage = rb.froide && plageNeige != null ? plageNeige : plage;
++        }
+         for (String a : avertissements) CarteIle.LOG.warn("[atheria_ile] {}", a);
+     }
+ 
++    private static int entier(CarteIle carte, String cle, int defaut) {
++        return carte.config.has(cle) && !carte.config.get(cle).isJsonNull() ? carte.config.get(cle).getAsInt() : defaut;
++    }
++
++    /** Le point (bloc) est-il sur la bande de plage : près de la côte de la carte et presque au niveau de la mer ? */
++    boolean surPlage(int bx, int by, int bz) {
++        if (plageLargeur <= 0 || by < mer - 3 || by > mer + plageHauteur) return false;
++        double d = carte.distanceBlocs(bx, bz);
++        return d > -plageMer && d < plageLargeur;
++    }
++
+     private Holder<Biome> trouver(Map<ResourceLocation, Holder<Biome>> parId, String id, String region) {
+         ResourceLocation rl = ResourceLocation.tryParse(id);
+         Holder<Biome> h = rl == null ? null : parId.get(rl);
+@@ -93,7 +120,14 @@
+                 || sousTerrainSeulement.contains(base);
+     }
+ 
+-    public Holder<Biome> choisir(Holder<Biome> base, int bx, int bz) {
++    public Holder<Biome> choisir(Holder<Biome> base, int bx, int by, int bz) {
++        // plages : la carte remet du sable sur toute côte basse (sauf rivières, grands fonds et grottes)
++        // (test de hauteur et de distance d'abord : le moins cher ; aucune allocation, les holders sont resolus au constructeur)
++        if (surPlage(bx, by, bz) && !base.is(BiomeTags.IS_RIVER) && !base.is(BiomeTags.IS_DEEP_OCEAN)
++                && !base.is(Tags.Biomes.IS_UNDERGROUND) && !base.is(Tags.Biomes.IS_CAVE) && !sousTerrainSeulement.contains(base)) {
++            Holder<Biome> p = regions[carte.region(bx, bz)].plage;
++            if (p != null) return p;
++        }
+         if (garder(base)) {
+             // pas de plage enneigée sur une côte tropicale
+             if (plage != null && base.is(BiomeTags.IS_BEACH) && base.is(Tags.Biomes.IS_SNOWY)
+@@ -114,7 +148,7 @@
+     public boolean attendu(int region, Holder<Biome> b) {
+         RegionBiomes rb = regions[region];
+         if (b.equals(rb.montagne)) return true;
+-        if (b.equals(plage)) return true;
++        if (b.equals(plage) || b.equals(rb.plage)) return true;
+         for (Holder<Biome> h : rb.biomes) if (h.equals(b)) return true;
+         return false;
+     }
+diff -ru sauvegarde-0.1.4/src/fr/atheria/ile/mixin/MultiNoiseBiomeSourceMixin.java src/fr/atheria/ile/mixin/MultiNoiseBiomeSourceMixin.java
+--- sauvegarde-0.1.4/src/fr/atheria/ile/mixin/MultiNoiseBiomeSourceMixin.java	2026-11-09 16:17:45.770949400 +0400
++++ src/fr/atheria/ile/mixin/MultiNoiseBiomeSourceMixin.java	2026-11-09 16:18:00.126647100 +0400
+@@ -54,6 +54,6 @@
+             }
+         }
+         if (!(t instanceof TableBiomes table)) return base;
+-        return table.choisir(base, QuartPos.toBlock(x), QuartPos.toBlock(z));
++        return table.choisir(base, QuartPos.toBlock(x), QuartPos.toBlock(y), QuartPos.toBlock(z));
+     }
+ }
+--- sauvegarde-0.1.4/construire.ps1	2026-11-09 16:17:45.785048300 +0400
++++ construire.ps1	2026-11-09 16:18:00.474614500 +0400
+@@ -28,7 +28,7 @@
+ Copy-Item (Join-Path $Ici 'ressources\*') $Tmp -Recurse -Force
+ 
+ $manifest = Join-Path $env:TEMP "atheria-ile-manifest-$([guid]::NewGuid()).txt"
+-[IO.File]::WriteAllText($manifest, "Implementation-Version: 0.1.4`nFMLModType: MOD`n")
++[IO.File]::WriteAllText($manifest, "Implementation-Version: 0.1.5`nFMLModType: MOD`n")
+ $Out = Join-Path $Ici 'atheria-ile.jar'
+ & "$Jdk\jar.exe" --create --file $Out --manifest $manifest -C $Tmp .
+ if ($LASTEXITCODE -ne 0) { throw "jar a echoue (code $LASTEXITCODE)" }
+--- sauvegarde-0.1.4/ressources/META-INF/neoforge.mods.toml	2026-11-09 16:17:45.780942200 +0400
++++ ressources/META-INF/neoforge.mods.toml	2026-11-09 16:18:00.474079800 +0400
+@@ -4,7 +4,7 @@
+ 
+ [[mods]]
+ modId = "atheria_ile"
+-version = "0.1.4"
++version = "0.1.5"
+ displayName = "Atheria Ile"
+ description = "Prototype : la carte dessinee de l'ile d'Atheria guide les cotes, le relief et les biomes. Inactif sans le datapack atheria_ile dans le monde."
+ 
+--- sauvegarde-0.1.4/regions.json	2026-11-09 16:17:45.806130400 +0400
++++ regions.json	2026-11-09 16:18:00.475132700 +0400
+@@ -37,7 +37,8 @@
+    ],
+    "montagne": "terralith:white_cliffs",
+    "relief": 0.08,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:beach"
+   },
+   "#b6a658": {
+    "type": "region",
+@@ -62,7 +63,8 @@
+    ],
+    "montagne": "terralith:savanna_slopes",
+    "relief": 0.0,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:beach"
+   },
+   "#a0988e": {
+    "type": "region",
+@@ -83,7 +85,8 @@
+    ],
+    "montagne": null,
+    "relief": -0.04,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:beach"
+   },
+   "#7aa048": {
+    "type": "region",
+@@ -104,7 +107,8 @@
+    ],
+    "montagne": null,
+    "relief": -0.03,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:beach"
+   },
+   "#22662a": {
+    "type": "region",
+@@ -125,7 +129,8 @@
+    ],
+    "montagne": "terralith:jungle_mountains",
+    "relief": 0.05,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:beach"
+   },
+   "#54784a": {
+    "type": "region",
+@@ -146,7 +151,8 @@
+    ],
+    "montagne": "terralith:alpine_highlands",
+    "relief": 0.18,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:beach"
+   },
+   "#e1e6eb": {
+    "type": "region",
+@@ -163,7 +169,8 @@
+    ],
+    "montagne": "terralith:frozen_cliffs",
+    "relief": 0.35,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:snowy_beach"
+   },
+   "#586246": {
+    "type": "region",
+@@ -184,7 +191,8 @@
+    ],
+    "montagne": null,
+    "relief": -0.05,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": null
+   },
+   "#b05c34": {
+    "type": "region",
+@@ -209,7 +217,8 @@
+    ],
+    "montagne": "minecraft:eroded_badlands",
+    "relief": 0.12,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:beach"
+   },
+   "#7c7a76": {
+    "type": "region",
+@@ -230,7 +239,8 @@
+    ],
+    "montagne": null,
+    "relief": 0.0,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:beach"
+   },
+   "#467052": {
+    "type": "region",
+@@ -251,7 +261,8 @@
+    ],
+    "montagne": null,
+    "relief": -0.06,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": null
+   },
+   "#c4b278": {
+    "type": "region",
+@@ -268,7 +279,8 @@
+    ],
+    "montagne": "terralith:volcanic_crater",
+    "relief": 0.05,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:beach"
+   },
+   "#463834": {
+    "type": "region",
+@@ -285,7 +297,8 @@
+    ],
+    "montagne": "terralith:volcanic_peaks",
+    "relief": 0.4,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:beach"
+   },
+   "#c8be8c": {
+    "type": "region",
+@@ -298,7 +311,8 @@
+    ],
+    "montagne": null,
+    "relief": 0.0,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:beach"
+   }
+  }
+-}
+\ No newline at end of file
++}
+--- sauvegarde-0.1.4/regions-test.json	2026-11-09 16:17:45.816234100 +0400
++++ regions-test.json	2026-11-09 16:18:00.476157400 +0400
+@@ -41,7 +41,8 @@
+    ],
+    "montagne": "terralith:white_cliffs",
+    "relief": 0.08,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:beach"
+   },
+   "#b6a658": {
+    "type": "region",
+@@ -66,7 +67,8 @@
+    ],
+    "montagne": "terralith:savanna_slopes",
+    "relief": 0.0,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:beach"
+   },
+   "#a0988e": {
+    "type": "region",
+@@ -87,7 +89,8 @@
+    ],
+    "montagne": null,
+    "relief": -0.04,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:beach"
+   },
+   "#7aa048": {
+    "type": "region",
+@@ -108,7 +111,8 @@
+    ],
+    "montagne": null,
+    "relief": -0.03,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:beach"
+   },
+   "#22662a": {
+    "type": "region",
+@@ -129,7 +133,8 @@
+    ],
+    "montagne": "terralith:jungle_mountains",
+    "relief": 0.05,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:beach"
+   },
+   "#54784a": {
+    "type": "region",
+@@ -150,7 +155,8 @@
+    ],
+    "montagne": "terralith:alpine_highlands",
+    "relief": 0.18,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:beach"
+   },
+   "#e1e6eb": {
+    "type": "region",
+@@ -167,7 +173,8 @@
+    ],
+    "montagne": "terralith:frozen_cliffs",
+    "relief": 0.35,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:snowy_beach"
+   },
+   "#586246": {
+    "type": "region",
+@@ -188,7 +195,8 @@
+    ],
+    "montagne": null,
+    "relief": -0.05,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": null
+   },
+   "#b05c34": {
+    "type": "region",
+@@ -213,7 +221,8 @@
+    ],
+    "montagne": "minecraft:eroded_badlands",
+    "relief": 0.12,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:beach"
+   },
+   "#7c7a76": {
+    "type": "region",
+@@ -234,7 +243,8 @@
+    ],
+    "montagne": null,
+    "relief": 0.0,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:beach"
+   },
+   "#467052": {
+    "type": "region",
+@@ -255,7 +265,8 @@
+    ],
+    "montagne": null,
+    "relief": -0.06,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": null
+   },
+   "#c4b278": {
+    "type": "region",
+@@ -272,7 +283,8 @@
+    ],
+    "montagne": "terralith:volcanic_crater",
+    "relief": 0.05,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:beach"
+   },
+   "#463834": {
+    "type": "region",
+@@ -289,7 +301,8 @@
+    ],
+    "montagne": "terralith:volcanic_peaks",
+    "relief": 0.4,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:beach"
+   },
+   "#c8be8c": {
+    "type": "region",
+@@ -302,7 +315,8 @@
+    ],
+    "montagne": null,
+    "relief": 0.0,
+-   "cellule": 224
++   "cellule": 224,
++   "plage": "minecraft:beach"
+   }
+  }
+-}
+\ No newline at end of file
++}

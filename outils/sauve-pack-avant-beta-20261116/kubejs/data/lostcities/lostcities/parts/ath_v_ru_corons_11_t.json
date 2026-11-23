@@ -1,0 +1,499 @@
+{
+ "xsize": 16,
+ "zsize": 16,
+ "palette": {
+  "palette": [
+   {
+    "char": "À",
+    "block": "minecraft:gravel"
+   },
+   {
+    "char": "Á",
+    "block": "minecraft:gray_concrete"
+   },
+   {
+    "char": "Â",
+    "block": "minecraft:coarse_dirt"
+   },
+   {
+    "char": "Ã",
+    "block": "minecraft:andesite"
+   },
+   {
+    "char": "Ä",
+    "block": "minecraft:cobblestone"
+   },
+   {
+    "char": "Å",
+    "block": "mcwpaths:stone_flagstone[engraved=false]"
+   },
+   {
+    "char": "Æ",
+    "block": "minecraft:spruce_planks"
+   },
+   {
+    "char": "Ç",
+    "block": "minecraft:bricks"
+   },
+   {
+    "char": "È",
+    "block": "minecraft:oak_planks"
+   },
+   {
+    "char": "É",
+    "block": "createdeco:cracked_red_bricks"
+   },
+   {
+    "char": "Ê",
+    "block": "minecraft:barrel[facing=up,open=false]"
+   },
+   {
+    "char": "Ë",
+    "block": "minecraft:brick_wall[east=low,north=none,south=none,up=false,waterlogged=false,west=low]"
+   },
+   {
+    "char": "Ì",
+    "block": "minecraft:brick_wall[east=none,north=none,south=none,up=true,waterlogged=false,west=low]"
+   },
+   {
+    "char": "Í",
+    "block": "minecraft:brick_wall[east=low,north=none,south=none,up=true,waterlogged=false,west=none]"
+   },
+   {
+    "char": "Î",
+    "block": "minecraft:white_terracotta"
+   },
+   {
+    "char": "Ï",
+    "block": "minecraft:campfire[facing=south,lit=true,signal_fire=false,waterlogged=false]"
+   },
+   {
+    "char": "Ð",
+    "block": "minecraft:quartz_pillar[axis=y]"
+   },
+   {
+    "char": "Ñ",
+    "block": "minecraft:bookshelf"
+   },
+   {
+    "char": "Ò",
+    "block": "handcrafted:white_glazed_medium_pot"
+   },
+   {
+    "char": "Ó",
+    "block": "handcrafted:golden_thin_pot"
+   },
+   {
+    "char": "Ô",
+    "block": "mcwfurnitures:birch_coffee_table[connection=with_leg]"
+   },
+   {
+    "char": "Õ",
+    "block": "minecraft:green_carpet"
+   },
+   {
+    "char": "Ö",
+    "block": "mcwfurnitures:birch_chair[facing=west]"
+   },
+   {
+    "char": "×",
+    "block": "mcwfurnitures:birch_chair[facing=east]"
+   },
+   {
+    "char": "Ø",
+    "block": "minecraft:red_carpet"
+   },
+   {
+    "char": "Ù",
+    "block": "handcrafted:spruce_couch[color=gray,facing=north,shape=middle,waterlogged=false]"
+   },
+   {
+    "char": "Ú",
+    "block": "handcrafted:spruce_couch[color=gray,facing=north,shape=left,waterlogged=false]"
+   },
+   {
+    "char": "Û",
+    "block": "supplementaries:globe[facing=north,powered=false,rotation=0,waterlogged=false]"
+   },
+   {
+    "char": "Ü",
+    "block": "handcrafted:spruce_couch[color=green,facing=north,shape=right,waterlogged=false]"
+   },
+   {
+    "char": "Ý",
+    "block": "handcrafted:spruce_couch[color=green,facing=north,shape=middle,waterlogged=false]"
+   },
+   {
+    "char": "Þ",
+    "block": "handcrafted:spruce_couch[color=green,facing=north,shape=left,waterlogged=false]"
+   },
+   {
+    "char": "ß",
+    "block": "minecraft:moss_carpet"
+   },
+   {
+    "char": "à",
+    "block": "minecraft:potted_azalea_bush"
+   },
+   {
+    "char": "á",
+    "block": "minecraft:potted_fern"
+   },
+   {
+    "char": "â",
+    "block": "minecraft:decorated_pot[cracked=false,facing=north,waterlogged=false]"
+   },
+   {
+    "char": "ã",
+    "block": "minecraft:spruce_door[facing=south,half=lower,hinge=left,open=false,powered=false]"
+   },
+   {
+    "char": "ä",
+    "block": "minecraft:quartz_slab[type=top,waterlogged=false]"
+   },
+   {
+    "char": "å",
+    "block": "supplementaries:book_pile[books=1,waterlogged=false]"
+   },
+   {
+    "char": "æ",
+    "block": "minecraft:glass_pane[east=true,north=false,south=false,waterlogged=false,west=true]"
+   },
+   {
+    "char": "ç",
+    "block": "minecraft:spruce_door[facing=south,half=upper,hinge=left,open=false,powered=false]"
+   },
+   {
+    "char": "è",
+    "block": "minecraft:spruce_stairs[facing=south,half=bottom,shape=straight,waterlogged=false]"
+   },
+   {
+    "char": "é",
+    "block": "minecraft:candle[candles=2,lit=false,waterlogged=false]"
+   },
+   {
+    "char": "ê",
+    "block": "minecraft:candle[candles=3,lit=false,waterlogged=false]"
+   },
+   {
+    "char": "ë",
+    "block": "minecraft:cobweb"
+   },
+   {
+    "char": "ì",
+    "block": "mcwlights:iron_chandelier[lit=true]"
+   },
+   {
+    "char": "í",
+    "block": "mcwlights:sea_lantern_slab[type=top,waterlogged=false]"
+   },
+   {
+    "char": "î",
+    "block": "minecraft:mud_bricks"
+   },
+   {
+    "char": "ï",
+    "block": "handcrafted:spruce_fancy_bed[color=white,facing=north,occupied=false,part=head,shape=single]"
+   },
+   {
+    "char": "ð",
+    "block": "mcwfurnitures:dark_oak_end_table[east=false,north=false,south=false,west=false]"
+   },
+   {
+    "char": "ñ",
+    "block": "handcrafted:blue_glazed_thin_pot"
+   },
+   {
+    "char": "ò",
+    "block": "minecraft:glass_pane[east=false,north=true,south=true,waterlogged=false,west=false]"
+   },
+   {
+    "char": "ó",
+    "block": "mcwfurnitures:stripped_oak_wardrobe[connection=base,facing=south,hinge=left]"
+   },
+   {
+    "char": "ô",
+    "block": "mcwfurnitures:stripped_oak_end_table[east=false,north=false,south=false,west=false]"
+   },
+   {
+    "char": "õ",
+    "block": "handcrafted:spruce_fancy_bed[color=black,facing=north,occupied=false,part=head,shape=single]"
+   },
+   {
+    "char": "ö",
+    "block": "handcrafted:white_glazed_thick_pot"
+   },
+   {
+    "char": "÷",
+    "block": "handcrafted:spruce_fancy_bed[color=white,facing=north,occupied=false,part=foot,shape=single]"
+   },
+   {
+    "char": "ø",
+    "block": "minecraft:glass_pane[east=false,north=true,south=false,waterlogged=false,west=false]"
+   },
+   {
+    "char": "ù",
+    "block": "handcrafted:spruce_fancy_bed[color=black,facing=north,occupied=false,part=foot,shape=single]"
+   },
+   {
+    "char": "ú",
+    "block": "minecraft:white_carpet"
+   },
+   {
+    "char": "û",
+    "block": "supplementaries:hourglass[facing=north,light_level=0,waterlogged=false]"
+   },
+   {
+    "char": "ü",
+    "block": "minecraft:chest[facing=east,type=single,waterlogged=false]",
+    "loot": "chestloot"
+   },
+   {
+    "char": "ý",
+    "block": "minecraft:black_carpet"
+   },
+   {
+    "char": "þ",
+    "block": "mcwfurnitures:dark_oak_drawer[connection=single,facing=north]"
+   },
+   {
+    "char": "ÿ",
+    "block": "supplementaries:sack[open=false,waterlogged=false]"
+   },
+   {
+    "char": "Ā",
+    "block": "minecraft:candle[candles=1,lit=false,waterlogged=false]"
+   },
+   {
+    "char": "ā",
+    "block": "minecraft:lantern[hanging=true,waterlogged=false]"
+   },
+   {
+    "char": "Ă",
+    "block": "minecraft:deepslate_tile_stairs[facing=north,half=bottom,shape=straight,waterlogged=false]"
+   },
+   {
+    "char": "ă",
+    "block": "minecraft:deepslate_tile_stairs[facing=south,half=bottom,shape=straight,waterlogged=false]"
+   }
+  ]
+ },
+ "slices": [
+  [
+   "ÎÎÎÎÇ ÎÎÎÎÎÎÎÇ  ",
+   "   ëÇ       ëÇ  ",
+   "ì í Çè í ì í Ç  ",
+   "    ÇÆ       Ç  ",
+   "    Çë       Ç  ",
+   "ÇÇÇÉÇÇÇÇÇÇÇÇÇÇ  ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ],
+  [
+   "ÆÆÆÆÉ ÆÆÆÆÆÆÆÇ  ",
+   "ÈÆÆÈÇ ÆÆÈÈÆÆÈÇ  ",
+   "ÈÈÆÆÇ ÆÆÆÈÈÆÆÇ  ",
+   "ÆÈÈÆÇèÆÈÆÆÈÈÆÇ  ",
+   "ÆÆÈÈÇÆÆÈÈÆÆÈÈÇ  ",
+   "îîîîîîîîîîîîîî  ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ],
+  [
+   "ÎÎÎÎÇ Î ÎÎÎÎÎÇ  ",
+   "ïð ñÇ òóôõô öÇ  ",
+   "÷   Ç ø  ù   Ç  ",
+   "ú  ûÇ  ü ý  ûÇ  ",
+   "  þÊÇ  ü ú ÿÊÇ  ",
+   "ÇÇÇÇÇÇÇÇÇÇÇÇÇÇ  ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ],
+  [
+   "ÎÎÎÎÇ Î ÎÎÎÎÎÇ  ",
+   " å  Ç   Ā é  Ç  ",
+   "    Ç        Ç  ",
+   "    Ç        Ç  ",
+   "  Ā Ç      Ā Ç  ",
+   "ÇææÇÇÇææÇÇææÇÇ  ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ],
+  [
+   "ÎÎÎÎÉ ÎÎÎÎÎÎÎÇ  ",
+   "    Ç        Ç  ",
+   "    Ç        Ç  ",
+   "    Ç        Ç  ",
+   "    Ç        Ç  ",
+   "ÉææÇÇÇææÇÉææÇÇ  ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ],
+  [
+   "ÎÎÎÎÇ ÎÎÎÎÎÎÎÇ  ",
+   "    Ç       ëÇ  ",
+   "  í Ç  í   í Ç  ",
+   "ā   Ç    ā   Ç  ",
+   "    É  ë     Ç  ",
+   "ÇÇÇÇÇÉÇÇÇÇÇÇÇÇ  ",
+   "ĂĂĂĂĂĂĂĂĂĂĂĂĂĂĂ ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ],
+  [
+   "ÆÆÆÆÇÆÆÆÆÆÆÆÆÇ  ",
+   "ÆÆÆÆÇÆÆÆÆÆÆÆÆÇ  ",
+   "ÆÆÆÆÇÆÆÆÆÆÆÆÆÇ  ",
+   "ÆÆÆÆÇÆÆÆÆÆÆÆÆÇ  ",
+   "ÆÆÆÆÇÆÆÆÆÆÆÆÆÇ  ",
+   "ĂĂĂĂĂĂĂĂĂĂĂĂĂĂĂ ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ],
+  [
+   " ÇÇ Ç     ÇÇ Ç  ",
+   " ÇÇ Ç     ÇÉ Ç  ",
+   "    Ç        Ç  ",
+   "    Ç        Ç  ",
+   "ĂĂĂĂĂĂĂĂĂĂĂĂĂĂĂ ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ],
+  [
+   " ÇÇ Ç     ÇÇ Ç  ",
+   " ÇÇ Ç     ÇÇ Ç  ",
+   "    Ç        Ç  ",
+   "ĂĂĂĂĂĂĂĂĂĂĂĂĂĂĂ ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ],
+  [
+   " ÇÇ Ç     ÇÇ É  ",
+   " ÇÇ Ç     ÇÇ Ç  ",
+   "ĂĂĂĂĂĂĂĂĂĂĂĂĂĂĂ ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ],
+  [
+   "ăÇÇăăăăăăăÇÇăăă ",
+   "ĂÇÇĂĂĂĂĂĂĂÇÇĂĂĂ ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ],
+  [
+   " ÇÇ       ÇÇ    ",
+   " ÇÇ       ÇÇ    ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ]
+ ]
+}

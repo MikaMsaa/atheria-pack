@@ -1,0 +1,20 @@
+{
+    "type":  "neoforge:add_spawns",
+    "biomes":  [
+                   "minecraft:swamp",
+                   "minecraft:mangrove_swamp",
+                   "terralith:orchid_swamp",
+                   "biomesoplenty:bayou",
+                   "biomesoplenty:bog",
+                   "biomesoplenty:marsh",
+                   "biomesoplenty:wetland"
+               ],
+    "spawners":  [
+                     {
+                         "type":  "jurassicreborn:baryonyx",
+                         "weight":  3,
+                         "minCount":  1,
+                         "maxCount":  1
+                     }
+                 ]
+}

@@ -1,0 +1,416 @@
+diff --git a/src/fr/atheria/ile/CarteIle.java b/src/fr/atheria/ile/CarteIle.java
+index 48966b8..ee5dd24 100644
+--- a/src/fr/atheria/ile/CarteIle.java
++++ b/src/fr/atheria/ile/CarteIle.java
+@@ -51,6 +51,7 @@ public final class CarteIle {
+         try {
+             active = new CarteIle(dossier);
+             LOG.info("[atheria_ile] carte chargee : {}x{} px, {} blocs/px, {} regions", active.w, active.h, active.bpp, active.regions.size());
++            Exclusions.ecrire(active);
+         } catch (com.google.gson.JsonParseException e) {
+             LOG.error("[atheria_ile] regions.json mal forme ({}) : le monde sera genere SANS l'ile. Corrigez le fichier puis redemarrez.", e.getMessage());
+         } catch (Exception e) {
+@@ -148,6 +149,9 @@ public final class CarteIle {
+     public final String lagonBiome, recifBiome, passesBiome;
+     /** zones rondes a biome force ("zones_biome") : centre, rayon et bord bruite (blocs), biome, nom */
+     public final double[] zoneX, zoneZ, zoneRayon, zoneBord;
++    /** zones "forme": "rectangle" : [x1, x2) x [z1, z2) toujours couvert, bord bruite vers l'exterieur (0..bord) */
++    public final boolean[] zoneRect;
++    public final double[] zoneX1, zoneZ1, zoneX2, zoneZ2;
+     public final String[] zoneBiome, zoneNom;
+     /** false : la zone remplace aussi la bande de plage (jamais l'eau ni le lagon) */
+     public final boolean[] zonePlage;
+@@ -155,6 +159,20 @@ public final class CarteIle {
+     public final boolean[] zoneLacs;
+     /** routes dessinees ("routes") */
+     public final java.util.List<Route> routes;
++    /** lots fixes ("lots") : rien n'y est pose par le mod */
++    public final java.util.List<Lot> lots;
++    /** marge des routes pour les chunks exclus (blocs depuis l'axe) et cles triees des chunks exclus */
++    public final int margeRoute;
++    final long[] chunksExclus;
++
++    /** vrai si le chunk est exclu (route + marge, lots + marge). Sans allocation. */
++    public boolean chunkExclu(int cx, int cz) { return java.util.Arrays.binarySearch(chunksExclus, Exclusions.cle(cx, cz)) >= 0; }
++
++    /** vrai si le bloc est dans un lot (sans la marge) */
++    public boolean dansLot(int bx, int bz) {
++        for (int i = 0, n = lots.size(); i < n; i++) if (lots.get(i).contient(bx, bz)) return true;
++        return false;
++    }
+     public final double passesLargeur, passesFond;
+     public final boolean rivieresAleatoires;
+     /** pilotage de l'erosion de Tectonic par relief.png : force (0..1) et |e| vise en plaine (0.05 + erosionPlat) */
+@@ -390,23 +408,38 @@ public final class CarteIle {
+         passesFond = lg != null && lg.has("passes_continents") ? Math.max(-0.45, Math.min(-0.20, lg.get("passes_continents").getAsDouble())) : -0.30;
+         LOG.info("[atheria_ile] {} biomes de passage, lagon {}, passes {} blocs", passageBiome.size(), lagonBiome, passesLargeur);
+         routes = Route.lire(config);
++        lots = Lot.lire(config);
++        int mr = 64;
++        for (Route r : routes) mr = r.margeStructures;
++        margeRoute = mr;
++        chunksExclus = Exclusions.calculer(routes, lots, margeRoute);
++        LOG.info("[atheria_ile] {} chunks exclus (routes a moins de {} blocs de l'axe, {} lots avec marge)", chunksExclus.length, margeRoute, lots.size());
+         List<JsonObject> zl = new ArrayList<>();
+         if (config.has("zones_biome") && config.get("zones_biome").isJsonArray())
+             for (var e : config.getAsJsonArray("zones_biome")) if (e.isJsonObject() && e.getAsJsonObject().has("biome")) zl.add(e.getAsJsonObject());
+         int nz = zl.size();
+         zoneX = new double[nz]; zoneZ = new double[nz]; zoneRayon = new double[nz]; zoneBord = new double[nz];
++        zoneRect = new boolean[nz]; zoneX1 = new double[nz]; zoneZ1 = new double[nz]; zoneX2 = new double[nz]; zoneZ2 = new double[nz];
+         zoneBiome = new String[nz]; zoneNom = new String[nz]; zonePlage = new boolean[nz]; zoneLacs = new boolean[nz];
+         for (int i = 0; i < nz; i++) {
+             JsonObject o = zl.get(i);
+             zoneX[i] = o.has("x") ? o.get("x").getAsDouble() : 0;
+             zoneZ[i] = o.has("z") ? o.get("z").getAsDouble() : 0;
+             zoneRayon[i] = o.has("rayon_blocs") ? Math.max(0, o.get("rayon_blocs").getAsDouble()) : 0;
++            zoneRect[i] = o.has("forme") && "rectangle".equals(o.get("forme").getAsString());
++            if (zoneRect[i]) {
++                double ax1 = o.get("x1").getAsDouble(), az1 = o.get("z1").getAsDouble(), ax2 = o.get("x2").getAsDouble(), az2 = o.get("z2").getAsDouble();
++                zoneX1[i] = Math.min(ax1, ax2); zoneX2[i] = Math.max(ax1, ax2); zoneZ1[i] = Math.min(az1, az2); zoneZ2[i] = Math.max(az1, az2);
++                zoneX[i] = (zoneX1[i] + zoneX2[i]) / 2; zoneZ[i] = (zoneZ1[i] + zoneZ2[i]) / 2;
++                zoneBord[i] = o.has("bord_blocs") ? Math.max(0, o.get("bord_blocs").getAsDouble()) : 0;
++            } else
+             zoneBord[i] = o.has("bord_blocs") ? Math.max(0, Math.min(zoneRayon[i], o.get("bord_blocs").getAsDouble())) : 0;
+             zoneBiome[i] = o.get("biome").getAsString();
+             zoneNom[i] = o.has("nom") ? o.get("nom").getAsString() : "zone " + (i + 1);
+             zonePlage[i] = !o.has("plage") || o.get("plage").isJsonNull() || o.get("plage").getAsBoolean();
+             zoneLacs[i] = o.has("lacs") && !o.get("lacs").isJsonNull() && o.get("lacs").getAsBoolean();
+-            LOG.info("[atheria_ile] zone de biome '{}' : {} sur {} blocs autour de {}, {} (bord {}, plage gardee {}, lacs {})", zoneNom[i], zoneBiome[i], (long) zoneRayon[i], (long) zoneX[i], (long) zoneZ[i], (long) zoneBord[i], zonePlage[i], zoneLacs[i]);
++            if (zoneRect[i]) LOG.info("[atheria_ile] zone de biome '{}' : {} sur le rectangle {},{} -> {},{} (bord {} vers l'exterieur, plage gardee {}, lacs {})", zoneNom[i], zoneBiome[i], (long) zoneX1[i], (long) zoneZ1[i], (long) zoneX2[i], (long) zoneZ2[i], (long) zoneBord[i], zonePlage[i], zoneLacs[i]);
++            else LOG.info("[atheria_ile] zone de biome '{}' : {} sur {} blocs autour de {}, {} (bord {}, plage gardee {}, lacs {})", zoneNom[i], zoneBiome[i], (long) zoneRayon[i], (long) zoneX[i], (long) zoneZ[i], (long) zoneBord[i], zonePlage[i], zoneLacs[i]);
+         }
+ 
+         // relief des régions lissé (flou boîte séparable, deux passes)
+@@ -770,6 +803,15 @@ public final class CarteIle {
+     /** Index de la zone de biome force qui couvre ce bloc (bord bruite), -1 si aucune. Sans allocation. */
+     public int zoneBiome(int bx, int bz) {
+         for (int i = 0; i < zoneX.length; i++) {
++            if (zoneRect[i]) {
++                double ex = Math.max(Math.max(zoneX1[i] - bx, 0), bx + 1 - zoneX2[i]), ez = Math.max(Math.max(zoneZ1[i] - bz, 0), bz + 1 - zoneZ2[i]);
++                if (ex == 0 && ez == 0) return i;
++                if (ex >= zoneBord[i] || ez >= zoneBord[i]) continue;
++                double e = Math.sqrt(ex * ex + ez * ez);
++                double lim = zoneBord[i] * (0.5 + 0.5 * (0.65 * bruit(bx / 90.0, bz / 90.0, 900 + 2L * i) + 0.35 * bruit(bx / 33.0, bz / 33.0, 901 + 2L * i)));
++                if (e < lim) return i;
++                continue;
++            }
+             double dx = bx - zoneX[i], dz = bz - zoneZ[i], max = zoneRayon[i] + zoneBord[i];
+             double d2 = dx * dx + dz * dz;
+             if (d2 > max * max) continue;
+diff --git a/src/fr/atheria/ile/Exclusions.java b/src/fr/atheria/ile/Exclusions.java
+new file mode 100644
+index 0000000..c4948a4
+--- /dev/null
++++ b/src/fr/atheria/ile/Exclusions.java
+@@ -0,0 +1,147 @@
++package fr.atheria.ile;
++
++import com.google.gson.GsonBuilder;
++import com.google.gson.JsonArray;
++import com.google.gson.JsonObject;
++import com.google.gson.JsonParser;
++
++import java.io.Reader;
++import java.nio.charset.StandardCharsets;
++import java.nio.file.Files;
++import java.nio.file.Path;
++import java.nio.file.StandardCopyOption;
++import java.security.MessageDigest;
++import java.util.ArrayList;
++import java.util.Arrays;
++import java.util.HashSet;
++import java.util.List;
++import java.util.Set;
++
++/**
++ * Chunks exclus pour les structures et pour le mod des villes : chunks dont au moins un bloc est a moins de
++ * route_marge_blocs de l'axe d'une route (distance minimale carre du chunk / polyligne de l'axe), plus les chunks
++ * touches par un lot et sa marge. Ecrit config/atheria_ile/exclusions.json (seulement si regions.json a change).
++ */
++public final class Exclusions {
++    private Exclusions() {}
++
++    static long cle(int cx, int cz) { return ((long) cx << 32) | (cz & 0xFFFFFFFFL); }
++
++    /** distance minimale entre le segment (ax,az)-(bx,bz) et le carre des centres de blocs du chunk */
++    static double distanceSegmentChunk(double ax, double az, double bx, double bz, int cx, int cz) {
++        double sx0 = cx * 16 + 0.5, sx1 = cx * 16 + 15.5, sz0 = cz * 16 + 0.5, sz1 = cz * 16 + 15.5;
++        double d = Math.min(pointCarre(ax, az, sx0, sz0, sx1, sz1), pointCarre(bx, bz, sx0, sz0, sx1, sz1));
++        if (d == 0) return 0;
++        d = Math.min(d, pointSegment(sx0, sz0, ax, az, bx, bz));
++        d = Math.min(d, pointSegment(sx1, sz0, ax, az, bx, bz));
++        d = Math.min(d, pointSegment(sx0, sz1, ax, az, bx, bz));
++        d = Math.min(d, pointSegment(sx1, sz1, ax, az, bx, bz));
++        return d;
++    }
++
++    private static double pointCarre(double px, double pz, double x0, double z0, double x1, double z1) {
++        double dx = Math.max(Math.max(x0 - px, 0), px - x1), dz = Math.max(Math.max(z0 - pz, 0), pz - z1);
++        return Math.hypot(dx, dz);
++    }
++
++    private static double pointSegment(double px, double pz, double ax, double az, double bx, double bz) {
++        double dx = bx - ax, dz = bz - az, l2 = dx * dx + dz * dz;
++        double t = l2 == 0 ? 0 : Math.max(0, Math.min(1, ((px - ax) * dx + (pz - az) * dz) / l2));
++        return Math.hypot(ax + t * dx - px, az + t * dz - pz);
++    }
++
++    /** cles triees des chunks exclus */
++    static long[] calculer(List<Route> routes, List<Lot> lots, int margeRoute) {
++        Set<Long> s = new HashSet<>();
++        for (Route r : routes) {
++            int m = r.ax.length;
++            for (int i = 0; i + 1 < m || (m == 1 && i == 0); i++) {
++                double ax = r.ax[i], az = r.az[i], bx = r.ax[Math.min(m - 1, i + 1)], bz = r.az[Math.min(m - 1, i + 1)];
++                int cx0 = (int) Math.floor((Math.min(ax, bx) - margeRoute) / 16), cx1 = (int) Math.floor((Math.max(ax, bx) + margeRoute) / 16);
++                int cz0 = (int) Math.floor((Math.min(az, bz) - margeRoute) / 16), cz1 = (int) Math.floor((Math.max(az, bz) + margeRoute) / 16);
++                for (int cz = cz0; cz <= cz1; cz++) for (int cx = cx0; cx <= cx1; cx++)
++                    if (distanceSegmentChunk(ax, az, bx, bz, cx, cz) < margeRoute) s.add(cle(cx, cz));
++                if (m == 1) break;
++            }
++        }
++        for (Lot l : lots) for (int cz = l.cz0(); cz <= l.cz1(); cz++) for (int cx = l.cx0(); cx <= l.cx1(); cx++) s.add(cle(cx, cz));
++        long[] t = new long[s.size()];
++        int k = 0;
++        for (long v : s) t[k++] = v;
++        Arrays.sort(t);
++        return t;
++    }
++
++    static String sha256(Path f) throws Exception {
++        byte[] h = MessageDigest.getInstance("SHA-256").digest(Files.readAllBytes(f));
++        StringBuilder sb = new StringBuilder();
++        for (byte b : h) sb.append(String.format("%02x", b));
++        return sb.toString();
++    }
++
++    /** ecrit exclusions.json si le hash de regions.json a change (ecriture atomique : tmp puis move) */
++    static void ecrire(CarteIle c) {
++        try {
++            Path src = c.dossier.resolve("regions.json"), dest = c.dossier.resolve("exclusions.json");
++            String hash = sha256(src);
++            if (Files.isRegularFile(dest)) {
++                try (Reader rd = Files.newBufferedReader(dest, StandardCharsets.UTF_8)) {
++                    JsonObject o = JsonParser.parseReader(rd).getAsJsonObject();
++                    if (o.has("source_sha256") && hash.equals(o.get("source_sha256").getAsString())) {
++                        CarteIle.LOG.info("[atheria_ile] exclusions.json a jour ({} chunks exclus)", c.chunksExclus.length);
++                        return;
++                    }
++                } catch (Exception e) {
++                    CarteIle.LOG.warn("[atheria_ile] exclusions.json illisible, reecrit : {}", e.toString());
++                }
++            }
++            JsonObject o = new JsonObject();
++            o.addProperty("version", 1);
++            o.addProperty("convention", "x2,z2 exclus");
++            o.addProperty("source_sha256", hash);
++            o.addProperty("route_marge_blocs", c.margeRoute);
++            JsonArray lots = new JsonArray();
++            for (Lot l : c.lots) {
++                JsonObject lo = new JsonObject();
++                lo.addProperty("nom", l.nom);
++                lo.addProperty("x1", l.x1); lo.addProperty("z1", l.z1); lo.addProperty("x2", l.x2); lo.addProperty("z2", l.z2);
++                lo.addProperty("marge_blocs", l.marge);
++                lots.add(lo);
++            }
++            o.add("lots", lots);
++            List<int[]> ch = new ArrayList<>();
++            for (long k : c.chunksExclus) ch.add(new int[]{(int) (k >> 32), (int) k});
++            ch.sort((a, b) -> a[0] != b[0] ? Integer.compare(a[0], b[0]) : Integer.compare(a[1], b[1]));
++            // chunks_exclus sur une ligne par chunk pour rester lisible et compact
++            String tete = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(o);
++            StringBuilder sb = new StringBuilder(tete.substring(0, tete.lastIndexOf('}')).stripTrailing());
++            // routes : axe echantillonne tous les 8 blocs, 10 points par ligne
++            sb.append(",\n  \"routes\": [");
++            for (int ri = 0; ri < c.routes.size(); ri++) {
++                Route r = c.routes.get(ri);
++                int m = r.ax.length;
++                List<int[]> pl = new ArrayList<>();
++                for (int i = 0; i < m; i += 4) pl.add(new int[]{Math.round(r.ax[i]), Math.round(r.az[i])});
++                if ((m - 1) % 4 != 0) pl.add(new int[]{Math.round(r.ax[m - 1]), Math.round(r.az[m - 1])});
++                sb.append(ri == 0 ? "\n    [" : ",\n    [");
++                for (int i = 0; i < pl.size(); i++) sb.append(i == 0 ? "" : ",").append(i % 10 == 0 ? "\n      " : " ").append('[').append(pl.get(i)[0]).append(", ").append(pl.get(i)[1]).append(']');
++                sb.append("\n    ]");
++            }
++            sb.append("\n  ]");
++            sb.append(",\n  \"chunks_exclus\": [");
++            for (int i = 0; i < ch.size(); i++) sb.append(i == 0 ? "\n    " : ",\n    ").append('[').append(ch.get(i)[0]).append(", ").append(ch.get(i)[1]).append(']');
++            sb.append("\n  ]\n}\n");
++            Path tmp = c.dossier.resolve("exclusions.json.tmp");
++            Files.writeString(tmp, sb.toString(), StandardCharsets.UTF_8);
++            try {
++                Files.move(tmp, dest, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
++            } catch (java.nio.file.AtomicMoveNotSupportedException e) {
++                Files.move(tmp, dest, StandardCopyOption.REPLACE_EXISTING);
++            }
++            CarteIle.LOG.info("[atheria_ile] exclusions.json ecrit : {} chunks exclus, {} lots, {} routes", ch.size(), c.lots.size(), c.routes.size());
++        } catch (Exception e) {
++            CarteIle.LOG.error("[atheria_ile] ECHEC de l'ecriture de exclusions.json", e);
++        }
++    }
++
++}
+diff --git a/src/fr/atheria/ile/Lot.java b/src/fr/atheria/ile/Lot.java
+new file mode 100644
+index 0000000..8a6b219
+--- /dev/null
++++ b/src/fr/atheria/ile/Lot.java
+@@ -0,0 +1,47 @@
++package fr.atheria.ile;
++
++import com.google.gson.JsonElement;
++import com.google.gson.JsonObject;
++
++import java.util.ArrayList;
++import java.util.List;
++
++/**
++ * Lot fixe ("lots" dans regions.json) : rectangle [x1, x2) x [z1, z2) (x2 et z2 exclus) reserve a un batiment fait main.
++ * Le mod de l'ile n'y pose rien : aucune structure ne demarre sur le lot et sa marge, la route n'y est pas posee.
++ */
++public final class Lot {
++    public final String nom;
++    public final int x1, z1, x2, z2, marge;
++
++    Lot(String nom, int x1, int z1, int x2, int z2, int marge) {
++        this.nom = nom;
++        this.x1 = Math.min(x1, x2); this.x2 = Math.max(x1, x2);
++        this.z1 = Math.min(z1, z2); this.z2 = Math.max(z1, z2);
++        this.marge = marge;
++    }
++
++    /** vrai si le bloc est dans le lot (sans la marge) */
++    public boolean contient(int bx, int bz) { return bx >= x1 && bx < x2 && bz >= z1 && bz < z2; }
++
++    /** premier et dernier chunk (inclus) touches par le lot et sa marge */
++    public int cx0() { return Math.floorDiv(x1 - marge, 16); }
++    public int cx1() { return Math.floorDiv(x2 + marge - 1, 16); }
++    public int cz0() { return Math.floorDiv(z1 - marge, 16); }
++    public int cz1() { return Math.floorDiv(z2 + marge - 1, 16); }
++
++    static List<Lot> lire(JsonObject config) {
++        List<Lot> l = new ArrayList<>();
++        if (!config.has("lots") || !config.get("lots").isJsonArray()) return l;
++        for (JsonElement e : config.getAsJsonArray("lots")) {
++            if (!e.isJsonObject()) continue;
++            JsonObject o = e.getAsJsonObject();
++            Lot lot = new Lot(o.has("nom") ? o.get("nom").getAsString() : "lot " + (l.size() + 1),
++                    o.get("x1").getAsInt(), o.get("z1").getAsInt(), o.get("x2").getAsInt(), o.get("z2").getAsInt(),
++                    o.has("marge_blocs") ? Math.max(0, o.get("marge_blocs").getAsInt()) : 16);
++            CarteIle.LOG.info("[atheria_ile] lot '{}' : {},{} -> {},{} (x2,z2 exclus), marge {}", lot.nom, lot.x1, lot.z1, lot.x2, lot.z2, lot.marge);
++            l.add(lot);
++        }
++        return l;
++    }
++}
+diff --git a/src/fr/atheria/ile/Route.java b/src/fr/atheria/ile/Route.java
+index 2a44f04..4474da3 100644
+--- a/src/fr/atheria/ile/Route.java
++++ b/src/fr/atheria/ile/Route.java
+@@ -181,6 +181,18 @@ public final class Route {
+         return best;
+     }
+ 
++    /** Distance (blocs) du centre du bloc a l'axe echantillonne ; grille fine si proche, sinon parcours complet. Sans allocation. */
++    public double distance(int bx, int bz) {
++        double px = bx + 0.5, pz = bz + 0.5, bd = Double.MAX_VALUE;
++        int cx = Math.floorDiv(bx, CELLULE) - gx0, cz = Math.floorDiv(bz, CELLULE) - gz0;
++        if (cx >= 0 && cz >= 0 && cx < gn && cz < gm && grille[cz * gn + cx] != null) {
++            for (int i : grille[cz * gn + cx]) { double dx = px - ax[i], dz = pz - az[i]; bd = Math.min(bd, dx * dx + dz * dz); }
++            if (bd <= (double) portee * portee) return Math.sqrt(bd);
++        }
++        for (int i = 0; i < ax.length; i++) { double dx = px - ax[i], dz = pz - az[i]; bd = Math.min(bd, dx * dx + dz * dz); }
++        return Math.sqrt(bd);
++    }
++
+     /** Vrai si le bloc est a moins de (demi-largeur + marge structures) de l'axe, a la cellule pres. */
+     public boolean pres(int bx, int bz) {
+         int cx = Math.floorDiv(bx, CELLULE) - gx0, cz = Math.floorDiv(bz, CELLULE) - gz0;
+diff --git a/src/fr/atheria/ile/RouteFeature.java b/src/fr/atheria/ile/RouteFeature.java
+index 427b489..d7b4b28 100644
+--- a/src/fr/atheria/ile/RouteFeature.java
++++ b/src/fr/atheria/ile/RouteFeature.java
+@@ -60,6 +60,7 @@ public final class RouteFeature extends Feature<NoneFeatureConfiguration> {
+                 for (int bx = x0 - MARGE; bx < x0 + 16 + MARGE; bx++) {
+                     int i = r.proche(bx, bz, d2);
+                     if (i < 0) continue;
++                    if (c.dansLot(bx, bz)) continue; // rien n'est pose dans un lot fixe
+                     double d = Math.sqrt(d2[0]);
+                     boolean ici = bx >= x0 && bx < x0 + 16 && bz >= z0 && bz < z0 + 16;
+                     int y = r.y(i, gen, niveau, rs, mer);
+diff --git a/src/fr/atheria/ile/api/IleApi.java b/src/fr/atheria/ile/api/IleApi.java
+new file mode 100644
+index 0000000..323629f
+--- /dev/null
++++ b/src/fr/atheria/ile/api/IleApi.java
+@@ -0,0 +1,39 @@
++package fr.atheria.ile.api;
++
++import fr.atheria.ile.CarteIle;
++import fr.atheria.ile.Lot;
++import fr.atheria.ile.Route;
++
++/**
++ * API publique facultative du mod de l'ile (aucune dependance dure requise : le fichier
++ * config/atheria_ile/exclusions.json donne les memes informations). Methodes statiques, sans allocation.
++ */
++public final class IleApi {
++    private IleApi() {}
++
++    /** vrai si la carte de l'ile est chargee pour le monde courant */
++    public static boolean carteChargee() { return CarteIle.active() != null; }
++
++    /** vrai si le chunk est a moins de route_marge_blocs d'une route ou touche un lot (marge comprise) */
++    public static boolean estChunkExclu(int cx, int cz) {
++        CarteIle c = CarteIle.active();
++        return c != null && c.chunkExclu(cx, cz);
++    }
++
++    /** distance (blocs) du centre du bloc a l'axe de la route la plus proche ; Double.POSITIVE_INFINITY sans route */
++    public static double distanceRoute(int bx, int bz) {
++        CarteIle c = CarteIle.active();
++        if (c == null) return Double.POSITIVE_INFINITY;
++        double d = Double.POSITIVE_INFINITY;
++        for (int i = 0, n = c.routes.size(); i < n; i++) d = Math.min(d, c.routes.get(i).distance(bx, bz));
++        return d;
++    }
++
++    /** nom du lot qui contient le bloc (sans la marge, x2 et z2 exclus), null sinon */
++    public static String lotA(int bx, int bz) {
++        CarteIle c = CarteIle.active();
++        if (c == null) return null;
++        for (int i = 0, n = c.lots.size(); i < n; i++) { Lot l = c.lots.get(i); if (l.contient(bx, bz)) return l.nom; }
++        return null;
++    }
++}
+diff --git a/src/fr/atheria/ile/mixin/StructuresRouteMixin.java b/src/fr/atheria/ile/mixin/StructuresRouteMixin.java
+index b9d32ee..a73ef4f 100644
+--- a/src/fr/atheria/ile/mixin/StructuresRouteMixin.java
++++ b/src/fr/atheria/ile/mixin/StructuresRouteMixin.java
+@@ -1,7 +1,6 @@
+ package fr.atheria.ile.mixin;
+ 
+ import fr.atheria.ile.CarteIle;
+-import fr.atheria.ile.Route;
+ import net.minecraft.core.RegistryAccess;
+ import net.minecraft.core.SectionPos;
+ import net.minecraft.world.level.ChunkPos;
+@@ -16,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.At;
+ import org.spongepowered.asm.mixin.injection.Inject;
+ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+ 
+-/** Aucune structure ne demarre sur le couloir d'une route dessinee (chaussee + marge_structures_blocs). */
++/** Aucune structure ne demarre sur un chunk exclu : couloir d'une route (marge_structures_blocs depuis l'axe) ou lot fixe et sa marge. */
+ @Mixin(ChunkGenerator.class)
+ public abstract class StructuresRouteMixin {
+     @Inject(method = "tryGenerateStructure", at = @At("HEAD"), cancellable = true)
+@@ -24,8 +23,6 @@ public abstract class StructuresRouteMixin {
+                                           StructureTemplateManager modeles, long graine, ChunkAccess chunk, ChunkPos pos, SectionPos section,
+                                           CallbackInfoReturnable<Boolean> retour) {
+         CarteIle c = CarteIle.active();
+-        if (c == null || c.routes.isEmpty()) return;
+-        int bx = pos.getMiddleBlockX(), bz = pos.getMiddleBlockZ();
+-        for (Route r : c.routes) if (r.pres(bx, bz)) { retour.setReturnValue(false); return; }
++        if (c != null && c.chunkExclu(pos.x, pos.z)) retour.setReturnValue(false);
+     }
+ }

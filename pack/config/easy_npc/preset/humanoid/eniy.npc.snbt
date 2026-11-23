@@ -98,12 +98,7 @@
 						{
 							Actions: [
 								{
-									Cmd: "/execute if items entity @initiator container.* #atheria:puffs run give @initiator atheria:bon_caf 30",
-									PermLevel: 2,
-									Type: "COMMAND"
-								},
-								{
-									Cmd: "/tellraw @initiator {\"text\":\"Eniy rachète les Puffs 30 bons pièce : dépose-la dans son coffre de boutique, l'équipe gère l'échange.\",\"color\":\"gray\"}",
+									Cmd: "/atheria_payer @initiator 20 atheria:cle_cellule",
 									PermLevel: 2,
 									Type: "COMMAND"
 								},
@@ -112,7 +107,21 @@
 								}
 							],
 							Label: "eniy_colis_b1",
-							Name: "Vendre une Puff (30 bons)"
+							Name: "Acheter une clé de cellule (20 bons)"
+						},
+						{
+							Actions: [
+								{
+									Cmd: "/atheria_vendre_puff @initiator",
+									PermLevel: 2,
+									Type: "COMMAND"
+								},
+								{
+									Type: "CLOSE_DIALOG"
+								}
+							],
+							Label: "eniy_colis_b2",
+							Name: "Vendre une Puff à Eniy"
 						}
 					],
 					Conditions: [
@@ -156,6 +165,7 @@
 			]
 		},
 		PersistenceRequired: 1b,
+		Tags: ["dialogue.eniy"],
 		VariantType: "STEVE",
 		id: "easy_npc:humanoid"
 	}

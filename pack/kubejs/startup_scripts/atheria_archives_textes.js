@@ -86,9 +86,9 @@ global.ATHERIA_TEXTES = {
   ]
  },
  "atheria:archive_14": {
-  "titre": "Archive 14 - Dossier SYMBIOSE (programme interne de MOUHOGO MAHERY)",
+  "titre": "Archive 14 - Dossier VENOM (programme interne de MOUHOGO MAHERY)",
   "lignes": [
-   "&6Sujet 9 - Hajar&r",
+   "&6Sujet 007 - Hajar&r",
    "Âge au dernier examen : 12 ans. Colonisation fongique stable. Absence de nécrose, de perte motrice et d'agressivité. Le champignon réagit au stress de l'hôte et se retire de certaines zones lors de périodes de repos. Hypothèse : cohabitation, non-invasion. Recommandation : préserver l'environnement de l'enfant, éviter les prélèvements répétés et arrêter les essais de confinement. Annotation manuscrite de Salto : « Ce n'est pas un échantillon. C'est une enfant. »"
   ]
  },
@@ -126,13 +126,13 @@ global.ATHERIA_TEXTES = {
   "titre": "Archive 20 - Plan du tram, An -1",
   "lignes": [
    "&6Réseau de transport urbain - version prévisionnelle&r",
-   "Station Mtsapéré : correspondance future avec le centre hospitalier. Mise en service estimée : prochaine phase. Aucun calendrier ferme n'est disponible. Une annotation d'ingénieur indique : « Si la ligne ouvre un jour, la station devra être vidée des archives temporaires. » Les archives temporaires sont toujours là. Le tram n'a jamais roulé."
+   "Station Bancoul : correspondance future avec le centre hospitalier. Mise en service estimée : prochaine phase. Aucun calendrier ferme n'est disponible. Une annotation d'ingénieur indique : « Si la ligne ouvre un jour, la station devra être vidée des archives temporaires. » Les archives temporaires sont toujours là. Le tram n'a jamais roulé."
   ]
  },
  "atheria:archive_21": {
-  "titre": "Archive 21 - Prière des Enfants du Choléra",
+  "titre": "Archive 21 - Le registre des Enfants du Choléra",
   "lignes": [
-   "Nous ne demandons pas aux Comocos de revenir. Nous leur demandons de ne pas nous oublier. Ils gardent dans leurs corps la mémoire des rues, des voix et des noms que nous avons cessé de prononcer. Nous ne sommes pas innocents parce que nous respirons. Nous ne sommes pas perdus parce qu'ils ne respirent plus. Si le réseau nous entend, qu'il se souvienne de nous sans nous prendre."
+   "Nous ne demandons pas aux Comocos de revenir. Nous leur demandons de ne pas nous oublier. Ils gardent dans leurs corps la mémoire des rues, des voix et des noms que nous avons cessé de prononcer. Nous ne sommes pas innocents parce que nous respirons. Nous ne sommes pas perdus parce qu'ils ne respirent plus. Nous écrivons ici ce que le réseau prend, pour qu'il ne prenne pas tout."
   ]
  },
  "atheria:archive_22": {
@@ -205,14 +205,14 @@ global.ATHERIA_TEXTES = {
  "atheria:archive_31": {
   "titre": "Archive 31 - Les cassettes de Salto",
   "lignes": [
-   "&oSi vous avez trouvé cette bande, c'est que je n'ai pas réussi à sortir Hajar moi-même. Elle s'appelle Hajar. Elle est le Sujet 9, mais ce numéro ne lui appartient pas. Je l'ai laissé dans les dossiers parce que je pensais pouvoir continuer les recherches et corriger le projet de l'intérieur. J'ai eu tort. Hajar peut vivre avec le champignon, mais le champignon réagit à la peur et à l'enfermement. Ne la mettez pas dans une cage pour fabriquer de l'espoir. Vous n'en tirerez que de la mort.&r"
+   "&oSi vous avez trouvé cette bande, c'est que je n'ai pas réussi à sortir Hajar moi-même. Elle s'appelle Hajar. Elle est le Sujet 007, mais ce numéro ne lui appartient pas. Je l'ai laissé dans les dossiers parce que je pensais pouvoir continuer les recherches et corriger le projet de l'intérieur. J'ai eu tort. Hajar peut vivre avec le champignon, mais le champignon réagit à la peur et à l'enfermement. Ne la mettez pas dans une cage pour fabriquer de l'espoir. Vous n'en tirerez que de la mort.&r"
   ]
  },
  "atheria:archive_32": {
   "titre": "Archive 32 - Dossier remède",
   "lignes": [
-   "&6SYMBIOSE - hypothèses thérapeutiques&r",
-   "Hypothèse A : extraction du réseau fongique stabilisé chez le Sujet 9. Résultat potentiel : plusieurs centaines de doses à usage limité. Conséquence probable : décès de l'hôte.",
+   "&6VENOM - hypothèses thérapeutiques&r",
+   "Hypothèse A : extraction du réseau fongique stabilisé chez le Sujet 007. Résultat potentiel : plusieurs centaines de doses à usage limité. Conséquence probable : décès de l'hôte.",
    "Hypothèse B : culture progressive dans un environnement contrôlé mais non contraignant. Résultat potentiel : quantité faible au départ, croissance possible sur plusieurs années. Conséquence : survie de l'hôte nécessaire ; stress et confinement réduisent la viabilité du réseau.",
    "Note de S. Salto : « Ce document décrit des résultats, pas une permission. »"
   ]
@@ -233,15 +233,15 @@ global.ATHERIA_TEXTES = {
  "atheria:archive_35": {
   "titre": "Archive 35 - Liste de courses de la fin du monde",
   "lignes": [
-   "Eau potable. Riz. Manioc non contaminé. Bandages. Piles. Munitions, si quelqu'un sait où en trouver. Un savon. Une couverture pour maman. Un Labubu violet pour Lina, si quelqu'un en voit un. Ne pas oublier le sel. Ne pas oublier de rentrer avant la nuit. Ne pas oublier Lina."
+   "Eau potable. Riz. Manioc non contaminé. Bandages. Piles. Munitions, si quelqu'un sait où en trouver. Un savon. Une couverture pour maman. Un Labubu violet pour Arda, si quelqu'un en voit un. Ne pas oublier le sel. Ne pas oublier de rentrer avant la nuit. Ne pas oublier Arda."
   ]
  },
  "atheria:archive_36": {
-  "titre": "Archive 36 - Bulletin de notes d'un ancien élève du Fundi Flat",
+  "titre": "Archive 36 - Bulletin de notes d'un ancien élève du Foundi Flat",
   "lignes": [
    "&6Histoire-géographie - appréciation&r",
-   "Élève capable, mais transforme chaque désaccord en débat de trois heures. A tendance à répondre « ratio » au lieu de justifier ses résultats. La formule peut être amusante une fois ; elle ne constitue pas une démonstration. Peut mieux faire s'il accepte que la dernière phrase ne soit pas toujours la sienne.",
-   "Note du Fundi, au verso : « L'élève a raison sur un point : j'ai toujours voulu avoir le dernier mot. »"
+   "Élève capable, mais transforme chaque désaccord en débat de trois heures. A tendance à répondre « Joyeux Anniversaire » au lieu de justifier ses résultats. La formule peut être amusante une fois ; elle ne constitue pas une démonstration. Peut mieux faire s'il accepte que la dernière phrase ne soit pas toujours la sienne.",
+   "Note du Foundi, au verso : « L'élève a raison sur un point : j'ai toujours voulu avoir le dernier mot. »"
   ]
  },
  "atheria:archive_37": {

@@ -1,0 +1,392 @@
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.*;
+
+/**
+ * Redessine carte.png de facon plus naturelle (cotes decoupees, baies, caps, recif-barriere avec passes, ilots),
+ * en gardant exactement la palette et les 14 regions lues par le mod atheria_ile.
+ * Usage : java GenererEsquisse.java <carte.png source> <dossier de sortie> [graine] [amplitude]
+ */
+public class GenererEsquisse {
+    static final int OCEAN = 0x123462, LAGON = 0x46afb9, RECIF = 0x96e1d7;
+    static final int[] REGIONS = {0xaaaf8c, 0xb6a658, 0xa0988e, 0x7aa048, 0x22662a, 0x54784a, 0xe1e6eb, 0x586246,
+            0xb05c34, 0x7c7a76, 0x467052, 0xc4b278, 0x463834, 0xc8be8c};
+    // decoupage de la cote par region (falaises du nord nettes, mangroves et jungle tres decoupees)
+    static final double[] DECOUPE = {0.9, 1.0, 0.8, 0.7, 1.3, 0.8, 0.6, 1.1, 1.0, 0.9, 1.5, 0.5, 0.4, 0.3};
+    // {region A, region B, region tampon, demi-largeur en px (12 blocs/px)} : A et B ne se touchent jamais net
+    // 0 Cote Nord, 1 Savane, 2 Friches, 3 Coconi, 4 Jungle, 5 Plateaux, 6 Benara, 7 Marais, 8 Canyons, 9 Cendres, 10 Mangroves, 11 Petite-Terre, 12 Volcan, 13 ICE
+    static final int[][] REGLES = {
+            // les anneaux du Benara passent en dernier : aucune autre bande ne peut toucher la neige
+            {8, 4, 1, 11}, {8, 10, 1, 11}, {8, 7, 1, 11}, {4, 2, 3, 6}, {7, 3, 5, 6},
+            {6, 3, 5, 13}, {6, 4, 5, 13}, {6, 8, 5, 13}, {6, 7, 5, 13}, {6, 2, 5, 13}, {6, 1, 5, 13}, {6, 0, 5, 13}, {6, 10, 5, 13}};
+    static int procheRegionOrig(int[] proche, int i) { return proche[i]; }
+    static final double MARGE = 34;
+    static int W, H;
+    static long graine;
+
+    public static void main(String[] a) throws Exception {
+        BufferedImage src0 = ImageIO.read(new File(a[0]));
+        double echelle = a.length > 4 ? Double.parseDouble(a[4]) : 1.0;
+        // reduction centree (marge d'ocean autour de l'ile), au plus proche voisin pour garder les couleurs exactes
+        BufferedImage src = new BufferedImage(src0.getWidth(), src0.getHeight(), BufferedImage.TYPE_INT_RGB);
+        for (int y = 0; y < src.getHeight(); y++) for (int x = 0; x < src.getWidth(); x++) {
+            int sx = (int) Math.floor((x - src.getWidth() / 2.0) / echelle + src.getWidth() / 2.0);
+            int sy = (int) Math.floor((y - src.getHeight() / 2.0) / echelle + src.getHeight() / 2.0);
+            src.setRGB(x, y, (sx < 0 || sy < 0 || sx >= src0.getWidth() || sy >= src0.getHeight()) ? OCEAN : src0.getRGB(sx, sy));
+        }
+        File sortie = new File(a[1]);
+        sortie.mkdirs();
+        graine = a.length > 2 ? Long.parseLong(a[2]) : 20261109L;
+        double amp = a.length > 3 ? Double.parseDouble(a[3]) : 13;
+        W = src.getWidth(); H = src.getHeight();
+        int n = W * H;
+
+        // 1) classes d'origine : -1 eau, sinon index de region
+        int[] reg = new int[n];
+        for (int i = 0; i < n; i++) reg[i] = regionDe(src.getRGB(i % W, i / W) & 0xFFFFFF);
+        boolean[] terre = new boolean[n];
+        for (int i = 0; i < n; i++) terre[i] = reg[i] >= 0;
+        float[] d = signee(terre);
+        int[] proche = regionProche(reg);
+        int[] comp = composantes(terre);
+        int principale = plusGrande(comp);
+
+        // 2) nouvelle cote : distance d'origine + bruit fractal (plus fort selon la region), petite deformation
+        boolean[] t2 = new boolean[n];
+        for (int y = 0; y < H; y++) for (int x = 0; x < W; x++) {
+            int i = y * W + x;
+            double wx = x + 6 * fbm(x / 90.0, y / 90.0, 1, 3), wy = y + 6 * fbm(x / 90.0, y / 90.0, 2, 3);
+            double dd = bil(d, wx, wy);
+            int r = proche[i];
+            boolean sat = !estPrincipale(comp, principale, x, y);
+            double A = amp * DECOUPE[r] * (sat ? 0.35 : 1.0);
+            // grandes baies et caps + detail fin ; s'eteint loin de la cote pour ne pas creuser l'interieur
+            double baies = fbm(x / 150.0, y / 150.0, 13, 3);
+            double bruit = 1.4 * baies + fbm(x / 60.0, y / 60.0, 3, 4) + 0.45 * fbm(x / 20.0, y / 20.0, 4, 3);
+            double attenue = Math.exp(-Math.abs(dd) / (sat ? 25.0 : 70.0));
+            // marge d'ocean prise sur les bords de l'image (pas en reduisant l'ile) : la terre s'arrete a ~MARGE px du bord
+            double bord = Math.min(Math.min(x, W - 1 - x), Math.min(y, H - 1 - y)) - MARGE + 6 * fbm(x / 25.0, y / 25.0, 70, 3);
+            double coupe = Math.min(0, bord) * 3;
+            t2[i] = dd + A * 1.6 * bruit * attenue + coupe > 0 && bord > 0;
+        }
+        nettoyer(t2, 40, 400);
+
+        // 3) ilots dans le lagon (quelques-uns, ronds et bruites)
+        float[] d2 = signee(t2);
+        Random rnd = new Random(graine);
+        int poses = 0;
+        for (int essai = 0; essai < 4000 && poses < 9; essai++) {
+            int cx = rnd.nextInt(W), cy = rnd.nextInt(H);
+            double dist = -d2[cy * W + cx];
+            if (dist < 14 || dist > 30) continue;
+            if (!estPrincipale(comp, principale, cx, cy) && dist < 20) continue;
+            double rayon = 2.5 + rnd.nextDouble() * 4;
+            for (int y = (int) (cy - rayon - 3); y <= cy + rayon + 3; y++) for (int x = (int) (cx - rayon - 3); x <= cx + rayon + 3; x++) {
+                if (x < 0 || y < 0 || x >= W || y >= H) continue;
+                double rr = Math.hypot(x - cx, y - cy) + 1.5 * fbm(x / 4.0, y / 4.0, 9 + poses, 2);
+                if (rr <= rayon) t2[y * W + x] = true;
+            }
+            poses++;
+        }
+        d2 = signee(t2);
+        // distances separees : terre de l'ile principale (+ ilots du lagon) / terre des iles satellites
+        boolean[] tp = new boolean[n], ts2 = new boolean[n];
+        for (int i = 0; i < n; i++) if (t2[i]) { if (estPrincipale(comp, principale, i % W, i / W)) tp[i] = true; else ts2[i] = true; }
+        float[] dPrinc = signee(tp), dSat = signee(ts2);
+
+        // 4) regions sur la nouvelle terre : region la plus proche, lue a un point legerement deforme
+        int[] out = new int[n];
+        for (int y = 0; y < H; y++) for (int x = 0; x < W; x++) {
+            int i = y * W + x;
+            if (t2[i]) {
+                int sx = clamp((int) Math.round(x + 9 * fbm(x / 40.0, y / 40.0, 5, 3)), W);
+                int sy = clamp((int) Math.round(y + 9 * fbm(x / 40.0, y / 40.0, 6, 3)), H);
+                out[i] = REGIONS[proche[sy * W + sx]];
+                continue;
+            }
+            // 5) eau : lagon, recif-barriere a largeur variable avec des passes, puis ocean
+            double tm = -dPrinc[i], ts = -dSat[i];
+            double ep = 3.5 + 2.5 * (0.5 + 0.5 * fbm(x / 25.0, y / 25.0, 8, 2));
+            boolean passe = fbm(x / 45.0, y / 45.0, 10, 2) > 0.42;
+            double lm = 38 + 20 * fbm(x / 160.0, y / 160.0, 7, 3), ls = 10 + 3 * fbm(x / 30.0, y / 30.0, 7, 2);
+            double auBord = Math.min(Math.min(x, W - 1 - x), Math.min(y, H - 1 - y));
+            lm = Math.min(lm, tm + auBord - 4); // le lagon et le recif restent dans l'image, ocean au bord
+            if (tm <= lm - ep || ts <= ls - ep) out[i] = LAGON;
+            else if (tm <= lm || ts <= ls) out[i] = passe ? LAGON : RECIF;
+            else out[i] = OCEAN;
+        }
+
+        // 6) logique et continuite : bandes de transition entre regions qui ne peuvent pas se toucher net
+        int[] ri = new int[n];
+        for (int i = 0; i < n; i++) { ri[i] = -1; for (int k = 0; k < REGIONS.length; k++) if (out[i] == REGIONS[k]) ri[i] = k; }
+        int[] comp2 = composantes(t2);
+        Map<Integer, Integer> nbPT = new HashMap<>();
+        for (int i = 0; i < n; i++) if (ri[i] == 11) nbPT.merge(comp2[i], 1, Integer::sum);
+        int compPT = nbPT.entrySet().stream().max(Map.Entry.comparingByValue()).get().getKey();
+        {
+            ArrayDeque<Integer> f = new ArrayDeque<>(); boolean[] fixe = new boolean[n];
+            for (int i = 0; i < n; i++) if (ri[i] >= 0 && (ri[i] != 11 || comp2[i] == compPT)) { fixe[i] = true; f.add(i); }
+            int reaff = 0;
+            while (!f.isEmpty()) {
+                int i = f.poll(), x = i % W, y = i / W;
+                int[] v = {x > 0 ? i - 1 : -1, x < W - 1 ? i + 1 : -1, y > 0 ? i - W : -1, y < H - 1 ? i + W : -1};
+                for (int k : v) if (k >= 0 && !fixe[k] && ri[k] >= 0) { fixe[k] = true; ri[k] = ri[i]; out[k] = out[i]; f.add(k); reaff++; }
+            }
+            System.out.println("pixels Petite-Terre hors de l'ile reaffectes : " + reaff);
+        }
+        float[][] dReg = new float[REGIONS.length][];
+        for (int k = 0; k < REGIONS.length; k++) {
+            boolean[] m = new boolean[n]; boolean vide = true;
+            for (int i = 0; i < n; i++) if (ri[i] == k) { m[i] = true; vide = false; }
+            dReg[k] = vide ? null : chanfrein(m, true);
+        }
+        int[] tampon = new int[n];
+        Arrays.fill(tampon, -1);
+        for (int[] r : REGLES) {
+            int a0 = r[0], b0 = r[1], buf = r[2]; double demi = r[3];
+            if (dReg[a0] == null || dReg[b0] == null) continue;
+            for (int i = 0; i < n; i++) {
+                if (ri[i] != a0 && ri[i] != b0) continue;
+                int autre = ri[i] == a0 ? b0 : a0;
+                double w = demi * (1 + 0.3 * (0.5 + 0.5 * fbm((i % W) / 30.0, (i / W) / 30.0, 40 + a0 * 3 + b0, 3)));
+                if (dReg[autre][i] < w) tampon[i] = buf;
+            }
+        }
+        int nTampon = 0;
+        for (int i = 0; i < n; i++) if (tampon[i] >= 0) { out[i] = REGIONS[tampon[i]]; ri[i] = tampon[i]; nTampon++; }
+
+        // 7) Petite-Terre separee de Grande-Terre par un chenal profond (ocean) borde de recif
+        boolean[] mPT = new boolean[n], mGT = new boolean[n];
+        for (int i = 0; i < n; i++) if (t2[i]) {
+            if (comp2[i] == compPT) mPT[i] = true; else if (ri[i] != 12 && ri[i] != 13) mGT[i] = true;
+        }
+        float[] dPT = chanfrein(mPT, true), dGT = chanfrein(mGT, true);
+        int nChenal = 0;
+        double ecartMin = Double.MAX_VALUE;
+        for (int i = 0; i < n; i++) if (!t2[i]) ecartMin = Math.min(ecartMin, dPT[i] + dGT[i]);
+        for (int i = 0; i < n; i++) {
+            if (t2[i] || dPT[i] + dGT[i] > ecartMin + 45) continue;
+            int x = i % W, y = i / W;
+            double ecart = Math.abs(dPT[i] - dGT[i]), demi = 6.5 + 2 * fbm(x / 20.0, y / 20.0, 50, 2);
+            if (ecart < demi) { out[i] = OCEAN; nChenal++; }
+            else if (ecart < demi + 2.5 && out[i] == LAGON) out[i] = RECIF;
+        }
+
+        BufferedImage img = new BufferedImage(W, H, BufferedImage.TYPE_INT_RGB);
+        for (int i = 0; i < n; i++) img.setRGB(i % W, i / W, out[i]);
+        ImageIO.write(img, "png", new File(sortie, "carte-v3.png"));
+        System.out.printf("bandes de transition : %d px ; chenal Petite-Terre : %d px%n", nTampon, nChenal);
+
+        // apercus : ancienne et nouvelle, rendus "carte de jeu" cote a cote
+        BufferedImage cote = new BufferedImage(2 * W + 20, H, BufferedImage.TYPE_INT_RGB);
+        int[] ancien = new int[n];
+        for (int i = 0; i < n; i++) ancien[i] = src.getRGB(i % W, i / W) & 0xFFFFFF;
+        dessiner(cote, 0, ancien, d);
+        for (int y = 0; y < H; y++) for (int x = 0; x < 20; x++) cote.setRGB(W + x, y, 0x101010);
+        dessiner(cote, W + 20, out, d2);
+        ImageIO.write(cote, "png", new File(sortie, "apercu-avant-apres-v3.png"));
+        BufferedImage seule = new BufferedImage(W, H, BufferedImage.TYPE_INT_RGB);
+        dessiner(seule, 0, out, d2);
+        ImageIO.write(seule, "png", new File(sortie, "apercu-v3.png"));
+        // simulation du fondu en jeu : pres d'une frontiere, chaque cellule (~60 blocs) prend la region d'un point voisin
+        int[] fondu = out.clone();
+        for (int y = 0; y < H; y++) for (int x = 0; x < W; x++) {
+            int i = y * W + x;
+            if (ri[i] < 0) continue;
+            int cx = Math.floorDiv(x + (int) (3 * fbm(x / 9.0, y / 9.0, 60, 2)), 5), cy = Math.floorDiv(y + (int) (3 * fbm(x / 9.0, y / 9.0, 61, 2)), 5);
+            int jx = (int) Math.round(9 * hash(cx, cy, 62)), jy = (int) Math.round(9 * hash(cx, cy, 63));
+            int k = clamp(y + jy, H) * W + clamp(x + jx, W);
+            if (ri[k] >= 0) fondu[i] = out[k];
+        }
+        BufferedImage f2 = new BufferedImage(W, H, BufferedImage.TYPE_INT_RGB);
+        dessiner(f2, 0, fondu, d2);
+        ImageIO.write(f2, "png", new File(sortie, "apercu-v3-fondu.png"));
+
+        int t0 = 0, t1 = 0, nl = 0, nr = 0;
+        for (int i = 0; i < n; i++) { if (terre[i]) t0++; if (t2[i]) t1++; if (out[i] == LAGON) nl++; if (out[i] == RECIF) nr++; }
+        System.out.printf("terre avant %.1f %%, apres %.1f %% ; lagon %.1f %%, recif %.1f %% ; ilots poses %d%n",
+                100.0 * t0 / n, 100.0 * t1 / n, 100.0 * nl / n, 100.0 * nr / n, poses);
+    }
+
+    // ---------------------------------------------------------------- rendu de l'apercu
+    static void dessiner(BufferedImage img, int ox, int[] cl, float[] d) {
+        for (int y = 0; y < H; y++) for (int x = 0; x < W; x++) {
+            int i = y * W + x, c = cl[i], col;
+            double dd = d[i];
+            if (c == OCEAN) col = melange(0x0d2a52, 0x1d4f86, Math.exp(dd / 60.0));
+            else if (c == LAGON) col = melange(0x2a8fa8, 0x6fd3cf, Math.exp(dd / 10.0));
+            else if (c == RECIF) col = 0xbfeee4;
+            else {
+                double ombre = 0.80 + 0.14 * Math.min(1, dd / 80.0) + 0.05 * fbm(x / 6.0, y / 6.0, 20, 2);
+                double hx = haut(d, x + 1, y) - haut(d, x - 1, y), hy = haut(d, x, y + 1) - haut(d, x, y - 1);
+                double lum = Math.max(-1, Math.min(1, -(hx + hy) * 0.9));
+                col = assombrir(c, ombre * (1 + 0.28 * lum));
+                if (dd < 2.5) col = melange(col, 0xe8d9a8, 0.7); // liseré de sable pour l'apercu
+            }
+            img.setRGB(ox + x, y, col);
+        }
+    }
+
+    static double haut(float[] d, int x, int y) {
+        x = clamp(x, W); y = clamp(y, H);
+        double dd = Math.max(0, d[y * W + x]);
+        return Math.min(1, dd / 120.0) * 3 + 2.2 * (0.5 + 0.5 * fbm(x / 35.0, y / 35.0, 30, 5)) * Math.min(1, dd / 30.0);
+    }
+
+    static int melange(int a, int b, double t) {
+        t = Math.max(0, Math.min(1, t));
+        int r = (int) (((a >> 16) & 255) * (1 - t) + ((b >> 16) & 255) * t);
+        int g = (int) (((a >> 8) & 255) * (1 - t) + ((b >> 8) & 255) * t);
+        int bl = (int) ((a & 255) * (1 - t) + (b & 255) * t);
+        return (r << 16) | (g << 8) | bl;
+    }
+
+    static int assombrir(int c, double f) {
+        int r = (int) Math.min(255, ((c >> 16) & 255) * f), g = (int) Math.min(255, ((c >> 8) & 255) * f), b = (int) Math.min(255, (c & 255) * f);
+        return (r << 16) | (g << 8) | b;
+    }
+
+    // ---------------------------------------------------------------- outils
+    static int regionDe(int rgb) {
+        if (rgb == OCEAN || rgb == LAGON || rgb == RECIF) return -1;
+        int best = -1, bd = Integer.MAX_VALUE;
+        int[] tous = {OCEAN, LAGON, RECIF};
+        for (int c : tous) { int e = ecart(rgb, c); if (e < bd) { bd = e; best = -1; } }
+        for (int k = 0; k < REGIONS.length; k++) { int e = ecart(rgb, REGIONS[k]); if (e < bd) { bd = e; best = k; } }
+        return best;
+    }
+
+    static int ecart(int a, int b) {
+        int dr = ((a >> 16) & 255) - ((b >> 16) & 255), dg = ((a >> 8) & 255) - ((b >> 8) & 255), db = (a & 255) - (b & 255);
+        return dr * dr + dg * dg + db * db;
+    }
+
+    static int clamp(int v, int m) { return Math.max(0, Math.min(m - 1, v)); }
+
+    static double bil(float[] t, double x, double y) {
+        int x0 = (int) Math.floor(x), y0 = (int) Math.floor(y);
+        double tx = x - x0, ty = y - y0;
+        double a = t[clamp(y0, H) * W + clamp(x0, W)], b = t[clamp(y0, H) * W + clamp(x0 + 1, W)];
+        double c = t[clamp(y0 + 1, H) * W + clamp(x0, W)], dd = t[clamp(y0 + 1, H) * W + clamp(x0 + 1, W)];
+        return (a * (1 - tx) + b * tx) * (1 - ty) + (c * (1 - tx) + dd * tx) * ty;
+    }
+
+    static double hash(long x, long y, long c) {
+        long z = graine * 0x9E3779B97F4A7C15L + x * 0x632BE59BD9B4E019L + y * 0x85157AF5L + c * 0x2545F4914F6CDD1DL;
+        z = (z ^ (z >>> 33)) * 0xff51afd7ed558ccdL;
+        z = (z ^ (z >>> 33)) * 0xc4ceb9fe1a85ec53L;
+        z ^= z >>> 33;
+        return (z >>> 11) * 0x1.0p-53 * 2 - 1;
+    }
+
+    static double valeur(double x, double y, long c) {
+        long x0 = (long) Math.floor(x), y0 = (long) Math.floor(y);
+        double tx = x - x0, ty = y - y0;
+        tx = tx * tx * (3 - 2 * tx); ty = ty * ty * (3 - 2 * ty);
+        double a = hash(x0, y0, c), b = hash(x0 + 1, y0, c), cc = hash(x0, y0 + 1, c), dd = hash(x0 + 1, y0 + 1, c);
+        return (a * (1 - tx) + b * tx) * (1 - ty) + (cc * (1 - tx) + dd * tx) * ty;
+    }
+
+    static double fbm(double x, double y, long c, int oct) {
+        double s = 0, amp = 1, tot = 0;
+        for (int o = 0; o < oct; o++) { s += amp * valeur(x, y, c * 31 + o); tot += amp; amp *= 0.5; x *= 2.03; y *= 2.03; }
+        return s / tot;
+    }
+
+    /** distance signee (chanfrein), positive sur terre */
+    static float[] signee(boolean[] t) {
+        float[] a = chanfrein(t, true), b = chanfrein(t, false);
+        float[] d = new float[t.length];
+        for (int i = 0; i < t.length; i++) d[i] = t[i] ? b[i] - 0.5f : -(a[i] - 0.5f);
+        return d;
+    }
+
+    static float[] chanfrein(boolean[] t, boolean versTerre) {
+        int n = W * H; float inf = 1e9f; float[] d = new float[n];
+        for (int i = 0; i < n; i++) d[i] = (t[i] == versTerre) ? 0 : inf;
+        float a = 1, b = 1.4142f;
+        for (int y = 0; y < H; y++) for (int x = 0; x < W; x++) {
+            int i = y * W + x; float v = d[i];
+            if (x > 0) v = Math.min(v, d[i - 1] + a);
+            if (y > 0) { v = Math.min(v, d[i - W] + a); if (x > 0) v = Math.min(v, d[i - W - 1] + b); if (x < W - 1) v = Math.min(v, d[i - W + 1] + b); }
+            d[i] = v;
+        }
+        for (int y = H - 1; y >= 0; y--) for (int x = W - 1; x >= 0; x--) {
+            int i = y * W + x; float v = d[i];
+            if (x < W - 1) v = Math.min(v, d[i + 1] + a);
+            if (y < H - 1) { v = Math.min(v, d[i + W] + a); if (x < W - 1) v = Math.min(v, d[i + W + 1] + b); if (x > 0) v = Math.min(v, d[i + W - 1] + b); }
+            d[i] = v;
+        }
+        for (int i = 0; i < n; i++) if (d[i] >= inf) d[i] = W + H;
+        return d;
+    }
+
+    static int[] regionProche(int[] reg) {
+        int n = W * H; int[] p = new int[n]; boolean[] vu = new boolean[n]; ArrayDeque<Integer> f = new ArrayDeque<>();
+        for (int i = 0; i < n; i++) if (reg[i] >= 0) { p[i] = reg[i]; vu[i] = true; f.add(i); }
+        while (!f.isEmpty()) {
+            int i = f.poll(), x = i % W, y = i / W;
+            int[] v = {x > 0 ? i - 1 : -1, x < W - 1 ? i + 1 : -1, y > 0 ? i - W : -1, y < H - 1 ? i + W : -1};
+            for (int k : v) if (k >= 0 && !vu[k]) { vu[k] = true; p[k] = p[i]; f.add(k); }
+        }
+        return p;
+    }
+
+    static int[] composantes(boolean[] t) {
+        int n = W * H; int[] c = new int[n]; Arrays.fill(c, -1); int id = 0;
+        for (int s = 0; s < n; s++) {
+            if (!t[s] || c[s] >= 0) continue;
+            ArrayDeque<Integer> f = new ArrayDeque<>(); f.add(s); c[s] = id;
+            while (!f.isEmpty()) {
+                int i = f.poll(), x = i % W, y = i / W;
+                int[] v = {x > 0 ? i - 1 : -1, x < W - 1 ? i + 1 : -1, y > 0 ? i - W : -1, y < H - 1 ? i + W : -1};
+                for (int k : v) if (k >= 0 && t[k] && c[k] < 0) { c[k] = id; f.add(k); }
+            }
+            id++;
+        }
+        return c;
+    }
+
+    static int plusGrande(int[] c) {
+        Map<Integer, Integer> m = new HashMap<>();
+        for (int v : c) if (v >= 0) m.merge(v, 1, Integer::sum);
+        return m.entrySet().stream().max(Map.Entry.comparingByValue()).get().getKey();
+    }
+
+    /** le point est-il plus proche de l'ile principale que des ilots satellites ? (via la terre d'origine la plus proche) */
+    static int[] procheComp;
+    static boolean estPrincipale(int[] comp, int principale, int x, int y) {
+        if (procheComp == null) {
+            int n = W * H; procheComp = new int[n]; boolean[] vu = new boolean[n]; ArrayDeque<Integer> f = new ArrayDeque<>();
+            for (int i = 0; i < n; i++) if (comp[i] >= 0) { procheComp[i] = comp[i]; vu[i] = true; f.add(i); }
+            while (!f.isEmpty()) {
+                int i = f.poll(), xx = i % W, yy = i / W;
+                int[] v = {xx > 0 ? i - 1 : -1, xx < W - 1 ? i + 1 : -1, yy > 0 ? i - W : -1, yy < H - 1 ? i + W : -1};
+                for (int k : v) if (k >= 0 && !vu[k]) { vu[k] = true; procheComp[k] = procheComp[i]; f.add(k); }
+            }
+        }
+        return procheComp[y * W + x] == principale;
+    }
+
+    /** retire les miettes de terre (< minTerre px) et bouche les lacs fermes (< maxLac px) */
+    static void nettoyer(boolean[] t, int minTerre, int maxLac) {
+        for (boolean cible : new boolean[]{true, false}) {
+            boolean[] m = new boolean[t.length];
+            for (int i = 0; i < t.length; i++) m[i] = t[i] == cible;
+            int[] c = composantes(m);
+            Map<Integer, Integer> taille = new HashMap<>();
+            Set<Integer> bord = new HashSet<>();
+            for (int i = 0; i < t.length; i++) if (c[i] >= 0) {
+                taille.merge(c[i], 1, Integer::sum);
+                int x = i % W, y = i / W;
+                if (x == 0 || y == 0 || x == W - 1 || y == H - 1) bord.add(c[i]);
+            }
+            for (int i = 0; i < t.length; i++) if (c[i] >= 0) {
+                int s = taille.get(c[i]);
+                if (cible && s < minTerre) t[i] = false;
+                if (!cible && !bord.contains(c[i])) t[i] = true; // toute eau fermee devient terre (pas de classe lac)
+            }
+        }
+    }
+}

@@ -1,0 +1,364 @@
+diff -ruN sauvegarde-0.3.0/src/fr/atheria/ile/AtheriaIle.java src/fr/atheria/ile/AtheriaIle.java
+--- sauvegarde-0.3.0/src/fr/atheria/ile/AtheriaIle.java	2026-11-09 22:53:14.402160800 +0400
++++ src/fr/atheria/ile/AtheriaIle.java	2026-11-09 22:54:28.082897900 +0400
+@@ -13,6 +13,9 @@
+ import net.neoforged.neoforge.event.server.ServerStoppedEvent;
+ import net.neoforged.neoforge.event.server.ServerStoppingEvent;
+ import net.neoforged.neoforge.event.tick.ServerTickEvent;
++import net.neoforged.neoforge.event.tick.PlayerTickEvent;
++import net.neoforged.neoforge.event.entity.player.PlayerEvent;
++import net.minecraft.server.level.ServerPlayer;
+ import net.neoforged.neoforge.registries.DeferredRegister;
+ 
+ @Mod(AtheriaIle.ID)
+@@ -29,16 +32,29 @@
+ 
+     public AtheriaIle(IEventBus busDuMod) {
+         FONCTIONS.register(busDuMod);
+-        NeoForge.EVENT_BUS.addListener(ServerStartedEvent.class, e -> Tests.demarrage(e.getServer()));
++        NeoForge.EVENT_BUS.addListener(ServerStartedEvent.class, e -> {
++            Jeu.avertirSiCarteManquante(e.getServer());
++            Jeu.bordure(e.getServer());
++            Tests.demarrage(e.getServer());
++        });
++        NeoForge.EVENT_BUS.addListener(PlayerTickEvent.Post.class, e -> {
++            if (e.getEntity() instanceof ServerPlayer p) Jeu.tickJoueur(p);
++        });
++        NeoForge.EVENT_BUS.addListener(PlayerEvent.PlayerLoggedInEvent.class, e -> {
++            if (e.getEntity() instanceof ServerPlayer p) Jeu.avertirOperateur(p);
++        });
++        NeoForge.EVENT_BUS.addListener(PlayerEvent.PlayerLoggedOutEvent.class, e -> Jeu.quitter(e.getEntity().getUUID()));
+         NeoForge.EVENT_BUS.addListener(ServerTickEvent.Post.class, e -> Tests.tick(e.getServer()));
+         NeoForge.EVENT_BUS.addListener(ServerStoppingEvent.class, e -> Tests.arreter());
+         NeoForge.EVENT_BUS.addListener(ServerStoppedEvent.class, e -> {
+             Tests.arreter();
++            Jeu.vider();
+             CarteIle.desactiver();
+         });
+         NeoForge.EVENT_BUS.addListener(RegisterCommandsEvent.class, e -> e.getDispatcher().register(
+-                Commands.literal("ile").requires(s -> s.hasPermission(2))
+-                        .then(Commands.literal("rendu").executes(ctx -> {
++                Commands.literal("ile")
++                        .then(Commands.literal("reperes").executes(ctx -> Jeu.reperes(ctx.getSource().getPlayerOrException())))
++                        .then(Commands.literal("rendu").requires(s -> s.hasPermission(2)).executes(ctx -> {
+                             boolean ok = Tests.lancerRendu(ctx.getSource().getServer(), false);
+                             ctx.getSource().sendSuccess(() -> Component.literal(ok
+                                     ? "Rendu de l'ile lance : config/atheria_ile/rendus/"
+diff -ruN sauvegarde-0.3.0/src/fr/atheria/ile/CarteIle.java src/fr/atheria/ile/CarteIle.java
+--- sauvegarde-0.3.0/src/fr/atheria/ile/CarteIle.java	2026-11-09 22:53:14.402980000 +0400
++++ src/fr/atheria/ile/CarteIle.java	2026-11-09 22:54:28.029600900 +0400
+@@ -40,15 +40,28 @@
+         if (tentee) return null;
+         tentee = true;
+         Path dossier = FMLPaths.CONFIGDIR.get().resolve("atheria_ile");
++        String manque = !Files.isDirectory(dossier) ? "le dossier " + dossier + " n'existe pas"
++                : !Files.isRegularFile(dossier.resolve("regions.json")) ? "regions.json manque dans " + dossier
++                : !Files.isRegularFile(dossier.resolve("carte.png")) ? "carte.png manque dans " + dossier : null;
++        if (manque != null) {
++            LOG.error("[atheria_ile] carte de l'ile introuvable : {}. Le monde sera genere SANS l'ile (terrain normal). "
++                    + "Remettez carte.png, regions.json (et relief.png) dans config/atheria_ile puis redemarrez AVANT d'explorer.", manque);
++            return null;
++        }
+         try {
+             active = new CarteIle(dossier);
+             LOG.info("[atheria_ile] carte chargee : {}x{} px, {} blocs/px, {} regions", active.w, active.h, active.bpp, active.regions.size());
++        } catch (com.google.gson.JsonParseException e) {
++            LOG.error("[atheria_ile] regions.json mal forme ({}) : le monde sera genere SANS l'ile. Corrigez le fichier puis redemarrez.", e.getMessage());
+         } catch (Exception e) {
+-            LOG.error("[atheria_ile] carte illisible dans {} : le monde sera genere sans l'ile", dossier, e);
++            LOG.error("[atheria_ile] carte illisible dans {} ({}) : le monde sera genere SANS l'ile", dossier, e.toString(), e);
+         }
+         return active;
+     }
+ 
++    /** Vrai si un monde a demande la carte (datapack de l'ile present). */
++    public static boolean tentee() { return tentee; }
++
+     /** Remet à zéro entre deux mondes (solo) pour qu'un autre monde ne soit jamais modifié. */
+     public static synchronized void desactiver() {
+         active = null;
+@@ -84,6 +97,9 @@
+         public final List<String> taches = new ArrayList<>();
+         public final List<Double> tachesPart = new ArrayList<>();
+         public final List<Integer> tachesTaille = new ArrayList<>();
++        /** titre affiche a l'ecran (par defaut : le nom sans la parenthese), sous-titre facultatif, repere force (x, z) ou null */
++        public String titre, sousTitre;
++        public int[] repere;
+         /** biomes de grottes de la region (remplacent les biomes de grottes d'origine) */
+         public final List<String> grottes = new ArrayList<>();
+         public final List<Integer> grottesPoids = new ArrayList<>();
+@@ -186,6 +202,12 @@
+                         reg.poids.add(p);
+                     }
+                     if (reg.biomes.isEmpty()) throw new IllegalStateException("region sans biome : " + reg.nom);
++                    reg.titre = c.has("titre") && !c.get("titre").isJsonNull() ? c.get("titre").getAsString() : reg.nom.replaceAll("\\s*\\(.*\\)\\s*$", "");
++                    reg.sousTitre = c.has("sous_titre") && !c.get("sous_titre").isJsonNull() ? c.get("sous_titre").getAsString() : null;
++                    if (c.has("repere") && c.get("repere").isJsonObject()) {
++                        JsonObject o = c.getAsJsonObject("repere");
++                        if (o.has("x") && o.has("z")) reg.repere = new int[]{o.get("x").getAsInt(), o.get("z").getAsInt()};
++                    }
+                     if (c.has("taches") && c.get("taches").isJsonArray()) {
+                         for (JsonElement b : c.getAsJsonArray("taches")) {
+                             JsonObject o = b.getAsJsonObject();
+@@ -397,6 +419,31 @@
+         return -1;
+     }
+ 
++    private volatile int[][] centres;
++
++    /** Pour chaque region : le point (blocs) le plus loin de ses bords, ou le repere force ; null si la region est absente. */
++    public int[][] centresRegions() {
++        int[][] c = centres;
++        if (c != null) return c;
++        synchronized (this) {
++            if (centres != null) return centres;
++            int n = w * h;
++            c = new int[regions.size()][];
++            for (int r = 0; r < c.length; r++) {
++                Region g = regions.get(r);
++                if (g.repere != null) { c[r] = g.repere.clone(); continue; }
++                boolean[] dehors = new boolean[n];
++                for (int i = 0; i < n; i++) dehors[i] = !(terre(i) && classe[i] - 3 == r);
++                float[] d = chanfreinMasque(dehors);
++                int best = -1; float bd = 0;
++                for (int i = 0; i < n; i++) if (!dehors[i] && d[i] > bd) { bd = d[i]; best = i; }
++                if (best >= 0) c[r] = new int[]{(int) Math.round(origineX + (best % w + 0.5) * bpp), (int) Math.round(origineZ + (best / w + 0.5) * bpp)};
++            }
++            centres = c;
++            return c;
++        }
++    }
++
+     /** distance (px) au masque en ne passant que par la terre ; la mer est infranchissable */
+     private float[] chanfreinTerre(boolean[] m) {
+         int n = w * h;
+diff -ruN sauvegarde-0.3.0/src/fr/atheria/ile/Jeu.java src/fr/atheria/ile/Jeu.java
+--- sauvegarde-0.3.0/src/fr/atheria/ile/Jeu.java	1970-01-01 04:00:00.000000000 +0400
++++ src/fr/atheria/ile/Jeu.java	2026-11-09 22:53:52.263130700 +0400
+@@ -0,0 +1,186 @@
++package fr.atheria.ile;
++
++import com.google.gson.JsonArray;
++import com.google.gson.JsonElement;
++import com.google.gson.JsonObject;
++import net.minecraft.ChatFormatting;
++import net.minecraft.network.chat.Component;
++import net.minecraft.network.protocol.game.ClientboundSetSubtitleTextPacket;
++import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
++import net.minecraft.network.protocol.game.ClientboundSetTitlesAnimationPacket;
++import net.minecraft.server.MinecraftServer;
++import net.minecraft.server.level.ServerPlayer;
++import net.minecraft.world.level.Level;
++import net.minecraft.world.level.border.WorldBorder;
++
++import java.util.Arrays;
++import java.util.HashMap;
++import java.util.Map;
++import java.util.UUID;
++
++/**
++ * Ce que le joueur voit de l'ile : titre de region a l'ecran (envoye par le serveur, rien a installer),
++ * bord du monde, reperes partages pour Xaero's Minimap.
++ */
++final class Jeu {
++    private Jeu() {}
++
++    // ------------------------------------------------------------------ titres de region
++
++    private static final class Etat {
++        int candidat = -1, stable, affiche = -1;
++        long dernier = Long.MIN_VALUE / 2;
++        long[] vu;
++    }
++
++    private static final Map<UUID, Etat> ETATS = new HashMap<>();
++    private static CarteIle carteConf;
++    private static boolean titresActifs;
++    private static int intervalle, stabilite;
++    private static long delaiMin, oubli;
++    private static Component[] titres, sousTitres;
++
++    private static void lireConfig(CarteIle c) {
++        carteConf = c;
++        JsonObject t = c.config.has("titres_regions") && c.config.get("titres_regions").isJsonObject() ? c.config.getAsJsonObject("titres_regions") : new JsonObject();
++        titresActifs = !t.has("actif") || t.get("actif").getAsBoolean();
++        intervalle = Math.max(5, entier(t, "intervalle_ticks", 20));
++        stabilite = Math.max(1, entier(t, "stabilite_controles", 3));
++        delaiMin = 20L * Math.max(0, entier(t, "delai_min_secondes", 20));
++        oubli = 20L * Math.max(0, entier(t, "oubli_secondes", 300));
++        int n = c.regions.size();
++        titres = new Component[n];
++        sousTitres = new Component[n];
++        for (int r = 0; r < n; r++) {
++            CarteIle.Region g = c.regions.get(r);
++            titres[r] = Component.literal(g.titre).withStyle(ChatFormatting.GOLD);
++            sousTitres[r] = g.sousTitre == null ? Component.empty() : Component.literal(g.sousTitre).withStyle(ChatFormatting.GRAY);
++        }
++        ETATS.clear();
++    }
++
++    private static int entier(JsonObject o, String cle, int defaut) {
++        return o.has(cle) && !o.get(cle).isJsonNull() ? o.get(cle).getAsInt() : defaut;
++    }
++
++    /** Appele a chaque tick de joueur : ne travaille qu'une fois par intervalle, sans allocation hors arrivee du joueur. */
++    static void tickJoueur(ServerPlayer p) {
++        CarteIle c = CarteIle.active();
++        if (c == null) return;
++        if (c != carteConf) lireConfig(c);
++        if (!titresActifs || p.tickCount % intervalle != 0 || p.level().dimension() != Level.OVERWORLD) return;
++        Etat e = ETATS.get(p.getUUID());
++        if (e == null || e.vu.length != titres.length) {
++            e = new Etat();
++            e.vu = new long[titres.length];
++            Arrays.fill(e.vu, Long.MIN_VALUE / 2);
++            ETATS.put(p.getUUID(), e);
++        }
++        long now = p.getServer() == null ? p.tickCount : p.getServer().getTickCount();
++        int bx = p.getBlockX(), bz = p.getBlockZ();
++        // en mer (lagon, ocean) : pas de titre, la region affichee reste memorisee
++        if (c.distanceBlocs(bx, bz) < 0) { e.candidat = -1; e.stable = 0; return; }
++        int r = c.region(bx, bz);
++        if (r == e.affiche) { e.candidat = -1; e.stable = 0; e.vu[r] = now; return; }
++        if (r != e.candidat) { e.candidat = r; e.stable = 1; return; }
++        if (++e.stable < stabilite) return;
++        if (now - e.dernier < delaiMin) return;          // anti-spam : le titre attend, il s'affichera si le joueur reste
++        boolean recent = now - e.vu[r] < oubli;           // hysteresis : retour dans une region vue il y a peu = pas de titre
++        e.affiche = r;
++        e.vu[r] = now;
++        e.candidat = -1;
++        e.stable = 0;
++        if (recent) return;
++        e.dernier = now;
++        p.connection.send(new ClientboundSetTitlesAnimationPacket(10, 70, 20));
++        p.connection.send(new ClientboundSetSubtitleTextPacket(sousTitres[r]));
++        p.connection.send(new ClientboundSetTitleTextPacket(titres[r]));
++    }
++
++    static void quitter(UUID id) { ETATS.remove(id); }
++
++    static void vider() { ETATS.clear(); carteConf = null; }
++
++    // ------------------------------------------------------------------ bord du monde
++
++    /** Bord du monde centre sur l'ile ("bordure_monde_blocs", 0 = ne rien toucher). Jamais si un admin l'a deja regle. */
++    static void bordure(MinecraftServer s) {
++        CarteIle c = CarteIle.active();
++        if (c == null) return;
++        double taille = c.config.has("bordure_monde_blocs") && !c.config.get("bordure_monde_blocs").isJsonNull() ? c.config.get("bordure_monde_blocs").getAsDouble() : 0;
++        if (taille <= 0) return;
++        WorldBorder wb = s.overworld().getWorldBorder();
++        if (wb.getSize() < 5.9e7) {
++            CarteIle.LOG.info("[atheria_ile] bord du monde deja regle ({} blocs) : garde tel quel", (long) wb.getSize());
++            return;
++        }
++        wb.setCenter(0, 0);
++        wb.setSize(taille);
++        CarteIle.LOG.info("[atheria_ile] bord du monde pose : {} blocs centre sur 0,0 (la carte fait {} blocs)", (long) taille, c.w * c.bpp);
++    }
++
++    // ------------------------------------------------------------------ reperes Xaero
++
++    /** Lignes de chat "xaero-waypoint:..." : Xaero's Minimap propose de les ajouter d'un clic. */
++    static int reperes(ServerPlayer p) {
++        CarteIle c = CarteIle.active();
++        if (c == null) { p.sendSystemMessage(Component.literal("Pas d'ile dans ce monde.").withStyle(ChatFormatting.RED)); return 0; }
++        int[][] centres = c.centresRegions();
++        int n = 0;
++        p.sendSystemMessage(Component.literal("Reperes de l'ile (Xaero's Minimap : cliquez pour ajouter)").withStyle(ChatFormatting.GOLD));
++        for (int r = 0; r < centres.length; r++) {
++            if (centres[r] == null) continue;
++            CarteIle.Region g = c.regions.get(r);
++            p.sendSystemMessage(Component.literal(ligne(g.titre, centres[r][0], centres[r][1], couleurXaero(g.couleur))));
++            n++;
++        }
++        if (c.config.has("reperes") && c.config.get("reperes").isJsonArray()) {
++            for (JsonElement el : (JsonArray) c.config.get("reperes")) {
++                JsonObject o = el.getAsJsonObject();
++                if (!o.has("nom") || !o.has("x") || !o.has("z")) continue;
++                p.sendSystemMessage(Component.literal(ligne(o.get("nom").getAsString(), o.get("x").getAsInt(), o.get("z").getAsInt(),
++                        o.has("couleur") ? o.get("couleur").getAsInt() : 14)));
++                n++;
++            }
++        }
++        return n;
++    }
++
++    private static String ligne(String nom, int x, int z, int couleur) {
++        String propre = nom.replace(':', ' ').trim();
++        StringBuilder ini = new StringBuilder();
++        for (String m : propre.split("[ '\\-]+")) if (!m.isEmpty() && Character.isLetter(m.charAt(0)) && ini.length() < 2 && m.length() > 2) ini.append(Character.toUpperCase(m.charAt(0)));
++        if (ini.length() == 0) ini.append('?');
++        return "xaero-waypoint:" + propre + ":" + ini + ":" + x + ":~:" + z + ":" + couleur + ":false:0:Internal-overworld-waypoints";
++    }
++
++    /** couleur Xaero (0..15) la plus proche de la couleur de la region sur la carte */
++    private static int couleurXaero(int rgb) {
++        int[] pal = {0x000000, 0x0000AA, 0x00AA00, 0x00AAAA, 0xAA0000, 0xAA00AA, 0xFFAA00, 0xAAAAAA, 0x555555, 0x5555FF, 0x55FF55, 0x55FFFF, 0xFF5555, 0xFF55FF, 0xFFFF55, 0xFFFFFF};
++        int best = 14, bd = Integer.MAX_VALUE;
++        for (int i = 1; i < pal.length; i++) {
++            int dr = ((rgb >> 16) & 255) - ((pal[i] >> 16) & 255), dg = ((rgb >> 8) & 255) - ((pal[i] >> 8) & 255), db = (rgb & 255) - (pal[i] & 255);
++            int d = dr * dr + dg * dg + db * db;
++            if (d < bd) { bd = d; best = i; }
++        }
++        return best;
++    }
++
++    // ------------------------------------------------------------------ messages clairs
++
++    /** Le datapack de l'ile est dans le monde mais la carte n'a pas pu etre chargee : on le dit clairement. */
++    static void avertirSiCarteManquante(MinecraftServer s) {
++        if (CarteIle.tentee() && CarteIle.active() == null) {
++            CarteIle.LOG.error("[atheria_ile] ==================================================================");
++            CarteIle.LOG.error("[atheria_ile] ATTENTION : le datapack de l'ile est dans ce monde mais la carte n'a pas pu etre chargee.");
++            CarteIle.LOG.error("[atheria_ile] Les nouveaux chunks sont generes SANS l'ile (terrain normal). Voir le message plus haut.");
++            CarteIle.LOG.error("[atheria_ile] ==================================================================");
++        }
++    }
++
++    static void avertirOperateur(ServerPlayer p) {
++        if (CarteIle.tentee() && CarteIle.active() == null && p.hasPermissions(2)) {
++            p.sendSystemMessage(Component.literal("[Atheria ile] Carte de l'ile introuvable ou illisible : les nouveaux chunks sont generes sans l'ile. Voir les logs du serveur.").withStyle(ChatFormatting.RED));
++        }
++    }
++}
+--- sauvegarde-0.3.0/ressources/META-INF/neoforge.mods.toml	2026-11-09 22:53:14.410370300 +0400
++++ ressources/META-INF/neoforge.mods.toml	2026-11-09 22:54:28.162178900 +0400
+@@ -4,7 +4,7 @@
+ 
+ [[mods]]
+ modId = "atheria_ile"
+-version = "0.3.0"
++version = "0.4.0"
+ displayName = "Atheria Ile"
+ description = "Prototype : la carte dessinee de l'ile d'Atheria guide les cotes, le relief et les biomes. Inactif sans le datapack atheria_ile dans le monde."
+ 
+--- sauvegarde-0.3.0/construire.ps1	2026-11-09 22:53:14.413827200 +0400
++++ construire.ps1	2026-11-09 22:54:28.204536200 +0400
+@@ -28,7 +28,7 @@
+ Copy-Item (Join-Path $Ici 'ressources\*') $Tmp -Recurse -Force
+ 
+ $manifest = Join-Path $env:TEMP "atheria-ile-manifest-$([guid]::NewGuid()).txt"
+-[IO.File]::WriteAllText($manifest, "Implementation-Version: 0.3.0`nFMLModType: MOD`n")
++[IO.File]::WriteAllText($manifest, "Implementation-Version: 0.4.0`nFMLModType: MOD`n")
+ $Out = Join-Path $Ici 'atheria-ile.jar'
+ & "$Jdk\jar.exe" --create --file $Out --manifest $manifest -C $Tmp .
+ if ($LASTEXITCODE -ne 0) { throw "jar a echoue (code $LASTEXITCODE)" }
+--- sauvegarde-0.3.0/regions-test.json	2026-11-09 22:53:14.434700700 +0400
++++ regions-test.json	2026-11-09 22:54:53.343671500 +0400
+@@ -227,6 +227,15 @@
+   "passes_largeur_blocs": 48,
+   "passes_continents": -0.3
+  },
++ "titres_regions": {
++  "actif": true,
++  "intervalle_ticks": 20,
++  "stabilite_controles": 3,
++  "delai_min_secondes": 20,
++  "oubli_secondes": 300
++ },
++ "bordure_monde_blocs": 12000,
++ "reperes": [],
+  "rendu_au_demarrage": true,
+  "rendu_pas_blocs": 32,
+  "zone_reelle": {

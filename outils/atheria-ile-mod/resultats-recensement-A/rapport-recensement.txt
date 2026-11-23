@@ -1,0 +1,1464 @@
+RECENSEMENT DES STRUCTURES (rayon de recherche 3000 blocs, Y = surface du terrain au point trouve)
+points de depart (centre de chaque region) :
+   P1 Côte calcaire et falaises du Nord : -2082, -3870
+   P2 Savane sèche (baobabs) : 738, -3090
+   P3 Friches urbaines (Majicavo, Mamoudzou) : 1878, -1374
+   P4 Plaines agricoles de Coconi : -1026, -1002
+   P5 Jungle de l'Ouest : -3258, 210
+   P6 Hauts plateaux et pins : -1470, 1422
+   P7 Sommet gelé du Bénara (hiver volcanique) : 246, 1746
+   P8 Marais aux spores : 1902, 750
+   P9 Canyons de latérite rouge : -1374, 2910
+   P10 Plaine de cendres : 2550, 2874
+   P11 Mangroves du Sud : 570, 4398
+   P12 Petite-Terre, cratère et campus Somaco : 4026, -906
+   P13 Île du volcan : -3174, 4338
+   P14 Îlot de la ICE : 4518, 4650
+structory:firetower (espacement 48 chunks) :
+   P1 : 2502 blocs -> -384, -2032  Y 67  Plaines agricoles de Coconi
+   P2 : 1542 blocs -> -384,-2032 (meme que plus haut)
+   P3 : 2007 blocs -> 1072, 464  Y 67  Marais aux spores
+   P4 : 1214 blocs -> -384,-2032 (meme que plus haut)
+   P5 : 2236 blocs -> -1216, 1120  Y 108  Hauts plateaux et pins
+   P6 : 395 blocs -> -1216,1120 (meme que plus haut)
+   P7 : 788 blocs -> 80, 976  Y 144  Sommet gelé du Bénara (hiver volcanique)
+   P8 : 878 blocs -> 1072,464 (meme que plus haut)
+   P9 : 1260 blocs -> -1184, 1664  Y 151  Hauts plateaux et pins
+   P10 : 1818 blocs -> 1152, 1712  Y 108  Hauts plateaux et pins
+   P11 : 1199 blocs -> 1648, 3872  Y 72  Plaine de cendres
+   P12 : 3256 blocs -> 1072,464 (meme que plus haut)
+   P13 : 3333 blocs -> -1184,1664 (meme que plus haut)
+   P14 : 2974 blocs -> 1648,3872 (meme que plus haut)
+   => 12/14 points a moins de 3000 blocs, 7 exemplaires distincts, 2 a Y >= 120
+structory_towers:small_firetower (espacement 44 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+structory_towers:lighthouse (espacement 44 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : 4266 blocs -> 480, 5216  Y 65  Mangroves du Sud
+   P7 : 3478 blocs -> 480,5216 (meme que plus haut)
+   P8 : 4687 blocs -> 480,5216 (meme que plus haut)
+   P9 : 2959 blocs -> 480,5216 (meme que plus haut)
+   P10 : 3126 blocs -> 480,5216 (meme que plus haut)
+   P11 : 823 blocs -> 480,5216 (meme que plus haut)
+   P12 : rien
+   P13 : 3758 blocs -> 480,5216 (meme que plus haut)
+   P14 : 570 blocs -> 4368, 5200  Y 63  en mer
+   => 3/14 points a moins de 3000 blocs, 2 exemplaires distincts, 0 a Y >= 120
+structory_towers:engineer_tower (espacement 44 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : 3717 blocs -> -1328, 5136  Y 67  Mangroves du Sud
+   P7 : 3738 blocs -> -1328,5136 (meme que plus haut)
+   P8 : 5447 blocs -> -1328,5136 (meme que plus haut)
+   P9 : 2226 blocs -> -1328,5136 (meme que plus haut)
+   P10 : 3031 blocs -> 816, 5360  Y 64  Mangroves du Sud
+   P11 : 993 blocs -> 816,5360 (meme que plus haut)
+   P12 : rien
+   P13 : 2011 blocs -> -1328,5136 (meme que plus haut)
+   P14 : 2951 blocs -> 1600, 5088  Y 66  Mangroves du Sud
+   => 4/14 points a moins de 3000 blocs, 3 exemplaires distincts, 0 a Y >= 120
+structory_towers:taiga_outpost (espacement 44 chunks) :
+   P1 : 5085 blocs -> 912, 240  Y 64  Marais aux spores
+   P2 : 3335 blocs -> 912,240 (meme que plus haut)
+   P3 : 1881 blocs -> 912,240 (meme que plus haut)
+   P4 : 2057 blocs -> -1856, 880  Y 95  Hauts plateaux et pins
+   P5 : 1554 blocs -> -1856,880 (meme que plus haut)
+   P6 : 665 blocs -> -1856,880 (meme que plus haut)
+   P7 : 1527 blocs -> -1280, 1680  Y 171  Hauts plateaux et pins
+   P8 : 1114 blocs -> 912,240 (meme que plus haut)
+   P9 : 1234 blocs -> -1280,1680 (meme que plus haut)
+   P10 : 1273 blocs -> 1760, 3872  Y 76  Mangroves du Sud
+   P11 : 1301 blocs -> 1760,3872 (meme que plus haut)
+   P12 : 3318 blocs -> 912,240 (meme que plus haut)
+   P13 : 3264 blocs -> -1280,1680 (meme que plus haut)
+   P14 : 2866 blocs -> 1760,3872 (meme que plus haut)
+   => 10/14 points a moins de 3000 blocs, 4 exemplaires distincts, 1 a Y >= 120
+structory_towers:quarter_outpost (espacement 60 chunks) :
+   P1 : 1944 blocs -> -3296, -2352  Y 110  Jungle de l'Ouest
+   P2 : 4036 blocs -> -2432, -592  Y 143  Jungle de l'Ouest
+   P3 : 4380 blocs -> -2432,-592 (meme que plus haut)
+   P4 : 1465 blocs -> -2432,-592 (meme que plus haut)
+   P5 : 66 blocs -> -3264, 144  Y 135  Jungle de l'Ouest
+   P6 : 1322 blocs -> -2720, 992  Y 112  Jungle de l'Ouest
+   P7 : 3555 blocs -> -2432,-592 (meme que plus haut)
+   P8 : 4537 blocs -> -2432,-592 (meme que plus haut)
+   P9 : 2079 blocs -> -2704, 1312  Y 116  Jungle de l'Ouest
+   P10 : 6069 blocs -> -2432,-592 (meme que plus haut)
+   P11 : 4499 blocs -> -2704,1312 (meme que plus haut)
+   P12 : rien
+   P13 : 3062 blocs -> -2704,1312 (meme que plus haut)
+   P14 : rien
+   => 5/14 points a moins de 3000 blocs, 5 exemplaires distincts, 2 a Y >= 120
+explorify:watchtower/plains (espacement 52 chunks) :
+   P1 : 2423 blocs -> -1280, -1584  Y 66  Plaines agricoles de Coconi
+   P2 : 2518 blocs -> -1280,-1584 (meme que plus haut)
+   P3 : 880 blocs -> 1936, -496  Y 72  Friches urbaines (Majicavo, Mamoudzou)
+   P4 : 635 blocs -> -1280,-1584 (meme que plus haut)
+   P5 : 2670 blocs -> -1280,-1584 (meme que plus haut)
+   P6 : 2645 blocs -> 368, -480  Y 98  Friches urbaines (Majicavo, Mamoudzou)
+   P7 : 1065 blocs -> 848, 2624  Y 120  Plaine de cendres
+   P8 : 1246 blocs -> 1936,-496 (meme que plus haut)
+   P9 : 2240 blocs -> 848,2624 (meme que plus haut)
+   P10 : 980 blocs -> 3520, 2736  Y 72  Plaine de cendres
+   P11 : 1796 blocs -> 848,2624 (meme que plus haut)
+   P12 : 385 blocs -> 3648, -832  Y 108  Petite-Terre, cratère et campus Somaco
+   P13 : 4372 blocs -> 848,2624 (meme que plus haut)
+   P14 : 1178 blocs -> 4496, 3472  Y 63  en mer
+   => 13/14 points a moins de 3000 blocs, 7 exemplaires distincts, 1 a Y >= 120
+explorify:watchtower/savanna (espacement 52 chunks) :
+   P1 : 2143 blocs -> -4064, -3056  Y 136  Côte calcaire et falaises du Nord
+   P2 : 908 blocs -> 304, -3888  Y 75  Savane sèche (baobabs)
+   P3 : 1155 blocs -> 1216, -2320  Y 95  Savane sèche (baobabs)
+   P4 : 1448 blocs -> -2352, -1584  Y 64  Jungle de l'Ouest
+   P5 : 1132 blocs -> -3968, -672  Y 91  Jungle de l'Ouest
+   P6 : 1562 blocs -> -2368, 144  Y 142  Jungle de l'Ouest
+   P7 : 1935 blocs -> -448, 3552  Y 100  Savane sèche (baobabs)
+   P8 : 3591 blocs -> 208, -2416  Y 102  Savane sèche (baobabs)
+   P9 : 1382 blocs -> -2208, 1808  Y 130  Canyons de latérite rouge
+   P10 : 3074 blocs -> -448,3552 (meme que plus haut)
+   P11 : 1324 blocs -> -448,3552 (meme que plus haut)
+   P12 : 3091 blocs -> 1760, -3008  Y 69  Savane sèche (baobabs)
+   P13 : 2708 blocs -> -2208,1808 (meme que plus haut)
+   P14 : rien
+   => 10/14 points a moins de 3000 blocs, 10 exemplaires distincts, 3 a Y >= 120
+explorify:watchtower/taiga (espacement 52 chunks) :
+   P1 : 1116 blocs -> -3008, -3248  Y 120  Côte calcaire et falaises du Nord
+   P2 : 2727 blocs -> -1360, -4832  Y 67  Côte calcaire et falaises du Nord
+   P3 : 1084 blocs -> 1200, -528  Y 112  Friches urbaines (Majicavo, Mamoudzou)
+   P4 : 2995 blocs -> -3008,-3248 (meme que plus haut)
+   P5 : 2802 blocs -> -592, 1072  Y 180  Sommet gelé du Bénara (hiver volcanique)
+   P6 : 945 blocs -> -592,1072 (meme que plus haut)
+   P7 : 1075 blocs -> -592,1072 (meme que plus haut)
+   P8 : 645 blocs -> 1680, 144  Y 64  Marais aux spores
+   P9 : 1997 blocs -> -592,1072 (meme que plus haut)
+   P10 : 3335 blocs -> 368, 352  Y 72  Hauts plateaux et pins
+   P11 : 3523 blocs -> -592,1072 (meme que plus haut)
+   P12 : 2570 blocs -> 1680,144 (meme que plus haut)
+   P13 : 4163 blocs -> -592,1072 (meme que plus haut)
+   P14 : 5975 blocs -> 368,352 (meme que plus haut)
+   => 10/14 points a moins de 3000 blocs, 6 exemplaires distincts, 2 a Y >= 120
+bettermineshafts:mineshaft_desert (espacement 1 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+bettermineshafts:mineshaft_dripstone (espacement 1 chunks) :
+   P1 : 306 blocs -> -1792, -3968  Y 108  Côte calcaire et falaises du Nord
+   P2 : 1504 blocs -> -752, -3296  Y 107  Côte calcaire et falaises du Nord
+   P3 : 2465 blocs -> 272, 496  Y 68  Hauts plateaux et pins
+   P4 : 1165 blocs -> -1600, -2016  Y 68  Côte calcaire et falaises du Nord
+   P5 : 1431 blocs -> -2256, 1232  Y 135  Hauts plateaux et pins
+   P6 : 1066 blocs -> -2224, 2176  Y 157  Canyons de latérite rouge
+   P7 : 808 blocs -> 608, 1024  Y 67  Hauts plateaux et pins
+   P8 : 1323 blocs -> 608,1024 (meme que plus haut)
+   P9 : 275 blocs -> -1616, 3040  Y 63  Canyons de latérite rouge
+   P10 : 2682 blocs -> 608,1024 (meme que plus haut)
+   P11 : 1763 blocs -> -752, 3232  Y 66  Canyons de latérite rouge
+   P12 : rien
+   P13 : 1392 blocs -> -1984, 3616  Y 68  Canyons de latérite rouge
+   P14 : rien
+   => 12/14 points a moins de 3000 blocs, 10 exemplaires distincts, 2 a Y >= 120
+bettermineshafts:mineshaft_ice (espacement 1 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+bettermineshafts:mineshaft_jungle (espacement 1 chunks) :
+   P1 : 1764 blocs -> -3168, -2480  Y 111  Jungle de l'Ouest
+   P2 : 1758 blocs -> 2496, -3072  Y 67  Friches urbaines (Majicavo, Mamoudzou)
+   P3 : 1747 blocs -> 2576, -2976  Y 66  Friches urbaines (Majicavo, Mamoudzou)
+   P4 : 1494 blocs -> -2320, -256  Y 106  Jungle de l'Ouest
+   P5 : 160 blocs -> -3232, 368  Y 139  Jungle de l'Ouest
+   P6 : 813 blocs -> -2256, 1216  Y 114  Hauts plateaux et pins
+   P7 : 2555 blocs -> -1936, 416  Y 109  Hauts plateaux et pins
+   P8 : rien
+   P9 : 1910 blocs -> -2256,1216 (meme que plus haut)
+   P10 : rien
+   P11 : rien
+   P12 : 2527 blocs -> 2576,-2976 (meme que plus haut)
+   P13 : 2990 blocs -> -3584, 1376  Y 67  Jungle de l'Ouest
+   P14 : rien
+   => 10/14 points a moins de 3000 blocs, 8 exemplaires distincts, 1 a Y >= 120
+bettermineshafts:mineshaft_lush (espacement 1 chunks) :
+   P1 : 1929 blocs -> -1872, -1952  Y 92  Plaines agricoles de Coconi
+   P2 : 1668 blocs -> -384, -1856  Y 67  Plaines agricoles de Coconi
+   P3 : 1318 blocs -> 560, -1376  Y 66  Plaines agricoles de Coconi
+   P4 : 132 blocs -> -896, -1024  Y 66  Plaines agricoles de Coconi
+   P5 : 621 blocs -> -2848, -256  Y 72  Jungle de l'Ouest
+   P6 : 1329 blocs -> -2544, 640  Y 124  Jungle de l'Ouest
+   P7 : 1631 blocs -> 752, 3296  Y 68  Mangroves du Sud
+   P8 : 2713 blocs -> -32, -1152  Y 63  Plaines agricoles de Coconi
+   P9 : 1473 blocs -> -64, 3584  Y 100  Mangroves du Sud
+   P10 : 1615 blocs -> 1616, 4192  Y 66  Mangroves du Sud
+   P11 : 207 blocs -> 368, 4352  Y 65  Mangroves du Sud
+   P12 : rien
+   P13 : 1214 blocs -> -2336, 5216  Y 63  en mer
+   P14 : 267 blocs -> 4736, 4496  Y 68  Îlot de la ICE
+   => 13/14 points a moins de 3000 blocs, 13 exemplaires distincts, 1 a Y >= 120
+bettermineshafts:mineshaft_mesa (espacement 1 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : 3549 blocs -> -3152, 1840  Y 65  Savane sèche (baobabs)
+   P5 : 1633 blocs -> -3152,1840 (meme que plus haut)
+   P6 : 1165 blocs -> -1104, 2528  Y 100  Canyons de latérite rouge
+   P7 : 1560 blocs -> -1104,2528 (meme que plus haut)
+   P8 : 3492 blocs -> -1104,2528 (meme que plus haut)
+   P9 : 468 blocs -> -1104,2528 (meme que plus haut)
+   P10 : rien
+   P11 : 2510 blocs -> -1104,2528 (meme que plus haut)
+   P12 : rien
+   P13 : 1693 blocs -> -2432, 2816  Y 118  Canyons de latérite rouge
+   P14 : rien
+   => 6/14 points a moins de 3000 blocs, 3 exemplaires distincts, 0 a Y >= 120
+bettermineshafts:mineshaft_mushroom (espacement 1 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+bettermineshafts:mineshaft_oak (espacement 1 chunks) :
+   P1 : 2056 blocs -> -144, -3184  Y 108  Savane sèche (baobabs)
+   P2 : 269 blocs -> 864, -3328  Y 111  Savane sèche (baobabs)
+   P3 : 463 blocs -> 2176, -1728  Y 67  Friches urbaines (Majicavo, Mamoudzou)
+   P4 : 460 blocs -> -672, -1296  Y 77  Plaines agricoles de Coconi
+   P5 : 1708 blocs -> -1696, -480  Y 92  Plaines agricoles de Coconi
+   P6 : 1915 blocs -> -1696,-480 (meme que plus haut)
+   P7 : 2224 blocs -> 496, -464  Y 127  Friches urbaines (Majicavo, Mamoudzou)
+   P8 : 1609 blocs -> 2976, -448  Y 65  Friches urbaines (Majicavo, Mamoudzou)
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : 1146 blocs -> 2976,-448 (meme que plus haut)
+   P13 : rien
+   P14 : rien
+   => 9/14 points a moins de 3000 blocs, 7 exemplaires distincts, 1 a Y >= 120
+bettermineshafts:mineshaft_overgrown (espacement 1 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : 2143 blocs -> 1952, 768  Y 65  Marais aux spores
+   P4 : 3464 blocs -> 1952,768 (meme que plus haut)
+   P5 : rien
+   P6 : rien
+   P7 : 1840 blocs -> 1776, 2768  Y 99  Plaine de cendres
+   P8 : 53 blocs -> 1952,768 (meme que plus haut)
+   P9 : rien
+   P10 : 773 blocs -> 1792, 3024  Y 90  Plaine de cendres
+   P11 : 1828 blocs -> 1776, 3024  Y 87  Plaine de cendres
+   P12 : 2470 blocs -> 2224, 784  Y 67  Marais aux spores
+   P13 : rien
+   P14 : 1267 blocs -> 3440, 3984  Y 92  Plaine de cendres
+   => 7/14 points a moins de 3000 blocs, 6 exemplaires distincts, 0 a Y >= 120
+bettermineshafts:mineshaft_red_desert (espacement 1 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : 1867 blocs -> -2928, 2048  Y 133  Canyons de latérite rouge
+   P6 : 1190 blocs -> -1760, 2576  Y 132  Canyons de latérite rouge
+   P7 : 1736 blocs -> -1040, 2912  Y 64  Canyons de latérite rouge
+   P8 : 3651 blocs -> -1040,2912 (meme que plus haut)
+   P9 : 453 blocs -> -1712, 2608  Y 119  Canyons de latérite rouge
+   P10 : rien
+   P11 : 2191 blocs -> -1040,2912 (meme que plus haut)
+   P12 : rien
+   P13 : 1170 blocs -> -3152, 3168  Y 140  Canyons de latérite rouge
+   P14 : rien
+   => 6/14 points a moins de 3000 blocs, 5 exemplaires distincts, 3 a Y >= 120
+bettermineshafts:mineshaft_spruce (espacement 1 chunks) :
+   P1 : 2788 blocs -> -1280, -1200  Y 68  Plaines agricoles de Coconi
+   P2 : 1717 blocs -> 2288, -2352  Y 94  Friches urbaines (Majicavo, Mamoudzou)
+   P3 : 910 blocs -> 2688, -960  Y 67  Friches urbaines (Majicavo, Mamoudzou)
+   P4 : 322 blocs -> -1280,-1200 (meme que plus haut)
+   P5 : 1864 blocs -> -2176, 1728  Y 146  Hauts plateaux et pins
+   P6 : 495 blocs -> -1440, 928  Y 63  Hauts plateaux et pins
+   P7 : 843 blocs -> 560, 2528  Y 148  Sommet gelé du Bénara (hiver volcanique)
+   P8 : 313 blocs -> 1968, 1056  Y 67  Marais aux spores
+   P9 : 1428 blocs -> -2176,1728 (meme que plus haut)
+   P10 : 1161 blocs -> 1840, 3792  Y 82  Plaine de cendres
+   P11 : 1407 blocs -> 1840,3792 (meme que plus haut)
+   P12 : 1339 blocs -> 2688,-960 (meme que plus haut)
+   P13 : 2794 blocs -> -2176,1728 (meme que plus haut)
+   P14 : 2812 blocs -> 1840,3792 (meme que plus haut)
+   => 14/14 points a moins de 3000 blocs, 8 exemplaires distincts, 2 a Y >= 120
+bettermineshafts:mineshaft_spruce_snowy (espacement 1 chunks) :
+   P1 : 1234 blocs -> -2096, -5104  Y 109  Côte calcaire et falaises du Nord
+   P2 : 1910 blocs -> -144, -4784  Y 132  Côte calcaire et falaises du Nord
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => 2/14 points a moins de 3000 blocs, 2 exemplaires distincts, 1 a Y >= 120
+minecraft:mineshaft (espacement 1 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+bunkers:military_bunker (espacement 52 chunks) :
+   P1 : 1447 blocs -> -3264, -4704  Y 71  Côte calcaire et falaises du Nord
+   P2 : 1073 blocs -> 224, -4032  Y 69  Côte calcaire et falaises du Nord
+   P3 : 1664 blocs -> 1664, -3024  Y 67  Savane sèche (baobabs)
+   P4 : 1496 blocs -> -2416, -448  Y 129  Jungle de l'Ouest
+   P5 : 866 blocs -> -3232, -656  Y 89  Jungle de l'Ouest
+   P6 : 1223 blocs -> -384, 1984  Y 148  Hauts plateaux et pins
+   P7 : 189 blocs -> 416, 1664  Y 184  Sommet gelé du Bénara (hiver volcanique)
+   P8 : 1705 blocs -> 208, 944  Y 109  Sommet gelé du Bénara (hiver volcanique)
+   P9 : 1356 blocs -> -384,1984 (meme que plus haut)
+   P10 : 1521 blocs -> 1120, 3392  Y 73  Mangroves du Sud
+   P11 : 1147 blocs -> 1120,3392 (meme que plus haut)
+   P12 : 535 blocs -> 3632, -544  Y 76  Petite-Terre, cratère et campus Somaco
+   P13 : 1148 blocs -> -2032, 4224  Y 114  Île du volcan
+   P14 : 3623 blocs -> 1120,3392 (meme que plus haut)
+   => 13/14 points a moins de 3000 blocs, 11 exemplaires distincts, 3 a Y >= 120
+bunkers:nuclear_facility (espacement 52 chunks) :
+   P1 : 1162 blocs -> -3008, -3168  Y 119  Côte calcaire et falaises du Nord
+   P2 : 1460 blocs -> 2064, -2480  Y 102  Friches urbaines (Majicavo, Mamoudzou)
+   P3 : 1122 blocs -> 2064,-2480 (meme que plus haut)
+   P4 : 2936 blocs -> -3008,-3168 (meme que plus haut)
+   P5 : 46 blocs -> -3264, 256  Y 136  Jungle de l'Ouest
+   P6 : 287 blocs -> -1568, 1152  Y 150  Hauts plateaux et pins
+   P7 : 1909 blocs -> -1568,1152 (meme que plus haut)
+   P8 : 3234 blocs -> 2064,-2480 (meme que plus haut)
+   P9 : 1104 blocs -> -2272, 3552  Y 107  Île du volcan
+   P10 : 2437 blocs -> 192, 3488  Y 107  Mangroves du Sud
+   P11 : 985 blocs -> 192,3488 (meme que plus haut)
+   P12 : 2515 blocs -> 2064,-2480 (meme que plus haut)
+   P13 : 1196 blocs -> -2272,3552 (meme que plus haut)
+   P14 : 4479 blocs -> 192,3488 (meme que plus haut)
+   => 12/14 points a moins de 3000 blocs, 6 exemplaires distincts, 2 a Y >= 120
+bunkers:research_bunker (espacement 52 chunks) :
+   P1 : 1763 blocs -> -544, -3008  Y 117  Côte calcaire et falaises du Nord
+   P2 : 1285 blocs -> -544,-3008 (meme que plus haut)
+   P3 : 1947 blocs -> 192, -400  Y 99  Friches urbaines (Majicavo, Mamoudzou)
+   P4 : 1026 blocs -> -1248, 0  Y 127  Hauts plateaux et pins
+   P5 : 779 blocs -> -4016, 32  Y 120  Jungle de l'Ouest
+   P6 : 1439 blocs -> -1248,0 (meme que plus haut)
+   P7 : 1198 blocs -> 48, 2928  Y 181  Hauts plateaux et pins
+   P8 : 941 blocs -> 1136, 1296  Y 91  Marais aux spores
+   P9 : 71 blocs -> -1408, 2848  Y 68  Canyons de latérite rouge
+   P10 : 2119 blocs -> 1136,1296 (meme que plus haut)
+   P11 : 2513 blocs -> -1408,2848 (meme que plus haut)
+   P12 : 4097 blocs -> 1216, -3888  Y 72  Savane sèche (baobabs)
+   P13 : 1738 blocs -> -3008, 2608  Y 140  Canyons de latérite rouge
+   P14 : 4763 blocs -> 1136,1296 (meme que plus haut)
+   => 12/14 points a moins de 3000 blocs, 9 exemplaires distincts, 4 a Y >= 120
+underground_bunkers:underground_bunker (espacement 27 chunks) :
+   P1 : 1580 blocs -> -2960, -5184  Y 71  Côte calcaire et falaises du Nord
+   P2 : 1142 blocs -> -400, -2992  Y 113  Savane sèche (baobabs)
+   P3 : 594 blocs -> 1360, -1664  Y 108  Friches urbaines (Majicavo, Mamoudzou)
+   P4 : 317 blocs -> -848, -1264  Y 64  Plaines agricoles de Coconi
+   P5 : 877 blocs -> -3856, -432  Y 108  Jungle de l'Ouest
+   P6 : 833 blocs -> -2128, 912  Y 92  Jungle de l'Ouest
+   P7 : 768 blocs -> -368, 2208  Y 127  Hauts plateaux et pins
+   P8 : 927 blocs -> 1296, 48  Y 96  Marais aux spores
+   P9 : 982 blocs -> -2144, 3520  Y 108  Île du volcan
+   P10 : 1380 blocs -> 1360, 2176  Y 99  Plaine de cendres
+   P11 : 1332 blocs -> -432, 3520  Y 92  Savane sèche (baobabs)
+   P12 : 665 blocs -> 3456, -1248  Y 98  Petite-Terre, cratère et campus Somaco
+   P13 : 846 blocs -> -3872, 4816  Y 63  en mer
+   P14 : 1240 blocs -> 3504, 3936  Y 89  Plaine de cendres
+   => 14/14 points a moins de 3000 blocs, 14 exemplaires distincts, 1 a Y >= 120
+create_fallout:broadcast_station (espacement 52 chunks) :
+   P1 : 534 blocs -> -1584, -4064  Y 112  Côte calcaire et falaises du Nord
+   P2 : 570 blocs -> 176, -3184  Y 76  Savane sèche (baobabs)
+   P3 : 1295 blocs -> 960, -2288  Y 91  Savane sèche (baobabs)
+   P4 : 750 blocs -> -1568, -1520  Y 66  Plaines agricoles de Coconi
+   P5 : 196 blocs -> -3232, 16  Y 134  Jungle de l'Ouest
+   P6 : 1735 blocs -> -2464, 0  Y 143  Jungle de l'Ouest
+   P7 : 1165 blocs -> -704, 1072  Y 176  Sommet gelé du Bénara (hiver volcanique)
+   P8 : 1834 blocs -> 896, -784  Y 96  Friches urbaines (Majicavo, Mamoudzou)
+   P9 : 196 blocs -> -1424, 2720  Y 85  Canyons de latérite rouge
+   P10 : 331 blocs -> 2528, 2544  Y 123  Plaine de cendres
+   P11 : 1543 blocs -> -688, 3504  Y 82  Savane sèche (baobabs)
+   P12 : 1480 blocs -> 2736, -1632  Y 66  Friches urbaines (Majicavo, Mamoudzou)
+   P13 : 153 blocs -> -3312, 4272  Y 193  Île du volcan
+   P14 : 617 blocs -> 4208, 5184  Y 63  en mer
+   => 14/14 points a moins de 3000 blocs, 14 exemplaires distincts, 5 a Y >= 120
+create_fallout:red_rocket_station (espacement 35 chunks) :
+   P1 : 646 blocs -> -2560, -4304  Y 80  Côte calcaire et falaises du Nord
+   P2 : 115 blocs -> 704, -3200  Y 127  Savane sèche (baobabs)
+   P3 : 727 blocs -> 2464, -944  Y 71  Friches urbaines (Majicavo, Mamoudzou)
+   P4 : 101 blocs -> -1120, -1040  Y 67  Plaines agricoles de Coconi
+   P5 : 1604 blocs -> -2128, -928  Y 66  Plaines agricoles de Coconi
+   P6 : 175 blocs -> -1456, 1248  Y 148  Hauts plateaux et pins
+   P7 : 1786 blocs -> -1104, 576  Y 112  Hauts plateaux et pins
+   P8 : 1359 blocs -> 1360, -496  Y 95  Friches urbaines (Majicavo, Mamoudzou)
+   P9 : 849 blocs -> -1968, 2304  Y 167  Canyons de latérite rouge
+   P10 : 1083 blocs -> 1776, 3632  Y 93  Plaine de cendres
+   P11 : 1894 blocs -> -496, 2832  Y 150  Hauts plateaux et pins
+   P12 : 664 blocs -> 3632, -1440  Y 77  Petite-Terre, cratère et campus Somaco
+   P13 : 1507 blocs -> -3216, 2832  Y 149  Canyons de latérite rouge
+   P14 : 1552 blocs -> 3632, 3376  Y 101  Plaine de cendres
+   => 14/14 points a moins de 3000 blocs, 14 exemplaires distincts, 5 a Y >= 120
+spore:military_camp (espacement 35 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+spore:lab (espacement 35 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+spore:prison (espacement 35 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+spore:hospital (espacement 52 chunks) :
+   P1 : 4255 blocs -> 864, -800  Y 94  Friches urbaines (Majicavo, Mamoudzou)
+   P2 : 2293 blocs -> 864,-800 (meme que plus haut)
+   P3 : 1165 blocs -> 864,-800 (meme que plus haut)
+   P4 : 1901 blocs -> 864,-800 (meme que plus haut)
+   P5 : 4244 blocs -> 864,-800 (meme que plus haut)
+   P6 : 3223 blocs -> 864,-800 (meme que plus haut)
+   P7 : 2620 blocs -> 864,-800 (meme que plus haut)
+   P8 : 1865 blocs -> 864,-800 (meme que plus haut)
+   P9 : 4333 blocs -> 864,-800 (meme que plus haut)
+   P10 : 4042 blocs -> 864,-800 (meme que plus haut)
+   P11 : rien
+   P12 : 1533 blocs -> 2496, -816  Y 67  Friches urbaines (Majicavo, Mamoudzou)
+   P13 : rien
+   P14 : rien
+   => 6/14 points a moins de 3000 blocs, 2 exemplaires distincts, 0 a Y >= 120
+minecraft:village_plains (espacement 45 chunks) :
+   P1 : 1126 blocs -> -1344, -4720  Y 69  Côte calcaire et falaises du Nord
+   P2 : 202 blocs -> 864, -3248  Y 107  Savane sèche (baobabs)
+   P3 : 722 blocs -> 2288, -1968  Y 66  Friches urbaines (Majicavo, Mamoudzou)
+   P4 : 547 blocs -> -1392, -1408  Y 63  Plaines agricoles de Coconi
+   P5 : 2126 blocs -> -1824, -1360  Y 63  Plaines agricoles de Coconi
+   P6 : 2388 blocs -> -352, -688  Y 132  Plaines agricoles de Coconi
+   P7 : 923 blocs -> -672, 1648  Y 172  Hauts plateaux et pins
+   P8 : 844 blocs -> 1104, 1024  Y 73  Marais aux spores
+   P9 : 1444 blocs -> -672,1648 (meme que plus haut)
+   P10 : 1170 blocs -> 1520, 2320  Y 80  Plaine de cendres
+   P11 : 1565 blocs -> 1008, 2896  Y 70  Plaine de cendres
+   P12 : 2037 blocs -> 2288,-1968 (meme que plus haut)
+   P13 : 3674 blocs -> -672,1648 (meme que plus haut)
+   P14 : 1284 blocs -> 3696, 3664  Y 112  Plaine de cendres
+   => 13/14 points a moins de 3000 blocs, 11 exemplaires distincts, 2 a Y >= 120
+minecraft:village_desert (espacement 45 chunks) :
+   P1 : 4131 blocs -> 208, -432  Y 99  Friches urbaines (Majicavo, Mamoudzou)
+   P2 : 2710 blocs -> 208,-432 (meme que plus haut)
+   P3 : 1917 blocs -> 208,-432 (meme que plus haut)
+   P4 : 1359 blocs -> 208,-432 (meme que plus haut)
+   P5 : 2123 blocs -> -2496, 2192  Y 156  Canyons de latérite rouge
+   P6 : 1283 blocs -> -2496,2192 (meme que plus haut)
+   P7 : 1648 blocs -> -1280, 2368  Y 113  Canyons de latérite rouge
+   P8 : 2066 blocs -> 208,-432 (meme que plus haut)
+   P9 : 190 blocs -> -1440, 3088  Y 64  Canyons de latérite rouge
+   P10 : 4051 blocs -> 208,-432 (meme que plus haut)
+   P11 : 2399 blocs -> -1440,3088 (meme que plus haut)
+   P12 : 3847 blocs -> 208,-432 (meme que plus haut)
+   P13 : 1294 blocs -> -3440, 3072  Y 128  Canyons de latérite rouge
+   P14 : rien
+   => 10/14 points a moins de 3000 blocs, 5 exemplaires distincts, 2 a Y >= 120
+minecraft:village_savanna (espacement 45 chunks) :
+   P1 : 1850 blocs -> -3568, -2768  Y 115  Jungle de l'Ouest
+   P2 : 791 blocs -> 0, -3376  Y 64  Savane sèche (baobabs)
+   P3 : 1772 blocs -> 848, -2816  Y 120  Savane sèche (baobabs)
+   P4 : 1833 blocs -> -2672, -1808  Y 65  Jungle de l'Ouest
+   P5 : 1153 blocs -> -4256, -368  Y 96  Jungle de l'Ouest
+   P6 : 1800 blocs -> -2784, 192  Y 132  Jungle de l'Ouest
+   P7 : 1540 blocs -> -480, 3104  Y 116  Hauts plateaux et pins
+   P8 : 3349 blocs -> -480,3104 (meme que plus haut)
+   P9 : 915 blocs -> -480,3104 (meme que plus haut)
+   P10 : 3039 blocs -> -480,3104 (meme que plus haut)
+   P11 : 1253 blocs -> -544, 3824  Y 106  Savane sèche (baobabs)
+   P12 : 3708 blocs -> 848,-2816 (meme que plus haut)
+   P13 : 1990 blocs -> -1200, 4592  Y 114  Savane sèche (baobabs)
+   P14 : rien
+   => 10/14 points a moins de 3000 blocs, 9 exemplaires distincts, 2 a Y >= 120
+minecraft:village_snowy (espacement 45 chunks) :
+   P1 : rien
+   P2 : 4069 blocs -> 208, 944  Y 109  Sommet gelé du Bénara (hiver volcanique)
+   P3 : 2857 blocs -> 208,944 (meme que plus haut)
+   P4 : 2304 blocs -> 208,944 (meme que plus haut)
+   P5 : 3543 blocs -> 208,944 (meme que plus haut)
+   P6 : 1745 blocs -> 208,944 (meme que plus haut)
+   P7 : 803 blocs -> 208,944 (meme que plus haut)
+   P8 : 1705 blocs -> 208,944 (meme que plus haut)
+   P9 : 2523 blocs -> 208,944 (meme que plus haut)
+   P10 : 3035 blocs -> 208,944 (meme que plus haut)
+   P11 : 3473 blocs -> 208,944 (meme que plus haut)
+   P12 : 4243 blocs -> 208,944 (meme que plus haut)
+   P13 : 4791 blocs -> 208,944 (meme que plus haut)
+   P14 : 5684 blocs -> 208,944 (meme que plus haut)
+   => 6/14 points a moins de 3000 blocs, 1 exemplaires distincts, 0 a Y >= 120
+minecraft:village_taiga (espacement 45 chunks) :
+   P1 : 3529 blocs -> 48, -1056  Y 84  Plaines agricoles de Coconi
+   P2 : 2148 blocs -> 48,-1056 (meme que plus haut)
+   P3 : 1857 blocs -> 48,-1056 (meme que plus haut)
+   P4 : 1075 blocs -> 48,-1056 (meme que plus haut)
+   P5 : 1767 blocs -> -2128, 1568  Y 164  Hauts plateaux et pins
+   P6 : 674 blocs -> -2128,1568 (meme que plus haut)
+   P7 : 861 blocs -> -480, 2208  Y 139  Hauts plateaux et pins
+   P8 : 539 blocs -> 2416, 912  Y 65  Marais aux spores
+   P9 : 1137 blocs -> -480,2208 (meme que plus haut)
+   P10 : 1967 blocs -> 2416,912 (meme que plus haut)
+   P11 : 2429 blocs -> -480,2208 (meme que plus haut)
+   P12 : 2428 blocs -> 2416,912 (meme que plus haut)
+   P13 : 2961 blocs -> -2128,1568 (meme que plus haut)
+   P14 : 2023 blocs -> 2496, 4592  Y 84  Mangroves du Sud
+   => 13/14 points a moins de 3000 blocs, 5 exemplaires distincts, 2 a Y >= 120
+repurposed_structures:village_badlands (espacement 25 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : 3810 blocs -> -3152, 2160  Y 150  Canyons de latérite rouge
+   P5 : 1953 blocs -> -3152,2160 (meme que plus haut)
+   P6 : 1020 blocs -> -2288, 2032  Y 144  Canyons de latérite rouge
+   P7 : 1516 blocs -> -1072, 2496  Y 103  Canyons de latérite rouge
+   P8 : 3449 blocs -> -1072,2496 (meme que plus haut)
+   P9 : 590 blocs -> -1888, 3200  Y 67  Canyons de latérite rouge
+   P10 : 3365 blocs -> -784, 3328  Y 66  Canyons de latérite rouge
+   P11 : 1726 blocs -> -784,3328 (meme que plus haut)
+   P12 : rien
+   P13 : 1554 blocs -> -3488, 2816  Y 114  Canyons de latérite rouge
+   P14 : rien
+   => 6/14 points a moins de 3000 blocs, 6 exemplaires distincts, 2 a Y >= 120
+repurposed_structures:village_bamboo (espacement 25 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : 3564 blocs -> -4384, 192  Y 64  Jungle de l'Ouest
+   P5 : 1126 blocs -> -4384,192 (meme que plus haut)
+   P6 : 3163 blocs -> -4384,192 (meme que plus haut)
+   P7 : rien
+   P8 : rien
+   P9 : 4056 blocs -> -4384,192 (meme que plus haut)
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => 1/14 points a moins de 3000 blocs, 1 exemplaires distincts, 0 a Y >= 120
+repurposed_structures:village_birch (espacement 25 chunks) :
+   P1 : 656 blocs -> -2656, -3552  Y 110  Côte calcaire et falaises du Nord
+   P2 : 1474 blocs -> -736, -3072  Y 128  Côte calcaire et falaises du Nord
+   P3 : 3117 blocs -> -736,-3072 (meme que plus haut)
+   P4 : 1403 blocs -> -1408, -2352  Y 132  Côte calcaire et falaises du Nord
+   P5 : 3160 blocs -> -1408,-2352 (meme que plus haut)
+   P6 : 3775 blocs -> -1408,-2352 (meme que plus haut)
+   P7 : rien
+   P8 : 4536 blocs -> -1408,-2352 (meme que plus haut)
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => 3/14 points a moins de 3000 blocs, 3 exemplaires distincts, 2 a Y >= 120
+repurposed_structures:village_cherry (espacement 25 chunks) :
+   P1 : 2614 blocs -> -272, -1984  Y 68  Plaines agricoles de Coconi
+   P2 : 1498 blocs -> -272,-1984 (meme que plus haut)
+   P3 : 2235 blocs -> -272,-1984 (meme que plus haut)
+   P4 : 1238 blocs -> -272,-1984 (meme que plus haut)
+   P5 : 3705 blocs -> -272,-1984 (meme que plus haut)
+   P6 : 3611 blocs -> -272,-1984 (meme que plus haut)
+   P7 : 3766 blocs -> -272,-1984 (meme que plus haut)
+   P8 : 3493 blocs -> -272,-1984 (meme que plus haut)
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => 4/14 points a moins de 3000 blocs, 1 exemplaires distincts, 0 a Y >= 120
+repurposed_structures:village_crimson (espacement 1 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+repurposed_structures:village_dark_forest (espacement 25 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : 3120 blocs -> 1776, 1744  Y 103  Marais aux spores
+   P4 : 3923 blocs -> 1776,1744 (meme que plus haut)
+   P5 : rien
+   P6 : 3071 blocs -> 1376, 2576  Y 69  Plaine de cendres
+   P7 : 1402 blocs -> 1376,2576 (meme que plus haut)
+   P8 : 1002 blocs -> 1776,1744 (meme que plus haut)
+   P9 : 2770 blocs -> 1376,2576 (meme que plus haut)
+   P10 : 315 blocs -> 2576, 2560  Y 123  Plaine de cendres
+   P11 : 1576 blocs -> 1216, 2960  Y 67  Plaine de cendres
+   P12 : 3476 blocs -> 1776,1744 (meme que plus haut)
+   P13 : rien
+   P14 : 2207 blocs -> 3200, 2880  Y 96  Plaine de cendres
+   => 6/14 points a moins de 3000 blocs, 5 exemplaires distincts, 1 a Y >= 120
+repurposed_structures:village_giant_taiga (espacement 25 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+repurposed_structures:village_jungle (espacement 25 chunks) :
+   P1 : 1747 blocs -> -3424, -2752  Y 139  Côte calcaire et falaises du Nord
+   P2 : 1742 blocs -> 2480, -3056  Y 66  Friches urbaines (Majicavo, Mamoudzou)
+   P3 : 1786 blocs -> 2480,-3056 (meme que plus haut)
+   P4 : 1484 blocs -> -2368, -368  Y 126  Jungle de l'Ouest
+   P5 : 791 blocs -> -3872, -288  Y 137  Jungle de l'Ouest
+   P6 : 1317 blocs -> -2320, 416  Y 116  Jungle de l'Ouest
+   P7 : 3362 blocs -> -2368,-368 (meme que plus haut)
+   P8 : 3850 blocs -> 2480,-3056 (meme que plus haut)
+   P9 : 2376 blocs -> -3088, 1264  Y 140  Jungle de l'Ouest
+   P10 : rien
+   P11 : 4481 blocs -> -2304, 960  Y 104  Jungle de l'Ouest
+   P12 : 2648 blocs -> 2480,-3056 (meme que plus haut)
+   P13 : 3075 blocs -> -3088,1264 (meme que plus haut)
+   P14 : rien
+   => 8/14 points a moins de 3000 blocs, 7 exemplaires distincts, 4 a Y >= 120
+repurposed_structures:village_mountains (espacement 25 chunks) :
+   P1 : 3071 blocs -> 560, -2304  Y 145  Savane sèche (baobabs)
+   P2 : 806 blocs -> 560,-2304 (meme que plus haut)
+   P3 : 1613 blocs -> 560,-2304 (meme que plus haut)
+   P4 : 2052 blocs -> 560,-2304 (meme que plus haut)
+   P5 : rien
+   P6 : 4243 blocs -> 560,-2304 (meme que plus haut)
+   P7 : rien
+   P8 : 3336 blocs -> 560,-2304 (meme que plus haut)
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : 3737 blocs -> 560,-2304 (meme que plus haut)
+   P13 : rien
+   P14 : rien
+   => 3/14 points a moins de 3000 blocs, 1 exemplaires distincts, 1 a Y >= 120
+repurposed_structures:village_mushroom (espacement 35 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+repurposed_structures:village_oak (espacement 25 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+repurposed_structures:village_ocean (espacement 25 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : 3595 blocs -> 4432, -3904  Y 63  en mer
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : 4708 blocs -> 4512, -3168  Y 63  en mer
+   P9 : rien
+   P10 : 4424 blocs -> 5632, 6048  Y 63  en mer
+   P11 : rien
+   P12 : 2314 blocs -> 4512,-3168 (meme que plus haut)
+   P13 : rien
+   P14 : 1788 blocs -> 5632,6048 (meme que plus haut)
+   => 2/14 points a moins de 3000 blocs, 3 exemplaires distincts, 0 a Y >= 120
+repurposed_structures:village_swamp (espacement 25 chunks) :
+   P1 : rien
+   P2 : 3008 blocs -> 1600, -208  Y 68  Marais aux spores
+   P3 : 1199 blocs -> 1600,-208 (meme que plus haut)
+   P4 : 2200 blocs -> 880, 96  Y 67  Marais aux spores
+   P5 : rien
+   P6 : 2698 blocs -> 880,96 (meme que plus haut)
+   P7 : 1122 blocs -> 960, 880  Y 71  Marais aux spores
+   P8 : 416 blocs -> 1600, 464  Y 66  Marais aux spores
+   P9 : 2187 blocs -> 80, 4544  Y 65  Mangroves du Sud
+   P10 : 1504 blocs -> 1696, 4112  Y 66  Mangroves du Sud
+   P11 : 511 blocs -> 80,4544 (meme que plus haut)
+   P12 : 2104 blocs -> 2416, 448  Y 67  Marais aux spores
+   P13 : 2538 blocs -> -688, 4848  Y 64  Mangroves du Sud
+   P14 : 2089 blocs -> 2448, 4928  Y 64  Mangroves du Sud
+   => 11/14 points a moins de 3000 blocs, 9 exemplaires distincts, 0 a Y >= 120
+repurposed_structures:village_warped (espacement 1 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+towns_and_towers:exclusives/village_classic (espacement 56 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+towns_and_towers:exclusives/village_iberian (espacement 56 chunks) :
+   P1 : 2547 blocs -> 320, -3024  Y 81  Savane sèche (baobabs)
+   P2 : 423 blocs -> 320,-3024 (meme que plus haut)
+   P3 : 2269 blocs -> 320,-3024 (meme que plus haut)
+   P4 : 2429 blocs -> 320,-3024 (meme que plus haut)
+   P5 : 4823 blocs -> 320,-3024 (meme que plus haut)
+   P6 : 4083 blocs -> 48, -2368  Y 82  Savane sèche (baobabs)
+   P7 : 4119 blocs -> 48,-2368 (meme que plus haut)
+   P8 : 3628 blocs -> 48,-2368 (meme que plus haut)
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : 4269 blocs -> 320,-3024 (meme que plus haut)
+   P13 : rien
+   P14 : rien
+   => 4/14 points a moins de 3000 blocs, 2 exemplaires distincts, 0 a Y >= 120
+towns_and_towers:exclusives/village_mediterranean (espacement 56 chunks) :
+   P1 : 1924 blocs -> -880, -2368  Y 65  Savane sèche (baobabs)
+   P2 : 1772 blocs -> -880,-2368 (meme que plus haut)
+   P3 : 1207 blocs -> 1072, -2272  Y 95  Savane sèche (baobabs)
+   P4 : 1374 blocs -> -880,-2368 (meme que plus haut)
+   P5 : 3507 blocs -> -880,-2368 (meme que plus haut)
+   P6 : 3836 blocs -> -880,-2368 (meme que plus haut)
+   P7 : 4265 blocs -> -880,-2368 (meme que plus haut)
+   P8 : 2950 blocs -> 4144, -1168  Y 139  Petite-Terre, cratère et campus Somaco
+   P9 : rien
+   P10 : 3916 blocs -> 4176, -688  Y 72  Petite-Terre, cratère et campus Somaco
+   P11 : 6235 blocs -> 4176,-688 (meme que plus haut)
+   P12 : 287 blocs -> 4144,-1168 (meme que plus haut)
+   P13 : rien
+   P14 : rien
+   => 6/14 points a moins de 3000 blocs, 4 exemplaires distincts, 1 a Y >= 120
+towns_and_towers:exclusives/village_nilotic (espacement 1 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+towns_and_towers:exclusives/village_rustic (espacement 56 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+towns_and_towers:exclusives/village_swedish (espacement 56 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+towns_and_towers:exclusives/village_tudor (espacement 56 chunks) :
+   P1 : rien
+   P2 : 5607 blocs -> -2384, 1568  Y 148  Hauts plateaux et pins
+   P3 : 5179 blocs -> -2384,1568 (meme que plus haut)
+   P4 : 2907 blocs -> -2384,1568 (meme que plus haut)
+   P5 : 1615 blocs -> -2384,1568 (meme que plus haut)
+   P6 : 926 blocs -> -2384,1568 (meme que plus haut)
+   P7 : 2636 blocs -> -2384,1568 (meme que plus haut)
+   P8 : 4363 blocs -> -2384,1568 (meme que plus haut)
+   P9 : 1680 blocs -> -2384,1568 (meme que plus haut)
+   P10 : 5104 blocs -> -2384,1568 (meme que plus haut)
+   P11 : 4091 blocs -> -2384,1568 (meme que plus haut)
+   P12 : rien
+   P13 : 2880 blocs -> -2384,1568 (meme que plus haut)
+   P14 : rien
+   => 6/14 points a moins de 3000 blocs, 1 exemplaires distincts, 1 a Y >= 120
+towns_and_towers:exclusives/village_wandering_trader_camp (espacement 56 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+towns_and_towers:village_badlands (espacement 56 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : 3891 blocs -> -2944, 2384  Y 159  Canyons de latérite rouge
+   P5 : 2197 blocs -> -2944,2384 (meme que plus haut)
+   P6 : 1760 blocs -> -2944,2384 (meme que plus haut)
+   P7 : 2540 blocs -> -1120, 3888  Y 80  Canyons de latérite rouge
+   P8 : 4357 blocs -> -1120,3888 (meme que plus haut)
+   P9 : 1010 blocs -> -1120,3888 (meme que plus haut)
+   P10 : 3808 blocs -> -1120,3888 (meme que plus haut)
+   P11 : 1765 blocs -> -1120,3888 (meme que plus haut)
+   P12 : rien
+   P13 : 1967 blocs -> -2944,2384 (meme que plus haut)
+   P14 : rien
+   => 6/14 points a moins de 3000 blocs, 2 exemplaires distincts, 1 a Y >= 120
+towns_and_towers:village_beach (espacement 56 chunks) :
+   P1 : 2785 blocs -> -4720, -2976  Y 63  Jungle de l'Ouest
+   P2 : rien
+   P3 : rien
+   P4 : 4188 blocs -> -4720,-2976 (meme que plus haut)
+   P5 : 3505 blocs -> -4720,-2976 (meme que plus haut)
+   P6 : 5469 blocs -> -4720,-2976 (meme que plus haut)
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => 1/14 points a moins de 3000 blocs, 1 exemplaires distincts, 0 a Y >= 120
+towns_and_towers:village_birch_forest (espacement 56 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+towns_and_towers:village_flower_forest (espacement 56 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+towns_and_towers:village_forest (espacement 56 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+towns_and_towers:village_snowy_slopes (espacement 56 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+towns_and_towers:village_jungle (espacement 56 chunks) :
+   P1 : 2341 blocs -> -3808, -2288  Y 128  Jungle de l'Ouest
+   P2 : 4616 blocs -> -3808,-2288 (meme que plus haut)
+   P3 : rien
+   P4 : 3065 blocs -> -3808,-2288 (meme que plus haut)
+   P5 : 1204 blocs -> -4400, 592  Y 64  Jungle de l'Ouest
+   P6 : 1771 blocs -> -3184, 976  Y 137  Jungle de l'Ouest
+   P7 : 3515 blocs -> -3184,976 (meme que plus haut)
+   P8 : rien
+   P9 : 2649 blocs -> -3184,976 (meme que plus haut)
+   P10 : rien
+   P11 : 5080 blocs -> -3184,976 (meme que plus haut)
+   P12 : rien
+   P13 : 3362 blocs -> -3184,976 (meme que plus haut)
+   P14 : rien
+   => 4/14 points a moins de 3000 blocs, 3 exemplaires distincts, 2 a Y >= 120
+towns_and_towers:village_grove (espacement 56 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+towns_and_towers:village_meadow (espacement 56 chunks) :
+   P1 : 2732 blocs -> -1504, -1200  Y 76  Plaines agricoles de Coconi
+   P2 : 2932 blocs -> -1504,-1200 (meme que plus haut)
+   P3 : 3386 blocs -> -1504,-1200 (meme que plus haut)
+   P4 : 517 blocs -> -1504,-1200 (meme que plus haut)
+   P5 : 2250 blocs -> -1504,-1200 (meme que plus haut)
+   P6 : 2622 blocs -> -1504,-1200 (meme que plus haut)
+   P7 : 3427 blocs -> -1504,-1200 (meme que plus haut)
+   P8 : 3925 blocs -> -1504,-1200 (meme que plus haut)
+   P9 : 4112 blocs -> -1504,-1200 (meme que plus haut)
+   P10 : 5747 blocs -> -1504,-1200 (meme que plus haut)
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => 5/14 points a moins de 3000 blocs, 1 exemplaires distincts, 0 a Y >= 120
+towns_and_towers:village_mushroom_fields (espacement 56 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+towns_and_towers:village_ocean (espacement 56 chunks) :
+   P1 : 4332 blocs -> -464, -7888  Y 63  en mer
+   P2 : 2940 blocs -> 2752, -5232  Y 63  en mer
+   P3 : 3956 blocs -> 2752,-5232 (meme que plus haut)
+   P4 : 5672 blocs -> 2752,-5232 (meme que plus haut)
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : 5677 blocs -> 6464, 4128  Y 63  en mer
+   P9 : rien
+   P10 : 4562 blocs -> 4672, 6912  Y 63  en mer
+   P11 : 4811 blocs -> 4672,6912 (meme que plus haut)
+   P12 : 4510 blocs -> 2752,-5232 (meme que plus haut)
+   P13 : rien
+   P14 : 2267 blocs -> 4672,6912 (meme que plus haut)
+   => 2/14 points a moins de 3000 blocs, 4 exemplaires distincts, 0 a Y >= 120
+towns_and_towers:village_old_growth_taiga (espacement 56 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+towns_and_towers:village_savanna_plateau (espacement 56 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : 5711 blocs -> -2608, 2160  Y 155  Canyons de latérite rouge
+   P4 : 3536 blocs -> -2608,2160 (meme que plus haut)
+   P5 : 2055 blocs -> -2608,2160 (meme que plus haut)
+   P6 : 1356 blocs -> -2608,2160 (meme que plus haut)
+   P7 : 2884 blocs -> -2608,2160 (meme que plus haut)
+   P8 : 4110 blocs -> -880, 3776  Y 76  Savane sèche (baobabs)
+   P9 : 1444 blocs -> -2608,2160 (meme que plus haut)
+   P10 : 3547 blocs -> -880,3776 (meme que plus haut)
+   P11 : 1578 blocs -> -880,3776 (meme que plus haut)
+   P12 : rien
+   P13 : 1526 blocs -> -3568, 2864  Y 108  Canyons de latérite rouge
+   P14 : rien
+   => 6/14 points a moins de 3000 blocs, 3 exemplaires distincts, 1 a Y >= 120
+towns_and_towers:village_sparse_jungle (espacement 56 chunks) :
+   P1 : 3975 blocs -> -2528, 80  Y 139  Jungle de l'Ouest
+   P2 : 2064 blocs -> 2800, -2992  Y 68  Friches urbaines (Majicavo, Mamoudzou)
+   P3 : 1862 blocs -> 2800,-2992 (meme que plus haut)
+   P4 : 1851 blocs -> -2528,80 (meme que plus haut)
+   P5 : 741 blocs -> -2528,80 (meme que plus haut)
+   P6 : 1709 blocs -> -2528,80 (meme que plus haut)
+   P7 : 3236 blocs -> -2528,80 (meme que plus haut)
+   P8 : 3848 blocs -> 2800,-2992 (meme que plus haut)
+   P9 : 3056 blocs -> -2528,80 (meme que plus haut)
+   P10 : 2018 blocs -> 3152, 4800  Y 66  Îlot de la ICE
+   P11 : 2613 blocs -> 3152,4800 (meme que plus haut)
+   P12 : 2420 blocs -> 2800,-2992 (meme que plus haut)
+   P13 : 4307 blocs -> -2528,80 (meme que plus haut)
+   P14 : 558 blocs -> 5040, 4848  Y 64  Îlot de la ICE
+   => 9/14 points a moins de 3000 blocs, 4 exemplaires distincts, 1 a Y >= 120
+towns_and_towers:village_sunflower_plains (espacement 56 chunks) :
+   P1 : 3018 blocs -> -480, -1312  Y 70  Plaines agricoles de Coconi
+   P2 : 2155 blocs -> -480,-1312 (meme que plus haut)
+   P3 : 2359 blocs -> -480,-1312 (meme que plus haut)
+   P4 : 628 blocs -> -480,-1312 (meme que plus haut)
+   P5 : 1669 blocs -> -1600, 16  Y 107  Plaines agricoles de Coconi
+   P6 : 1412 blocs -> -1600,16 (meme que plus haut)
+   P7 : 2530 blocs -> -1600,16 (meme que plus haut)
+   P8 : 3151 blocs -> -480,-1312 (meme que plus haut)
+   P9 : 2903 blocs -> -1600,16 (meme que plus haut)
+   P10 : 5039 blocs -> -1600,16 (meme que plus haut)
+   P11 : 4890 blocs -> -1600,16 (meme que plus haut)
+   P12 : 4524 blocs -> -480,-1312 (meme que plus haut)
+   P13 : 4600 blocs -> -1600,16 (meme que plus haut)
+   P14 : rien
+   => 7/14 points a moins de 3000 blocs, 2 exemplaires distincts, 0 a Y >= 120
+towns_and_towers:village_snowy_taiga (espacement 56 chunks) :
+   P1 : 4756 blocs -> -672, 672  Y 200  Sommet gelé du Bénara (hiver volcanique)
+   P2 : 4018 blocs -> -672,672 (meme que plus haut)
+   P3 : 3269 blocs -> -672,672 (meme que plus haut)
+   P4 : 1711 blocs -> -672,672 (meme que plus haut)
+   P5 : 2627 blocs -> -672,672 (meme que plus haut)
+   P6 : 1095 blocs -> -672,672 (meme que plus haut)
+   P7 : 380 blocs -> 0, 1456  Y 185  Sommet gelé du Bénara (hiver volcanique)
+   P8 : 2029 blocs -> 0,1456 (meme que plus haut)
+   P9 : 1943 blocs -> -848, 1040  Y 151  Sommet gelé du Bénara (hiver volcanique)
+   P10 : 2918 blocs -> 0,1456 (meme que plus haut)
+   P11 : 3645 blocs -> -848,1040 (meme que plus haut)
+   P12 : 4668 blocs -> 0,1456 (meme que plus haut)
+   P13 : 4036 blocs -> -848,1040 (meme que plus haut)
+   P14 : 5533 blocs -> 0,1456 (meme que plus haut)
+   => 7/14 points a moins de 3000 blocs, 3 exemplaires distincts, 3 a Y >= 120
+towns_and_towers:village_swamp (espacement 56 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : 5338 blocs -> 384, 4112  Y 66  Mangroves du Sud
+   P6 : 3267 blocs -> 384,4112 (meme que plus haut)
+   P7 : 2370 blocs -> 384,4112 (meme que plus haut)
+   P8 : 3689 blocs -> 384,4112 (meme que plus haut)
+   P9 : 2130 blocs -> 384,4112 (meme que plus haut)
+   P10 : 2495 blocs -> 384,4112 (meme que plus haut)
+   P11 : 341 blocs -> 384,4112 (meme que plus haut)
+   P12 : rien
+   P13 : 3565 blocs -> 384,4112 (meme que plus haut)
+   P14 : 4169 blocs -> 384,4112 (meme que plus haut)
+   => 4/14 points a moins de 3000 blocs, 1 exemplaires distincts, 0 a Y >= 120
+towns_and_towers:village_wooded_badlands (espacement 56 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : 5277 blocs -> -1392, 2768  Y 74  Canyons de latérite rouge
+   P4 : 3788 blocs -> -1392,2768 (meme que plus haut)
+   P5 : 3166 blocs -> -1392,2768 (meme que plus haut)
+   P6 : 1348 blocs -> -1392,2768 (meme que plus haut)
+   P7 : 1931 blocs -> -1392,2768 (meme que plus haut)
+   P8 : 3863 blocs -> -1392,2768 (meme que plus haut)
+   P9 : 143 blocs -> -1392,2768 (meme que plus haut)
+   P10 : 3943 blocs -> -1392,2768 (meme que plus haut)
+   P11 : 2551 blocs -> -1392,2768 (meme que plus haut)
+   P12 : rien
+   P13 : 2375 blocs -> -1392,2768 (meme que plus haut)
+   P14 : rien
+   => 5/14 points a moins de 3000 blocs, 1 exemplaires distincts, 0 a Y >= 120
+cinchsabandonedhouses:abandoned_house (espacement 38 chunks) :
+   P1 : 2411 blocs -> -1616, -1504  Y 68  Plaines agricoles de Coconi
+   P2 : 2252 blocs -> -1056, -1728  Y 68  Plaines agricoles de Coconi
+   P3 : 664 blocs -> 1376, -1808  Y 99  Friches urbaines (Majicavo, Mamoudzou)
+   P4 : 775 blocs -> -1616,-1504 (meme que plus haut)
+   P5 : 2374 blocs -> -1616,-1504 (meme que plus haut)
+   P6 : 2238 blocs -> -528, -608  Y 111  Plaines agricoles de Coconi
+   P7 : 1652 blocs -> 336, 96  Y 65  Friches urbaines (Majicavo, Mamoudzou)
+   P8 : 1438 blocs -> 1440, 2112  Y 103  Plaine de cendres
+   P9 : 3293 blocs -> 336,96 (meme que plus haut)
+   P10 : 380 blocs -> 2512, 2496  Y 121  Plaine de cendres
+   P11 : 1423 blocs -> 1408, 3248  Y 69  Plaine de cendres
+   P12 : 1550 blocs -> 2480, -1024  Y 69  Friches urbaines (Majicavo, Mamoudzou)
+   P13 : rien
+   P14 : 1192 blocs -> 3744, 3744  Y 88  Plaine de cendres
+   => 12/14 points a moins de 3000 blocs, 10 exemplaires distincts, 1 a Y >= 120
+cinchsabandonedhouses:abandoned_birch_forest_house (espacement 38 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+cinchsabandonedhouses:abandoned_taiga_house (espacement 38 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+postapocalypse_structures:yellowhouse (espacement 144 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+postapocalypse_structures:redhouse (espacement 165 chunks) :
+   P1 : 2703 blocs -> -1424, -1248  Y 70  Plaines agricoles de Coconi
+   P2 : 2840 blocs -> -1424,-1248 (meme que plus haut)
+   P3 : 3304 blocs -> -1424,-1248 (meme que plus haut)
+   P4 : 468 blocs -> -1424,-1248 (meme que plus haut)
+   P5 : 2343 blocs -> -1424,-1248 (meme que plus haut)
+   P6 : 2670 blocs -> -1424,-1248 (meme que plus haut)
+   P7 : 3428 blocs -> -1424,-1248 (meme que plus haut)
+   P8 : 3880 blocs -> -1424,-1248 (meme que plus haut)
+   P9 : 4158 blocs -> -1424,-1248 (meme que plus haut)
+   P10 : 5726 blocs -> -1424,-1248 (meme que plus haut)
+   P11 : 5988 blocs -> -1424,-1248 (meme que plus haut)
+   P12 : 5461 blocs -> -1424,-1248 (meme que plus haut)
+   P13 : 5854 blocs -> -1424,-1248 (meme que plus haut)
+   P14 : 8372 blocs -> -1424,-1248 (meme que plus haut)
+   => 5/14 points a moins de 3000 blocs, 1 exemplaires distincts, 0 a Y >= 120
+postapocalypse_structures:abandoned_brick_house (espacement 66 chunks) :
+   P1 : 2561 blocs -> 464, -4144  Y 112  Savane sèche (baobabs)
+   P2 : 695 blocs -> 48, -3008  Y 99  Savane sèche (baobabs)
+   P3 : 2453 blocs -> 48,-3008 (meme que plus haut)
+   P4 : 1376 blocs -> 288, -592  Y 112  Friches urbaines (Majicavo, Mamoudzou)
+   P5 : 5728 blocs -> 464,-4144 (meme que plus haut)
+   P6 : 2673 blocs -> 288,-592 (meme que plus haut)
+   P7 : 2338 blocs -> 288,-592 (meme que plus haut)
+   P8 : 2099 blocs -> 288,-592 (meme que plus haut)
+   P9 : 3876 blocs -> 288,-592 (meme que plus haut)
+   P10 : 4139 blocs -> 288,-592 (meme que plus haut)
+   P11 : rien
+   P12 : 3073 blocs -> 1632, -2832  Y 71  Savane sèche (baobabs)
+   P13 : rien
+   P14 : rien
+   => 7/14 points a moins de 3000 blocs, 4 exemplaires distincts, 0 a Y >= 120
+postapocalypse_structures:red_mansion (espacement 154 chunks) :
+   P1 : rien
+   P2 : rien
+   P3 : rien
+   P4 : rien
+   P5 : rien
+   P6 : rien
+   P7 : rien
+   P8 : rien
+   P9 : rien
+   P10 : rien
+   P11 : rien
+   P12 : rien
+   P13 : rien
+   P14 : rien
+   => INTROUVABLE a moins de 3000 blocs de tous les points
+structory:old_manor (espacement 46 chunks) :
+   P1 : rien
+   P2 : 5013 blocs -> -1984, 1120  Y 72  Hauts plateaux et pins
+   P3 : 4597 blocs -> -1984,1120 (meme que plus haut)
+   P4 : 2328 blocs -> -1984,1120 (meme que plus haut)
+   P5 : 1566 blocs -> -1984,1120 (meme que plus haut)
+   P6 : 596 blocs -> -1984,1120 (meme que plus haut)
+   P7 : 2316 blocs -> -1984,1120 (meme que plus haut)
+   P8 : 3904 blocs -> -1984,1120 (meme que plus haut)
+   P9 : 1891 blocs -> -1984,1120 (meme que plus haut)
+   P10 : 4861 blocs -> -1984,1120 (meme que plus haut)
+   P11 : 4156 blocs -> -1984,1120 (meme que plus haut)
+   P12 : rien
+   P13 : 3431 blocs -> -1984,1120 (meme que plus haut)
+   P14 : rien
+   => 5/14 points a moins de 3000 blocs, 1 exemplaires distincts, 0 a Y >= 120
+
+RESUME
+#atheria:tours  structory:firetower : 12/14 points a moins de 3000 blocs, 7 exemplaires distincts, 2 a Y >= 120
+#atheria:tours  structory_towers:small_firetower : INTROUVABLE a moins de 3000 blocs de tous les points
+#atheria:tours  structory_towers:lighthouse : 3/14 points a moins de 3000 blocs, 2 exemplaires distincts, 0 a Y >= 120
+#atheria:tours  structory_towers:engineer_tower : 4/14 points a moins de 3000 blocs, 3 exemplaires distincts, 0 a Y >= 120
+#atheria:tours  structory_towers:taiga_outpost : 10/14 points a moins de 3000 blocs, 4 exemplaires distincts, 1 a Y >= 120
+#atheria:tours  structory_towers:quarter_outpost : 5/14 points a moins de 3000 blocs, 5 exemplaires distincts, 2 a Y >= 120
+#atheria:tours  explorify:watchtower/plains : 13/14 points a moins de 3000 blocs, 7 exemplaires distincts, 1 a Y >= 120
+#atheria:tours  explorify:watchtower/savanna : 10/14 points a moins de 3000 blocs, 10 exemplaires distincts, 3 a Y >= 120
+#atheria:tours  explorify:watchtower/taiga : 10/14 points a moins de 3000 blocs, 6 exemplaires distincts, 2 a Y >= 120
+#atheria:mines  bettermineshafts:mineshaft_desert : INTROUVABLE a moins de 3000 blocs de tous les points
+#atheria:mines  bettermineshafts:mineshaft_dripstone : 12/14 points a moins de 3000 blocs, 10 exemplaires distincts, 2 a Y >= 120
+#atheria:mines  bettermineshafts:mineshaft_ice : INTROUVABLE a moins de 3000 blocs de tous les points
+#atheria:mines  bettermineshafts:mineshaft_jungle : 10/14 points a moins de 3000 blocs, 8 exemplaires distincts, 1 a Y >= 120
+#atheria:mines  bettermineshafts:mineshaft_lush : 13/14 points a moins de 3000 blocs, 13 exemplaires distincts, 1 a Y >= 120
+#atheria:mines  bettermineshafts:mineshaft_mesa : 6/14 points a moins de 3000 blocs, 3 exemplaires distincts, 0 a Y >= 120
+#atheria:mines  bettermineshafts:mineshaft_mushroom : INTROUVABLE a moins de 3000 blocs de tous les points
+#atheria:mines  bettermineshafts:mineshaft_oak : 9/14 points a moins de 3000 blocs, 7 exemplaires distincts, 1 a Y >= 120
+#atheria:mines  bettermineshafts:mineshaft_overgrown : 7/14 points a moins de 3000 blocs, 6 exemplaires distincts, 0 a Y >= 120
+#atheria:mines  bettermineshafts:mineshaft_red_desert : 6/14 points a moins de 3000 blocs, 5 exemplaires distincts, 3 a Y >= 120
+#atheria:mines  bettermineshafts:mineshaft_spruce : 14/14 points a moins de 3000 blocs, 8 exemplaires distincts, 2 a Y >= 120
+#atheria:mines  bettermineshafts:mineshaft_spruce_snowy : 2/14 points a moins de 3000 blocs, 2 exemplaires distincts, 1 a Y >= 120
+#atheria:mines  minecraft:mineshaft : INTROUVABLE a moins de 3000 blocs de tous les points
+#atheria:bunkers  bunkers:military_bunker : 13/14 points a moins de 3000 blocs, 11 exemplaires distincts, 3 a Y >= 120
+#atheria:bunkers  bunkers:nuclear_facility : 12/14 points a moins de 3000 blocs, 6 exemplaires distincts, 2 a Y >= 120
+#atheria:bunkers  bunkers:research_bunker : 12/14 points a moins de 3000 blocs, 9 exemplaires distincts, 4 a Y >= 120
+#atheria:bunkers  underground_bunkers:underground_bunker : 14/14 points a moins de 3000 blocs, 14 exemplaires distincts, 1 a Y >= 120
+create_fallout:broadcast_station  create_fallout:broadcast_station : 14/14 points a moins de 3000 blocs, 14 exemplaires distincts, 5 a Y >= 120
+create_fallout:red_rocket_station  create_fallout:red_rocket_station : 14/14 points a moins de 3000 blocs, 14 exemplaires distincts, 5 a Y >= 120
+spore:military_camp  spore:military_camp : INTROUVABLE a moins de 3000 blocs de tous les points
+spore:lab  spore:lab : INTROUVABLE a moins de 3000 blocs de tous les points
+#atheria:donjons  spore:prison : INTROUVABLE a moins de 3000 blocs de tous les points
+#atheria:donjons  spore:hospital : 6/14 points a moins de 3000 blocs, 2 exemplaires distincts, 0 a Y >= 120
+#minecraft:village  minecraft:village_plains : 13/14 points a moins de 3000 blocs, 11 exemplaires distincts, 2 a Y >= 120
+#minecraft:village  minecraft:village_desert : 10/14 points a moins de 3000 blocs, 5 exemplaires distincts, 2 a Y >= 120
+#minecraft:village  minecraft:village_savanna : 10/14 points a moins de 3000 blocs, 9 exemplaires distincts, 2 a Y >= 120
+#minecraft:village  minecraft:village_snowy : 6/14 points a moins de 3000 blocs, 1 exemplaires distincts, 0 a Y >= 120
+#minecraft:village  minecraft:village_taiga : 13/14 points a moins de 3000 blocs, 5 exemplaires distincts, 2 a Y >= 120
+#minecraft:village  repurposed_structures:village_badlands : 6/14 points a moins de 3000 blocs, 6 exemplaires distincts, 2 a Y >= 120
+#minecraft:village  repurposed_structures:village_bamboo : 1/14 points a moins de 3000 blocs, 1 exemplaires distincts, 0 a Y >= 120
+#minecraft:village  repurposed_structures:village_birch : 3/14 points a moins de 3000 blocs, 3 exemplaires distincts, 2 a Y >= 120
+#minecraft:village  repurposed_structures:village_cherry : 4/14 points a moins de 3000 blocs, 1 exemplaires distincts, 0 a Y >= 120
+#minecraft:village  repurposed_structures:village_crimson : INTROUVABLE a moins de 3000 blocs de tous les points
+#minecraft:village  repurposed_structures:village_dark_forest : 6/14 points a moins de 3000 blocs, 5 exemplaires distincts, 1 a Y >= 120
+#minecraft:village  repurposed_structures:village_giant_taiga : INTROUVABLE a moins de 3000 blocs de tous les points
+#minecraft:village  repurposed_structures:village_jungle : 8/14 points a moins de 3000 blocs, 7 exemplaires distincts, 4 a Y >= 120
+#minecraft:village  repurposed_structures:village_mountains : 3/14 points a moins de 3000 blocs, 1 exemplaires distincts, 1 a Y >= 120
+#minecraft:village  repurposed_structures:village_mushroom : INTROUVABLE a moins de 3000 blocs de tous les points
+#minecraft:village  repurposed_structures:village_oak : INTROUVABLE a moins de 3000 blocs de tous les points
+#minecraft:village  repurposed_structures:village_ocean : 2/14 points a moins de 3000 blocs, 3 exemplaires distincts, 0 a Y >= 120
+#minecraft:village  repurposed_structures:village_swamp : 11/14 points a moins de 3000 blocs, 9 exemplaires distincts, 0 a Y >= 120
+#minecraft:village  repurposed_structures:village_warped : INTROUVABLE a moins de 3000 blocs de tous les points
+#minecraft:village  towns_and_towers:exclusives/village_classic : INTROUVABLE a moins de 3000 blocs de tous les points
+#minecraft:village  towns_and_towers:exclusives/village_iberian : 4/14 points a moins de 3000 blocs, 2 exemplaires distincts, 0 a Y >= 120
+#minecraft:village  towns_and_towers:exclusives/village_mediterranean : 6/14 points a moins de 3000 blocs, 4 exemplaires distincts, 1 a Y >= 120
+#minecraft:village  towns_and_towers:exclusives/village_nilotic : INTROUVABLE a moins de 3000 blocs de tous les points
+#minecraft:village  towns_and_towers:exclusives/village_rustic : INTROUVABLE a moins de 3000 blocs de tous les points
+#minecraft:village  towns_and_towers:exclusives/village_swedish : INTROUVABLE a moins de 3000 blocs de tous les points
+#minecraft:village  towns_and_towers:exclusives/village_tudor : 6/14 points a moins de 3000 blocs, 1 exemplaires distincts, 1 a Y >= 120
+#minecraft:village  towns_and_towers:exclusives/village_wandering_trader_camp : INTROUVABLE a moins de 3000 blocs de tous les points
+#minecraft:village  towns_and_towers:village_badlands : 6/14 points a moins de 3000 blocs, 2 exemplaires distincts, 1 a Y >= 120
+#minecraft:village  towns_and_towers:village_beach : 1/14 points a moins de 3000 blocs, 1 exemplaires distincts, 0 a Y >= 120
+#minecraft:village  towns_and_towers:village_birch_forest : INTROUVABLE a moins de 3000 blocs de tous les points
+#minecraft:village  towns_and_towers:village_flower_forest : INTROUVABLE a moins de 3000 blocs de tous les points
+#minecraft:village  towns_and_towers:village_forest : INTROUVABLE a moins de 3000 blocs de tous les points
+#minecraft:village  towns_and_towers:village_snowy_slopes : INTROUVABLE a moins de 3000 blocs de tous les points
+#minecraft:village  towns_and_towers:village_jungle : 4/14 points a moins de 3000 blocs, 3 exemplaires distincts, 2 a Y >= 120
+#minecraft:village  towns_and_towers:village_grove : INTROUVABLE a moins de 3000 blocs de tous les points
+#minecraft:village  towns_and_towers:village_meadow : 5/14 points a moins de 3000 blocs, 1 exemplaires distincts, 0 a Y >= 120
+#minecraft:village  towns_and_towers:village_mushroom_fields : INTROUVABLE a moins de 3000 blocs de tous les points
+#minecraft:village  towns_and_towers:village_ocean : 2/14 points a moins de 3000 blocs, 4 exemplaires distincts, 0 a Y >= 120
+#minecraft:village  towns_and_towers:village_old_growth_taiga : INTROUVABLE a moins de 3000 blocs de tous les points
+#minecraft:village  towns_and_towers:village_savanna_plateau : 6/14 points a moins de 3000 blocs, 3 exemplaires distincts, 1 a Y >= 120
+#minecraft:village  towns_and_towers:village_sparse_jungle : 9/14 points a moins de 3000 blocs, 4 exemplaires distincts, 1 a Y >= 120
+#minecraft:village  towns_and_towers:village_sunflower_plains : 7/14 points a moins de 3000 blocs, 2 exemplaires distincts, 0 a Y >= 120
+#minecraft:village  towns_and_towers:village_snowy_taiga : 7/14 points a moins de 3000 blocs, 3 exemplaires distincts, 3 a Y >= 120
+#minecraft:village  towns_and_towers:village_swamp : 4/14 points a moins de 3000 blocs, 1 exemplaires distincts, 0 a Y >= 120
+#minecraft:village  towns_and_towers:village_wooded_badlands : 5/14 points a moins de 3000 blocs, 1 exemplaires distincts, 0 a Y >= 120
+cinchsabandonedhouses:abandoned_house  cinchsabandonedhouses:abandoned_house : 12/14 points a moins de 3000 blocs, 10 exemplaires distincts, 1 a Y >= 120
+cinchsabandonedhouses:abandoned_birch_forest_house  cinchsabandonedhouses:abandoned_birch_forest_house : INTROUVABLE a moins de 3000 blocs de tous les points
+cinchsabandonedhouses:abandoned_taiga_house  cinchsabandonedhouses:abandoned_taiga_house : INTROUVABLE a moins de 3000 blocs de tous les points
+#atheria:maisons  postapocalypse_structures:yellowhouse : INTROUVABLE a moins de 3000 blocs de tous les points
+#atheria:maisons  postapocalypse_structures:redhouse : 5/14 points a moins de 3000 blocs, 1 exemplaires distincts, 0 a Y >= 120
+#atheria:maisons  postapocalypse_structures:abandoned_brick_house : 7/14 points a moins de 3000 blocs, 4 exemplaires distincts, 0 a Y >= 120
+#atheria:manoirs  postapocalypse_structures:red_mansion : INTROUVABLE a moins de 3000 blocs de tous les points
+#atheria:manoirs  structory:old_manor : 5/14 points a moins de 3000 blocs, 1 exemplaires distincts, 0 a Y >= 120
+duree 925 s

@@ -1,0 +1,44 @@
+﻿1. Lieux sculptes : score cubique en jeu (+-64, prevu < 8) et fidelite au relief sculpte (colonnes masque >= 99 %)
+  phare score en jeu 1.3 (prevu 6.0, avant 34.6) plats 0.3 % marches droites 12.8 % ; relief : 15360 colonnes, ecart median +0.0, a 1,5 bloc pres 97 % -> OK
+  z002  score en jeu 6.1 (prevu 7.4, avant 30.7) plats 10.1 % marches droites 0.0 % ; relief : 16384 colonnes, ecart median +0.1, a 1,5 bloc pres 87 % -> OK
+  hum   score en jeu 4.4 (prevu 7.6, avant 25.0) plats 5.1 % marches droites 0.0 % ; relief : 16900 colonnes, ecart median +0.1, a 1,5 bloc pres 81 % -> OK
+  z003  score en jeu 5.8 (prevu 6.9, avant 28.1) plats 8.6 % marches droites 13.7 % ; relief : 16384 colonnes, ecart median +0.0, a 1,5 bloc pres 98 % -> OK
+  z006  score en jeu 4.2 (prevu 6.7, avant 38.6) plats 8.3 % marches droites 0.0 % ; relief : 16384 colonnes, ecart median +0.0, a 1,5 bloc pres 95 % -> OK
+  z001  score en jeu 5.0 (prevu 3.7, avant 19.5) plats 8.2 % marches droites 0.0 % ; relief : 16384 colonnes, ecart median +0.1, a 1,5 bloc pres 98 % -> OK
+  z008  score en jeu 5.4 (prevu 2.5, avant 18.9) plats 6.8 % marches droites 0.0 % ; relief : 16384 colonnes, ecart median +0.1, a 1,5 bloc pres 92 % -> OK
+  z010  score en jeu 4.6 (prevu 3.7, avant 11.3) plats 6.1 % marches droites 1.6 % ; relief : 16384 colonnes, ecart median +0.1, a 1,5 bloc pres 99 % -> OK
+  z013  score en jeu 5.7 (prevu 4.0, avant 14.6) plats 7.8 % marches droites 1.1 % ; relief : 16384 colonnes, ecart median +0.0, a 1,5 bloc pres 97 % -> OK
+  z004  score en jeu 3.9 (prevu 4.2, avant 7.0) plats 1.1 % marches droites 8.6 % ; relief : 16384 colonnes, ecart median +0.1, a 1,5 bloc pres 93 % -> OK
+  z009  score en jeu 3.1 (prevu 3.7, avant 10.4) plats 5.7 % marches droites 0.8 % ; relief : 16192 colonnes, ecart median +0.1, a 1,5 bloc pres 99 % -> OK
+  z011  score en jeu 3.4 (prevu 2.0, avant 10.6) plats 2.5 % marches droites 1.4 % ; relief : 16383 colonnes, ecart median +0.0, a 1,5 bloc pres 96 % -> OK
+2. Ilots : sol de surface (ni glace ni neige)
+  Phare  607 colonnes emergees ; sol [('sand', 70), ('stone', 21), ('gravel', 8), ('gracilaria', 0)] ; glace ou neige 1 -> KO
+  ilot A 369 colonnes emergees ; sol [('sand', 78), ('ice', 15), ('gravel', 3), ('seashell', 1), ('brown_terracotta', 1)] ; glace ou neige 57 -> KO
+3. Majicavo (lot70) : marche au bord du lot et vegetation par bande
+  bord du lot : 512 paires, 1 marches de 2 blocs ou plus (attendu <= 2 %) -> OK
+  bande   0- 16 :  2103 colonnes, avec vegetation 35.0 %, avec tronc  1.4 %
+  bande  16- 48 :  5668 colonnes, avec vegetation 36.0 %, avec tronc  0.7 %
+  bande  48- 96 :  7247 colonnes, avec vegetation 30.1 %, avec tronc  0.8 %
+  bande  96-160 :   725 colonnes, avec vegetation  3.2 %, avec tronc  0.1 %
+  marge et fondu vegetalises (bande 0-16 >= moitie de la bande 96-160) -> OK
+4. Plateau lot68 : dessus du sol attendu a Y 67
+  lot68 : 9844 colonnes, Y le plus frequent 67, part a Y 67 : 97.4 %, non generees 0 -> OK
+5. Lave de surface hors volcan (12 blocs) et mares dans lots + marges + fondus, sur toutes les zones generees
+  lave hors volcan : 1 groupe(s), dont 1 portail(s) en ruine ignore(s) (2562,-2116) ; hors portails : 0
+  74880 colonnes lues (1 sur 4) : lave hors volcan 0 -> OK ; eau ou lave au-dessus de Y 63 dans lots, marges, fondus : 2 colonnes (a regarder si > 0)
+    mare (2424, -2024, 69, 'water', ['grass_block', 'gray_concrete', 'dirt', 'dirt'], ['lot70 Majicavo (trailer)'])
+    mare (2440, -2040, 71, 'water', ['water', 'water', 'grass_block', 'gray_concrete'], ['lot70 Majicavo (trailer, RN1 p', 'lot70 Majicavo (trailer)'])
+6. Troncs dans les lots (vegetation_marges ne doit jamais planter dans un lot)
+  Majicavo, salle a la lampe           256 colonnes, avec tronc 1 (dont batiments et arbres d origine)
+  Majicavo, bouche de station de tra    64 colonnes, avec tronc 0 (dont batiments et arbres d origine)
+  Choungui, station de ski fantome     256 colonnes, avec tronc 0 (dont batiments et arbres d origine)
+  Phare                                256 colonnes, avec tronc 2 (dont batiments et arbres d origine)
+  lot68 Rue du jour 1 (trailer)       2484 colonnes, avec tronc 0 (dont batiments et arbres d origine)
+  lot70 Majicavo (trailer, RN1 posee  4096 colonnes, avec tronc 60 (dont batiments et arbres d origine)
+7. Camp des Goblini (x -2168..-2089, z -152..-73) : sol sous les arbres, pour le Y du plateau
+  6400 colonnes (non generees 0) : Y median 111, min 109, max 118, p10 111, p90 112 ; colonnes avec vegetation 69 % ; ecart au median : |d|<=1 94 %, |d|<=3 100 %
+  GOBLINI_Y_MEDIAN 111
+  plus haut bloc de terrain sur lot + marge 8 : Y 115 en -2130,-146 (+4 sur le median) ; colonnes en surplomb (air dans les 6 blocs sous le sol) : 34 ; hauteur libre voulue : 40 blocs au-dessus du plateau
+8. Lave au sud de lot68 (mare vue par Villes dans lieux_2 en 0.9.4i, vers z -1029, pre a l est de l avenue) : toutes les colonnes, x 2852..3040, z -1077..-981
+  17708 colonnes lues (non generees 625) ; groupes de lave 0 dont portails en ruine 0 ; hors portails : 0 -> OK
+GRILLE : phare OK | z002 OK | hum OK | z003 OK | z006 OK | z001 OK | z008 OK | z010 OK | z013 OK | z004 OK | z009 OK | z011 OK | ilots Phare KO | ilots ilot A KO | majicavo marche OK | majicavo vegetation OK | lot68 Y 67 OK | lave hors volcan OK | lave sud lot68 OK

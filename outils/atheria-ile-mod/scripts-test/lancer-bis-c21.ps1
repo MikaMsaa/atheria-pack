@@ -1,0 +1,109 @@
+﻿# Bissection de l'ecart de la ville (chunks 178..190 x -63..-61) : 4 variantes sur la copie jetable serveur-pilote-essai.
+# Prend le verrou atomiquement (CreateNew), le garde pendant les 4 variantes, ne le supprime qu'au nettoyage final.
+param([switch]$SousVerrou)
+$ErrorActionPreference = 'Stop'
+$Racine = 'C:\Users\El-Afdal\Desktop\Atheria Zombie Edition'
+$Ess = "$Racine\outils\serveur-pilote-essai"; $Srv = "$Racine\outils\serveur-ile-test"
+$Lock = "$Racine\outils\pause-file.lock"
+$Ici = Split-Path -Parent $MyInvocation.MyCommand.Path
+$SP = $Ici; $C1 = "$SP\c1"; $F = "$SP\facteur"
+$BR = "$Racine\outils\atheria-ile-mod\branche-relief"
+$Journal = "$Ici\journal-bis-c21.txt"
+$Reg = "$Ess\config\atheria_ile\regions.json"
+function J($t) { $l = "$(Get-Date -Format HH:mm:ss) $t"; [IO.File]::AppendAllText($Journal, "$l`r`n"); Write-Host $l }
+function Libre { [int]((Get-CimInstance Win32_OperatingSystem).FreePhysicalMemory / 1024) }
+function GrosJava { @(Get-Process java, javaw -ErrorAction SilentlyContinue | Where-Object { $_.WorkingSet64 -gt 1GB }).Count }
+function LireLog { try { $fs = [IO.File]::Open("$Ess\logs\latest.log", 'Open', 'Read', 'ReadWrite'); $sr = New-Object IO.StreamReader($fs); $t = $sr.ReadToEnd(); $sr.Close(); $t } catch { '' } }
+
+J 'debut bissection ville'
+if ($SousVerrou) { $c0 = Get-Content $Lock -Raw; if ($c0 -notmatch '^thread ile') { J "verrou pas a moi : $c0"; exit 1 }; if ((GrosJava) -gt 0 -or (Libre) -lt 6000) { J "DEPART_REFUSE java=$(GrosJava) libre=$(Libre)"; exit 1 } } else {
+if ((Test-Path $Lock) -or (GrosJava) -gt 0 -or (Libre) -lt 6000) { J "DEPART_REFUSE verrou=$(Test-Path $Lock) java=$(GrosJava) libre=$(Libre)"; exit 1 }
+try { $fs = [IO.File]::Open($Lock, 'CreateNew', 'Write'); $b = [Text.Encoding]::UTF8.GetBytes("thread ile bissection ville PID $PID $(Get-Date -Format s)"); $fs.Write($b, 0, $b.Length); $fs.Close() } catch { J 'verrou pris par un autre a l instant'; exit 1 }
+}
+J "LOCK_PRIS PID $PID libre=$(Libre)"
+
+# variantes : nom, jar ile, regions, delta (oui/non), dp C1 (oui/non)
+$regOff = "$Ici\regions-v3c-inactif.json"
+$t = [IO.File]::ReadAllText("$BR\regions-v3c.json"); [IO.File]::WriteAllText($regOff, ($t -replace '"actif":\s*true', '"actif": false'), (New-Object Text.UTF8Encoding $false))
+$V = @(
+  @{ n = 'c21m'; jar = "$BR\atheria-ile-0.9.6c-raccords.jar"; reg = "$BR\regions-v3n.json"; pl = "$BR\plateaux-v3l.json"; delta = $true; c1 = $true; dp = "$BR\atheria_ile_datapack-1.4-relief-v3-plateau.zip"; zones = @(@('-2640 -5744', 96, 'phare'), @('-5136 -672', 96, 'z002'), @('3330 860', 96, 'hum'), @('240 -5712', 96, 'z003'), @('-1392 5760', 96, 'z006'), @('3312 -1248', 96, 'z001'), @('-3936 4416', 96, 'z008'), @('-288 -3504', 96, 'z010'), @('-1296 2144', 96, 'z013'), @('-3216 3264', 96, 'z004'), @('-416 1616', 96, 'z009'), @('1680 -384', 96, 'z011'), @('-2514 -5850', 96, 'lagon'), @('2530 -2016', 128, 'majicavo'), @('2941 -952', 112, 'lot68'), @('-2128 -112', 64, 'goblini')) }
+)
+$p = $null
+try {
+  foreach ($fb in "$Reg", "$Ess\mods\atheria-ile.jar", "$Ess\mods\atheria-monde.jar", "$Ess\user_jvm_args.txt") { Copy-Item $fb "$fb.bak-bis" -Force }
+  [IO.File]::WriteAllText("$Ess\user_jvm_args.txt", "-Xmx5G`r`n")
+  Remove-Item "$Ess\mods\atheria-monde.jar" -Force; Copy-Item "$F\atheria-monde-ile-test-facteur.jar" "$Ess\mods\atheria-monde.jar"
+  [IO.File]::WriteAllText("$Ess\config\atheria-facteur.txt", 'rapide')
+  Remove-Item "$Ess\config\atheria_ile\plateaux.json" -ErrorAction SilentlyContinue
+  foreach ($v in $V) {
+    $Monde = "pilote-bis-$($v.n)"
+    if (Test-Path "$Ess\$Monde") { throw "$Monde existe" }
+    if ((Libre) -lt 6000 -or (GrosJava) -gt 0) { throw "RAM $(Libre) ou java etranger avant $($v.n)" }
+    Remove-Item "$Ess\mods\atheria-ile.jar" -Force; Copy-Item $v.jar "$Ess\mods\atheria-ile.jar"
+    Copy-Item $v.reg $Reg -Force
+    Remove-Item "$Ess\config\atheria_ile\sculptures" -Recurse -Force -ErrorAction SilentlyContinue
+    foreach ($s in @('ileA', 'phare', 'z002', 'hum', 'z003', 'z006', 'z001', 'z008', 'z010', 'z013', 'z004', 'z009', 'z011')) { New-Item -ItemType Directory -Force "$Ess\config\atheria_ile\sculptures\$s" | Out-Null; Copy-Item "$Racine\outils\atheria-ile-mod\sculpture\$s\hauteur.png", "$Racine\outils\atheria-ile-mod\sculpture\$s\masque.png" "$Ess\config\atheria_ile\sculptures\$s" }
+    Remove-Item "$Ess\config\atheria_ile\plateaux.json" -ErrorAction SilentlyContinue
+    if ($v.pl) { Copy-Item $v.pl "$Ess\config\atheria_ile\plateaux.json" -Force }
+    Remove-Item "$Ess\config\atheria_ile\relief_delta.bin", "$Ess\config\atheria_ile\relief_base.bin" -ErrorAction SilentlyContinue
+    if ($v.delta) { Copy-Item "$Ici\relief_delta_c2.bin" "$Ess\config\atheria_ile\relief_delta.bin" -Force; Copy-Item "$Ici\relief_base.bin" "$Ess\config\atheria_ile\relief_base.bin" -Force }
+    if (Test-Path "$Ess\pilote") { if (@(Get-ChildItem "$Ess\pilote" -Force).Count -gt 0) { throw 'pilote non vide' }; Remove-Item "$Ess\pilote" }
+    New-Item -ItemType Directory "$Ess\pilote" | Out-Null
+    Copy-Item "$Srv\sauvegardes\avant-audit-carte\level.dat" "$Ess\pilote\level.dat"
+    robocopy "$Srv\ile_test_1\datapacks" "$Ess\pilote\datapacks" /E /NFL /NDL /NJH /NJS /NP | Out-Null
+    if (Test-Path "$Srv\ile_test_1\serverconfig") { robocopy "$Srv\ile_test_1\serverconfig" "$Ess\pilote\serverconfig" /E /NFL /NDL /NJH /NJS /NP | Out-Null }
+    Remove-Item "$Ess\pilote\datapacks\atheria_ile_datapack.zip" -Force; Copy-Item $v.dp "$Ess\pilote\datapacks\atheria_ile_datapack.zip"
+    if ($v.c1) { & python -I "$C1\appliquer_dp.py" "$Ess\pilote\datapacks\atheria_ile_datapack.zip" "$Racine\outils\atheria-ile-mod\audit-carte\c1-sans-lave\datapack" | Out-Null }
+    J "$($v.n) : ile $((Get-FileHash "$Ess\mods\atheria-ile.jar" -Algorithm MD5).Hash.Substring(0,8)) regions $((Get-FileHash $Reg -Algorithm MD5).Hash.Substring(0,8)) dp $((Get-FileHash "$Ess\pilote\datapacks\atheria_ile_datapack.zip" -Algorithm MD5).Hash.Substring(0,8)) delta=$($v.delta) c1=$($v.c1)"
+    $psi = New-Object Diagnostics.ProcessStartInfo
+    $psi.FileName = 'java'; $psi.WorkingDirectory = $Ess
+    $psi.Arguments = '@user_jvm_args.txt @libraries/net/neoforged/neoforge/21.1.265/win_args.txt nogui'
+    $psi.UseShellExecute = $false; $psi.RedirectStandardInput = $true; $psi.RedirectStandardOutput = $true; $psi.RedirectStandardError = $true
+    $p = New-Object Diagnostics.Process; $p.StartInfo = $psi
+    $null = $p.Start(); $p.BeginOutputReadLine(); $p.BeginErrorReadLine()
+    $ts = Get-Date; J "serveur java=$($p.Id)"; Start-Sleep 25
+    while (-not ((LireLog) -match 'Done \(')) { Start-Sleep 5; if ($p.HasExited) { throw 'java sorti au demarrage' }; if (((Get-Date) - $ts).TotalMinutes -gt 10) { throw 'demarrage trop long' } }
+    $fin0 = ([regex]::Matches((LireLog), 'Task finished')).Count
+    # ville (meme zone que b092) puis cote calcaire 003 et lagon, dans le meme monde
+    foreach ($zone in $v.zones) {
+      $fin0 = ([regex]::Matches((LireLog), 'Task finished')).Count
+      foreach ($c in 'chunky world minecraft:overworld', 'chunky shape square', "chunky center $($zone[0])", "chunky radius $($zone[1])", 'chunky start', 'chunky confirm') { $p.StandardInput.WriteLine($c); Start-Sleep 1 }
+      $t1 = Get-Date
+      while (([regex]::Matches((LireLog), 'Task finished')).Count -le $fin0) {
+        Start-Sleep 5
+        if ($p.HasExited) { throw 'java sorti' }
+        if ((Libre) -lt 400) { throw "RAM $(Libre)" }
+        if (((Get-Date) - $t1).TotalMinutes -gt 8) { throw "generation $($zone[2]) trop longue" }
+      }
+      J "$($v.n) generation $($zone[2]) $([math]::Round(((Get-Date)-$t1).TotalSeconds)) s"
+    }
+    $s0 = ([regex]::Matches((LireLog), 'All chunks are saved')).Count
+    $p.StandardInput.WriteLine('save-all flush'); Start-Sleep 10
+    $t2 = Get-Date
+    while (([regex]::Matches((LireLog), 'All chunks are saved')).Count -le $s0) { Start-Sleep 2; if (((Get-Date) - $t2).TotalSeconds -gt 120) { J 'save-all sans confirmation'; break } }
+    $p.StandardInput.WriteLine('stop'); if (-not $p.WaitForExit(240000)) { J "TUE mon java $($p.Id)"; $p.Kill() }
+    J "$($v.n) arrete code=$($p.ExitCode)"; $p = $null
+    Copy-Item "$Ess\logs\latest.log" "$Ici\latest-bis-$($v.n).log" -Force -ErrorAction SilentlyContinue
+    Start-Sleep 5
+    Move-Item "$Ess\pilote" "$Ess\$Monde"
+    $L = (178..190 | ForEach-Object { $x = $_; -63, -62, -61 | ForEach-Object { "$x/$_" } }) -join ';'
+    foreach ($ref in @('pilote-bis-b073') | Where-Object { $_ -ne $Monde -and $false }) {
+      $r = $env:YMIN; $env:YMIN = '40'; $env:TERRAIN = '1'
+      $o = & python -I "$Ici\comparer_chunks.py" "$Ess\$ref;$Ess\$Monde" $L 2>&1 | Where-Object { $_ -match '^chunk' } | ForEach-Object { ($_ -replace '^chunk (\S+) .*: (\d+) blocs.*', '$1=$2') }
+      $env:YMIN = $r
+      J "COMPARE $($v.n) vs $ref : $($o -join ' ')"
+    }
+  }
+} catch { J "ERREUR $_" } finally {
+  if ($p -and -not $p.HasExited) { $p.StandardInput.WriteLine('stop'); if (-not $p.WaitForExit(240000)) { J "TUE mon java $($p.Id)"; $p.Kill(); Start-Sleep 5 } }
+  if (Test-Path "$Ess\pilote\level.dat") { Start-Sleep 3; try { Move-Item "$Ess\pilote" "$Ess\pilote-bis-echec-$(Get-Date -Format HHmmss)" } catch { J 'monde laisse dans pilote' } }
+  if (-not (Test-Path "$Ess\pilote")) { New-Item -ItemType Directory "$Ess\pilote" | Out-Null }
+  foreach ($fb in "$Reg", "$Ess\mods\atheria-ile.jar", "$Ess\mods\atheria-monde.jar", "$Ess\user_jvm_args.txt") { if (Test-Path "$fb.bak-bis") { Remove-Item $fb -Force -ErrorAction SilentlyContinue; Copy-Item "$fb.bak-bis" $fb; Remove-Item "$fb.bak-bis" } }
+  Remove-Item "$Ess\config\atheria_ile\relief_delta.bin", "$Ess\config\atheria_ile\relief_base.bin", "$Ess\config\atheria_ile\plateaux.json" -ErrorAction SilentlyContinue
+  Remove-Item "$Ess\config\atheria_ile\sculptures" -Recurse -Force -ErrorAction SilentlyContinue
+  J "copie remise : regions $((Get-FileHash $Reg -Algorithm MD5).Hash.Substring(0,8)) ile $((Get-FileHash "$Ess\mods\atheria-ile.jar" -Algorithm MD5).Hash.Substring(0,8))"
+  # nettoyage final : seule etape qui supprime le verrou (et seulement s'il est a moi)
+  $c = if (Test-Path $Lock) { Get-Content $Lock -Raw } else { '' }
+  if ($SousVerrou) { J 'verrou laisse au script appelant' } elseif ($c -match "bissection ville PID $PID") { Remove-Item $Lock -Force; J 'verrou supprime' } else { J "verrou pas a moi ($c) : laisse" }
+  J "FIN_BISSECTION java=$(GrosJava)"
+}

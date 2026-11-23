@@ -1,0 +1,21 @@
+{
+    "type":  "neoforge:add_spawns",
+    "biomes":  [
+                   "minecraft:savanna",
+                   "minecraft:savanna_plateau",
+                   "minecraft:windswept_savanna",
+                   "terralith:ashen_savanna",
+                   "terralith:fractured_savanna",
+                   "terralith:savanna_slopes",
+                   "terralith:savanna_badlands",
+                   "biomesoplenty:lush_savanna"
+               ],
+    "spawners":  [
+                     {
+                         "type":  "jurassicreborn:brachiosaurus",
+                         "weight":  5,
+                         "minCount":  1,
+                         "maxCount":  1
+                     }
+                 ]
+}

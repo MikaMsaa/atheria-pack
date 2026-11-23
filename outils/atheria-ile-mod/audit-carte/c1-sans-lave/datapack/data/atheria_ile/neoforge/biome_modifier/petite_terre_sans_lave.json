@@ -1,0 +1,15 @@
+{
+ "type": "neoforge:remove_features",
+ "biomes": [
+  "terralith:hot_shrubland"
+ ],
+ "features": [
+  "minecraft:lake_lava_surface",
+  "minecraft:lake_lava_underground",
+  "minecraft:spring_lava"
+ ],
+ "steps": [
+  "lakes",
+  "fluid_springs"
+ ]
+}

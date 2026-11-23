@@ -1,0 +1,58 @@
+{
+ "pnj": {
+  "nom": "Kamel"
+ },
+ "debut": "debut",
+ "noeuds": {
+  "q_ch2_morsure": {
+   "lignes": [
+    {
+     "texte": "Ne fais pas cette tête. Écoute-moi. L'antifongique ne me ramènera pas. Prends le taxi. Va à Coconi. Dis à Zaida que je lui dois encore cette bouteille. Et garde la cassette."
+    }
+   ],
+   "choix": [
+    {
+     "texte": "Rester quelques minutes",
+     "actions": [
+      {
+       "commande": "tag {joueur} add q_ch2_morsure"
+      },
+      {
+       "commande": "playsound minecraft:entity.experience_orb.pickup master {joueur} ~ ~ ~ 0.6 1.2"
+      }
+     ],
+     "fin": true
+    }
+   ]
+  },
+  "q_ch2_morsure_fait": {
+   "texte": "Tu as ce qu'il te faut. Avance."
+  },
+  "repos": {
+   "texte": "(Kamel est assis contre un taxi, la main sur sa morsure. Il ne te reconnaît pas.)"
+  },
+  "debut": {
+   "aiguillage": [
+    {
+     "si": {
+      "tag": [
+       "q_ch2_morsure"
+      ]
+     },
+     "aller": "q_ch2_morsure_fait"
+    },
+    {
+     "si": {
+      "tag": [
+       "q_ch2_feu"
+      ]
+     },
+     "aller": "q_ch2_morsure"
+    },
+    {
+     "aller": "repos"
+    }
+   ]
+  }
+ }
+}

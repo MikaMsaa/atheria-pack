@@ -1,0 +1,58 @@
+{
+	PresetMetadata: {
+		author: "Atheria",
+		category: "Atheria",
+		description: "Enfants du Choléra (station Bancoul) : Ibou, le Releveur.",
+		entityTypeId: "easy_npc:humanoid",
+		name: "Enfant - Ibou",
+		variantType: "STEVE",
+		version: "1.0.0"
+	},
+	data: {
+		ActionData: {
+			ActionEventSet: {
+				ON_INTERACTION: [
+					{
+						Type: "OPEN_DEFAULT_DIALOG"
+					}
+				]
+			}
+		},
+		CustomName: '{"text": "Ibou", "color": "#B9B6AE"}',
+		DialogData: {
+			DialogDataSet: [
+				{
+					Label: "repos",
+					Name: "Repos",
+					Priority: 1,
+					Texts: [
+						{
+							Text: "Trois Chimiks au nord, un qui tape sa tête contre le pilier. Je compte. Si tu en tues un, je dois tout recommencer."
+						}
+					]
+				}
+			],
+			Type: "STANDARD"
+		},
+		EasyNPCVersion: 3,
+		Invulnerable: 1b,
+		ObjectiveData: {
+			ObjectiveDataSet: [
+				{
+					Type: "LOOK_AT_PLAYER"
+				},
+				{
+					Type: "LOOK_AT_RESET"
+				}
+			]
+		},
+		PersistenceRequired: 1b,
+		SkinData: {
+			Texture: "atheria:textures/entity/enfants/ibou.png",
+			Type: "RESOURCE_LOCATION"
+		},
+		Tags: ["enfants", "enfant.ibou"],
+		VariantType: "STEVE",
+		id: "easy_npc:humanoid"
+	}
+}

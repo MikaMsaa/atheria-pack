@@ -2,7 +2,7 @@
     "style":  "ath_bidonville",
     "inherit":  "citystyle_common",
     "buildingsettings":  {
-                             "buildingchance":  0.75,
+                             "buildingchance":  0,
                              "minfloors":  1,
                              "maxfloors":  2,
                              "maxcellars":  0
@@ -72,6 +72,74 @@
                                              {
                                                  "factor":  1,
                                                  "value":  "ath_v_bd_ecole"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_bangas"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_foyer_jeunes"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_lavoir"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_motos"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_doukas"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_terrasses"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_jardins"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_dortoir"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_kiosques"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_foot"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_radio"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_boulangerie"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_ravine"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_parpaings"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_camp"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_barricade"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_bd_place"
                                              }
                                          ],
                       "bridges":  [

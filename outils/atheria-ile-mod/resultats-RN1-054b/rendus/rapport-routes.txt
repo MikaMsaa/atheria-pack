@@ -1,0 +1,18 @@
+VALIDATION DES ROUTES (blocs reels, un releve tous les 2 blocs d'axe, mesure au fil de la generation)
+RN1 : 5734 releves sur 11156 blocs d'axe
+   releves non mesures (chunks jamais charges) : 0
+   trous (surface qui n'est pas de la chaussee sur l'axe) : 12 (0,21 %) 2496,-2845,Y68=brown_mushroom 1686,-40,Y66=stone 1680,-40,Y66=stone 1654,-40,Y66=stone 1652,-40,Y65=stone 1650,-40,Y64=dirt 1648,-40,Y65=stone 1454,-85,Y67=block.spore.blomfung 928,-36,Y102=stone 319,-1122,Y102=deepslate_copper_ore -48,-1462,Y68=block.biomesoplenty.barley -402,-1773,Y67=block.biomesoplenty.barley
+   marches de plus d'un bloc entre deux releves voisins (2 blocs) : 5
+   pente max mesuree sur 8 blocs : 0,375 (1 pour 2,7) vers 1650, -40 ; profil vise 0,125
+   ecart de plus d'un bloc avec le profil calcule : 5 releves
+   largeur reelle de chaussee : min 1, moyenne 14,8, max 21 (visee 15)
+   TRONCON DROIT 2534,-2360 -> 2521,-1992 : 368 blocs, Y 65..65 (denivele 0), ecart a la droite 0,00 bloc
+   PONT Pont de Kamel (tablier vise Y 69, 41 releves) : 41 mesures, air sous la dalle a l'axe min 3 / moy 4,0 / max 5, 1 au-dessus de l'eau
+     detail (1 sur 5) : 2095,-215:Y69/air4/grass_block@Y63 2085,-211:Y69/air4/grass_block@Y63 2077,-207:Y69/air5/grass_block@Y62 2068,-202:Y69/air4/grass_block@Y63 2059,-197:Y69/air4/grass_block@Y63 2051,-192:Y69/air4/grass_block@Y63 2043,-186:Y69/air4/sand@Y63 2035,-181:Y69/air3/block.ecologics.seashell@Y64 2027,-175:Y69/air4/grass_block@Y63
+   bas-cotes des troncons droits encombres (de 1 a 6 blocs au-dessus) : 4 / 740 colonnes
+   zoom debut : 160 x 160 blocs autour de 2624, -2960
+   zoom troncon-droit : 160 x 160 blocs autour de 2528, -2176
+   zoom pente-max : 160 x 160 blocs autour de 1650, -40
+   zoom milieu : 160 x 160 blocs autour de 603, -729
+   zoom fin : 160 x 160 blocs autour de -984, 1176
+(assemble a partir de 4 troncons, un lancement de serveur chacun)

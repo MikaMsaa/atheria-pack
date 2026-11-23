@@ -2,7 +2,7 @@
     "style":  "ath_terracotta",
     "inherit":  "citystyle_common",
     "buildingsettings":  {
-                             "buildingchance":  0.4,
+                             "buildingchance":  0,
                              "minfloors":  1,
                              "maxfloors":  3,
                              "maxcellars":  0
@@ -42,16 +42,12 @@
                                         {
                                             "factor":  0.5,
                                             "value":  "ath_maison"
-                                        },
-                                        {
-                                            "factor":  0.12,
-                                            "value":  "ath_eglise"
                                         }
                                     ],
                       "multibuildings":  [
                                              {
                                                  "factor":  1,
-                                                 "value":  "ath_v_ds_mission"
+                                                 "value":  "ath_v_ds_relais"
                                              },
                                              {
                                                  "factor":  1,

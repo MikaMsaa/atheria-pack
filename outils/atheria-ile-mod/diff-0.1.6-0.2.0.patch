@@ -1,0 +1,674 @@
+diff -ruN sauvegarde-0.1.6/src/fr/atheria/ile/AtheriaIle.java src/fr/atheria/ile/AtheriaIle.java
+--- sauvegarde-0.1.6/src/fr/atheria/ile/AtheriaIle.java	2026-11-09 21:42:05.253490500 +0400
++++ src/fr/atheria/ile/AtheriaIle.java	2026-11-09 21:43:22.043210900 +0400
+@@ -24,6 +24,7 @@
+ 
+     static {
+         FONCTIONS.register("ile_continents", () -> IleContinents.MAP_CODEC);
++        FONCTIONS.register("ile_champ", () -> IleChamp.MAP_CODEC);
+     }
+ 
+     public AtheriaIle(IEventBus busDuMod) {
+diff -ruN sauvegarde-0.1.6/src/fr/atheria/ile/CarteIle.java src/fr/atheria/ile/CarteIle.java
+--- sauvegarde-0.1.6/src/fr/atheria/ile/CarteIle.java	2026-11-09 21:42:05.253994900 +0400
++++ src/fr/atheria/ile/CarteIle.java	2026-11-09 21:43:22.042132000 +0400
+@@ -56,6 +56,16 @@
+     }
+ 
+     public static final int OCEAN = 0, LAGON = 1, RECIF = 2;
++    /** classes temporaires au chargement (remplacées par la région voisine, l'eau douce est gardée à part) */
++    private static final int CL_RIVIERE = 126, CL_LAC = 127;
++    /** profils de côte : {plancher au bord, plancher à 500 blocs, plafond (9 = aucun)} en continentalité Tectonic (côte ~ -0.155) */
++    private static final String[] COTES = {"plage", "falaise", "vase", "roche"};
++    private static final float[][] PROFILS = {{-0.148f, -0.04f, 9f}, {-0.03f, 0.03f, 9f}, {-0.152f, -0.125f, -0.112f}, {-0.10f, -0.02f, 9f}};
++
++    static int indexCote(String c) {
++        for (int i = 0; i < COTES.length; i++) if (COTES[i].equals(c)) return i;
++        return -1;
++    }
+ 
+     public static final class Region {
+         public final String nom;
+@@ -68,6 +78,8 @@
+         /** biome de plage de la région ; plageDefinie=false : choix automatique (beach, ou snowy_beach si froide) ; plage=null et plageDefinie : pas de plage */
+         public String plage;
+         public boolean plageDefinie;
++        /** profil de cote : plage, falaise, vase, roche */
++        public String cote = "plage";
+         Region(String nom, String montagne, double relief, int cellule, int couleur) {
+             this.nom = nom; this.montagne = montagne; this.relief = relief; this.cellule = Math.max(32, cellule); this.couleur = couleur;
+         }
+@@ -92,6 +104,15 @@
+     final int[] ileProche;
+     /** relief des régions, lissé */
+     final float[] relief;
++    /** relief dessiné (relief.png, 0 plat .. 1 sommet), null si absent */
++    final float[] hauteur;
++    /** distance (px) aux rivières et aux lacs dessinés ; grande valeur s'il n'y en a pas */
++    final float[] dRiviere, dLac;
++    /** profil de côte lissé par pixel : plancher au bord, plancher à 500 blocs, plafond (vase) */
++    final float[] coteBas, coteHaut, cotePlafond;
++    public final boolean rivieresAleatoires;
++    public final double valleeRiviere, rayonRiviere;
++    public final int pixelsRiviere, pixelsLac;
+ 
+     private CarteIle(Path dossier) throws Exception {
+         this.dossier = dossier;
+@@ -124,11 +145,18 @@
+                 case "ocean" -> cl = OCEAN;
+                 case "lagon" -> cl = LAGON;
+                 case "recif" -> cl = RECIF;
++                case "riviere" -> cl = CL_RIVIERE;
++                case "lac" -> cl = CL_LAC;
+                 case "region" -> {
+                     String montagne = c.has("montagne") && !c.get("montagne").isJsonNull() ? c.get("montagne").getAsString() : null;
+                     Region reg = new Region(c.get("nom").getAsString(), montagne,
+                             c.has("relief") ? c.get("relief").getAsDouble() : 0.0,
+                             c.has("cellule") ? c.get("cellule").getAsInt() : 224, rgb);
++                    if (c.has("cote") && !c.get("cote").isJsonNull()) {
++                        String ct = c.get("cote").getAsString();
++                        if (indexCote(ct) < 0) LOG.warn("[atheria_ile] region '{}' : cote '{}' inconnue (plage, falaise, vase, roche), plage utilisee", reg.nom, ct);
++                        else reg.cote = ct;
++                    }
+                     if (c.has("plage")) {
+                         reg.plageDefinie = true;
+                         reg.plage = c.get("plage").isJsonNull() ? null : c.get("plage").getAsString();
+@@ -179,6 +207,34 @@
+         }
+         if (approx > 0) LOG.warn("[atheria_ile] {} pixels avec une couleur non declaree, rattaches a la classe la plus proche", approx);
+ 
++        // rivières et lacs dessinés : de la terre pour les côtes et les régions (région voisine), de l'eau pour le relief
++        boolean[] mRiv = new boolean[n], mLac = new boolean[n];
++        int nRiv = 0, nLac = 0;
++        {
++            ArrayDeque<Integer> f = new ArrayDeque<>();
++            for (int i = 0; i < n; i++) {
++                int c = classe[i];
++                if (c == CL_RIVIERE) { mRiv[i] = true; nRiv++; }
++                else if (c == CL_LAC) { mLac[i] = true; nLac++; }
++                else if (c >= 3) f.add(i);
++            }
++            while (!f.isEmpty()) {
++                int i = f.poll(), x = i % w, z = i / w;
++                int[] voisins = {x > 0 ? i - 1 : -1, x < w - 1 ? i + 1 : -1, z > 0 ? i - w : -1, z < h - 1 ? i + w : -1};
++                for (int v : voisins) if (v >= 0 && (classe[v] == CL_RIVIERE || classe[v] == CL_LAC)) { classe[v] = classe[i]; f.add(v); }
++            }
++            int orphelins = 0;
++            for (int i = 0; i < n; i++) if (classe[i] == CL_RIVIERE || classe[i] == CL_LAC) { classe[i] = LAGON; orphelins++; }
++            if (orphelins > 0) LOG.warn("[atheria_ile] {} pixels de riviere/lac sans terre voisine, traites comme lagon", orphelins);
++        }
++        pixelsRiviere = nRiv;
++        pixelsLac = nLac;
++        dRiviere = chanfreinMasque(mRiv);
++        dLac = chanfreinMasque(mLac);
++        rivieresAleatoires = config.has("rivieres_aleatoires") && config.get("rivieres_aleatoires").getAsBoolean();
++        valleeRiviere = config.has("riviere_vallee_blocs") ? Math.max(16, config.get("riviere_vallee_blocs").getAsDouble()) : 150.0;
++        rayonRiviere = config.has("riviere_lit_blocs") ? Math.max(4, config.get("riviere_lit_blocs").getAsDouble()) : 16.0;
++
+         // distance signée (chanfrein 3-4, en pixels)
+         float[] dTerre = chanfrein(true);   // distance à la terre, pour les pixels d'eau
+         float[] dEau = chanfrein(false);    // distance à l'eau, pour les pixels de terre
+@@ -225,6 +281,66 @@
+         float[] base = new float[n];
+         for (int i = 0; i < n; i++) base[i] = (float) regions.get(regionProche[i] & 0xFF).relief;
+         relief = flou(flou(base, rayon), rayon);
++
++        // profils de côte par région, lissés pour que deux côtes voisines se raccordent
++        float[] pb = new float[n], ph = new float[n], pp = new float[n];
++        for (int i = 0; i < n; i++) {
++            float[] pr = PROFILS[indexCote(regions.get(regionProche[i] & 0xFF).cote)];
++            pb[i] = pr[0]; ph[i] = pr[1]; pp[i] = pr[2];
++        }
++        int rc = config.has("lissage_cotes_pixels") ? Math.max(0, config.get("lissage_cotes_pixels").getAsInt()) : 6;
++        coteBas = flou(flou(pb, rc), rc);
++        coteHaut = flou(flou(ph, rc), rc);
++        cotePlafond = flou(flou(pp, rc), rc);
++
++        // relief dessiné (facultatif)
++        String nomRelief = config.has("relief_image") && !config.get("relief_image").isJsonNull() ? config.get("relief_image").getAsString() : "relief.png";
++        float[] ht = null;
++        Path fr = dossier.resolve(nomRelief);
++        if (Files.isRegularFile(fr)) {
++            BufferedImage ri = ImageIO.read(fr.toFile());
++            if (ri == null) LOG.warn("[atheria_ile] {} n'est pas une image : relief de Tectonic garde", nomRelief);
++            else if (ri.getWidth() != w || ri.getHeight() != h) LOG.warn("[atheria_ile] {} fait {}x{} au lieu de {}x{} : relief de Tectonic garde", nomRelief, ri.getWidth(), ri.getHeight(), w, h);
++            else {
++                ht = new float[n];
++                for (int z = 0; z < h; z++) for (int x = 0; x < w; x++) {
++                    int rgb = ri.getRGB(x, z);
++                    ht[z * w + x] = (((rgb >> 16) & 255) + ((rgb >> 8) & 255) + (rgb & 255)) / 765f;
++                }
++            }
++        } else LOG.info("[atheria_ile] pas de {} : relief de Tectonic garde (seulement le relief par region)", nomRelief);
++        hauteur = ht;
++        LOG.info("[atheria_ile] rivieres dessinees {} px, lacs {} px, relief dessine {}, rivieres aleatoires {}", nRiv, nLac, ht != null, rivieresAleatoires);
++    }
++
++    private float[] chanfreinMasque(boolean[] m) {
++        int n = w * h;
++        float inf = 1e9f;
++        float[] d = new float[n];
++        for (int i = 0; i < n; i++) d[i] = m[i] ? 0f : inf;
++        final float a = 1f, b = 1.4142f;
++        for (int z = 0; z < h; z++) for (int x = 0; x < w; x++) {
++            int i = z * w + x; float v = d[i];
++            if (x > 0) v = Math.min(v, d[i - 1] + a);
++            if (z > 0) {
++                v = Math.min(v, d[i - w] + a);
++                if (x > 0) v = Math.min(v, d[i - w - 1] + b);
++                if (x < w - 1) v = Math.min(v, d[i - w + 1] + b);
++            }
++            d[i] = v;
++        }
++        for (int z = h - 1; z >= 0; z--) for (int x = w - 1; x >= 0; x--) {
++            int i = z * w + x; float v = d[i];
++            if (x < w - 1) v = Math.min(v, d[i + 1] + a);
++            if (z < h - 1) {
++                v = Math.min(v, d[i + w] + a);
++                if (x < w - 1) v = Math.min(v, d[i + w + 1] + b);
++                if (x > 0) v = Math.min(v, d[i + w - 1] + b);
++            }
++            d[i] = v;
++        }
++        for (int i = 0; i < n; i++) if (d[i] >= inf) d[i] = w + h;
++        return d;
+     }
+ 
+     private boolean terre(int i) { return classe[i] >= 3; }
+@@ -338,16 +454,51 @@
+         if (cl == LAGON) v = Math.max(v, -0.22);
+         else if (cl == RECIF) v = Math.max(v, -0.185);
+         double px = (bx - origineX) / bpp, pz = (bz - origineZ) / bpp;
+-        v += bilineaire(relief, px, pz) * lisse(-40, 250, d);
++        double terreDedans = lisse(-40, 250, d);
++        v += bilineaire(relief, px, pz) * terreDedans;
++        if (hauteur != null) v += 0.32 * bilineaire(hauteur, px, pz) * terreDedans;
+         // detail d'origine : plein a terre, attenue en mer (sinon des ilots sortent du lagon)
+         v += (d > 0 ? 0.06 : 0.02) * Math.max(-1, Math.min(1, o));
+         if (cl == LAGON) v = Math.min(v, -0.19);          // le lagon reste sous la mer (cote Tectonic -0.155)
+         else if (cl == RECIF) v = Math.min(v, -0.17);
+-        // a terre : bande cotiere basse (plages, Tectonic -0.155..-0.11) puis plancher qui monte, sans cuvette marine
+-        else if (d > 0) v = Math.max(v, -0.150 + 0.13 * lisse(0, 300, d));
++        else if (d > 0) {
++            // a terre : profil de cote de la region (plage basse, falaise, vase, roche), sans cuvette marine
++            double bas = bilineaire(coteBas, px, pz), haut = bilineaire(coteHaut, px, pz), plafond = bilineaire(cotePlafond, px, pz);
++            v = Math.max(v, bas + (haut - bas) * lisse(0, 500, d));
++            if (plafond < 1) v = Math.min(v, plafond + 0.12 * lisse(400, 1400, d));
++            // rivieres dessinees : vallee qui descend au niveau de la mer ; lacs : cuvette sous la mer
++            double dr = bilineaire(dRiviere, px, pz) * bpp;
++            if (dr < valleeRiviere) v = Math.min(v, -0.135 + (v + 0.135) * lisse(rayonRiviere, valleeRiviere, dr));
++            double dl = bilineaire(dLac, px, pz) * bpp;
++            if (dl < 90) v = Math.min(v, -0.20 + (v + 0.20) * lisse(0, 90, dl));
++        }
+         return v;
+     }
+ 
++    /** Erosion de Tectonic dictée par relief.png : |e| petit = montagnes, grand = plat (signe d'origine garde). */
++    public double erosion(int bx, int bz, double o) {
++        if (hauteur == null) return o;
++        double px = (bx - origineX) / bpp, pz = (bz - origineZ) / bpp;
++        double d = distanceBlocs(bx, bz);
++        if (d < -200) return o;
++        double hh = bilineaire(hauteur, px, pz);
++        double cible = 0.05 + 0.55 * (1 - hh);
++        double a = Math.abs(o), s = o < 0 ? -1 : 1;
++        double force = 0.85 * lisse(-200, 0, d);
++        return s * (a + (cible - a) * force);
++    }
++
++    /** Crêtes de Tectonic : pas de rivière au hasard (|r| gardé loin de 0), rivière (r = 0) sur les rivières dessinées. */
++    public double cretes(int bx, int bz, double o) {
++        double px = (bx - origineX) / bpp, pz = (bz - origineZ) / bpp;
++        double a = Math.abs(o), s = o < 0 ? -1 : 1;
++        double r = rivieresAleatoires ? o : s * (0.15 + 0.85 * a);
++        if (pixelsRiviere == 0) return r;
++        double dr = bilineaire(dRiviere, px, pz) * bpp;
++        if (dr < valleeRiviere + 40) r *= lisse(rayonRiviere, valleeRiviere + 40, dr);
++        return r;
++    }
++
+     // ------------------------------------------------------------------ régions et cellules de biomes
+ 
+     private static long melange(long z) {
+diff -ruN sauvegarde-0.1.6/src/fr/atheria/ile/IleChamp.java src/fr/atheria/ile/IleChamp.java
+--- sauvegarde-0.1.6/src/fr/atheria/ile/IleChamp.java	1970-01-01 04:00:00.000000000 +0400
++++ src/fr/atheria/ile/IleChamp.java	2026-11-09 21:43:22.042690500 +0400
+@@ -0,0 +1,70 @@
++package fr.atheria.ile;
++
++import com.mojang.serialization.Codec;
++import com.mojang.serialization.MapCodec;
++import com.mojang.serialization.codecs.RecordCodecBuilder;
++import net.minecraft.util.KeyDispatchDataCodec;
++import net.minecraft.world.level.levelgen.DensityFunction;
++
++/**
++ * Remplace un bruit de Tectonic par celui dicté par la carte : "erosion" (relief.png) ou "cretes" (rivières dessinées).
++ * Comme IleContinents : ne s'active que via le datapack du monde ; sans carte active, renvoie le bruit d'origine.
++ */
++public final class IleChamp implements DensityFunction {
++
++    public static final MapCodec<IleChamp> MAP_CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
++            DensityFunction.HOLDER_HELPER_CODEC.fieldOf("argument").forGetter(IleChamp::argument),
++            Codec.STRING.fieldOf("champ").forGetter(IleChamp::champ)
++    ).apply(i, IleChamp::depuisDatapack));
++
++    public static final KeyDispatchDataCodec<IleChamp> CODEC = KeyDispatchDataCodec.of(MAP_CODEC);
++
++    private static final int EROSION = 0, CRETES = 1;
++
++    private final DensityFunction argument;
++    private final String champ;
++    private final int code;
++
++    private IleChamp(DensityFunction argument, String champ) {
++        this.argument = argument;
++        this.champ = champ;
++        this.code = "cretes".equals(champ) ? CRETES : "erosion".equals(champ) ? EROSION : -1;
++        if (code < 0) CarteIle.LOG.error("[atheria_ile] champ inconnu '{}' (erosion ou cretes) : bruit d'origine garde", champ);
++    }
++
++    private static IleChamp depuisDatapack(DensityFunction argument, String champ) {
++        CarteIle.activer();
++        return new IleChamp(argument, champ);
++    }
++
++    public DensityFunction argument() { return argument; }
++
++    public String champ() { return champ; }
++
++    @Override
++    public double compute(FunctionContext ctx) {
++        double o = argument.compute(ctx);
++        CarteIle c = CarteIle.active();
++        if (c == null || code < 0) return o;
++        return code == EROSION ? c.erosion(ctx.blockX(), ctx.blockZ(), o) : c.cretes(ctx.blockX(), ctx.blockZ(), o);
++    }
++
++    @Override
++    public void fillArray(double[] tab, ContextProvider p) {
++        p.fillAllDirectly(tab, this);
++    }
++
++    @Override
++    public DensityFunction mapAll(Visitor visitor) {
++        return visitor.apply(new IleChamp(argument.mapAll(visitor), champ));
++    }
++
++    @Override
++    public double minValue() { return Math.min(-1.5, argument.minValue()); }
++
++    @Override
++    public double maxValue() { return Math.max(1.5, argument.maxValue()); }
++
++    @Override
++    public KeyDispatchDataCodec<? extends DensityFunction> codec() { return CODEC; }
++}
+diff -ruN sauvegarde-0.1.6/src/fr/atheria/ile/Tests.java src/fr/atheria/ile/Tests.java
+--- sauvegarde-0.1.6/src/fr/atheria/ile/Tests.java	2026-11-09 21:42:05.258194600 +0400
++++ src/fr/atheria/ile/Tests.java	2026-11-09 21:43:39.631820900 +0400
+@@ -176,6 +176,7 @@
+         BufferedImage imgRelief = new BufferedImage(nx, nz, BufferedImage.TYPE_INT_RGB);
+         BufferedImage imgEcarts = new BufferedImage(nx, nz, BufferedImage.TYPE_INT_RGB);
+         Map<String, Integer> couleurs = new HashMap<>();
++        int francsEauDouce = 0, francsVase = 0, francsMerDansTerre = 0, francsTerreDansMer = 0, rivDessEau = 0, rivDess = 0;
+         int terreImage = 0, terreReelle = 0, ecartsFrancs = 0, ecartsCote = 0, echantillonsTerre = 0, etrangers = 0, ecartsRiviere = 0, plagesNeigeTropicales = 0;
+         int hMin = Integer.MAX_VALUE, hMax = Integer.MIN_VALUE;
+         Map<String, Map<String, Integer>> parRegion = new TreeMap<>();
+@@ -195,9 +196,23 @@
+                 boolean riviere = !terreR && terreI && biome[k].is(net.minecraft.tags.BiomeTags.IS_RIVER);
+                 if (riviere) ecartsRiviere++;
+                 else if (terreR != terreI) {
+-                    if (Math.abs(d) > 96) ecartsFrancs++;
++                    if (Math.abs(d) > 96) {
++                        ecartsFrancs++;
++                        double pxx = (x - c.origineX) / c.bpp, pzz = (z - c.origineZ) / c.bpp;
++                        int ip = Math.max(0, Math.min(c.h - 1, (int) pzz)) * c.w + Math.max(0, Math.min(c.w - 1, (int) pxx));
++                        double dEauDouce = Math.min(c.dRiviere[ip], c.dLac[ip]) * c.bpp;
++                        if (dEauDouce < c.valleeRiviere) francsEauDouce++;
++                        else if ("vase".equals(c.regions.get(c.region(x, z)).cote)) francsVase++;
++                        else if (terreI) francsMerDansTerre++;
++                        else francsTerreDansMer++;
++                    }
+                     else ecartsCote++;
+                 }
++                {
++                    double pxx = (x - c.origineX) / c.bpp, pzz = (z - c.origineZ) / c.bpp;
++                    int ip = Math.max(0, Math.min(c.h - 1, (int) pzz)) * c.w + Math.max(0, Math.min(c.w - 1, (int) pxx));
++                    if (c.dRiviere[ip] < 0.5f || c.dLac[ip] < 0.5f) { rivDess++; if (!terreR) rivDessEau++; }
++                }
+                 if (terreR && biome[k].is(net.minecraft.tags.BiomeTags.IS_BEACH) && biome[k].is(net.neoforged.neoforge.common.Tags.Biomes.IS_SNOWY)
+                         && table != null && !table.regions[c.region(x, z)].froide) plagesNeigeTropicales++;
+                 String id = nom(biome[k]);
+@@ -240,6 +255,10 @@
+         sb.append(String.format("ecarts terre/mer pres des cotes (< 96 blocs) : %d (%.2f %%)%n", ecartsCote, 100.0 * ecartsCote / total));
+         sb.append(String.format("rivieres dans les terres (normal, en bleu) : %d (%.2f %%)%n", ecartsRiviere, 100.0 * ecartsRiviere / total));
+         sb.append(String.format("ecarts terre/mer FRANCS hors rivieres (> 96 blocs de la cote) : %d (%.2f %%)%n", ecartsFrancs, 100.0 * ecartsFrancs / total));
++        sb.append(String.format("   dont pres d'une riviere/lac dessine (voulu) : %d, regions a cote de vase (voulu) : %d, eau dans les terres : %d, terre en mer : %d%n",
++                francsEauDouce, francsVase, francsMerDansTerre, francsTerreDansMer));
++        sb.append(String.format("   ecarts francs hors voulus : %d (%.2f %%)%n", francsMerDansTerre + francsTerreDansMer, 100.0 * (francsMerDansTerre + francsTerreDansMer) / total));
++        sb.append(String.format("rivieres et lacs dessines : %d echantillons, %d en eau (%.0f %%)%n", rivDess, rivDessEau, rivDess == 0 ? 0 : 100.0 * rivDessEau / rivDess));
+         sb.append(String.format("plages enneigees dans une region non froide : %d (attendu 0)%n", plagesNeigeTropicales));
+         sb.append(String.format("biomes de surface hors liste de leur region : %d sur %d echantillons de terre (%.2f %%)%n",
+                 etrangers, echantillonsTerre, echantillonsTerre == 0 ? 0 : 100.0 * etrangers / echantillonsTerre));
+--- sauvegarde-0.1.6/construire.ps1	2026-11-09 21:42:05.265141600 +0400
++++ construire.ps1	2026-11-09 21:43:22.044726300 +0400
+@@ -28,7 +28,7 @@
+ Copy-Item (Join-Path $Ici 'ressources\*') $Tmp -Recurse -Force
+ 
+ $manifest = Join-Path $env:TEMP "atheria-ile-manifest-$([guid]::NewGuid()).txt"
+-[IO.File]::WriteAllText($manifest, "Implementation-Version: 0.1.6`nFMLModType: MOD`n")
++[IO.File]::WriteAllText($manifest, "Implementation-Version: 0.2.0`nFMLModType: MOD`n")
+ $Out = Join-Path $Ici 'atheria-ile.jar'
+ & "$Jdk\jar.exe" --create --file $Out --manifest $manifest -C $Tmp .
+ if ($LASTEXITCODE -ne 0) { throw "jar a echoue (code $LASTEXITCODE)" }
+--- sauvegarde-0.1.6/ressources/META-INF/neoforge.mods.toml	2026-11-09 21:42:05.262008600 +0400
++++ ressources/META-INF/neoforge.mods.toml	2026-11-09 21:43:22.044216500 +0400
+@@ -4,7 +4,7 @@
+ 
+ [[mods]]
+ modId = "atheria_ile"
+-version = "0.1.6"
++version = "0.2.0"
+ displayName = "Atheria Ile"
+ description = "Prototype : la carte dessinee de l'ile d'Atheria guide les cotes, le relief et les biomes. Inactif sans le datapack atheria_ile dans le monde."
+ 
+--- sauvegarde-0.1.6/regions.json	2026-11-09 21:42:05.283278900 +0400
++++ regions.json	2026-11-09 21:44:11.677085000 +0400
+@@ -5,6 +5,11 @@
+  "lissage_relief_pixels": 8,
+  "deformation_bords_blocs": 28,
+  "fondu_bords_blocs": 128,
++ "relief_image": "relief.png",
++ "rivieres_aleatoires": false,
++ "riviere_vallee_blocs": 150,
++ "riviere_lit_blocs": 16,
++ "lissage_cotes_pixels": 6,
+  "rendu_au_demarrage": false,
+  "rendu_pas_blocs": 32,
+  "zone_reelle": null,
+@@ -39,6 +44,7 @@
+    "montagne": "terralith:white_cliffs",
+    "relief": 0.08,
+    "cellule": 224,
++   "cote": "falaise",
+    "plage": "minecraft:beach"
+   },
+   "#b6a658": {
+@@ -65,6 +71,7 @@
+    "montagne": "terralith:savanna_slopes",
+    "relief": 0.0,
+    "cellule": 224,
++   "cote": "plage",
+    "plage": "minecraft:beach"
+   },
+   "#a0988e": {
+@@ -87,6 +94,7 @@
+    "montagne": null,
+    "relief": -0.04,
+    "cellule": 224,
++   "cote": "plage",
+    "plage": "minecraft:beach"
+   },
+   "#7aa048": {
+@@ -109,6 +117,7 @@
+    "montagne": null,
+    "relief": -0.03,
+    "cellule": 224,
++   "cote": "plage",
+    "plage": "minecraft:beach"
+   },
+   "#22662a": {
+@@ -131,6 +140,7 @@
+    "montagne": "terralith:jungle_mountains",
+    "relief": 0.05,
+    "cellule": 224,
++   "cote": "plage",
+    "plage": "minecraft:beach"
+   },
+   "#54784a": {
+@@ -153,6 +163,7 @@
+    "montagne": "terralith:alpine_highlands",
+    "relief": 0.18,
+    "cellule": 224,
++   "cote": "falaise",
+    "plage": "minecraft:beach"
+   },
+   "#e1e6eb": {
+@@ -171,6 +182,7 @@
+    "montagne": "terralith:frozen_cliffs",
+    "relief": 0.35,
+    "cellule": 224,
++   "cote": "falaise",
+    "plage": "minecraft:snowy_beach"
+   },
+   "#586246": {
+@@ -193,6 +205,7 @@
+    "montagne": null,
+    "relief": -0.05,
+    "cellule": 224,
++   "cote": "vase",
+    "plage": null
+   },
+   "#b05c34": {
+@@ -219,6 +232,7 @@
+    "montagne": "minecraft:eroded_badlands",
+    "relief": 0.12,
+    "cellule": 224,
++   "cote": "falaise",
+    "plage": "minecraft:beach"
+   },
+   "#7c7a76": {
+@@ -241,7 +255,8 @@
+    "montagne": null,
+    "relief": 0.0,
+    "cellule": 224,
+-   "plage": "minecraft:beach"
++   "cote": "roche",
++   "plage": "minecraft:stony_shore"
+   },
+   "#467052": {
+    "type": "region",
+@@ -263,6 +278,7 @@
+    "montagne": null,
+    "relief": -0.06,
+    "cellule": 224,
++   "cote": "vase",
+    "plage": null
+   },
+   "#c4b278": {
+@@ -281,6 +297,7 @@
+    "montagne": "terralith:volcanic_crater",
+    "relief": 0.05,
+    "cellule": 224,
++   "cote": "plage",
+    "plage": "minecraft:beach"
+   },
+   "#463834": {
+@@ -299,7 +316,8 @@
+    "montagne": "terralith:volcanic_peaks",
+    "relief": 0.4,
+    "cellule": 224,
+-   "plage": "minecraft:beach"
++   "cote": "roche",
++   "plage": "minecraft:stony_shore"
+   },
+   "#c8be8c": {
+    "type": "region",
+@@ -313,7 +331,14 @@
+    "montagne": null,
+    "relief": 0.0,
+    "cellule": 224,
++   "cote": "plage",
+    "plage": "minecraft:beach"
++  },
++  "#2b5fd9": {
++   "type": "riviere"
++  },
++  "#3d7ee0": {
++   "type": "lac"
+   }
+  }
+ }
+--- sauvegarde-0.1.6/regions-test.json	2026-11-09 21:42:05.293150900 +0400
++++ regions-test.json	2026-11-09 21:44:11.678097100 +0400
+@@ -5,6 +5,11 @@
+  "lissage_relief_pixels": 8,
+  "deformation_bords_blocs": 28,
+  "fondu_bords_blocs": 128,
++ "relief_image": "relief.png",
++ "rivieres_aleatoires": false,
++ "riviere_vallee_blocs": 150,
++ "riviere_lit_blocs": 16,
++ "lissage_cotes_pixels": 6,
+  "rendu_au_demarrage": true,
+  "rendu_pas_blocs": 32,
+  "zone_reelle": {
+@@ -43,6 +48,7 @@
+    "montagne": "terralith:white_cliffs",
+    "relief": 0.08,
+    "cellule": 224,
++   "cote": "falaise",
+    "plage": "minecraft:beach"
+   },
+   "#b6a658": {
+@@ -69,6 +75,7 @@
+    "montagne": "terralith:savanna_slopes",
+    "relief": 0.0,
+    "cellule": 224,
++   "cote": "plage",
+    "plage": "minecraft:beach"
+   },
+   "#a0988e": {
+@@ -91,6 +98,7 @@
+    "montagne": null,
+    "relief": -0.04,
+    "cellule": 224,
++   "cote": "plage",
+    "plage": "minecraft:beach"
+   },
+   "#7aa048": {
+@@ -113,6 +121,7 @@
+    "montagne": null,
+    "relief": -0.03,
+    "cellule": 224,
++   "cote": "plage",
+    "plage": "minecraft:beach"
+   },
+   "#22662a": {
+@@ -135,6 +144,7 @@
+    "montagne": "terralith:jungle_mountains",
+    "relief": 0.05,
+    "cellule": 224,
++   "cote": "plage",
+    "plage": "minecraft:beach"
+   },
+   "#54784a": {
+@@ -157,6 +167,7 @@
+    "montagne": "terralith:alpine_highlands",
+    "relief": 0.18,
+    "cellule": 224,
++   "cote": "falaise",
+    "plage": "minecraft:beach"
+   },
+   "#e1e6eb": {
+@@ -175,6 +186,7 @@
+    "montagne": "terralith:frozen_cliffs",
+    "relief": 0.35,
+    "cellule": 224,
++   "cote": "falaise",
+    "plage": "minecraft:snowy_beach"
+   },
+   "#586246": {
+@@ -197,6 +209,7 @@
+    "montagne": null,
+    "relief": -0.05,
+    "cellule": 224,
++   "cote": "vase",
+    "plage": null
+   },
+   "#b05c34": {
+@@ -223,6 +236,7 @@
+    "montagne": "minecraft:eroded_badlands",
+    "relief": 0.12,
+    "cellule": 224,
++   "cote": "falaise",
+    "plage": "minecraft:beach"
+   },
+   "#7c7a76": {
+@@ -245,7 +259,8 @@
+    "montagne": null,
+    "relief": 0.0,
+    "cellule": 224,
+-   "plage": "minecraft:beach"
++   "cote": "roche",
++   "plage": "minecraft:stony_shore"
+   },
+   "#467052": {
+    "type": "region",
+@@ -267,6 +282,7 @@
+    "montagne": null,
+    "relief": -0.06,
+    "cellule": 224,
++   "cote": "vase",
+    "plage": null
+   },
+   "#c4b278": {
+@@ -285,6 +301,7 @@
+    "montagne": "terralith:volcanic_crater",
+    "relief": 0.05,
+    "cellule": 224,
++   "cote": "plage",
+    "plage": "minecraft:beach"
+   },
+   "#463834": {
+@@ -303,7 +320,8 @@
+    "montagne": "terralith:volcanic_peaks",
+    "relief": 0.4,
+    "cellule": 224,
+-   "plage": "minecraft:beach"
++   "cote": "roche",
++   "plage": "minecraft:stony_shore"
+   },
+   "#c8be8c": {
+    "type": "region",
+@@ -317,7 +335,14 @@
+    "montagne": null,
+    "relief": 0.0,
+    "cellule": 224,
++   "cote": "plage",
+    "plage": "minecraft:beach"
++  },
++  "#2b5fd9": {
++   "type": "riviere"
++  },
++  "#3d7ee0": {
++   "type": "lac"
+   }
+  }
+ }
+=== datapack (nouveaux fichiers)
+--- erosion_ile.json
+{
+  "type": "lithostitched:wrap_density_function",
+  "target_function": "tectonic:noise/continent/erosion_raw",
+  "wrapper_function": {
+    "type": "atheria_ile:ile_champ",
+    "champ": "erosion",
+    "argument": {
+      "type": "lithostitched:wrapped_marker"
+    }
+  }
+}
+--- cretes_ile.json
+{
+  "type": "lithostitched:wrap_density_function",
+  "target_function": "tectonic:noise/continent/ridges",
+  "wrapper_function": {
+    "type": "atheria_ile:ile_champ",
+    "champ": "cretes",
+    "argument": {
+      "type": "lithostitched:wrapped_marker"
+    }
+  }
+}

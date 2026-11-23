@@ -1,0 +1,1 @@
+QFIN = QFIN_LIEUX; QFIN_VUES = vuesLieux

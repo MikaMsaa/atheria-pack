@@ -45,87 +45,91 @@
    },
    {
     "char": "Ê",
-    "block": "minecraft:short_grass"
+    "block": "minecraft:spruce_slab[type=double,waterlogged=false]"
    },
    {
     "char": "Ë",
-    "block": "minecraft:iron_bars[east=false,north=false,south=false,waterlogged=false,west=false]"
+    "block": "minecraft:short_grass"
    },
    {
     "char": "Ì",
+    "block": "minecraft:iron_bars[east=false,north=false,south=false,waterlogged=false,west=false]"
+   },
+   {
+    "char": "Í",
     "block": "minecraft:chest[facing=south,type=single,waterlogged=false]",
     "loot": "chestloot"
    },
    {
-    "char": "Í",
+    "char": "Î",
     "block": "minecraft:iron_bars[east=false,north=true,south=false,waterlogged=false,west=false]"
    },
    {
-    "char": "Î",
+    "char": "Ï",
     "block": "minecraft:polished_andesite"
    },
    {
-    "char": "Ï",
+    "char": "Ð",
     "block": "minecraft:white_wool"
    },
    {
-    "char": "Ð",
+    "char": "Ñ",
     "block": "minecraft:spruce_slab[type=top,waterlogged=false]"
    },
    {
-    "char": "Ñ",
+    "char": "Ò",
     "block": "minecraft:waxed_weathered_cut_copper"
    },
    {
-    "char": "Ò",
+    "char": "Ó",
     "block": "minecraft:waxed_oxidized_cut_copper"
    },
    {
-    "char": "Ó",
+    "char": "Ô",
     "block": "minecraft:iron_trapdoor[facing=north,half=top,open=true,powered=false,waterlogged=false]"
    },
    {
-    "char": "Ô",
+    "char": "Õ",
     "block": "supplementaries:sack[open=false,waterlogged=false]"
    },
    {
-    "char": "Õ",
+    "char": "Ö",
     "block": "minecraft:smooth_stone_slab[type=bottom,waterlogged=false]"
    },
    {
-    "char": "Ö",
+    "char": "×",
     "block": "minecraft:light_gray_stained_glass_pane[east=true,north=false,south=false,waterlogged=false,west=true]"
    },
    {
-    "char": "×",
+    "char": "Ø",
     "block": "minecraft:lantern[hanging=true,waterlogged=false]"
    },
    {
-    "char": "Ø",
+    "char": "Ù",
     "block": "minecraft:chain[axis=y,waterlogged=false]"
    },
    {
-    "char": "Ù",
+    "char": "Ú",
     "block": "minecraft:light_gray_stained_glass"
    },
    {
-    "char": "Ú",
+    "char": "Û",
     "block": "minecraft:waxed_weathered_cut_copper_slab[type=bottom,waterlogged=false]"
    }
   ]
  },
  "slices": [
   [
-   " Ô Í         Ñ  ",
-   "             Ñ  ",
+   " Õ Î         Ò  ",
    "             Ò  ",
-   "             Ñ  ",
-   "             Ñ  ",
+   "             Ó  ",
    "             Ò  ",
-   "ÑÒÑÑÒÑÑÒÑÑÒÑÑÒ  ",
+   "             Ò  ",
+   "             Ó  ",
+   "ÒÓÒÒÓÒÒÓÒÒÓÒÒÓ  ",
    "                ",
    "                ",
-   "  Ë          Ë  ",
+   "  Ì          Ì  ",
    "                ",
    "                ",
    "                ",
@@ -134,16 +138,16 @@
    "                "
   ],
   [
-   "ÐÐÐÍ         Ñ  ",
-   "             Ñ  ",
+   "ÑÑÑÎ         Ò  ",
    "             Ò  ",
-   "             Ñ  ",
-   "             Ñ  ",
+   "             Ó  ",
    "             Ò  ",
-   "ÑÒÑÑÒÑÑÒÑÑÒÑÑÒ  ",
-   "ÕÕÕÕÕÕÕÕÕÕÕÕÕÕ  ",
-   "ÕÕÕÕÕÕÕÕÕÕÕÕÕÕ  ",
-   "ÕÕÕÕÕÕÕÕÕÕÕÕÕÕ  ",
+   "             Ò  ",
+   "             Ó  ",
+   "ÒÓÒÒÓÒÒÓÒÒÓÒÒÓ  ",
+   "ÖÖÖÖÖÖÖÖÖÖÖÖÖÖ  ",
+   "ÖÖÖÖÖÖÖÖÖÖÖÖÖÖ  ",
+   "ÖÖÖÖÖÖÖÖÖÖÖÖÖÖ  ",
    "                ",
    "                ",
    "                ",
@@ -152,31 +156,13 @@
    "                "
   ],
   [
-   "             Ñ  ",
-   "             Ñ  ",
    "             Ò  ",
-   "             Ñ  ",
-   "             Ñ  ",
    "             Ò  ",
-   "ÖÒÖÖÒÖÖÒÖÖÒÖÖÒ  ",
-   "                ",
-   "                ",
-   "                ",
-   "                ",
-   "                ",
-   "                ",
-   "                ",
-   "                ",
-   "                "
-  ],
-  [
-   "             Ñ  ",
-   "     ×       Ñ  ",
+   "             Ó  ",
    "             Ò  ",
-   "             Ñ  ",
-   "             Ñ  ",
    "             Ò  ",
-   "ÑÒÑÑÒÑÑÒÑÑÒÑÑÒ  ",
+   "             Ó  ",
+   "×Ó××Ó××Ó××Ó××Ó  ",
    "                ",
    "                ",
    "                ",
@@ -188,13 +174,13 @@
    "                "
   ],
   [
-   "             Ñ  ",
-   "     Ø       Ñ  ",
    "             Ò  ",
-   "             Ñ  ",
-   "             Ñ  ",
+   "     Ø       Ò  ",
+   "             Ó  ",
    "             Ò  ",
-   "ÑÒÑÑÒÑÑÒÑÑÒÑÑÒ  ",
+   "             Ò  ",
+   "             Ó  ",
+   "ÒÓÒÒÓÒÒÓÒÒÓÒÒÓ  ",
    "                ",
    "                ",
    "                ",
@@ -206,13 +192,31 @@
    "                "
   ],
   [
-   "ÙÙÙÙÙÙÙÙÙÚÚÚÚÚ  ",
-   "ÚÚÚÚÚÚÚÚÚÚÚÚÚÚ  ",
-   "ÚÚÚÚÚÚÚÚÚÚÚÚÚÚ  ",
-   "ÚÚÚÚÚÚÚÚÚÚÚÚÚÚ  ",
-   "ÚÚÚÚÚÚÚÚÚÚÚÚÚÚ  ",
-   "ÚÚÚÚÚÚÚÚÚÚÚÚÚÚ  ",
-   "ÚÚÚÚÚÚÚÚÚÚÚÚÚÚ  ",
+   "             Ò  ",
+   "     Ù       Ò  ",
+   "             Ó  ",
+   "             Ò  ",
+   "             Ò  ",
+   "             Ó  ",
+   "ÒÓÒÒÓÒÒÓÒÒÓÒÒÓ  ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                ",
+   "                "
+  ],
+  [
+   "ÚÚÚÚÚÚÚÚÚÛÛÛÛÛ  ",
+   "ÛÛÛÛÛÛÛÛÛÛÛÛÛÛ  ",
+   "ÛÛÛÛÛÛÛÛÛÛÛÛÛÛ  ",
+   "ÛÛÛÛÛÛÛÛÛÛÛÛÛÛ  ",
+   "ÛÛÛÛÛÛÛÛÛÛÛÛÛÛ  ",
+   "ÛÛÛÛÛÛÛÛÛÛÛÛÛÛ  ",
+   "ÛÛÛÛÛÛÛÛÛÛÛÛÛÛ  ",
    "                ",
    "                ",
    "                ",

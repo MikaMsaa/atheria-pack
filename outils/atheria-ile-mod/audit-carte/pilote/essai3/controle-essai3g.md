@@ -1,0 +1,11 @@
+- Chunks generes (pilote 8x7 + anneau) : 90 / 90
+- Multi 8x7 : concordance moyenne bloc a bloc avec les parts 100.0 % sur 56 chunks (Y de depart des parts 67, orientation lignes = z)
+- Chunks sous 90 % : aucun
+- Hauteur du sol du boulevard (premier bloc plein, colonnes echantillonnees) : {67=713, 68=3, 78=52}
+- Largeur libre du boulevard a Y 68-70 (mesures tous les 4 blocs en x ; -1 = obstrue a z -904) : {12=1, 13=2, 14=1, 15=1, 19=1, 20=1, 21=5, 22=3, 24=11, 36=1, 68=2, 69=1, 71=1} ; bornes z : {-904..-893=1, -905..-893=1, -907..-893=1, -913..-893=4, -913..-895=1, -914..-893=3, -914..-895=1, -916..-846=1, -916..-848=1, -916..-881=1, -916..-893=11, -916..-896=1, -916..-903=1, -916..-904=1, -960..-893=1, -962..-895=1} (attendu 24 : -916..-893)
+- Largeur libre de la rue N-S a Y 68-70 (mesures tous les 4 blocs en z ; -1 = obstrue a x 2959) : {-1=9, 2=2, 15=1, 16=4, 18=1, 49=1, 90=1, 101=1, 128=2, 129=2, 140=1, 141=1, 142=1} ; bornes x : {2882..3023=1, 2883..3022=1, 2883..3023=1, 2895..3023=1, 2896..3023=2, 2896..3024=1, 2904..2993=1, 2916..2964=1, 2919..3019=1, 2952..2966=1, 2952..2967=4, 2952..2969=1, 2959..2960=2} (attendu 16 : 2952..2967)
+- Bord sud : 128 colonnes ; rue du pilote au bord -> ecart de sol exterieur (blocs:nb) {0=48, 1=49, 2=6, 3=1, 6=2, 7=3, 8=10} ; rue coupee a l'exterieur : 44 ex. 2914,-848 (short_grass), 2917,-848 (tall_grass), 2925,-848 (tall_grass), 2935,-848 (short_grass)
+- Bord nord : 128 colonnes ; rue du pilote au bord -> ecart de sol exterieur (blocs:nb) {-1=5, 0=63, 1=9, 2=1, 3=32, 6=8, 8=10} ; rue coupee a l'exterieur : 49 ex. 2899,-961 (short_grass), 2912,-961 (short_grass), 2913,-961 (short_grass), 2915,-961 (short_grass)
+- Bord est : 112 colonnes ; rue du pilote au bord -> ecart de sol exterieur (blocs:nb) {-25=1, -22=1, -6=2, -4=1, 0=3, 1=17, 2=8, 4=20} ; rue coupee a l'exterieur : 45 ex. 3024,-960 (cobblestone_wall), 3024,-959 (moss_block), 3024,-957 (smooth_sandstone), 3024,-955 (moss_block)
+- Bord ouest : 112 colonnes ; rue du pilote au bord -> ecart de sol exterieur (blocs:nb) {-30=1, -26=1, 0=33, 1=9, 4=10} ; rue coupee a l'exterieur : 12 ex. 2895,-958 (short_grass), 2895,-951 (short_grass), 2895,-913 (short_grass), 2895,-912 (tall_grass)
+- Colonne 2952,-904 (Y 66-72) : 66=dirt 67=black_concrete 68=air 69=air 70=air 71=air 72=air

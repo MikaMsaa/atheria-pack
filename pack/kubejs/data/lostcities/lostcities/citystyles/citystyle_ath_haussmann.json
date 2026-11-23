@@ -2,10 +2,10 @@
     "style":  "ath_haussmann",
     "inherit":  "citystyle_common",
     "buildingsettings":  {
-                             "buildingchance":  0.7,
+                             "buildingchance":  0,
                              "minfloors":  5,
                              "maxfloors":  8,
-                             "maxcellars":  2
+                             "maxcellars":  0
                          },
     "streetblocks":  {
                          "border":  "y",
@@ -34,10 +34,6 @@
                                         {
                                             "factor":  2.5,
                                             "value":  "ath_maison"
-                                        },
-                                        {
-                                            "factor":  0.08,
-                                            "value":  "ath_eglise"
                                         }
                                     ],
                       "multibuildings":  [
@@ -72,6 +68,74 @@
                                              {
                                                  "factor":  1,
                                                  "value":  "ath_v_banque"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_hm_mairie"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_hm_poste"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_hm_hotel"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_hm_passage"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_hm_ecole"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_hm_commissariat"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_hm_musee"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_hm_salle_ventes"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_hm_brasserie"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_hm_angle"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_hm_hotel_particulier"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_hm_cinema"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_hm_piscine"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_hm_lycee"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_hm_ateliers"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_hm_conservatoire"
+                                             },
+                                             {
+                                                 "factor":  1,
+                                                 "value":  "ath_v_hm_tribunal"
                                              },
                                              {
                                                  "factor":  0.2,

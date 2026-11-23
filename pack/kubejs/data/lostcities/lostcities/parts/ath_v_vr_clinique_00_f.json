@@ -85,110 +85,78 @@
    },
    {
     "char": "Ô",
-    "block": "mcwwindows:white_curtain[facing=south,tied=left]"
-   },
-   {
-    "char": "Õ",
-    "block": "mcwwindows:white_curtain[facing=south,tied=right]"
-   },
-   {
-    "char": "Ö",
-    "block": "mcwwindows:light_blue_curtain[facing=south,tied=left]"
-   },
-   {
-    "char": "×",
-    "block": "mcwwindows:light_blue_curtain[facing=south,tied=right]"
-   },
-   {
-    "char": "Ø",
     "block": "minecraft:glass_pane[east=false,north=true,south=true,waterlogged=false,west=false]"
    },
    {
-    "char": "Ù",
-    "block": "mcwwindows:light_blue_curtain[facing=east,tied=right]"
-   },
-   {
-    "char": "Ú",
-    "block": "mcwwindows:light_blue_curtain[facing=east,tied=left]"
-   },
-   {
-    "char": "Û",
+    "char": "Õ",
     "block": "minecraft:iron_door[facing=west,half=upper,hinge=left,open=false,powered=false]"
    },
    {
-    "char": "Ü",
+    "char": "Ö",
     "block": "minecraft:blue_stained_glass"
    },
    {
-    "char": "Ý",
+    "char": "×",
     "block": "minecraft:red_stained_glass"
    },
    {
-    "char": "Þ",
+    "char": "Ø",
     "block": "minecraft:smooth_stone_slab[type=bottom,waterlogged=false]"
    },
    {
-    "char": "ß",
-    "block": "mcwwindows:dark_oak_curtain_rod[facing=south]"
-   },
-   {
-    "char": "à",
+    "char": "Ù",
     "block": "mcwlights:sea_lantern_slab[type=top,waterlogged=false]"
    },
    {
-    "char": "á",
+    "char": "Ú",
     "block": "mcwlights:iron_chandelier[lit=true]"
    },
    {
-    "char": "â",
-    "block": "mcwwindows:dark_oak_curtain_rod[facing=east]"
-   },
-   {
-    "char": "ã",
+    "char": "Û",
     "block": "minecraft:lantern[hanging=true,waterlogged=false]"
    },
    {
-    "char": "ä",
+    "char": "Ü",
     "block": "minecraft:smooth_stone"
    },
    {
-    "char": "å",
+    "char": "Ý",
     "block": "handcrafted:birch_side_table[color=none,facing=north,waterlogged=false]"
    },
    {
-    "char": "æ",
+    "char": "Þ",
     "block": "minecraft:white_bed[facing=north,occupied=false,part=head]"
    },
    {
-    "char": "ç",
+    "char": "ß",
     "block": "minecraft:iron_bars[east=false,north=true,south=false,waterlogged=false,west=false]"
    },
    {
-    "char": "è",
+    "char": "à",
     "block": "minecraft:white_bed[facing=north,occupied=false,part=foot]"
    },
    {
-    "char": "é",
+    "char": "á",
     "block": "handcrafted:birch_chair[color=light_blue,facing=west,waterlogged=false]"
    },
    {
-    "char": "ê",
+    "char": "â",
     "block": "handcrafted:birch_cupboard[facing=east,type=1]"
    },
    {
-    "char": "ë",
+    "char": "ã",
     "block": "minecraft:glass_pane[east=true,north=false,south=true,waterlogged=false,west=true]"
    },
    {
-    "char": "ì",
+    "char": "ä",
     "block": "minecraft:cobweb"
    },
    {
-    "char": "í",
+    "char": "å",
     "block": "minecraft:iron_door[facing=west,half=lower,hinge=left,open=true,powered=false]"
    },
    {
-    "char": "î",
+    "char": "æ",
     "block": "minecraft:iron_door[facing=west,half=upper,hinge=left,open=true,powered=false]"
    }
   ]
@@ -254,7 +222,7 @@
    "             ÂÂÂ",
    "                ",
    "    ÂÂÒÒÒÂÂÂÒÒÒÓ",
-   "    Â Ô Õ   Ö × ",
+   "    Â           ",
    "    Â           ",
    "    Â           ",
    "    Â        Í  ",
@@ -262,17 +230,16 @@
    "    Â           ",
    "    Â           ",
    "    Â           ",
-   "    ØÙ      ÎÎÎÎ",
-   "    ØÚ      Î   ",
-   "    Â       Û  Ñ"
+   "    Ô       ÎÎÎÎ",
+   "    Ô       Î   ",
+   "    Â       Õ  Ñ"
   ],
   [
    "           Â    ",
-   "              Ü ",
-   "              Ý ",
+   "              Ö ",
+   "              × ",
    "                ",
    "    ÂÂÒÒÒÂÂÂÒÒÒÂ",
-   "    Â Ô Õ   Ö × ",
    "    Â           ",
    "    Â           ",
    "    Â           ",
@@ -280,8 +247,9 @@
    "    Â           ",
    "    Â           ",
    "    Â           ",
-   "    ØÙ      ÎÎÎÎ",
-   "    ØÚ      Î   ",
+   "    Â           ",
+   "    Ô       ÎÎÎÎ",
+   "    Ô       Î   ",
    "    Â       Î   "
   ],
   [
@@ -290,7 +258,6 @@
    "                ",
    "                ",
    "    ÂÂÒÒÒÂÂÂÒÒÒÂ",
-   "    Â Ô Õ   Ö × ",
    "    Â           ",
    "    Â           ",
    "    Â           ",
@@ -298,8 +265,9 @@
    "    Â           ",
    "    Â           ",
    "    Â           ",
-   "    ØÙ      ÎÎÎÎ",
-   "    ØÚ      Î   ",
+   "    Â           ",
+   "    Ô       ÎÎÎÎ",
+   "    Ô       Î   ",
    "    Â       Î   "
   ]
  ]

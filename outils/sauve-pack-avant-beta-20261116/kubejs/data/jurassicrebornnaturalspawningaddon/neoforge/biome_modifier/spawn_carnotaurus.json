@@ -1,0 +1,39 @@
+{
+    "type":  "neoforge:add_spawns",
+    "biomes":  [
+                   "terralith:shrubland",
+                   "terralith:rocky_shrubland",
+                   "terralith:hot_shrubland",
+                   "terralith:brushland",
+                   "terralith:steppe",
+                   "biomesoplenty:scrubland",
+                   "biomesoplenty:shrubland",
+                   "biomesoplenty:rocky_shrubland",
+                   "biomesoplenty:dryland",
+                   "biomesoplenty:wasteland_steppe",
+                   "minecraft:desert",
+                   "minecraft:badlands",
+                   "minecraft:wooded_badlands",
+                   "minecraft:eroded_badlands",
+                   "terralith:ancient_sands",
+                   "terralith:desert_canyon",
+                   "terralith:desert_oasis",
+                   "terralith:desert_spires",
+                   "terralith:gravel_desert",
+                   "terralith:lush_desert",
+                   "terralith:red_oasis",
+                   "terralith:sandstone_valley",
+                   "terralith:bryce_canyon",
+                   "terralith:white_mesa",
+                   "terralith:arid_highlands",
+                   "biomesoplenty:lush_desert"
+               ],
+    "spawners":  [
+                     {
+                         "type":  "jurassicreborn:carnotaurus",
+                         "weight":  3,
+                         "minCount":  1,
+                         "maxCount":  1
+                     }
+                 ]
+}

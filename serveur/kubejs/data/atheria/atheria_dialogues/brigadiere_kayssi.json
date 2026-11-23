@@ -1,0 +1,164 @@
+{
+ "pnj": {
+  "nom": "Brigadière Kayssi"
+ },
+ "debut": "debut",
+ "noeuds": {
+  "q_ch1_kayssi_ok": {
+   "texte": "Réfléchis vite. La clé de Kamel ou ta place ici. Pas les deux."
+  },
+  "q_ch1_kayssi_refus": {
+   "texte": "Le Commandant n'aime pas attendre. L'offre tient jusqu'à ce qu'il change d'avis."
+  },
+  "q_ch1_kayssi": {
+   "lignes": [
+    {
+     "texte": "Le Commandant sait que tu aides Kamel. Il t'offre une place officielle. Ration, logement, vraie arme. Tu nous donnes la clé, tu rentres dans le système."
+    }
+   ],
+   "choix": [
+    {
+     "texte": "J'y réfléchis.",
+     "style": "accepter",
+     "actions": [
+      {
+       "commande": "tag {joueur} add q_ch1_kayssi"
+      },
+      {
+       "commande": "playsound minecraft:entity.experience_orb.pickup master {joueur} ~ ~ ~ 0.6 1.2"
+      }
+     ],
+     "aller": "q_ch1_kayssi_ok"
+    },
+    {
+     "texte": "Pas tant que Kamel a besoin de moi.",
+     "style": "refuser",
+     "aller": "q_ch1_kayssi_refus"
+    }
+   ]
+  },
+  "q_ch1_kayssi_fait": {
+   "texte": "Tu as ce qu'il te faut. Avance."
+  },
+  "kayssi_bandes": {
+   "lignes": [
+    {
+     "texte": "Donne-moi les bandes. Je n'ai pas envie de tirer."
+    }
+   ],
+   "choix": [
+    {
+     "texte": "Tu savais pour Rayade ?",
+     "actions": [],
+     "aller": "kayssi_rayade"
+    },
+    {
+     "texte": "Montrer le journal de Pax",
+     "actions": [
+      {
+       "commande": "execute as {joueur} if items entity @s container.* atheria:archive_33 run tag @s add q_ch5_kayssi"
+      },
+      {
+       "commande": "execute as {joueur} if items entity @s container.* atheria:archive_33 run tag @s add kayssi_alliee"
+      },
+      {
+       "commande": "execute as {joueur} if items entity @s container.* atheria:archive_33 run tellraw @s {\"text\":\"Kayssi combattra Pax au final.\",\"color\":\"gold\"}"
+      }
+     ],
+     "aller": "kayssi_allie"
+    },
+    {
+     "texte": "Remettre les cassettes",
+     "actions": [
+      {
+       "commande": "execute as {joueur} if items entity @s container.* atheria:cassette_salto run clear @s atheria:cassette_salto 1"
+      },
+      {
+       "commande": "execute as {joueur} if items entity @s container.* atheria:cassette_salto run tag @s add q_ch5_kayssi"
+      },
+      {
+       "commande": "execute as {joueur} if items entity @s container.* atheria:cassette_salto run tag @s add cassettes_rendues"
+      },
+      {
+       "commande": "execute as {joueur} if items entity @s container.* atheria:cassette_salto run scoreboard players add @s aura_paf 2"
+      },
+      {
+       "commande": "execute as {joueur} if items entity @s container.* atheria:cassette_salto run scoreboard players add #pax_puissance atheria 1"
+      }
+     ],
+     "aller": "kayssi_merci"
+    }
+   ]
+  },
+  "kayssi_rayade": {
+   "lignes": [
+    {
+     "texte": "Je savais qu'il y avait des noms. Pas lesquels. J'ai signé des ordres sans poser toutes les questions. Je vais devoir vivre avec ça."
+    }
+   ]
+  },
+  "kayssi_allie": {
+   "lignes": [
+    {
+     "texte": "(Elle lit longtemps.) ...Il a choisi pour nous tous, depuis le début. Au CHM, je serai en face de lui."
+    }
+   ]
+  },
+  "kayssi_merci": {
+   "lignes": [
+    {
+     "texte": "Merci. Le Commandant saura que tu as été raisonnable. (Elle ne te regarde pas en disant ça.)"
+    }
+   ]
+  },
+  "kayssi_apres": {
+   "lignes": [
+    {
+     "texte": "On se reverra au CHM. Essaie d'être du bon côté du mur, cette fois."
+    }
+   ]
+  },
+  "repos": {
+   "texte": "Circule. Le Commandant n'aime pas les attroupements."
+  },
+  "debut": {
+   "aiguillage": [
+    {
+     "si": {
+      "tag": [
+       "q_ch5_kayssi"
+      ]
+     },
+     "aller": "kayssi_apres"
+    },
+    {
+     "si": {
+      "tag": [
+       "acte_4"
+      ]
+     },
+     "aller": "kayssi_bandes"
+    },
+    {
+     "si": {
+      "tag": [
+       "q_ch1_kayssi"
+      ]
+     },
+     "aller": "q_ch1_kayssi_fait"
+    },
+    {
+     "si": {
+      "tag": [
+       "q_ch1_kamel"
+      ]
+     },
+     "aller": "q_ch1_kayssi"
+    },
+    {
+     "aller": "repos"
+    }
+   ]
+  }
+ }
+}
