@@ -125,39 +125,19 @@
    ],
    "choix": [
     {
-     "texte": "Tarifs de la semaine (dans le chat)",
+     "texte": "Ouvrir la boutique",
      "actions": [
       {
-       "commande": "atheria_eniy {joueur} tarifs"
+       "commande": "atheria_eniy {joueur} boutique acheter"
       }
      ],
      "fin": true
     },
     {
-     "texte": "Survie",
-     "aller": "eniy_survie"
-    },
-    {
-     "texte": "Soins",
-     "aller": "eniy_soins"
-    },
-    {
-     "texte": "Armes et munitions",
-     "aller": "eniy_armes"
-    },
-    {
-     "texte": "Équipement",
-     "aller": "eniy_equipement"
-    },
-    {
-     "texte": "Outils",
-     "aller": "eniy_outils"
-    },
-    {
      "texte": "Vendre mon butin",
      "actions": [
       {
-       "commande": "atheria_eniy {joueur} vendre"
+       "commande": "atheria_eniy {joueur} boutique vendre"
       }
      ],
      "fin": true

@@ -91,6 +91,22 @@ function atheriaContratDef(cle) {
 
 function atheriaContratsAfficher(p) {
   var etat = atheriaContratsLire(p)
+  if (typeof atheriaHud === 'function') {
+    // tableau des contrats à l'écran (mod atheria_hud) : icône, progression, lieu sur la carte
+    var maintenant = Date.now() + 4 * 3600 * 1000
+    var liste = []
+    etat.liste.forEach(c => {
+      var d = atheriaContratDef(c.cle)
+      if (!d) return
+      var icone = d[0] == 'fabriquer' ? d[3] : d[0] == 'tuer' ? 'minecraft:iron_sword' : d[0] == 'lieu' ? 'minecraft:compass' : 'minecraft:minecart'
+      liste.push([d[2], Math.min(c.fait, d[4]), d[4], d[0], icone, d[0] == 'lieu' ? d[3] : null])
+    })
+    atheriaHud(p, { t: 'ecran', genre: 'contrats', json: JSON.stringify({
+      liste: liste, recompense: CONTRATS.recompense[etat.stade], bonus: CONTRATS.bonus,
+      minuit: 86400000 - (maintenant % 86400000), x: p.x, z: p.z
+    }) })
+    return 1
+  }
   p.tell(Text.gold('— Contrats radio du jour —'))
   etat.liste.forEach(c => {
     var d = atheriaContratDef(c.cle)

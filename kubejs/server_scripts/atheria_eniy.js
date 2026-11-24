@@ -95,20 +95,26 @@ function atheriaEniyTarifs(p, rayon) {
   return 1
 }
 
-function atheriaEniyAcheter(p, cle) {
+// Message d'Eniy : dans la boutique à l'écran (mod atheria_hud) si elle est ouverte, sinon dans le chat
+function atheriaEniyDire(p, ecran, texte, couleur) {
+  if (ecran) { ecran.message = texte; ecran.ok = couleur == 'yellow'; return }
+  p.tell(couleur == 'red' ? Text.red(texte) : couleur == 'yellow' ? Text.yellow(texte) : Text.gray(texte))
+}
+
+function atheriaEniyAcheter(p, cle, ecran) {
   var a = ENIY_ARTICLES.filter(x => x[0] == cle)[0]
   if (!a) return 0
-  if (a[5] > atheriaEniyStade(p)) { p.tell(Text.gray('Eniy : « Ça, c\'est pour les clients qui ont survécu un peu plus longtemps. Reviens plus tard. »')); return 0 }
+  if (a[5] > atheriaEniyStade(p)) { atheriaEniyDire(p, ecran, 'Eniy : « Ça, c\'est pour les clients qui ont survécu un peu plus longtemps. Reviens plus tard. »', 'gray'); return 0 }
   var prix = atheriaEniyPrix(a, p)
   var dispo = atheriaCompter(p, 'atheria:bon_caf')
-  if (dispo < prix) { p.tell(Text.red(a[1] + ' : ' + prix + ' bons. Il t\'en manque ' + (prix - dispo) + '. Eniy ne fait pas crédit.')); return 0 }
-  if (atheriaRetirer(p, 'atheria:bon_caf', prix) !== prix) { p.tell(Text.red('Paiement refusé.')); return 0 }
+  if (dispo < prix) { atheriaEniyDire(p, ecran, a[1] + ' : ' + prix + ' bons. Il t\'en manque ' + (prix - dispo) + '. Eniy ne fait pas crédit.', 'red'); return 0 }
+  if (atheriaRetirer(p, 'atheria:bon_caf', prix) !== prix) { atheriaEniyDire(p, ecran, 'Paiement refusé.', 'red'); return 0 }
   p.server.runCommandSilent('give ' + p.username + ' ' + a[2] + ' ' + a[3])
-  p.tell(Text.yellow('Eniy encaisse ' + prix + ' bons pour : ' + a[1] + '. « Satisfait ou satisfait. »'))
+  atheriaEniyDire(p, ecran, 'Eniy encaisse ' + prix + ' bons pour : ' + a[1] + '. « Satisfait ou satisfait. »', 'yellow')
   return 1
 }
 
-function atheriaEniyVendre(p) {
+function atheriaEniyVendre(p, ecran) {
   var recherche = atheriaEniyRecherche(), total = 0, lignes = []
   ENIY_RACHAT.forEach(r => {
     var lots = Math.floor(atheriaCompter(p, r[0]) / r[3])
@@ -119,11 +125,61 @@ function atheriaEniyVendre(p) {
     total += gain
     lignes.push(lots * r[3] + ' ' + r[1] + ' : ' + gain + ' bons')
   })
-  if (total == 0) { p.tell(Text.gray('Eniy : « Tu n\'as rien que je veuille. Des spores, des fragments, de la chair : voilà ce qui se vend. »')); return 0 }
+  if (total == 0) { atheriaEniyDire(p, ecran, 'Eniy : « Tu n\'as rien que je veuille. Des spores, des fragments, de la chair : voilà ce qui se vend. »', 'gray'); return 0 }
   p.server.runCommandSilent('give ' + p.username + ' atheria:bon_caf ' + total)
-  lignes.forEach(l => p.tell(Text.gray(l)))
-  p.tell(Text.yellow('Eniy te tend ' + total + ' bons. « Le marché te remercie. »'))
+  if (!ecran) lignes.forEach(l => p.tell(Text.gray(l)))
+  atheriaEniyDire(p, ecran, 'Eniy te tend ' + total + ' bons. « Le marché te remercie. »', 'yellow')
   return 1
+}
+
+// ---------------------------------------------------------------- boutique à l'écran (mod atheria_hud, Mika 24/11)
+// Le dialogue d'Eniy ouvre la boutique : /atheria_eniy <joueur> boutique [acheter|vendre].
+// Les boutons de l'écran envoient /eniy acheter <article> ou /eniy vendre, acceptés seulement près d'Eniy, peu après l'ouverture.
+var ENIY_ECRAN = { duree: 10 * 60 * 1000, rayon: 16 }
+
+function atheriaEniyEcran(p, onglet, ecran) {
+  var stade = atheriaEniyStade(p), promo = atheriaEniyPromo(), recherche = atheriaEniyRecherche()
+  var d = {
+    onglet: onglet || 'acheter',
+    solde: atheriaCompter(p, 'atheria:bon_caf'),
+    marche: atheriaSemaine() == 'marche',
+    rayons: Object.keys(ENIY_RAYONS).map(k => [k, ENIY_RAYONS[k]]),
+    articles: ENIY_ARTICLES.map(a => [a[0], a[1], a[2], a[3], atheriaEniyPrix(a, p), a[5] > stade, a[6], a[0] == promo]),
+    rachat: ENIY_RACHAT.map(r => [r[0], r[1], r[2] * (r[0] == recherche ? 2 : 1), r[3], atheriaCompter(p, r[0]), r[0] == recherche]),
+    message: ecran ? ecran.message || '' : '',
+    ok: ecran ? !!ecran.ok : false
+  }
+  atheriaHud(p, { t: 'ecran', genre: 'boutique', json: JSON.stringify(d) })
+  return 1
+}
+
+function atheriaEniyOuvrir(p, onglet) {
+  if (typeof atheriaHud !== 'function') return atheriaEniyTarifs(p, null)
+  var pd = p.persistentData
+  pd.putLong('atheria_eniy_ecran', Date.now())
+  pd.putDouble('atheria_eniy_x', p.x)
+  pd.putDouble('atheria_eniy_z', p.z)
+  return atheriaEniyEcran(p, onglet, null)
+}
+
+function atheriaEniyPres(p) {
+  var pd = p.persistentData, t = pd.getLong('atheria_eniy_ecran')
+  if (!t || Date.now() - t > ENIY_ECRAN.duree) return false
+  var dx = p.x - pd.getDouble('atheria_eniy_x'), dz = p.z - pd.getDouble('atheria_eniy_z')
+  return dx * dx + dz * dz <= ENIY_ECRAN.rayon * ENIY_ECRAN.rayon
+}
+
+function atheriaEniyBouton(p, action, cle) {
+  if (!atheriaEniyPres(p)) {
+    atheriaHud(p, { t: 'ecran', genre: 'fermer' })
+    p.tell(Text.gray('Eniy n\'est plus là. Retourne le voir pour commercer.'))
+    return 0
+  }
+  var ecran = {}
+  var r = action == 'vendre' ? atheriaEniyVendre(p, ecran) : atheriaEniyAcheter(p, cle, ecran)
+  // l'inventaire change au tick suivant (give) : la boutique se met à jour juste après
+  p.server.scheduleInTicks(2, () => atheriaEniyEcran(p, action, ecran))
+  return r
 }
 
 ServerEvents.commandRegistry(event => {
@@ -134,5 +190,12 @@ ServerEvents.commandRegistry(event => {
         .then(Commands.argument('rayon', Arg.STRING.create(event)).executes(ctx => atheriaEniyTarifs(Arg.PLAYER.getResult(ctx, 'joueur'), String(Arg.STRING.getResult(ctx, 'rayon'))))))
       .then(Commands.literal('acheter').then(Commands.argument('article', Arg.STRING.create(event))
         .executes(ctx => atheriaEniyAcheter(Arg.PLAYER.getResult(ctx, 'joueur'), String(Arg.STRING.getResult(ctx, 'article'))))))
-      .then(Commands.literal('vendre').executes(ctx => atheriaEniyVendre(Arg.PLAYER.getResult(ctx, 'joueur'))))))
+      .then(Commands.literal('vendre').executes(ctx => atheriaEniyVendre(Arg.PLAYER.getResult(ctx, 'joueur'))))
+      .then(Commands.literal('boutique').executes(ctx => atheriaEniyOuvrir(Arg.PLAYER.getResult(ctx, 'joueur'), 'acheter'))
+        .then(Commands.argument('onglet', Arg.STRING.create(event)).executes(ctx => atheriaEniyOuvrir(Arg.PLAYER.getResult(ctx, 'joueur'), String(Arg.STRING.getResult(ctx, 'onglet'))))))))
+  // boutons de la boutique à l'écran (sans droits d'opérateur, mais seulement près d'Eniy)
+  event.register(Commands.literal('eniy')
+    .then(Commands.literal('acheter').then(Commands.argument('article', Arg.STRING.create(event))
+      .executes(ctx => ctx.source.player ? atheriaEniyBouton(ctx.source.player, 'acheter', String(Arg.STRING.getResult(ctx, 'article'))) : 0)))
+    .then(Commands.literal('vendre').executes(ctx => ctx.source.player ? atheriaEniyBouton(ctx.source.player, 'vendre', null) : 0)))
 })

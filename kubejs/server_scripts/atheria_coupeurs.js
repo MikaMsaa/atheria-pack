@@ -83,6 +83,11 @@ function atheriaCoupeursArreter(p) {
   d.putInt('atheria_peage_prix', prix)
   d.putLong('atheria_coupeurs_dernier', Date.now())
   p.server.runCommandSilent('playsound minecraft:block.note_block.bell hostile ' + p.username + ' ~ ~ ~ 0.6 0.6')
+  if (typeof atheriaHud === 'function') {
+    // le péage à l'écran (mod atheria_hud) : la voix, le prix, deux boutons et le temps qui reste
+    atheriaHud(p, { t: 'ecran', genre: 'peage', json: JSON.stringify({ prix: prix, solde: atheriaCompter(p, 'atheria:bon_caf'), delai: COUPEURS.delaiReponse, pause: COUPEURS.laissezPasserMin }) })
+    return
+  }
   p.tell(Text.gray('Une voix, quelque part dans les fourrés : ').append(Text.white('« Frais de route, chef. ' + prix + ' bons CAF et tu passes. Sinon on se sert. »')))
   p.tell(Text.of('   ')
     .append(Text.green('[Payer ' + prix + ' bons]').clickRunCommand('/peage payer').hover(Text.gray('Les Coupeurs te laissent tranquille pendant 2 heures.')))
@@ -96,6 +101,7 @@ function atheriaCoupeursRepondre(p, payer) {
   if (!d.getLong('atheria_peage_fin')) { p.tell(Text.gray('Personne ne te demande rien.')); return 0 }
   var prix = d.getInt('atheria_peage_prix')
   d.remove('atheria_peage_fin')
+  if (typeof atheriaHud === 'function') atheriaHud(p, { t: 'ecran', genre: 'fermer' })
   if (payer) {
     if (atheriaCompter(p, 'atheria:bon_caf') >= prix && atheriaRetirer(p, 'atheria:bon_caf', prix) === prix) {
       d.putLong('atheria_laissez_passer', Date.now() + COUPEURS.laissezPasserMin * 60 * 1000)
@@ -137,7 +143,7 @@ ServerEvents.tick(event => {
     var d = p.persistentData
     // pas de réponse à temps
     var fin = d.getLong('atheria_peage_fin')
-    if (fin && now >= fin) { d.remove('atheria_peage_fin'); p.tell(Text.gray('« Le silence, c\'est un non. »')); atheriaCoupeursSortir(p) }
+    if (fin && now >= fin) { d.remove('atheria_peage_fin'); if (typeof atheriaHud === 'function') atheriaHud(p, { t: 'ecran', genre: 'fermer' }); p.tell(Text.gray('« Le silence, c\'est un non. »')); atheriaCoupeursSortir(p) }
     // départ des Coupeurs : après 4 min, ou si le joueur est loin
     var fc = d.getLong('atheria_coupeurs_fin')
     if (fc && server.tickCount % 100 == 7) {

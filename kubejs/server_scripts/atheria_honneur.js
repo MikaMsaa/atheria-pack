@@ -99,6 +99,18 @@ ServerEvents.commandRegistry(event => {
     var p = ctx.source.player
     if (!p) return 0
     var e = atheriaHonneurEtat(p.server)
+    if (typeof atheriaHud === 'function') {
+      // tableau d'honneur à l'écran (mod atheria_hud) : un podium par classement
+      var maintenant = Date.now() + 4 * 3600 * 1000 + 3 * 86400 * 1000
+      atheriaHud(p, { t: 'ecran', genre: 'honneur', json: JSON.stringify({
+        moi: p.username, prime: HONNEUR.prime, lundi: 7 * 86400000 - (maintenant % (7 * 86400000)),
+        categories: HONNEUR.categories.map(c => {
+          var cl = atheriaHonneurClasse(e, c[0]), rang = cl.map(x => x[0]).indexOf(p.username)
+          return [c[0], c[1], c[2], cl.slice(0, 3), rang, rang >= 0 ? cl[rang][1] : 0, cl.length]
+        })
+      }) })
+      return 1
+    }
     p.tell(Text.gold('— Tableau d\'honneur de la semaine —'))
     HONNEUR.categories.forEach(c => {
       var cl = atheriaHonneurClasse(e, c[0])

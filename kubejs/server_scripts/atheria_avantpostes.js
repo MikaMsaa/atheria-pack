@@ -140,6 +140,19 @@ ServerEvents.commandRegistry(event => {
     var p = ctx.source.player
     if (!p) return 0
     var e = atheriaApEtat(p.server), a = atheriaAlliance(p)
+    if (typeof atheriaHud === 'function') {
+      // carte de l'île à l'écran (mod atheria_hud) : chaque avant-poste et qui le tient
+      var now = Date.now()
+      atheriaHud(p, { t: 'ecran', genre: 'avantpostes', json: JSON.stringify({
+        lieux: AP.lieux.map(l => {
+          var s = e[l[0]]
+          return [l[1], l[2], l[3], s.tenu == a.id ? 'toi' : s.tenu ? 'autre' : 'libre', s.nom || '',
+            s.tenu ? Math.max(0, AP.abandonHeures * 3600 * 1000 - (now - s.vu)) : 0, s.prise ? Math.round(100 * s.avance / AP.dureePrise) : 0]
+        }),
+        alliance: a.nom, x: p.x, z: p.z, gain: AP.gainHeure, duree: AP.dureePrise, abandon: AP.abandonHeures, max: AP.maxParAlliance
+      }) })
+      return 1
+    }
     p.tell(Text.gold('— Avant-postes de l\'île —'))
     AP.lieux.forEach(l => {
       var s = e[l[0]]
