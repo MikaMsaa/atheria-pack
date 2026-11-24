@@ -122,13 +122,34 @@ function atheriaLire(player, id, hand) {
 }
 
 // ---------- premier réveil : le kit de départ ----------
+// Seuls le carnet signé « R. » (Rayade) et le livre de quêtes restent dans l'inventaire.
+var ARRIVEE_GARDER = { 'atheria:carnet_survivant': 1, 'ftbquests:book': 1 }
+function atheriaViderArrivee(player) {
+  var inv = player.inventory, retires = 0
+  for (var i = 0; i < inv.getContainerSize(); i++) {
+    var st = inv.getItem(i)
+    if (st.isEmpty() || ARRIVEE_GARDER['' + st.id]) continue
+    retires += st.count
+    inv.setItem(i, Item.empty)
+  }
+  if (retires > 0) console.info('[Atheria kit] ' + player.username + ' : ' + retires + ' objet(s) de départ retiré(s)')
+}
+
 PlayerEvents.loggedIn(event => {
   var player = event.player
   if (player.persistentData.getBoolean('atheria_kit')) return
   player.persistentData.putBoolean('atheria_kit', true)
+  // Mika 24/11 : on arrive sans rien. Les objets donnés au départ par d'autres mods (livret MTS...) sont retirés,
+  // maintenant puis encore 2 s et 10 s plus tard (certains mods les donnent juste après la connexion).
+  atheriaViderArrivee(player)
   // le reste du kit de départ est la récompense de la première quête du prologue
   player.give('atheria:carnet_survivant')
   player.give('ftbquests:book')
+  var nom = player.username
+  ;[40, 200].forEach(t => event.server.scheduleInTicks(t, () => {
+    var p = event.server.getPlayerList().getPlayerByName(nom)
+    if (p != null) atheriaViderArrivee(p)
+  }))
   // après l'arrivée protégée et l'introduction : la bannière attend qu'aucun écran ne soit ouvert
   atheriaHudBanniere(player, 'info', 'Prologue', 'Le réveil', 'Tu te réveilles dans une case en tôle. Un carnet signé « R. » : clic droit pour le lire, puis ouvre ton livre de quêtes.')
 })
