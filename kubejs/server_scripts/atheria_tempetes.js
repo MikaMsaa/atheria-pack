@@ -48,7 +48,7 @@ PlayerEvents.loggedIn(event => {
   if (!fin || Date.now() >= fin) return
   var nom = event.player.username
   event.server.scheduleInTicks(100, () => {
-    var p = event.server.getPlayer(nom)
+    var p = event.server.getPlayerList().getPlayerByName(nom)
     if (p) atheriaHud(p, { t: 'tempete', actif: true })
   })
 })

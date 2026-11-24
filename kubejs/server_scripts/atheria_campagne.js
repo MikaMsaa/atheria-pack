@@ -235,7 +235,7 @@ ItemEvents.rightClicked(event => {
     player.addTag('cendre_grise')
     atheriaHudAction(player, 'atheria:cendre_grise', 'Cendre grise : 10 minutes. Les infectés faibles ne te voient plus. La PAF, si.', 'ambre')
     server.scheduleInTicks(12000, () => {
-      var p2 = server.getPlayer(name)
+      var p2 = server.getPlayerList().getPlayerByName(name)
       if (p2) atheriaCendreVerifie(p2)
     })
     event.cancel()

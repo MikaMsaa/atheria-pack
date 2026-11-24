@@ -125,7 +125,7 @@ ItemEvents.rightClicked('atheria:kit_siphon', event => {
   if (('' + v.fuelTank.getFluid()) == 'lava') { atheriaHudAction(joueur, 'atheria:kit_siphon', 'Ce réservoir contient de la lave : le tuyau n\'y survivrait pas.', 'ambre'); return }
   v.fuelTank.drain(ROUTE.siphonMb, true)
   routeUserKit(joueur, event.item)
-  joueur.give('atheria:kit_siphon')
+  joueur.give('atheria:bidon_essence')
   routeSon(joueur, 'minecraft:item.bucket.fill', 0.7)
   atheriaHudAction(joueur, 'atheria:kit_siphon', 'Tu remplis un bidon d\'essence.', 'vert')
   })
