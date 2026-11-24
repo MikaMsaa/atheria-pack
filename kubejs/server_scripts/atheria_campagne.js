@@ -105,6 +105,11 @@ function atheriaLivre(player, hand, titre, paragraphes) {
 function atheriaLire(player, id, hand) {
   var txt = global.ATHERIA_TEXTES ? global.ATHERIA_TEXTES[id] : null
   if (!txt) return false
+  // Carnet animé du mod atheria_hud (couverture qui s'ouvre, pages qui tournent) ; livre vanilla en secours
+  if (typeof atheriaHud === 'function') {
+    atheriaHud(player, { t: 'livre', titre: String(txt.titre), texte: txt.lignes.map(l => String(l)).join('\n') })
+    return true
+  }
   var lignes = txt.lignes.map(l => String(l).replace(/&[0-9a-fklmnor]/g, ''))
   try {
     atheriaLivre(player, hand, String(txt.titre), lignes)
