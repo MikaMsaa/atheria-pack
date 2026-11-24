@@ -104,7 +104,7 @@ BlockEvents.rightClicked('atheria:reservoir_epave', event => {
   var b = event.block
   routeUserKit(joueur, main)
   b.set('atheria:carrosserie')
-  bruitAttirer(joueur.level, b.x, b.y, b.z, ROUTE.siphonBruit)
+  bruitAttirer(joueur.level, b.x, b.y, b.z, ROUTE.siphonBruit, 'siphon')
   routeSon(joueur, 'minecraft:item.bucket.fill', 0.7)
   routeXp(joueur, 8)
   if (Math.random() < (joueur.tags.contains('skill_bricolage_2') ? 0.95 : ROUTE.siphonChance)) {
@@ -319,7 +319,7 @@ ServerEvents.tick(event => {
       var siege = joueur.getVehicle()
       if (siege == null || ('' + siege.getType()).indexOf('mts') < 0) return
       var v = routeVehiculeProche(joueur, 12)
-      if (v != null && v.enginesRunning) bruitAttirer(joueur.level, joueur.x, joueur.y, joueur.z, joueur.tags.contains('skill_bricolage_3') ? ROUTE.moteurPortee * 0.65 : ROUTE.moteurPortee)
+      if (v != null && v.enginesRunning) bruitAttirer(joueur.level, joueur.x, joueur.y, joueur.z, joueur.tags.contains('skill_bricolage_3') ? ROUTE.moteurPortee * 0.65 : ROUTE.moteurPortee, 'moteur')
     })
   }
   if (routeEtat.tick % ROUTE.meutePeriode == 0) {

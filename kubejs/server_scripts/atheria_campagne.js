@@ -667,11 +667,11 @@ function atheriaVendrePuff(server, p) {
     if (atheriaRetirer(p, 'atheria:puff_' + n, 1) !== 1) continue   // retirée d'abord : rien n'est payé sans Puff
     p.persistentData.putInt('atheria_puffs_vendues', vendues | (1 << n))
     server.runCommandSilent('give ' + nom + ' atheria:bon_caf ' + ATHERIA_PRIX_PUFF)
-    p.tell(Text.yellow('Eniy empoche la Puff n° ' + n + ' et te tend ' + ATHERIA_PRIX_PUFF + ' bons. « Je la revendrai dix fois plus cher. À quelqu\'un d\'autre. »'))
+    atheriaHudBanniere(p, 'quete', 'Eniy', 'Puff n° ' + n + ' vendue, + ' + ATHERIA_PRIX_PUFF + ' bons', '« Je la revendrai dix fois plus cher. À quelqu\'un d\'autre. »')
     return 1
   }
-  if (pasNotee) { p.tell(Text.gray('Eniy : « La Puff n° ' + pasNotee + ', note-la d\'abord dans ta collection (récupère la récompense de sa quête). Après, on parle affaires. »')); return 0 }
-  p.tell(Text.gray(proposee ? 'Eniy : « Celle-là, tu me l\'as déjà vendue. Je ne rachète pas deux fois la même légende. »' : 'Eniy : « Pas de Puff, pas de bons. Le marché est impitoyable. »'))
+  if (pasNotee) { atheriaHudBanniere(p, 'info', 'Eniy', '', '« La Puff n° ' + pasNotee + ', note-la d\'abord dans ta collection (récupère la récompense de sa quête). Après, on parle affaires. »'); return 0 }
+  atheriaHudBanniere(p, 'info', 'Eniy', '', proposee ? '« Celle-là, tu me l\'as déjà vendue. Je ne rachète pas deux fois la même légende. »' : '« Pas de Puff, pas de bons. Le marché est impitoyable. »')
   return 0
 }
 
@@ -695,17 +695,18 @@ ServerEvents.commandRegistry(event => {
           var objet = String(Arg.GREEDY_STRING.getResult(ctx, 'objet')).trim()
           var server = ctx.source.server, nom = p.username
           var a = atheriaCompter(p, 'atheria:bon_caf')
-          if (a < prix) { p.tell(Text.red('Il te manque ' + (prix - a) + ' bons. Eniy ne fait pas crédit.')); return 0 }
-          if (atheriaRetirer(p, 'atheria:bon_caf', prix) !== prix) { p.tell(Text.red('Paiement refusé.')); return 0 }   // ne devrait pas arriver : compté juste avant
+          if (a < prix) { atheriaHudAction(p, 'atheria:bon_caf', 'Il te manque ' + (prix - a) + ' bons. Eniy ne fait pas crédit.', 'rouge'); return 0 }
+          if (atheriaRetirer(p, 'atheria:bon_caf', prix) !== prix) { atheriaHudAction(p, 'atheria:bon_caf', 'Paiement refusé.', 'rouge'); return 0 }   // ne devrait pas arriver : compté juste avant
           server.runCommandSilent('give ' + nom + ' ' + objet + ' 1')
-          p.tell(Text.yellow('Eniy encaisse ' + prix + ' bons. « Pas de remboursement, pas de garantie, pas de questions. »'))
+          atheriaHudBanniere(p, 'quete', 'Eniy', 'Achat conclu, - ' + prix + ' bons', '« Pas de remboursement, pas de garantie, pas de questions. »')
           return 1
         })))))
   event.register(Commands.literal('titres').executes(ctx => {
     var player = ctx.source.player
     var titres = []
     player.tags.forEach(t => { if (String(t).startsWith('titre_')) titres.push((global.ATHERIA_TITRES || {})[String(t).substring(6)] || String(t).substring(6)) })
-    player.tell(Text.gold('Tes titres (' + titres.length + ') : ').append(Text.yellow(titres.length ? titres.join(', ') : 'aucun pour l\'instant')))
+    // dans le carnet, sur un bout de papier à gauche de l'écran (mod atheria_hud)
+    atheriaHudNote(player, 'Tes titres', titres.length ? titres.join(', ') : 'Aucun pour l\'instant. Ils se gagnent sur le terrain.', titres.length + (titres.length > 1 ? ' titres' : ' titre'))
     return 1
   }))
 })

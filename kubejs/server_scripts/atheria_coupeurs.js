@@ -72,7 +72,7 @@ function atheriaCoupeursSortir(p) {
   }
   if (faits == 0) return
   p.persistentData.putLong('atheria_coupeurs_fin', Date.now() + COUPEURS.vieMin * 60 * 1000)
-  p.tell(Text.red('« Mauvaise réponse. » Des silhouettes sortent des fourrés.'))
+  atheriaHudBanniere(p, 'danger', 'Coupeurs', 'Mauvaise réponse', 'Des silhouettes sortent des fourrés.')
   p.server.runCommandSilent('playsound minecraft:entity.pillager.celebrate hostile ' + p.username + ' ~ ~ ~ 1 0.8')
 }
 
@@ -98,17 +98,17 @@ function atheriaCoupeursArreter(p) {
 
 function atheriaCoupeursRepondre(p, payer) {
   var d = p.persistentData
-  if (!d.getLong('atheria_peage_fin')) { p.tell(Text.gray('Personne ne te demande rien.')); return 0 }
+  if (!d.getLong('atheria_peage_fin')) { atheriaHudAction(p, '', 'Personne ne te demande rien.', ''); return 0 }
   var prix = d.getInt('atheria_peage_prix')
   d.remove('atheria_peage_fin')
   if (typeof atheriaHud === 'function') atheriaHud(p, { t: 'ecran', genre: 'fermer' })
   if (payer) {
     if (atheriaCompter(p, 'atheria:bon_caf') >= prix && atheriaRetirer(p, 'atheria:bon_caf', prix) === prix) {
       d.putLong('atheria_laissez_passer', Date.now() + COUPEURS.laissezPasserMin * 60 * 1000)
-      p.tell(Text.gray('« Merci pour ta contribution au réseau routier. On fait passer le mot : tu es en règle pour deux heures. »'))
+      atheriaHudBanniere(p, 'fin', 'Péage payé', 'En règle pour deux heures', '« Merci pour ta contribution au réseau routier. On fait passer le mot. »')
       return 1
     }
-    p.tell(Text.gray('« Il en manque. Bacar n\'accepte pas les paiements partiels. »'))
+    atheriaHudAction(p, 'atheria:bon_caf', '« Il en manque. Bacar n\'accepte pas les paiements partiels. »', 'rouge')
   }
   atheriaCoupeursSortir(p)
   return 1
@@ -143,7 +143,7 @@ ServerEvents.tick(event => {
     var d = p.persistentData
     // pas de réponse à temps
     var fin = d.getLong('atheria_peage_fin')
-    if (fin && now >= fin) { d.remove('atheria_peage_fin'); if (typeof atheriaHud === 'function') atheriaHud(p, { t: 'ecran', genre: 'fermer' }); p.tell(Text.gray('« Le silence, c\'est un non. »')); atheriaCoupeursSortir(p) }
+    if (fin && now >= fin) { d.remove('atheria_peage_fin'); if (typeof atheriaHud === 'function') atheriaHud(p, { t: 'ecran', genre: 'fermer' }); atheriaHudAction(p, '', '« Le silence, c\'est un non. »', 'rouge'); atheriaCoupeursSortir(p) }
     // départ des Coupeurs : après 4 min, ou si le joueur est loin
     var fc = d.getLong('atheria_coupeurs_fin')
     if (fc && server.tickCount % 100 == 7) {
