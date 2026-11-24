@@ -1,0 +1,30 @@
+{
+	PresetMetadata: {
+		author: "Atheria",
+		category: "Atheria",
+		description: "Didacticiel : Bakoutoubo, le vieux resté au hameau du réveil (devant la case 0).",
+		entityTypeId: "easy_npc:humanoid",
+		name: "Bakoutoubo",
+		variantType: "STEVE",
+		version: "1.0.0"
+	},
+	data: {
+		CustomName: '{"text": "Bakoutoubo", "color": "#E8C66A"}',
+		EasyNPCVersion: 3,
+		Invulnerable: 1b,
+		ObjectiveData: {
+			ObjectiveDataSet: [
+				{
+					Type: "LOOK_AT_PLAYER"
+				},
+				{
+					Type: "LOOK_AT_RESET"
+				}
+			]
+		},
+		PersistenceRequired: 1b,
+		Tags: ["dialogue.bakoutoubo", "atheria_pnj_carte"],
+		VariantType: "STEVE",
+		id: "easy_npc:humanoid"
+	}
+}
