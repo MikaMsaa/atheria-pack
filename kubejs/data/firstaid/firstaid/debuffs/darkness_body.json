@@ -1,0 +1,12 @@
+{
+  "type": "firstaid:on_hit",
+  "debuffSlot": "body",
+  "potionName": "darkness",
+  "timeBoundaries": [
+    {
+      "damageTakenThreshold": 6,
+      "effectDuration": 30,
+      "healthFractionThreshold": 0.15
+    }
+  ]
+}

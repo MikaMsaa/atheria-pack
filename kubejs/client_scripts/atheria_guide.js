@@ -1,4 +1,5 @@
 // Atheria - Guide du survivant : ouvert avec F4, depuis le menu pause et l'inventaire, à tout moment.
+// Le carnet du survivant a aussi son bouton à côté (menu pause et inventaire).
 // Les livrets de MTS mènent ici, et un rappel apparaît la première fois qu'on touche à une mécanique.
 var ATHERIA_GUIDE_TOUCHE = 293 // F4, libre dans le jeu de base et dans le pack
 var ATHERIA_LIVRETS = { 'mts:mts.handbook_car': 'vehicules', 'mts:mts.handbook_plane': 'aeronefs' }
@@ -15,6 +16,14 @@ var atheriaAidesTemps = 0
 
 function atheriaOuvrirGuide(chapitre) {
   Java.loadClass('fr.atheria.monde.guide.GuideEcran').ouvrir(chapitre || null, null)
+}
+
+// Carnet du survivant : le serveur renvoie ce qui est découvert, le carnet animé s'ouvre à la place du menu
+function atheriaOuvrirCarnet() {
+  var mc = Client
+  if (mc.player == null) return
+  mc.setScreen(null)
+  mc.player.connection.sendCommand('carnet')
 }
 
 function atheriaAider(joueur, id, texte) {
@@ -59,9 +68,11 @@ NativeEvents.onEvent('LOWEST', 'net.neoforged.neoforge.client.event.ScreenEvent$
     var Button = Java.loadClass('net.minecraft.client.gui.components.Button')
     var Texte = Java.loadClass('net.minecraft.network.chat.Component')
     if (/\.PauseScreen@/.test(nom)) {
-      event.addListener(Button.builder(Texte.literal('GUIDE'), b => atheriaOuvrirGuide(null)).bounds(Math.floor(ecran.width / 2) - 37, Math.floor(ecran.height / 4) + 170, 74, 16).build())
+      event.addListener(Button.builder(Texte.literal('GUIDE'), b => atheriaOuvrirGuide(null)).bounds(Math.floor(ecran.width / 2) - 76, Math.floor(ecran.height / 4) + 170, 74, 16).build())
+      event.addListener(Button.builder(Texte.literal('CARNET'), b => atheriaOuvrirCarnet()).bounds(Math.floor(ecran.width / 2) + 2, Math.floor(ecran.height / 4) + 170, 74, 16).build())
     } else if (/\.InventoryScreen@/.test(nom)) {
       event.addListener(Button.builder(Texte.literal('?'), b => atheriaOuvrirGuide(null)).bounds(ecran.getGuiLeft() + 156, ecran.getGuiTop() - 16, 16, 14).build())
+      event.addListener(Button.builder(Texte.literal('✎'), b => atheriaOuvrirCarnet()).tooltip(Java.loadClass('net.minecraft.client.gui.components.Tooltip').create(Texte.literal('Carnet du survivant'))).bounds(ecran.getGuiLeft() + 138, ecran.getGuiTop() - 16, 16, 14).build())
     }
   } catch (e) {
     console.error('[Atheria guide] ' + e)

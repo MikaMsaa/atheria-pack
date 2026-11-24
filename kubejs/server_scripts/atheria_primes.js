@@ -12,7 +12,7 @@ var PRIME_PAR_MEURTRE = 10
 var PRIME_MAX = 50
 
 function atheriaRadio(server, texte) {
-  server.players.forEach(p => p.tell(Text.darkRed('[Radio] ').append(Text.gray(texte))))
+  atheriaHudRadioTous(server, 'primes', texte)
 }
 
 function atheriaNom(e) {
@@ -67,7 +67,7 @@ function atheriaPrimeMeurtre(tueur, victime) {
   d.putLong('atheria_prime_fin', maintenant + PRIME_DUREE)
   tueur.addTag('atheria_recherche')
   atheriaRadio(server, '« Avis à tous : ' + tueur.username + ' abat les siens. Prime : ' + nouvelle + ' bons CAF pour qui l\'arrête. »')
-  tueur.tell(Text.red('Ta tête est mise à prix (' + nouvelle + ' bons CAF). La radio donne ta position toutes les 5 minutes pendant 2 heures.'))
+  atheriaHudBanniere(tueur, 'danger', 'Avis de recherche', 'Ta tête est mise à prix', nouvelle + ' bons CAF. La radio donne ta position toutes les 5 minutes pendant 2 heures.')
 }
 
 // position des recherchés toutes les 5 minutes

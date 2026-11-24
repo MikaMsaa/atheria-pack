@@ -28,19 +28,25 @@ function airRespirer(joueur) {
     if (reste <= 0 && joueur.inventory.count('atheria:filtre') > 0) {
       joueur.server.runCommandSilent('clear ' + joueur.username + ' atheria:filtre 1')
       reste = (artisanal ? AIR.filtreArtisanalSec : AIR.filtreSec) * (joueur.tags.contains('skill_medecine_1') ? 1.5 : 1)
-      joueur.setStatusMessage(Text.gray('Tu visses un filtre neuf sur ton masque.'))
+      atheriaHudAction(joueur, 'atheria:filtre', 'Tu visses un filtre neuf sur ton masque.', 'vert')
     }
     if (reste > 0) {
+      var max = (artisanal ? AIR.filtreArtisanalSec : AIR.filtreSec) * (joueur.tags.contains('skill_medecine_1') ? 1.5 : 1)
       data.putInt('atheria_filtre_reste', reste - AIR.periode / 20)
       data.putInt('atheria_air_expo', 0)
-      if (reste - AIR.periode / 20 <= 0) joueur.setStatusMessage(Text.gold('Ton filtre est saturé.'))
+      atheriaHud(joueur, { t: 'air', f: Math.max(0, Math.min(1, (reste - AIR.periode / 20) / max)), e: 1, m: true })
+      if (reste - AIR.periode / 20 <= 0) atheriaHudAction(joueur, 'atheria:filtre', 'Ton filtre est saturé.', 'ambre')
       return
     }
   }
   var expo = data.getInt('atheria_air_expo') + AIR.periode / 20
   data.putInt('atheria_air_expo', expo)
-  if (expo < AIR.graceSec * (joueur.tags.contains('skill_medecine_2') ? 3 : 1)) {
-    joueur.setStatusMessage(Text.gold(surTete || artisanal ? 'Ton masque n\'a plus de filtre. L\'air pique déjà.' : 'L\'air te brûle la gorge. Il te faut un masque et un filtre.'))
+  var grace = AIR.graceSec * (joueur.tags.contains('skill_medecine_2') ? 3 : 1)
+  // jauge à l'écran (mod atheria_hud) : le souffle qu'il reste avant le poison
+  atheriaHud(joueur, { t: 'air', f: -1, e: Math.max(0, (grace - expo) / grace), m: surTete || artisanal })
+  if (expo < grace) {
+    // la jauge montre la suite : le message une seule fois en entrant
+    if (expo <= AIR.periode / 20) atheriaHudAction(joueur, 'tacz_tactical_breaching:gas_mask', surTete || artisanal ? 'Ton masque n\'a plus de filtre. L\'air pique déjà.' : 'L\'air te brûle la gorge. Il te faut un masque et un filtre.', 'rouge')
     return
   }
   joueur.potionEffects.add('minecraft:poison', 80, 0, false, false)
@@ -74,7 +80,15 @@ ServerEvents.tick(event => {
   var infectes = airTick.n % AIR.infectesPeriode == 0
   serveur.players.forEach(joueur => {
     if (joueur.isCreative() || joueur.isSpectator() || !joueur.isAlive()) return
-    if (joueur.level.dimension != 'minecraft:overworld' || !airBiome(joueur)) return
+    if (joueur.level.dimension != 'minecraft:overworld' || !airBiome(joueur)) {
+      // sortie de la zone : la jauge s'efface
+      if (joueur.persistentData.getBoolean('atheria_air_dans')) {
+        joueur.persistentData.putBoolean('atheria_air_dans', false)
+        atheriaHud(joueur, { t: 'air', fin: true })
+      }
+      return
+    }
+    joueur.persistentData.putBoolean('atheria_air_dans', true)
     airRespirer(joueur)
     if (infectes && ('' + joueur.level.getDifficulty()).toLowerCase() != 'peaceful' && joueur.level.getGameRules().getBoolean(Java.loadClass('net.minecraft.world.level.GameRules').RULE_DOMOBSPAWNING)) airInfectes(joueur)
   })

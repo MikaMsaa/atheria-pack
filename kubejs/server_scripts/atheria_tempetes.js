@@ -29,7 +29,7 @@ function atheriaTempeteDebut(server) {
   atheriaTempeteScore(server, 1)
   server.runCommandSilent('weather rain ' + (TEMPETE.dureeMin * 60) + 's')
   server.players.forEach(p => {
-    p.tell(Text.darkGray('Le vent tourne. Une pluie grise tombe, chargée de cendres. Mets ton masque ou abrite-toi.'))
+    atheriaHud(p, { t: 'tempete', actif: true })
     server.runCommandSilent('playsound minecraft:item.elytra.flying ambient ' + p.username + ' ~ ~ ~ 0.6 0.5')
   })
 }
@@ -39,8 +39,19 @@ function atheriaTempeteFin(server) {
   server.persistentData.putLong('atheria_tempete_derniere', Date.now())
   atheriaTempeteScore(server, 0)
   server.runCommandSilent('weather clear')
-  server.players.forEach(p => p.tell(Text.darkGray('Le vent retombe. Les cendres se posent.')))
+  server.players.forEach(p => atheriaHud(p, { t: 'tempete', actif: false }))
 }
+
+// Un joueur qui arrive pendant une tempête la voit à l'écran
+PlayerEvents.loggedIn(event => {
+  var fin = event.server.persistentData.getLong('atheria_tempete_fin')
+  if (!fin || Date.now() >= fin) return
+  var nom = event.player.username
+  event.server.scheduleInTicks(100, () => {
+    var p = event.server.getPlayerList().getPlayerByName(nom)
+    if (p) atheriaHud(p, { t: 'tempete', actif: true })
+  })
+})
 
 ServerEvents.tick(event => {
   var server = event.server

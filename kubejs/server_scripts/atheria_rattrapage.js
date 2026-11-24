@@ -47,8 +47,8 @@ PlayerEvents.loggedIn(event => {
   var depart = d.getLong('atheria_deconnexion')
   if (depart && Date.now() - depart >= RATTRAPAGE.absenceJours * 86400 * 1000) {
     RATTRAPAGE.colis.forEach(c => p.give(Item.of(c[0], c[1])))
-    p.tell(Text.gold('[Radio] ').append(Text.gray('Eniy : « Tu étais passé où ? J\'ai gardé un colis pour toi. Gratuit, pour une fois. Ne le répète pas. »')))
+    atheriaHudRadio(p, 'eniy', '« Tu étais passé où ? J\'ai gardé un colis pour toi. Gratuit, pour une fois. Ne le répète pas. »')
   }
   if (atheriaRattrapageActif(p))
-    p.tell(Text.gold('[Radio] ').append(Text.gray('Second souffle : les contrats, le carnet, les Coupeurs et les avant-postes te font progresser plus vite dans l\'arbre Survivant.')))
+    atheriaHudRadio(p, 'radio', 'les contrats, le carnet, les Coupeurs et les avant-postes te font progresser plus vite dans l\'arbre Survivant.', 'Second souffle :')
 })

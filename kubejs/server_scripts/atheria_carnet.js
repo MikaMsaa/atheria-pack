@@ -66,7 +66,7 @@ PlayerEvents.inventoryChanged(event => {
     if (!o[0].test(id)) continue
     if (atheriaCarnetNoter(p, 'atheria_carnet_objets', o[1])) {
       routeXp(p, 10)
-      p.tell(Text.gold('[Carnet] ').append(Text.yellow(o[1] + ' : ')).append(Text.gray(o[2])))
+      atheriaHud(p, { t: 'note', titre: o[1], texte: o[2] })
       p.server.runCommandSilent('playsound minecraft:item.book.page_turn player ' + p.username + ' ~ ~ ~ 0.8 1')
     }
     return
@@ -84,7 +84,7 @@ EntityEvents.death(event => {
     if (atheriaCarnetNoter(p, 'atheria_carnet_familles', f[0])) {
       routeXp(p, 20)
       var n = atheriaCarnetListe(p, 'atheria_carnet_familles').length
-      p.tell(Text.gold('[Carnet] ').append(Text.yellow(f[0] + ' (' + n + '/' + CARNET_FAMILLES.length + ') : ')).append(Text.gray(f[2])))
+      atheriaHud(p, { t: 'note', titre: f[0], compte: n + '/' + CARNET_FAMILLES.length, texte: f[2] })
       p.server.runCommandSilent('playsound minecraft:item.book.page_turn player ' + p.username + ' ~ ~ ~ 0.8 1')
     }
     return
@@ -96,6 +96,15 @@ ServerEvents.commandRegistry(event => {
     var p = ctx.source.player
     if (!p) return 0
     var objets = atheriaCarnetListe(p, 'atheria_carnet_objets'), familles = atheriaCarnetListe(p, 'atheria_carnet_familles')
+    // Le carnet animé du mod atheria_hud s'ouvre à l'écran ; le chat ne sert plus qu'en secours
+    if (typeof atheriaHud === 'function') {
+      atheriaHud(p, { t: 'carnet', json: JSON.stringify({
+        familles: CARNET_FAMILLES.map(f => [f[0], familles.indexOf(f[0]) >= 0 ? f[2] : null]),
+        objets: CARNET_OBJETS.filter(o => objets.indexOf(o[1]) >= 0).map(o => [o[1], o[2]]),
+        totalObjets: CARNET_OBJETS.length
+      }) })
+      return 1
+    }
     p.tell(Text.gold('— Carnet du survivant —'))
     p.tell(Text.yellow('Familles d\'infectés : ' + familles.length + '/' + CARNET_FAMILLES.length))
     CARNET_FAMILLES.forEach(f => p.tell(familles.indexOf(f[0]) >= 0 ? Text.gray('  ' + f[0] + ' : ' + f[2]) : Text.darkGray('  ???')))

@@ -68,22 +68,22 @@ ItemEvents.rightClicked('atheria:bidon_essence', event => {
   routeTraiter(event, () => {
   var joueur = event.player
   var v = routeVehiculeProche(joueur, ROUTE.rayonVehicule)
-  if (v == null) { joueur.setStatusMessage(Text.gray('Approche-toi d\'un véhicule pour vider le bidon.')); return }
+  if (v == null) { atheriaHudAction(joueur, 'atheria:bidon_essence', 'Approche-toi d\'un véhicule pour vider le bidon.', ''); return }
   var fluide = routeFluide(v)
-  if (fluide == null) { joueur.setStatusMessage(Text.gray('Ce véhicule n\'a pas de moteur à carburant.')); return }
+  if (fluide == null) { atheriaHudAction(joueur, 'atheria:bidon_essence', 'Ce véhicule n\'a pas de moteur à carburant.', ''); return }
   var reservoir = v.fuelTank
   var present = '' + reservoir.getFluid()
   if (reservoir.getFluidLevel() > 1 && present != fluide) {
-    joueur.setStatusMessage(Text.gold('Le réservoir contient autre chose (' + present + ') : impossible de mélanger.'))
+    atheriaHudAction(joueur, 'atheria:bidon_essence', 'Le réservoir contient autre chose (' + present + ') : impossible de mélanger.', 'ambre')
     return
   }
   var Tank = Java.loadClass('minecrafttransportsimulator.entities.instances.EntityFluidTank')
-  if (reservoir.getMaxLevel() - reservoir.getFluidLevel() < 100) { joueur.setStatusMessage(Text.gray('Le réservoir est plein.')); return }
+  if (reservoir.getMaxLevel() - reservoir.getFluidLevel() < 100) { atheriaHudAction(joueur, 'atheria:bidon_essence', 'Le réservoir est plein.', ''); return }
   var verse = reservoir.fill(fluide, Tank.WILDCARD_FLUID_MOD, ROUTE.bidonMb, true)
-  if (verse <= 0) { joueur.setStatusMessage(Text.gold('Le carburant refuse de passer.')); return }
+  if (verse <= 0) { atheriaHudAction(joueur, 'atheria:bidon_essence', 'Le carburant refuse de passer.', 'ambre'); return }
   event.item.shrink(1)
   routeSon(joueur, 'minecraft:item.bucket.empty', 0.8)
-  joueur.setStatusMessage(Text.green('Réservoir : ' + Math.round(reservoir.getFluidLevel()) + ' / ' + reservoir.getMaxLevel() + ' mB'))
+  atheriaHudAction(joueur, 'atheria:bidon_essence', 'Réservoir : ' + Math.round(reservoir.getFluidLevel()) + ' / ' + reservoir.getMaxLevel() + ' mB', 'vert', reservoir.getFluidLevel() / reservoir.getMaxLevel())
   })
 })
 
@@ -97,21 +97,21 @@ BlockEvents.rightClicked('atheria:reservoir_epave', event => {
   var joueur = event.player
   var main = event.item
   if ('' + main.id != 'atheria:kit_siphon') {
-    if (event.hand == 'MAIN_HAND' || '' + event.hand == 'MAIN_HAND') joueur.setStatusMessage(Text.gray('Il reste peut-être de l\'essence. Il faudrait un kit de siphonnage.'))
+    if (event.hand == 'MAIN_HAND' || '' + event.hand == 'MAIN_HAND') atheriaHudAction(joueur, 'atheria:bidon_essence', 'Il reste peut-être de l\'essence. Il faudrait un kit de siphonnage.', '')
     return
   }
 
   var b = event.block
   routeUserKit(joueur, main)
   b.set('atheria:carrosserie')
-  bruitAttirer(joueur.level, b.x, b.y, b.z, ROUTE.siphonBruit)
+  bruitAttirer(joueur.level, b.x, b.y, b.z, ROUTE.siphonBruit, 'siphon')
   routeSon(joueur, 'minecraft:item.bucket.fill', 0.7)
   routeXp(joueur, 8)
   if (Math.random() < (joueur.tags.contains('skill_bricolage_2') ? 0.95 : ROUTE.siphonChance)) {
     joueur.give('atheria:bidon_essence')
-    joueur.setStatusMessage(Text.green('Tu récupères un bidon d\'essence.'))
+    atheriaHudAction(joueur, 'atheria:bidon_essence', 'Tu récupères un bidon d\'essence.', 'vert')
   } else {
-    joueur.setStatusMessage(Text.gray('Réservoir sec. Quelqu\'un est passé avant toi.'))
+    atheriaHudAction(joueur, 'atheria:bidon_essence', 'Réservoir sec. Quelqu\'un est passé avant toi.', '')
   }
   event.cancel()
 })
@@ -120,14 +120,14 @@ ItemEvents.rightClicked('atheria:kit_siphon', event => {
   routeTraiter(event, () => {
   var joueur = event.player
   var v = routeVehiculeProche(joueur, ROUTE.rayonVehicule)
-  if (v == null) { joueur.setStatusMessage(Text.gray('Clic droit sur le réservoir d\'une épave, ou près d\'un véhicule.')); return }
-  if (v.fuelTank.getFluidLevel() < 1000) { joueur.setStatusMessage(Text.gray('Pas assez de carburant à prendre dans ce véhicule.')); return }
-  if (('' + v.fuelTank.getFluid()) == 'lava') { joueur.setStatusMessage(Text.gold('Ce réservoir contient de la lave : le tuyau n\'y survivrait pas.')); return }
+  if (v == null) { atheriaHudAction(joueur, 'atheria:kit_siphon', 'Clic droit sur le réservoir d\'une épave, ou près d\'un véhicule.', ''); return }
+  if (v.fuelTank.getFluidLevel() < 1000) { atheriaHudAction(joueur, 'atheria:kit_siphon', 'Pas assez de carburant à prendre dans ce véhicule.', ''); return }
+  if (('' + v.fuelTank.getFluid()) == 'lava') { atheriaHudAction(joueur, 'atheria:kit_siphon', 'Ce réservoir contient de la lave : le tuyau n\'y survivrait pas.', 'ambre'); return }
   v.fuelTank.drain(ROUTE.siphonMb, true)
   routeUserKit(joueur, event.item)
   joueur.give('atheria:bidon_essence')
   routeSon(joueur, 'minecraft:item.bucket.fill', 0.7)
-  joueur.setStatusMessage(Text.green('Tu remplis un bidon d\'essence.'))
+  atheriaHudAction(joueur, 'atheria:kit_siphon', 'Tu remplis un bidon d\'essence.', 'vert')
   })
 })
 
@@ -136,7 +136,7 @@ ItemEvents.rightClicked('atheria:pieces_vehicule', event => {
   routeTraiter(event, () => {
   var joueur = event.player
   var v = routeVehiculeProche(joueur, ROUTE.rayonVehicule)
-  if (v == null) { joueur.setStatusMessage(Text.gray('Approche-toi d\'un véhicule à réparer.')); return }
+  if (v == null) { atheriaHudAction(joueur, 'atheria:pieces_vehicule', 'Approche-toi d\'un véhicule à réparer.', ''); return }
   var repare = 0
   var soigner = e => {
     var d = e.damageVar.currentValue
@@ -148,11 +148,11 @@ ItemEvents.rightClicked('atheria:pieces_vehicule', event => {
   }
   soigner(v)
   for (var i = 0; i < v.allParts.size(); i++) soigner(v.allParts.get(i))
-  if (repare <= 0) { joueur.setStatusMessage(Text.gray('Ce véhicule n\'a rien à réparer.')); return }
+  if (repare <= 0) { atheriaHudAction(joueur, 'atheria:pieces_vehicule', 'Ce véhicule n\'a rien à réparer.', ''); return }
   event.item.shrink(1)
   routeSon(joueur, 'minecraft:block.anvil.use', 1.3)
   routeXp(joueur, 10)
-  joueur.setStatusMessage(Text.green('Réparations faites : ' + Math.round(repare) + ' points de dégâts en moins.'))
+  atheriaHudAction(joueur, 'atheria:pieces_vehicule', 'Réparations faites : ' + Math.round(repare) + ' points de dégâts en moins.', 'vert')
   })
 })
 
@@ -211,7 +211,10 @@ function routeAnnoncer(joueur, ville, prefixe) {
   var x = (ville.x << 4) + 8, z = (ville.z << 4) + 8
   var dx = x - joueur.x, dz = z - joueur.z
   var d = Math.round(Math.sqrt(dx * dx + dz * dz) / 50) * 50
-  joueur.tell(prefixe.append(Text.white(routeNomTaille(ville.rayon) + ' vers ' + routeDirection(dx, dz) + ', à environ ' + d + ' blocs.')))
+  var phrase = routeNomTaille(ville.rayon) + ' vers ' + routeDirection(dx, dz) + ', à environ ' + d + ' blocs.'
+  // la balise radio passe par la radio à l'écran (mod atheria_hud) ; la carte reste dans le chat
+  if (prefixe == null) atheriaHudRadio(joueur, 'balise', phrase)
+  else joueur.tell(prefixe.append(Text.white(phrase)))
   var vues = '' + joueur.persistentData.getString('atheria_villes_vues')
   joueur.persistentData.putString('atheria_villes_vues', vues + ville.cle + ';')
 }
@@ -220,13 +223,13 @@ ItemEvents.rightClicked('atheria:carte_routiere', event => {
   routeTraiter(event, () => {
   var joueur = event.player
   var item = event.item
-  if (joueur.level.dimension != 'minecraft:overworld') { joueur.setStatusMessage(Text.gray('Cette carte ne montre rien d\'ici.')); return }
+  if (joueur.level.dimension != 'minecraft:overworld') { atheriaHudAction(joueur, 'atheria:carte_routiere', 'Cette carte ne montre rien d\'ici.', ''); return }
   if (joueur.persistentData.getBoolean('atheria_carte_lecture')) return
   joueur.persistentData.putBoolean('atheria_carte_lecture', true)
-  joueur.setStatusMessage(Text.gray('Tu déplies la carte...'))
+  atheriaHudAction(joueur, 'atheria:carte_routiere', 'Tu déplies la carte...', '')
   routeChercherVille(joueur, ville => {
     joueur.persistentData.putBoolean('atheria_carte_lecture', false)
-    if (ville == null) { joueur.setStatusMessage(Text.gray('Rien que tu ne connaisses déjà sur cette carte.')); return }
+    if (ville == null) { atheriaHudAction(joueur, 'atheria:carte_routiere', 'Rien que tu ne connaisses déjà sur cette carte.', ''); return }
     item.shrink(1)
     routeAnnoncer(joueur, ville, Text.gold('[Carte] '))
   })
@@ -235,20 +238,20 @@ ItemEvents.rightClicked('atheria:carte_routiere', event => {
 
 // Appelée par atheria_campagne.js : accroupi, la radio écoute les balises au lieu de la voix
 function routeRadioVille(joueur) {
-  if (joueur.level.dimension != 'minecraft:overworld') { joueur.setStatusMessage(Text.gray('Aucun signal ici.')); return }
+  if (joueur.level.dimension != 'minecraft:overworld') { atheriaHudAction(joueur, 'atheria:radio_portative', 'Aucun signal ici.', ''); return }
   var maintenant = joueur.level.getLevelData().getGameTime()
   var derniere = joueur.persistentData.getLong('atheria_radio_ville')
   if (derniere > 0 && maintenant - derniere < ROUTE.radioDelai) {
-    joueur.setStatusMessage(Text.gray('Rien de nouveau sur les ondes. Réessaie demain.'))
+    atheriaHudAction(joueur, 'atheria:radio_portative', 'Rien de nouveau sur les ondes. Réessaie demain.', '')
     return
   }
   joueur.persistentData.putLong('atheria_radio_ville', maintenant)
-  joueur.setStatusMessage(Text.gray('Tu balayes les fréquences...'))
+  atheriaHudAction(joueur, 'atheria:radio_portative', 'Tu balayes les fréquences...', '')
   routeChercherVille(joueur, ville => {
-    if (ville == null) { joueur.setStatusMessage(Text.gray('Du bruit blanc. Aucune balise à portée.')); return }
+    if (ville == null) { atheriaHudAction(joueur, 'atheria:radio_portative', 'Du bruit blanc. Aucune balise à portée.', ''); return }
     joueur.addTag('radio_ville')
     routeSon(joueur, 'minecraft:block.note_block.bit', 0.6)
-    routeAnnoncer(joueur, ville, Text.darkAqua('[Balise] '))
+    routeAnnoncer(joueur, ville, null)
   })
 }
 
@@ -289,7 +292,7 @@ function routeLancerMeute(joueur) {
   }
   if (crees == 0) return false
   server.persistentData.putLong('atheria_meute_derniere', level.getLevelData().getGameTime())
-  joueur.setStatusMessage(Text.gold('Le sol tremble sur la route, devant toi.'))
+  atheriaHudAction(joueur, '', 'Le sol tremble sur la route, devant toi.', 'ambre')
   console.info('[Atheria route] meute de ' + crees + ' ' + choix[0] + ' devant ' + joueur.username + ' en ' + Math.floor(cx) + ' ' + Math.floor(cz))
   return true
 }
@@ -316,7 +319,7 @@ ServerEvents.tick(event => {
       var siege = joueur.getVehicle()
       if (siege == null || ('' + siege.getType()).indexOf('mts') < 0) return
       var v = routeVehiculeProche(joueur, 12)
-      if (v != null && v.enginesRunning) bruitAttirer(joueur.level, joueur.x, joueur.y, joueur.z, joueur.tags.contains('skill_bricolage_3') ? ROUTE.moteurPortee * 0.65 : ROUTE.moteurPortee)
+      if (v != null && v.enginesRunning) bruitAttirer(joueur.level, joueur.x, joueur.y, joueur.z, joueur.tags.contains('skill_bricolage_3') ? ROUTE.moteurPortee * 0.65 : ROUTE.moteurPortee, 'moteur')
     })
   }
   if (routeEtat.tick % ROUTE.meutePeriode == 0) {

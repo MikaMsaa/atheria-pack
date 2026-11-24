@@ -18,7 +18,7 @@ function bruitEstInfecte(mob) {
   return id.indexOf('spore:') == 0 || id.indexOf('hordes:') == 0 || BRUIT_ZOMBIES.indexOf(id) >= 0
 }
 
-function bruitAttirer(level, x, y, z, portee) {
+function bruitAttirer(level, x, y, z, portee, genre) {
   var Mob = Java.loadClass('net.minecraft.world.entity.Mob')
   var AABB = Java.loadClass('net.minecraft.world.phys.AABB')
   var zone = new AABB(x - portee, y - BRUIT_HAUTEUR, z - portee, x + portee, y + BRUIT_HAUTEUR, z + portee)
@@ -33,7 +33,17 @@ function bruitAttirer(level, x, y, z, portee) {
   }
   // Les errances du mob reprennent vite le dessus : la marche est relancée quelques fois
   if (attires.length > 0) bruitRelancer(level, attires, x, y, z, BRUIT_RELANCES)
+  if (attires.length > 0) bruitSignaler(level, x, y, z, portee, genre, attires.length)
   return attires.length
+}
+
+// Repère à l'écran (mod atheria_hud) : les joueurs qui entendent le bruit voient de quel côté les infectés vont converger
+function bruitSignaler(level, x, y, z, portee, genre, n) {
+  level.getPlayers().forEach(p => {
+    var d = Math.hypot(p.getX() - x, p.getZ() - z)
+    if (d < 4 || d > portee * 1.5 || Math.abs(p.getY() - y) > BRUIT_HAUTEUR * 2) return
+    atheriaHud(p, { t: 'bruit', x: x, y: y, z: z, g: genre || 'tir', n: n })
+  })
 }
 
 function bruitRelancer(level, mobs, x, y, z, reste) {
@@ -54,7 +64,7 @@ NativeEvents.onEvent('com.tacz.guns.api.event.common.GunFireEvent', event => {
     if (bruitDernier[cle] != null && maintenant - bruitDernier[cle] < BRUIT_DELAI_TICKS) return
     bruitDernier[cle] = maintenant
     var silencieux = ('' + event.getGunItemStack().getComponentsPatch()).indexOf('silencer') >= 0
-    bruitAttirer(tireur.level, tireur.getX(), tireur.getY(), tireur.getZ(), silencieux ? BRUIT_PORTEE_SILENCIEUX : BRUIT_PORTEE_TIR)
+    bruitAttirer(tireur.level, tireur.getX(), tireur.getY(), tireur.getZ(), silencieux ? BRUIT_PORTEE_SILENCIEUX : BRUIT_PORTEE_TIR, 'tir')
   } catch (e) {
     console.error('[Atheria bruit] ' + e)
   }
@@ -65,7 +75,7 @@ NativeEvents.onEvent('net.neoforged.neoforge.event.level.ExplosionEvent$Detonate
     var level = event.getLevel()
     if (level.isClientSide()) return
     var centre = event.getExplosion().center()
-    bruitAttirer(level, centre.x(), centre.y(), centre.z(), BRUIT_PORTEE_EXPLOSION)
+    bruitAttirer(level, centre.x(), centre.y(), centre.z(), BRUIT_PORTEE_EXPLOSION, 'explosion')
   } catch (e) {
     console.error('[Atheria bruit] ' + e)
   }

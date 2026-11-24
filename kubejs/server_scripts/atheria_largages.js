@@ -27,7 +27,7 @@ var LARGAGE_LIEUX = [
 ]
 
 function atheriaContrebande(server, texte) {
-  server.players.forEach(p => p.tell(Text.gold('[Radio des contrebandiers] ').append(Text.gray(texte))))
+  atheriaHudRadioTous(server, 'contrebandiers', texte)
 }
 
 // minutes depuis minuit et jour de la semaine, heure de La Réunion

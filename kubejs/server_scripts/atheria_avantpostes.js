@@ -83,7 +83,7 @@ ServerEvents.tick(event => {
     if (s.tenu && presents[s.tenu]) { s.vu = now; change = true }
     // abandon : personne de l'alliance n'est passé depuis 24 h
     if (s.tenu && now - s.vu > AP.abandonHeures * 3600 * 1000) {
-      server.tell(Text.gray('[Radio] Plus personne ne tient ' + l[1] + '. L\'avant-poste est libre.'))
+      atheriaHudRadioTous(server, 'avantpostes', 'Plus personne ne tient ' + l[1] + '. L\'avant-poste est libre.')
       s.tenu = null; s.nom = null; change = true
     }
     if (n == 0) {
@@ -114,7 +114,7 @@ ServerEvents.tick(event => {
       var ancien = s.nom
       s.tenu = a.id; s.nom = a.nom; s.vu = now; s.prise = null; s.avance = 0
       joueurs.forEach(q => { var dx = q.x - l[2], dz = q.z - l[3]; if (dx * dx + dz * dz <= AP.rayon * AP.rayon) routeXp(q, 60) })
-      server.tell(Text.gold('[Radio] ').append(Text.yellow(a.nom + ' tient maintenant ' + l[1] + (ancien ? ', pris à ' + ancien : '') + '.')))
+      atheriaHudRadioTous(server, 'avantpostes', 'tient maintenant ' + l[1] + (ancien ? ', pris à ' + ancien : '') + '.', a.nom)
       server.runCommandSilent('playsound minecraft:event.raid.horn master @a[x=' + l[2] + ',y=64,z=' + l[3] + ',distance=..200] ' + l[2] + ' 80 ' + l[3] + ' 4 1.2')
       atheriaApBarre(server, l, 'Avant-poste : ' + l[1] + ' — tenu par ' + a.nom, 'green', AP.dureePrise)
     }
@@ -131,7 +131,7 @@ ServerEvents.tick(event => {
     if (k <= 0) return
     var gain = k * AP.gainHeure
     server.runCommandSilent('give ' + p.username + ' atheria:bon_caf ' + gain)
-    p.tell(Text.gold('[Radio] ').append(Text.gray('Les avant-postes de ton alliance rapportent ' + gain + ' bons CAF.')))
+    atheriaHudRadio(p, 'avantpostes', 'Les avant-postes de ton alliance rapportent ' + gain + ' bons CAF.')
   })
 })
 
@@ -140,6 +140,19 @@ ServerEvents.commandRegistry(event => {
     var p = ctx.source.player
     if (!p) return 0
     var e = atheriaApEtat(p.server), a = atheriaAlliance(p)
+    if (typeof atheriaHud === 'function') {
+      // carte de l'île à l'écran (mod atheria_hud) : chaque avant-poste et qui le tient
+      var now = Date.now()
+      atheriaHud(p, { t: 'ecran', genre: 'avantpostes', json: JSON.stringify({
+        lieux: AP.lieux.map(l => {
+          var s = e[l[0]]
+          return [l[1], l[2], l[3], s.tenu == a.id ? 'toi' : s.tenu ? 'autre' : 'libre', s.nom || '',
+            s.tenu ? Math.max(0, AP.abandonHeures * 3600 * 1000 - (now - s.vu)) : 0, s.prise ? Math.round(100 * s.avance / AP.dureePrise) : 0]
+        }),
+        alliance: a.nom, x: p.x, z: p.z, gain: AP.gainHeure, duree: AP.dureePrise, abandon: AP.abandonHeures, max: AP.maxParAlliance
+      }) })
+      return 1
+    }
     p.tell(Text.gold('— Avant-postes de l\'île —'))
     AP.lieux.forEach(l => {
       var s = e[l[0]]

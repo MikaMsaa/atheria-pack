@@ -105,6 +105,11 @@ function atheriaLivre(player, hand, titre, paragraphes) {
 function atheriaLire(player, id, hand) {
   var txt = global.ATHERIA_TEXTES ? global.ATHERIA_TEXTES[id] : null
   if (!txt) return false
+  // Carnet animé du mod atheria_hud (couverture qui s'ouvre, pages qui tournent) ; livre vanilla en secours
+  if (typeof atheriaHud === 'function') {
+    atheriaHud(player, { t: 'livre', titre: String(txt.titre), texte: txt.lignes.map(l => String(l)).join('\n') })
+    return true
+  }
   var lignes = txt.lignes.map(l => String(l).replace(/&[0-9a-fklmnor]/g, ''))
   try {
     atheriaLivre(player, hand, String(txt.titre), lignes)
@@ -124,7 +129,8 @@ PlayerEvents.loggedIn(event => {
   // le reste du kit de départ est la récompense de la première quête du prologue
   player.give('atheria:carnet_survivant')
   player.give('ftbquests:book')
-  player.tell(Text.gray('Tu te réveilles dans une case en tôle. Un carnet signé « R. ». Clic droit sur le carnet pour le lire, puis ouvre ton livre de quêtes.'))
+  // après l'arrivée protégée et l'introduction : la bannière attend qu'aucun écran ne soit ouvert
+  atheriaHudBanniere(player, 'info', 'Prologue', 'Le réveil', 'Tu te réveilles dans une case en tôle. Un carnet signé « R. » : clic droit pour le lire, puis ouvre ton livre de quêtes.')
 })
 
 // ---------- cendre grise : 10 minutes, retirée à l'expiration, à la mort ou au premier infecté tué ----------
@@ -133,7 +139,7 @@ function atheriaCendreRetire(player, msg) {
   player.persistentData.remove('atheria_cendre_fin')
   if (!player.tags.contains('cendre_grise')) return
   player.removeTag('cendre_grise')
-  if (msg) player.tell(Text.gray(msg))
+  if (msg) atheriaHudAction(player, 'atheria:cendre_grise', msg, '')
 }
 // l'expiration est un horodatage réel : elle tient aussi après une déconnexion ou un redémarrage
 function atheriaCendreVerifie(player) {
@@ -167,11 +173,11 @@ ItemEvents.rightClicked(event => {
       return
     }
     if (!atheriaNuit(event.level)) {
-      player.tell(Text.gray('Grésillements. La voix ne parle que la nuit.'))
+      atheriaHudAction(player, 'atheria:radio_portative', 'Grésillements. La voix ne parle que la nuit.', '')
       event.cancel()
       return
     }
-    player.tell(Text.darkRed('[104.0 MHz] ').append(Text.gray('« ...si vous entendez ce message, venez au Bénara. Nous avons un remède. Nous avons de l\'eau. Venez au Bénara... »')))
+    atheriaHudBanniere(player, 'signal', '104.0 MHz', '', '« ...si vous entendez ce message, venez au Bénara. Nous avons un remède. Nous avons de l\'eau. Venez au Bénara... »')
     player.addTag('radio_voix')
     // énigme du chapitre 3 : trois points hauts éloignés d'au moins 300 blocs
     if (player.tags.contains('acte_3') && player.y >= 120) {
@@ -185,7 +191,7 @@ ItemEvents.rightClicked(event => {
       if (loin) {
         pts.push(x + ',' + z)
         data.putString('atheria_radio', pts.join(';'))
-        player.tell(Text.yellow('Point d\'écoute noté (' + pts.length + '/3). Le signal vient de plus loin que le Bénara.'))
+        atheriaHudBanniere(player, 'quete', 'Point d\'écoute ' + pts.length + ' / 3', '', 'Le signal vient de plus loin que le Bénara.')
       }
       if (pts.length >= 3) player.addTag('radio_3_points')
     }
@@ -195,11 +201,11 @@ ItemEvents.rightClicked(event => {
 
   if (id === 'atheria:boitier_ecoute') {
     if (player.y < 120) {
-      player.tell(Text.gray('Trop bas. Il faut l\'installer au sommet d\'une tour (altitude 120 ou plus).'))
+      atheriaHudAction(player, 'atheria:boitier_ecoute', 'Trop bas. Il faut l\'installer au sommet d\'une tour (altitude 120 ou plus).', 'ambre')
     } else {
       event.item.shrink(1)
       player.addTag('boitier_installe')
-      player.tell(Text.yellow('Boîtier installé. Le relais écoute maintenant pour les Goblini.'))
+      atheriaHudBanniere(player, 'quete', 'Relais', 'Boîtier installé', 'Le relais écoute maintenant pour les Goblini.')
       atheriaCmd(server, `playsound minecraft:block.beacon.power_select master ${name} ~ ~ ~ 1 1.4`)
     }
     event.cancel()
@@ -210,11 +216,11 @@ ItemEvents.rightClicked(event => {
     var jour = Math.floor(Date.now() / 86400000)
     var data = player.persistentData
     if (data.getInt('atheria_caf_jour') === jour) {
-      player.tell(Text.gray('Votre demande a déjà été traitée aujourd\'hui. Merci de votre patience.'))
+      atheriaHudAction(player, 'atheria:carte_caf', 'Votre demande a déjà été traitée aujourd\'hui. Merci de votre patience.', '')
     } else {
       data.putInt('atheria_caf_jour', jour)
       player.give('4x atheria:bon_caf')
-      player.tell(Text.yellow('Versement CAF : 4 bons. Votre dossier reste incomplet.'))
+      atheriaHudAction(player, 'atheria:bon_caf', 'Versement CAF : 4 bons. Votre dossier reste incomplet.', 'vert')
     }
     event.cancel()
     return
@@ -227,9 +233,9 @@ ItemEvents.rightClicked(event => {
     var fin = Date.now() + ATHERIA_CENDRE_MS
     player.persistentData.putLong('atheria_cendre_fin', fin)
     player.addTag('cendre_grise')
-    player.tell(Text.gray('Tu te couvres de cendre grise pour 10 minutes. Les infectés faibles ne te voient plus. La PAF, si.'))
+    atheriaHudAction(player, 'atheria:cendre_grise', 'Cendre grise : 10 minutes. Les infectés faibles ne te voient plus. La PAF, si.', 'ambre')
     server.scheduleInTicks(12000, () => {
-      var p2 = server.getPlayer(name)
+      var p2 = server.getPlayerList().getPlayerByName(name)
       if (p2) atheriaCendreVerifie(p2)
     })
     event.cancel()
@@ -256,7 +262,7 @@ EntityEvents.death(event => {
   if (!ATHERIA_INFECTES.test(String(event.entity.type))) return
   var server = killer.server
   if (atheriaRetirer(killer, 'atheria:plaque_station', 9999) > 0) {
-    killer.tell(Text.red('Le bruit a réveillé la station. Tes plaques tombent en poussière.'))
+    atheriaHudBanniere(killer, 'danger', 'Station', '', 'Le bruit a réveillé la station. Tes plaques tombent en poussière.')
   }
   if (killer.tags.contains('cendre_grise')) {
     atheriaCendreRetire(killer, 'Le sang de l\'infecté a lavé ta cendre. Ils te voient de nouveau.')
@@ -346,7 +352,7 @@ function atheriaViniciusRetour(server) {
   ent.setHealth(ent.getMaxHealth())
   ent.spawn()
   data.remove('atheria_vinicius')
-  server.tell(Text.gray('Sur la RN1, la barrière du péage est de nouveau gardée. Vinicius a repris son poste.'))
+  atheriaHudRadioTous(server, 'balise', 'la barrière du péage est de nouveau gardée. Vinicius a repris son poste.', 'Sur la RN1,')
 }
 
 // ---------- 10/11 (Mika) : événements du serveur (sirène du ch1, lune de sang du ch2) ----------
@@ -357,12 +363,12 @@ function atheriaViniciusRetour(server) {
 // Tout l'état est dans les données du serveur (persistentData) et tient un redémarrage.
 var ATHERIA_EVT = {
   sirene: {
-    tenue: 'sirene_tenue', passee: 'sirene_passee', ratt: 'sirene_rattrapage', duree: 25,
+    nom: 'La sirène de Longoni', tenue: 'sirene_tenue', passee: 'sirene_passee', ratt: 'sirene_rattrapage', duree: 25,
     debut: 'Une sirène hurle sur Longoni. Haut-parleur : « Horde au mur est. Tous les citoyens valides au mur. Les non-valides aussi, on manque de monde. »',
     fin: 'La sirène se tait. Longoni a encore ses murs. Haut-parleur : « Merci de votre participation. Un formulaire de satisfaction vous sera remis. »'
   },
   lune_de_sang: {
-    tenue: 'lune_de_sang_tenue', passee: 'lune_passee', ratt: 'lune_rattrapage', duree: 25,
+    nom: 'Lune de sang sur Coconi', tenue: 'lune_de_sang_tenue', passee: 'lune_passee', ratt: 'lune_rattrapage', duree: 25,
     debut: 'La lune rougit au-dessus de Coconi. Zaida, au porte-voix : « Tout le monde au barrage. Ceux qui savent tirer devant, ceux qui savent soigner derrière. Les autres, vous portez. »',
     fin: 'Le jour se lève sur le Refuge. Zaida : « On compte les vivants d\'abord. Les morts attendront, ils ont le temps. »'
   }
@@ -403,7 +409,7 @@ function atheriaEvtFin(server, id) {
   var pres = e.getCompound('presence'), val = e.getCompound('valides')
   var cles = atheriaCles(pres), n = 0
   for (var i = 0; i < cles.length; i++) if (pres.getInt(cles[i]) >= seuil) { val.putBoolean(cles[i], true); n++ }
-  server.tell(Text.gold(d.fin))
+  atheriaHudBanniereTous(server, 'fin', 'Fin de l\'événement', d.nom, d.fin)
   server.players.forEach(p => atheriaEvtConnexion(server, p))
   return n
 }
@@ -421,7 +427,7 @@ function atheriaEvtConnexion(server, p) {
       val.remove(u)
       if (!p.tags.contains(d.tenue)) {
         p.addTag(d.tenue)
-        p.tell(Text.green('Tu as tenu jusqu\'au bout. Ta quête est validée.'))
+        atheriaHudBanniere(p, 'quete', 'Quête validée', d.nom, 'Tu as tenu jusqu\'au bout.')
       }
     }
   }
@@ -470,7 +476,7 @@ function atheriaEvtTick(server) {
         p.persistentData.putInt(cle, s)
         if (s >= 300) {
           p.addTag(d.ratt)
-          p.tell(Text.green('Tu as tenu ta nuit. Il reste à repousser les infectés qui traînent.'))
+          atheriaHudBanniere(p, 'quete', 'Rattrapage', 'Tu as tenu ta nuit', 'Il reste à repousser les infectés qui traînent.')
         }
       })
     }
@@ -612,7 +618,7 @@ function atheriaEvtCommandes(event) {
       e.putInt('ecoule', 0)
       e.putInt('duree', Math.max(1, minutes) * 60)
       e.put('presence', atheriaTag()); e.put('morts', atheriaTag())
-      server.tell(Text.red(d.debut))
+      atheriaHudBanniereTous(server, 'evenement', 'Événement', d.nom, d.debut)
       return 1
     }
     b.then(Commands.literal('debut').executes(ctx => debut(ctx, d.duree))
@@ -632,7 +638,7 @@ function atheriaEvtCommandes(event) {
     b.then(Commands.literal('donner').then(Commands.argument('joueur', Arguments.PLAYER.create(event)).executes(ctx => {
       var p = Arguments.PLAYER.getResult(ctx, 'joueur')
       p.addTag(d.tenue); p.addTag(d.passee)
-      p.tell(Text.green('L\'équipe a validé ta présence.'))
+      atheriaHudBanniere(p, 'quete', 'Quête validée', d.nom, 'L\'équipe a validé ta présence.')
       return 1
     })))
     b.then(Commands.literal('retirer').then(Commands.argument('joueur', Arguments.PLAYER.create(event)).executes(ctx => {
@@ -661,11 +667,11 @@ function atheriaVendrePuff(server, p) {
     if (atheriaRetirer(p, 'atheria:puff_' + n, 1) !== 1) continue   // retirée d'abord : rien n'est payé sans Puff
     p.persistentData.putInt('atheria_puffs_vendues', vendues | (1 << n))
     server.runCommandSilent('give ' + nom + ' atheria:bon_caf ' + ATHERIA_PRIX_PUFF)
-    p.tell(Text.yellow('Eniy empoche la Puff n° ' + n + ' et te tend ' + ATHERIA_PRIX_PUFF + ' bons. « Je la revendrai dix fois plus cher. À quelqu\'un d\'autre. »'))
+    atheriaHudBanniere(p, 'quete', 'Eniy', 'Puff n° ' + n + ' vendue, + ' + ATHERIA_PRIX_PUFF + ' bons', '« Je la revendrai dix fois plus cher. À quelqu\'un d\'autre. »')
     return 1
   }
-  if (pasNotee) { p.tell(Text.gray('Eniy : « La Puff n° ' + pasNotee + ', note-la d\'abord dans ta collection (récupère la récompense de sa quête). Après, on parle affaires. »')); return 0 }
-  p.tell(Text.gray(proposee ? 'Eniy : « Celle-là, tu me l\'as déjà vendue. Je ne rachète pas deux fois la même légende. »' : 'Eniy : « Pas de Puff, pas de bons. Le marché est impitoyable. »'))
+  if (pasNotee) { atheriaHudBanniere(p, 'info', 'Eniy', '', '« La Puff n° ' + pasNotee + ', note-la d\'abord dans ta collection (récupère la récompense de sa quête). Après, on parle affaires. »'); return 0 }
+  atheriaHudBanniere(p, 'info', 'Eniy', '', proposee ? '« Celle-là, tu me l\'as déjà vendue. Je ne rachète pas deux fois la même légende. »' : '« Pas de Puff, pas de bons. Le marché est impitoyable. »')
   return 0
 }
 
@@ -689,17 +695,18 @@ ServerEvents.commandRegistry(event => {
           var objet = String(Arg.GREEDY_STRING.getResult(ctx, 'objet')).trim()
           var server = ctx.source.server, nom = p.username
           var a = atheriaCompter(p, 'atheria:bon_caf')
-          if (a < prix) { p.tell(Text.red('Il te manque ' + (prix - a) + ' bons. Eniy ne fait pas crédit.')); return 0 }
-          if (atheriaRetirer(p, 'atheria:bon_caf', prix) !== prix) { p.tell(Text.red('Paiement refusé.')); return 0 }   // ne devrait pas arriver : compté juste avant
+          if (a < prix) { atheriaHudAction(p, 'atheria:bon_caf', 'Il te manque ' + (prix - a) + ' bons. Eniy ne fait pas crédit.', 'rouge'); return 0 }
+          if (atheriaRetirer(p, 'atheria:bon_caf', prix) !== prix) { atheriaHudAction(p, 'atheria:bon_caf', 'Paiement refusé.', 'rouge'); return 0 }   // ne devrait pas arriver : compté juste avant
           server.runCommandSilent('give ' + nom + ' ' + objet + ' 1')
-          p.tell(Text.yellow('Eniy encaisse ' + prix + ' bons. « Pas de remboursement, pas de garantie, pas de questions. »'))
+          atheriaHudBanniere(p, 'quete', 'Eniy', 'Achat conclu, - ' + prix + ' bons', '« Pas de remboursement, pas de garantie, pas de questions. »')
           return 1
         })))))
   event.register(Commands.literal('titres').executes(ctx => {
     var player = ctx.source.player
     var titres = []
     player.tags.forEach(t => { if (String(t).startsWith('titre_')) titres.push((global.ATHERIA_TITRES || {})[String(t).substring(6)] || String(t).substring(6)) })
-    player.tell(Text.gold('Tes titres (' + titres.length + ') : ').append(Text.yellow(titres.length ? titres.join(', ') : 'aucun pour l\'instant')))
+    // dans le carnet, sur un bout de papier à gauche de l'écran (mod atheria_hud)
+    atheriaHudNote(player, 'Tes titres', titres.length ? titres.join(', ') : 'Aucun pour l\'instant. Ils se gagnent sur le terrain.', titres.length + (titres.length > 1 ? ' titres' : ' titre'))
     return 1
   }))
 })

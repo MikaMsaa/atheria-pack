@@ -91,6 +91,22 @@ function atheriaContratDef(cle) {
 
 function atheriaContratsAfficher(p) {
   var etat = atheriaContratsLire(p)
+  if (typeof atheriaHud === 'function') {
+    // tableau des contrats à l'écran (mod atheria_hud) : icône, progression, lieu sur la carte
+    var maintenant = Date.now() + 4 * 3600 * 1000
+    var liste = []
+    etat.liste.forEach(c => {
+      var d = atheriaContratDef(c.cle)
+      if (!d) return
+      var icone = d[0] == 'fabriquer' ? d[3] : d[0] == 'tuer' ? 'minecraft:iron_sword' : d[0] == 'lieu' ? 'minecraft:compass' : 'minecraft:minecart'
+      liste.push([d[2], Math.min(c.fait, d[4]), d[4], d[0], icone, d[0] == 'lieu' ? d[3] : null])
+    })
+    atheriaHud(p, { t: 'ecran', genre: 'contrats', json: JSON.stringify({
+      liste: liste, recompense: CONTRATS.recompense[etat.stade], bonus: CONTRATS.bonus,
+      minuit: 86400000 - (maintenant % 86400000), x: p.x, z: p.z
+    }) })
+    return 1
+  }
   p.tell(Text.gold('— Contrats radio du jour —'))
   etat.liste.forEach(c => {
     var d = atheriaContratDef(c.cle)
@@ -115,10 +131,11 @@ function atheriaContratsAvancer(p, type, test, combien) {
       routeXp(p, CONTRATS.xpCompetence)
       atheriaHonneur(p, 'contrats', 1)
       p.server.runCommandSilent('give ' + p.username + ' atheria:bon_caf ' + gain)
-      p.tell(Text.gold('[Radio] ').append(Text.yellow('Contrat rempli : ' + d[2] + '. ' + gain + ' bons CAF.')))
+      atheriaHudRadio(p, 'contrats', d[2] + '. ' + gain + ' bons CAF.', 'Contrat rempli :')
       p.server.runCommandSilent('playsound minecraft:entity.experience_orb.pickup master ' + p.username + ' ~ ~ ~ 0.7 1.1')
     } else if (d[4] > 1) {
-      p.setStatusMessage(Text.gray(d[2] + ' : ' + c.fait + '/' + d[4]))
+      var icone = d[0] == 'fabriquer' ? d[3] : d[0] == 'tuer' ? 'minecraft:iron_sword' : d[0] == 'lieu' ? 'minecraft:compass' : 'minecraft:minecart'
+      atheriaHudAction(p, icone, d[2] + ' : ' + c.fait + '/' + d[4], '', c.fait / d[4])
     }
   })
   if (!change) return
@@ -127,7 +144,7 @@ function atheriaContratsAvancer(p, type, test, combien) {
     p.server.runCommandSilent('give ' + p.username + ' atheria:bon_caf ' + CONTRATS.bonus)
     p.server.runCommandSilent('xp add ' + p.username + ' 200 points')
     routeXp(p, 40)
-    p.tell(Text.gold('[Radio] ').append(Text.yellow('Les trois contrats du jour sont remplis. Prime : ' + CONTRATS.bonus + ' bons CAF. Reviens demain.')))
+    atheriaHudRadio(p, 'contrats', 'Prime : ' + CONTRATS.bonus + ' bons CAF. Reviens demain.', 'Les trois contrats du jour sont remplis.')
   }
   atheriaContratsEcrire(p, etat)
 }
@@ -173,7 +190,7 @@ PlayerEvents.loggedIn(event => {
   var p = event.player
   var etat = atheriaContratsLire(p)
   var reste = etat.liste.filter(c => { var d = atheriaContratDef(c.cle); return d && c.fait < d[4] }).length
-  if (reste > 0) p.tell(Text.gold('[Radio] ').append(Text.gray(reste + ' contrat(s) t\'attendent aujourd\'hui. Tape /contrats pour les voir.')))
+  if (reste > 0) atheriaHudRadio(p, 'contrats', 't\'attendent aujourd\'hui. Tape /contrats pour les voir.', reste + (reste > 1 ? ' contrats' : ' contrat'))
 })
 
 ServerEvents.commandRegistry(event => {

@@ -28,7 +28,7 @@ ServerEvents.tick(event => {
     if (dort) {
       if (duree == 0 && !d.getBoolean('atheria_sommeil_explique')) {
         d.putBoolean('atheria_sommeil_explique', true)
-        p.tell(Text.gray('Ici, dormir ne fait pas passer la nuit. Mais ça soigne, et la faim te laisse tranquille pendant ce temps.'))
+        atheriaHudNote(p, 'Dormir', 'ici, ça ne fait pas passer la nuit. Mais ça soigne, et la faim te laisse tranquille pendant ce temps.')
       }
       d.putInt('atheria_sommeil_sec', duree + SOMMEIL.periode / 20)
       if (p.health < p.maxHealth) p.heal(SOMMEIL.soin)
@@ -44,6 +44,6 @@ ServerEvents.tick(event => {
     if (dernier && Date.now() - dernier < SOMMEIL.reposDelaiMin * (leger ? 0.5 : 1) * 60 * 1000) return
     d.putLong('atheria_repos_dernier', Date.now())
     p.potionEffects.add('minecraft:regeneration', SOMMEIL.reposEffetSec * (leger ? 1.5 : 1) * 20, 0, false, true)
-    p.setStatusMessage(Text.green('Reposé : tu récupères mieux pendant ' + (leger ? '3' : '2') + ' minutes.'))
+    atheriaHudAction(p, 'minecraft:red_bed', 'Reposé : tu récupères mieux pendant ' + (leger ? '3' : '2') + ' minutes.', 'vert')
   })
 })
