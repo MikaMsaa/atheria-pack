@@ -12,7 +12,7 @@ var PRIME_PAR_MEURTRE = 10
 var PRIME_MAX = 50
 
 function atheriaRadio(server, texte) {
-  server.players.forEach(p => p.tell(Text.darkRed('[Radio] ').append(Text.gray(texte))))
+  atheriaHudRadioTous(server, 'primes', texte)
 }
 
 function atheriaNom(e) {

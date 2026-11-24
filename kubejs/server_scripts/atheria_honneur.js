@@ -59,7 +59,7 @@ function atheriaHonneurPayer(p, e) {
   var n = e.dus[p.username] || 0
   if (n <= 0) return
   p.server.runCommandSilent('give ' + p.username + ' atheria:bon_caf ' + n)
-  p.tell(Text.gold('[Radio] ').append(Text.yellow('Tu es au tableau d\'honneur : ' + n + ' bons CAF de prime.')))
+  atheriaHudRadio(p, 'honneur', n + ' bons CAF de prime.', 'Tu es au tableau d\'honneur :')
   delete e.dus[p.username]
 }
 

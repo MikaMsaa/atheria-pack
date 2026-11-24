@@ -115,7 +115,7 @@ function atheriaContratsAvancer(p, type, test, combien) {
       routeXp(p, CONTRATS.xpCompetence)
       atheriaHonneur(p, 'contrats', 1)
       p.server.runCommandSilent('give ' + p.username + ' atheria:bon_caf ' + gain)
-      p.tell(Text.gold('[Radio] ').append(Text.yellow('Contrat rempli : ' + d[2] + '. ' + gain + ' bons CAF.')))
+      atheriaHudRadio(p, 'contrats', d[2] + '. ' + gain + ' bons CAF.', 'Contrat rempli :')
       p.server.runCommandSilent('playsound minecraft:entity.experience_orb.pickup master ' + p.username + ' ~ ~ ~ 0.7 1.1')
     } else if (d[4] > 1) {
       p.setStatusMessage(Text.gray(d[2] + ' : ' + c.fait + '/' + d[4]))
@@ -127,7 +127,7 @@ function atheriaContratsAvancer(p, type, test, combien) {
     p.server.runCommandSilent('give ' + p.username + ' atheria:bon_caf ' + CONTRATS.bonus)
     p.server.runCommandSilent('xp add ' + p.username + ' 200 points')
     routeXp(p, 40)
-    p.tell(Text.gold('[Radio] ').append(Text.yellow('Les trois contrats du jour sont remplis. Prime : ' + CONTRATS.bonus + ' bons CAF. Reviens demain.')))
+    atheriaHudRadio(p, 'contrats', 'Prime : ' + CONTRATS.bonus + ' bons CAF. Reviens demain.', 'Les trois contrats du jour sont remplis.')
   }
   atheriaContratsEcrire(p, etat)
 }
@@ -173,7 +173,7 @@ PlayerEvents.loggedIn(event => {
   var p = event.player
   var etat = atheriaContratsLire(p)
   var reste = etat.liste.filter(c => { var d = atheriaContratDef(c.cle); return d && c.fait < d[4] }).length
-  if (reste > 0) p.tell(Text.gold('[Radio] ').append(Text.gray(reste + ' contrat(s) t\'attendent aujourd\'hui. Tape /contrats pour les voir.')))
+  if (reste > 0) atheriaHudRadio(p, 'contrats', 't\'attendent aujourd\'hui. Tape /contrats pour les voir.', reste + (reste > 1 ? ' contrats' : ' contrat'))
 })
 
 ServerEvents.commandRegistry(event => {

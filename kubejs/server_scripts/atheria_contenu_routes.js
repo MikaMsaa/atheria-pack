@@ -211,7 +211,10 @@ function routeAnnoncer(joueur, ville, prefixe) {
   var x = (ville.x << 4) + 8, z = (ville.z << 4) + 8
   var dx = x - joueur.x, dz = z - joueur.z
   var d = Math.round(Math.sqrt(dx * dx + dz * dz) / 50) * 50
-  joueur.tell(prefixe.append(Text.white(routeNomTaille(ville.rayon) + ' vers ' + routeDirection(dx, dz) + ', à environ ' + d + ' blocs.')))
+  var phrase = routeNomTaille(ville.rayon) + ' vers ' + routeDirection(dx, dz) + ', à environ ' + d + ' blocs.'
+  // la balise radio passe par la radio à l'écran (mod atheria_hud) ; la carte reste dans le chat
+  if (prefixe == null) atheriaHudRadio(joueur, 'balise', phrase)
+  else joueur.tell(prefixe.append(Text.white(phrase)))
   var vues = '' + joueur.persistentData.getString('atheria_villes_vues')
   joueur.persistentData.putString('atheria_villes_vues', vues + ville.cle + ';')
 }
@@ -248,7 +251,7 @@ function routeRadioVille(joueur) {
     if (ville == null) { joueur.setStatusMessage(Text.gray('Du bruit blanc. Aucune balise à portée.')); return }
     joueur.addTag('radio_ville')
     routeSon(joueur, 'minecraft:block.note_block.bit', 0.6)
-    routeAnnoncer(joueur, ville, Text.darkAqua('[Balise] '))
+    routeAnnoncer(joueur, ville, null)
   })
 }
 

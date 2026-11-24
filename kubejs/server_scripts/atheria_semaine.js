@@ -25,7 +25,7 @@ function atheriaSemaine() {
 
 function atheriaSemaineAnnoncer(p) {
   var s = atheriaSemaineInfo()
-  p.tell(Text.gold('[Radio] Cette semaine : ').append(Text.yellow(s[1] + '. ')).append(Text.gray(s[2])))
+  atheriaHudRadio(p, 'semaine', s[2], s[1] + '.')
 }
 
 PlayerEvents.loggedIn(event => atheriaSemaineAnnoncer(event.player))

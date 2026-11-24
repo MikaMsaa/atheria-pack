@@ -8,6 +8,16 @@ function atheriaHud(joueur, donnees) {
   }
 }
 
+// Message radio à l'écran (mod atheria_hud) : src = contrebandiers, primes, eniy, contrats, avantpostes, balise, semaine, honneur.
+// accent : début du message mis en valeur (nom, lieu...), facultatif.
+function atheriaHudRadio(joueur, src, texte, accent) {
+  atheriaHud(joueur, { t: 'radio', src: src, texte: texte, accent: accent || '' })
+}
+
+function atheriaHudRadioTous(server, src, texte, accent) {
+  server.players.forEach(p => atheriaHudRadio(p, src, texte, accent))
+}
+
 // Tous les joueurs de la dimension à moins de « rayon » blocs du point
 function atheriaHudAutour(niveau, x, y, z, rayon, donnees) {
   niveau.getPlayers().forEach(p => {
