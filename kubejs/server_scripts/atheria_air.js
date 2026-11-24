@@ -28,19 +28,19 @@ function airRespirer(joueur) {
     if (reste <= 0 && joueur.inventory.count('atheria:filtre') > 0) {
       joueur.server.runCommandSilent('clear ' + joueur.username + ' atheria:filtre 1')
       reste = (artisanal ? AIR.filtreArtisanalSec : AIR.filtreSec) * (joueur.tags.contains('skill_medecine_1') ? 1.5 : 1)
-      joueur.setStatusMessage(Text.gray('Tu visses un filtre neuf sur ton masque.'))
+      atheriaHudAction(joueur, 'atheria:filtre', 'Tu visses un filtre neuf sur ton masque.', 'vert')
     }
     if (reste > 0) {
       data.putInt('atheria_filtre_reste', reste - AIR.periode / 20)
       data.putInt('atheria_air_expo', 0)
-      if (reste - AIR.periode / 20 <= 0) joueur.setStatusMessage(Text.gold('Ton filtre est saturé.'))
+      if (reste - AIR.periode / 20 <= 0) atheriaHudAction(joueur, 'atheria:filtre', 'Ton filtre est saturé.', 'ambre')
       return
     }
   }
   var expo = data.getInt('atheria_air_expo') + AIR.periode / 20
   data.putInt('atheria_air_expo', expo)
   if (expo < AIR.graceSec * (joueur.tags.contains('skill_medecine_2') ? 3 : 1)) {
-    joueur.setStatusMessage(Text.gold(surTete || artisanal ? 'Ton masque n\'a plus de filtre. L\'air pique déjà.' : 'L\'air te brûle la gorge. Il te faut un masque et un filtre.'))
+    atheriaHudAction(joueur, 'tacz_tactical_breaching:gas_mask', surTete || artisanal ? 'Ton masque n\'a plus de filtre. L\'air pique déjà.' : 'L\'air te brûle la gorge. Il te faut un masque et un filtre.', 'rouge')
     return
   }
   joueur.potionEffects.add('minecraft:poison', 80, 0, false, false)

@@ -140,7 +140,7 @@ BlockEvents.broken(event => {
       var taille = 2 + Math.floor(Math.random() * 3)
       for (var i = 0; i < taille; i++) bloc.popItem(bloc.getDrops(joueur, joueur.getMainHandItem()).get(0))
       joueur.level.server.runCommandSilent('xp add ' + joueur.username + ' ' + (4 + taille * 2))
-      joueur.tell(Text.green('Filon riche !'))
+      atheriaHudAction(joueur, 'minecraft:iron_pickaxe', 'Filon riche !', 'vert')
     }
     return
   }
@@ -150,7 +150,7 @@ BlockEvents.broken(event => {
     event.server.scheduleInTicks(1, () => {
       event.server.runCommandSilent('execute in ' + joueur.level.dimension + ' run setblock ' + x + ' ' + y + ' ' + z + ' minecraft:barrel[facing=up]{LootTable:"minecraft:chests/abandoned_mineshaft"}')
     })
-    joueur.tell(Text.yellow('Ta pioche heurte du métal : un vieux casier de mineur.'))
+    atheriaHudAction(joueur, 'minecraft:barrel', 'Ta pioche heurte du métal : un vieux casier de mineur.', 'ambre')
     return
   }
   var chanceGaz = y < 0 ? MINE_CHANCE_GAZ_PROFOND : MINE_CHANCE_GAZ

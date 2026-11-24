@@ -134,7 +134,8 @@ function atheriaContratsAvancer(p, type, test, combien) {
       atheriaHudRadio(p, 'contrats', d[2] + '. ' + gain + ' bons CAF.', 'Contrat rempli :')
       p.server.runCommandSilent('playsound minecraft:entity.experience_orb.pickup master ' + p.username + ' ~ ~ ~ 0.7 1.1')
     } else if (d[4] > 1) {
-      p.setStatusMessage(Text.gray(d[2] + ' : ' + c.fait + '/' + d[4]))
+      var icone = d[0] == 'fabriquer' ? d[3] : d[0] == 'tuer' ? 'minecraft:iron_sword' : d[0] == 'lieu' ? 'minecraft:compass' : 'minecraft:minecart'
+      atheriaHudAction(p, icone, d[2] + ' : ' + c.fait + '/' + d[4], '', c.fait / d[4])
     }
   })
   if (!change) return
