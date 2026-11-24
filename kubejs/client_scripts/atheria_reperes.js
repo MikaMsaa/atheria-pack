@@ -19,9 +19,8 @@ function atheriaRepereAjouter(d) {
   var jeu = monde.getCurrentWaypointSet()
   if (jeu == null) return 'pas de jeu de repères'
   var nom = '' + d.getString('nom')
-  var deja = false
-  jeu.getWaypoints().forEach(w => { if (('' + w.getName()) === nom) deja = true })
-  if (deja) return 'déjà présent'
+  var it = jeu.getWaypoints().iterator()
+  while (it.hasNext()) { if (('' + it.next().getName()) === nom) return 'déjà présent' }
   jeu.add(new ATHERIA_XAERO.Waypoint(d.getInt('x'), d.getInt('y'), d.getInt('z'), nom, '' + d.getString('ini'), d.getInt('couleur')))
   session.getWorldManagerIO().saveWorld(monde)
   return 'ajouté'
