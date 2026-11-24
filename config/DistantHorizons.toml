@@ -505,7 +505,7 @@ _version = 5
 			#  
 			# IE disabling vanilla clouds (which render on top of DH LODs), 
 			#    and chunk fading (DH already fades MC chunks)
-			overrideVanillaGraphicsSettings = true
+			overrideVanillaGraphicsSettings = false
 
 			[client.advanced.graphics.culling]
 				#
@@ -716,7 +716,7 @@ _version = 5
 				dimensionEnabledCloudRenderingCsv = "minecraft:overworld"
 				#
 				# If true LOD clouds will be rendered.
-				enableCloudRendering = true
+				enableCloudRendering = false
 				#
 				# If true LOD beacon beams will be rendered wider at extreme distances, 
 				# making them easier to see. 
