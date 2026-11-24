@@ -203,6 +203,9 @@ NativeEvents.onEvent('net.neoforged.neoforge.client.event.ClientTickEvent$Post',
   if (dansMts != atheriaEnVehicule) {
     atheriaEnVehicule = dansMts
     atheriaRappelAttendu = dansMts
+    if (!dansMts) {
+      try { Java.loadClass('fr.atheria.hud.AtheriaHud').conduite(null) } catch (e) { }
+    }
     try {
       var Core = Java.loadClass('dev.tr7zw.firstperson.FirstPersonModelCore')
       Core.instance.setEnabled(!dansMts)
@@ -214,9 +217,14 @@ NativeEvents.onEvent('net.neoforged.neoforge.client.event.ClientTickEvent$Post',
     var genre = atheriaGenreVehicule(vehicule)
     if (genre == null) return
     atheriaRappelAttendu = false
-    if (atheriaAideVehicule[genre]) return
-    atheriaAideVehicule[genre] = true
-    ATHERIA_AIDES_VEHICULE[genre].forEach(ligne => joueur.displayClientMessage(Component.string(ligne).gray(), false))
+    // Les touches s'affichent dans les coins bas de l'écran (mod atheria_hud) ; le chat ne sert plus qu'en secours
+    try {
+      Java.loadClass('fr.atheria.hud.AtheriaHud').conduite(genre)
+    } catch (e) {
+      if (atheriaAideVehicule[genre]) return
+      atheriaAideVehicule[genre] = true
+      ATHERIA_AIDES_VEHICULE[genre].forEach(ligne => joueur.displayClientMessage(Component.string(ligne).gray(), false))
+    }
   }
 })
 

@@ -68,9 +68,10 @@ function mineExplosion(serveur, niveau, x, y, z) {
       serveur.runCommandSilent('damage ' + p.username + ' ' + deg + ' minecraft:explosion')
       serveur.runCommandSilent('effect give ' + p.username + ' minecraft:darkness 6 0 true')
       serveur.runCommandSilent('effect give ' + p.username + ' minecraft:slowness 6 1 true')
-      p.tell(Text.red('Le gaz s\'enflamme ! Le souffle te projette contre la roche.'))
     }
   })
+  // Éclair, acouphène et secousse à l'écran, d'autant plus forts qu'on est près (mod atheria_hud)
+  atheriaHudAutour(niveau, x, y, z, 24, { t: 'gaz_explosion', x: x, y: y, z: z })
   serveur.runCommandSilent('execute in ' + dim + ' run particle minecraft:explosion_emitter ' + x + ' ' + y + ' ' + z + ' 0 0 0 0 1 force')
   serveur.runCommandSilent('execute in ' + dim + ' run particle minecraft:flame ' + x + ' ' + y + ' ' + z + ' 3 2 3 0.15 200 force')
   serveur.runCommandSilent('execute in ' + dim + ' run playsound minecraft:entity.generic.explode block @a ' + x + ' ' + y + ' ' + z + ' 4 0.6')
@@ -86,7 +87,8 @@ function minePocheGaz(joueur, x, y, z) {
   var serveur = joueur.server
   var niveau = joueur.level
   var dim = niveau.dimension
-  joueur.tell(Text.gold('Une odeur âcre s\'échappe de la roche : poche de gaz ! Recule et éteins toute flamme, vite.'))
+  // Voile de gaz et pictogramme à l'écran de ceux qui sont près (mod atheria_hud) ; durée en ticks, comme les tours ci-dessous
+  atheriaHudAutour(niveau, x, y, z, 20, { t: 'gaz', x: x, y: y, z: z, duree: 30 + MINE_DUREE_GAZ * 20 })
   serveur.runCommandSilent('execute in ' + dim + ' run playsound minecraft:block.lava.extinguish block @a ' + x + ' ' + y + ' ' + z + ' 1.2 0.5')
   var restant = MINE_DUREE_GAZ
   var tour = () => {
