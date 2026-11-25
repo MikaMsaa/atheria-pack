@@ -11,7 +11,11 @@ var ZONES_SURES = [
   // hameau d'arrivée : joueurs invulnérables, aucune créature
   { nom: 'hameau', rects: [[2384, -2786, 2444, -2726]], invulnerable: true },
   // Longoni, dans les murs (mêmes rectangles que ses habitants, atheria_habitants_longoni.js)
-  { nom: 'longoni', rects: [[2316, -3145, 2630, -2936], [2316, -2936, 2440, -2912]], invulnerable: false }
+  // Longoni, dans l'enceinte de 3 blocs (fil carte 25/11, provisoire : essai en jeu le soir même)
+  { nom: 'longoni', rects: [[2315, -3141, 2623, -2969], [2440, -2968, 2535, -2961], [2536, -2968, 2623, -2964]], invulnerable: false },
+  // chemin sûr du hameau à la Porte RN1, le long de la RN1 éclairée : aucun monstre, les animaux restent
+  { nom: 'chemin_rn1', rects: [[2418, -2800, 2462, -2725], [2440, -2845, 2490, -2800], [2470, -2915, 2505, -2845], [2440, -2957, 2535, -2915]],
+    invulnerable: false, monstresSeulement: true }
 ]
 
 function atheriaZoneSure(level, x, z) {
@@ -59,8 +63,9 @@ NativeEvents.onEvent('net.neoforged.neoforge.event.entity.EntityJoinLevelEvent',
   var level = event.getLevel()
   if (level.isClientSide()) return
   var e = event.getEntity()
-  if (atheriaZoneSure(level, e.x, e.z) == null) return
-  if (atheriaCreatureInterdite(e)) event.setCanceled(true)
+  var zs = atheriaZoneSure(level, e.x, e.z)
+  if (zs == null) return
+  if (zs.monstresSeulement ? atheriaEstMonstre(e) : atheriaCreatureInterdite(e)) event.setCanceled(true)
 })
 
 // aucun dégât venu d'un monstre (flèche tirée de dehors comprise) pour un joueur dans une zone sûre
@@ -103,7 +108,7 @@ ServerEvents.tick(event => {
     if (!proche) return
     try {
       level.getEntities(null, new AtheriaAABB(r[0], level.getMinBuildHeight(), r[1], r[2] + 1, level.getMaxBuildHeight(), r[3] + 1)).forEach(e => {
-        if (atheriaCreatureInterdite(e) && e.isAlive()) e.discard()
+        if ((zs.monstresSeulement ? atheriaEstMonstre(e) : atheriaCreatureInterdite(e)) && e.isAlive()) e.discard()
       })
     } catch (err) {
       console.error('[Atheria zones sûres] ' + zs.nom + ' : ' + err)

@@ -7,7 +7,7 @@ atheriaHabitantsVille('longoni', {
   // zone d'activité : les habitants existent si un joueur est à moins de 110 blocs de ce rectangle
   zone: [2300, -3140, 2705, -2790],
   // dans les murs : invulnérables
-  murs: [[2316, -3145, 2630, -2936], [2316, -2936, 2440, -2912]],
+  murs: [[2315, -3141, 2623, -2969], [2440, -2968, 2535, -2961], [2536, -2968, 2623, -2964]], // enceinte 25/11
   rayon: 110,
   // relevés automatiquement sur la copie du 25/11 (outil /home/user/longoni/reperes.py) : places libres près des lits,
   // bancs, fourneaux, établis, chaudrons, feux, et dans les emprises du plan validé
