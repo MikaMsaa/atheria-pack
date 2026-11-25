@@ -198,6 +198,10 @@
 		PersistenceRequired: 1b,
 		Tags: ["dialogue.le_foundi_flat"],
 		VariantType: "STEVE",
-		id: "easy_npc:humanoid"
+		id: "easy_npc:humanoid",
+		SkinData: {
+			Texture: "atheria:textures/entity/pnj/le_foundi_flat.png",
+			Type: "RESOURCE_LOCATION"
+		}
 	}
 }

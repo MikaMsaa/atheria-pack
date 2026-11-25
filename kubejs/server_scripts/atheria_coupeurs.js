@@ -8,13 +8,15 @@
 // Fréquence : au plus une fois par heure de jeu et par joueur, une chance par minute ensuite (environ toutes les 1 h 30).
 var COUPEURS = {
   stadeMini: 2,
-  ecartMin: 60,             // minutes de temps réel entre deux arrêts pour un joueur
-  chanceParMinute: 1 / 30,
+  // retours des testeurs du 25/11 (Mika : « 2 sont gérables trop facilement ») : deux fois plus fréquents, plus nombreux
+  ecartMin: 30,             // minutes de temps réel entre deux arrêts pour un joueur
+  chanceParMinute: 1 / 15,
   distanceSpawnMin: 600,    // pas d'embuscade près de Longoni et du point d'arrivée
   delaiReponse: 20,         // secondes pour payer
   laissezPasserMin: 120,
   peage: [0, 0, 8, 12, 16, 20],
-  nombre: [0, 0, 2, 3, 3, 4],
+  nombre: [0, 0, 3, 4, 6, 8],
+  tireurs: [0, 0, 0, 1, 2, 3], // postés en hauteur quand le terrain le permet
   vieMin: 4,                // minutes avant qu'ils repartent
   skins: ['coupeur_1', 'coupeur_2', 'coupeur_3', 'coupeur_4']
 }
@@ -26,14 +28,18 @@ function atheriaCoupeursStade(p) {
   return Math.max(1, sb.getOrCreatePlayerScore(SH.forNameOnly(p.username), o).get())
 }
 
+function atheriaCoupeursTireur(stade, i) {
+  return i < COUPEURS.tireurs[Math.min(5, stade)]
+}
+
 function atheriaCoupeursArme(stade, i) {
-  // un tireur au stade 3 et plus (pistolet : l'arme reste sur lui, elle n'est pas lâchée), les autres au corps à corps
-  if (i == 0 && stade >= 3) return '{id:"tacz:modern_kinetic_gun",count:1,components:{"minecraft:custom_data":{GunId:"tacz:glock_17",GunCurrentAmmoCount:17}}}'
+  // les tireurs (pistolet : l'arme reste sur lui, elle n'est pas lâchée), les autres au corps à corps
+  if (atheriaCoupeursTireur(stade, i)) return '{id:"tacz:modern_kinetic_gun",count:1,components:{"minecraft:custom_data":{GunId:"tacz:glock_17",GunCurrentAmmoCount:17}}}'
   return ['{id:"minecraft:iron_axe",count:1}', '{id:"minecraft:stone_axe",count:1}', '{id:"minecraft:iron_sword",count:1}'][i % 3]
 }
 
 function atheriaCoupeursSnbt(stade, i, cible) {
-  var tireur = i == 0 && stade >= 3
+  var tireur = atheriaCoupeursTireur(stade, i)
   var obj = tireur
     ? '{Type:"GUN_ATTACK",Prio:2,SpeedModifier:1.0d,AttackInterval:30,AttackRadius:16.0f}'
     : '{Type:"MELEE_ATTACK",Prio:2,SpeedModifier:1.15d}'
@@ -61,11 +67,14 @@ function atheriaCoupeursSortir(p) {
   var level = p.level, faits = 0
   // ils sortent derrière et sur les côtés du joueur, à 14-22 blocs
   var yaw = (p.yRot + 180) * Math.PI / 180
-  for (var essai = 0; essai < 24 && faits < n; essai++) {
-    var a = yaw + (Math.random() - 0.5) * 2.2, d = 14 + Math.random() * 8
+  for (var essai = 0; essai < 48 && faits < n; essai++) {
+    // les tireurs cherchent d'abord une hauteur (talus, toit, carcasse) à 18-26 blocs, 2 à 12 blocs au-dessus du joueur
+    var tireur = atheriaCoupeursTireur(stade, faits), haut = tireur && essai < 24
+    var a = yaw + (Math.random() - 0.5) * (haut ? 3.2 : 2.2), d = haut ? 18 + Math.random() * 8 : 14 + Math.random() * 8
     var x = Math.floor(p.x - Math.sin(a) * d), z = Math.floor(p.z + Math.cos(a) * d)
     var y = atheriaCoupeursSol(level, x, z)
-    if (y == null || Math.abs(y - p.y) > 8) continue
+    if (y == null) continue
+    if (haut ? (y - p.y < 2 || y - p.y > 12) : Math.abs(y - p.y) > 8) continue
     // « execute summon … data merge » : Easy NPC ne lit ses attributs (attaquable par les joueurs) qu'au chargement après l'apparition
     p.server.runCommandSilent('execute in ' + level.dimension + ' positioned ' + (x + 0.5) + ' ' + y + ' ' + (z + 0.5) + ' summon easy_npc:humanoid run data merge entity @s ' + atheriaCoupeursSnbt(stade, faits, p.username))
     faits++

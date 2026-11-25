@@ -38,7 +38,11 @@ function bruitAttirer(level, x, y, z, portee, genre) {
 }
 
 // Repère à l'écran (mod atheria_hud) : les joueurs qui entendent le bruit voient de quel côté les infectés vont converger
+// Retiré (retours des testeurs du 25/11 : « retire la flèche qui détecte le danger, elle est buguée ») : plus rien
+// n'est envoyé ; remettre BRUIT_FLECHE à true pour la rétablir.
+var BRUIT_FLECHE = false
 function bruitSignaler(level, x, y, z, portee, genre, n) {
+  if (!BRUIT_FLECHE) return
   level.getPlayers().forEach(p => {
     var d = Math.hypot(p.getX() - x, p.getZ() - z)
     if (d < 4 || d > portee * 1.5 || Math.abs(p.getY() - y) > BRUIT_HAUTEUR * 2) return

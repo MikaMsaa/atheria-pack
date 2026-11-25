@@ -8,7 +8,7 @@ StartupEvents.registry('block', event => {
 })
 
 StartupEvents.registry('item', event => {
-  event.create('atheria:kit_siphon').displayName('Kit de siphonnage').texture('minecraft:item/lead').maxStackSize(1).maxDamage(12)
-  event.create('atheria:pieces_vehicule').displayName('Pièces détachées').texture('minecraft:item/chain').maxStackSize(16)
-  event.create('atheria:carte_routiere').displayName('Carte routière').texture('minecraft:item/map').maxStackSize(8)
+  event.create('atheria:kit_siphon').displayName('Kit de siphonnage').texture('atheria:item/kit_siphon').maxStackSize(1).maxDamage(12)
+  event.create('atheria:pieces_vehicule').displayName('Pièces détachées').texture('atheria:item/pieces_vehicule').maxStackSize(16)
+  event.create('atheria:carte_routiere').displayName('Carte routière').texture('atheria:item/carte_routiere').maxStackSize(8)
 })

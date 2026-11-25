@@ -1,5 +1,5 @@
 // Atheria : brume de la zone contaminée et du marécage pollué (distance de brouillard rapprochée, en douceur).
-var ATHERIA_BRUME = { cible: 0, valeur: 0, tick: 0 }
+var ATHERIA_BRUME = { cible: 0, valeur: 0, tick: 0, filtre: false }
 var ATHERIA_BRUME_BIOMES = { 'atheria:zone_contaminee': 1.0, 'atheria:marecage_pollue': 0.45 }
 
 ClientEvents.tick(event => {
@@ -9,7 +9,8 @@ ClientEvents.tick(event => {
   if (ATHERIA_BRUME.tick % 20 == 0) {
     var cle = mc.level.getBiome(mc.player.blockPosition()).unwrapKey()
     var nom = cle.isPresent() ? '' + cle.get().location() : ''
-    ATHERIA_BRUME.cible = ATHERIA_BRUME_BIOMES[nom] || 0
+    // masque + filtre actif (serveur, atheria_air.js) : brume réduite de 60 % (retours des testeurs du 25/11)
+    ATHERIA_BRUME.cible = (ATHERIA_BRUME_BIOMES[nom] || 0) * (ATHERIA_BRUME.filtre ? 0.4 : 1)
   }
   ATHERIA_BRUME.valeur += (ATHERIA_BRUME.cible - ATHERIA_BRUME.valeur) * 0.03
 })
@@ -23,3 +24,5 @@ NativeEvents.onEvent('net.neoforged.neoforge.client.event.ViewportEvent$RenderFo
   event.setNearPlaneDistance(event.getNearPlaneDistance() * (1 - v))
   event.setCanceled(true)
 })
+
+NetworkEvents.dataReceived('atheria_filtre', event => { ATHERIA_BRUME.filtre = !!event.data.getBoolean('p') })

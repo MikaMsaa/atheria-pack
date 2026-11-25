@@ -3,11 +3,46 @@
 // Dans la zone : 1) aucun monstre n'apparaît (naturel, hordes, infectés Spore, cages, œufs, commandes) ;
 // 2) un monstre qui y entre est retiré sans butin ; 3) les joueurs n'y prennent aucun dégât (chute, mobs, PvP, gaz,
 // éboulements, First Aid compris). /kill et le vide restent actifs (outils d'admin).
+// Retours des testeurs du 25/11 (Mika : « les zones safes doivent être vraiment safe », Longoni « aucun mob ne doit y
+// spawn, même les mobs passifs ») : même règle dans l'enceinte de Longoni, sans aucune créature (animaux compris), et
+// aucun dégât venu d'un monstre. Les habitants, PNJ, villageois, véhicules et objets ne sont jamais touchés.
 var SPAWN_SUR = { x1: 2384, x2: 2444, z1: -2786, z2: -2726, compteur: 0 }
+var ZONES_SURES = [
+  // hameau d'arrivée : joueurs invulnérables, aucune créature
+  { nom: 'hameau', rects: [[2384, -2786, 2444, -2726]], invulnerable: true },
+  // Longoni, dans les murs (mêmes rectangles que ses habitants, atheria_habitants_longoni.js)
+  { nom: 'longoni', rects: [[2316, -3145, 2630, -2936], [2316, -2936, 2440, -2912]], invulnerable: false }
+]
+
+function atheriaZoneSure(level, x, z) {
+  if (('' + level.dimension) !== 'minecraft:overworld') return null
+  for (var i = 0; i < ZONES_SURES.length; i++) {
+    var zs = ZONES_SURES[i]
+    for (var j = 0; j < zs.rects.length; j++) {
+      var r = zs.rects[j]
+      if (x >= r[0] && x < r[2] + 1 && z >= r[1] && z < r[3] + 1) return zs
+    }
+  }
+  return null
+}
 
 function atheriaDansSpawnSur(level, x, z) {
-  return x >= SPAWN_SUR.x1 && x < SPAWN_SUR.x2 + 1 && z >= SPAWN_SUR.z1 && z < SPAWN_SUR.z2 + 1 &&
-    ('' + level.dimension) === 'minecraft:overworld'
+  var zs = atheriaZoneSure(level, x, z)
+  return zs != null && zs.invulnerable
+}
+
+// Créature retirée des zones sûres : tout être vivant non joueur (monstres, animaux, poissons, chauves-souris…),
+// sauf les PNJ (Easy NPC, villageois, gardes) et les entités marquées par Atheria
+var ZONES_SURES_GARDES = /^(easy_npc|guardvillagers):|^minecraft:(villager|wandering_trader|armor_stand)$/
+function atheriaCreatureInterdite(e) {
+  try {
+    if (e == null || e.isPlayer() || !e.isLiving()) return false
+    if (ZONES_SURES_GARDES.test('' + e.type)) return false
+    if (e.tags.contains('ahab') || e.tags.contains('atheria_pnj')) return false
+    return true
+  } catch (err) {
+    return false
+  }
 }
 
 // Monstre = catégorie MONSTER (vanilla, Spore, hordes) ; joueurs, PNJ, animaux et véhicules ne sont jamais touchés
@@ -24,8 +59,16 @@ NativeEvents.onEvent('net.neoforged.neoforge.event.entity.EntityJoinLevelEvent',
   var level = event.getLevel()
   if (level.isClientSide()) return
   var e = event.getEntity()
-  if (!atheriaDansSpawnSur(level, e.x, e.z)) return
-  if (atheriaEstMonstre(e)) event.setCanceled(true)
+  if (atheriaZoneSure(level, e.x, e.z) == null) return
+  if (atheriaCreatureInterdite(e)) event.setCanceled(true)
+})
+
+// aucun dégât venu d'un monstre (flèche tirée de dehors comprise) pour un joueur dans une zone sûre
+NativeEvents.onEvent('net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent', event => {
+  var v = event.getEntity()
+  if (!v.isPlayer() || v.level.isClientSide() || atheriaZoneSure(v.level, v.x, v.z) == null) return
+  var src = event.getSource(), a = src.actual
+  if (a != null && atheriaEstMonstre(a)) event.setCanceled(true)
 })
 
 // Joueurs : invulnérables tant qu'ils sont dans la zone (bloque aussi First Aid, qui répartit les dégâts avant les
@@ -51,18 +94,19 @@ ServerEvents.tick(event => {
   if (++SPAWN_SUR.compteur < 20) return
   SPAWN_SUR.compteur = 0
   var server = event.server, proche = false
-  server.players.forEach(p => {
-    if (('' + p.level.dimension) === 'minecraft:overworld' &&
-      p.x > SPAWN_SUR.x1 - 96 && p.x < SPAWN_SUR.x2 + 96 && p.z > SPAWN_SUR.z1 - 96 && p.z < SPAWN_SUR.z2 + 96) proche = true
-  })
-  if (!proche) return
-  try {
-    var level = server.overworld()
-    var boite = new AtheriaAABB(SPAWN_SUR.x1, level.getMinBuildHeight(), SPAWN_SUR.z1, SPAWN_SUR.x2 + 1, level.getMaxBuildHeight(), SPAWN_SUR.z2 + 1)
-    level.getEntities(null, boite).forEach(e => {
-      if (atheriaEstMonstre(e) && e.isAlive()) e.discard()
+  var level = server.overworld()
+  ZONES_SURES.forEach(zs => zs.rects.forEach(r => {
+    proche = false
+    server.players.forEach(p => {
+      if (('' + p.level.dimension) === 'minecraft:overworld' && p.x > r[0] - 96 && p.x < r[2] + 96 && p.z > r[1] - 96 && p.z < r[3] + 96) proche = true
     })
-  } catch (err) {
-    console.error('[Atheria spawn sûr] ' + err)
-  }
+    if (!proche) return
+    try {
+      level.getEntities(null, new AtheriaAABB(r[0], level.getMinBuildHeight(), r[1], r[2] + 1, level.getMaxBuildHeight(), r[3] + 1)).forEach(e => {
+        if (atheriaCreatureInterdite(e) && e.isAlive()) e.discard()
+      })
+    } catch (err) {
+      console.error('[Atheria zones sûres] ' + zs.nom + ' : ' + err)
+    }
+  }))
 })
