@@ -1,0 +1,18 @@
+{
+ "entity_model_features.config.allowed_cem": "Modèles autorisés",
+ "entity_model_features.config.allowed_cem.all": "Tous",
+ "entity_model_features.config.allowed_cem.known_only": "Connus seulement (surtout vanilla / OptiFine)",
+ "entity_model_features.config.allowed_cem.tooltip": "Définit avec quels modèles EMF essaie d'interagir. Remarque : ce n'est pas parfait, certains mods utilisent les ID vanilla et EMF n'y peut pas grand-chose",
+ "entity_model_features.config.allowed_cem.unknown_only": "Inconnus seulement (surtout moddés)",
+ "entity_model_features.config.asmmaths": "Calculs d'animation compilés",
+ "entity_model_features.config.asmmaths.logASM": "Remplit le journal ; inutile sauf si le développeur te demande un journal avec ça.",
+ "entity_model_features.config.asmmaths.tooltip": "À garder ACTIVÉ presque toujours.\nDésactivé, le système d'animation passe par un arbre d'expressions plus coûteux, plus utile pour le débogage.",
+ "entity_model_features.config.export_rotations": "Exporter les rotations",
+ "entity_model_features.config.export_rotations.tooltip": "Les modèles jem exportés ne devraient pas inclure les rotations, héritées des parties vanilla,\n mais certains éditeurs de modèles les préfèrent\n cette option les inclut dans les fichiers jem exportés",
+ "entity_model_features.config.logASM": "Journaliser l'état des calculs compilés",
+ "entity_model_features.config.parrot_shoulder_animate": "Le perroquet sur l'épaule suit les animations du joueur",
+ "entity_model_features.config.parrot_shoulder_animate.tooltip": "Fait suivre par défaut au perroquet sur l'épaule la position animée du joueur ; différent des points d'attache `parrot_left` et `parrot_right`, qui ne tournent pas.",
+ "entity_model_features.config.sulfur_cube_block": "Animation par défaut du bloc du cube de soufre",
+ "entity_model_features.config.sulfur_cube_block.tooltip": "Anime par défaut les blocs internes du cube de soufre ; équivaut à un point d'attache 'sulfur_cube_block' dans la partie 'cube' du modèle avec un décalage 0,0,0.",
+ "entity_model_features.title": "Entity Model Features"
+}
