@@ -116,7 +116,7 @@ function atheriaHabVerifier(v, level, forcer) {
 }
 
 // territoire (Coupeurs, Mika 25/11 « hostiles sur leur territoire ») : neutres de loin, un joueur qui entre dans un
-// rectangle du territoire est pris pour cible par les gardes qui le voient (ou qui l'ont à 6 blocs) ; ils lâchent un
+// rectangle du territoire est pris pour cible par les gardes à moins de 32 blocs (et les tireurs qui le voient plus loin) ; ils lâchent un
 // joueur sorti du territoire et à plus de 24 blocs. Les créatifs et spectateurs sont ignorés.
 function atheriaHabDansTerritoire(v, x, z) {
   return v.territoire.some(m => x >= m[0] && x <= m[2] && z >= m[1] && z <= m[3])
@@ -128,11 +128,12 @@ function atheriaHabTerritoire(v, m, level, ent) {
     if (t.isPlayer() && (!t.isAlive() || t.isCreative() || t.isSpectator() || (!atheriaHabDansTerritoire(v, t.x, t.z) && ent.distanceToSqr(t) > 576))) ent.setTarget(null)
     return
   }
-  var portee = m.portee || 20, best = null, bd = portee * portee + 1
+  // à 32 blocs l'alerte est donnée (ils se préviennent, murs compris) ; plus loin, seuls les tireurs qui le voient
+  var portee = m.portee || 32, best = null, bd = portee * portee + 1
   level.players.forEach(p => {
     if (p.isCreative() || p.isSpectator() || !p.isAlive() || !atheriaHabDansTerritoire(v, p.x, p.z)) return
     var d = ent.distanceToSqr(p)
-    if (d < bd && (d < 36 || ent.hasLineOfSight(p))) { best = p; bd = d }
+    if (d < bd && (d < 1024 || ent.hasLineOfSight(p))) { best = p; bd = d }
   })
   if (best) ent.setTarget(best)
 }

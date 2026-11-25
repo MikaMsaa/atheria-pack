@@ -148,8 +148,8 @@ atheriaHabitantsVille('majicavo', {
   },
   metiers: {
     // tireurs sur les miradors : restent en poste par tempête et horde, voient loin
-    sentinelle: { garde: true, tempete: true, horde: 'poste:mirador', arme: 'pistolet', portee: 32, matin: 'poste:mirador', journee: 'poste:mirador', soir: 'poste:mirador', nuit: 'poste:mirador' },
-    vigie: { garde: true, tempete: true, horde: 'poste:mirador', arme: 'pistolet', portee: 32, matin: 'dormir:lit', journee: 'poste:mirador', soir: 'poste:mirador', nuit: 'poste:mirador' },
+    sentinelle: { garde: true, tempete: true, horde: 'poste:mirador', arme: 'pistolet', portee: 44, matin: 'poste:mirador', journee: 'poste:mirador', soir: 'poste:mirador', nuit: 'poste:mirador' },
+    vigie: { garde: true, tempete: true, horde: 'poste:mirador', arme: 'pistolet', portee: 44, matin: 'dormir:lit', journee: 'poste:mirador', soir: 'poste:mirador', nuit: 'poste:mirador' },
     geolier: { garde: true, matin: 'poste:cour', journee: 'ronde:r_prison', soir: 'poste:feu', nuit: 'dormir:lit' },
     garde_prison: { garde: true, matin: 'poste:cour', journee: 'ronde:r_prison', soir: 'poste:feu', nuit: 'ronde:r_prison' },
     // barrage C40 : péage de jour, feu le soir, tentes la nuit ; le chef veille
