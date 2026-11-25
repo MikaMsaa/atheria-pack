@@ -15,6 +15,8 @@
 // plus proche (6 blocs au plus), sinon mis de côté et signalé (/atheria_habitants verifier <ville>).
 var HAB_AFFICHAGE = Java.loadClass('de.markusbordihn.easynpc.data.display.DisplayAttributeType')
 var HAB_NOM_VISIBLE = Java.loadClass('de.markusbordihn.easynpc.data.display.NameVisibilityType')
+// En ligne seulement sur le signal de Mika (25/11 : « pas encore » pour Longoni) : false = aucun habitant n'apparaît.
+var HAB_EN_LIGNE = false
 var HAB = { villes: {}, etat: {}, horloge: 0, pres: 72, loin: 96 }
 var HabBP = Java.loadClass('net.minecraft.core.BlockPos')
 var HabAABB = Java.loadClass('net.minecraft.world.phys.AABB')
@@ -284,7 +286,7 @@ function atheriaHabTick(v, server) {
 
 ServerEvents.tick(event => {
   var server = event.server
-  if (server.tickCount % 20 != 11) return
+  if (!HAB_EN_LIGNE || server.tickCount % 20 != 11) return
   HAB.horloge++
   Object.keys(HAB.villes).forEach(n => {
     try { atheriaHabTick(HAB.villes[n], server) } catch (err) { console.error('[Atheria habitants] ' + n + ' : ' + err) }
