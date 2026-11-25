@@ -4,7 +4,7 @@
 var REPERES = {
   porte_rn1: { nom: 'Porte RN1 de Longoni', ini: 'L', x: 2487, y: 66, z: -2940, couleur: 14 },
   infirmerie: { nom: 'Infirmerie de Longoni', ini: '+', x: 2359, y: 67, z: -3013, couleur: 12 },
-  eniy: { nom: 'Eniy, camp des conteneurs', ini: 'E', x: 2525, y: 66, z: -3115, couleur: 6 }
+  eniy: { nom: 'Eniy, camp des conteneurs', ini: 'E', x: 2525, y: 64, z: -3115, couleur: 6 }
 }
 
 function atheriaRepere(p, id) {
