@@ -40,7 +40,7 @@ function atheriaHabScore(server, nom) {
 // ce que fait l'habitant maintenant : « sorte:groupe »
 function atheriaHabConsigne(v, h, moment, alerte) {
   var m = v.metiers[h[3]]
-  if (alerte.horde) return m.garde ? 'ronde:r_mur' : 'abri:abri'
+  if (alerte.horde) return m.garde ? (v.rondeHorde || 'ronde:r_mur') : 'abri:abri'
   if (alerte.tempete && !m.tempete) return 'abri:abri'
   return m[moment]
 }
