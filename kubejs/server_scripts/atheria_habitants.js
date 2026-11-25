@@ -10,7 +10,7 @@
 //  - aucun clic droit (Mika 25/11 : pas d'interaction pour l'instant), pas de nom au-dessus de la tête.
 // Repères vérifiés à chaque activation de la ville : un repère muré ou dans le vide est déplacé vers la place libre la
 // plus proche (6 blocs au plus), sinon mis de côté et signalé (/atheria_habitants verifier <ville>).
-var HAB = { villes: {}, etat: {}, horloge: 0 }
+var HAB = { villes: {}, etat: {}, horloge: 0, pres: 72, loin: 96 }
 var HabBP = Java.loadClass('net.minecraft.core.BlockPos')
 var HabAABB = Java.loadClass('net.minecraft.world.phys.AABB')
 
@@ -38,7 +38,7 @@ function atheriaHabScore(server, nom) {
 // ce que fait l'habitant maintenant : « sorte:groupe »
 function atheriaHabConsigne(v, h, moment, alerte) {
   var m = v.metiers[h[3]]
-  if (alerte.horde) return m.garde ? 'ronde:mur' : 'abri:abri'
+  if (alerte.horde) return m.garde ? 'ronde:r_mur' : 'abri:abri'
   if (alerte.tempete && !m.tempete) return 'abri:abri'
   return m[moment]
 }
@@ -50,12 +50,11 @@ function atheriaHabRepere(v, nom) {
 }
 
 function atheriaHabGroupe(v, groupe) {
-  return Object.keys(v.reperes).filter(k => k.indexOf(groupe) == 0 && !HAB.etat[v.nom].ecartes[k]).sort()
+  return Object.keys(v.reperes).filter(k => k.indexOf(groupe + '_') == 0 && !HAB.etat[v.nom].ecartes[k]).sort()
 }
 
 function atheriaHabDansMurs(v, x, z) {
-  var m = v.murs
-  return x >= m[0] && x <= m[2] && z >= m[1] && z <= m[3]
+  return v.murs.some(m => x >= m[0] && x <= m[2] && z >= m[1] && z <= m[3])
 }
 
 function atheriaHabSnbt(v, h) {
@@ -182,9 +181,13 @@ function atheriaHabTick(v, server) {
         if (!j || now - j.t > 10000) j = e.jeu[h[0]] = { x: tx + Math.floor(Math.random() * 9) - 4, z: tz + Math.floor(Math.random() * 9) - 4, t: now }
         tx = j.x; tz = j.z
       }
+      // FPS des joueurs (Mika 25/11) : un habitant n'existe que près d'un joueur (apparaît à 72 blocs, disparaît au-delà
+      // de 96) ; le reste de la ville n'est pas rendu ni animé par les clients
+      if (ent && !atheriaHabProche(level, ent.x, ent.y, ent.z, HAB.loin)) { ent.discard(); return }
       if (!ent) {
-        // les dormeurs ne reviennent qu'au matin ; on n'apparaît que dans un chunk chargé
+        // les dormeurs ne reviennent qu'au matin ; on n'apparaît que dans un chunk chargé, près d'un joueur
         if (sorte == 'dormir') return
+        if (!atheriaHabProche(level, tx, ty, tz, HAB.pres)) return
         if (!level.isLoaded(new HabBP(r[0], r[1], r[2]))) return
         var dir = v.metiers[h[3]]
         server.runCommandSilent('execute in minecraft:overworld positioned ' + tx + ' ' + ty + ' ' + tz + ' rotated ' + (r[3] || 0) + ' 0 summon easy_npc:humanoid run data merge entity @s ' + atheriaHabSnbt(v, h))
