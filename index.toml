@@ -2214,6 +2214,10 @@ file = "kubejs/client_scripts/atheria_reglages.js"
 hash = "2c091c77319f293d3c28cb992d91e91ab35de394d80ba75bfe358a94d91bda9f"
 
 [[files]]
+file = "kubejs/client_scripts/atheria_reperes.js"
+hash = "a8fd33799a6d1d9dc0dfaa3407dc33dfcbb6f2488abf22d412beab490705c061"
+
+[[files]]
 file = "kubejs/client_scripts/atheria_touches.js"
 hash = "ff9f3384787554db134d0cf4141d5086a6e9040b84df5359b525a65cdb2860a2"
 
@@ -2263,7 +2267,7 @@ hash = "ccc71fc72b73eb266c818519b2abf5e84ae96783d6b1ed2597d31ce815c1e578"
 
 [[files]]
 file = "kubejs/data/atheria/atheria_cinematiques/intro.json"
-hash = "a8a0314d2b8b4f8ef1dff494f6e60caad250e9644db73dbcb3967885e2366c7f"
+hash = "abdafa6d60f32d680e9fdb8888fb44e2410eaf8e1c142cf73d2d711608cfe3ef"
 
 [[files]]
 file = "kubejs/data/atheria/atheria_cinematiques/intro_longue.json"
@@ -2276,6 +2280,10 @@ hash = "bd02623e0a48d575e21ea1d2a1572010c8c3b2b2cbe3255a7afed4ff3c93b781"
 [[files]]
 file = "kubejs/data/atheria/atheria_dialogues/bacar_b.json"
 hash = "4e6bd8ba069f2221b1160f1e9b2dd926ba939546c6ba18ee1a5429b7a3f9a3b4"
+
+[[files]]
+file = "kubejs/data/atheria/atheria_dialogues/bakoutoubo.json"
+hash = "7590469007e65c1974cea55bd6342b22ee90fc91065fa83a3fb061cf050d6014"
 
 [[files]]
 file = "kubejs/data/atheria/atheria_dialogues/brigadier_rayek.json"
@@ -2454,6 +2462,10 @@ file = "kubejs/data/atheria/easy_npc/preset/humanoid/bacar_b.npc.snbt"
 hash = "84c14e6e7bc77dfcc4de95b031cac3bc6f2618481c73c1fdbdbb0d8f65034289"
 
 [[files]]
+file = "kubejs/data/atheria/easy_npc/preset/humanoid/bakoutoubo.npc.snbt"
+hash = "38c43db868e954dad9de44ecc61f8d89493e145e01181fdc4f51b3ddb28ceeb8"
+
+[[files]]
 file = "kubejs/data/atheria/easy_npc/preset/humanoid/brigadier_rayek.npc.snbt"
 hash = "19b8ca57a2d3a8fcfbf6599c0e152ce688ec950fe558606dc38e7bd615331dbb"
 
@@ -2552,6 +2564,10 @@ hash = "738b14c4b22a47e2a3b0b004df120609ae34009a48ffc431061228bcfbd00c30"
 [[files]]
 file = "kubejs/data/atheria/lithostitched/worldgen_modifier/sols_biomes.json"
 hash = "4a03e05e73ea35535b40e05bef4e1d02340abaa43e68a93ca5b66b611f77a26e"
+
+[[files]]
+file = "kubejs/data/atheria/loot_table/chests/case_reveil.json"
+hash = "bdcdd4c1d23a44a7a10ef350dfaf5464ef75eb1e9b8e5cf4fbd111e207d0821a"
 
 [[files]]
 file = "kubejs/data/atheria/loot_table/chests/garage.json"
@@ -13303,7 +13319,7 @@ hash = "f80e4dfd75faa1938476b741f8e0446092d8f7dbb3c0181d1af0d1888589f87c"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_campagne.js"
-hash = "bbb0e51c4c67566e773abcaede516fae70313ba2006f51719688ce2cc8b6884d"
+hash = "bd1acf52bb970df06665704380535f114070a6e39f9bcbbd534f8a7ab5c76fe5"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_carnet.js"
@@ -13324,6 +13340,14 @@ hash = "95e6959faa8edf4a868f6989414127b7b2425a80a3759281d8d8dcf054025753"
 [[files]]
 file = "kubejs/server_scripts/atheria_coupeurs.js"
 hash = "7ac08f6053c5e5e2e1bd26c17732c977e576538d3b74e351ba182468ac761395"
+
+[[files]]
+file = "kubejs/server_scripts/atheria_decouvertes.js"
+hash = "c5ca4c6dc27ea9dfcbc5d2654c505bcc3bddf41ec4ea17db84e2213785e888aa"
+
+[[files]]
+file = "kubejs/server_scripts/atheria_didacticiel.js"
+hash = "5fb46c57f2248e8fff72c7a27db69ed11be8d243ed30b11a627bbe7b68be8de1"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_dimensions.js"
@@ -13347,7 +13371,7 @@ hash = "f7a77d509793d0f685a3a0e7fe9d422b92d7cc21e0964d50b0f68f5bf34510d9"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_intro_video.js"
-hash = "ca81690e7ddb94a38267e47596d2fe65a8722abdd6764f68d78428f4b657d399"
+hash = "d8d20badfd80604a19b25717db7301abe56313d7fb5a632b1743c697e2694d0f"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_joueurs.js"
@@ -13386,12 +13410,20 @@ file = "kubejs/server_scripts/atheria_recettes.js"
 hash = "0d2bfad17765a4a69338af6637b4ba85e69be4fa4a5d4293553cb4600cf6ed8d"
 
 [[files]]
+file = "kubejs/server_scripts/atheria_reperes.js"
+hash = "8661cef9686eae081bb3a21a100fe214bcde9d1c2c39d943e5099a6b3010807c"
+
+[[files]]
 file = "kubejs/server_scripts/atheria_semaine.js"
 hash = "c7d33fd184beef571309a203ed129e1131fa8cef77d1a4795f2056d60df9c3c5"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_sommeil.js"
 hash = "e0f071d9d73a44cac084458237ee742462e11fda6c163d1558d4e77ad083e2e9"
+
+[[files]]
+file = "kubejs/server_scripts/atheria_spawn_sur.js"
+hash = "251fb4405c501262c9f7993a1a97819e0ce5409063114ae71f2ebb403e5a13d0"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_spores.js"

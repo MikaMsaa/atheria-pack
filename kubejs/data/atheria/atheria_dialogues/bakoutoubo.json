@@ -1,0 +1,78 @@
+{
+  "_aide": "Didacticiel, temps 3 (Mika 24/11 : « Au hameau, dès le réveil »). Bakoutoubo, le vieux resté au hameau du réveil, devant la case 0. Il aiguille le nouveau joueur : carnet et livre de quêtes, Longoni, Eniy et les contrats, les équipes. Il marque les lieux sur la carte (/atheria_repere, server_scripts/atheria_reperes.js). Ne révèle jamais qui est R. (Rayade, révélation au chapitre 2). PNJ posé avec le tag dialogue.bakoutoubo.",
+  "pnj": { "nom": "Bakoutoubo", "son": "minecraft:block.note_block.bass", "hauteur": 0.9 },
+  "debut": "accueil",
+  "noeuds": {
+    "accueil": { "aiguillage": [
+      { "si": { "tag": "bakoutoubo_rencontre" }, "aller": "retour" },
+      { "aller": "premiere" } ] },
+
+    "premiere": {
+      "lignes": [
+        "Ah, tu es réveillé. Deux jours que tu dors dans la case 0. J'allais te compter le loyer.",
+        "Moi, c'est Bakoutoubo. Je suis resté au hameau quand tout le monde est parti. Il fallait bien que quelqu'un arrose les bananiers.",
+        { "nom": "Toi", "texte": "Où je suis ? Je fais quoi, maintenant ?" },
+        "Respire d'abord. Au hameau, tu ne crains rien : les infectés n'y viennent jamais, je ne sais pas pourquoi. Dehors, c'est une autre histoire."
+      ],
+      "actions": [ { "tag": "bakoutoubo_rencontre" } ],
+      "suite": "menu"
+    },
+
+    "menu": {
+      "lignes": [ "Demande. Je n'ai que ça à faire, à part les bananiers." ],
+      "choix": [
+        { "texte": "Par où je commence ?", "aller": "commencer" },
+        { "texte": "Où sont les autres survivants ?", "aller": "longoni" },
+        { "texte": "Comment je gagne de quoi vivre ?", "aller": "eniy" },
+        { "texte": "Je peux m'en sortir seul ?", "aller": "equipes" },
+        { "texte": "Merci, Bakoutoubo.", "fin": true }
+      ]
+    },
+
+    "commencer": {
+      "lignes": [
+        "Celui qui dormait dans ta case avant toi a tout écrit dans son carnet. Il est dans ton sac : clic droit pour le lire.",
+        "Ensuite, ouvre ton livre de quêtes. Chaque page t'apprend à rester en vie un jour de plus : l'eau, les soins, une porte qui ferme.",
+        "Et le reste, tu l'apprendras en le vivant. La soif, les blessures, le bruit... tu verras, ça se présente tout seul."
+      ],
+      "suite": "menu"
+    },
+
+    "longoni": {
+      "lignes": [
+        "Remonte la grande route vers le nord, à deux cents pas. Tu verras des murs : c'est la Porte RN1 de Longoni.",
+        "La PAF garde l'entrée et veut des papiers pour tout. Même pour respirer, bientôt.",
+        "Derrière les murs, il y a l'infirmerie. Si tu te fais mordre, c'est là qu'on te soigne. Je te marque tout ça sur ta carte."
+      ],
+      "actions": [
+        { "commande": "atheria_repere {joueur} porte_rn1" },
+        { "commande": "atheria_repere {joueur} infirmerie" }
+      ],
+      "suite": "menu"
+    },
+
+    "eniy": {
+      "lignes": [
+        "À Longoni, au camp des conteneurs, il y a Eniy. Il vend de tout, très cher : médicaments, carburant, informations.",
+        "Il rachète aussi ce que tu trouves, et il paie en bons CAF. Les prix changent chaque semaine. Lui, il ne change jamais.",
+        "La radio t'envoie trois petits contrats par jour : un travail, une paie. Tape /contrats pour les revoir. Je te marque son stand."
+      ],
+      "actions": [ { "commande": "atheria_repere {joueur} eniy" } ],
+      "suite": "menu"
+    },
+
+    "equipes": {
+      "lignes": [
+        "Seul, tu tiens trois nuits. À plusieurs, une saison.",
+        "Fais-toi une équipe : les boutons en haut à gauche de ton inventaire ouvrent le menu des équipes. Invite qui tu veux, vous partagez les quêtes.",
+        "Mais choisis bien. Ici, une alliance se casse plus vite qu'une boîte de conserve."
+      ],
+      "suite": "menu"
+    },
+
+    "retour": {
+      "lignes": [ "Encore vivant ? Bien. Les bananiers aussi." ],
+      "suite": "menu"
+    }
+  }
+}

@@ -11,6 +11,8 @@ function atheriaIntroLancer(p, raison) {
   p.persistentData.putBoolean('atheria_intro_lancee', true)
   console.info('[Atheria intro] ' + p.username + ' : partie en direct (' + raison + ')')
   p.server.runCommandSilent('recit cinematique intro ' + p.username)
+  // didacticiel (atheria_didacticiel.js) : les bannières attendent la fin du zoom d'arrivée (6 s) + 20 s
+  p.persistentData.putLong('atheria_dida_depuis', Date.now() + 6000)
 }
 
 PlayerEvents.loggedIn(event => {
