@@ -86,6 +86,10 @@
 		PersistenceRequired: 1b,
 		Tags: ["dialogue.vinicius"],
 		VariantType: "STEVE",
-		id: "easy_npc:humanoid"
+		id: "easy_npc:humanoid",
+		SkinData: {
+			Texture: "atheria:textures/entity/pnj/vinicius.png",
+			Type: "RESOURCE_LOCATION"
+		}
 	}
 }

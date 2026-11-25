@@ -248,6 +248,10 @@
 		PersistenceRequired: 1b,
 		Tags: ["dialogue.brigadiere_kayssi"],
 		VariantType: "STEVE",
-		id: "easy_npc:humanoid"
+		id: "easy_npc:humanoid",
+		SkinData: {
+			Texture: "atheria:textures/entity/pnj/brigadiere_kayssi.png",
+			Type: "RESOURCE_LOCATION"
+		}
 	}
 }

@@ -1057,6 +1057,14 @@
 					}
 					type: "item"
 				}
+				{
+					command: "/tag {p} add archives_30"
+					feedback_message: "Une cache secrète s'ouvre quelque part sur l'île"
+					id: "1796104914A796F3"
+					permission_level: 2
+					silent: true
+					type: "command"
+				}
 			]
 			shape: "atheria_fiche"
 			size: 1.3d
