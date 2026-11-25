@@ -138,6 +138,23 @@ function atheriaHabTerritoire(v, m, level, ent) {
   if (best) ent.setTarget(best)
 }
 
+function atheriaHabFuir(level, ent, now, e, id) {
+  e.fuite = e.fuite || {}
+  var p = null, bd = 101
+  level.players.forEach(q => {
+    if (q.isCreative() || q.isSpectator() || !q.isAlive()) return
+    var d = ent.distanceToSqr(q)
+    if (d < bd) { p = q; bd = d }
+  })
+  if (p != null) {
+    var dx = ent.x - p.x, dz = ent.z - p.z, n = Math.sqrt(dx * dx + dz * dz) || 1
+    ent.getNavigation().moveTo(ent.x + dx / n * 18, ent.y, ent.z + dz / n * 18, 1.3)
+    e.fuite[id] = now
+    return true
+  }
+  return e.fuite[id] != null && now - e.fuite[id] < 6000
+}
+
 function atheriaHabActif(v, server) {
   var z = v.zone, r = v.rayon, ok = false
   server.players.forEach(p => {
@@ -237,6 +254,8 @@ function atheriaHabTick(v, server) {
       // nom jamais affiché (Easy NPC remet « Humanoid » visible tant que son attribut d'affichage n'est pas NEVER)
       if (ent.isCustomNameVisible()) { ent.setDisplayAttribute(HAB_AFFICHAGE.NAME_VISIBILITY, HAB_NOM_VISIBLE.NEVER); ent.setCustomNameVisible(false) }
       if (v.territoire && v.metiers[h[3]].garde) atheriaHabTerritoire(v, v.metiers[h[3]], level, ent)
+      // fuyards (pillards) : un joueur à moins de 10 blocs, ils détalent à l'opposé, puis reprennent leur routine
+      if (v.metiers[h[3]].fuite && atheriaHabFuir(level, ent, now, e, h[0])) return
       // un ordre de marche toutes les 5 s, jamais tous ensemble
       if ((HAB.horloge + i) % 5) return
       if (ent.getTarget && ent.getTarget() != null) return
