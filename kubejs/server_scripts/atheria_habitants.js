@@ -10,6 +10,8 @@
 //  - aucun clic droit (Mika 25/11 : pas d'interaction pour l'instant), pas de nom au-dessus de la tête.
 // Repères vérifiés à chaque activation de la ville : un repère muré ou dans le vide est déplacé vers la place libre la
 // plus proche (6 blocs au plus), sinon mis de côté et signalé (/atheria_habitants verifier <ville>).
+var HAB_AFFICHAGE = Java.loadClass('de.markusbordihn.easynpc.data.display.DisplayAttributeType')
+var HAB_NOM_VISIBLE = Java.loadClass('de.markusbordihn.easynpc.data.display.NameVisibilityType')
 var HAB = { villes: {}, etat: {}, horloge: 0, pres: 72, loin: 96 }
 var HabBP = Java.loadClass('net.minecraft.core.BlockPos')
 var HabAABB = Java.loadClass('net.minecraft.world.phys.AABB')
@@ -65,7 +67,8 @@ function atheriaHabSnbt(v, h) {
   var main = m.garde ? '{id:"minecraft:iron_sword",count:1}' : '{}'
   var attr = '{id:"minecraft:generic.follow_range",base:64.0d},{id:"minecraft:generic.movement_speed",base:0.3d}' +
     (m.enfant ? ',{id:"minecraft:generic.scale",base:0.72d}' : '') + (m.garde ? ',{id:"minecraft:generic.attack_damage",base:5.0d}' : '')
-  return '{EasyNPCVersion:3,PersistenceRequired:1b,Tags:["ahab","ahab.' + v.nom + '","ahab.' + h[0] + '"],' +
+  // nom jamais affiché (sinon « Humanoid » flotte au-dessus de chacun)
+  return '{EasyNPCVersion:3,PersistenceRequired:1b,CustomNameVisible:0b,Tags:["ahab","ahab.' + v.nom + '","ahab.' + h[0] + '"],' +
     'EntityAttribute:{IsAttackableByPlayers:1b,IsAttackableByMonsters:1b,IsAttackableByFactions:1b,IsInvulnerable:0b,IsKnockbackResistant:0b,IsExplosionResistant:0b,HealthRegeneration:0.0d},' +
     'VariantType:"STEVE",SkinData:{Type:"RESOURCE_LOCATION",Texture:"atheria:textures/entity/habitants/' + h[2] + '.png"},' +
     'HandItems:[' + main + ',{}],HandDropChances:[0.0f,0.0f],ArmorDropChances:[0.0f,0.0f,0.0f,0.0f],' +
@@ -197,6 +200,8 @@ function atheriaHabTick(v, server) {
       // invulnérable dans les murs, tuable dehors
       var dedans = atheriaHabDansMurs(v, ent.x, ent.z)
       if (ent.isInvulnerable() != dedans) ent.setInvulnerable(dedans)
+      // nom jamais affiché (Easy NPC remet « Humanoid » visible tant que son attribut d'affichage n'est pas NEVER)
+      if (ent.isCustomNameVisible()) { ent.setDisplayAttribute(HAB_AFFICHAGE.NAME_VISIBILITY, HAB_NOM_VISIBLE.NEVER); ent.setCustomNameVisible(false) }
       // un ordre de marche toutes les 5 s, jamais tous ensemble
       if ((HAB.horloge + i) % 5) return
       if (ent.getTarget && ent.getTarget() != null) return
