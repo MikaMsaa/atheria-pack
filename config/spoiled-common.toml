@@ -17,7 +17,8 @@
 	#When enabled Spoiled makes every edible item spoil into the specified Spoil Item (This overwrites json spoiling completely) [default: false]
 	spoilEverything = false
 	#Defines a list of items that are never allowed to spoil
-	spoilBlacklist = ["minecraft:rotten_flesh", "minecraft:enchanted_golden_apple"]
+	#Atheria (retours des testeurs du 25/11) : pain, rations, conserves et aliments secs ne périment plus et s'empilent ; viande, poisson et plats cuisinés périment toujours.
+	spoilBlacklist = ["minecraft:rotten_flesh", "minecraft:enchanted_golden_apple", "minecraft:golden_apple", "minecraft:golden_carrot", "minecraft:bread", "minecraft:cookie", "minecraft:dried_kelp", "minecraft:honey_bottle", "minecraft:pumpkin_pie", "atheria:ration", "atheria:ration_luxe", "atheria:poisson_seche", "atheria:chocolat_dubai", "create_fallout:sugarbombs", "create_fallout:nuka_cola", "create_fallout:quantum_cola"]
 	#Defines the total amount of spoiling updates that is used by the default initialized spoiling when 'initializeSpoiling' is enabled 
 	#(If the 'spoilRate' is 10 and the 'defaultSpoilTime' is set to 20 then the food will spoil after 20 * 10 seconds = 200 seconds) [default: 40]
 	# Default: 40

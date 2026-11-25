@@ -52,6 +52,18 @@ function airRespirer(joueur) {
   joueur.potionEffects.add('minecraft:poison', 80, 0, false, false)
 }
 
+// Retours des testeurs du 25/11 : masque porté + filtre (en place ou dans l'inventaire) = brume de la zone contaminée
+// et voile de la tempête de cendres réduits d'environ 60 %. L'état est envoyé au client seulement quand il change.
+function airFiltreVisuel(joueur) {
+  var d = joueur.persistentData
+  var masque = AIR_MASQUE.test('' + joueur.getHeadArmorItem().getId()) || joueur.inventory.count('atheria:masque_artisanal') > 0
+  var protege = masque && (d.getInt('atheria_filtre_reste') > 0 || joueur.inventory.count('atheria:filtre') > 0)
+  if (d.contains('atheria_filtre_visuel') && d.getBoolean('atheria_filtre_visuel') == protege) return
+  d.putBoolean('atheria_filtre_visuel', protege)
+  atheriaHud(joueur, { t: 'filtre', p: protege })
+  joueur.sendData('atheria_filtre', { p: protege })
+}
+
 function airInfectes(joueur) {
   var level = joueur.level
   var AABB = Java.loadClass('net.minecraft.world.phys.AABB')
@@ -80,6 +92,7 @@ ServerEvents.tick(event => {
   var infectes = airTick.n % AIR.infectesPeriode == 0
   serveur.players.forEach(joueur => {
     if (joueur.isCreative() || joueur.isSpectator() || !joueur.isAlive()) return
+    airFiltreVisuel(joueur)
     if (joueur.level.dimension != 'minecraft:overworld' || !airBiome(joueur)) {
       // sortie de la zone : la jauge s'efface
       if (joueur.persistentData.getBoolean('atheria_air_dans')) {
@@ -93,3 +106,6 @@ ServerEvents.tick(event => {
     if (infectes && ('' + joueur.level.getDifficulty()).toLowerCase() != 'peaceful' && joueur.level.getGameRules().getBoolean(Java.loadClass('net.minecraft.world.level.GameRules').RULE_DOMOBSPAWNING)) airInfectes(joueur)
   })
 })
+
+// à la connexion, le client ne sait rien : on renverra l'état du filtre
+PlayerEvents.loggedIn(event => { event.player.persistentData.remove('atheria_filtre_visuel') })
