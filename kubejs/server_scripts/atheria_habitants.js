@@ -5,7 +5,10 @@
 //    habitants (prénom, skin unique, métier) ;
 //  - les habitants ne sont pas enregistrés dans le monde : ils apparaissent quand un joueur approche et disparaissent
 //    30 s après le départ du dernier joueur ; la nuit, les dormeurs rentrent puis disparaissent ;
-//  - tempête de cendres : tout le monde à l'abri sauf les sentinelles ; horde : civils aux abris, gardes sur le mur ;
+//  - tempête de cendres : tout le monde à l'abri sauf les sentinelles ; horde : civils aux abris, gardes sur le mur
+//    (un métier peut avoir son propre abri « abri » et sa propre consigne de horde « horde ») ;
+//  - territoire (option) : les gardes attaquent un joueur entré sur le territoire (Coupeurs de Majicavo) ;
+//    métier « fuite » : fuit les joueurs (pillards) ; arme par métier ou par habitant (5e valeur) ;
 //  - invulnérables dans les murs, tuables dehors (Mika 25/11) ; un habitant tué revient le matin suivant ;
 //  - aucun clic droit (Mika 25/11 : pas d'interaction pour l'instant), pas de nom au-dessus de la tête.
 // Repères vérifiés à chaque activation de la ville : un repère muré ou dans le vide est déplacé vers la place libre la
@@ -40,8 +43,9 @@ function atheriaHabScore(server, nom) {
 // ce que fait l'habitant maintenant : « sorte:groupe »
 function atheriaHabConsigne(v, h, moment, alerte) {
   var m = v.metiers[h[3]]
-  if (alerte.horde) return m.garde ? (v.rondeHorde || 'ronde:r_mur') : 'abri:abri'
-  if (alerte.tempete && !m.tempete) return 'abri:abri'
+  var abri = 'abri:' + (m.abri || 'abri')
+  if (alerte.horde) return m.horde || (m.garde ? (v.rondeHorde || 'ronde:r_mur') : abri)
+  if (alerte.tempete && !m.tempete) return abri
   return m[moment]
 }
 
@@ -59,12 +63,19 @@ function atheriaHabDansMurs(v, x, z) {
   return v.murs.some(m => x >= m[0] && x <= m[2] && z >= m[1] && z <= m[3])
 }
 
+var HAB_ARMES = {
+  epee: '{id:"minecraft:iron_sword",count:1}', hache: '{id:"minecraft:iron_axe",count:1}', hachette: '{id:"minecraft:stone_axe",count:1}',
+  pistolet: '{id:"tacz:modern_kinetic_gun",count:1,components:{"minecraft:custom_data":{GunId:"tacz:glock_17",GunCurrentAmmoCount:17}}}'
+}
+
 function atheriaHabSnbt(v, h) {
-  var m = v.metiers[h[3]]
+  var m = v.metiers[h[3]], arme = h[4] || m.arme || (m.garde ? 'epee' : null)
+  // tireurs (pistolet) : tir à distance ; territoire (Coupeurs) : ils rendent les coups
+  var attaque = arme == 'pistolet' ? '{Type:"GUN_ATTACK",Prio:2,SpeedModifier:1.0d,AttackInterval:30,AttackRadius:16.0f}' : '{Type:"MELEE_ATTACK",Prio:2,SpeedModifier:1.1d}'
   var obj = m.garde
-    ? '{Type:"FLOAT",Prio:0},{Type:"OPEN_DOOR",Prio:1},{Type:"CLOSE_DOOR",Prio:1},{Type:"MELEE_ATTACK",Prio:2,SpeedModifier:1.1d},{Type:"ATTACK_MONSTER",Prio:2},{Type:"LOOK_AT_PLAYER",Prio:7}'
-    : '{Type:"FLOAT",Prio:0},{Type:"OPEN_DOOR",Prio:1},{Type:"CLOSE_DOOR",Prio:1},{Type:"FLEE_MONSTER",Prio:1},{Type:"LOOK_AT_PLAYER",Prio:7},{Type:"LOOK_RANDOM_AROUND",Prio:8}'
-  var main = m.garde ? '{id:"minecraft:iron_sword",count:1}' : '{}'
+    ? '{Type:"FLOAT",Prio:0},{Type:"OPEN_DOOR",Prio:1},{Type:"CLOSE_DOOR",Prio:1},' + attaque + ',{Type:"ATTACK_MONSTER",Prio:2},' + (v.territoire ? '{Type:"HURT_BY_TARGET",Prio:1},' : '') + '{Type:"LOOK_AT_PLAYER",Prio:7}'
+    : '{Type:"FLOAT",Prio:0},{Type:"OPEN_DOOR",Prio:1},{Type:"CLOSE_DOOR",Prio:1},{Type:"FLEE_MONSTER",Prio:1},' + (m.fuite ? '{Type:"FLEE_PLAYER",Prio:1},' : '') + '{Type:"LOOK_AT_PLAYER",Prio:7},{Type:"LOOK_RANDOM_AROUND",Prio:8}'
+  var main = arme ? HAB_ARMES[arme] : '{}'
   var attr = '{id:"minecraft:generic.follow_range",base:64.0d},{id:"minecraft:generic.movement_speed",base:0.3d}' +
     (m.enfant ? ',{id:"minecraft:generic.scale",base:0.72d}' : '') + (m.garde ? ',{id:"minecraft:generic.attack_damage",base:5.0d}' : '')
   // nom jamais affiché (sinon « Humanoid » flotte au-dessus de chacun)
@@ -102,6 +113,28 @@ function atheriaHabVerifier(v, level, forcer) {
   })
   rapport.forEach(l => console.warn('[Atheria habitants] ' + v.nom + ' : ' + l))
   return rapport
+}
+
+// territoire (Coupeurs, Mika 25/11 « hostiles sur leur territoire ») : neutres de loin, un joueur qui entre dans un
+// rectangle du territoire est pris pour cible par les gardes qui le voient (ou qui l'ont à 6 blocs) ; ils lâchent un
+// joueur sorti du territoire et à plus de 24 blocs. Les créatifs et spectateurs sont ignorés.
+function atheriaHabDansTerritoire(v, x, z) {
+  return v.territoire.some(m => x >= m[0] && x <= m[2] && z >= m[1] && z <= m[3])
+}
+
+function atheriaHabTerritoire(v, m, level, ent) {
+  var t = ent.getTarget()
+  if (t != null) {
+    if (t.isPlayer() && (!t.isAlive() || t.isCreative() || t.isSpectator() || (!atheriaHabDansTerritoire(v, t.x, t.z) && ent.distanceToSqr(t) > 576))) ent.setTarget(null)
+    return
+  }
+  var portee = m.portee || 20, best = null, bd = portee * portee + 1
+  level.players.forEach(p => {
+    if (p.isCreative() || p.isSpectator() || !p.isAlive() || !atheriaHabDansTerritoire(v, p.x, p.z)) return
+    var d = ent.distanceToSqr(p)
+    if (d < bd && (d < 36 || ent.hasLineOfSight(p))) { best = p; bd = d }
+  })
+  if (best) ent.setTarget(best)
 }
 
 function atheriaHabActif(v, server) {
@@ -202,6 +235,7 @@ function atheriaHabTick(v, server) {
       if (ent.isInvulnerable() != dedans) ent.setInvulnerable(dedans)
       // nom jamais affiché (Easy NPC remet « Humanoid » visible tant que son attribut d'affichage n'est pas NEVER)
       if (ent.isCustomNameVisible()) { ent.setDisplayAttribute(HAB_AFFICHAGE.NAME_VISIBILITY, HAB_NOM_VISIBLE.NEVER); ent.setCustomNameVisible(false) }
+      if (v.territoire && v.metiers[h[3]].garde) atheriaHabTerritoire(v, v.metiers[h[3]], level, ent)
       // un ordre de marche toutes les 5 s, jamais tous ensemble
       if ((HAB.horloge + i) % 5) return
       if (ent.getTarget && ent.getTarget() != null) return
