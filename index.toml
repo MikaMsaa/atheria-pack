@@ -634,7 +634,7 @@ hash = "1356f9d52b2dcb2afa5a593e53c286d9c1c3778a6f8b1cf761953b185b7dce78"
 
 [[files]]
 file = "config/firstaid-client.toml"
-hash = "84cf42a38bb8f539112525e5205604fd4c3085de6d200780f5513f8cab76943c"
+hash = "09f3d767b3fa91f47b1af7b3e594c38b657a60ba27d5f44db7ef117dcacbdc3e"
 
 [[files]]
 file = "config/firstaid-common.toml"
@@ -642,7 +642,7 @@ hash = "e2253d1cfa99c75760c214d6d7fc0e0649fcf79e6015cc6f8ffe5dcf3a28f590"
 
 [[files]]
 file = "config/firstaid-server.toml"
-hash = "32a1690343cb8ecce847beb1be7c9820239a9770d13d7983396a9b1933beed04"
+hash = "938e3b5dc9adcf1cb6529ca416b591842e8a5da303f2302991346c8539cbe653"
 
 [[files]]
 file = "config/firstperson.json"
@@ -4562,6 +4562,10 @@ file = "kubejs/data/fields/tags/worldgen/biome/field_biomes.json"
 hash = "b7ed0489d971d399a083fbfd5f759d373ade9c20e139739963bf9a9501ae6cd2"
 
 [[files]]
+file = "kubejs/data/firstaid/firstaid/damage_distributions/fall_and_floor.json"
+hash = "8a7b650acbc3a22457d4e24dc539e9b3f410622a96e434409c2d79c621e8feaa"
+
+[[files]]
 file = "kubejs/data/firstaid/firstaid/debuffs/blindness_head.json"
 hash = "30c06e28ae5a76353024e40c5853629e3fd6e6ba7c3208af8e05b6071209d613"
 
@@ -4572,6 +4576,10 @@ hash = "4d7120ce0e59f4f0145baf0ede49ea062818a4014415800d0474d108b6222a04"
 [[files]]
 file = "kubejs/data/firstaid/firstaid/debuffs/darkness_head.json"
 hash = "a2aa3429562cb29d7e43b41b004cb085feedb0d88ae3f2f31e8877a15663a8c9"
+
+[[files]]
+file = "kubejs/data/firstaid/firstaid/debuffs/slowness_legs_and_feet.json"
+hash = "7e79a44a2dba413089f341623f31c7033609ec4925b31841bcaba6af06135e56"
 
 [[files]]
 file = "kubejs/data/jurassicrebornnaturalspawningaddon/neoforge/biome_modifier/spawn_achillobator.json"
@@ -14892,6 +14900,10 @@ hash = "95e6959faa8edf4a868f6989414127b7b2425a80a3759281d8d8dcf054025753"
 [[files]]
 file = "kubejs/server_scripts/atheria_coupeurs.js"
 hash = "d08cb620ecfcd711952ebb317256af748aa5f73a9458c361a32b92d3d4172715"
+
+[[files]]
+file = "kubejs/server_scripts/atheria_cycle.js"
+hash = "8fff03b4755b667431432d62a6e1ee486c8664887bb69c0c181e319321aa8d71"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_decouvertes.js"
