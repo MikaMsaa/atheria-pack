@@ -32,7 +32,7 @@
 	#If set to -1, the HUD is always visible
 	# Default: -1
 	# Range: -1 ~ 600
-	visibleDurationTicks = 100
+	visibleDurationTicks = -1
 	#If set to true, the overlay will flash for a short moment if the health changed. Only affects PLAYER_MODEL overlay
 	flash = true
 	#If true, hides status indicator lines under the player-model HUD. Default true.

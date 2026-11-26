@@ -11,11 +11,11 @@
 	#Max health of the Left Leg
 	# Default: 4
 	# Range: > 2
-	maxHealthLeft_Leg = 4
+	maxHealthLeft_Leg = 6
 	#Max health of the Left Foot
 	# Default: 4
 	# Range: > 2
-	maxHealthLeft_Foot = 4
+	maxHealthLeft_Foot = 6
 	#Max health of the Body
 	# Default: 6
 	# Range: > 2
@@ -27,11 +27,11 @@
 	#Max health of the Right Leg
 	# Default: 4
 	# Range: > 2
-	maxHealthRight_Leg = 4
+	maxHealthRight_Leg = 6
 	#Max health of the Right Foot
 	# Default: 4
 	# Range: > 2
-	maxHealthRight_Foot = 4
+	maxHealthRight_Foot = 6
 	#True if the head can cause death if health drops to 0
 	causeDeathHead = true
 	#True if the body can cause death if health drops to 0
@@ -136,7 +136,7 @@
 ["External Healing"]
 	#Allow vanilla's natural regeneration. Requires "allowOtherHealingItems" to be true
 	#**WARNING** This sets the gamerule "naturalRegeneration" for all of your worlds internally, so it persists even if you remove the mod
-	allowNaturalRegeneration = false
+	allowNaturalRegeneration = true
 	#If false, healing potions and other healing items will have no effect
 	allowOtherHealingItems = true
 	#Specifies how much percent of the max health should be restored when sleeping
