@@ -238,9 +238,9 @@
       "diesel": {
         "creosote": 0.7,
         "diesel": 1.0,
-        "lava": 0.35,
         "oil": 0.5,
-        "biodiesel": 0.8,"seed_oil": 0.5
+        "biodiesel": 0.8,
+        "seed_oil": 0.5
       },
       "furnace": {
         "lava": 1.0
@@ -249,13 +249,12 @@
         "lava": 1.0
       },
       "avgas": {
-        "lava": 1.0,
         "gasoline": 1.0
       },
       "gasoline": {
-        "lava": 0.35,
         "gasoline": 1.0,
-        "ethanol": 0.85,"bioethanol": 0.8
+        "ethanol": 0.85,
+        "bioethanol": 0.8
       }
     },
     "lastLoadedFluids": {
@@ -527,6 +526,7 @@
       "chocolate_cream_frosting": "block.createfood.chocolate_cream_frosting_block",
       "dark_chocolate_ganache": "block.createfood.dark_chocolate_ganache_block",
       "flowing_vinegar": "block.createfood.vinegar_block"
-    }
+    },
+    "comment6": "Atheria (retours bêta du 25/11) : plus de lave dans les moteurs de véhicules ; vraie essence et diesel (bidons, siphonnage d'épaves), bioéthanol de Create Crafts & Additions renommé « essence artisanale »."
   }
 }
