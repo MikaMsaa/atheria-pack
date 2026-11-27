@@ -35,6 +35,8 @@ function atheriaPvpRappel(p, texte) {
 // vrai si ce coup entre deux joueurs doit être annulé (l'un des deux est encore protégé)
 function atheriaPvpBloque(victime, auteur) {
   if (victime == null || auteur == null || !victime.isPlayer() || !auteur.isPlayer() || auteur == victime) return false
+  // soirée « convoi de la PAF » : qui porte une caisse renonce à sa protection tant qu'il la porte
+  if (victime.tags.contains('atheria_caisse_portee')) return atheriaPvpProtectionMin(auteur) > 0
   return atheriaPvpProtectionMin(victime) > 0 || atheriaPvpProtectionMin(auteur) > 0
 }
 

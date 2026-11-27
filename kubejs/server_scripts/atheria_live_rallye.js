@@ -73,6 +73,7 @@ function rallyeEmbuscade(ctx, i) {
     if (!m) continue
     m.setPos(x + 0.5, atheriaHauteur(level, x, z), z + 0.5)
     m.addTag('atheria_live')
+    m.addTag(ctx.marque)
     m.setPersistenceRequired()
     m.spawn()
     n++

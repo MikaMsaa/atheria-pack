@@ -50,7 +50,7 @@ function atheriaLiveMemoireEcrire(server, m) {
 // tous les joueurs de la surface (et les faux joueurs d'un essai)
 function atheriaLiveJoueurs(server) {
   var l = []
-  server.players.forEach(p => { if (!p.isSpectator() && ('' + p.level.dimension) === 'minecraft:overworld') l.push(p) })
+  server.players.forEach(p => { if (!p.isSpectator() && p.isAlive() && ('' + p.level.dimension) === 'minecraft:overworld') l.push(p) })
   LIVE.faux.forEach(f => l.push(f))
   return l
 }
@@ -80,6 +80,8 @@ function atheriaLiveCtx(server, e) {
     radio: (texte, accent) => atheriaHudRadioTous(server, def.radio || 'semaine', texte, accent),
     banniere: (genre, sur, titre, texte, qui) => (qui || atheriaLiveJoueurs(server)).forEach(p => { if (atheriaLiveFaux(p)) return; atheriaHudBanniere(p, genre, sur, titre, texte) }),
     action: (p, icone, texte, couleur, progres) => { if (atheriaLiveFaux(p)) return; atheriaHudAction(p, icone, texte, couleur, progres) },
+    // étiquette des créatures et objets posés par la soirée : « atheria_live » + celle de cette soirée-ci
+    marque: 'atheria_live_' + e.id,
     terminer: () => { e.finDemandee = true }
   }
   return ctx
@@ -90,7 +92,7 @@ function atheriaLiveLancer(server, nom, minutes) {
   if (!def) return 'Soirée inconnue : ' + nom + '. Soirées : ' + Object.keys(LIVE.defs).join(', ')
   if (atheriaLiveEtat(server)) return 'Une soirée est déjà en cours (/live etat, /live stop).'
   var m = minutes == null ? LIVE.annonceMin : minutes
-  var e = { nom: nom, phase: 'annonce', t0: Date.now() + m * 60000, scores: {}, presence: {}, inscrits: [], data: {}, dits: {} }
+  var e = { nom: nom, id: Date.now(), phase: 'annonce', t0: Date.now() + m * 60000, scores: {}, presence: {}, inscrits: [], data: {}, dits: {} }
   atheriaLiveEcrire(server, e)
   if (def.preparer) def.preparer(atheriaLiveCtx(server, e))
   atheriaLiveEcrire(server, e)
@@ -216,10 +218,13 @@ function atheriaLiveConnexion(p) {
   if (change) atheriaLiveMemoireEcrire(server, m)
 }
 
-// une créature d'une soirée rechargée depuis le disque une fois la soirée finie ne revient pas
+// une créature d'une soirée rechargée depuis le disque une fois sa soirée finie ne revient pas
 EntityEvents.spawned(event => {
   var m = event.entity
-  if (m.tags.contains('atheria_live') && !atheriaLiveEtat(m.server)) event.cancel()
+  if (!m.tags.contains('atheria_live')) return
+  // rechargée hors soirée, ou laissée par une soirée précédente (chunk déchargé à la fin) : elle ne revient pas
+  var e = atheriaLiveEtat(m.server)
+  if (!e || !m.tags.contains('atheria_live_' + e.id)) event.cancel()
 })
 
 ServerEvents.commandRegistry(event => {
