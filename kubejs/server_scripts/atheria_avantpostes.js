@@ -113,8 +113,14 @@ ServerEvents.tick(event => {
     if (s.avance >= AP.dureePrise) {
       var ancien = s.nom
       s.tenu = a.id; s.nom = a.nom; s.vu = now; s.prise = null; s.avance = 0
-      joueurs.forEach(q => { var dx = q.x - l[2], dz = q.z - l[3]; if (dx * dx + dz * dz <= AP.rayon * AP.rayon) routeXp(q, 60) })
+      joueurs.forEach(q => {
+        var dx = q.x - l[2], dz = q.z - l[3]
+        if (dx * dx + dz * dz > AP.rayon * AP.rayon) return
+        routeXp(q, 60)
+        if (typeof atheriaHonneur === 'function') atheriaHonneur(q, 'avantpostes', 1, 'ap:' + l[0])
+      })
       atheriaHudRadioTous(server, 'avantpostes', 'tient maintenant ' + l[1] + (ancien ? ', pris à ' + ancien : '') + '.', a.nom)
+      if (typeof atheriaJournal === 'function') atheriaJournal(server, 'minecraft:white_banner', a.nom + ' a pris l\'avant-poste de ' + l[1] + (ancien ? ' à ' + ancien : '') + '.', 'bleu')
       server.runCommandSilent('playsound minecraft:event.raid.horn master @a[x=' + l[2] + ',y=64,z=' + l[3] + ',distance=..200] ' + l[2] + ' 80 ' + l[3] + ' 4 1.2')
       atheriaApBarre(server, l, 'Avant-poste : ' + l[1] + ' — tenu par ' + a.nom, 'green', AP.dureePrise)
     }

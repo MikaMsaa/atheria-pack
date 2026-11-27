@@ -7,8 +7,6 @@ var MINE_CHANCE_GAZ = 1 / 90        // roche cassée entre les niveaux 40 et 0
 var MINE_CHANCE_GAZ_PROFOND = 1 / 45 // sous le niveau 0
 var MINE_CHANCE_FILON = 1 / 40
 var MINE_CHANCE_CASIER = 1 / 600
-var MINE_RAYON_GAZ = 6              // rayon du nuage une fois étendu (il grossit pendant 6 s)
-var MINE_DUREE_GAZ = 30             // secondes avant que le gaz se dissipe
 var MINE_RAYON_MORTEL = 5           // dans ce rayon, l'explosion tue sur le coup
 var MINE_RAYON_SOUFFLE = 10         // au-delà, le souffle blesse encore
 var MINE_REPIT_TICKS = 2400 // 2 minutes entre deux poches pour un même joueur
@@ -83,31 +81,89 @@ function mineExplosion(serveur, niveau, x, y, z) {
   }
 }
 
+// Le gaz se répand dans la grotte (Mika 27/11 : « que le gaz après que la poche a été percée se répande dans la grotte
+// du joueur sur une certaine zone et pas seulement quelques blocs »). Il remplit les galeries reliées à la poche, couche
+// par couche, sans traverser la roche ni l'eau, jusqu'à MINE_GAZ_VOLUME blocs d'air ou MINE_GAZ_PORTEE blocs de la poche.
+// Toujours sans avertissement. Dans le gaz, sans masque : nausée, fatigue et une petite blessure par seconde (le gaz
+// peut tuer celui qui s'attarde, l'écran de mort le dit) ; une flamme n'importe où dans le nuage le fait exploser là.
+var MINE_GAZ_VOLUME = 900           // blocs d'air au plus (performances)
+var MINE_GAZ_PORTEE = 24            // distance maximale à la poche
+var MINE_GAZ_COUCHES = 2            // couches gagnées par seconde
+var MINE_GAZ_DUREE = 45             // secondes avant que le gaz se dissipe
+var MINE_GAZ_DEGAT = 1              // points de vie par seconde dans le gaz, sans masque
+var MineBlockPos = Java.loadClass('net.minecraft.core.BlockPos')
+
+function mineGazPasse(niveau, x, y, z) {
+  var st = niveau.getBlockState(new MineBlockPos(x, y, z))
+  if (st.isAir()) return true
+  if (!st.getFluidState().isEmpty()) return false
+  return !st.blocksMotion()
+}
+
 function minePocheGaz(joueur, x, y, z) {
   var serveur = joueur.server
   var niveau = joueur.level
   var dim = niveau.dimension
-  // Voile de gaz et pictogramme à l'écran de ceux qui sont près (mod atheria_hud) ; durée en ticks, comme les tours ci-dessous
-  atheriaHudAutour(niveau, x, y, z, 20, { t: 'gaz', x: x, y: y, z: z, duree: 30 + MINE_DUREE_GAZ * 20 })
+  var ox = Math.floor(x), oy = Math.floor(y), oz = Math.floor(z)
+  var cle = (a, b, c) => a + ',' + b + ',' + c
+  var nuage = {}, cellules = [], front = [[ox, oy, oz]]
+  nuage[cle(ox, oy, oz)] = true
+  cellules.push([ox, oy, oz])
+  var touches = {}
   serveur.runCommandSilent('execute in ' + dim + ' run playsound minecraft:block.lava.extinguish block @a ' + x + ' ' + y + ' ' + z + ' 1.2 0.5')
-  var restant = MINE_DUREE_GAZ
+  var restant = MINE_GAZ_DUREE
+  var DIRS = [[1, 0, 0], [-1, 0, 0], [0, 1, 0], [0, -1, 0], [0, 0, 1], [0, 0, -1]]
   var tour = () => {
-    // Le nuage s'étend de 3 à 6 blocs pendant les 6 premières secondes
-    var r = Math.min(MINE_RAYON_GAZ, 3 + Math.floor((MINE_DUREE_GAZ - restant) / 2))
-    serveur.runCommandSilent('execute in ' + dim + ' run particle minecraft:campfire_cosy_smoke ' + x + ' ' + y + ' ' + z + ' ' + (r * 0.5) + ' ' + (r * 0.35) + ' ' + (r * 0.5) + ' 0.004 ' + (10 + r * 6) + ' force')
+    // le nuage gagne quelques couches de galerie
+    for (var c = 0; c < MINE_GAZ_COUCHES && front.length && cellules.length < MINE_GAZ_VOLUME; c++) {
+      var suivant = []
+      front.forEach(p => DIRS.forEach(d => {
+        if (cellules.length >= MINE_GAZ_VOLUME) return
+        var nx = p[0] + d[0], ny = p[1] + d[1], nz = p[2] + d[2], k = cle(nx, ny, nz)
+        if (nuage[k]) return
+        if (Math.abs(nx - ox) > MINE_GAZ_PORTEE || Math.abs(ny - oy) > MINE_GAZ_PORTEE || Math.abs(nz - oz) > MINE_GAZ_PORTEE) return
+        if (!mineGazPasse(niveau, nx, ny, nz)) return
+        nuage[k] = true
+        cellules.push([nx, ny, nz])
+        suivant.push([nx, ny, nz])
+      }))
+      front = suivant
+    }
+    // nuage visible : fumée lourde et voile jaune-vert sur une partie des blocs
+    var n = Math.min(cellules.length, 40)
+    for (var i = 0; i < n; i++) {
+      var q = cellules[Math.floor(Math.random() * cellules.length)]
+      serveur.runCommandSilent('execute in ' + dim + ' run particle minecraft:campfire_cosy_smoke ' + (q[0] + 0.5) + ' ' + (q[1] + 0.4) + ' ' + (q[2] + 0.5) + ' 0.4 0.25 0.4 0.003 2 force')
+      if (i % 2 == 0) serveur.runCommandSilent('execute in ' + dim + ' run particle minecraft:entity_effect{color:[0.62,0.68,0.25,0.75]} ' + (q[0] + 0.5) + ' ' + (q[1] + 0.5) + ' ' + (q[2] + 0.5) + ' 0.45 0.35 0.45 0 3 force')
+    }
     if (restant % 3 == 0) serveur.runCommandSilent('execute in ' + dim + ' run playsound minecraft:block.fire.extinguish block @a ' + x + ' ' + y + ' ' + z + ' 0.5 0.4')
-    var explose = mineBlocFlamme(niveau, x, y, z, r)
+    // une flamme posée dans le nuage ?
+    var feu = null
+    for (var j = 0; j < cellules.length && !feu; j++) {
+      var cc = cellules[j]
+      if (mineBlocFlamme(niveau, cc[0] + 0.5, cc[1] + 0.5, cc[2] + 0.5, 0)) feu = cc
+    }
+    if (feu) {
+      mineExplosion(serveur, niveau, feu[0] + 0.5, feu[1] + 0.5, feu[2] + 0.5)
+      return
+    }
+    var boum = null
     niveau.getPlayers().forEach(p => {
-      if (p.distanceToSqr(x, y, z) > r * r) return
-      if (mineTientFlamme(p)) explose = true
-      else if (!minePorteMasque(p)) {
-        serveur.runCommandSilent('effect give ' + p.username + ' minecraft:poison 3 1 true')
-        serveur.runCommandSilent('effect give ' + p.username + ' minecraft:nausea 6 0 true')
-        serveur.runCommandSilent('effect give ' + p.username + ' minecraft:mining_fatigue 4 1 true')
+      if (boum || p.isSpectator() || p.isCreative()) return
+      var px = Math.floor(p.x), pz = Math.floor(p.z), py = Math.floor(p.y)
+      if (!nuage[cle(px, py, pz)] && !nuage[cle(px, py + 1, pz)]) { delete touches[p.username]; return }
+      if (mineTientFlamme(p)) { boum = [p.x, p.y + 1, p.z]; return }
+      if (!touches[p.username]) {
+        touches[p.username] = true
+        atheriaHud(p, { t: 'gaz', x: p.x, y: p.y + 1, z: p.z, duree: restant * 20 + 20 })
       }
+      if (minePorteMasque(p)) return
+      serveur.runCommandSilent('effect give ' + p.username + ' minecraft:nausea 6 0 true')
+      serveur.runCommandSilent('effect give ' + p.username + ' minecraft:mining_fatigue 4 1 true')
+      serveur.runCommandSilent('damage ' + p.username + ' ' + MINE_GAZ_DEGAT + ' atheria:gaz')
     })
-    if (explose) {
-      mineExplosion(serveur, niveau, x, y, z)
+    if (boum) {
+      mineExplosion(serveur, niveau, boum[0], boum[1], boum[2])
       return
     }
     restant--

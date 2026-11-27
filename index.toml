@@ -746,7 +746,7 @@ hash = "6ed9fdbaefd477a06d7776a37f95dc4b53348c04732d23a3f1c3912c287a9b5c"
 
 [[files]]
 file = "config/ftbteams-server.snbt"
-hash = "61b37c30c24d841f4d993e933df0d60f198fbcf06671a87a73b9a23f8434858d"
+hash = "6fdc181fff713be6e72fed9c35b473272c23cfaac9e4234a9ab080376ba0c8f3"
 
 [[files]]
 file = "config/fzzy_config/keybinds.toml"
@@ -1214,7 +1214,7 @@ hash = "59b692e0194eec20f223a9ffbb4305b532b48e53b2393a29625f370f1845a61b"
 
 [[files]]
 file = "config/openpartiesandclaims-server.toml"
-hash = "1a1f951b9592c3418e312241b4590649788df29cb90c21b9f4615d4a6ca62724"
+hash = "e3323324b5f055149490d92ddcdd1f8c8a97b1f106136739634325d9d2400d94"
 
 [[files]]
 file = "config/parcool-server.toml"
@@ -1578,8 +1578,12 @@ file = "kubejs/assets/atheria/guide/guide.json"
 hash = "e61b637d3bc626ff4916dc12c3358a2d74b45b1ea54da551c1827114e753e0d5"
 
 [[files]]
+file = "kubejs/assets/atheria/lang/en_us.json"
+hash = "a61a1328dfb5706f8f4e73880ced66ab9d07cd5b56065c16e7a0f15591ee1ae9"
+
+[[files]]
 file = "kubejs/assets/atheria/lang/fr_fr.json"
-hash = "d6faaeff5cca8b52f83a80649dbf6ebc06d70afade6756f91aa9fffdbf2dd4b0"
+hash = "d0d0d0a332f4b352c6ece58f9fe2faaeb1f95f3514929ad69421c71ed5fd69a9"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/block/carrosserie.png"
@@ -3239,11 +3243,11 @@ hash = "b34e3bcb21fccb1970470a6e036165dfb354f325e37ea2b5831478b98af3a0e3"
 
 [[files]]
 file = "kubejs/assets/minecraft/lang/en_us.json"
-hash = "f66f1fe45cb1165a65662a51e5ecc0cb0d0cf9277590afe51b9a5a4faaac48ba"
+hash = "0860c1448e3edf5159f90b6a077e972149174a326a88d94f95da71273725de82"
 
 [[files]]
 file = "kubejs/assets/minecraft/lang/fr_fr.json"
-hash = "f66f1fe45cb1165a65662a51e5ecc0cb0d0cf9277590afe51b9a5a4faaac48ba"
+hash = "0860c1448e3edf5159f90b6a077e972149174a326a88d94f95da71273725de82"
 
 [[files]]
 file = "kubejs/assets/minecraft/sounds.json"
@@ -3718,6 +3722,10 @@ file = "kubejs/assets/yungscavebiomes/lang/fr_fr.json"
 hash = "08586b8a91f56f44ec78d101a83d15dcf10d7e03e519dbd9560150f877a40211"
 
 [[files]]
+file = "kubejs/client_scripts/atheria_armes_lourdes.js"
+hash = "9a72f6dc5a0413d0407339b603741bd07acf78c28fa552fbf669e4779ff475cc"
+
+[[files]]
 file = "kubejs/client_scripts/atheria_arrivee.js"
 hash = "a564f9229646d98a7f7f8d6e260c7c37efae6358f805770d73c2fa95a4d68eb7"
 
@@ -4004,6 +4012,10 @@ hash = "8aab3e88e34ee5e05c42691dddd7f1fe8c831fc709fcccc23ef3f900880295c2"
 [[files]]
 file = "kubejs/data/atheria/atheria_zones/exemple_zone.json"
 hash = "e85bdd6fbb81b0118acde494bd0be34248c2d01062f48fa23ca25267b432b8dc"
+
+[[files]]
+file = "kubejs/data/atheria/damage_type/gaz.json"
+hash = "0c74099d7c5390a353dcc39e31d02a814c4f540bcc560cfcc8092401852ed762"
 
 [[files]]
 file = "kubejs/data/atheria/easy_npc/preset/humanoid/angellow.npc.snbt"
@@ -14702,12 +14714,28 @@ file = "kubejs/data/minecraft/loot_table/blocks/deepslate_iron_ore.json"
 hash = "21246576e1c22bcf28ca58b8f5993ec6aef78d86c2bc36dc9dc03063415c4838"
 
 [[files]]
+file = "kubejs/data/minecraft/loot_table/blocks/ender_chest.json"
+hash = "d31abaf83f76002e3e23c1d676a635216c73b190add91ce796fab68e4288cccc"
+
+[[files]]
 file = "kubejs/data/minecraft/loot_table/blocks/iron_ore.json"
 hash = "f031d663be7686a5418d4877073bc1237a32b313920182d6d89ea4a07123911d"
 
 [[files]]
 file = "kubejs/data/minecraft/tags/block/animals_spawnable_on.json"
 hash = "65104098d8ff67d8265859ce74ccc5cf788b2cce0e9c06118f6b04f3b5b6468f"
+
+[[files]]
+file = "kubejs/data/minecraft/tags/damage_type/bypasses_armor.json"
+hash = "a095a74a1a2197f10abf467edb25c4697b5b0c7c5d32ea8e19b29719ebd1f7b7"
+
+[[files]]
+file = "kubejs/data/minecraft/tags/damage_type/bypasses_shield.json"
+hash = "a095a74a1a2197f10abf467edb25c4697b5b0c7c5d32ea8e19b29719ebd1f7b7"
+
+[[files]]
+file = "kubejs/data/minecraft/tags/damage_type/no_knockback.json"
+hash = "a095a74a1a2197f10abf467edb25c4697b5b0c7c5d32ea8e19b29719ebd1f7b7"
 
 [[files]]
 file = "kubejs/data/minecraft/tags/function/load.json"
@@ -14846,6 +14874,10 @@ file = "kubejs/data/watchtower_building/worldgen/structure/fresh_watchtower.json
 hash = "dfd71afad88018d15d4e0db7bbffef3a4571178bf1e88fa80ec31a27f17b4da2"
 
 [[files]]
+file = "kubejs/server_scripts/atheria_absence.js"
+hash = "30a978f0ea505df9566699e278be903c1c70a7388a645f6eef63564bf7ea877a"
+
+[[files]]
 file = "kubejs/server_scripts/atheria_air.js"
 hash = "949e483937637a41500cfa86ae0b04f1ee841c3168a1921e9a6f25f262c0267b"
 
@@ -14854,12 +14886,16 @@ file = "kubejs/server_scripts/atheria_apparition.js"
 hash = "acf7468e74caa121f6eba37eff65d19d329ef833bb2f42503263e8c260e3e641"
 
 [[files]]
+file = "kubejs/server_scripts/atheria_armes_lourdes.js"
+hash = "ea716eff08121ebf035b5152d5eeffab5de5d410fab594ea4d0a05e708bf1166"
+
+[[files]]
 file = "kubejs/server_scripts/atheria_arrivee.js"
 hash = "f1e3730031eeb3e04230bee0214166f20fe2933bc5cf16cdb628be479537cc9f"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_avantpostes.js"
-hash = "1f4fa278602e8b1da886038c0f074cf11f426ff7909c95a2dec45d8e6915dacc"
+hash = "e0e74609de52cd8f4694a81d3e07fbca305e6fb7ee45940b2be8c384892e53ee"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_bruit.js"
@@ -14888,6 +14924,10 @@ hash = "bd1acf52bb970df06665704380535f114070a6e39f9bcbbd534f8a7ab5c76fe5"
 [[files]]
 file = "kubejs/server_scripts/atheria_carnet.js"
 hash = "a5f92a5282fe57ebfe390730b509baa208de18dcb2e2eb9d6494f13c1787ba12"
+
+[[files]]
+file = "kubejs/server_scripts/atheria_coffre_fort.js"
+hash = "27e087e72e9d78dc29d8e607e0303df97381254fa342cf3e51f989577964e4c2"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_coffres.js"
@@ -14931,7 +14971,7 @@ hash = "7fd5fd442631c1e7019fe4b49f4d86f431856c80aa33b0ca3e53d94df465514b"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_eniy.js"
-hash = "5c6da11777e44f204833a8be7daff45aac6b80160011974cd2ba0fb9b8d09385"
+hash = "5833dfa9e2c20cdbf58bf2924d35e8133ee51399f1156331efe7aa5ce2bdcd2e"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_exclusifs.js"
@@ -14955,7 +14995,7 @@ hash = "6d019e9e9ed29460429344a32115c6e286caf74171f1c4dc1807cf6aa433ec11"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_honneur.js"
-hash = "43c376ba6cb48a0c41f767f54097affbe73033e234f8d690966182f442a0f868"
+hash = "294cdcbb8c23ac9eb3df1b9f211990538c0225e1afe43f5837859a305bba72a1"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_hud.js"
@@ -14979,7 +15019,7 @@ hash = "7cd58b263c75c9c618ac6df47a25ad506621978cd7f3ce6234b94b1dc12e2c5f"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_mines.js"
-hash = "a4f606279b4eef36625bbb39bd10baae7ab04b9c63b97b42d907c3f602cc6a16"
+hash = "de4e5ebdbad0bb48669aaf361748e3e0afb4e67e2d7f09f42692b95a42fe1132"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_mobs_retires.js"
@@ -14999,7 +15039,11 @@ hash = "19a465ecc3071842c872e2ea7edae11d86e7fbbb703d24014ef3d8f75379abaf"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_primes.js"
-hash = "ff88c515eff81a973cdc6ede6da927faea40c2754a8225cc887d7ab0358ae3d4"
+hash = "e41c651e14e9bfefc47000bcc8c1d59a211c313d04a8dd573d05b55631d1ed19"
+
+[[files]]
+file = "kubejs/server_scripts/atheria_pvp_debutant.js"
+hash = "e189e1d1d0fe627be900958fcba0df3523d0fb38f53db7e910e2b4efd1f1ad99"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_rattrapage.js"
@@ -15044,6 +15088,10 @@ hash = "cac1415ea0110dc068815781d629d77d4ee08ada0322d19cfbc45977eb1eeb0f"
 [[files]]
 file = "kubejs/startup_scripts/atheria_archives_textes.js"
 hash = "06c6afe6e65955d3db52bc3ad47a7b91f518115039d27fc486689214028d3d78"
+
+[[files]]
+file = "kubejs/startup_scripts/atheria_calendrier_armes.js"
+hash = "814f24678199c4df067b05e0547de07c7259671c3e12e03523fe501978b7029d"
 
 [[files]]
 file = "kubejs/startup_scripts/atheria_contenu.js"
@@ -15123,7 +15171,7 @@ hash = "9127dd6b249cb65856389af1486a4ace5b0d79600c02ad7e654da464d6f15bef"
 
 [[files]]
 file = "mods/atheria_hud-1.0.0.jar"
-hash = "52fc2c13a0186a9644a35e7df9fc6f7de9613c9b618c751ab76269618a5349ad"
+hash = "eb40d7f43f8443ad7009f07e8468976793a24700a4025cdc5178f0b3a92d8cd5"
 
 [[files]]
 file = "mods/atheria_reglages-1.0.14.jar"

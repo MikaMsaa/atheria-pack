@@ -51,6 +51,7 @@ function atheriaPrimeMeurtre(tueur, victime) {
     victime.removeTag('atheria_recherche')
     server.runCommandSilent('give ' + tueur.username + ' atheria:bon_caf ' + prime)
     atheriaRadio(server, '« ' + atheriaNom(victime) + ' ne fera plus de victimes. ' + tueur.username + ' touche la prime de ' + prime + ' bons CAF. »')
+    if (typeof atheriaJournal === 'function') atheriaJournal(server, 'atheria:bon_caf', tueur.username + ' a abattu ' + atheriaNom(victime) + ' et touché la prime de ' + prime + ' bons CAF.', 'or')
     return
   }
 
@@ -67,6 +68,7 @@ function atheriaPrimeMeurtre(tueur, victime) {
   d.putLong('atheria_prime_fin', maintenant + PRIME_DUREE)
   tueur.addTag('atheria_recherche')
   atheriaRadio(server, '« Avis à tous : ' + tueur.username + ' abat les siens. Prime : ' + nouvelle + ' bons CAF pour qui l\'arrête. »')
+  if (typeof atheriaJournal === 'function') atheriaJournal(server, 'minecraft:skeleton_skull', tueur.username + ' est recherché : ' + nouvelle + ' bons CAF sur sa tête.', 'rouge')
   atheriaHudBanniere(tueur, 'danger', 'Avis de recherche', 'Ta tête est mise à prix', nouvelle + ' bons CAF. La radio donne ta position toutes les 5 minutes pendant 2 heures.')
 }
 

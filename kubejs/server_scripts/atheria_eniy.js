@@ -28,6 +28,7 @@ var ENIY_ARTICLES = [
   ['vision', 'Lunettes de vision nocturne', 'militaristic_armor:night_vision_goggles', 1, 120, 4, 'equipement'],
   ['marmite', 'Marmite (Farmer\'s Delight)', 'farmersdelight:cooking_pot', 1, 15, 1, 'outils'],
   ['sac', 'Sac à dos', 'sophisticatedbackpacks:backpack', 1, 20, 1, 'outils'],
+  ['coffre', 'Coffre-fort personnel', 'minecraft:ender_chest', 1, 60, 2, 'outils'],
   ['couchage', 'Sac de couchage', 'comforts:sleeping_bag_brown', 1, 10, 1, 'outils'],
   ['manivelle', 'Manivelle (Create)', 'create:hand_crank', 1, 12, 2, 'outils'],
   ['engrenage', 'Engrenages (Create, x4)', 'create:cogwheel', 4, 12, 2, 'outils']
