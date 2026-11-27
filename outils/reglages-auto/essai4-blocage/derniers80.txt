@@ -1,0 +1,80 @@
+[23Nov2026 13:19:43.466] [Server thread/INFO] [xaero.pac.OpenPartiesAndClaims/]: Loading server info!
+[23Nov2026 13:19:43.532] [Server thread/INFO] [xaero.pac.OpenPartiesAndClaims/]: Loading player configs...
+[23Nov2026 13:19:43.637] [Server thread/INFO] [xaero.pac.OpenPartiesAndClaims/]: Loaded player configs!
+[23Nov2026 13:19:43.637] [Server thread/INFO] [xaero.pac.OpenPartiesAndClaims/]: Loading parties...
+[23Nov2026 13:19:43.638] [Server thread/INFO] [xaero.pac.OpenPartiesAndClaims/]: Loaded parties!
+[23Nov2026 13:19:43.639] [Server thread/INFO] [xaero.pac.OpenPartiesAndClaims/]: Fixing party inconsistencies...
+[23Nov2026 13:19:43.680] [Server thread/INFO] [xaero.pac.OpenPartiesAndClaims/]: Registered party system for OPAC: default
+[23Nov2026 13:19:43.680] [Server thread/INFO] [xaero.pac.OpenPartiesAndClaims/]: Registered party system for OPAC: ftb_teams
+[23Nov2026 13:19:43.681] [Server thread/INFO] [xaero.pac.OpenPartiesAndClaims/]: Registered permission system for OPAC: permission_api
+[23Nov2026 13:19:43.681] [Server thread/WARN] [xaero.pac.OpenPartiesAndClaims/]: The configured primary party system "argonauts_guilds" isn't registered!
+[23Nov2026 13:19:43.681] [Server thread/INFO] [xaero.pac.OpenPartiesAndClaims/]: Configured OPAC to use the following party system as primary: default
+[23Nov2026 13:19:43.681] [Server thread/INFO] [xaero.pac.OpenPartiesAndClaims/]: Loading claims...
+[23Nov2026 13:19:43.706] [Server thread/INFO] [xaero.pac.OpenPartiesAndClaims/]: Loaded claims in 24ms
+[23Nov2026 13:19:43.706] [Server thread/WARN] [xaero.pac.OpenPartiesAndClaims/]: The configured permission system "prometheus" isn't registered!
+[23Nov2026 13:19:43.706] [Server thread/INFO] [xaero.pac.OpenPartiesAndClaims/]: Configured OPAC to use the following permission system: permission_api
+[23Nov2026 13:19:43.720] [Server thread/INFO] [DistantHorizons-DistantHorizons-com.seibel.distanthorizons.core.world.AbstractDhWorld/]: Started DhWorld of type [CLIENT_SERVER].
+[23Nov2026 13:19:43.734] [Server thread/INFO] [terrablender/]: Initialized TerraBlender biomes for level stem minecraft:the_nether
+[23Nov2026 13:19:44.177] [Server thread/INFO] [terrablender/]: Initialized TerraBlender biomes for level stem minecraft:overworld
+[23Nov2026 13:19:44.217] [Render thread/INFO] [de.keksuccino.fancymenu.customization.layer.ScreenCustomizationLayerHandler/]: [FANCYMENU] ScreenCustomizationLayer registered: level_loading_screen
+[23Nov2026 13:19:44.758] [DH-Full Data Migration Thread[0]/INFO] [DistantHorizons-DistantHorizons-com.seibel.distanthorizons.core.file.fullDatafile.V2.DataMigratorV1/]: No migration necessary.
+[23Nov2026 13:19:44.769] [Server thread/INFO] [DistantHorizons-DistantHorizons-com.seibel.distanthorizons.core.level.AbstractDhServerLevel/]: Started DhClientServerLevel for [Wrapped{ServerLevel[zz-monde-603b001d]@minecraft:overworld}] at [[LocalSaveStructure@
+[23Nov2026 13:19:44.882] [Server thread/WARN] [mixin/]: Method overwrite conflict for removeIf in lithium.mixins.json:collections.chunk_tickets.SortedArraySetMixin from mod lithium, previously written by org.embeddedt.modernfix.common.mixin.bugfix.paper_chunk_
+[23Nov2026 13:19:45.219] [DH-Full Data Migration Thread[0]/INFO] [DistantHorizons-DistantHorizons-com.seibel.distanthorizons.core.file.fullDatafile.V2.DataMigratorV1/]: No migration necessary.
+[23Nov2026 13:19:45.233] [Server thread/INFO] [DistantHorizons-DistantHorizons-com.seibel.distanthorizons.core.level.AbstractDhServerLevel/]: Started DhClientServerLevel for [Wrapped{ServerLevel[zz-monde-603b001d]@minecraft:the_nether}] at [[LocalSaveStructure
+[23Nov2026 13:19:45.299] [DH-Request Module Ticker [minecraft:overworld] Thread[0]/INFO] [DistantHorizons-DistantHorizons-com.seibel.distanthorizons.core.generation.queues.WorldGenerationQueue/]: Creating world gen queue
+[23Nov2026 13:19:45.299] [DH-Request Module Ticker [minecraft:overworld] Thread[0]/INFO] [DistantHorizons-DistantHorizons-com.seibel.distanthorizons.core.generation.queues.WorldGenerationQueue/]: Created world gen queue
+[23Nov2026 13:19:45.299] [DH-Request Module Ticker [minecraft:overworld] Thread[0]/INFO] [DistantHorizons-DistantHorizons-com.seibel.distanthorizons.core.file.fullDatafile.GeneratedFullDataSourceProvider/]: Set world gen queue for level [minecraft:overworld].
+[23Nov2026 13:19:45.352] [DH-Full Data Migration Thread[0]/INFO] [DistantHorizons-DistantHorizons-com.seibel.distanthorizons.core.file.fullDatafile.V2.DataMigratorV1/]: No migration necessary.
+[23Nov2026 13:19:45.361] [Server thread/INFO] [DistantHorizons-DistantHorizons-com.seibel.distanthorizons.core.level.AbstractDhServerLevel/]: Started DhClientServerLevel for [Wrapped{ServerLevel[zz-monde-603b001d]@lostcities:lostcity}] at [[LocalSaveStructure@
+[23Nov2026 13:19:45.428] [DH-Full Data Migration Thread[0]/INFO] [DistantHorizons-DistantHorizons-com.seibel.distanthorizons.core.file.fullDatafile.V2.DataMigratorV1/]: No migration necessary.
+[23Nov2026 13:19:45.439] [Server thread/INFO] [DistantHorizons-DistantHorizons-com.seibel.distanthorizons.core.level.AbstractDhServerLevel/]: Started DhClientServerLevel for [Wrapped{ServerLevel[zz-monde-603b001d]@minecraft:the_end}] at [[LocalSaveStructure@(C
+[23Nov2026 13:19:45.442] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
+[23Nov2026 13:19:45.446] [Server thread/INFO] [KubeJS Server/]: Server resource reload complete!
+[23Nov2026 13:19:45.558] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Préparation de la zone d'apparition : 2 %
+[23Nov2026 13:19:45.740] [DH-Request Module Ticker [minecraft:the_nether] Thread[0]/INFO] [DistantHorizons-DistantHorizons-com.seibel.distanthorizons.core.generation.queues.WorldGenerationQueue/]: Creating world gen queue
+[23Nov2026 13:19:45.741] [DH-Request Module Ticker [minecraft:the_nether] Thread[0]/INFO] [DistantHorizons-DistantHorizons-com.seibel.distanthorizons.core.generation.queues.WorldGenerationQueue/]: Created world gen queue
+[23Nov2026 13:19:45.741] [DH-Request Module Ticker [minecraft:the_nether] Thread[0]/INFO] [DistantHorizons-DistantHorizons-com.seibel.distanthorizons.core.file.fullDatafile.GeneratedFullDataSourceProvider/]: Set world gen queue for level [minecraft:the_nether]
+[23Nov2026 13:19:45.771] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 326 ms
+[23Nov2026 13:19:45.772] [Server thread/INFO] [net.neoforged.neoforge.server.permission.PermissionAPI/]: Successfully initialized permission handler neoforge:default_handler
+[23Nov2026 13:19:45.798] [Server thread/INFO] [puffish_skills/]: [puffish_skills] Mod configuration loaded successfully!
+[23Nov2026 13:19:45.872] [DH-Request Module Ticker [lostcities:lostcity] Thread[0]/INFO] [DistantHorizons-DistantHorizons-com.seibel.distanthorizons.core.generation.queues.WorldGenerationQueue/]: Creating world gen queue
+[23Nov2026 13:19:45.873] [DH-Request Module Ticker [lostcities:lostcity] Thread[0]/INFO] [DistantHorizons-DistantHorizons-com.seibel.distanthorizons.core.generation.queues.WorldGenerationQueue/]: Created world gen queue
+[23Nov2026 13:19:45.873] [DH-Request Module Ticker [lostcities:lostcity] Thread[0]/INFO] [DistantHorizons-DistantHorizons-com.seibel.distanthorizons.core.file.fullDatafile.GeneratedFullDataSourceProvider/]: Set world gen queue for level [lostcities:lostcity].
+[23Nov2026 13:19:45.912] [Server thread/INFO] [puffish_skills/]: [puffish_skills] Data pack `puffish_skills` loaded successfully!
+[23Nov2026 13:19:45.914] [Server thread/INFO] [xaero.hud.minimap.MinimapLogs/]: Registered synced player tracker system: ftb_teams
+[23Nov2026 13:19:45.916] [Server thread/INFO] [xaero.map.WorldMap/]: Registered synced player tracker system: ftb_teams
+[23Nov2026 13:19:45.917] [Server thread/INFO] [com.tryken.trydeas_meleez.ModMain/]: Trydeas: Meleez 1.5.0 initialized.
+[23Nov2026 13:19:45.919] [Server thread/INFO] [Easy NPC: Core/]: 🗣 [Easy NPC: Core] Register Server is starting Events ...
+[23Nov2026 13:19:45.928] [Server thread/INFO] [Easy NPC: Core/]: 🗣 [Easy NPC: Core] Register Server data folders ...
+[23Nov2026 13:19:45.930] [Server thread/INFO] [Easy NPC: Core/]: [Pose Manager] Cleared all pose data.
+[23Nov2026 13:19:45.949] [DH-Request Module Ticker [minecraft:the_end] Thread[0]/INFO] [DistantHorizons-DistantHorizons-com.seibel.distanthorizons.core.generation.queues.WorldGenerationQueue/]: Creating world gen queue
+[23Nov2026 13:19:45.950] [DH-Request Module Ticker [minecraft:the_end] Thread[0]/INFO] [DistantHorizons-DistantHorizons-com.seibel.distanthorizons.core.generation.queues.WorldGenerationQueue/]: Created world gen queue
+[23Nov2026 13:19:45.950] [DH-Request Module Ticker [minecraft:the_end] Thread[0]/INFO] [DistantHorizons-DistantHorizons-com.seibel.distanthorizons.core.file.fullDatafile.GeneratedFullDataSourceProvider/]: Set world gen queue for level [minecraft:the_end].
+[23Nov2026 13:19:45.981] [Server thread/INFO] [Easy NPC: Core/]: 🗣 [Easy NPC: Core] Register 76 pose data entries.
+[23Nov2026 13:19:46.982] [Server thread/INFO] [KubeJS Server/]: Loaded Java class 'net.minecraft.world.level.levelgen.Heightmap$Types'
+[23Nov2026 13:19:46.987] [Server thread/INFO] [KubeJS Server/]: [Atheria] apparition : -96 -96 apres 2 essais, 960 ms
+[23Nov2026 13:19:46.999] [Server thread/INFO] [dev.averageanime.neoforge.CreateFood/]: Create: Food - Server Startup
+[23Nov2026 13:19:47.007] [Server thread/INFO] [FTB Quests/]: Loading quests from C:\Users\El-Afdal\Desktop\Atheria Zombie Edition\instances\Atheria-test-reglages\minecraft\config\ftbquests\quests
+[23Nov2026 13:19:47.054] [Server thread/INFO] [FTB Quests/]: loaded translation tables for 2 language(s)
+[23Nov2026 13:19:47.230] [Server thread/INFO] [FTB Quests/]: Loaded 4 chapter groups, 13 chapters, 211 quests, 0 reward tables
+[23Nov2026 13:20:09.222] [Server thread/WARN] [com.sk89q.worldedit.WorldEdit/]: Took more than 5 seconds to generate complete state map for jurassicreborn:low_security_fence_mk2_pole. This block is likely improperly using properties. State count: 1152. 5001ms 
+[23Nov2026 13:20:47.117] [Server thread/WARN] [com.sk89q.worldedit.WorldEdit/]: Took more than 5 seconds to generate complete state map for createaddition:small_light_connector. This block is likely improperly using properties. State count: 960. 6651ms elapsed
+[23Nov2026 13:21:14.804] [Server thread/WARN] [com.sk89q.worldedit.WorldEdit/]: Took more than 5 seconds to generate complete state map for handcrafted:mangrove_bench. This block is likely improperly using properties. State count: 1088. 6634ms elapsed.
+[23Nov2026 13:28:25.800] [ModernFix integrated server watchdog/ERROR] [org.embeddedt.modernfix.world.IntegratedWatchdog/]: Caught previously unhandled exception :
+[23Nov2026 13:28:25.802] [Server thread/WARN] [com.sk89q.worldedit.WorldEdit/]: Took more than 5 seconds to generate complete state map for minecraft:mossy_cobblestone_stairs. This block is likely improperly using properties. State count: 80. 422888ms elapsed.
+[23Nov2026 13:28:25.802] [ModernFix integrated server watchdog/ERROR] [org.embeddedt.modernfix.world.IntegratedWatchdog/]: ModernFix integrated server watchdog
+java.lang.OutOfMemoryError: Java heap space
+[23Nov2026 13:29:30.217] [Server thread/ERROR] [com.sk89q.worldedit.util.eventbus.EventBus/]: Could not dispatch event: com.sk89q.worldedit.event.platform.PlatformReadyEvent@3202039a to handler EventHandler{priority=NORMAL}
+java.lang.reflect.InvocationTargetException: null
+	at TRANSFORMER/worldedit@7.3.8+6939-7d32b45/com.sk89q.worldedit.util.eventbus.EventHandler.handleEvent(EventHandler.java:75) ~[worldedit-mod-7.3.8.jar%23602!/:7.3.8]
+	at TRANSFORMER/worldedit@7.3.8+6939-7d32b45/com.sk89q.worldedit.util.eventbus.EventBus.dispatch(EventBus.java:193) ~[worldedit-mod-7.3.8.jar%23602!/:7.3.8]
+	at TRANSFORMER/worldedit@7.3.8+6939-7d32b45/com.sk89q.worldedit.util.eventbus.EventBus.post(EventBus.java:181) ~[worldedit-mod-7.3.8.jar%23602!/:7.3.8]
+	at TRANSFORMER/worldedit@7.3.8+6939-7d32b45/com.sk89q.worldedit.neoforge.NeoForgeWorldEdit.serverStarted(NeoForgeWorldEdit.java:275) ~[worldedit-mod-7.3.8.jar%23602!/:7.3.8]
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:360) ~[bus-8.0.5.jar%23156!/:?]
+	at MC-BOOTSTRAP/net.neoforged.bus/net.neoforged.bus.EventBus.post(EventBus.java:328) ~[bus-8.0.5.jar%23156!/:?]
+	at TRANSFORMER/neoforge@21.1.265/net.neoforged.neoforge.server.ServerLifecycleHooks.handleServerStarted(ServerLifecycleHooks.java:113) ~[neoforge-21.1.265-universal.jar%23400!/:?]
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:674) ~[client-1.21.1-20240808.144430-srg.jar%23399!/:?]
+	at TRANSFORMER/minecraft@1.21.1/net.minecraft.server.MinecraftServer.lambda$spin$2(MinecraftServer.java:267) ~[client-1.21.1-20240808.144430-srg.jar%23399!/:?]
+	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
+Caused by: java.lang.OutOfMemoryError: Java heap space

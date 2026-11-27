@@ -1,0 +1,185 @@
+Echantillons CPU par fil : DH-World Gen Thread[0]=1726, Server thread=1633, DH-World Gen Thread[3]=1482, Render thread=1347, DH-World Gen Thread[2]=1267, DH-World Gen Thread[1]=1230, DH-Render Loader Thread[2]=927, DH-Render Loader Thread[0]=917, DH-Render Loader Thread[3]=915, DH-Render Loader Thread[1]=897, CullThread=723, DH-Chunk Update Queue [minecraft:overworld] Thread[0]=710, DH-Update Propagator Thread[1]=292, DH-Update Propagator Thread[2]=290, DH-Update Propagator Thread[0]=240
+
+== Render thread : 1347 echantillons, par paquet (3 segments)
+  16.3 %    219  net.minecraft.world
+  12.2 %    165  net.minecraft.client
+   9.1 %    122  com.mojang.blaze3d
+   8.5 %    115  it.unimi.dsi
+   3.5 %     47  net.caffeinemc.mods
+   3.2 %     43  net.minecraft.core
+   3.1 %     42  einstein.subtle_effects.ticking
+   2.7 %     37  traben.entity_model_features.models
+   2.4 %     33  net.irisshaders.iris
+   2.0 %     27  net.neoforged.bus
+   1.7 %     23  dev.latvian.mods
+   1.6 %     21  net.minecraft.resources
+   1.6 %     21  net.neoforged.neoforge
+   1.4 %     19  com.google.common
+   1.4 %     19  com.seibel.distanthorizons
+   1.4 %     19  dev.tr7zw.skinlayers
+   1.3 %     17  strm.emfcompat.parcool
+   1.2 %     16  dev.kosmx.playerAnim
+   1.0 %     13  me.fzzyhmstrs.fzzy_config
+   0.9 %     12  com.github.exopandora
+   0.9 %     12  de.odysseus.ithaka
+   0.9 %     12  traben.asm_generated.EMF_ASM_Parsed_338
+   0.8 %     11  de.keksuccino.fancymenu
+   0.7 %     10  team.creative.ambientsounds
+   0.7 %      9  com.simibubi.create
+-- Render thread : 40 methodes les plus vues (premier cadre hors java/jdk/sun)
+   3.1 %     42  com.mojang.blaze3d.vertex.BufferBuilder.handler$bje000$iris$beforeNext
+   2.5 %     34  net.minecraft.world.level.biome.BiomeManager.getBiome
+   2.3 %     31  it.unimi.dsi.fastutil.objects.Object2FloatOpenHashMap.getOrDefault
+   2.2 %     29  it.unimi.dsi.fastutil.longs.Long2ReferenceOpenHashMap.get
+   2.2 %     29  net.minecraft.client.multiplayer.ClientLevel.doAnimateTick
+   1.9 %     25  com.mojang.blaze3d.vertex.BufferBuilder.fillExtendedData
+   1.7 %     23  net.minecraft.world.level.block.state.BlockBehaviour.invokeGetFluidState
+   1.7 %     23  einstein.subtle_effects.ticking.tickers.geyser.GeyserTicker.isSpawnableBlock
+   1.3 %     17  dev.tr7zw.skinlayers.render.CustomizableModelPart.compile
+   1.2 %     16  net.minecraft.core.Holder$Reference.is
+   1.0 %     14  net.neoforged.bus.EventBus.post
+   1.0 %     13  net.irisshaders.iris.vertices.NormalHelper.computeTangent
+   0.9 %     12  it.unimi.dsi.fastutil.objects.Object2FloatOpenHashMap.find
+   0.8 %     11  com.mojang.blaze3d.vertex.PoseStack$Pose.transformNormal
+   0.7 %     10  com.mojang.blaze3d.vertex.MeshData.unpackQuadCentroids
+   0.7 %      9  net.minecraft.client.renderer.texture.TextureAtlas.cycleAnimationFrames
+   0.7 %      9  net.minecraft.resources.ResourceLocation.hashCode
+   0.7 %      9  me.fzzyhmstrs.fzzy_config.validation.misc.ValidatedCondition$ConditionSupplierImpl.get
+   0.7 %      9  de.keksuccino.fancymenu.util.rendering.RenderScaleUtil.setActiveRenderScale_FancyMenu
+   0.7 %      9  net.minecraft.world.entity.player.Player.handler$dpb000$bettercombat$getEquippedStack_Pre
+   0.7 %      9  dev.kosmx.playerAnim.api.layered.AnimationStack.isActive
+   0.6 %      8  net.minecraft.resources.ResourceLocation.toString
+   0.6 %      8  net.caffeinemc.mods.lithium.common.util.math.CompactSineLUT.lookup
+   0.6 %      8  net.minecraft.world.level.Level.tickBlockEntities
+   0.6 %      8  net.minecraft.client.multiplayer.ClientChunkCache.isValidChunk
+   0.6 %      8  net.minecraft.world.level.chunk.PalettedContainer.get
+   0.6 %      8  net.minecraft.client.multiplayer.ClientLevel.handler$zin000$subtle_effects$animateTick
+   0.6 %      8  noobanidus.mods.lootr.common.api.data.ILootrInfo.getInfoVec
+   0.5 %      7  net.minecraft.client.particle.ParticleEngine.render
+   0.5 %      7  net.minecraft.world.level.lighting.DataLayerStorageMap.getLayer
+   0.5 %      7  com.mojang.blaze3d.vertex.BufferBuilder.beginVertex
+   0.4 %      6  net.minecraft.world.level.block.state.BlockBehaviour$BlockStateBase.hasLargeCollisionShape
+   0.4 %      6  dev.kosmx.playerAnim.api.layered.ModifierLayer.isActive
+   0.4 %      6  net.minecraft.world.level.chunk.LevelChunk$BoundTickingBlockEntity.getPos
+   0.4 %      6  net.minecraft.client.particle.ParticleEngine.tickParticle
+   0.4 %      6  it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap.get
+   0.4 %      6  net.caffeinemc.mods.sodium.client.util.sorting.RadixSort.sortIndirect
+   0.4 %      6  net.minecraft.client.particle.SingleQuadParticle.getRenderBoundingBox
+   0.4 %      6  strm.emfcompat.parcool.compat.ParCoolPackVariables.doing
+   0.4 %      5  net.irisshaders.iris.shadows.frustum.advanced.AdvancedShadowCullingFrustum.checkCornerVisibility
+
+== Server thread : 1633 echantillons, par paquet (3 segments)
+  39.4 %    644  net.minecraft.world
+  13.2 %    215  it.unimi.dsi
+  10.7 %    174  net.minecraft.server
+   4.4 %     72  com.google.common
+   4.3 %     70  net.minecraft.core
+   2.8 %     46  net.neoforged.bus
+   2.8 %     46  dev.corgitaco.enhancedcelestials2core
+   2.1 %     34  xaero.pac.common
+   2.0 %     32  net.minecraft.resources
+   2.0 %     32  net.neoforged.neoforge
+   1.8 %     29  net.minecraft.util
+   1.5 %     25  net.caffeinemc.mods
+   1.0 %     16  net.minecraft.tags
+   1.0 %     16  com.tacz.guns
+   0.9 %     15  dev.latvian.mods
+   0.7 %     11  com.Harbinger.Spore
+   0.6 %     10  sereneseasons.config.SeasonsConfig
+   0.6 %     10  noobanidus.mods.lootr
+   0.6 %      9  net.minecraft.network
+   0.5 %      8  com.nyfaria.awcapi
+   0.4 %      7  net.vit.jurassicreborn
+   0.4 %      7  com.electronwill.nightconfig
+   0.4 %      6  com.tryken.trydeas_meleez
+   0.4 %      6  net.minecraft.advancements
+   0.3 %      5  sereneseasons.season.RandomUpdateHandler
+-- Server thread : 40 methodes les plus vues (premier cadre hors java/jdk/sun)
+   4.0 %     65  net.minecraft.world.entity.EntitySelector.lambda$static$4
+   3.3 %     54  com.google.common.collect.Iterators$1.hasNext
+   3.1 %     50  net.minecraft.server.level.ChunkHolder.getTickingChunk
+   2.3 %     38  net.minecraft.world.level.block.state.BlockBehaviour$BlockStateBase.redirect$zoh000$modernfix$genCacheBeforeGettingFluid
+   2.1 %     34  net.minecraft.core.Holder$Reference.is
+   2.0 %     32  net.minecraft.world.level.chunk.LevelChunk$BoundTickingBlockEntity.getPos
+   1.9 %     31  dev.corgitaco.enhancedcelestials2core.api.lunarevent.LunarForecast.activeLunarEventInstance
+   1.7 %     28  it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap$MapIterator.nextEntry
+   1.7 %     27  it.unimi.dsi.fastutil.longs.Long2ByteOpenHashMap.get
+   1.5 %     25  net.neoforged.bus.EventBus.post
+   1.5 %     25  net.minecraft.world.level.block.state.BlockBehaviour.invokeGetFluidState
+   1.5 %     25  net.minecraft.world.level.chunk.LevelChunk$RebindableTickingBlockEntityWrapper.tick
+   1.4 %     23  net.minecraft.world.level.block.state.BlockBehaviour$BlockStateBase.getCollisionShape
+   1.2 %     20  it.unimi.dsi.fastutil.longs.Long2ObjectLinkedOpenHashMap.get
+   1.2 %     20  net.minecraft.world.level.chunk.status.ChunkStep.getAccumulatedRadiusOf
+   1.2 %     19  net.minecraft.world.level.block.state.BlockBehaviour$BlockStateBase.hasLargeCollisionShape
+   1.1 %     18  net.minecraft.server.level.ServerChunkCache.getChunkBlocking
+   1.1 %     18  it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap.get
+   1.0 %     17  it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap.get
+   1.0 %     16  net.minecraft.tags.TagKey.equals
+   1.0 %     16  it.unimi.dsi.fastutil.longs.Long2ObjectLinkedOpenHashMap$MapIterator.nextEntry
+   0.9 %     15  net.minecraft.resources.ResourceLocation.equals
+   0.9 %     15  net.minecraft.world.level.Level.dimensionType
+   0.9 %     15  net.minecraft.server.level.ServerChunkCache.getChunk
+   0.9 %     15  it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap.find
+   0.9 %     15  net.minecraft.world.level.chunk.LevelChunkSection.isRandomlyTickingFluids
+   0.9 %     15  net.minecraft.world.level.levelgen.BitRandomSource.nextInt
+   0.9 %     14  net.minecraft.core.SectionPos.of
+   0.9 %     14  net.minecraft.server.level.ServerChunkCache.tickChunks
+   0.7 %     12  net.minecraft.resources.ResourceLocation.toString
+   0.7 %     12  net.minecraft.server.level.ServerEntity.sendChanges
+   0.7 %     11  net.minecraft.world.level.pathfinder.WalkNodeEvaluator.checkNeighbourBlocks
+   0.7 %     11  net.minecraft.world.level.biome.BiomeManager.getBiome
+   0.6 %     10  net.minecraft.world.level.chunk.PalettedContainer.get
+   0.6 %     10  sereneseasons.config.SeasonsConfig.getSeasonProperties
+   0.6 %     10  it.unimi.dsi.fastutil.objects.Reference2ReferenceOpenHashMap.get
+   0.5 %      8  net.minecraft.util.SimpleBitStorage.get
+   0.5 %      8  net.minecraft.server.level.DistanceManager.purgeStaleTickets
+   0.5 %      8  net.neoforged.bus.ConsumerEventHandler.invoke
+   0.5 %      8  net.minecraft.server.level.ChunkHolder.broadcastChanges
+
+== Allocation (poids) : 151.7 Go sur l'enregistrement, 30 premiers paquets
+  37.3 %     56606 Mo  net.minecraft.world
+  28.7 %     43517 Mo  com.seibel.distanthorizons
+  20.8 %     31631 Mo  einstein.subtle_effects.init
+   3.0 %      4506 Mo  mcjty.lostcities.worldgen
+   2.1 %      3260 Mo  it.unimi.dsi
+   0.9 %      1294 Mo  dh_sqlite.core.NativeDB
+   0.8 %      1200 Mo  org.apache.logging
+   0.8 %      1162 Mo  net.minecraft.resources
+   0.7 %      1009 Mo  net.minecraft.core
+   0.5 %       730 Mo  net.minecraft.util
+   0.4 %       648 Mo  net.minecraft.client
+   0.4 %       601 Mo  com.mojang.blaze3d
+   0.3 %       485 Mo  net.minecraft.Util
+   0.3 %       475 Mo  com.google.common
+   0.3 %       397 Mo  mcjty.lostcities.varia
+   0.2 %       350 Mo  com.mojang.datafixers
+   0.2 %       327 Mo  net.caffeinemc.mods
+   0.2 %       292 Mo  net.neoforged.neoforge
+   0.2 %       263 Mo  com.mojang.serialization
+   0.2 %       242 Mo  dev.corgitaco.enhancedcelestials2core
+   0.1 %       140 Mo  dev.worldgen.lithostitched
+   0.1 %       137 Mo  net.minecraft.nbt
+   0.1 %       113 Mo  net.minecraft.server
+   0.1 %       109 Mo  team.creative.ambientsounds
+   0.1 %       103 Mo  einstein.subtle_effects.ticking
+   0.1 %        99 Mo  dev.tr7zw.entityculling
+   0.1 %        96 Mo  net.irisshaders.iris
+   0.1 %        95 Mo  com.github.exopandora
+   0.1 %        92 Mo  net.minecraft.network
+   0.1 %        77 Mo  net.vit.jurassicreborn
+-- classes allouees
+  20.7 %     31351 Mo  java.util.stream.MatchOps$$Lambda
+  19.4 %     29494 Mo  java.lang.Long
+  11.7 %     17706 Mo  net.minecraft.resources.ResourceLocation[]
+  11.1 %     16909 Mo  net.minecraft.world.level.levelgen.DensityFunctions$Spline$Point
+  10.8 %     16448 Mo  net.minecraft.core.BlockPos
+   5.5 %      8354 Mo  com.seibel.distanthorizons.core.pos.DhChunkPos
+   1.9 %      2814 Mo  java.lang.Object[]
+   1.6 %      2356 Mo  org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
+   1.5 %      2328 Mo  byte[]
+   1.3 %      1988 Mo  java.util.concurrent.ConcurrentHashMap$Node
+   1.0 %      1538 Mo  long[]
+   0.8 %      1211 Mo  java.lang.ThreadLocal$ThreadLocalMap$Entry
+   0.7 %      1001 Mo  java.util.stream.ReferencePipeline$Head
+   0.6 %       975 Mo  double[]
+   0.6 %       919 Mo  com.seibel.distanthorizons.core.util.RenderDataPointReducingList$$Lambda

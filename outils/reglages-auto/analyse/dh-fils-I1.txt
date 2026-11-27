@@ -1,0 +1,22 @@
+fils DH: {'DH-World Gen Thread[0]': 1061, 'DH-World Gen Thread[2]': 838, 'DH-World Gen Thread[3]': 811, 'DH-World Gen Thread[1]': 747, 'DH-Render Loader Thread[2]': 596, 'DH-Render Loader Thread[0]': 550, 'DH-Render Loader Thread[3]': 538, 'DH-Render Loader Thread[1]': 531, 'DH-Chunk Update Queue [minecraft:overworld] Thread[0]': 414, 'DH-Update Propagator Thread[0]': 176, 'DH-Update Propagator Thread[1]': 169, 'DH-Update Propagator Thread[3]': 168, 'DH-Update Propagator Thread[2]': 139, 'DH-LOD Builder Thread[1]': 56, 'DH-LOD Builder Thread[0]': 46, 'DH-LOD Builder Thread[2]': 45, 'DH-LOD Builder Thread[3]': 38, 'DH-[minecraft:overworld] LodQuadTree Data Retrieval Queue Thread[0]': 14, 'DH-ClientTickTimer': 14, 'DH-Request Module Ticker [minecraft:overworld] Thread[0]': 2, 'DH-DataSource Request Ticker [minecraft:overworld] Thread[0]': 1, 'DH-Update Propagate Queue [lostcities:lostcity] Thread[0]': 1, 'DH-Log Ticker Thread[0]': 1, 'DH-Phantom Array Recycler Thread[0]': 1, 'DH-World Gen Progress Updater Thread[0]': 1, 'DH-World Gen Queue Thread[0]': 1, 'DH-Update Propagate Queue [minecraft:the_end] Thread[0]': 1, 'DH-delayed save cache cleaner Thread[0]': 1}
+DH-World Gen, total 3459
+  64.3 %   2223 autre
+  32.3 %   1116 generation lointaine (DH BatchGenerator / Step*)
+   2.9 %     99 construction LOD / rendu
+   0.6 %     21 conversion de chunks charges
+-- premier cadre DH
+625 RunOnThisThreadExecutorService.execute
+430 StepSurface_neoforge.generateGroup
+69 StepFeatures_neoforge.generateGroup
+33 DhLitWorldGenRegion_neoforge.getChunkAccess
+32 ChunkWrapper_neoforge.getBlockState
+28 DhLitWorldGenRegion_neoforge.getBlockState
+25 ChunkWrapper_neoforge.getBiome
+24 BlockBiomeWrapperPair.get
+17 FullDataSourceV2.removeUnusedIdsAndRemap
+16 DhLitWorldGenRegion_neoforge.setBlock
+15 StepStructureStart_neoforge.generateGroup
+12 FullDataOcclusionCuller.checkOcclusion
+12 BlockStateWrapper_neoforge.fromBlockState
+11 DhLitWorldGenRegion_neoforge.getChunk
+9 ChunkLightStorage$LightSection.get

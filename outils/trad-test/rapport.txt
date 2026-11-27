@@ -1,0 +1,36 @@
+﻿Rapport test traduction FR - instance Atheria-trad-test (copie de Atheria-test-reglages) - 25/11/2026 19:26
+fr_fr.json de la branche claude/project-thread-adbcj6 : 137 fichiers kubejs (3 remplaces, 134 ajoutes). Tous JSON valides
+(jurassicreborn : cles en double qui ne different que par la casse, item.JurassicReborn.action_figure / item.jurassicreborn.action_figure).
+
+== Menu titre, Options, Controles : tout en francais.
+== Assignation des touches (captures 04-touches-*) :
+- Barre de recherche (Controlling) : suggestions "category", "key", "name" en anglais.
+- Categorie "JEI (Hovering with Mouse over ...)" (2 fois) en anglais.
+- JEI : "Triche 1 item", "Triche 1 stack" (franglais).
+- JEI : faute "Affiächer la prochaine categorie de recette" (a avec trema).
+- Categorie MTS : "Immersive Vehicles (...)" ; touches "Import Packs (Developers Only)" et "Open configuration screen" en anglais.
+- Categorie FirstPerson : cle brute "key.categories.firstperson..." (non traduite, meme pas en anglais) et categorie "firstperson:keybin..." brute.
+- TaCZ : "Ouvrir TAC Config" (mixte).
+- Placebo : "Basculer les ailes Patreon", "Basculer les sentiers de Patreon" (ok mais Patreon garde).
+- En-tetes de categorie qui sont des noms de mods restes en anglais (normal) : Open Parties and Claims, EntityCulling, Better Combat, Shoulder Surfing, Steam 'n' Rails, Sophisticated Backpacks, Take a Seat, Ping Wheel, LesRaisins Tactical, TaCZ Tactical Breaching.
+
+== Monde de test : l'ancien monde "ZZ Test Reglages" refuse de charger (datapack atheria_ile_datapack.zip sans le mod atheria_ile dans cette instance) -> Retour, puis monde neuf creatif "ZZ Trad Test" (nom affiche : "Nouveau mondeZZ Trad Test").
+== Choix du monde : dates au format americain "11/23/26, 4:13 PM" (vanilla, locale Java).
+== Onglets creatifs (≈100, captures 11-19) : tout en FR ou nom de mod, sauf :
+- "Immersive Vehicles (formerly MTS)" (formerly en anglais).
+- "Atheria - vehicules" sans accent.
+- Onglet p4/t5 sans titre (vide).
+- Noms de packs restes anglais : "Coolest Cars You've Never Heard Of", "Sphase Vehicle Mashup Pack", "MTS Official Vehicle Pack", "MTS Official Automobile Pack", "Thirst Was Taken", "Truck Pack", "Vehicles of Survival", "Critters and Companions", "Modern Train Parts", "Create Train Parts".
+== MTS (objets) : tous les noms/infobulles vus en FR (Jerrican de Carburant, Etablis, Cle, Bell 206...).
+- Bell 470 : description affichee avec des morceaux de texte qui se chevauchent/doublent ("sure montes sur le", "chaudeses 'chaudes'") -> capture 22.
+- Touches MTS en anglais : "Open configuration screen" (cle gui.masterconfig) et "Import Packs (Developers Only)" (gui.import) ; aussi "gui.confirm" = "CONFIRM" dans le dump.
+== Chipped : onglet, etabli de botaniste (Apercu, Fabriquer, Inventaire, bouton "Simple"), variantes "Bloc d'amethyste (...)" : tout en FR.
+== JEI recherche "caisse" : 73 resultats, FR, sauf Jurassic Reborn :
+- "Caisse de nourriture ..." : lignes "Supplies 10 feeder servings per crate" et "10x the food capacity of one loose item" en anglais (capture 31).
+== ParCool (Alt+P) : FR, sauf :
+- Onglet Commandes : valeurs "DOWN_KEY" / "PRESS_KEY" brutes.
+- Onglet Animations : liste des identifiants bruts "parcool:fast_run", "parcool:crawl", "parcool:dodge_right"... (non traduits).
+- Onglet General : valeur "Light" (affichage de l'endurance).
+== TaCZ (infobulles armes/lasers) : FR. Details : "Couleur du Laser: #00FF00" (pas d'espace avant :), majuscules irregulieres ("Imprecision au Juge" / "imprecision en visee", "Degats De Tir A La Tete", "Fusil A Pompe").
+== Menu pause : bouton "Blood" (Simple Blood) en anglais.
+== MTS generateOverrideConfigs : fichiers generes dans config\IVLanguageDumps\<pack>\fr_fr.json (copies dans mts-dump\), mtsconfig.json remis depuis le .bak (identique, value false).

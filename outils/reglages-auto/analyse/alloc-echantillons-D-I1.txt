@@ -1,0 +1,48 @@
+== jeu.jfr
+echantillons 32529 poids total 151.7 Go
+echantillons > 1 Go : 8 pour 117.2 Go
+  31.3 Go einstein.subtle_effects.init Render thread java.util.stream.MatchOps$$Lambda
+  17.7 Go net.minecraft.world Server thread net.minecraft.resources.ResourceLocation[]
+  15.8 Go net.minecraft.world DH-World Gen Thread[0] net.minecraft.world.level.levelgen.DensityFunctions$Spline$Point
+  15.7 Go net.minecraft.world DH-World Gen Thread[3] net.minecraft.core.BlockPos
+  15.6 Go com.seibel.distanthorizons DH-World Gen Thread[2] java.lang.Long
+  13.2 Go com.seibel.distanthorizons DH-World Gen Thread[1] java.lang.Long
+  6.7 Go com.seibel.distanthorizons DH-Chunk Update Queue [minecraft:overworld] Thread[0] com.seibel.distanthorizons.core.pos.DhChunkPos
+  1.2 Go org.apache.logging Worker-ResourceReload-12 java.lang.ThreadLocal$ThreadLocalMap$Entry
+-- par nombre d'echantillons
+  33.7 %   10975  com.seibel.distanthorizons
+   8.3 %    2695  it.unimi.dsi
+   8.0 %    2610  net.minecraft.world
+   6.4 %    2080  dh_sqlite.core.NativeDB
+   4.2 %    1368  net.minecraft.core
+   3.1 %     993  dev.tr7zw.entityculling
+   3.0 %     970  mcjty.lostcities.worldgen
+   2.9 %     949  de.maxhenkel.voicechat
+   2.5 %     797  com.logisticscraft.occlusionculling
+   2.4 %     776  net.minecraft.resources
+   2.2 %     715  dh_sqlite.core.CoreStatement
+   2.1 %     686  io.netty.util
+== i1.jfr
+echantillons 17062 poids total 84.5 Go
+echantillons > 1 Go : 8 pour 60.8 Go
+  34.0 Go noobanidus.mods.lootr Render thread noobanidus.mods.lootr.common.api.PlayerContext
+  5.4 Go net.minecraft.world Server thread org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
+  5.0 Go mcjty.lostcities.worldgen DH-World Gen Thread[0] java.lang.Object[]
+  4.4 Go net.minecraft.core DH-World Gen Thread[2] java.util.Optional
+  4.1 Go java.util.concurrent DH-World Gen Thread[1] java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionNode
+  3.5 Go com.seibel.distanthorizons DH-World Gen Thread[3] java.lang.Long
+  2.3 Go org.apache.logging Worker-ResourceReload-11 java.lang.ThreadLocal$ThreadLocalMap$Entry
+  2.1 Go com.seibel.distanthorizons DH-Chunk Update Queue [minecraft:overworld] Thread[0] java.util.concurrent.ConcurrentHashMap$Node
+-- par nombre d'echantillons
+  28.6 %    4879  com.seibel.distanthorizons
+   8.3 %    1410  net.minecraft.world
+   7.2 %    1233  mcjty.lostcities.worldgen
+   6.0 %    1023  it.unimi.dsi
+   5.7 %     981  dh_sqlite.core.NativeDB
+   4.5 %     761  com.google.common
+   3.7 %     627  net.minecraft.util
+   3.5 %     591  net.minecraft.core
+   3.3 %     557  net.minecraft.resources
+   2.9 %     490  de.maxhenkel.voicechat
+   2.6 %     443  net.caffeinemc.mods
+   2.5 %     419  net.neoforged.neoforge

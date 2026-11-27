@@ -1,0 +1,72 @@
+Relevé hash du cache Xaero World Map — 24/11/2026 ~20:07 (heure du PC), lecture seule
+R = C:\Users\El-Afdal\Desktop\Atheria Zombie Edition
+
+CONCLUSION
+- Le cache livré (cache_1\*.xwmc) a été produit pendant la passe 1 du 23/11 dans AtheriaXaeroDH
+  avec le hash 646328568 (= 0x268630F8, octets 4-7 de cache.xaero : 00010019 268630f8 ...).
+- Chez Mika (session lancée 24/11 19:52:41, en cours), Xaero calcule le hash -1283322915 (= 0xB3820BDD).
+- Les deux diffèrent -> Xaero considère tout le cache comme périmé et le reconstruit région par région
+  à partir des .zip : c'est la cause de l'attente de plusieurs minutes.
+- Au moment du relevé : 216/580 .xwmc déjà réécrits avec b3820bdd (19:55-20:07), 364 encore en 268630f8.
+- Les resourcePacks sont identiques dans les 3 instances : le hash dépend donc d'autre chose que
+  la liste de packs (contenu des packs/mods, blocs, config). Le hash a changé à chaque série de
+  lancements, y compris dans AtheriaXaeroDH (6 valeurs différentes le 23-24/11).
+
+1. LIGNES « New world map region cache hash code »
+Atheria (Mika) :
+  01/11 23:20-23:53  -1474857283 (sauf 23:37 et 23:42 : 1260901724)
+  02/11 17:57-18:24  -482199092 (18:01 : -1431352440)
+  03/11 22:36 -> 04/11 16:37  -1199278355
+  05/11 17:09 -> 06/11 23:57  -1876002605
+  07/11 19:26 -> 10/11 08:20  2034998059
+  11/11 19:35  1051561601 ; 11/11 20:59 -> 12/11 02:30  -1925528363
+  13/11 19:20-20:48  1419080477
+  14/11 16:11 -> 15/11 08:53  1675074023
+  23/11 09:37-11:48  1679642829 (2026-11-23-1..6.log.gz, debug-2..5.log.gz)
+  24/11 19:54:03.979  -1283322915  <- DERNIÈRE VALEUR (logs\latest.log L1522, debug.log L27348,
+                                     atheria_reglages\jeu-relance.log L1566)
+AtheriaXaeroDH :
+  23/11 15:42-16:08  231577890 (2026-11-23-2..5)
+  23/11 17:57        891124337 (2026-11-23-6)
+  23/11 22:54        -631515847 (2026-11-23-7)
+  23/11 23:11:22.343 646328568 (2026-11-23-8.log.gz L1541 ; copie outils\xaero-conversion-20261123\logs\latest-passe1.log L1541)
+                     <- VALEUR PENDANT LA CONVERSION PASSE 1 (23:12-23:52) ; gameDir = instances/AtheriaXaeroDH
+  24/11 00:00 et 00:23  -641165208 (copies latest-passe2-essai1.log L628, latest-passe2.log L1615)
+  24/11 00:58 -> 02:45  360405782 (2026-11-24-1..7, debug*.log, latest.log, retires\latest-lancement*.log,
+                     copies latest-passe3.log L1575, latest-passe3b.log L1590)
+  (client-passe*.log : aucune ligne ; pas de dossier retires\ dans l'instance Atheria)
+
+2. options.txt (identiques)
+  Atheria (modif 24/11 20:06), AtheriaXaeroDH (24/11 02:46), Atheria-test-reglages (23/11 17:58) :
+  resourcePacks:["tacz_resources","vanilla","mod_resources","file/FreshAnimations_v1.11.1_1.20+.zip","file/FA+Player-v1.1.zip","file/Atheria-Infectes-variantes.zip","moonlight:merged_pack"]
+  incompatibleResourcePacks:[]
+
+3. instances\Atheria\minecraft\xaero\world-map\Multiplayer_91.197.6.18\null\
+  un seul sous-dossier : mw$-1269157683
+  - racine : 580 .zip (148 Mo), modifiés 24/11 19:30:43 -> 20:06:57 (340 à 19:30, 235 à 19:31, 1 à 19:56, 4 à 20:0x)
+  - cache\ : sous-dossiers 1 (67 fichiers), 2 (21), 3 (11), modifiés 24/11 20:01:38 ; 0 zip, 0 xwmc
+  - cache_1\ : 580 .xwmc, 0 zip, modifiés 24/11 19:31:13 -> 20:06:58
+      répartition : 19:31=364, 19:55=2, 19:56=1, 19:58=86, 19:59=73, 20:00=28, 20:01=22, 20:06=3, 20:07=1
+      + 4 fichiers .xwmc.outdated (-2_11, -3_-9, -3_11, -4_-10 ; 23/11 01:27-09:51)
+  - caves\ : vide
+  20 premiers octets de cache.xaero (lu en mémoire) :
+    -10_-1.xwmc (24/11 19:58:32, 550418 o) : 00010019b3820bdd0000000000005ae97fffffff
+    -11_-7.xwmc (24/11 19:59:14, 370383 o) : 00010019b3820bdd0000000000005ae97fffffff
+    -12_-9.xwmc (24/11 19:58:19, 336127 o) : 00010019b3820bdd0000000000005ae97fffffff
+    -7_1.xwmc   (24/11 19:58:59, 477209 o) : 00010019b3820bdd0000000000005ae97fffffff
+    2_6.xwmc    (24/11 19:31:27, 275359 o) : 00010019268630f80000000000005ae97fffffff
+  Comptage des 580 .xwmc : 00010019268630f8 = 364 ; autre = 216, tous 00010019b3820bdd ; 0 erreur de lecture.
+  Décodage : 0x268630F8 = 646328568 (hash passe 1) ; 0xB3820BDD = -1283322915 (hash de Mika le 24/11 19:54).
+
+4. Configs Xaero de Mika (config\xaero\world-map, modifiés 24/11 19:53:23)
+  client.cfg : global_version = 1 ; max_loaded_regions = 300
+  profiles\default.cfg : block_colors = 0 ; terrain_depth = true ; terrain_slopes = 2 ; biome_blending = true ;
+    biome_colors_in_vanilla = false ; adjust_height_for_short_blocks = true ; display_stained_glass = true ;
+    legible_cave_maps = false
+  .txt sous xaero\world-map\Multiplayer_91.197.6.18 (récursif) :
+    server_config.txt (23/11 01:13:01) : multiworldType:0 / ignoreServerLevelId:false / ignoreHeightmaps:false /
+      playerTeleportCommandFormat:/tp @s {name} / normalTeleportCommandFormat:/tp @s {x} {y} {z} /
+      dimensionTeleportCommandFormat:/execute as @s in {d} run tp {x} {y} {z} / useDefaultMapTeleport:true /
+      useDefaultPlayerTeleport:true
+    null\dimension_config.txt (23/11 01:13:10) : caveModeType:1 / dimensionTypeId:minecraft:overworld
+    aucun .txt dans mw$-1269157683 (pas de config propre au monde).

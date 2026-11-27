@@ -1,0 +1,58 @@
+Caches de vue d'ensemble Xaero (essais C, D, E) - 24/11/2026, heure du PC
+Instance AtheriaXaeroDH, monde AtheriaXaero, atheria_reglages-1.0.14 seul dans mods\, shaders off, 1920x1080.
+Script zz_xaero_chrono2.js (contenu fourni, seule la ligne 3 changee par essai), spectateur tp 3000 200 -1000, 4 crans de dezoom x 10 ticks (zoom 0,063x).
+
+0. ETAT DES SOURCES
+- S = cm-converted\ : 580 .zip, AUCUN sous-dossier (pas de cache_1 dans S).
+- autres-caches\AtheriaXaero\null\ : .lock, dimension_config.txt,
+    cache_1\ 576 .xwmc + 4 .xwmc.outdated (-1_-1, -1_0, 0_-1, 0_0), 196,4 Mo
+    cache\1\ 144 fichiers (89,2 Mo), cache\2\ 36 (28,5 Mo), cache\3\ 16 (8 Mo)
+- J'ai pris "S\cache_1" = autres-caches\AtheriaXaero\null\cache_1 (le cache_1 livre).
+- Au chronometrage A/B, j'avais remis N\cache a neuf avec autres-caches\...\cache (196 fichiers, pas vide).
+  A et B avaient donc deja des vues d'ensemble (anciennes) : ile entiere a 10 s.
+
+ESSAI C (fabrication, sans N\cache) - lancement 20:31:41
+  [Reglages] empreinte carte Xaero fixee (avant 0) 20:32:50 ; hash Xaero 360405782
+  [XAERO-CHRONO2] C arrivee 20:33:47 ; empreinte 646328568 ; CARTE OUVERTE 20:34:46 ; FIN 20:37:46
+  Captures : 20t quelques regions autour du joueur ; 200t (10 s) petit morceau est autour de Mamoudzou ;
+             1200t (60 s) environ la moitie est de l'ile ; 3000t (2 min 30) ile entiere.
+  Resultat : cache\1 144 fichiers 89,2 Mo, cache\2 36 fichiers 28,5 Mo, cache\3 16 fichiers 8 Mo ; total 125,7 Mo.
+             (Memes nombres que les anciens, mais les 196 fichiers sont tous differents.)
+  cache_1 : 4 .xwmc reecrits pendant C (0_0, 0_-1, -1_0, -1_-1, recrees) ; les 576 .xwmc gardent 00010019268630f8 ;
+            4 regions passees en .outdated (5_-2, 5_-3, 6_-2, 6_-3 = la ou se trouve le joueur) ; 0 .zip modifie.
+  Copie : caches-complets-20261124\cache_1\ (580) et cache\1,2,3\ (196).
+
+ESSAI D (zip livres + cache_1 et cache de caches-complets) - lancement 20:38:41
+  [Reglages] empreinte fixee (avant 0) 20:39:51 ; [XAERO-CHRONO2] D arrivee 20:40:46 ; empreinte 646328568 ;
+  CARTE OUVERTE 20:41:45 ; FIN 20:42:05
+  2t  : encore au zoom de depart (0,7x) : Mamoudzou net, tout l'ecran rempli, rien de noir sauf la bande gauche hors monde
+  10t : zoom 0,063x : grand rectangle centre (environ 3/4 de l'ile), coins nord-ouest et sud manquants
+  20t : presque toute l'ile, un coin sud-ouest et une bande sud encore noirs
+  40t : ile entiere, aucune zone noire
+  60t, 100t, 200t : ile entiere, aucune zone noire
+
+ESSAI E (zip livres + cache_1 livre, sans cache) - lancement 20:42:31
+  [Reglages] empreinte fixee (avant 360405782) 20:43:44 ; [XAERO-CHRONO2] E arrivee 20:44:42 ; empreinte 646328568 ;
+  CARTE OUVERTE 20:45:42 ; FIN 20:46:02
+  2t  : zoom de depart, Mamoudzou net (comme D)
+  10t : tout noir
+  20t : tout noir
+  40t : 2 petits carres (region du joueur + une autre)
+  60t : un carre de quelques regions autour du joueur
+  100t : a peine plus
+  200t : petite tache autour de Mamoudzou (environ 1/10 de l'ile), le reste noir
+
+ETAPE 6 (D 40t = ile entiere, condition remplie)
+  Clone outils\git-xaero, branche claude/project-thread-6xkiw0 (au depart 03933be).
+  mw$-1269157683\cache_1 : 576 .xwmc de caches-complets (les .outdated NON envoyes),
+    + les 4 .xwmc deja sur la branche pour 5_-2, 5_-3, 6_-2, 6_-3 (que caches-complets n'a qu'en .outdated),
+    + 4 nouveaux .xwmc (0_0, 0_-1, -1_0, -1_-1), qui manquaient sur la branche. Resultat : 580 .xwmc, une par region.
+    Les 572 autres sont identiques octet pour octet a ceux de la branche.
+  mw$-1269157683\cache\1,2,3 : 196 fichiers ajoutes. Aucun autre fichier touche (ni index.toml).
+  Commit 670b6ae « Carte Xaero : caches de vue d'ensemble pour un affichage immediat ».
+
+REMISE EN ETAT
+  zz_xaero_chrono2.js -> retires\zz_xaero_chrono2-branches.js ; anciens N -> retires\avant-C/D/E-branches\ ;
+  N laisse dans l'etat de l'essai E. Captures C-*, D-*, E-* dans captures\xaero-chrono-20261124\.
+  Logs : logs\latest-chrono2-C/D/E.log.
+  Push OK : 03933be..670b6ae sur claude/project-thread-6xkiw0 (SHA 670b6ae6a99a50ef89c98a3d82aa235c45db014e, verifie par ls-remote).

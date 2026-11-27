@@ -1,0 +1,22 @@
+fils DH: {'DH-World Gen Thread[0]': 1726, 'DH-World Gen Thread[3]': 1482, 'DH-World Gen Thread[2]': 1267, 'DH-World Gen Thread[1]': 1230, 'DH-Render Loader Thread[2]': 927, 'DH-Render Loader Thread[0]': 917, 'DH-Render Loader Thread[3]': 915, 'DH-Render Loader Thread[1]': 897, 'DH-Chunk Update Queue [minecraft:overworld] Thread[0]': 710, 'DH-Update Propagator Thread[1]': 292, 'DH-Update Propagator Thread[2]': 290, 'DH-Update Propagator Thread[0]': 240, 'DH-Update Propagator Thread[3]': 237, 'DH-LOD Builder Thread[3]': 100, 'DH-LOD Builder Thread[0]': 97, 'DH-LOD Builder Thread[2]': 97, 'DH-LOD Builder Thread[1]': 96, 'DH-ClientTickTimer': 25, 'DH-World Gen Queue Thread[0]': 8, 'DH-Request Module Ticker [lostcities:lostcity] Thread[0]': 6, 'DH-FullDataPayloadSender': 5, 'DH-[minecraft:overworld] LodQuadTree Data Retrieval Queue Thread[0]': 5, 'DH-World Gen Progress Updater Thread[0]': 4, 'DH-ClientLevelTickCleanup': 4, 'DH-Phantom Array Recycler Thread[0]': 3, 'DH-Request Module Ticker [minecraft:the_nether] Thread[0]': 2, 'DH-DataSource Request Ticker [lostcities:lostcity] Thread[0]': 1, 'DH-Update Propagate Queue [minecraft:overworld] Thread[0]': 1, 'DH-Log Ticker Thread[0]': 1, 'DH-Update Propagate Queue [minecraft:the_end] Thread[0]': 1, 'DH-Request Module Ticker [minecraft:overworld] Thread[0]': 1, 'DH-Update Propagate Queue [minecraft:the_nether] Thread[0]': 1}
+DH-World Gen, total 5717
+  50.6 %   2893 generation lointaine (DH BatchGenerator / Step*)
+  45.0 %   2574 autre
+   2.9 %    166 construction LOD / rendu
+   1.5 %     84 conversion de chunks charges
+-- premier cadre DH
+2028 RunOnThisThreadExecutorService.execute
+1000 StepSurface_neoforge.generateGroup
+179 StepFeatures_neoforge.generateGroup
+168 DhLitWorldGenRegion_neoforge.getChunk
+62 DhLitWorldGenRegion_neoforge.setBlock
+60 FullDataSourceV2.removeUnusedIdsAndRemap
+53 StepStructureStart_neoforge.generateGroup
+51 ChunkWrapper_neoforge.getBiome
+48 DhLitWorldGenRegion_neoforge.getChunkAccess
+48 ChunkWrapper_neoforge.getBlockState
+41 FullDataOcclusionCuller.cullHiddenDatapointsInColumn
+39 DhLitWorldGenRegion_neoforge.getBlockState
+25 BlockStateWrapper_neoforge.fromBlockState
+24 DhChunkGenerator_neoforge.generateDirect
+22 BlockBiomeWrapperPair.get

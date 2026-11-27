@@ -1,0 +1,72 @@
+Rapport essais DH/Iris passe 3 - 24/11/2026 (instance AtheriaXaeroDH, monde AtheriaXaero, atheria_reglages 1.0.11, DH 3.3.3, Iris 1.8.14-beta.1, ComplementaryUnbound r5.9.3)
+Lancement 00:57:10, fin du script 01:10:54, jeu ferme 01:11:51. Aucune relance du jeu par le mod de reglages (un seul processus javaw du debut a la fin).
+Passe 3b (01:12-01:20) : reprise des etapes overdraw, qui ont echoue en passe 3 (ReferenceError: "java" is not defined : java.lang.Float n'est pas visible depuis KubeJS ; corrige par Java.loadClass('java.lang.Float') dans zz_dh_essais3b.js).
+
+== Passe 3 : lignes de latest.log (dhProjection, C1503, Failed to create shader, [DH3], Reglages) ==
+[24Nov2026 01:00:11.658] [DH3] commande gamemode spectator @a
+[24Nov2026 01:00:11.659] [DH3] commande time set 6000
+[24Nov2026 01:00:11.659] [DH3] commande gamerule doDaylightCycle false
+[24Nov2026 01:00:11.659] [DH3] commande gamerule doMobSpawning false
+[24Nov2026 01:00:11.659] [DH3] commande kill @e[type=!player]
+[24Nov2026 01:00:21.675] [DH3] shaders false -> en usage : false
+[24Nov2026 01:00:21.676] [DH3] commande tp @a 4246 -51 -784 -90 -20
+[24Nov2026 01:01:21.653] [DH3] REPRO-1011 debut
+[24Nov2026 01:01:25.405] [DH3] shaders true -> en usage : true
+[24Nov2026 01:02:05.123] [DH3] REPRO-1011 DH coupe
+[24Nov2026 01:02:36.837] [DH3] shaders false -> en usage : false
+[24Nov2026 01:02:56.810] [DH3] REPRO-1011 DH rallume shaders eteints
+[24Nov2026 01:03:17.594] [DH3] shaders true -> en usage : true
+[24Nov2026 01:03:17.594] [DH3] REPRO-1011 shaders rallumes : chercher dhProjection apres cette ligne
+[24Nov2026 01:03:57.398] [DH3] capture dh3-A-1011-shader-apres-sequence.png
+[24Nov2026 01:03:59.198] [DH3] shaders false -> en usage : false
+[24Nov2026 01:04:59.160] [DH3] capture dh3-B-grotte-overdraw-auto.png
+[24Nov2026 01:05:01.163] [DH3] ERREUR etape 10 : ReferenceError: "java" is not defined.
+[24Nov2026 01:05:41.157] [DH3] capture dh3-C-grotte-overdraw-0.5.png
+[24Nov2026 01:05:43.152] [DH3] ERREUR etape 12 : ReferenceError: "java" is not defined.
+[24Nov2026 01:06:23.162] [DH3] capture dh3-D-grotte-overdraw-0.8.png
+[24Nov2026 01:06:25.153] [DH3] ERREUR etape 14 : ReferenceError: "java" is not defined.
+[24Nov2026 01:07:05.160] [DH3] capture dh3-E-grotte-overdraw-1.0.png
+[24Nov2026 01:07:07.151] [DH3] commande tp @a 2800 140 -950 0 10
+[24Nov2026 01:08:07.163] [DH3] capture dh3-F-surface-overdraw-1.0.png
+[24Nov2026 01:08:09.152] [DH3] ERREUR etape 18 : ReferenceError: "java" is not defined.
+[24Nov2026 01:08:49.164] [DH3] capture dh3-G-surface-overdraw-auto.png
+[24Nov2026 01:08:51.156] [DH3] commande time set 14000
+[24Nov2026 01:08:51.157] [DH3] commande tp @a 2800 140 -950 0 -25
+[24Nov2026 01:09:51.163] [DH3] nuages vanilla 2
+[24Nov2026 01:10:01.159] [DH3] capture dh3-H-nuit-nuages-fancy.png
+[24Nov2026 01:10:03.161] [DH3] nuages vanilla 1
+[24Nov2026 01:10:13.160] [DH3] capture dh3-I-nuit-nuages-fast.png
+[24Nov2026 01:10:15.158] [DH3] nuages vanilla 0
+[24Nov2026 01:10:25.162] [DH3] capture dh3-J-nuit-nuages-off.png
+[24Nov2026 01:10:27.171] [DH3] nuages vanilla 2
+[24Nov2026 01:10:47.173] [DH3] capture dh3-K-nuit-nuages-fancy-sans-dh.png
+[24Nov2026 01:10:54.152] [DH3] FIN
+-> Aucune ligne dhProjection / C1503 / Failed to create shader apres 01:03:17 (la sequence fautive ne casse plus les shaders avec la 1.0.11).
+
+== Passe 3b : lignes [DH3B] ==
+[24Nov2026 01:15:22.207] [DH3B] commande gamemode spectator @a
+[24Nov2026 01:15:22.207] [DH3B] commande time set 6000
+[24Nov2026 01:15:22.207] [DH3B] commande kill @e[type=!player]
+[24Nov2026 01:15:27.224] [DH3B] commande tp @a 4246 -51 -784 -90 -20
+[24Nov2026 01:16:27.208] [DH3B] overdraw initial lu : -1
+[24Nov2026 01:16:27.778] [DH3B] capture dh3b-B-grotte-overdraw-auto.png
+[24Nov2026 01:16:29.256] [DH3B] overdraw 0.5 -> lu : 0.5
+[24Nov2026 01:17:09.262] [DH3B] capture dh3b-C-grotte-overdraw-0.5.png
+[24Nov2026 01:17:11.258] [DH3B] overdraw 0.8 -> lu : 0.800000011920929
+[24Nov2026 01:17:51.264] [DH3B] capture dh3b-D-grotte-overdraw-0.8.png
+[24Nov2026 01:17:53.256] [DH3B] overdraw 1 -> lu : 1
+[24Nov2026 01:18:33.261] [DH3B] capture dh3b-E-grotte-overdraw-1.0.png
+[24Nov2026 01:18:35.259] [DH3B] commande tp @a 2800 140 -950 0 10
+[24Nov2026 01:19:35.265] [DH3B] capture dh3b-F-surface-overdraw-1.0.png
+[24Nov2026 01:19:37.257] [DH3B] overdraw -1 -> lu : -1
+[24Nov2026 01:20:17.259] [DH3B] capture dh3b-G-surface-overdraw-auto.png
+[24Nov2026 01:20:22.256] [DH3B] FIN
+
+== Constats (lecture des captures, captures\dh-essais3-20261123\) ==
+- dh3-A : apres la sequence fautive (shaders ON -> DH coupe -> shaders OFF -> DH rallume -> shaders ON), les shaders sont bien actifs (en usage : true, rendu Complementary). Correctif 1.0.11 valide sur ce scenario.
+- Grotte 4246,-51,-784 (dh3b-B a E) : en haut a droite, un pan de traînees verticales multicolores (gris, vert, brun, violet) = faces LOD de DH de la surface, etirees et vues a travers le plafond. Identique en overdraw auto, 0.5 et 0.8 (ecart moyen < 0,2/255) ; a 1.0 seule une bande sombre en plus cache une partie du pan (0,8 % des pixels changent). L'overdraw ne supprime pas les traînees.
+- Surface 2800,140,-950 (dh3b-F a 1.0 / G auto) : aucun trou ; a 1.0 les immeubles proches a gauche sont dessines par DH (facades plus plates), en auto par le vanilla (plus de details). 5,6 % des pixels changent, rien de casse.
+- Nuit 2800,140,-950 (dh3-H/I/J) : ciel rouge, pluie de cendres en cours (evenement meteo, le script ne met pas weather clear). De grandes dalles de nuages pleines, eclairees en rouge vif, couvrent le ciel. FANCY, FAST et OFF donnent la meme image (ecart < 2/255, 0 % de pixels > 20) : avec les nuages DH actifs, le reglage vanilla ne change rien a l'ecran.
+- Sans DH (dh3-K) : les dalles rouge vif disparaissent (ce sont donc les nuages DH) ; il ne reste que des nuages vanilla sombres, a peine visibles, et le relief lointain disparait.
+- Bloc translucide de la passe 2 : meme forme et meme place a l'ecran (~x 670-850, y 470-610 en 1920x1080) dans dh-G (autre lieu, regard vers le bas) que dans dh-I a L (regard vers le haut) : il suit la camera, ce n'est pas un objet du monde ni un nuage. Il reste visible, sombre, dans dh3-K sans DH. Piste : la tete du joueur rendue en transparence en mode spectateur (cube, taches sombres en haut comme des cheveux et des yeux).
+- Etat laisse : options.txt renderClouds:"false" (valeur ecrite par le jeu a la fermeture), overdrawPrevention -1.0 (auto), iris enableShaders=false.

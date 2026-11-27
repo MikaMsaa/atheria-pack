@@ -1,0 +1,142 @@
+﻿[19:41:15.297] [Banc] génération lointaine de Distant Horizons non réglable : java.lang.NoSuchMethodException: com.seibel.distanthorizons.core.api.external.methods.config.common.DhApiWorldGenerationConfig#enableDistantGeneration/0
+[19:41:15.298] [Banc] reference-sans-shaders : PREPARATION
+[19:41:15.299] [Banc] départ : 8 combinaisons, journal C:\Users\El-Afdal\AppData\Roaming\ModrinthApp\profiles\Atheria-test-reglages\atheria_reglages\banc-20261123-1941.csv
+[19:41:15.299] [Banc] départ automatique : lancé
+[19:41:15.317] [Banc] combinaison reference-sans-shaders : {DH_QUALITE=2, DISTANCE_RENDU=3, DH_DISTANCE=5, SHADERS=0, DH_ACTIF=1}
+[19:41:29.239] [Banc] reference-sans-shaders : VILLE
+[19:41:59.234] [Banc] reference-sans-shaders / ville : 66 FPS (1 % bas 18, 24 saccades, 30 s) | tas 54 % | PC libre 958 Mo | 25 entités à 64 blocs
+[19:41:59.234] [Banc] reference-sans-shaders : COMBAT
+[19:42:30.735] [Banc] reference-sans-shaders / combat : 49 FPS (1 % bas 12, 75 saccades, 31 s) | tas 57 % | PC libre 666 Mo | 83 entités à 64 blocs
+[19:42:30.736] [Banc] reference-sans-shaders : TRAJET
+[19:42:46.737] [Banc] reference-sans-shaders / trajet : 69 FPS (1 % bas 18, 16 saccades, 16 s) | tas 58 % | PC libre 431 Mo | 42 entités à 64 blocs
+[19:42:46.738] [Banc] shaders-low-dh192 : PREPARATION
+[19:42:54.216] [Banc] combinaison shaders-low-dh192 : {DH_QUALITE=2, DISTANCE_RENDU=2, DH_DISTANCE=4, SHADER_QUALITE=0, SHADERS=1, DH_ACTIF=1}
+[19:43:07.996] [Banc] shaders-low-dh192 : VILLE
+[19:43:37.981] [Banc] shaders-low-dh192 / ville : 73 FPS (1 % bas 28, 6 saccades, 30 s) | tas 60 % | PC libre 502 Mo | 27 entités à 64 blocs
+[19:43:37.983] [Banc] shaders-low-dh192 : COMBAT
+[19:44:09.487] [Banc] shaders-low-dh192 / combat : 43 FPS (1 % bas 13, 59 saccades, 31 s) | tas 59 % | PC libre 300 Mo | 84 entités à 64 blocs
+[19:44:09.487] [Banc] shaders-low-dh192 : TRAJET
+[19:44:25.484] [Banc] shaders-low-dh192 / trajet : 83 FPS (1 % bas 34, 5 saccades, 16 s) | tas 59 % | PC libre 259 Mo | 45 entités à 64 blocs
+[19:44:25.484] [Banc] shaders-medium-dh192 : PREPARATION
+[19:44:45.597] [Banc] combinaison shaders-medium-dh192 : {DH_QUALITE=2, DISTANCE_RENDU=2, DH_DISTANCE=4, SHADER_QUALITE=1, SHADERS=1, DH_ACTIF=1}
+[19:44:59.287] [Banc] shaders-medium-dh192 : VILLE
+[19:45:29.282] [Banc] shaders-medium-dh192 / ville : 91 FPS (1 % bas 39, 5 saccades, 30 s) | tas 60 % | PC libre 215 Mo | 27 entités à 64 blocs
+[19:45:29.282] [Banc] shaders-medium-dh192 : COMBAT
+[19:46:00.784] [Banc] shaders-medium-dh192 / combat : 47 FPS (1 % bas 17, 24 saccades, 31 s) | tas 60 % | PC libre 282 Mo | 86 entités à 64 blocs
+[19:46:00.784] [Banc] shaders-medium-dh192 : TRAJET
+[19:46:16.783] [Banc] shaders-medium-dh192 / trajet : 67 FPS (1 % bas 33, 4 saccades, 16 s) | tas 60 % | PC libre 293 Mo | 54 entités à 64 blocs
+[19:46:16.783] [Banc] shaders-medium-dh128-basse : PREPARATION
+[19:46:18.265] [Banc] combinaison shaders-medium-dh128-basse : {DH_QUALITE=1, DISTANCE_RENDU=2, DH_DISTANCE=2, SHADER_QUALITE=1, SHADERS=1, DH_ACTIF=1}
+[19:46:31.835] [Banc] shaders-medium-dh128-basse : VILLE
+[19:47:01.835] [Banc] shaders-medium-dh128-basse / ville : 71 FPS (1 % bas 29, 6 saccades, 30 s) | tas 60 % | PC libre 328 Mo | 27 entités à 64 blocs
+[19:47:01.836] [Banc] shaders-medium-dh128-basse : COMBAT
+[19:47:33.333] [Banc] shaders-medium-dh128-basse / combat : 48 FPS (1 % bas 16, 23 saccades, 31 s) | tas 62 % | PC libre 837 Mo | 84 entités à 64 blocs
+[19:47:33.333] [Banc] shaders-medium-dh128-basse : TRAJET
+[19:47:49.345] [Banc] shaders-medium-dh128-basse / trajet : 62 FPS (1 % bas 31, 5 saccades, 16 s) | tas 62 % | PC libre 926 Mo | 52 entités à 64 blocs
+[19:47:49.345] [Banc] shaders-high-dh160-basse : PREPARATION
+[19:47:51.009] [Banc] combinaison shaders-high-dh160-basse : {DH_QUALITE=1, DISTANCE_RENDU=2, DH_DISTANCE=3, SHADER_QUALITE=2, SHADERS=1, DH_ACTIF=1}
+[19:48:04.594] [Banc] shaders-high-dh160-basse : VILLE
+[19:48:34.584] [Banc] shaders-high-dh160-basse / ville : 70 FPS (1 % bas 31, 6 saccades, 30 s) | tas 62 % | PC libre 1785 Mo | 26 entités à 64 blocs
+[19:48:34.585] [Banc] shaders-high-dh160-basse : COMBAT
+[19:49:06.102] [Banc] shaders-high-dh160-basse / combat : 37 FPS (1 % bas 13, 21 saccades, 31 s) | tas 63 % | PC libre 1470 Mo | 86 entités à 64 blocs
+[19:49:06.103] [Banc] shaders-high-dh160-basse : TRAJET
+[19:49:22.096] [Banc] shaders-high-dh160-basse / trajet : 58 FPS (1 % bas 31, 4 saccades, 16 s) | tas 63 % | PC libre 1422 Mo | 55 entités à 64 blocs
+[19:49:22.097] [Banc] shaders-high-dh192 : PREPARATION
+[19:49:23.434] [Banc] combinaison shaders-high-dh192 : {DH_QUALITE=2, DISTANCE_RENDU=2, DH_DISTANCE=4, SHADER_QUALITE=2, SHADERS=1, DH_ACTIF=1}
+[19:49:36.993] [Banc] shaders-high-dh192 : VILLE
+[19:50:06.984] [Banc] shaders-high-dh192 / ville : 68 FPS (1 % bas 33, 5 saccades, 30 s) | tas 62 % | PC libre 1307 Mo | 26 entités à 64 blocs
+[19:50:06.984] [Banc] shaders-high-dh192 : COMBAT
+[19:50:38.495] [Banc] shaders-high-dh192 / combat : 37 FPS (1 % bas 15, 13 saccades, 31 s) | tas 63 % | PC libre 1350 Mo | 84 entités à 64 blocs
+[19:50:38.496] [Banc] shaders-high-dh192 : TRAJET
+[19:50:54.501] [Banc] shaders-high-dh192 / trajet : 56 FPS (1 % bas 32, 4 saccades, 16 s) | tas 63 % | PC libre 1347 Mo | 58 entités à 64 blocs
+[19:50:54.502] [Banc] shaders-medium-dh256-rendu10 : PREPARATION
+[19:50:55.837] [Banc] combinaison shaders-medium-dh256-rendu10 : {DH_QUALITE=2, DISTANCE_RENDU=3, DH_DISTANCE=5, SHADER_QUALITE=1, SHADERS=1, DH_ACTIF=1}
+[19:51:09.333] [Banc] shaders-medium-dh256-rendu10 : VILLE
+[19:51:39.340] [Banc] shaders-medium-dh256-rendu10 / ville : 72 FPS (1 % bas 36, 3 saccades, 30 s) | tas 64 % | PC libre 1214 Mo | 23 entités à 64 blocs
+[19:51:39.340] [Banc] shaders-medium-dh256-rendu10 : COMBAT
+[19:52:10.850] [Banc] shaders-medium-dh256-rendu10 / combat : 43 FPS (1 % bas 16, 25 saccades, 31 s) | tas 64 % | PC libre 1203 Mo | 81 entités à 64 blocs
+[19:52:10.851] [Banc] shaders-medium-dh256-rendu10 : TRAJET
+[19:52:26.839] [Banc] shaders-medium-dh256-rendu10 / trajet : 59 FPS (1 % bas 23, 9 saccades, 16 s) | tas 64 % | PC libre 1120 Mo | 56 entités à 64 blocs
+[19:52:26.839] [Banc] shaders-high-dh256-rendu10 : PREPARATION
+[19:52:28.158] [Banc] combinaison shaders-high-dh256-rendu10 : {DH_QUALITE=2, DISTANCE_RENDU=3, DH_DISTANCE=5, SHADER_QUALITE=2, SHADERS=1, DH_ACTIF=1}
+[19:52:41.690] [Banc] shaders-high-dh256-rendu10 : VILLE
+[19:53:11.687] [Banc] shaders-high-dh256-rendu10 / ville : 66 FPS (1 % bas 33, 4 saccades, 30 s) | tas 64 % | PC libre 1139 Mo | 28 entités à 64 blocs
+[19:53:11.687] [Banc] shaders-high-dh256-rendu10 : COMBAT
+[19:53:43.193] [Banc] shaders-high-dh256-rendu10 / combat : 36 FPS (1 % bas 15, 14 saccades, 31 s) | tas 64 % | PC libre 1096 Mo | 85 entités à 64 blocs
+[19:53:43.193] [Banc] shaders-high-dh256-rendu10 : TRAJET
+[19:53:59.194] [Banc] shaders-high-dh256-rendu10 / trajet : 54 FPS (1 % bas 22, 5 saccades, 16 s) | tas 64 % | PC libre 1106 Mo | 44 entités à 64 blocs
+[19:53:59.195] [Banc] génération lointaine de Distant Horizons non réglable : java.lang.NoSuchMethodException: com.seibel.distanthorizons.core.api.external.methods.config.common.DhApiWorldGenerationConfig#enableDistantGeneration/0
+[19:53:59.260] [Banc] fin (toutes les combinaisons passées) : réglages d'avant remis. Résumé :
+[19:53:59.261] [Banc]   reference-sans-shaders / ville : 66 FPS (1 % bas 18, 24 saccades, 30 s)
+[19:53:59.261] [Banc]   reference-sans-shaders / combat : 49 FPS (1 % bas 12, 75 saccades, 31 s)
+[19:53:59.261] [Banc]   reference-sans-shaders / trajet : 69 FPS (1 % bas 18, 16 saccades, 16 s)
+[19:53:59.261] [Banc]   shaders-low-dh192 / ville : 73 FPS (1 % bas 28, 6 saccades, 30 s)
+[19:53:59.261] [Banc]   shaders-low-dh192 / combat : 43 FPS (1 % bas 13, 59 saccades, 31 s)
+[19:53:59.261] [Banc]   shaders-low-dh192 / trajet : 83 FPS (1 % bas 34, 5 saccades, 16 s)
+[19:53:59.261] [Banc]   shaders-medium-dh192 / ville : 91 FPS (1 % bas 39, 5 saccades, 30 s)
+[19:53:59.261] [Banc]   shaders-medium-dh192 / combat : 47 FPS (1 % bas 17, 24 saccades, 31 s)
+[19:53:59.261] [Banc]   shaders-medium-dh192 / trajet : 67 FPS (1 % bas 33, 4 saccades, 16 s)
+[19:53:59.261] [Banc]   shaders-medium-dh128-basse / ville : 71 FPS (1 % bas 29, 6 saccades, 30 s)
+[19:53:59.261] [Banc]   shaders-medium-dh128-basse / combat : 48 FPS (1 % bas 16, 23 saccades, 31 s)
+[19:53:59.262] [Banc]   shaders-medium-dh128-basse / trajet : 62 FPS (1 % bas 31, 5 saccades, 16 s)
+[19:53:59.262] [Banc]   shaders-high-dh160-basse / ville : 70 FPS (1 % bas 31, 6 saccades, 30 s)
+[19:53:59.262] [Banc]   shaders-high-dh160-basse / combat : 37 FPS (1 % bas 13, 21 saccades, 31 s)
+[19:53:59.262] [Banc]   shaders-high-dh160-basse / trajet : 58 FPS (1 % bas 31, 4 saccades, 16 s)
+[19:53:59.262] [Banc]   shaders-high-dh192 / ville : 68 FPS (1 % bas 33, 5 saccades, 30 s)
+[19:53:59.262] [Banc]   shaders-high-dh192 / combat : 37 FPS (1 % bas 15, 13 saccades, 31 s)
+[19:53:59.262] [Banc]   shaders-high-dh192 / trajet : 56 FPS (1 % bas 32, 4 saccades, 16 s)
+[19:53:59.262] [Banc]   shaders-medium-dh256-rendu10 / ville : 72 FPS (1 % bas 36, 3 saccades, 30 s)
+[19:53:59.262] [Banc]   shaders-medium-dh256-rendu10 / combat : 43 FPS (1 % bas 16, 25 saccades, 31 s)
+[19:53:59.262] [Banc]   shaders-medium-dh256-rendu10 / trajet : 59 FPS (1 % bas 23, 9 saccades, 16 s)
+[19:53:59.262] [Banc]   shaders-high-dh256-rendu10 / ville : 66 FPS (1 % bas 33, 4 saccades, 30 s)
+[19:53:59.262] [Banc]   shaders-high-dh256-rendu10 / combat : 36 FPS (1 % bas 15, 14 saccades, 31 s)
+[19:53:59.262] [Banc]   shaders-high-dh256-rendu10 / trajet : 54 FPS (1 % bas 22, 5 saccades, 16 s)
+[19:59:35.930] [Banc] génération lointaine de Distant Horizons non réglable : java.lang.NoSuchMethodException: com.seibel.distanthorizons.core.api.external.methods.config.common.DhApiWorldGenerationConfig#enableDistantGeneration/0
+[19:59:35.932] [Banc] echauffement-medium-dh192 : PREPARATION
+[19:59:35.932] [Banc] départ : 4 combinaisons, journal C:\Users\El-Afdal\AppData\Roaming\ModrinthApp\profiles\Atheria-test-reglages\atheria_reglages\banc-20261123-1959.csv
+[19:59:35.932] [Banc] départ automatique : lancé
+[19:59:42.354] [Banc] combinaison echauffement-medium-dh192 : {DH_QUALITE=2, DISTANCE_RENDU=2, DH_DISTANCE=4, SHADER_QUALITE=1, SHADERS=1, DH_ACTIF=1}
+[19:59:56.131] [Banc] echauffement-medium-dh192 : VILLE
+[20:00:26.422] [Banc] echauffement-medium-dh192 / ville : 56 FPS (1 % bas 15, 37 saccades, 30 s) | tas 54 % | PC libre 489 Mo | 28 entités à 64 blocs
+[20:00:26.423] [Banc] echauffement-medium-dh192 : COMBAT
+[20:00:57.940] [Banc] echauffement-medium-dh192 / combat : 33 FPS (1 % bas 10, 36 saccades, 31 s) | tas 57 % | PC libre 341 Mo | 71 entités à 64 blocs
+[20:00:57.940] [Banc] echauffement-medium-dh192 : TRAJET
+[20:01:13.929] [Banc] echauffement-medium-dh192 / trajet : 66 FPS (1 % bas 25, 8 saccades, 16 s) | tas 58 % | PC libre 336 Mo | 46 entités à 64 blocs
+[20:01:13.929] [Banc] shaders-medium-dh192 : PREPARATION
+[20:01:17.218] [Banc] combinaison shaders-medium-dh192 : {DH_QUALITE=2, DISTANCE_RENDU=2, DH_DISTANCE=4, SHADER_QUALITE=1, SHADERS=1, DH_ACTIF=1}
+[20:01:30.869] [Banc] shaders-medium-dh192 : VILLE
+[20:02:00.882] [Banc] shaders-medium-dh192 / ville : 69 FPS (1 % bas 33, 8 saccades, 30 s) | tas 59 % | PC libre 462 Mo | 30 entités à 64 blocs
+[20:02:00.883] [Banc] shaders-medium-dh192 : COMBAT
+[20:02:32.384] [Banc] shaders-medium-dh192 / combat : 47 FPS (1 % bas 16, 33 saccades, 31 s) | tas 58 % | PC libre 388 Mo | 83 entités à 64 blocs
+[20:02:32.385] [Banc] shaders-medium-dh192 : TRAJET
+[20:02:48.369] [Banc] shaders-medium-dh192 / trajet : 64 FPS (1 % bas 31, 5 saccades, 16 s) | tas 58 % | PC libre 704 Mo | 45 entités à 64 blocs
+[20:02:48.369] [Banc] shaders-medium-dh160 : PREPARATION
+[20:02:50.068] [Banc] combinaison shaders-medium-dh160 : {DH_QUALITE=2, DISTANCE_RENDU=2, DH_DISTANCE=3, SHADER_QUALITE=1, SHADERS=1, DH_ACTIF=1}
+[20:03:03.626] [Banc] shaders-medium-dh160 : VILLE
+[20:03:33.625] [Banc] shaders-medium-dh160 / ville : 69 FPS (1 % bas 27, 8 saccades, 30 s) | tas 59 % | PC libre 1010 Mo | 25 entités à 64 blocs
+[20:03:33.625] [Banc] shaders-medium-dh160 : COMBAT
+[20:04:05.142] [Banc] shaders-medium-dh160 / combat : 46 FPS (1 % bas 16, 29 saccades, 31 s) | tas 59 % | PC libre 889 Mo | 78 entités à 64 blocs
+[20:04:05.143] [Banc] shaders-medium-dh160 : TRAJET
+[20:04:21.119] [Banc] shaders-medium-dh160 / trajet : 62 FPS (1 % bas 29, 4 saccades, 16 s) | tas 59 % | PC libre 725 Mo | 51 entités à 64 blocs
+[20:04:21.119] [Banc] shaders-high-dh192-bis : PREPARATION
+[20:04:25.382] [Banc] combinaison shaders-high-dh192-bis : {DH_QUALITE=2, DISTANCE_RENDU=2, DH_DISTANCE=4, SHADER_QUALITE=2, SHADERS=1, DH_ACTIF=1}
+[20:04:39.020] [Banc] shaders-high-dh192-bis : VILLE
+[20:05:09.021] [Banc] shaders-high-dh192-bis / ville : 65 FPS (1 % bas 32, 6 saccades, 30 s) | tas 60 % | PC libre 620 Mo | 29 entités à 64 blocs
+[20:05:09.021] [Banc] shaders-high-dh192-bis : COMBAT
+[20:05:40.531] [Banc] shaders-high-dh192-bis / combat : 40 FPS (1 % bas 14, 22 saccades, 31 s) | tas 59 % | PC libre 591 Mo | 67 entités à 64 blocs
+[20:05:40.532] [Banc] shaders-high-dh192-bis : TRAJET
+[20:05:56.527] [Banc] shaders-high-dh192-bis / trajet : 58 FPS (1 % bas 33, 5 saccades, 16 s) | tas 60 % | PC libre 552 Mo | 50 entités à 64 blocs
+[20:05:56.527] [Banc] génération lointaine de Distant Horizons non réglable : java.lang.NoSuchMethodException: com.seibel.distanthorizons.core.api.external.methods.config.common.DhApiWorldGenerationConfig#enableDistantGeneration/0
+[20:05:56.605] [Banc] fin (toutes les combinaisons passées) : réglages d'avant remis. Résumé :
+[20:05:56.606] [Banc]   echauffement-medium-dh192 / ville : 56 FPS (1 % bas 15, 37 saccades, 30 s)
+[20:05:56.606] [Banc]   echauffement-medium-dh192 / combat : 33 FPS (1 % bas 10, 36 saccades, 31 s)
+[20:05:56.606] [Banc]   echauffement-medium-dh192 / trajet : 66 FPS (1 % bas 25, 8 saccades, 16 s)
+[20:05:56.606] [Banc]   shaders-medium-dh192 / ville : 69 FPS (1 % bas 33, 8 saccades, 30 s)
+[20:05:56.606] [Banc]   shaders-medium-dh192 / combat : 47 FPS (1 % bas 16, 33 saccades, 31 s)
+[20:05:56.606] [Banc]   shaders-medium-dh192 / trajet : 64 FPS (1 % bas 31, 5 saccades, 16 s)
+[20:05:56.606] [Banc]   shaders-medium-dh160 / ville : 69 FPS (1 % bas 27, 8 saccades, 30 s)
+[20:05:56.606] [Banc]   shaders-medium-dh160 / combat : 46 FPS (1 % bas 16, 29 saccades, 31 s)
+[20:05:56.606] [Banc]   shaders-medium-dh160 / trajet : 62 FPS (1 % bas 29, 4 saccades, 16 s)
+[20:05:56.606] [Banc]   shaders-high-dh192-bis / ville : 65 FPS (1 % bas 32, 6 saccades, 30 s)
+[20:05:56.606] [Banc]   shaders-high-dh192-bis / combat : 40 FPS (1 % bas 14, 22 saccades, 31 s)
+[20:05:56.606] [Banc]   shaders-high-dh192-bis / trajet : 58 FPS (1 % bas 33, 5 saccades, 16 s)

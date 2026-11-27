@@ -1,0 +1,17 @@
+version=1.0.4
+code=1
+date=2026-11-23T15:12:20.833159500
+fin du journal :
+Error occurred during initialization of VM
+java.lang.Error: fr.atheria.reglages.ChargeurInexistant
+	at java.lang.ClassLoader.initSystemClassLoader(java.base@21.0.7/ClassLoader.java:2024)
+	at java.lang.System.initPhase3(java.base@21.0.7/System.java:2333)
+Caused by: java.lang.ClassNotFoundException: fr.atheria.reglages.ChargeurInexistant
+	at jdk.internal.loader.BuiltinClassLoader.loadClass(java.base@21.0.7/BuiltinClassLoader.java:641)
+	at jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(java.base@21.0.7/ClassLoaders.java:188)
+	at java.lang.ClassLoader.loadClass(java.base@21.0.7/ClassLoader.java:526)
+	at java.lang.Class.forName0(java.base@21.0.7/Native Method)
+	at java.lang.Class.forName(java.base@21.0.7/Class.java:534)
+	at java.lang.Class.forName(java.base@21.0.7/Class.java:513)
+	at java.lang.ClassLoader.initSystemClassLoader(java.base@21.0.7/ClassLoader.java:2010)
+	at java.lang.System.initPhase3(java.base@21.0.7/System.java:2333)

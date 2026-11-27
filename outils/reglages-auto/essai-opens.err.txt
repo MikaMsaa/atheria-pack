@@ -1,0 +1,9 @@
+Exception in thread "main" java.lang.module.FindException: Module cpw.mods.securejarhandler not found, required by cpw.mods.bootstraplauncher
+	at java.base/java.lang.module.Resolver.findFail(Resolver.java:892)
+	at java.base/java.lang.module.Resolver.resolve(Resolver.java:192)
+	at java.base/java.lang.module.Resolver.resolve(Resolver.java:141)
+	at java.base/java.lang.module.Configuration.resolveAndBind(Configuration.java:491)
+	at java.base/java.lang.module.Configuration.resolveAndBind(Configuration.java:297)
+	at cpw.mods.bootstraplauncher.BootstrapLauncher.run(BootstrapLauncher.java:196)
+	at cpw.mods.bootstraplauncher.BootstrapLauncher.main(BootstrapLauncher.java:69)
+

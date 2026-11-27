@@ -1,0 +1,110 @@
+{
+  "comment1": "The following section is used for overriding the default 1:1 damage values applied to vehicles in packs from external sources.",
+  "comment2": "This is useful for modpack creators that wish to include MTS in packs with other weapons that don't know about the various hitbox and armor systems.",
+  "comment3": "The entries in here are first indexed by the pack, then the vehicle ID.",
+  "comment4": "If you need the full listing of items, set dumpDamageConfig to true in the general config section.",
+  "comment5": "This will overwrite this file with all vehicles in all packs.",
+  "overrides": {
+    "atheriavh": {
+      "berline": 1.0,
+      "pickup": 1.0,
+      "bus": 1.0,
+      "camion": 1.0,
+      "ambulance": 1.0,
+      "fourgon": 1.0
+    },
+    "ccynho": {
+      "gtb": 1.0,
+      "flamingo": 1.0,
+      "x8": 1.0,
+      "x8p": 1.0
+    },
+    "mtsofficialpack": {
+      "gmcbrig": 1.0,
+      "e500": 1.0,
+      "trimotor": 1.0,
+      "vulcanair": 1.0,
+      "pzl37los": 1.0,
+      "bell206": 1.0,
+      "fordmustang69": 1.0,
+      "scout": 1.0,
+      "skyhawk": 1.0,
+      "comanche": 1.0,
+      "merc230": 1.0,
+      "quad": 1.0,
+      "mc172": 1.0,
+      "pzlp11": 1.0,
+      "ft17": 1.0,
+      "bell47g": 1.0,
+      "firetruck": 1.0
+    },
+    "oamp": {
+      "luxorama": 1.0,
+      "stationmerc": 1.0,
+      "camaro": 1.0,
+      "cagouille": 1.0,
+      "escargot": 1.0,
+      "highwayman": 1.0,
+      "ecoline": 1.0,
+      "vwbus": 1.0
+    },
+    "panzerkrieg": {
+      "leopard2a7plus": 1.0,
+      "panther": 1.0,
+      "kubel": 1.0,
+      "leopard2": 1.0
+    },
+    "svmp": {
+      "037": 1.0,
+      "swiftcabrio": 1.0,
+      "betamontecarlo": 1.0,
+      "mantgx": 1.0,
+      "swiftsedan": 1.0,
+      "260": 1.0,
+      "swiftgti": 1.0,
+      "480": 1.0,
+      "betamontecarlogr5": 1.0,
+      "transportermulti": 1.0,
+      "ghia": 1.0,
+      "transporter": 1.0,
+      "campo": 1.0,
+      "w201": 1.0,
+      "sagaris": 1.0,
+      "valkyriespider": 1.0,
+      "037stradale": 1.0,
+      "t180": 1.0,
+      "hbcosmo": 1.0,
+      "megane": 1.0,
+      "swift": 1.0,
+      "transporterp": 1.0,
+      "citadel": 1.0,
+      "evija": 1.0,
+      "valkyrie": 1.0,
+      "campop": 1.0,
+      "swift3": 1.0,
+      "f30": 1.0,
+      "rangerover": 1.0,
+      "pantera": 1.0,
+      "wiesmann": 1.0,
+      "citadelp": 1.0,
+      "m939": 1.0,
+      "campod": 1.0,
+      "meganemaxi": 1.0,
+      "trailer": 1.0,
+      "semitrailerflatbed": 1.0,
+      "semitrailertanker": 1.0
+    },
+    "truckpack": {
+      "scania": 1.0,
+      "volvo": 1.0,
+      "wpricep_cisterna": 1.0,
+      "wpricep": 1.0,
+      "daf105xfobj": 1.0,
+      "wpricep_conter": 1.0
+    },
+    "vehiclesofsurvival": {
+      "voscarrion": 1.0,
+      "vosexplorer": 1.0
+    }
+  }
+}

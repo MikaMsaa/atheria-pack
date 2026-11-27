@@ -1,0 +1,79 @@
+Passe 6 - atheria_reglages 1.0.13 (MD5 88dea27833c302d94f3c93c38e00ae99) - AtheriaXaeroDH / AtheriaXaero - 11/24/2026 02:53:07
+grotteDhCoupe apres lancement 1 : "grotteDhCoupe": true, ; apres lancement 2 : "grotteDhCoupe": false,
+
+===== LANCEMENT 1 : lignes [DH5] =====
+[02:30:53] [INFO] [DH5] commande gamemode spectator @a
+[02:30:53] [INFO] [DH5] commande time set 6000
+[02:30:53] [INFO] [DH5] commande gamerule doDaylightCycle false
+[02:30:53] [INFO] [DH5] commande gamerule doMobSpawning false
+[02:30:53] [INFO] [DH5] commande kill @e[type=!player]
+[02:30:58] [INFO] [DH5] shaders false -> en usage : false
+[02:30:58] [INFO] [DH5] commande tp @a 2800 140 -950 0 10
+[02:31:28] [INFO] [DH5] A surface sans shader (attendu true) : DH valeur=true menu=true y=140 ciel=15 shader=false
+[02:31:28] [INFO] [DH5] capture dh5-A-surface-sans-shader.png
+[02:31:30] [INFO] [DH5] commande tp @a 4246 -51 -784 -90 -20
+[02:31:31] [INFO] [DH5] B0 grotte 1 s (encore true possible) : DH valeur=true menu=true y=-51 ciel=0 shader=false
+[02:31:39] [INFO] [DH5] B grotte 9 s (attendu false) : DH valeur=false menu=false y=-51 ciel=0 shader=false
+[02:31:39] [INFO] [DH5] capture dh5-B-grotte-sans-shader.png
+[02:31:41] [INFO] [DH5] commande tp @a 2800 140 -950 0 10
+[02:31:46] [INFO] [DH5] C surface 5 s apres grotte (attendu true) : DH valeur=true menu=true y=140 ciel=15 shader=false
+[02:31:46] [INFO] [DH5] capture dh5-C-surface-apres-grotte.png
+[02:31:48] [INFO] [DH5] commande tp @a 4246 -51 -784 -90 -20
+[02:31:58] [INFO] [DH5] D grotte avant shader (attendu false) : DH valeur=false menu=false y=-51 ciel=0 shader=false
+[02:32:00] [INFO] [DH5] D shader allume sous terre : chercher dhProjection apres cette ligne
+[02:32:05] [INFO] [DH5] shaders true -> en usage : true
+[02:32:36] [INFO] [DH5] E grotte avec shader (attendu true) : DH valeur=true menu=true y=-51 ciel=0 shader=true
+[02:32:36] [INFO] [DH5] capture dh5-E-grotte-avec-shader.png
+[02:32:38] [INFO] [DH5] shaders false -> en usage : false
+[02:32:48] [INFO] [DH5] F grotte shader eteint (attendu false) : DH valeur=false menu=false y=-51 ciel=0 shader=false
+[02:32:48] [INFO] [DH5] capture dh5-F-grotte-shader-eteint.png
+[02:32:50] [INFO] [DH5] commande tp @a 2800 140 -950 0 10
+[02:33:00] [INFO] [DH5] REPRO-1013 debut
+[02:33:01] [INFO] [DH5] shaders true -> en usage : true
+[02:33:31] [INFO] [DH5] REPRO-1013 DH coupe
+[02:33:51] [INFO] [DH5] shaders false -> en usage : false
+[02:34:11] [INFO] [DH5] REPRO-1013 DH rallume shaders eteints
+[02:34:32] [INFO] [DH5] shaders true -> en usage : true
+[02:34:32] [INFO] [DH5] REPRO-1013 shaders rallumes : chercher dhProjection apres cette ligne
+[02:35:01] [INFO] [DH5] G surface shader apres sequence : DH valeur=true menu=true y=140 ciel=15 shader=true
+[02:35:01] [INFO] [DH5] capture dh5-G-shader-apres-sequence.png
+[02:35:03] [INFO] [DH5] shaders false -> en usage : false
+[02:35:03] [INFO] [DH5] commande tp @a 4246 -51 -784 -90 -20
+[02:35:13] [INFO] [DH5] H grotte avant de quitter (attendu false) : DH valeur=false menu=false y=-51 ciel=0 shader=false
+[02:35:15] [INFO] [DH5] FIN
+===== LANCEMENT 1 : latest.log ([Réglages], dhProjection, C1503, Failed to create, Exception atheria/DH) =====
+[24Nov2026 02:30:09.076] [Render thread/INFO] [Atheria Réglages/]: [Réglages] GPU NVIDIA GeForce RTX 3060 Laptop GPU/PCIe/SSE2 (6144 Mo VRAM) | CPU AMD Ryzen 7 5800H with Radeon Graphics, 8 c/16 t, 3.2 GHz | RAM 14188 Mo (libre 4714) | écran 2560x1440 144 Hz | portable
+[24Nov2026 02:30:38.705] [Render thread/INFO] [Atheria Réglages/]: [Réglages] mémoire tendue (PC libre 506 Mo, tas après nettoyage 49 %) : DH_DISTANCE 2 -> 1
+[24Nov2026 02:31:33.323] [Render thread/INFO] [Atheria Réglages/]: [Réglages] sous terre sans shader : rendu DH coupé
+[24Nov2026 02:31:33.324] [Render thread/INFO] [Atheria Réglages/]: [Réglages] Iris resynchronisé avec Distant Horizons (DH coupé)
+[24Nov2026 02:31:42.810] [Render thread/INFO] [Atheria Réglages/]: [Réglages] rendu DH remis (retour à l'air libre) : effectif=true
+[24Nov2026 02:31:42.810] [Render thread/INFO] [Atheria Réglages/]: [Réglages] Iris resynchronisé avec Distant Horizons (DH allumé)
+[24Nov2026 02:31:51.001] [Render thread/INFO] [Atheria Réglages/]: [Réglages] sous terre sans shader : rendu DH coupé
+[24Nov2026 02:31:51.001] [Render thread/INFO] [Atheria Réglages/]: [Réglages] Iris resynchronisé avec Distant Horizons (DH coupé)
+[24Nov2026 02:32:00.746] [Render thread/INFO] [KubeJS Client/]: [DH5] D shader allume sous terre : chercher dhProjection apres cette ligne
+[24Nov2026 02:32:05.567] [Render thread/INFO] [Atheria Réglages/]: [Réglages] rendu DH remis (shader allumé) : effectif=true
+[24Nov2026 02:32:40.849] [Render thread/INFO] [Atheria Réglages/]: [Réglages] sous terre sans shader : rendu DH coupé
+[24Nov2026 02:32:40.849] [Render thread/INFO] [Atheria Réglages/]: [Réglages] Iris resynchronisé avec Distant Horizons (DH coupé)
+[24Nov2026 02:32:51.903] [Render thread/INFO] [Atheria Réglages/]: [Réglages] rendu DH remis (retour à l'air libre) : effectif=true
+[24Nov2026 02:32:51.903] [Render thread/INFO] [Atheria Réglages/]: [Réglages] Iris resynchronisé avec Distant Horizons (DH allumé)
+[24Nov2026 02:34:11.594] [Render thread/INFO] [Atheria Réglages/]: [Réglages] Iris resynchronisé avec Distant Horizons (DH allumé)
+[24Nov2026 02:34:32.313] [Render thread/INFO] [KubeJS Client/]: [DH5] REPRO-1013 shaders rallumes : chercher dhProjection apres cette ligne
+[24Nov2026 02:35:06.303] [Render thread/INFO] [Atheria Réglages/]: [Réglages] sous terre sans shader : rendu DH coupé
+[24Nov2026 02:35:06.303] [Render thread/INFO] [Atheria Réglages/]: [Réglages] Iris resynchronisé avec Distant Horizons (DH coupé)
+
+===== LANCEMENT 2 : lignes [DH5] =====
+[02:46:42] [INFO] [DH5] R0 relance 1 s apres arrivee, sous terre (attendu true) : DH valeur=true menu=true y=-51 ciel=0 shader=false
+[02:46:51] [INFO] [DH5] R1 relance 10 s sous terre (attendu false) : DH valeur=false menu=false y=-51 ciel=0 shader=false
+[02:46:51] [INFO] [DH5] capture dh5-R1-relance-grotte.png
+[02:46:53] [INFO] [DH5] commande tp @a 2800 140 -950 0 10
+[02:46:58] [INFO] [DH5] R2 relance surface (attendu true) : DH valeur=true menu=true y=140 ciel=15 shader=false
+[02:46:58] [INFO] [DH5] capture dh5-R2-relance-surface.png
+[02:47:00] [INFO] [DH5] FIN RELANCE
+===== LANCEMENT 2 : latest.log ([Réglages], dhProjection, C1503, Failed to create, Exception atheria/DH) =====
+[24Nov2026 02:45:45.324] [Render thread/INFO] [Atheria Réglages/]: [Réglages] DH remis : le jeu s'était fermé sous terre
+[24Nov2026 02:45:45.325] [Render thread/INFO] [Atheria Réglages/]: [Réglages] Iris resynchronisé avec Distant Horizons (DH allumé)
+[24Nov2026 02:46:41.091] [Render thread/INFO] [Atheria Réglages/]: [Réglages] GPU NVIDIA GeForce RTX 3060 Laptop GPU/PCIe/SSE2 (6144 Mo VRAM) | CPU AMD Ryzen 7 5800H with Radeon Graphics, 8 c/16 t, 3.2 GHz | RAM 14188 Mo (libre 4592) | écran 2560x1440 144 Hz | portable
+[24Nov2026 02:46:43.547] [Render thread/INFO] [Atheria Réglages/]: [Réglages] sous terre sans shader : rendu DH coupé
+[24Nov2026 02:46:43.547] [Render thread/INFO] [Atheria Réglages/]: [Réglages] Iris resynchronisé avec Distant Horizons (DH coupé)
+[24Nov2026 02:46:54.146] [Render thread/INFO] [Atheria Réglages/]: [Réglages] rendu DH remis (retour à l'air libre) : effectif=true
+[24Nov2026 02:46:54.146] [Render thread/INFO] [Atheria Réglages/]: [Réglages] Iris resynchronisé avec Distant Horizons (DH allumé)

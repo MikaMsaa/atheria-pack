@@ -1,0 +1,18 @@
+version=1.0.6
+code=1
+date=2026-11-23T17:14:37.014338600
+fin du journal :
+[0.013s][warning][cds] Archived non-system classes are disabled because the java.system.class.loader property is specified (value = "fr.atheria.reglages.ChargeurInexistant"). To use archived non-system classes, this property must not be set
+Error occurred during initialization of VM
+java.lang.Error: fr.atheria.reglages.ChargeurInexistant
+	at java.lang.ClassLoader.initSystemClassLoader(java.base@21.0.8/Unknown Source)
+	at java.lang.System.initPhase3(java.base@21.0.8/Unknown Source)
+Caused by: java.lang.ClassNotFoundException: fr.atheria.reglages.ChargeurInexistant
+	at jdk.internal.loader.BuiltinClassLoader.loadClass(java.base@21.0.8/Unknown Source)
+	at jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(java.base@21.0.8/Unknown Source)
+	at java.lang.ClassLoader.loadClass(java.base@21.0.8/Unknown Source)
+	at java.lang.Class.forName0(java.base@21.0.8/Native Method)
+	at java.lang.Class.forName(java.base@21.0.8/Unknown Source)
+	at java.lang.Class.forName(java.base@21.0.8/Unknown Source)
+	at java.lang.ClassLoader.initSystemClassLoader(java.base@21.0.8/Unknown Source)
+	at java.lang.System.initPhase3(java.base@21.0.8/Unknown Source)

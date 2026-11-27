@@ -1,0 +1,40 @@
+Chrono ouverture World Map Xaero - 24/11/2026 (heure du PC), instance AtheriaXaeroDH, monde AtheriaXaero
+Fenetre 1920x1080, shaders off, spectateur tp 3000 200 -1000, carte ouverte 200 ticks apres l'arrivee, 2 crans de dezoom x 20 ticks (zoom 0,063x).
+
+PREPARATION
+- Copie de C (cm$converted, 580 .zip) avant tout : instances\AtheriaXaeroDH\minecraft\retires\cm-converted-avant-chrono\
+- Source verifiee : 576/576 .xwmc de autres-caches\AtheriaXaero\null\cache_1 commencent par 00010019268630f8.
+- Correction du chemin : dans ce monde solo, Xaero lit le cache dans null\cache_1 (a cote de cm$converted),
+  pas dans cm$converted\cache_1 (ce dossier n'a jamais ete cree pendant les essais). A chaque essai j'ai donc
+  remis a neuf null\cm$converted (580 .zip), null\cache_1 (576 .xwmc + 4 .outdated) et null\cache (196 .xwmc),
+  depuis cm-converted\ et autres-caches\. Anciens contenus : retires\cm-converted-avant-A\ et retires\cm-converted-apres-A\.
+- 1.0.14 telecharge, MD5 f64589da98299b955e7acd3ab477d002 (conforme), 125 484 octets.
+
+ESSAI A - atheria_reglages 1.0.13 - lancement 20:19:25
+  Xaero : New world map region cache hash code: 360405782 (20:20:45)
+  [XAERO-CHRONO] arrivee 20:21:44 ; empreinte actuelle 360405782 ; CARTE OUVERTE 20:21:54 ; FIN 20:22:58
+  Fichiers apres l'essai : cache_1 = 571 .xwmc (562 en 268630f8, 9 reecrits en 157b5b16 = 360405782),
+    4 nouveaux .outdated (5_-2, 5_-3, 6_-2, 6_-3) ; 9 .xwmc modifies apres lancement ; 0 .zip modifie ; 8 fichiers de cache\ modifies.
+  Captures : 1 s, 3 s, 5 s = carte noire (grille de points seulement, rien de charge) ;
+             10 s, 30 s, 60 s = ile entiere affichee, aucune zone noire ni en chargement visible.
+
+ESSAI B - atheria_reglages 1.0.14 - lancement 20:24:22
+  Xaero : New world map region cache hash code: 360405782 (20:25:33 et 20:26:18)
+  [Reglages] empreinte carte Xaero fixee (avant 360405782) (20:25:33)
+  [XAERO-CHRONO] arrivee 20:26:28 ; empreinte actuelle 646328568 ; CARTE OUVERTE 20:26:38 ; FIN 20:27:43
+  Fichiers apres l'essai : cache_1 = 575 .xwmc, tous en 268630f8 (0 en-tete different), 1 nouveau .outdated (0_0) ;
+    3 .xwmc modifies apres lancement (reecrits avec la bonne empreinte) ; 0 .zip modifie ; 17 fichiers de cache\ modifies.
+  Captures : 1 s, 3 s, 5 s = carte noire (grille seulement) ;
+             10 s, 30 s, 60 s = ile entiere affichee, aucune zone noire ni en chargement visible.
+
+INCIDENTS
+- Aucun crash (pas de chest_minecart_contraption), les deux essais ont quitte seuls.
+- Mon premier guetteur de fin s'est trompe de processus (la ligne de commande du javaw ne contient pas
+  « instances\ » : elle commence par net.caffeinemc.sodium / net.minecraft.client.main.Main) ; corrige, sans effet sur les mesures.
+  Attention : le controle « java dont la ligne de commande contient instances\ » ne voit PAS le jeu.
+- Les captures 3 s et 5 s montrent en vignette les captures precedentes (notification de capture), sans effet.
+- Memoire tendue dans les deux essais : DH_DISTANCE 2 -> 1 par les Reglages (PC libre ~500 Mo).
+
+REMISE EN ETAT
+- zz_xaero_chrono.js -> retires\ ; atheria_reglages-1.0.13.jar -> retires\ ; 1.0.14 laisse dans mods\.
+- C laisse tel quel apres B. Captures : captures\xaero-chrono-20261124\ (A-* et B-*). Logs : logs\latest-chrono-A.log, latest-chrono-B.log.

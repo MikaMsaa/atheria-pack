@@ -1,0 +1,20 @@
+# Banc d'essai Atheria Réglages (/reglages banc). Uniquement en solo, sur une COPIE de la carte.
+# Avenue droite et à ciel ouvert (axe) : Avenue de la Préfecture de Mamoudzou (plans d'urbanisme validés)
+avenue 2706 -1014 3080 -1014
+mobs hordes:zombie_player 40
+pnj minecraft:villager 30
+# Durées des phases en secondes : préparation ville combat trajet
+durees 14 30 30 15
+# Génération lointaine de Distant Horizons pendant les mesures (en multijoueur le serveur fournit les vues lointaines) : non
+generation non
+# Combinaisons : nom ; levier=niveau ... (niveaux : SHADER_QUALITE 0 LOW 1 MEDIUM 2 HIGH 3 VERYHIGH 4 ULTRA ;
+# DH_DISTANCE 0 64 1 96 2 128 3 160 4 192 5 256 6 320 tronçons ; DH_QUALITE 0 très basse 1 basse 2 moyenne 3 haute ;
+# DISTANCE_RENDU 0 5 1 6 2 8 3 10 4 12 5 16 tronçons). Les autres leviers restent comme ils sont.
+reference-sans-shaders ; SHADERS=0 DH_ACTIF=1 DH_DISTANCE=5 DH_QUALITE=2 DISTANCE_RENDU=3
+shaders-low-dh192 ; SHADERS=1 SHADER_QUALITE=0 DH_ACTIF=1 DH_DISTANCE=4 DH_QUALITE=2 DISTANCE_RENDU=2
+shaders-medium-dh192 ; SHADERS=1 SHADER_QUALITE=1 DH_ACTIF=1 DH_DISTANCE=4 DH_QUALITE=2 DISTANCE_RENDU=2
+shaders-medium-dh128-basse ; SHADERS=1 SHADER_QUALITE=1 DH_ACTIF=1 DH_DISTANCE=2 DH_QUALITE=1 DISTANCE_RENDU=2
+shaders-high-dh160-basse ; SHADERS=1 SHADER_QUALITE=2 DH_ACTIF=1 DH_DISTANCE=3 DH_QUALITE=1 DISTANCE_RENDU=2
+shaders-high-dh192 ; SHADERS=1 SHADER_QUALITE=2 DH_ACTIF=1 DH_DISTANCE=4 DH_QUALITE=2 DISTANCE_RENDU=2
+shaders-medium-dh256-rendu10 ; SHADERS=1 SHADER_QUALITE=1 DH_ACTIF=1 DH_DISTANCE=5 DH_QUALITE=2 DISTANCE_RENDU=3
+shaders-high-dh256-rendu10 ; SHADERS=1 SHADER_QUALITE=2 DH_ACTIF=1 DH_DISTANCE=5 DH_QUALITE=2 DISTANCE_RENDU=3
