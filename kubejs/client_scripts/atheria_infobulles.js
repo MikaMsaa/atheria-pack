@@ -106,4 +106,9 @@ ItemEvents.modifyTooltips(event => {
   event.add('atheria:puff_8', [Text.gray("Aucune utilité. Eniy la rachète 30 bons, la revend 300.")])
   event.add('atheria:puff_9', [Text.gray("Aucune utilité. Eniy la rachète 30 bons, la revend 300.")])
   event.add('atheria:puff_10', [Text.gray("Aucune utilité. Eniy la rachète 30 bons, la revend 300.")])
+  // soirées live
+  event.add('atheria:insigne_soiree', [Text.gray("Souvenir d'une soirée d'Atheria. Aucune utilité, sauf de prouver qu'on y était.")])
+  event.add('atheria:caisse_paf', [Text.gray("Médicaments pour le CHM. Qui la porte brille et peut être attaqué. Elle disparaît après la soirée.")])
+  event.add('atheria:sac_vivres', [Text.gray("Les vivres d'un groupe de réfugiés. À remettre à la PAF, derrière les murs de Longoni.")])
+  event.add('atheria:puff_eniy', [Text.gray("Un Puff doré caché par Eniy pour une soirée. Aucune utilité, mais il brille.")])
 })
