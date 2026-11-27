@@ -49,6 +49,11 @@ function atheriaCreatureInterdite(e) {
   }
 }
 
+// soirée live (« La fermeture des portes ») : la horde a le droit de passer sur le chemin sûr de la RN1, jamais dans les murs
+function atheriaLiveExempte(e) {
+  try { return e.tags.contains('atheria_live') } catch (err) { return false }
+}
+
 // Monstre = catégorie MONSTER (vanilla, Spore, hordes) ; joueurs, PNJ, animaux et véhicules ne sont jamais touchés
 function atheriaEstMonstre(e) {
   try {
@@ -65,7 +70,7 @@ NativeEvents.onEvent('net.neoforged.neoforge.event.entity.EntityJoinLevelEvent',
   var e = event.getEntity()
   var zs = atheriaZoneSure(level, e.x, e.z)
   if (zs == null) return
-  if (zs.monstresSeulement ? atheriaEstMonstre(e) : atheriaCreatureInterdite(e)) event.setCanceled(true)
+  if (zs.monstresSeulement ? atheriaEstMonstre(e) && !atheriaLiveExempte(e) : atheriaCreatureInterdite(e)) event.setCanceled(true)
 })
 
 // aucun dégât venu d'un monstre (flèche tirée de dehors comprise) pour un joueur dans une zone sûre
@@ -73,7 +78,7 @@ NativeEvents.onEvent('net.neoforged.neoforge.event.entity.living.LivingIncomingD
   var v = event.getEntity()
   if (!v.isPlayer() || v.level.isClientSide() || atheriaZoneSure(v.level, v.x, v.z) == null) return
   var src = event.getSource(), a = src.actual
-  if (a != null && atheriaEstMonstre(a)) event.setCanceled(true)
+  if (a != null && atheriaEstMonstre(a) && !(atheriaZoneSure(v.level, v.x, v.z).monstresSeulement && atheriaLiveExempte(a))) event.setCanceled(true)
 })
 
 // Joueurs : invulnérables tant qu'ils sont dans la zone (bloque aussi First Aid, qui répartit les dégâts avant les
@@ -108,7 +113,7 @@ ServerEvents.tick(event => {
     if (!proche) return
     try {
       level.getEntities(null, new AtheriaAABB(r[0], level.getMinBuildHeight(), r[1], r[2] + 1, level.getMaxBuildHeight(), r[3] + 1)).forEach(e => {
-        if ((zs.monstresSeulement ? atheriaEstMonstre(e) : atheriaCreatureInterdite(e)) && e.isAlive()) e.discard()
+        if ((zs.monstresSeulement ? atheriaEstMonstre(e) && !atheriaLiveExempte(e) : atheriaCreatureInterdite(e)) && e.isAlive()) e.discard()
       })
     } catch (err) {
       console.error('[Atheria zones sûres] ' + zs.nom + ' : ' + err)
