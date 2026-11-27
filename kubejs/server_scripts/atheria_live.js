@@ -50,7 +50,8 @@ function atheriaLiveMemoireEcrire(server, m) {
 // tous les joueurs de la surface (et les faux joueurs d'un essai)
 function atheriaLiveJoueurs(server) {
   var l = []
-  server.players.forEach(p => { if (!p.isSpectator() && p.isAlive() && ('' + p.level.dimension) === 'minecraft:overworld') l.push(p) })
+  // les spectateurs ne comptent pas, sauf ceux que le tournoi d'Angellow a mis en spectateur
+  server.players.forEach(p => { if ((!p.isSpectator() || p.persistentData.contains('atheria_tournoi_spec')) && p.isAlive() && ('' + p.level.dimension) === 'minecraft:overworld') l.push(p) })
   LIVE.faux.forEach(f => l.push(f))
   return l
 }

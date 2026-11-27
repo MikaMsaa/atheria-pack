@@ -15,7 +15,8 @@ var ATHERIA_TITRES_LIVE = {
   escorte_paf: 'Escorte de la PAF',
   gardien_porte: 'Gardien de la Porte',
   fouineur: 'Fouineur d\'Eniy',
-  liberateur: 'Libérateur de Majicavo'
+  liberateur: 'Libérateur de Majicavo',
+  champion_angellow: 'Champion d\'Angellow'
 }
 if (!global.ATHERIA_TITRES) global.ATHERIA_TITRES = {}
 for (var k in ATHERIA_TITRES_LIVE) global.ATHERIA_TITRES[k] = ATHERIA_TITRES_LIVE[k]
