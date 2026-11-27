@@ -2151,7 +2151,7 @@ hash = "71a4934a689a4057bb9f7bd63c8e9fd07c2bbb149e608d898db63043c0277310"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/entity/pnj/brigadier_rayek.png"
-hash = "f69614da7167d804cdce221c3ee9ba4c867d208ee86884dbf78bab2bba60c10a"
+hash = "271733f42d7c9d816a7840affc1661487cc7a10c8b124699bbf4b569b4a8e8e9"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/entity/pnj/brigadiere_kayssi.png"
@@ -2167,7 +2167,7 @@ hash = "14bfd88fe169da7456fb44456c9283e598024e75cf63b47f4a4c72ee643744d6"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/entity/pnj/eniy.png"
-hash = "4229143e57fd35471d7ecc78e20a27507a662da1918ecddb09150e273aa5a0db"
+hash = "98cb1b6ded91aa9674df11f61398cb7da1d42c32e6ea31a00af4683525e1cca5"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/entity/pnj/hajar.png"
@@ -2658,6 +2658,10 @@ file = "kubejs/assets/atheria/textures/item/puff_9.png"
 hash = "ff95bc5b6cfbce26951d6995db3019e6861bcd7b7e003d3cd3b6321f21dac30e"
 
 [[files]]
+file = "kubejs/assets/atheria/textures/item/puff_eniy.png"
+hash = "98602ece3930fb73e1f9e115f5277e0f60add5be418f07aba1b4dbd049715d20"
+
+[[files]]
 file = "kubejs/assets/atheria/textures/item/radio_portative.png"
 hash = "77b09267b8b3c227a4d7c1e6fb66890320fe1f6376bb21b558ae46d1d668efe2"
 
@@ -2672,6 +2676,10 @@ hash = "398843b4db8943c464259d5de2f3db9901df105dd15e71edf358cc3b961ddc2d"
 [[files]]
 file = "kubejs/assets/atheria/textures/item/rib.png"
 hash = "bd1ccb608719668c3d05990bee6d182a9acfeb09a477700e847d2e27d1f95eef"
+
+[[files]]
+file = "kubejs/assets/atheria/textures/item/sac_vivres.png"
+hash = "c5fb37dd96d38db90c2df96ee89eaa62b3fd5d88d7d64a3dceaa6a55c0fa91d5"
 
 [[files]]
 file = "kubejs/assets/atheria/textures/item/trousse_soins.png"
@@ -3767,7 +3775,7 @@ hash = "5761adf07acf0905ac2fd47f58ccf3d1acb30c42f744559a27b98eadb776b814"
 
 [[files]]
 file = "kubejs/client_scripts/atheria_infobulles.js"
-hash = "8bdb8e738280e911f30c0046b784c59cdab4f5dbf2872476127a769046d3e3c1"
+hash = "a8276c4660e4232b0d148f9352ac38b0b3f5201714259d3c3dddaa9cf0c50837"
 
 [[files]]
 file = "kubejs/client_scripts/atheria_intro_video.js"
@@ -14911,7 +14919,7 @@ hash = "5c652472d4086a3c2c298926f16bd78318c5b16e3ffcfd82c822a597c99b3491"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_bug.js"
-hash = "f8c015d014d36567df6845ca2fe36d76a9eda91b3acbc88f3253605124f8c87b"
+hash = "44e6d970c9094b4c8e95b3f9495763d1d8d57554add6d9b4383834de7465fe6b"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_butin.js"
@@ -14995,11 +15003,11 @@ hash = "b1e9c96b7a0701f549d52038dae1739b752055bb7e5a209ace33e02e8840501a"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_habitants_longoni.js"
-hash = "0294a79f5461be1bd65df47ad846593f8e6599aa4e90c49d8d18b70d657dd277"
+hash = "e0ff7f3dcc0ec20d6a109d26e9587215f1b6c74d2e62863b6cebdf15d6c1259d"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_habitants_majicavo.js"
-hash = "6d019e9e9ed29460429344a32115c6e286caf74171f1c4dc1807cf6aa433ec11"
+hash = "8d5cf1842043de4a6c91737bfc862ededb339c6b68866b9835f153b7a971ea59"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_honneur.js"
@@ -15023,7 +15031,11 @@ hash = "935c0fae91ba52288690afc47a378426df8d359f9478e11c3fa59d46d0310e0b"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_live.js"
-hash = "bd63b26640ca357ac19cbc5afa8d1307202b4a74f48e6b0bf6a2c7a085245f24"
+hash = "5856e2389e2b4894799da9ec65cb24a9bb9b0510bb8ce196c686de104482888e"
+
+[[files]]
+file = "kubejs/server_scripts/atheria_live_assaut.js"
+hash = "7bc84347058dc5a80c66e43f9ecd41fc6e1c673554ef164fe2174ac7657b9d8d"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_live_convoi.js"
@@ -15034,8 +15046,20 @@ file = "kubejs/server_scripts/atheria_live_marche.js"
 hash = "d0d3a9bc267e2763c4a46be78febd8978581955faa5ad0e98c4c177228a78eb9"
 
 [[files]]
+file = "kubejs/server_scripts/atheria_live_portes.js"
+hash = "774db6d76fd5bf5984daf6d4f24a6e3a42eeeabec439f20aeaf01f1dc6d18952"
+
+[[files]]
+file = "kubejs/server_scripts/atheria_live_puffs.js"
+hash = "3e6318fc114966d0a8647230fa9e04d1d4f76b194c114bbb5de44e45fc4fed14"
+
+[[files]]
 file = "kubejs/server_scripts/atheria_live_rallye.js"
 hash = "e29bb0800730b5f245af07fe5ad116760151281e69fde21e9f8278f6527d6d9c"
+
+[[files]]
+file = "kubejs/server_scripts/atheria_live_tournoi.js"
+hash = "f9863a92a87ff04df3db6df2645b30dc98c80ef6ecde3d723e028fb7775c0988"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_lunes.js"
@@ -15091,7 +15115,7 @@ hash = "e0f071d9d73a44cac084458237ee742462e11fda6c163d1558d4e77ad083e2e9"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_spawn_sur.js"
-hash = "c9d3a41d2e51aaba415d9c02b49ba3b09c33e578f038457fdb6ef297afea2108"
+hash = "ddcf2b284828b675ff6e1f47f0f018dc5f10c69d2bd4894687b095da1c9baf4e"
 
 [[files]]
 file = "kubejs/server_scripts/atheria_spores.js"
@@ -15123,7 +15147,7 @@ hash = "2186d6a34e487ce1b1a7a7cfaa970f67b3ab113c24495140d30367c3f86c27a8"
 
 [[files]]
 file = "kubejs/startup_scripts/atheria_live_objets.js"
-hash = "298abc39e517001c715ba194e5d071f2a633e82f037317321e9c652731c0831a"
+hash = "ad5df87fb3b691c072e5340e274d4e6c6149b247870d0b84b5413c4906a9dd4f"
 
 [[files]]
 file = "kubejs/startup_scripts/atheria_objets.js"
