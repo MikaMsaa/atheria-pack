@@ -16,10 +16,11 @@
 // Score : 50 par KO, 40 par duel gagné, 100 au champion, 30 à chaque vainqueur du 2 contre 2, et le gain des paris.
 var TOURNOI = {
   lieu: 'Refuge de Coconi',
-  // arène : PROVISOIRE (pré du Refuge) tant que le fil de la carte n'a pas posé la vraie arène et donné ses mesures
-  arene: [-919, -941, -880, -918],
-  departs: { a: [[-916, -933], [-916, -926]], b: [[-883, -933], [-883, -926]] },
-  solDefaut: 64,
+  // arène du pré du Refuge (fil de la carte, 27/11) : intérieur x -926..-901, z -965..-918, 26 × 48, murs y65..69
+  arene: [-926, -965, -901, -918],
+  // départs sur les carrés de gravier ; un duel oppose sud_1 et nord_1 (diagonale égale)
+  departs: { a: [[-918, -920], [-909, -920]], b: [[-909, -963], [-918, -963]] },
+  solDefaut: 65,
   rayonPublic: 48,
   inscriptionSec: 300,
   pariSec: 25, matchSec: 150, mortSubiteSec: 30,
