@@ -16,7 +16,8 @@ var ATHERIA_TITRES_LIVE = {
   gardien_porte: 'Gardien de la Porte',
   fouineur: 'Fouineur d\'Eniy',
   liberateur: 'Libérateur de Majicavo',
-  champion_angellow: 'Champion d\'Angellow'
+  champion_angellow: 'Champion d\'Angellow',
+  pilleur_epave: 'Pilleur d\'épave'
 }
 if (!global.ATHERIA_TITRES) global.ATHERIA_TITRES = {}
 for (var k in ATHERIA_TITRES_LIVE) global.ATHERIA_TITRES[k] = ATHERIA_TITRES_LIVE[k]
