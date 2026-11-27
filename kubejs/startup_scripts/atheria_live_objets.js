@@ -14,7 +14,8 @@ var ATHERIA_TITRES_LIVE = {
   grand_acheteur: 'Client préféré d\'Eniy',
   escorte_paf: 'Escorte de la PAF',
   gardien_porte: 'Gardien de la Porte',
-  fouineur: 'Fouineur d\'Eniy'
+  fouineur: 'Fouineur d\'Eniy',
+  liberateur: 'Libérateur de Majicavo'
 }
 if (!global.ATHERIA_TITRES) global.ATHERIA_TITRES = {}
 for (var k in ATHERIA_TITRES_LIVE) global.ATHERIA_TITRES[k] = ATHERIA_TITRES_LIVE[k]
