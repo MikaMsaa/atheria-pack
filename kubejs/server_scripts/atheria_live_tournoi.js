@@ -16,10 +16,14 @@
 // Score : 50 par KO, 40 par duel gagné, 100 au champion, 30 à chaque vainqueur du 2 contre 2, et le gain des paris.
 var TOURNOI = {
   lieu: 'Refuge de Coconi',
-  // arène du pré du Refuge (fil de la carte, 27/11) : intérieur x -926..-901, z -965..-918, 26 × 48, murs y65..69
-  arene: [-926, -965, -901, -918],
-  // départs sur les carrés de gravier ; un duel oppose sud_1 et nord_1 (diagonale égale)
-  departs: { a: [[-918, -920], [-909, -920]], b: [[-909, -963], [-918, -963]] },
+  // EN ATTENTE (Mika 28/11) : pas d'arène posée. L'arène du pré de Coconi ne sera pas construite ; l'arène mini-ville
+  // (dimension atheria_arene:arene, fil de la carte, /mnt/project-files/cloud-carte/arene-ville-20261128/) est gardée
+  // pour un futur mode de jeu. Tant que pret est faux, /live tournoi start refuse de lancer.
+  // Pour la reprendre : autoriser la dimension dans atheria_dimensions.js, tp « execute in » cette dimension,
+  // combattants en mode aventure ; intérieur x/z 96..223, pieds y65, départs ci-dessous.
+  pret: false,
+  arene: [96, 96, 223, 223],
+  departs: { a: [[104, 219], [100, 214]], b: [[215, 100], [219, 105]] },
   solDefaut: 65,
   rayonPublic: 48,
   inscriptionSec: 300,
@@ -562,7 +566,10 @@ ServerEvents.commandRegistry(event => {
     return 1
   })))
   // « /live tournoi … » : le nœud littéral passe avant l'argument <nom> de /live, il reprend donc aussi « start »
-  var lancer = (cx, mn) => { cx.source.sendSystemMessage(Text.of(atheriaLiveLancer(cx.source.server, 'tournoi', mn))); return 1 }
+  var lancer = (cx, mn) => {
+    if (!TOURNOI.pret) { cx.source.sendSystemMessage(Text.of('Le tournoi d\'Angellow attend son arène : rien n\'est lancé.')); return 0 }
+    cx.source.sendSystemMessage(Text.of(atheriaLiveLancer(cx.source.server, 'tournoi', mn))); return 1
+  }
   event.register(Commands.literal('live').requires(src => src.hasPermission(2))
     .then(Commands.literal('tournoi')
       .then(Commands.literal('start').executes(cx => lancer(cx, null))
