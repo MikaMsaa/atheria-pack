@@ -1,4 +1,5 @@
-// Atheria : l'air de la zone contaminée. Sans masque et filtre, il empoisonne. Les infectés y sont aussi plus nombreux.
+// Atheria : l'air de la zone contaminée et des zones rouges (palier 5). Sans masque et filtre, il empoisonne.
+// Les infectés y sont aussi plus nombreux.
 var AIR = {
   biome: 'atheria:zone_contaminee',
   periode: 40,
@@ -93,7 +94,8 @@ ServerEvents.tick(event => {
   serveur.players.forEach(joueur => {
     if (joueur.isCreative() || joueur.isSpectator() || !joueur.isAlive()) return
     airFiltreVisuel(joueur)
-    if (joueur.level.dimension != 'minecraft:overworld' || !airBiome(joueur)) {
+    // zone contaminée, ou zone rouge (palier 5 de la grille des paliers, atheria_zones_rouges.js)
+    if (joueur.level.dimension != 'minecraft:overworld' || !(airBiome(joueur) || (typeof atheriaZoneRougeAir === 'function' && atheriaZoneRougeAir(joueur)))) {
       // sortie de la zone : la jauge s'efface
       if (joueur.persistentData.getBoolean('atheria_air_dans')) {
         joueur.persistentData.putBoolean('atheria_air_dans', false)
